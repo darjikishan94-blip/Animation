@@ -266,6 +266,28 @@ select {
 .facts ul { margin: 0; padding-left: 18px; display: grid; gap: 5px; }
 .facts p { margin: 0; }
 .foot { margin-top: 18px; font-size: 13px; color: var(--ink-2); max-width: 80ch; }
+/* Answer mode: hidden on every page load, revealed per question by the Show answers button. */
+.btn.reveal { margin-left: auto; border-color: var(--accent); color: var(--accent); }
+.btn.reveal[aria-pressed="true"] { background: var(--accent-soft); color: var(--ink); }
+.cap-ans {
+  margin: 8px 0 0;
+  max-width: 74ch;
+  padding: 6px 12px;
+  background: var(--accent-soft);
+  border-left: 3px solid var(--accent);
+  border-radius: 0 6px 6px 0;
+}
+.cap-ans .tag { margin-right: 8px; font-weight: 700; color: var(--accent); }
+.answer {
+  grid-column: 1 / -1;
+  padding: 14px 16px;
+  background: var(--accent-soft);
+  border-left: 4px solid var(--accent);
+  border-radius: 0 8px 8px 0;
+}
+.facts .answer h3 { color: var(--accent); }
+.answer ol { margin: 0; padding-left: 20px; display: grid; gap: 6px; }
+.facts .answer .final { margin-top: 10px; font-weight: 700; }
 @media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }
 </style>
 
@@ -273,7 +295,7 @@ select {
   <header class="top">
     <p class="eyebrow">Class 9 Science · Exploration · Chapter 7 · Revise, Reflect, Refine</p>
     <h1>Work, Energy and Simple Machines: questions 8, 9 and 10</h1>
-    <p class="lede">Each animation sets up the situation exactly as the question describes it, then plays out what the physics predicts, one step at a time. Numerical answers are not shown.</p>
+    <p class="lede">Each animation sets up the situation exactly as the question describes it, then plays out what the physics predicts, one step at a time. Answers stay hidden until you press <b>Show answers</b> below a picture.</p>
     <ul class="key" aria-label="Colour key">
       <li><svg viewBox="0 0 28 12" aria-hidden="true"><path d="M1 6h19" stroke="var(--vel)" stroke-width="3"/><path d="M27 6l-8-5v10z" fill="var(--vel)"/></svg>velocity</li>
       <li><svg viewBox="0 0 28 12" aria-hidden="true"><path d="M1 6h19" stroke="var(--force)" stroke-width="3"/><path d="M27 6l-8-5v10z" fill="var(--force)"/></svg>force (weight, driving force)</li>
@@ -318,6 +340,16 @@ select {
           <li>Scooter, man and son move together as one mass (wheel spin ignored).</li>
         </ul>
       </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>Total mass that speeds up: Day 1 = 60 + 100 = 160 kg. Day 2 = 60 + 100 + 40 = 200 kg.</li>
+          <li>Starting from rest with nothing lost, fuel energy used = kinetic energy gained = ½<i>mv</i><sup>2</sup>.</li>
+          <li>Day 1: ½ × 160 × <i>v</i><sup>2</sup> = 80<i>v</i><sup>2</sup>. Day 2: ½ × 200 × <i>v</i><sup>2</sup> = 100<i>v</i><sup>2</sup>.</li>
+          <li>The time <i>t</i> does not change the answer. Only the final speed matters, and it is the same on both days.</li>
+        </ol>
+        <p class="final">Fuel used, Day 1 : Day 2 = 80<i>v</i><sup>2</sup> : 100<i>v</i><sup>2</sup> = 4 : 5. Day 2 uses 25% more fuel.</p>
+      </div>
     </div>
   </section>
 
@@ -347,6 +379,15 @@ select {
           <li>Ticks on the plank are a quarter of <i>d</i> apart.</li>
           <li>No masses are given, so how fast the seesaw tips in step 2 is only illustrative. Its direction is what matters.</li>
         </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>For balance, the anticlockwise turning effect equals the clockwise turning effect.</li>
+          <li>Child: <i>W</i> × <i>d</i>. Adult at distance <i>x</i> from the fulcrum: 2<i>W</i> × <i>x</i>.</li>
+          <li>2<i>W</i> × <i>x</i> = <i>W</i> × <i>d</i>, so <i>x</i> = <i>d</i>/2.</li>
+        </ol>
+        <p class="final">The adult sits at half the child’s distance from the fulcrum: child at <i>d</i>, adult at <i>d</i>/2 (distances in the ratio 2 : 1). The heavier person sits closer to the fulcrum.</p>
       </div>
     </div>
   </section>
@@ -378,10 +419,21 @@ select {
           <li>Flight runs at half speed, and faint circles show the ball every 0.2 s. The energy bar's parts share one scale.</li>
         </ul>
       </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>(i) Going up, gravity (down) is opposite to the displacement (up). The angle is 180°, so <i>W</i> = <i>mgh</i> cos 180° = −<i>mgh</i>. Coming down they are in the same direction. The angle is 0°, so <i>W</i> = +<i>mgh</i>.</li>
+          <li>Over 19.4 m, <i>mgh</i> = 2 × 10 × 19.4 = 388 J. Gravity does −388 J going up and +388 J coming back down to the launch level.</li>
+          <li>(ii) Kinetic energy at launch = ½ × 2 × 20<sup>2</sup> = 400 J. At the highest point KE = 0 and PE = 388 J.</li>
+          <li>Work–energy theorem for the rise: <i>W</i><sub>gravity</sub> + <i>W</i><sub>air</sub> = KE<sub>top</sub> − KE<sub>launch</sub>, so −388 + <i>W</i><sub>air</sub> = 0 − 400, giving <i>W</i><sub>air</sub> = −12 J.</li>
+          <li>Check: without air resistance the ball would rise to <i>u</i><sup>2</sup>/2<i>g</i> = 400/20 = 20 m, a little higher than 19.4 m.</li>
+        </ol>
+        <p class="final">(i) The work done by gravity is negative on the way up and positive on the way down. (ii) The work done by air resistance is −12 J: air resistance takes 12 J of the ball’s energy.</p>
+      </div>
     </div>
   </section>
 
-  <p class="foot">Questions paraphrased from the NCERT Class 9 Science textbook <i>Exploration</i>, Chapter 7 (Work, Energy and Simple Machines), Revise, Reflect, Refine. Click a picture or press Space to play or pause; the arrow keys move between steps.</p>
+  <p class="foot">Questions paraphrased from the NCERT Class 9 Science textbook <i>Exploration</i>, Chapter 7 (Work, Energy and Simple Machines), Revise, Reflect, Refine. Click a picture or press Space to play or pause; the arrow keys move between steps. Show answers reveals the worked answer and the calculated values for that question only; every time the page opens, the answers start hidden.</p>
 </div>
 
 <script>
@@ -392,7 +444,7 @@ select {
 const VW = 960, VH = 540;
 const FB = '"Atkinson Hyperlegible", "Segoe UI", system-ui, -apple-system, sans-serif';
 const FD = '"Archivo", "Arial Narrow", "Segoe UI", system-ui, sans-serif';
-const TOK = ['sheet', 'ink', 'ink-2', 'rule', 'grid', 'grid-2', 'accent', 'accent-soft', 'vel', 'force', 'drag', 'disp',
+const TOK = ['sheet', 'ink', 'ink-2', 'rule', 'grid', 'grid-2', 'accent', 'accent-ink', 'accent-soft', 'vel', 'force', 'drag', 'disp',
   'ke', 'ke-soft', 'pe', 'loss', 'obj', 'obj-fill', 'obj-fill-2', 'wood', 'road'];
 let P = {};
 function readPalette() {
@@ -515,21 +567,25 @@ const Q8 = (() => {
   const T1 = 4, T2 = 8, T3 = 14;            // stage 2 starts, motion starts, motion ends (time t reached)
   const X0 = 250, S = 400, VMAX = 110;       // nose at start, distance covered (px), velocity arrow at speed v
   const lanes = [
-    { gy: 232, top: 62, day: 'DAY 1', desc: 'man alone', son: false, F: 72, sub: '1' },
-    { gy: 452, top: 290, day: 'DAY 2', desc: 'man + son', son: true, F: 90, sub: '2' },   // F2 / F1 = 200 kg / 160 kg
+    { gy: 232, top: 62, day: 'DAY 1', desc: 'man alone', son: false, F: 72, sub: '1', M: 160 },
+    { gy: 452, top: 290, day: 'DAY 2', desc: 'man + son', son: true, F: 90, sub: '2', M: 200 },   // F2 / F1 = 200 kg / 160 kg
   ];
   const MAN = { hip: [-86, -64], sh: [-80, -106], head: [-75, -120], hr: 11, knee: [-56, -64], foot: [-58, -26], elbow: [-58, -96], hand: [-34, -91], lw: 8, tw: 11 };
   const SON = { hip: [-112, -66], sh: [-108, -97], head: [-104, -108], hr: 9, knee: [-92, -64], foot: [-97, -36], elbow: [-98, -86], hand: [-87, -82], lw: 6.5, tw: 9 };
 
   const stages = [
     { title: 'Two days, two loads', dur: 4,
-      text: 'Day 1: the man (60 kg) rides the scooter (100 kg). Day 2: his son (40 kg) rides along as well. Both rides start from rest.' },
+      text: 'Day 1: the man (60 kg) rides the scooter (100 kg). Day 2: his son (40 kg) rides along as well. Both rides start from rest.',
+      ans: 'Total mass: Day 1 = 60 + 100 = 160 kg. Day 2 = 60 + 100 + 40 = 200 kg.' },
     { title: 'Same target on both days', dur: 4,
-      text: 'On both days the scooter must reach the same speed v in the same time t, so it speeds up at the same rate. Speeding up a bigger load at that rate needs a bigger driving force: the push of the road on the rear tyre.' },
+      text: 'On both days the scooter must reach the same speed v in the same time t, so it speeds up at the same rate. Speeding up a bigger load at that rate needs a bigger driving force: the push of the road on the rear tyre.',
+      ans: 'Same acceleration a = v/t on both days, and F = ma, so F₁ : F₂ = 160 : 200 = 4 : 5.' },
     { title: 'Speeding up for time t', dur: 6,
-      text: 'The two scooters stay level with each other, with the same speed and the same position at every instant. As they speed up, energy from the fuel becomes kinetic energy. Nothing is lost to friction or air resistance.' },
+      text: 'The two scooters stay level with each other, with the same speed and the same position at every instant. As they speed up, energy from the fuel becomes kinetic energy. Nothing is lost to friction or air resistance.',
+      ans: 'Kinetic energy = ½ × mass × speed². The speeds are equal at every instant, so Day 2’s kinetic energy is always 200/160 = 1.25 times Day 1’s.' },
     { title: 'At time t: both reach speed v', dur: 5,
-      text: 'Both scooters have covered the same distance and reached speed v. On Day 2 more mass is moving at v, so more kinetic energy was gained and more fuel was used. The extra is the son’s kinetic energy.' },
+      text: 'Both scooters have covered the same distance and reached speed v. On Day 2 more mass is moving at v, so more kinetic energy was gained and more fuel was used. The extra is the son’s kinetic energy.',
+      ans: 'Day 1: ½ × 160 × v² = 80v². Day 2: ½ × 200 × v² = 100v². Fuel used, Day 1 : Day 2 = 4 : 5.' },
   ];
 
   function rider(ctx, nx, gy, R) {
@@ -590,12 +646,13 @@ const Q8 = (() => {
     label(ctx, '0', x1, y + 17, { align: 'center', size: 13, color: P.ink2 });
     label(ctx, 't', x2, y + 17, { align: 'center', size: 15, color: P.ink2, italic: true, weight: 700 });
   }
-  function lane(ctx, L, nx, tau, t) {
+  function lane(ctx, L, nx, tau, t, ans) {
     const gy = L.gy;
     ctx.fillStyle = P.road; ctx.fillRect(16, gy, 690, 24);
     hline(ctx, 16, 706, gy, P.obj, 2);
     const w = label(ctx, L.day, 24, L.top, { display: true, weight: 800, size: 17 });
     label(ctx, L.desc, 24 + w + 10, L.top, { size: 15, color: P.ink2 });
+    if (ans) label(ctx, `total ${L.M} kg`, 24, L.top + 20, { size: 14, weight: 700, color: P.accent });
     const dA = ramp(t, T2, T2 + 0.4);
     if (dA > 0) {
       label(ctx, 'dots: equal time gaps', 24, gy + 36, { size: 13, color: P.ink2, alpha: dA });
@@ -622,7 +679,7 @@ const Q8 = (() => {
       labelSub(ctx, 'F', L.sub, rx + L.F + 6, gy + 12, { color: P.force, size: 16, alpha: fA, haloColor: P.road });
     }
   }
-  function fuel(ctx, tau) {
+  function fuel(ctx, tau, t, ans) {
     const cx = 836;
     label(ctx, 'Fuel energy used', cx, 26, { align: 'center', weight: 700, size: 17 });
     label(ctx, '= kinetic energy gained', cx, 46, { align: 'center', size: 14, color: P.ink2 });
@@ -649,8 +706,15 @@ const Q8 = (() => {
     hline(ctx, 728, 944, yb, P.obj, 2);
     label(ctx, 'Day 1', 788, yb + 18, { align: 'center', weight: 700, size: 15 });
     label(ctx, 'Day 2', 884, yb + 18, { align: 'center', weight: 700, size: 15 });
+    if (ans) {                                 // final kinetic energies and the ratio asked for
+      const a = ramp(t, T3, T3 + 0.6);
+      label(ctx, '80v²', 788, yb - 4 * u - 14, { align: 'center', weight: 700, size: 15, alpha: a });
+      label(ctx, '100v²', 884, yb - 5 * u - 14, { align: 'center', weight: 700, size: 15, alpha: a });
+      label(ctx, 'Day 1 : Day 2', cx, 128, { align: 'center', size: 14, color: P.ink2, alpha: a });
+      label(ctx, '160 : 200 = 4 : 5', cx, 150, { align: 'center', weight: 700, size: 18, color: P.accent, alpha: a });
+    }
   }
-  function draw(ctx, t) {
+  function draw(ctx, t, ans) {
     bg(ctx);
     const tau = clamp((t - T2) / (T3 - T2));   // fraction of the time interval t that has passed
     const nx = X0 + S * tau * tau;             // uniform acceleration from rest
@@ -663,12 +727,12 @@ const Q8 = (() => {
       ctx.save(); ctx.globalAlpha = endA; vline(ctx, X0 + S, 60, 498, P.ink2, 1.2, [5, 5]); ctx.restore();
       label(ctx, 'after time t', X0 + S, 48, { align: 'center', size: 14, color: P.ink2, alpha: endA });
     }
-    for (const L of lanes) lane(ctx, L, nx, tau, t);
+    for (const L of lanes) lane(ctx, L, nx, tau, t, ans);
     if (endA > 0) {
       dim(ctx, X0, X0 + S, 512, P.ink2, endA);
       label(ctx, 'same distance on both days', X0 + S / 2, 528, { align: 'center', size: 14, color: P.ink2, alpha: endA });
     }
-    fuel(ctx, tau);
+    fuel(ctx, tau, t, ans);
   }
   return { stages, draw };
 })();
@@ -681,16 +745,22 @@ const Q9 = (() => {
   const WC = 40, WA = 80;                    // weight arrows, to scale (W and 2W)
   const stages = [
     { title: 'Held level, equal distances', dur: 4,
-      text: 'Supports hold the seesaw level. The child (weight W) and the adult (weight 2W) sit at the same distance d from the fulcrum. Each weight has a turning effect: weight × distance from the fulcrum.' },
+      text: 'Supports hold the seesaw level. The child (weight W) and the adult (weight 2W) sit at the same distance d from the fulcrum. Each weight has a turning effect: weight × distance from the fulcrum.',
+      ans: 'Child: W × d = Wd (anticlockwise). Adult: 2W × d = 2Wd (clockwise).' },
     { title: 'Released: the adult’s side goes down', dur: 4,
-      text: 'The adult’s turning effect (clockwise) is twice the child’s (anticlockwise), so the seesaw turns clockwise until the adult’s end touches the ground.' },
+      text: 'The adult’s turning effect (clockwise) is twice the child’s (anticlockwise), so the seesaw turns clockwise until the adult’s end touches the ground.',
+      ans: 'Clockwise 2Wd is bigger than anticlockwise Wd, so the seesaw turns clockwise.' },
     { title: 'The adult slides closer to the fulcrum', dur: 6.5,
-      text: 'The seesaw is lifted level and held again. The adult’s seat slides toward the fulcrum, so the adult’s turning effect gets smaller, until it equals the child’s.' },
+      text: 'The seesaw is lifted level and held again. The adult’s seat slides toward the fulcrum, so the adult’s turning effect gets smaller, until it equals the child’s.',
+      ans: 'Balance needs 2W × x = W × d, so the adult’s distance from the fulcrum is x = d/2.' },
     { title: 'Released again: it stays level', dur: 3,
-      text: 'The clockwise and anticlockwise turning effects are now equal, so the seesaw stays balanced without the supports.' },
+      text: 'The clockwise and anticlockwise turning effects are now equal, so the seesaw stays balanced without the supports.',
+      ans: 'Clockwise: 2W × d/2 = Wd. Anticlockwise: W × d = Wd. Equal, so it balances.' },
     { title: 'The balanced seesaw', dur: 4.5,
-      text: 'The child (W) sits at distance d from the fulcrum on one side, and the adult (2W) at distance d/2 on the other. This is the figure the question asks for.' },
+      text: 'The child (W) sits at distance d from the fulcrum on one side, and the adult (2W) at distance d/2 on the other. This is the figure the question asks for.',
+      ans: 'The adult sits at half the child’s distance from the fulcrum: child at d, adult at d/2 (ratio 2 : 1).' },
   ];
+  const wd = v => { const r = Math.round(v * 100) / 100; return (r === 1 ? '' : String(r)) + 'Wd'; };   // turning effect in units of W × d
   function theta(t) {                        // clockwise tilt; constant turning effect gives steady angular speed-up
     if (t < 4.7) return 0;
     if (t < 5.7) { const u = t - 4.7; return TMAX * u * u; }
@@ -724,7 +794,7 @@ const Q9 = (() => {
     ctx.beginPath(); ctx.arc(h[0], h[1], 11 * k, 0, Math.PI * 2); ctx.fill();
     ctx.restore();
   }
-  function turningPanel(ctx, s) {
+  function turningPanel(ctx, s, ans) {
     label(ctx, 'Turning effect about the fulcrum', 24, 24, { weight: 700, size: 16 });
     label(ctx, '= weight × distance from the fulcrum', 24, 44, { size: 14, color: P.ink2 });
     const x0 = 128, unit = 100;
@@ -733,13 +803,14 @@ const Q9 = (() => {
       label(ctx, name, 24, y, { weight: 700, size: 15 });
       rotArrow(ctx, 100, y + 3, 8, cw, P.ink2, 1, 2);
       ctx.fillStyle = P.accent; ctx.fillRect(x0, y - 9, unit * vals[i], 18);
+      if (ans) label(ctx, wd(vals[i]), x0 + unit * vals[i] - 6, y, { align: 'right', weight: 700, size: 13, color: P.accentInk, halo: false });
     });
     label(ctx, 'anticlockwise', x0 + unit + 8, 74, { size: 13, color: P.ink2 });
     label(ctx, 'clockwise', x0 + unit * vals[1] + 8, 102, { size: 13, color: P.ink2 });
     const eq = Math.abs(vals[1] - 1) < 0.004;
     label(ctx, eq ? 'equal' : 'adult’s is bigger', 436, 88, { weight: 700, size: 15, color: eq ? P.accent : P.ink });
   }
-  function draw(ctx, t) {
+  function draw(ctx, t, ans) {
     bg(ctx);
     const th = theta(t), s = adultS(t), sup = support(t);
     hline(ctx, 20, 940, GY, P.obj, 2);
@@ -801,7 +872,7 @@ const Q9 = (() => {
     label(ctx, 'W', cx + 10, cyc + WC / 2, { color: P.force, weight: 700, italic: true, size: 17 });
     label(ctx, '2W', ax - 10, ayc + WA / 2, { color: P.force, weight: 700, italic: true, size: 17, align: 'right' });
 
-    turningPanel(ctx, s);
+    turningPanel(ctx, s, ans);
     const rA = ramp(t, 4.7, 5.0) * (1 - ramp(t, 7.6, 8.0));
     if (rA > 0) {
       rotArrow(ctx, PX, PY - 50, 34, true, P.ink, rA, 3);
@@ -809,6 +880,7 @@ const Q9 = (() => {
     }
     const bA = ramp(t, 15.5, 16.0);
     if (bA > 0) label(ctx, 'balanced: stays level', PX, PY - 64, { align: 'center', weight: 700, size: 16, color: P.accent, alpha: bA });
+    if (ans && bA > 0) label(ctx, 'W × d = 2W × d/2', PX, PY - 92, { align: 'center', weight: 700, size: 16, alpha: bA });
   }
   return { stages, draw };
 })();
@@ -827,16 +899,22 @@ const Q10 = (() => {
   const hDn = p => HT - 0.5 * ADN * p * p;
   const stages = [
     { title: 'Thrown up at 20 m/s', dur: S1,
-      text: 'The 2 kg ball leaves the launch point moving up at 20 m/s. Its weight mg acts downward the whole time. Air resistance acts against the motion, so while the ball rises it also points down.' },
+      text: 'The 2 kg ball leaves the launch point moving up at 20 m/s. Its weight mg acts downward the whole time. Air resistance acts against the motion, so while the ball rises it also points down.',
+      ans: 'Kinetic energy at launch = ½ × 2 × 20² = 400 J.' },
     { title: 'Going up', dur: S2 - S1,
-      text: 'The displacement s points up while gravity points down: opposite directions. The ball slows down as its kinetic energy turns into potential energy, and a little energy is taken by air resistance.' },
+      text: 'The displacement s points up while gravity points down: opposite directions. The ball slows down as its kinetic energy turns into potential energy, and a little energy is taken by air resistance.',
+      ans: 'The angle between mg and s is 180°, so the work done by gravity, W = −mgh, is negative. The box shows W as the ball rises.' },
     { title: 'Highest point: 19.4 m', dur: S3 - S2,
-      text: 'For an instant the ball is at rest, 19.4 m above the launch point. Gravity still acts on it. Air resistance is zero at this instant because the ball is not moving.' },
+      text: 'For an instant the ball is at rest, 19.4 m above the launch point. Gravity still acts on it. Air resistance is zero at this instant because the ball is not moving.',
+      ans: 'PE at the top = 2 × 10 × 19.4 = 388 J, so gravity has done −388 J. Air resistance took 400 − 388 = 12 J, so its work is −12 J.' },
     { title: 'Coming down', dur: S4 - S3,
-      text: 'Now the displacement s points down, the same direction as gravity. Air resistance points up, against the motion. The ball speeds up as potential energy turns back into kinetic energy.' },
+      text: 'Now the displacement s points down, the same direction as gravity. Air resistance points up, against the motion. The ball speeds up as potential energy turns back into kinetic energy.',
+      ans: 'The angle between mg and s is 0°, so the work done by gravity, W = +mgh, is positive.' },
     { title: 'Back at the launch level', dur: S5 - S4,
-      text: 'The ball passes the launch level moving down. Compare the two boxes: on the way up gravity is opposite to the displacement, and on the way down it is in the same direction.' },
+      text: 'The ball passes the launch level moving down. Compare the two boxes: on the way up gravity is opposite to the displacement, and on the way down it is in the same direction.',
+      ans: '(i) Work done by gravity: −388 J going up, +388 J coming down. (ii) Work done by air resistance while rising = −12 J.' },
   ];
+  const workLabel = (sign, j) => j === 0 ? 'W = 0 J' : `W = ${sign}${j} J`;   // work done by gravity
   function state(t) {
     if (t < S1) return { h: 0, v: U, ph: 0, p: 0 };
     if (t < S2) { const p = (t - S1) / SLOW; return { h: hUp(p), v: U - AUP * p, ph: 1, p }; }
@@ -892,7 +970,7 @@ const Q10 = (() => {
     arrow(ctx, xa, y1, xa, y2, P.drag, { lw: 3.5, head: 10, alpha: a });
     label(ctx, 'air', xa - 9, (y1 + y2) / 2, { align: 'right', color: P.drag, weight: 700, size: 15, alpha: a });
   }
-  function cells(ctx, t) {
+  function cells(ctx, t, st, ans) {
     const x0 = 452, w = 236;
     const box = (y, h) => { ctx.save(); ctx.strokeStyle = P.rule; ctx.lineWidth = 1.5; rrect(ctx, x0, y, w, h, 8); ctx.stroke(); ctx.restore(); };
     const aA = ramp(t, S1 + 0.2, S1 + 0.8), aB = ramp(t, S3 + 0.2, S3 + 0.8);
@@ -910,6 +988,7 @@ const Q10 = (() => {
       label(ctx, 'opposite', ox + 44, oy - 18, { weight: 700, size: 16, alpha: aA });
       label(ctx, 'directions', ox + 44, oy + 2, { weight: 700, size: 16, alpha: aA });
       label(ctx, 'angle 180°', ox + 44, oy + 24, { size: 14, color: P.ink2, alpha: aA });
+      if (ans) label(ctx, workLabel('−', Math.round(M * G * (st.ph === 1 ? st.h : HT))), ox + 44, oy + 46, { weight: 700, size: 15, alpha: aA });
     }
     box(252, 170);
     label(ctx, 'Coming down', x0 + 14, 274, { weight: 700, size: 16, alpha: 0.5 + 0.5 * aB });
@@ -923,15 +1002,18 @@ const Q10 = (() => {
       label(ctx, 'same', ox + 98, oy + 16, { weight: 700, size: 16, alpha: aB });
       label(ctx, 'direction', ox + 98, oy + 36, { weight: 700, size: 16, alpha: aB });
       label(ctx, 'angle 0°', ox + 98, oy + 58, { size: 14, color: P.ink2, alpha: aB });
+      if (ans) label(ctx, workLabel('+', Math.round(M * G * (st.ph === 3 ? HT - st.h : HT))), ox + 98, oy + 80, { weight: 700, size: 15, alpha: aB });
     }
   }
-  function energy(ctx, st) {
+  function energy(ctx, st, ans) {
     const bx = 716, bw = 56, yb = Y0, top = 100, k = (yb - top) / 400;   // 400 J = launch kinetic energy
     label(ctx, 'Energy', bx, 26, { weight: 700, size: 17 });
     label(ctx, 'the bar’s total height never changes', bx, 46, { size: 13, color: P.ink2 });
     hline(ctx, 706, 944, top, P.ink2, 1.2, [6, 5]);
-    label(ctx, 'energy at launch', bx + bw + 14, top - 15, { size: 13, color: P.ink2 });
+    label(ctx, ans ? 'energy at launch 400 J' : 'energy at launch', bx + bw + 14, top - 15, { size: 13, color: P.ink2 });
     const pe = M * G * st.h, ke = 0.5 * M * st.v * st.v, lost = Math.max(0, 400 - pe - ke);
+    // joule values only while rising and at the top: the question does not describe air resistance on the way down
+    const num = ans && st.ph <= 2, rp = Math.round(pe), rk = Math.round(ke), ra = 400 - rp - rk;
     const hp = pe * k, hk = ke * k, ha = lost * k;
     ctx.fillStyle = P.pe; ctx.fillRect(bx, yb - hp, bw, hp);
     ctx.fillStyle = P.ke; ctx.fillRect(bx, yb - hp - hk, bw, hk);
@@ -940,9 +1022,9 @@ const Q10 = (() => {
     if (hp > 0.5 && hk > 0.5) seg(ctx, bx, yb - hp, bx + bw, yb - hp);
     if (ha > 0.5) seg(ctx, bx, yb - hp - hk, bx + bw, yb - hp - hk);
     const items = [
-      { y: yb - hp - hk - ha / 2, h: ha, text: 'taken by air resistance', color: P.ink2 },
-      { y: yb - hp - hk / 2, h: hk, text: 'kinetic (KE)', color: P.ke },
-      { y: yb - hp / 2, h: hp, text: 'potential (PE)', color: P.pe },
+      { y: yb - hp - hk - ha / 2, h: ha, text: num ? `air resistance ${ra} J` : 'taken by air resistance', color: P.ink2 },
+      { y: yb - hp - hk / 2, h: hk, text: num ? `kinetic (KE) ${rk} J` : 'kinetic (KE)', color: P.ke },
+      { y: yb - hp / 2, h: hp, text: num ? `potential (PE) ${rp} J` : 'potential (PE)', color: P.pe },
     ].filter(it => it.h > 0.8);
     let prev = top - 9;
     for (const it of items) { it.ly = Math.max(it.y, prev + 21); prev = it.ly; }
@@ -955,7 +1037,7 @@ const Q10 = (() => {
       label(ctx, it.text, bx + bw + 18, it.ly, { size: 13, weight: 700, color: it.color });
     }
   }
-  function draw(ctx, t) {
+  function draw(ctx, t, ans) {
     bg(ctx);
     const st = state(t), y = yOf(st.h);
     axis(ctx);
@@ -972,8 +1054,8 @@ const Q10 = (() => {
     label(ctx, 'mg', X - 9, y + BR + WL - 6, { align: 'right', color: P.force, weight: 700, size: 16 });
     airResistance(ctx, st, y);
     label(ctx, 'm = 2 kg', X - 26, y - 18, { align: 'right', weight: 700, size: 15, alpha: 1 - ramp(t, S1, S1 + 0.4) });
-    cells(ctx, t);
-    energy(ctx, st);
+    cells(ctx, t, st, ans);
+    energy(ctx, st, ans);
     label(ctx, 'faint circles: the ball every 0.2 s', 24, 510, { size: 12, color: P.ink2 });
     label(ctx, 'air arrow enlarged: the real force is much smaller than mg', 24, 528, { size: 12, color: P.ink2 });
   }
@@ -987,6 +1069,7 @@ const ICON = {
   prev: '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 2.5h2v11H3zM14 2.5v11L6 8z" fill="currentColor"/></svg>',
   next: '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M11 2.5h2v11h-2zM2 2.5v11L10 8z" fill="currentColor"/></svg>',
   restart: '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2.2V0L4.6 3 8 6V3.8a4.2 4.2 0 1 1-4.2 4.2H2.2A5.8 5.8 0 1 0 8 2.2z" fill="currentColor"/></svg>',
+  eye: '<svg viewBox="0 0 16 16" aria-hidden="true"><path fill-rule="evenodd" d="M8 3C4.6 3 1.8 5.2.5 8c1.3 2.8 4.1 5 7.5 5s6.2-2.2 7.5-5C14.2 5.2 11.4 3 8 3zm0 1.8a3.2 3.2 0 1 0 0 6.4 3.2 3.2 0 0 0 0-6.4zm0 1.5a1.7 1.7 0 1 1 0 3.4 1.7 1.7 0 0 1 0-3.4z" fill="currentColor"/></svg>',
 };
 function controlsHTML(id) {
   return `
@@ -994,6 +1077,7 @@ function controlsHTML(id) {
       <p class="cap-step">Step <span data-k="n">1</span> of <span data-k="of"></span></p>
       <h2 class="cap-title" data-k="title"></h2>
       <p class="cap-text" data-k="text"></p>
+      <p class="cap-ans" data-k="ansbox" hidden><span class="tag">Answer</span><span data-k="ans"></span></p>
     </div>
     <div class="transport">
       <button type="button" class="btn icon" data-act="restart" aria-label="Restart" title="Restart">${ICON.restart}</button>
@@ -1005,6 +1089,7 @@ function controlsHTML(id) {
         <select id="speed-${id}"><option value="0.5">0.5×</option><option value="1" selected>1×</option><option value="1.5">1.5×</option></select>
       </label>
       <label class="opt" for="stop-${id}"><input type="checkbox" id="stop-${id}">Pause after each step</label>
+      <button type="button" class="btn reveal" data-act="answers" aria-pressed="false">${ICON.eye}<span>Show answers</span></button>
     </div>
     <ol class="steps" aria-label="Steps"></ol>`;
 }
@@ -1016,13 +1101,14 @@ function makePlayer(panel, scene) {
     play: q('[data-act="play"]'), prev: q('[data-act="prev"]'), next: q('[data-act="next"]'), restart: q('[data-act="restart"]'),
     scrub: q('.scrub'), speed: q('select'), stop: q('input[type="checkbox"]'),
     n: q('[data-k="n"]'), of: q('[data-k="of"]'), title: q('[data-k="title"]'), text: q('[data-k="text"]'), steps: q('.steps'),
+    answers: q('[data-act="answers"]'), ansBox: q('[data-k="ansbox"]'), ansText: q('[data-k="ans"]'), sheet: q('.answer'),
   };
   const st = scene.stages;
   let acc = 0;
   for (const s of st) { s.t0 = acc; acc += s.dur; s.t1 = acc; }
   const total = acc;
   ui.of.textContent = st.length;
-  let t = 0, playing = false, last = 0, raf = 0, cur = -1;
+  let t = 0, playing = false, last = 0, raf = 0, cur = -1, ans = false;   // answers always start hidden
   const chips = st.map(s => {
     const li = document.createElement('li'), b = document.createElement('button');
     b.type = 'button'; b.textContent = s.title;
@@ -1043,11 +1129,13 @@ function makePlayer(panel, scene) {
     if (!fit()) return;
     const sc = canvas.width / VW;
     ctx.setTransform(sc, 0, 0, sc, 0, 0);
-    scene.draw(ctx, t);
+    scene.draw(ctx, t, ans);
     const i = stageAt(t);
     if (i !== cur) {
       cur = i;
       ui.n.textContent = i + 1; ui.title.textContent = st[i].title; ui.text.textContent = st[i].text;
+      ui.ansText.textContent = st[i].ans || '';
+      ui.ansBox.hidden = !(ans && st[i].ans);
       chips.forEach((b, k) => { if (k === i) b.setAttribute('aria-current', 'step'); else b.removeAttribute('aria-current'); });
     }
     ui.scrub.value = Math.round(t / total * 1000);
@@ -1077,6 +1165,13 @@ function makePlayer(panel, scene) {
     raf = requestAnimationFrame(loop);
   }
   function pause() { playing = false; cancelAnimationFrame(raf); setPlayUI(); }
+  function setAnswers(on) {
+    ans = on;
+    ui.answers.setAttribute('aria-pressed', String(on));
+    ui.answers.querySelector('span').textContent = on ? 'Hide answers' : 'Show answers';
+    if (ui.sheet) ui.sheet.hidden = !on;
+    cur = -1; render();
+  }
   function toggle() { playing ? pause() : play(); }
   function seek(x) { t = clamp(x, 0, total); render(); setPlayUI(); }
   function next() { const i = stageAt(t); seek(i < st.length - 1 ? st[i + 1].t0 : total); }
@@ -1085,6 +1180,7 @@ function makePlayer(panel, scene) {
   ui.next.addEventListener('click', next);
   ui.prev.addEventListener('click', prev);
   ui.restart.addEventListener('click', () => { seek(0); play(); });
+  ui.answers.addEventListener('click', () => setAnswers(!ans));
   ui.scrub.addEventListener('input', () => { pause(); seek(ui.scrub.value / 1000 * total); });
   const stage = q('.stage');
   stage.addEventListener('click', toggle);

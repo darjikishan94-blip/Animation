@@ -1,7 +1,8 @@
 # Physics Animations
 
 Step-by-step animations of textbook physics questions. Each one sets up the situation exactly as the
-question describes it, then plays out what the physics predicts. Numerical answers are not shown.
+question describes it, then plays out what the physics predicts. Every animation opens with the answers
+hidden; a **Show answers** button reveals them when you are ready.
 
 Every animation is a single, self-contained `.html` file. It needs no installation and opens in any
 web browser (Chrome, Edge, Safari or Firefox, on a computer or a phone).
@@ -37,6 +38,13 @@ Clicking an `.html` file on GitHub itself only shows its source code, not the an
 - **Play / Pause**: the Play button, a click on the picture, or the Space bar.
 - **Step by step**: the ◀ ▶ buttons, the arrow keys, or the numbered step buttons below the picture.
 - **Speed**: 0.5×, 1× or 1.5×. Tick *Pause after each step* to stop at every stage.
+- **Show answers / Hide answers** (each question has its own button) reveals:
+  - the worked answer below the picture;
+  - an *Answer* line under each step's explanation;
+  - the calculated values drawn on the animation itself (for example the 4 : 5 fuel ratio, the turning
+    effects in *Wd*, and the work done in joules).
+
+  The answers start hidden every time the page opens, so the page is safe to show to students first.
 - Light and dark mode follow your device's setting.
 
 ## Folder layout
@@ -47,12 +55,14 @@ class-<NN>/<subject>/ch<NN>-<chapter-name>/<topic>-q<first>-q<last>.html
 
 For example, `class-09/science/ch07-work-energy-and-simple-machines/work-energy-q8-q10.html`.
 When a new animation is added, it goes in the matching folder and gets a new row in the index above.
+Every new animation must also open with its answers hidden and have the same **Show answers** button.
 
 ## Originals
 
-Each file is an exact copy of a page first published on claude.ai. The online originals are private to
-the owner's account, so the files in this repository are the long-term copies.
+Each file was first published as a page on claude.ai, and the page is updated whenever the file changes.
+The online originals are private to the owner's account, so the files in this repository are the
+long-term copies.
 
-| File | Original page | Published |
-|---|---|---|
-| `work-energy-q8-q10.html` | <https://claude.ai/artifact/NQVh5HYwETSH2N1kZBh4oi> | 29 Oct 2026 |
+| File | Original page | Published | Updated |
+|---|---|---|---|
+| `work-energy-q8-q10.html` | <https://claude.ai/artifact/NQVh5HYwETSH2N1kZBh4oi> | 29 Oct 2026 | 31 Oct 2026: Show answers button added |
