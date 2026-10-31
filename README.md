@@ -35,10 +35,15 @@ Clicking an `.html` file on GitHub itself only shows its source code, not the an
 
 ## Controls
 
+On a laptop, desktop or projector, the whole animation and all its buttons fit on one screen with no
+scrolling. The picture sizes itself to the window, the buttons sit in one bar directly under it, and
+the question and step explanation are in a column beside it. (On a phone the same parts are stacked.)
+
 - **Play / Pause**: the Play button, a click on the picture, or the Space bar.
 - **Step by step**: the ◀ ▶ buttons, the arrow keys, or the numbered step buttons below the picture.
-- **Speed**: 0.5×, 1× or 1.5×. Tick *Pause after each step* to stop at every stage.
-- **Show answers / Hide answers** (each question has its own button) reveals:
+- **Speed**: 0.5×, 1× or 1.5×. Tick *Pause after each step* to stop at every stage. (Both are in the
+  column beside the picture.)
+- **Show answers / Hide answers** (each question has its own button, at the right end of the button bar) reveals:
   - the worked answer below the picture;
   - an *Answer* line under each step's explanation;
   - the calculated values drawn on the animation itself (for example the 4 : 5 fuel ratio, the turning
@@ -55,7 +60,8 @@ class-<NN>/<subject>/ch<NN>-<chapter-name>/<topic>-q<first>-q<last>.html
 
 For example, `class-09/science/ch07-work-energy-and-simple-machines/work-energy-q8-q10.html`.
 When a new animation is added, it goes in the matching folder and gets a new row in the index above.
-Every new animation must also open with its answers hidden and have the same **Show answers** button.
+Every new animation must also open with its answers hidden, have the same **Show answers** button, and
+use the same one-screen layout (picture and button bar fit the window; text column beside the picture).
 
 ## Originals
 

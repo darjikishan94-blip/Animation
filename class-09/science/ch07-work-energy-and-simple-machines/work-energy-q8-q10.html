@@ -65,13 +65,23 @@ body {
   line-height: 1.5;
 }
 .wrap {
-  max-width: 1080px;
+  max-width: 1760px;
   margin: 0 auto;
-  padding-block: 28px 48px;
+  padding-block: 14px 48px;
   padding-left: max(16px, env(safe-area-inset-left, 0px));
   padding-right: max(16px, env(safe-area-inset-right, 0px));
 }
-.top { display: grid; gap: 6px; }
+/* Header: one compact band (titles left, question tabs right) so the first screen also holds
+   the whole animation bench below it. */
+.top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 8px 24px;
+  border-bottom: 1px solid var(--rule);
+}
+.titles { flex: 1 1 300px; display: grid; gap: 4px; min-width: 0; padding-bottom: 10px; }
 .eyebrow {
   margin: 0;
   font-size: 12px;
@@ -85,18 +95,19 @@ h1 {
   font-family: var(--font-display);
   font-weight: 800;
   font-stretch: 112%;
-  font-size: clamp(26px, 4.4vw, 42px);
-  line-height: 1.04;
+  font-size: clamp(22px, 2.3vw, 30px);
+  line-height: 1.08;
   letter-spacing: -0.01em;
   text-wrap: balance;
 }
-.lede { margin: 4px 0 0; max-width: 66ch; color: var(--ink-2); }
+.about { margin-top: 18px; }
+.lede { margin: 0; max-width: 80ch; color: var(--ink-2); }
 .key {
   list-style: none;
   display: flex;
   flex-wrap: wrap;
   gap: 6px 18px;
-  margin: 14px 0 0;
+  margin: 8px 0 0;
   padding: 0;
   font-size: 14px;
   color: var(--ink-2);
@@ -106,8 +117,9 @@ h1 {
 .tabs {
   display: flex;
   gap: 4px;
-  margin-top: 22px;
-  border-bottom: 1px solid var(--rule);
+  flex: none;
+  max-width: 100%;
+  margin-bottom: -1px;
   overflow-x: auto;
 }
 .tab {
@@ -115,7 +127,6 @@ h1 {
   display: inline-flex;
   align-items: baseline;
   gap: 8px;
-  margin-bottom: -1px;
   padding: 10px 16px 9px;
   border: 1px solid transparent;
   border-bottom: none;
@@ -139,16 +150,25 @@ h1 {
 .tab[aria-selected="true"] .n { color: var(--accent); }
 .panel {
   display: grid;
-  gap: 14px;
-  padding: 18px;
+  gap: 18px;
+  padding: 16px;
   background: var(--sheet);
   border: 1px solid var(--rule);
   border-top: none;
   border-radius: 0 0 10px 10px;
 }
-.qline { margin: 0; max-width: 78ch; font-size: 17px; }
+/* Bench: question, picture, control bar, step caption, options.
+   Narrow screens: one column in that order, the picture capped so it and its control bar fit the window.
+   Landscape screens (media query below): picture and control bar on the left, sized to the window height,
+   question and caption on the right. --bar and --chrome are measured by fitBench() in the script. */
+.bench { display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.view, .side { display: contents; }
+.qline { order: 1; margin: 0; max-width: 78ch; font-size: 17px; }
 .qline b { font-family: var(--font-display); font-stretch: 110%; font-weight: 800; color: var(--accent); }
 .stage {
+  order: 2;
+  align-self: center;
+  width: min(100%, max(320px, calc((100vh - var(--bar, 120px)) * 16 / 9)));
   border: 1px solid var(--rule);
   border-radius: 6px;
   overflow: hidden;
@@ -156,14 +176,10 @@ h1 {
   cursor: pointer;
 }
 .stage canvas { display: block; width: 100%; max-width: 100%; height: auto; aspect-ratio: 16 / 9; }
-.narrow-hint { display: none; margin: -6px 0 0; font-size: 13px; color: var(--ink-2); }
-@media (max-width: 680px) {
-  .stage { overflow-x: auto; }
-  .stage canvas { width: 640px; max-width: none; }
-  .narrow-hint { display: block; }
-  .panel { padding: 14px; }
-}
-.cap { display: grid; gap: 2px; min-height: 104px; }
+.narrow-hint { order: 3; display: none; margin: -6px 0 0; font-size: 13px; color: var(--ink-2); }
+.transport { order: 4; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.cap { order: 5; display: grid; gap: 2px; }
+.opts { order: 6; display: flex; flex-wrap: wrap; align-items: center; gap: 8px 20px; }
 .cap-step {
   margin: 0;
   font-size: 12px;
@@ -182,7 +198,6 @@ h1 {
   text-wrap: balance;
 }
 .cap-text { margin: 2px 0 0; max-width: 74ch; }
-.transport { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; }
 .btn {
   appearance: none;
   display: inline-flex;
@@ -203,7 +218,7 @@ h1 {
 .btn.icon { padding: 0; }
 .btn.primary { min-width: 112px; background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
 .btn svg { width: 16px; height: 16px; flex: none; }
-.scrub { flex: 1 1 180px; min-width: 120px; accent-color: var(--accent); }
+.scrub { flex: 1 1 140px; min-width: 80px; accent-color: var(--accent); }
 .opt { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; color: var(--ink-2); }
 .opt input { accent-color: var(--accent); width: 16px; height: 16px; }
 select {
@@ -216,36 +231,54 @@ select {
   font: inherit;
 }
 :focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
-.steps { list-style: none; display: flex; flex-wrap: wrap; gap: 6px; margin: 0; padding: 0; counter-reset: step; }
-.steps li { counter-increment: step; }
+.steps { list-style: none; display: flex; gap: 4px; margin: 0; padding: 0; }
 .steps button {
   appearance: none;
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  padding: 4px 12px 4px 5px;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
   border: 1px solid var(--rule);
-  border-radius: 999px;
+  border-radius: 50%;
   background: transparent;
   color: var(--ink-2);
-  font: 14px var(--font-body);
+  font: 700 14px var(--font-body);
   cursor: pointer;
 }
-.steps button::before {
-  content: counter(step);
-  display: inline-grid;
-  place-items: center;
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-  background: var(--grid-2);
-  color: var(--ink);
-  font-size: 12px;
-  font-weight: 700;
+.steps button:hover { color: var(--ink); border-color: var(--ink-2); }
+.steps button[aria-current="step"] { border-color: var(--accent); background: var(--accent); color: var(--accent-ink); }
+.linkish {
+  appearance: none;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--accent);
+  font: 700 14px var(--font-body);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
 }
-.steps button:hover { color: var(--ink); }
-.steps button[aria-current="step"] { border-color: var(--accent); background: var(--accent-soft); color: var(--ink); }
-.steps button[aria-current="step"]::before { background: var(--accent); color: var(--accent-ink); }
+@media (max-width: 680px) {
+  .stage { overflow-x: auto; }
+  .stage canvas { width: 640px; max-width: none; }
+  .narrow-hint { display: block; }
+  .panel { padding: 14px; }
+}
+@media (min-width: 960px) and (min-aspect-ratio: 5/4) {
+  .bench {
+    display: grid;
+    grid-template-columns: max(320px, min(calc(100% - 340px), calc((100vh - var(--chrome, 200px)) * 16 / 9))) minmax(0, 1fr);
+    gap: 20px;
+    align-items: start;
+  }
+  .view { display: grid; gap: 10px; min-width: 0; }
+  .side { display: grid; gap: 14px; align-content: start; min-width: 0; }
+  .stage { width: auto; align-self: auto; }
+  .qline { font-size: 16px; }
+  .cap-title { font-size: 20px; }
+  .cap-text, .cap-ans { font-size: 15px; }
+}
 .facts {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -293,31 +326,28 @@ select {
 
 <div class="wrap">
   <header class="top">
-    <p class="eyebrow">Class 9 Science · Exploration · Chapter 7 · Revise, Reflect, Refine</p>
-    <h1>Work, Energy and Simple Machines: questions 8, 9 and 10</h1>
-    <p class="lede">Each animation sets up the situation exactly as the question describes it, then plays out what the physics predicts, one step at a time. Answers stay hidden until you press <b>Show answers</b> below a picture.</p>
-    <ul class="key" aria-label="Colour key">
-      <li><svg viewBox="0 0 28 12" aria-hidden="true"><path d="M1 6h19" stroke="var(--vel)" stroke-width="3"/><path d="M27 6l-8-5v10z" fill="var(--vel)"/></svg>velocity</li>
-      <li><svg viewBox="0 0 28 12" aria-hidden="true"><path d="M1 6h19" stroke="var(--force)" stroke-width="3"/><path d="M27 6l-8-5v10z" fill="var(--force)"/></svg>force (weight, driving force)</li>
-      <li><svg viewBox="0 0 28 12" aria-hidden="true"><path d="M1 6h19" stroke="var(--drag)" stroke-width="3"/><path d="M27 6l-8-5v10z" fill="var(--drag)"/></svg>air resistance</li>
-      <li><svg viewBox="0 0 28 12" aria-hidden="true"><path d="M1 6h19" stroke="var(--disp)" stroke-width="3"/><path d="M27 6l-8-5v10z" fill="var(--disp)"/></svg>displacement</li>
-      <li><svg viewBox="0 0 28 12" aria-hidden="true"><rect x="4" y="1" width="20" height="10" fill="var(--ke)"/></svg>kinetic energy</li>
-      <li><svg viewBox="0 0 28 12" aria-hidden="true"><rect x="4" y="1" width="20" height="10" fill="var(--pe)"/></svg>potential energy</li>
-      <li><svg viewBox="0 0 28 12" aria-hidden="true"><rect x="4" y="1" width="20" height="10" fill="var(--accent)"/></svg>turning effect</li>
-    </ul>
+    <div class="titles">
+      <p class="eyebrow">Class 9 Science · Exploration · Chapter 7 · Revise, Reflect, Refine · Questions 8, 9, 10</p>
+      <h1>Work, Energy and Simple Machines</h1>
+    </div>
+    <div class="tabs" role="tablist" aria-label="Questions">
+      <button type="button" class="tab" role="tab" id="tab-q8" aria-controls="q8" aria-selected="true"><span class="n">Q8</span>Scooter and fuel</button>
+      <button type="button" class="tab" role="tab" id="tab-q9" aria-controls="q9" aria-selected="false" tabindex="-1"><span class="n">Q9</span>Seesaw balance</button>
+      <button type="button" class="tab" role="tab" id="tab-q10" aria-controls="q10" aria-selected="false" tabindex="-1"><span class="n">Q10</span>Ball thrown up</button>
+    </div>
   </header>
 
-  <div class="tabs" role="tablist" aria-label="Questions">
-    <button type="button" class="tab" role="tab" id="tab-q8" aria-controls="q8" aria-selected="true"><span class="n">Q8</span>Scooter and fuel</button>
-    <button type="button" class="tab" role="tab" id="tab-q9" aria-controls="q9" aria-selected="false" tabindex="-1"><span class="n">Q9</span>Seesaw balance</button>
-    <button type="button" class="tab" role="tab" id="tab-q10" aria-controls="q10" aria-selected="false" tabindex="-1"><span class="n">Q10</span>Ball thrown up</button>
-  </div>
-
   <section class="panel" id="q8" role="tabpanel" aria-labelledby="tab-q8">
-    <p class="qline"><b>Q8</b> A man (60 kg) rides a scooter (100 kg) up to speed <i>v</i>. The next day his son (40 kg) rides along, and the scooter reaches the same speed in the same time. How does the fuel used on the two days compare?</p>
-    <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="Two scooters on parallel roads. Day 1 carries the man, Day 2 carries the man and his son. Both speed up side by side from rest to the same speed in the same time, while bars on the right compare the fuel energy used."></canvas></div>
-    <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
-    <div class="ctl"></div>
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="Two scooters on parallel roads. Day 1 carries the man, Day 2 carries the man and his son. Both speed up side by side from rest to the same speed in the same time, while bars on the right compare the fuel energy used."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>Q8</b> A man (60 kg) rides a scooter (100 kg) up to speed <i>v</i>. The next day his son (40 kg) rides along, and the scooter reaches the same speed in the same time. How does the fuel used on the two days compare?</p>
+      </div>
+    </div>
     <div class="facts">
       <div>
         <h3>Given</h3>
@@ -354,10 +384,16 @@ select {
   </section>
 
   <section class="panel" id="q9" role="tabpanel" aria-labelledby="tab-q9" hidden>
-    <p class="qline"><b>Q9</b> A child sits on one side of a seesaw with sliding seats and an adult who weighs twice as much sits on the other. The seesaw is balanced. Draw the situation, showing how far from the fulcrum each one sits.</p>
-    <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A seesaw with sliding seats, the child on the left and the adult on the right. With equal distances it tips toward the adult. The adult slides closer to the fulcrum until the turning effects are equal, and the seesaw then stays level."></canvas></div>
-    <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
-    <div class="ctl"></div>
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A seesaw with sliding seats, the child on the left and the adult on the right. With equal distances it tips toward the adult. The adult slides closer to the fulcrum until the turning effects are equal, and the seesaw then stays level."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>Q9</b> A child sits on one side of a seesaw with sliding seats and an adult who weighs twice as much sits on the other. The seesaw is balanced. Draw the situation, showing how far from the fulcrum each one sits.</p>
+      </div>
+    </div>
     <div class="facts">
       <div>
         <h3>Given</h3>
@@ -393,10 +429,16 @@ select {
   </section>
 
   <section class="panel" id="q10" role="tabpanel" aria-labelledby="tab-q10" hidden>
-    <p class="qline"><b>Q10</b> A 2 kg ball is thrown straight up at 20 m/s. (i) What is the sign of the work done by gravity on the way up and on the way down? (ii) With air resistance it rises only to 19.4 m. How much work did air resistance do? Take <i>g</i> = 10 m/s².</p>
-    <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A 2 kg ball thrown straight up at 20 metres per second rises to 19.4 metres and falls back to the launch level, with arrows for velocity, weight, air resistance and displacement, two boxes comparing gravity with the displacement, and a stacked energy bar."></canvas></div>
-    <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
-    <div class="ctl"></div>
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A 2 kg ball thrown straight up at 20 metres per second rises to 19.4 metres and falls back to the launch level, with arrows for velocity, weight, air resistance and displacement, two boxes comparing gravity with the displacement, and a stacked energy bar."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>Q10</b> A 2 kg ball is thrown straight up at 20 m/s. (i) What is the sign of the work done by gravity on the way up and on the way down? (ii) With air resistance it rises only to 19.4 m. How much work did air resistance do? Take <i>g</i> = 10 m/s².</p>
+      </div>
+    </div>
     <div class="facts">
       <div>
         <h3>Given</h3>
@@ -431,6 +473,19 @@ select {
         <p class="final">(i) The work done by gravity is negative on the way up and positive on the way down. (ii) The work done by air resistance is −12 J: air resistance takes 12 J of the ball’s energy.</p>
       </div>
     </div>
+  </section>
+
+  <section class="about" aria-label="About these animations">
+    <p class="lede">Each animation sets up the situation exactly as the question describes it, then plays out what the physics predicts, one step at a time. Answers stay hidden until you press <b>Show answers</b> under each picture.</p>
+    <ul class="key" aria-label="Colour key">
+      <li><svg viewBox="0 0 28 12" aria-hidden="true"><path d="M1 6h19" stroke="var(--vel)" stroke-width="3"/><path d="M27 6l-8-5v10z" fill="var(--vel)"/></svg>velocity</li>
+      <li><svg viewBox="0 0 28 12" aria-hidden="true"><path d="M1 6h19" stroke="var(--force)" stroke-width="3"/><path d="M27 6l-8-5v10z" fill="var(--force)"/></svg>force (weight, driving force)</li>
+      <li><svg viewBox="0 0 28 12" aria-hidden="true"><path d="M1 6h19" stroke="var(--drag)" stroke-width="3"/><path d="M27 6l-8-5v10z" fill="var(--drag)"/></svg>air resistance</li>
+      <li><svg viewBox="0 0 28 12" aria-hidden="true"><path d="M1 6h19" stroke="var(--disp)" stroke-width="3"/><path d="M27 6l-8-5v10z" fill="var(--disp)"/></svg>displacement</li>
+      <li><svg viewBox="0 0 28 12" aria-hidden="true"><rect x="4" y="1" width="20" height="10" fill="var(--ke)"/></svg>kinetic energy</li>
+      <li><svg viewBox="0 0 28 12" aria-hidden="true"><rect x="4" y="1" width="20" height="10" fill="var(--pe)"/></svg>potential energy</li>
+      <li><svg viewBox="0 0 28 12" aria-hidden="true"><rect x="4" y="1" width="20" height="10" fill="var(--accent)"/></svg>turning effect</li>
+    </ul>
   </section>
 
   <p class="foot">Questions paraphrased from the NCERT Class 9 Science textbook <i>Exploration</i>, Chapter 7 (Work, Energy and Simple Machines), Revise, Reflect, Refine. Click a picture or press Space to play or pause; the arrow keys move between steps. Show answers reveals the worked answer and the calculated values for that question only; every time the page opens, the answers start hidden.</p>
@@ -1071,7 +1126,21 @@ const ICON = {
   restart: '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2.2V0L4.6 3 8 6V3.8a4.2 4.2 0 1 1-4.2 4.2H2.2A5.8 5.8 0 1 0 8 2.2z" fill="currentColor"/></svg>',
   eye: '<svg viewBox="0 0 16 16" aria-hidden="true"><path fill-rule="evenodd" d="M8 3C4.6 3 1.8 5.2.5 8c1.3 2.8 4.1 5 7.5 5s6.2-2.2 7.5-5C14.2 5.2 11.4 3 8 3zm0 1.8a3.2 3.2 0 1 0 0 6.4 3.2 3.2 0 0 0 0-6.4zm0 1.5a1.7 1.7 0 1 1 0 3.4 1.7 1.7 0 0 1 0-3.4z" fill="currentColor"/></svg>',
 };
-function controlsHTML(id) {
+// control bar directly under the picture: everything a teacher presses while presenting
+function transportHTML(id) {
+  return `
+    <div class="transport">
+      <button type="button" class="btn icon" data-act="restart" aria-label="Restart" title="Restart">${ICON.restart}</button>
+      <button type="button" class="btn icon" data-act="prev" aria-label="Previous step" title="Previous step">${ICON.prev}</button>
+      <button type="button" class="btn primary" data-act="play" aria-label="Play">${ICON.play}<span>Play</span></button>
+      <button type="button" class="btn icon" data-act="next" aria-label="Next step" title="Next step">${ICON.next}</button>
+      <ol class="steps" aria-label="Steps"></ol>
+      <input type="range" class="scrub" id="scrub-${id}" min="0" max="1000" step="1" value="0" aria-label="Animation position">
+      <button type="button" class="btn reveal" data-act="answers" aria-pressed="false">${ICON.eye}<span>Show answers</span></button>
+    </div>`;
+}
+// text column beside the picture: step caption, answer line and the less-used options
+function sideHTML(id) {
   return `
     <div class="cap" aria-live="polite">
       <p class="cap-step">Step <span data-k="n">1</span> of <span data-k="of"></span></p>
@@ -1079,22 +1148,17 @@ function controlsHTML(id) {
       <p class="cap-text" data-k="text"></p>
       <p class="cap-ans" data-k="ansbox" hidden><span class="tag">Answer</span><span data-k="ans"></span></p>
     </div>
-    <div class="transport">
-      <button type="button" class="btn icon" data-act="restart" aria-label="Restart" title="Restart">${ICON.restart}</button>
-      <button type="button" class="btn icon" data-act="prev" aria-label="Previous step" title="Previous step">${ICON.prev}</button>
-      <button type="button" class="btn primary" data-act="play" aria-label="Play">${ICON.play}<span>Play</span></button>
-      <button type="button" class="btn icon" data-act="next" aria-label="Next step" title="Next step">${ICON.next}</button>
-      <input type="range" class="scrub" id="scrub-${id}" min="0" max="1000" step="1" value="0" aria-label="Animation position">
+    <div class="opts">
       <label class="opt" for="speed-${id}">Speed
         <select id="speed-${id}"><option value="0.5">0.5×</option><option value="1" selected>1×</option><option value="1.5">1.5×</option></select>
       </label>
       <label class="opt" for="stop-${id}"><input type="checkbox" id="stop-${id}">Pause after each step</label>
-      <button type="button" class="btn reveal" data-act="answers" aria-pressed="false">${ICON.eye}<span>Show answers</span></button>
-    </div>
-    <ol class="steps" aria-label="Steps"></ol>`;
+      <button type="button" class="linkish" data-act="worked" hidden>Full worked answer ↓</button>
+    </div>`;
 }
 function makePlayer(panel, scene) {
-  panel.querySelector('.ctl').outerHTML = controlsHTML(panel.id);
+  panel.querySelector('.ctl').outerHTML = transportHTML(panel.id);
+  panel.querySelector('.side').insertAdjacentHTML('beforeend', sideHTML(panel.id));
   const q = s => panel.querySelector(s);
   const canvas = q('canvas'), ctx = canvas.getContext('2d');
   const ui = {
@@ -1102,6 +1166,7 @@ function makePlayer(panel, scene) {
     scrub: q('.scrub'), speed: q('select'), stop: q('input[type="checkbox"]'),
     n: q('[data-k="n"]'), of: q('[data-k="of"]'), title: q('[data-k="title"]'), text: q('[data-k="text"]'), steps: q('.steps'),
     answers: q('[data-act="answers"]'), ansBox: q('[data-k="ansbox"]'), ansText: q('[data-k="ans"]'), sheet: q('.answer'),
+    worked: q('[data-act="worked"]'),
   };
   const st = scene.stages;
   let acc = 0;
@@ -1109,9 +1174,10 @@ function makePlayer(panel, scene) {
   const total = acc;
   ui.of.textContent = st.length;
   let t = 0, playing = false, last = 0, raf = 0, cur = -1, ans = false;   // answers always start hidden
-  const chips = st.map(s => {
+  const chips = st.map((s, k) => {
     const li = document.createElement('li'), b = document.createElement('button');
-    b.type = 'button'; b.textContent = s.title;
+    b.type = 'button'; b.textContent = String(k + 1);
+    b.title = s.title; b.setAttribute('aria-label', `Step ${k + 1}: ${s.title}`);
     b.addEventListener('click', () => seek(s.t0));
     li.appendChild(b); ui.steps.appendChild(li);
     return b;
@@ -1170,6 +1236,7 @@ function makePlayer(panel, scene) {
     ui.answers.setAttribute('aria-pressed', String(on));
     ui.answers.querySelector('span').textContent = on ? 'Hide answers' : 'Show answers';
     if (ui.sheet) ui.sheet.hidden = !on;
+    ui.worked.hidden = !(on && ui.sheet);
     cur = -1; render();
   }
   function toggle() { playing ? pause() : play(); }
@@ -1181,6 +1248,7 @@ function makePlayer(panel, scene) {
   ui.prev.addEventListener('click', prev);
   ui.restart.addEventListener('click', () => { seek(0); play(); });
   ui.answers.addEventListener('click', () => setAnswers(!ans));
+  ui.worked.addEventListener('click', () => ui.sheet.scrollIntoView({ behavior: 'smooth', block: 'start' }));
   ui.scrub.addEventListener('input', () => { pause(); seek(ui.scrub.value / 1000 * total); });
   const stage = q('.stage');
   stage.addEventListener('click', toggle);
@@ -1202,6 +1270,20 @@ const players = {};
 for (const id of Object.keys(scenes)) players[id] = makePlayer(document.getElementById(id), scenes[id]);
 const tabs = [...document.querySelectorAll('[role="tab"]')];
 let active = 'q8';
+/* Fit the picture and its control bar inside the window: the CSS sizes the picture from
+   --chrome (wide layout: everything above the picture plus the bar) or --bar (narrow layout). */
+function fitBench() {
+  const p = document.getElementById(active);
+  const stage = p.querySelector('.stage'), bar = p.querySelector('.transport');
+  const root = document.documentElement.style;
+  for (let pass = 0; pass < 2; pass++) {       // second pass: the bar may wrap differently at the new width
+    const top = stage.getBoundingClientRect().top + window.scrollY;
+    root.setProperty('--chrome', Math.round(top + bar.offsetHeight + 38) + 'px');
+    root.setProperty('--bar', Math.round(bar.offsetHeight + 30) + 'px');
+  }
+}
+let fitRaf = 0;
+window.addEventListener('resize', () => { cancelAnimationFrame(fitRaf); fitRaf = requestAnimationFrame(fitBench); });
 function show(id, focus) {
   active = id;
   tabs.forEach(b => {
@@ -1215,6 +1297,7 @@ function show(id, focus) {
     if (!on) players[k].pause();
     document.getElementById(k).hidden = !on;
   }
+  fitBench();
   players[id].render();
   try { history.replaceState(null, '', '#' + id); } catch (e) { /* sandboxed frame */ }
 }
@@ -1237,7 +1320,7 @@ document.addEventListener('keydown', e => {
 const hash = location.hash.slice(1);
 show(scenes[hash] ? hash : 'q8');
 
-const refresh = () => { readPalette(); players[active].render(); };
+const refresh = () => { readPalette(); fitBench(); players[active].render(); };
 const mq = matchMedia('(prefers-color-scheme: dark)');
 if (mq.addEventListener) mq.addEventListener('change', refresh); else if (mq.addListener) mq.addListener(refresh);
 new MutationObserver(refresh).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme', 'class', 'style'] });
