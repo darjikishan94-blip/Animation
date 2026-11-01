@@ -1,0 +1,1203 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Work &amp; Energy Q3–Q7</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<style>
+/* Layout: one centred lab-sheet column. Header and colour key, then one tabbed bench per question:
+   16:9 animation stage, step caption, transport controls, step list, then given / asked / drawing notes. */
+:root {
+  --paper: #EDF1F3;
+  --sheet: #FFFFFF;
+  --ink: #15202A;
+  --ink-2: #4B5967;
+  --rule: #D3DCE2;
+  --grid: #EEF2F4;
+  --grid-2: #DCE4E9;
+  --accent: #0A6B66;
+  --accent-ink: #FFFFFF;
+  --accent-soft: #E0F0EE;
+  --vel: #1D5FD2;
+  --force: #CB2A36;
+  --drag: #9C5410;
+  --disp: #0E7C46;
+  --ke: #D68200;
+  --ke-soft: #F8E2B6;
+  --pe: #7044BE;
+  --loss: #7D8A96;
+  --obj: #2E3B47;
+  --obj-fill: #D5DEE4;
+  --obj-fill-2: #B8C5CE;
+  --wood: #D9B98C;
+  --road: #E2E7EA;
+  --acc: #B0287A;
+  --sand: #E6CF9E;
+  --leaf: #3F8A4E;
+  --bark: #8B5A33;
+  --font-display: "Archivo", "Arial Narrow", "Segoe UI", system-ui, sans-serif;
+  --font-body: "Atkinson Hyperlegible", "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0D1216; --sheet: #151C22; --ink: #E5ECF1; --ink-2: #A0AEBB; --rule: #2B3741;
+    --grid: #1A232A; --grid-2: #2A3640;
+    --accent: #46C3B8; --accent-ink: #052421; --accent-soft: #15332F;
+    --vel: #6FA4FF; --force: #FF6A72; --drag: #E39A50; --disp: #46D08D;
+    --ke: #FFB43A; --ke-soft: #5B4417; --pe: #B48CFF; --loss: #8C99A6;
+    --obj: #C9D3DB; --obj-fill: #2E3A44; --obj-fill-2: #3C4954; --wood: #7A5E3E; --road: #222C34; --acc: #F07BC2; --sand: #5E4D2F; --leaf: #58B06D; --bark: #A97B50;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #0D1216; --sheet: #151C22; --ink: #E5ECF1; --ink-2: #A0AEBB; --rule: #2B3741;
+  --grid: #1A232A; --grid-2: #2A3640;
+  --accent: #46C3B8; --accent-ink: #052421; --accent-soft: #15332F;
+  --vel: #6FA4FF; --force: #FF6A72; --drag: #E39A50; --disp: #46D08D;
+  --ke: #FFB43A; --ke-soft: #5B4417; --pe: #B48CFF; --loss: #8C99A6;
+  --obj: #C9D3DB; --obj-fill: #2E3A44; --obj-fill-2: #3C4954; --wood: #7A5E3E; --road: #222C34; --acc: #F07BC2; --sand: #5E4D2F; --leaf: #58B06D; --bark: #A97B50;
+  color-scheme: dark;
+}
+[hidden] { display: none !important; }
+* { box-sizing: border-box; }
+html { background: var(--paper); }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.5;
+}
+.wrap {
+  max-width: 1760px;
+  margin: 0 auto;
+  padding-block: 14px 48px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+/* Header: one compact band (titles left, question tabs right) so the first screen also holds
+   the whole animation bench below it. */
+.top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 8px 24px;
+  border-bottom: 1px solid var(--rule);
+}
+.titles { flex: 1 1 300px; display: grid; gap: 4px; min-width: 0; padding-bottom: 10px; }
+.eyebrow {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+h1 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-stretch: 112%;
+  font-size: clamp(22px, 2.3vw, 30px);
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+.about { margin-top: 18px; }
+.lede { margin: 0; max-width: 80ch; color: var(--ink-2); }
+.key {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 18px;
+  margin: 8px 0 0;
+  padding: 0;
+  font-size: 14px;
+  color: var(--ink-2);
+}
+.key li { display: inline-flex; align-items: center; gap: 7px; }
+.key svg { width: 28px; height: 12px; flex: none; }
+.tabs {
+  display: flex;
+  gap: 4px;
+  flex: none;
+  max-width: 100%;
+  margin-bottom: -1px;
+  overflow-x: auto;
+}
+.tab {
+  appearance: none;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 10px 16px 9px;
+  border: 1px solid transparent;
+  border-bottom: none;
+  border-radius: 8px 8px 0 0;
+  background: transparent;
+  color: var(--ink-2);
+  font: inherit;
+  font-size: 15px;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.tab .n {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-stretch: 110%;
+  font-size: 19px;
+  color: var(--ink);
+}
+.tab:hover { color: var(--ink); }
+.tab[aria-selected="true"] { background: var(--sheet); border-color: var(--rule); color: var(--ink); }
+.tab[aria-selected="true"] .n { color: var(--accent); }
+.panel {
+  display: grid;
+  gap: 18px;
+  padding: 16px;
+  background: var(--sheet);
+  border: 1px solid var(--rule);
+  border-top: none;
+  border-radius: 0 0 10px 10px;
+}
+/* Bench: question, picture, control bar, step caption, options.
+   Narrow screens: one column in that order, the picture capped so it and its control bar fit the window.
+   Landscape screens (media query below): picture and control bar on the left, sized to the window height,
+   question and caption on the right. --bar and --chrome are measured by fitBench() in the script. */
+.bench { display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.view, .side { display: contents; }
+.qline { order: 1; margin: 0; max-width: 78ch; font-size: 17px; }
+.qline b { font-family: var(--font-display); font-stretch: 110%; font-weight: 800; color: var(--accent); }
+.stage {
+  order: 2;
+  align-self: center;
+  width: min(100%, max(320px, calc((100vh - var(--bar, 120px)) * 16 / 9)));
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  overflow: hidden;
+  background: var(--sheet);
+  cursor: pointer;
+}
+.stage canvas { display: block; width: 100%; max-width: 100%; height: auto; aspect-ratio: 16 / 9; }
+.narrow-hint { order: 3; display: none; margin: -6px 0 0; font-size: 13px; color: var(--ink-2); }
+.transport { order: 4; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.cap { order: 5; display: grid; gap: 2px; }
+.opts { order: 6; display: flex; flex-wrap: wrap; align-items: center; gap: 8px 20px; }
+.cap-step {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.cap-title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-stretch: 106%;
+  font-size: 22px;
+  line-height: 1.2;
+  text-wrap: balance;
+}
+.cap-text { margin: 2px 0 0; max-width: 74ch; }
+.btn {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  height: 40px;
+  min-width: 40px;
+  padding: 0 12px;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  background: var(--sheet);
+  color: var(--ink);
+  font: 700 15px var(--font-body);
+  cursor: pointer;
+}
+.btn:hover { border-color: var(--ink-2); }
+.btn.icon { padding: 0; }
+.btn.primary { min-width: 112px; background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.btn svg { width: 16px; height: 16px; flex: none; }
+.scrub { flex: 1 1 140px; min-width: 80px; accent-color: var(--accent); }
+.opt { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; color: var(--ink-2); }
+.opt input { accent-color: var(--accent); width: 16px; height: 16px; }
+select {
+  height: 34px;
+  padding: 0 6px;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  background: var(--sheet);
+  color: var(--ink);
+  font: inherit;
+}
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.steps { list-style: none; display: flex; gap: 4px; margin: 0; padding: 0; }
+.steps button {
+  appearance: none;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 1px solid var(--rule);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--ink-2);
+  font: 700 14px var(--font-body);
+  cursor: pointer;
+}
+.steps button:hover { color: var(--ink); border-color: var(--ink-2); }
+.steps button[aria-current="step"] { border-color: var(--accent); background: var(--accent); color: var(--accent-ink); }
+.linkish {
+  appearance: none;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--accent);
+  font: 700 14px var(--font-body);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+@media (max-width: 680px) {
+  .stage { overflow-x: auto; }
+  .stage canvas { width: 640px; max-width: none; }
+  .narrow-hint { display: block; }
+  .panel { padding: 14px; }
+}
+@media (min-width: 960px) and (min-aspect-ratio: 5/4) {
+  .bench {
+    display: grid;
+    grid-template-columns: max(320px, min(calc(100% - 340px), calc((100vh - var(--chrome, 200px)) * 16 / 9))) minmax(0, 1fr);
+    gap: 20px;
+    align-items: start;
+  }
+  .view { display: grid; gap: 10px; min-width: 0; }
+  .side { display: grid; gap: 14px; align-content: start; min-width: 0; }
+  .stage { width: auto; align-self: auto; }
+  .qline { font-size: 16px; }
+  .cap-title { font-size: 20px; }
+  .cap-text, .cap-ans { font-size: 15px; }
+}
+.facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 16px 28px;
+  padding-top: 16px;
+  border-top: 1px solid var(--rule);
+  font-size: 15px;
+}
+.facts > div { min-width: 0; }
+.facts h3 {
+  margin: 0 0 6px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+}
+.facts ul { margin: 0; padding-left: 18px; display: grid; gap: 5px; }
+.facts p { margin: 0; }
+.foot { margin-top: 18px; font-size: 13px; color: var(--ink-2); max-width: 80ch; }
+/* Answer mode: hidden on every page load, revealed per question by the Show answers button. */
+.btn.reveal { margin-left: auto; border-color: var(--accent); color: var(--accent); }
+.btn.reveal[aria-pressed="true"] { background: var(--accent-soft); color: var(--ink); }
+.cap-ans {
+  margin: 8px 0 0;
+  max-width: 74ch;
+  padding: 6px 12px;
+  background: var(--accent-soft);
+  border-left: 3px solid var(--accent);
+  border-radius: 0 6px 6px 0;
+}
+.cap-ans .tag { margin-right: 8px; font-weight: 700; color: var(--accent); }
+.answer {
+  grid-column: 1 / -1;
+  padding: 14px 16px;
+  background: var(--accent-soft);
+  border-left: 4px solid var(--accent);
+  border-radius: 0 8px 8px 0;
+}
+.facts .answer h3 { color: var(--accent); }
+.answer ol { margin: 0; padding-left: 20px; display: grid; gap: 6px; }
+.facts .answer .final { margin-top: 10px; font-weight: 700; }
+@media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div class="titles">
+      <p class="eyebrow">Class 9 Science · Exploration · Chapter 7 · Revise, Reflect, Refine · Questions 3, 5, 7</p>
+      <h1>Work, Energy and Simple Machines</h1>
+    </div>
+    <div class="tabs" role="tablist" aria-label="Questions">
+      <button type="button" class="tab" role="tab" id="tab-q3" aria-controls="q3" aria-selected="true"><span class="n">Q3</span>Ball at the top</button>
+      <button type="button" class="tab" role="tab" id="tab-q5" aria-controls="q5" aria-selected="false" tabindex="-1"><span class="n">Q5</span>Elevator or stairs</button>
+      <button type="button" class="tab" role="tab" id="tab-q7" aria-controls="q7" aria-selected="false" tabindex="-1"><span class="n">Q7</span>Raising a flag</button>
+    </div>
+  </header>
+
+  <section class="panel" id="q3" role="tabpanel" aria-labelledby="tab-q3">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A ball is thrown straight up, stops for an instant at its highest point and falls back, with arrows for its velocity, its weight and its acceleration, bars for its kinetic and potential energy, and the four statements to check."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>Q3</b> When a ball thrown upwards reaches its highest point, which of these statements are correct? (i) The force acting on the ball is zero. (ii) The acceleration of the ball is zero. (iii) Its kinetic energy is zero. (iv) Its potential energy is maximum.</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>A ball is thrown straight upward.</li>
+          <li>It reaches its highest point and comes back down.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>Which of the four statements are correct at the highest point.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>No speeds or heights are given, so the speed, height and timing are illustrative. What matters is the direction and relative size of each arrow.</li>
+          <li>Air resistance is neglected, so the only force is the weight <i>mg</i> and the acceleration is <i>g</i>, downward, throughout.</li>
+          <li>The velocity arrow’s length is proportional to the speed. The weight and acceleration arrows never change.</li>
+          <li>Faint circles show the ball at equal time gaps; the flight runs at half speed. The two energy bars share one scale.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>(i) Incorrect. The weight <i>mg</i> acts at every point of the flight, including the top.</li>
+          <li>(ii) Incorrect. Acceleration = force ÷ mass = <i>mg</i>/<i>m</i> = <i>g</i>, downward, even at the top.</li>
+          <li>(iii) Correct. The ball is at rest for an instant, <i>v</i> = 0, so KE = ½<i>mv</i><sup>2</sup> = 0.</li>
+          <li>(iv) Correct. Its height is greatest there, so PE = <i>mgh</i> is maximum: all the kinetic energy it was thrown with has become potential energy.</li>
+        </ol>
+        <p class="final">Correct statements: (iii) and (iv). At the top only the velocity is zero; the force and the acceleration are not.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel" id="q5" role="tabpanel" aria-labelledby="tab-q5" hidden>
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A building 72.5 metres tall with an elevator shaft and a zig-zag staircase. The student rides the elevator straight up, then later climbs the stairs, while two bars compare the gain in potential energy."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>Q5</b> A 50 kg student is slowly lifted straight up in an elevator from the ground to the top floor of a building, 72.5 m high. Later, the same student climbs the stairs all the way to the top. Take <i>g</i> = 10 m/s². (i) Find the gain in potential energy in the elevator. (ii) Find the gain in potential energy when climbing the stairs. (iii) What do you conclude about how potential energy depends on the path taken?</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Mass of the student <i>m</i> = 50 kg.</li>
+          <li>Height of the top floor above the ground <i>h</i> = 72.5 m.</li>
+          <li><i>g</i> = 10 m/s².</li>
+          <li>Lifted slowly in the elevator; later climbs the stairs to the same top floor.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>(i) The gain in potential energy in the elevator. (ii) The gain in potential energy on the stairs. (iii) How potential energy depends on the path taken.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>The height scale is true to size. The student and the elevator are drawn larger than scale so they can be seen.</li>
+          <li>The number of flights of stairs is not given; ten are drawn. Only the vertical rise matters.</li>
+          <li>“Slowly” is drawn as a slow, steady speed, so the student’s kinetic energy stays negligible.</li>
+          <li>The two potential-energy bars share one scale.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>(i) Gain in PE = <i>mgh</i> = 50 × 10 × 72.5 = 36,250 J.</li>
+          <li>(ii) The student starts on the ground and ends on the same top floor, so the gain is again 50 × 10 × 72.5 = 36,250 J.</li>
+          <li>(iii) The change in potential energy depends only on the vertical height between the start and the end, not on the path taken.</li>
+        </ol>
+        <p class="final">(i) 36,250 J (ii) 36,250 J (iii) The gain in potential energy is the same for any path; only the height risen matters.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel" id="q7" role="tabpanel" aria-labelledby="tab-q7" hidden>
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="Two identical flags are raised up identical poles with pulleys, the left one at speed v and the right one at speed 2v, while bars compare the work done and the power."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>Q7</b> A flag is raised from the ground to the top of a tall flagpole using a pulley. Which factors decide the energy needed? Does raising the flag slowly or quickly change the work done? If the speed is doubled, how does the power needed change?</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>A flag is raised from near the ground to the top of a flagpole with a pulley.</li>
+          <li>It may be raised slowly or quickly; then the speed is doubled.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The factors that decide the energy needed; whether the speed changes the work done; how doubling the speed changes the power.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>No values are given: the mass <i>m</i>, the height <i>h</i> and the speed <i>v</i> are kept as symbols.</li>
+          <li>The pulley is ideal (no friction). A real pulley needs a little extra work against friction.</li>
+          <li>Each flag moves at a steady speed, with a brief speed-up and slow-down at the ends; force arrows are shown only while the speed is steady, when the pull equals the weight.</li>
+          <li>The work bars share one scale, and so do the power bars. A mark on the rope shows the rope moving down as the flag rises.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>Energy needed = work done against gravity = gain in potential energy = <i>mgh</i>. It depends on the mass of the flag (<i>m</i>) and the height of the pole (<i>h</i>), and on <i>g</i>. A real pulley also needs a little extra energy to overcome friction.</li>
+          <li>Raising the flag slowly or quickly does not change the work done: the same weight is raised through the same height.</li>
+          <li>Doubling the speed halves the time. Power <i>P</i> = <i>W</i>/<i>t</i> = <i>mgh</i>/(<i>t</i>/2) = 2<i>mgh</i>/<i>t</i>, so the power doubles.</li>
+        </ol>
+        <p class="final">The energy depends on the flag’s mass and the pole’s height (and g, plus pulley friction). The speed does not change the work done. Doubling the speed doubles the power.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="about" aria-label="About these animations">
+    <p class="lede">Each animation sets up the situation exactly as the question describes it, then plays out what the physics predicts, one step at a time. Answers stay hidden until you press <b>Show answers</b> under each picture.</p>
+    <ul class="key" aria-label="Colour key">
+      <li><svg viewBox="0 0 28 12" aria-hidden="true"><path d="M1 6h19" stroke="var(--vel)" stroke-width="3"/><path d="M27 6l-8-5v10z" fill="var(--vel)"/></svg>velocity</li>
+      <li><svg viewBox="0 0 28 12" aria-hidden="true"><path d="M1 6h19" stroke="var(--force)" stroke-width="3"/><path d="M27 6l-8-5v10z" fill="var(--force)"/></svg>force</li>
+      <li><svg viewBox="0 0 28 12" aria-hidden="true"><path d="M1 6h19" stroke="var(--acc)" stroke-width="3"/><path d="M27 6l-8-5v10z" fill="var(--acc)"/></svg>acceleration</li>
+      <li><svg viewBox="0 0 28 12" aria-hidden="true"><path d="M1 6h19" stroke="var(--disp)" stroke-width="3"/><path d="M27 6l-8-5v10z" fill="var(--disp)"/></svg>displacement / height risen</li>
+      <li><svg viewBox="0 0 28 12" aria-hidden="true"><rect x="4" y="1" width="20" height="10" fill="var(--ke)"/></svg>kinetic energy</li>
+      <li><svg viewBox="0 0 28 12" aria-hidden="true"><rect x="4" y="1" width="20" height="10" fill="var(--pe)"/></svg>potential energy</li>
+      <li><svg viewBox="0 0 28 12" aria-hidden="true"><rect x="4" y="1" width="20" height="10" fill="var(--accent)"/></svg>power</li>
+    </ul>
+  </section>
+
+  <p class="foot">Questions paraphrased from the NCERT Class 9 Science textbook <i>Exploration</i>, Chapter 7 (Work, Energy and Simple Machines), Revise, Reflect, Refine. Click a picture or press Space to play or pause; the arrow keys move between steps. Show answers reveals the worked answer and the calculated values for that question only; every time the page opens, the answers start hidden.</p>
+</div>
+
+<script>
+(() => {
+'use strict';
+
+/* ---------- shared drawing kit ---------- */
+const VW = 960, VH = 540;
+const FB = '"Atkinson Hyperlegible", "Segoe UI", system-ui, -apple-system, sans-serif';
+const FD = '"Archivo", "Arial Narrow", "Segoe UI", system-ui, sans-serif';
+const TOK = ['sheet', 'ink', 'ink-2', 'rule', 'grid', 'grid-2', 'accent', 'accent-ink', 'accent-soft', 'vel', 'force', 'drag', 'disp',
+  'ke', 'ke-soft', 'pe', 'loss', 'obj', 'obj-fill', 'obj-fill-2', 'wood', 'road', 'acc', 'sand', 'leaf', 'bark'];
+let P = {};
+function readPalette() {
+  const cs = getComputedStyle(document.documentElement);
+  const o = {};
+  for (const k of TOK) o[k.replace(/-([a-z0-9])/g, (_, c) => c.toUpperCase())] = cs.getPropertyValue('--' + k).trim();
+  P = o;
+}
+
+const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
+const ramp = (t, a, b) => clamp((t - a) / (b - a));
+const smooth = u => { u = clamp(u); return u * u * (3 - 2 * u); };
+// steady motion with a brief speed-up and slow-down at the ends: position (0..1) and speed (0..1 of the steady speed)
+const glide = (u, r = 0.1) => {
+  u = clamp(u); const vm = 1 / (1 - r);
+  if (u < r) return 0.5 * vm * u * u / r;
+  if (u > 1 - r) return 1 - 0.5 * vm * (1 - u) * (1 - u) / r;
+  return vm * (u - r / 2);
+};
+const glideRate = (u, r = 0.1) => (u <= 0 || u >= 1 ? 0 : u < r ? u / r : u > 1 - r ? (1 - u) / r : 1);
+
+function seg(ctx, x1, y1, x2, y2) { ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y2); ctx.stroke(); }
+function poly(ctx, pts) {
+  ctx.beginPath(); ctx.moveTo(pts[0][0], pts[0][1]);
+  for (let i = 1; i < pts.length; i++) ctx.lineTo(pts[i][0], pts[i][1]);
+  ctx.stroke();
+}
+function hline(ctx, x1, x2, y, color, lw = 1, dash) {
+  ctx.save(); ctx.strokeStyle = color; ctx.lineWidth = lw; if (dash) ctx.setLineDash(dash);
+  seg(ctx, x1, y, x2, y); ctx.restore();
+}
+function vline(ctx, x, y1, y2, color, lw = 1, dash) {
+  ctx.save(); ctx.strokeStyle = color; ctx.lineWidth = lw; if (dash) ctx.setLineDash(dash);
+  seg(ctx, x, y1, x, y2); ctx.restore();
+}
+function rrect(ctx, x, y, w, h, r) {
+  ctx.beginPath();
+  if (ctx.roundRect) ctx.roundRect(x, y, w, h, r); else ctx.rect(x, y, w, h);
+}
+function arrow(ctx, x1, y1, x2, y2, color, o = {}) {
+  const lw = o.lw ?? 4, head = o.head ?? 14, alpha = o.alpha ?? 1;
+  const dx = x2 - x1, dy = y2 - y1, len = Math.hypot(dx, dy);
+  if (len < 1 || alpha <= 0) return;
+  const ux = dx / len, uy = dy / len;
+  const h = Math.min(head, len * 0.7), w = h * 0.52;
+  const bx = x2 - ux * h, by = y2 - uy * h;
+  ctx.save();
+  ctx.globalAlpha *= alpha;
+  ctx.strokeStyle = color; ctx.fillStyle = color; ctx.lineWidth = lw; ctx.lineCap = 'butt';
+  seg(ctx, x1, y1, bx + ux, by + uy);
+  ctx.beginPath(); ctx.moveTo(x2, y2);
+  ctx.lineTo(bx - uy * w, by + ux * w); ctx.lineTo(bx + uy * w, by - ux * w);
+  ctx.closePath(); ctx.fill();
+  ctx.restore();
+}
+function label(ctx, str, x, y, o = {}) {
+  const size = o.size ?? 16, weight = o.weight ?? 400, alpha = o.alpha ?? 1;
+  ctx.save();
+  ctx.font = `${o.italic ? 'italic ' : ''}${weight} ${size}px ${o.display ? FD : FB}`;
+  const w = ctx.measureText(str).width;
+  if (alpha > 0 && str) {
+    ctx.globalAlpha *= alpha;
+    ctx.textAlign = o.align ?? 'left';
+    ctx.textBaseline = 'middle';
+    if (o.halo !== false) {
+      ctx.lineJoin = 'round'; ctx.lineWidth = o.haloW ?? 5; ctx.strokeStyle = o.haloColor ?? P.sheet;
+      ctx.strokeText(str, x, y);
+    }
+    ctx.fillStyle = o.color ?? P.ink;
+    ctx.fillText(str, x, y);
+  }
+  ctx.restore();
+  return w;
+}
+function labelSub(ctx, main, sub, x, y, o = {}) {
+  const size = o.size ?? 16, small = Math.round(size * 0.7);
+  ctx.save();
+  ctx.font = `700 ${size}px ${FB}`; const w1 = ctx.measureText(main).width;
+  ctx.font = `700 ${small}px ${FB}`; const w2 = ctx.measureText(sub).width;
+  ctx.restore();
+  const x0 = o.align === 'center' ? x - (w1 + w2 + 1) / 2 : o.align === 'right' ? x - (w1 + w2 + 1) : x;
+  label(ctx, main, x0, y, { ...o, weight: 700, align: 'left', italic: true });
+  label(ctx, sub, x0 + w1 + 1, y + size * 0.3, { ...o, weight: 700, size: small, align: 'left' });
+}
+function dim(ctx, x1, x2, y, color, alpha = 1) {
+  if (alpha <= 0 || Math.abs(x2 - x1) < 2) return;
+  const dir = Math.sign(x2 - x1), h = 9;
+  ctx.save();
+  ctx.globalAlpha *= alpha;
+  ctx.strokeStyle = color; ctx.fillStyle = color; ctx.lineWidth = 1.5;
+  seg(ctx, x1, y, x2, y);
+  seg(ctx, x1, y - 8, x1, y + 8); seg(ctx, x2, y - 8, x2, y + 8);
+  ctx.beginPath(); ctx.moveTo(x1, y); ctx.lineTo(x1 + dir * h, y - 4.5); ctx.lineTo(x1 + dir * h, y + 4.5); ctx.closePath(); ctx.fill();
+  ctx.beginPath(); ctx.moveTo(x2, y); ctx.lineTo(x2 - dir * h, y - 4.5); ctx.lineTo(x2 - dir * h, y + 4.5); ctx.closePath(); ctx.fill();
+  ctx.restore();
+}
+function hatchRect(ctx, x, y, w, h, color, bg) {
+  if (h <= 0.2) return;
+  ctx.save();
+  ctx.beginPath(); ctx.rect(x, y, w, h); ctx.clip();
+  ctx.fillStyle = bg; ctx.fillRect(x, y, w, h);
+  ctx.strokeStyle = color; ctx.lineWidth = 2;
+  for (let k = -h; k < w + h; k += 8) seg(ctx, x + k, y + h, x + k + h, y);
+  ctx.restore();
+}
+function rotArrow(ctx, x, y, r, cw, color, alpha = 1, lw = 2) {
+  if (alpha <= 0) return;
+  const a0 = cw ? -0.85 * Math.PI : -0.15 * Math.PI, a1 = cw ? -0.15 * Math.PI : -0.85 * Math.PI;
+  const dir = cw ? 1 : -1;
+  ctx.save();
+  ctx.globalAlpha *= alpha;
+  ctx.strokeStyle = color; ctx.fillStyle = color; ctx.lineWidth = lw;
+  ctx.beginPath(); ctx.arc(x, y, r, a0, a1, !cw); ctx.stroke();
+  const ex = x + r * Math.cos(a1), ey = y + r * Math.sin(a1);
+  const tx = -Math.sin(a1) * dir, ty = Math.cos(a1) * dir;
+  const h = Math.max(6, r * 0.42), w = h * 0.6;
+  ctx.beginPath();
+  ctx.moveTo(ex + tx * h, ey + ty * h);
+  ctx.lineTo(ex - ty * w, ey + tx * w);
+  ctx.lineTo(ex + ty * w, ey - tx * w);
+  ctx.closePath(); ctx.fill();
+  ctx.restore();
+}
+function bg(ctx) { ctx.fillStyle = P.sheet; ctx.fillRect(0, 0, VW, VH); }
+
+/* ---------- Q3: a ball thrown up, at its highest point ---------- */
+const Q3 = (() => {
+  const G = 10, U = 10, H = U * U / (2 * G);         // no values are given: speed and height are illustrative
+  const TUP = U / G, SLOW = 2;                       // flight shown at half speed
+  const S1 = 3.5, S2 = S1 + TUP * SLOW, S3 = S2 + 5, S4 = S3 + TUP * SLOW, S5 = S4 + 3;
+  const Y0 = 410, K = 56, X = 220, BR = 12, VS = 8, WL = 54, AL = 42, AX = 80;   // launch level leaves room for the arrows below it
+  const yOf = h => Y0 - h * K;
+  const hUp = p => U * p - 0.5 * G * p * p, hDn = p => H - 0.5 * G * p * p;
+  const CHECKS = [
+    ['(i) The force acting on the ball is zero.', false, 'No: its weight mg still acts.'],
+    ['(ii) The acceleration of the ball is zero.', false, 'No: it is g, downward.'],
+    ['(iii) Its kinetic energy is zero.', true, 'Yes: v = 0, so ½mv² = 0.'],
+    ['(iv) Its potential energy is maximum.', true, 'Yes: its height is the greatest.'],
+  ];
+  const stages = [
+    { title: 'Thrown straight up', dur: S1,
+      text: 'The ball leaves the hand moving upward. From the moment it is released, the only force on it is its weight mg, acting downward (air resistance is neglected). So its acceleration is g, downward.',
+      ans: 'Force on the ball = mg, downward, all the time. Acceleration = g, downward, all the time.' },
+    { title: 'Rising', dur: S2 - S1,
+      text: 'The velocity arrow points up but keeps getting shorter: the ball slows down at a steady rate. Kinetic energy is changing into potential energy, and the total stays the same.',
+      ans: 'KE = ½mv² falls as v falls, PE = mgh rises as h rises, and KE + PE stays constant.' },
+    { title: 'At the highest point', dur: S3 - S2,
+      text: 'For an instant the ball is at rest. Its weight still acts and its acceleration is still g downward, which is why it cannot stay there. Check each statement on the right against the picture.',
+      ans: '(i) No: the force is mg. (ii) No: the acceleration is g. (iii) Yes: v = 0, so KE = 0. (iv) Yes: h is greatest, so PE = mgh is maximum.' },
+    { title: 'Falling back', dur: S4 - S3,
+      text: 'The same force and the same acceleration act as on the way up, so now the ball speeds up downward. Potential energy changes back into kinetic energy.',
+      ans: 'Correct statements: (iii) and (iv).' },
+    { title: 'Back at the launch level', dur: S5 - S4,
+      text: 'The ball comes back to the launch level as fast as it was thrown, now moving down. Only its velocity changed during the flight; the force and the acceleration never did.',
+      ans: 'At the top only the velocity is zero. The force (mg) and the acceleration (g) are never zero.' },
+  ];
+  function state(t) {
+    if (t < S1) return { h: 0, v: U, ph: 0, p: 0 };
+    if (t < S2) { const p = (t - S1) / SLOW; return { h: hUp(p), v: U - G * p, ph: 1, p }; }
+    if (t < S3) return { h: H, v: 0, ph: 2, p: TUP };
+    if (t < S4) { const p = (t - S3) / SLOW; return { h: hDn(p), v: -G * p, ph: 3, p }; }
+    return { h: 0, v: -U, ph: 4, p: TUP };
+  }
+  function ball(ctx, y) {
+    ctx.fillStyle = P.obj; ctx.beginPath(); ctx.arc(X, y, BR, 0, Math.PI * 2); ctx.fill();
+    ctx.save(); ctx.globalAlpha = 0.4; ctx.fillStyle = P.sheet;
+    ctx.beginPath(); ctx.arc(X - 4, y - 4, 4, 0, Math.PI * 2); ctx.fill(); ctx.restore();
+  }
+  function flight(ctx, st, t) {
+    vline(ctx, AX, yOf(H) - 34, Y0, P.ink2, 1.5);
+    label(ctx, 'height', AX, yOf(H) - 48, { align: 'center', size: 14, color: P.ink2 });
+    hline(ctx, AX, 300, Y0, P.ink2, 1.2, [6, 5]);
+    label(ctx, 'launch level', AX + 8, Y0 + 16, { size: 13, color: P.ink2 });
+    const mA = ramp(t, S2 - 0.15, S2 + 0.35);
+    if (mA > 0) {
+      ctx.save(); ctx.globalAlpha = mA; hline(ctx, AX, 300, yOf(H), P.ink, 1.2, [6, 5]); ctx.restore();
+      label(ctx, 'highest point', 306, yOf(H), { weight: 700, size: 14, alpha: mA });
+    }
+    ctx.save(); ctx.strokeStyle = P.obj; ctx.globalAlpha = 0.25; ctx.lineWidth = 1.5;
+    const ring = h => { ctx.beginPath(); ctx.arc(X, yOf(h), BR, 0, Math.PI * 2); ctx.stroke(); };
+    if (st.ph === 1 || st.ph === 2) for (let k = 0; k * 0.1 <= st.p + 1e-9; k++) ring(hUp(k * 0.1));
+    if (st.ph >= 3) for (let k = 0; k * 0.1 <= st.p + 1e-9; k++) ring(hDn(k * 0.1));
+    ctx.restore();
+    const y = yOf(st.h), len = st.v * VS;
+    ball(ctx, y);
+    if (Math.abs(len) > 1.5) arrow(ctx, X + 44, y, X + 44, y - len, P.vel, { lw: 4.5, head: 13 });
+    if (st.ph === 2) label(ctx, 'v = 0', X + 22, y, { color: P.vel, weight: 700, size: 16 });
+    else if (Math.abs(len) > 20) label(ctx, 'v', X + 54, y - len * 0.55, { color: P.vel, weight: 700, italic: true, size: 18 });
+    arrow(ctx, X, y + BR, X, y + BR + WL, P.force, { lw: 4.5, head: 13 });
+    label(ctx, 'mg', X + 8, y + BR + WL - 4, { color: P.force, weight: 700, size: 16 });
+    arrow(ctx, X - 36, y - AL / 2, X - 36, y + AL / 2, P.acc, { lw: 3.5, head: 11 });
+    label(ctx, 'a = g', X - 46, y, { align: 'right', color: P.acc, weight: 700, size: 15 });
+  }
+  function energy(ctx, st) {
+    const x1 = 340, x2 = 392, bw = 40, full = 200, top = Y0 - full;
+    label(ctx, 'Energy', x1 + 46, top - 34, { align: 'center', weight: 700, size: 15 });
+    hline(ctx, x1 - 6, x2 + bw + 6, top, P.ink2, 1.2, [5, 4]);
+    label(ctx, 'total', x1 + 46, top - 14, { align: 'center', size: 12, color: P.ink2 });
+    const ke = st.v * st.v / (U * U), pe = st.h / H;         // fractions of the (constant) total
+    ctx.fillStyle = P.ke; ctx.fillRect(x1, Y0 - full * ke, bw, full * ke);
+    ctx.fillStyle = P.pe; ctx.fillRect(x2, Y0 - full * pe, bw, full * pe);
+    ctx.strokeStyle = P.obj; ctx.lineWidth = 1.2; ctx.strokeRect(x1, top, bw, full); ctx.strokeRect(x2, top, bw, full);
+    label(ctx, 'KE', x1 + bw / 2, Y0 + 16, { align: 'center', weight: 700, size: 14, color: P.ke });
+    label(ctx, 'PE', x2 + bw / 2, Y0 + 16, { align: 'center', weight: 700, size: 14, color: P.pe });
+  }
+  function mark(ctx, x, y, ok, a) {
+    ctx.save(); ctx.globalAlpha = a; ctx.lineWidth = 3; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+    ctx.strokeStyle = ok ? P.accent : P.force;
+    if (ok) poly(ctx, [[x - 6, y], [x - 1, y + 6], [x + 8, y - 7]]);
+    else { seg(ctx, x - 6, y - 6, x + 6, y + 6); seg(ctx, x + 6, y - 6, x - 6, y + 6); }
+    ctx.restore();
+  }
+  function checklist(ctx, t, ans) {
+    const x0 = 468, y0 = 70, w = 470, h = 384;
+    ctx.save(); ctx.strokeStyle = P.rule; ctx.lineWidth = 1.5; rrect(ctx, x0, y0, w, h, 8); ctx.stroke(); ctx.restore();
+    label(ctx, 'At the highest point,', x0 + 18, y0 + 28, { weight: 700, size: 17 });
+    label(ctx, 'which statements are correct?', x0 + 18, y0 + 50, { size: 14, color: P.ink2 });
+    const a = ans ? ramp(t, S2 + 0.4, S2 + 1.0) : 0;
+    CHECKS.forEach(([text, ok, why], i) => {
+      const y = y0 + 104 + i * 72;
+      ctx.save(); ctx.strokeStyle = P.ink2; ctx.lineWidth = 1.5; ctx.strokeRect(x0 + 18, y - 11, 22, 22); ctx.restore();
+      label(ctx, text, x0 + 52, y, { size: 16 });
+      if (a > 0) {
+        mark(ctx, x0 + 29, y, ok, a);
+        label(ctx, why, x0 + 52, y + 23, { size: 14, weight: 700, color: ok ? P.accent : P.force, alpha: a });
+      }
+    });
+  }
+  function draw(ctx, t, ans) {
+    bg(ctx);
+    const st = state(t);
+    flight(ctx, st, t);
+    energy(ctx, st);
+    checklist(ctx, t, ans);
+    label(ctx, 'faint circles: the ball at equal time gaps', 24, 510, { size: 12, color: P.ink2 });
+    label(ctx, 'air resistance neglected', 24, 528, { size: 12, color: P.ink2 });
+  }
+  return { stages, draw };
+})();
+
+/* ---------- Q5: lifted in an elevator, then climbing the stairs ---------- */
+const Q5 = (() => {
+  const M = 50, G = 10, H = 72.5;
+  const Y0 = 470, K = 5.1, SX = 182, XL = 262, XR = 520, FL = 10, BL = 140, BRT = 550, AX = 104;
+  const yOf = h => Y0 - h * K;
+  const T1 = 3.5, T2 = T1 + 7, T3 = T2 + 11, T4 = T3 + 5;
+  const fmt = j => Math.round(j).toLocaleString('en-IN');
+  const stages = [
+    { title: 'The building', dur: T1,
+      text: 'The top floor is 72.5 m above the ground. The student, of mass 50 kg, will reach it in two different ways.',
+      ans: 'Weight of the student = mg = 50 × 10 = 500 N.' },
+    { title: 'Lifted straight up', dur: T2 - T1,
+      text: 'The elevator lifts the student slowly and steadily, straight up. The potential energy grows in step with the height.',
+      ans: 'Gain in PE = mgh = 50 × 10 × 72.5 = 36,250 J.' },
+    { title: 'Later: climbing the stairs', dur: T3 - T2,
+      text: 'This time the student climbs the stairs, going back and forth along the flights. The path is much longer, but the potential energy again depends only on how high the student has risen.',
+      ans: 'At the top: gain in PE = 50 × 10 × 72.5 = 36,250 J again.' },
+    { title: 'Same rise, same gain', dur: T4 - T3,
+      text: 'Both journeys start at the ground and end on the top floor: the same vertical rise of 72.5 m. The gain in potential energy is the same.',
+      ans: 'The gain in PE depends only on the vertical height risen (the start and end positions), not on the path taken.' },
+  ];
+  const liftH = t => H * glide(ramp(t, T1 + 0.3, T2 - 0.3));        // slow and steady
+  const climb = t => glide(ramp(t, T2 + 0.8, T3 - 0.3), 0.04);     // fraction of the stair path walked
+  function stairAt(s) {
+    const k = Math.min(FL - 1, Math.floor(s * FL)), f = s * FL - k;
+    const xa = k % 2 ? XR : XL, xb = k % 2 ? XL : XR;
+    return { x: xa + (xb - xa) * f, h: (k + f) * H / FL };
+  }
+  function person(ctx, x, yf, alpha = 1) {
+    if (alpha <= 0) return;
+    ctx.save(); ctx.globalAlpha *= alpha;
+    ctx.strokeStyle = P.obj; ctx.fillStyle = P.obj; ctx.lineCap = 'round'; ctx.lineJoin = 'round'; ctx.lineWidth = 3;
+    poly(ctx, [[x - 4, yf], [x, yf - 9], [x + 4, yf]]);
+    seg(ctx, x, yf - 9, x, yf - 19);
+    poly(ctx, [[x - 5, yf - 11], [x, yf - 17], [x + 5, yf - 11]]);
+    ctx.beginPath(); ctx.arc(x, yf - 23.5, 4, 0, Math.PI * 2); ctx.fill();
+    ctx.restore();
+  }
+  function axis(ctx) {
+    vline(ctx, AX, yOf(H), Y0, P.ink2, 1.5);
+    for (let h = 0; h <= 70; h += 10) {
+      hline(ctx, AX - 7, AX, yOf(h), P.ink2, 1.2);
+      if (h < 70) label(ctx, String(h), AX - 11, yOf(h), { align: 'right', size: 13, color: P.ink2 });
+    }
+    hline(ctx, AX - 9, AX, yOf(H), P.ink, 1.5);
+    label(ctx, '72.5', AX - 11, yOf(H), { align: 'right', size: 13, weight: 700 });
+    label(ctx, 'height (m)', AX, yOf(H) - 26, { align: 'center', size: 13, color: P.ink2 });
+  }
+  function building(ctx) {
+    const top = yOf(H), roof = top - 40;               // headroom for the elevator car
+    ctx.fillStyle = P.grid; ctx.fillRect(BL, roof, BRT - BL, Y0 - roof);
+    ctx.fillStyle = P.objFill; ctx.fillRect(SX - 26, roof, 52, Y0 - roof);
+    ctx.strokeStyle = P.obj; ctx.lineWidth = 2; ctx.strokeRect(BL, roof, BRT - BL, Y0 - roof);
+    vline(ctx, SX - 26, roof, Y0, P.obj, 1.5); vline(ctx, SX + 26, roof, Y0, P.obj, 1.5);
+    ctx.save(); ctx.strokeStyle = P.ink2; ctx.lineWidth = 3; ctx.lineCap = 'round';
+    for (let k = 0; k < FL; k++) {
+      const a = stairAt(k / FL), b = stairAt((k + 1) / FL - 1e-9);
+      seg(ctx, a.x, yOf(a.h), b.x, yOf(b.h));
+    }
+    ctx.restore();
+    hline(ctx, SX + 26, BRT, top, P.obj, 2);
+    label(ctx, 'top floor', (BL + BRT) / 2, roof - 12, { align: 'center', weight: 700, size: 14 });
+    hline(ctx, 30, 590, Y0, P.obj, 2);
+    ctx.save(); ctx.strokeStyle = P.ink2; ctx.globalAlpha = 0.45; ctx.lineWidth = 1;
+    for (let x = 36; x < 590; x += 16) seg(ctx, x, Y0 + 1, x - 9, Y0 + 10);
+    ctx.restore();
+    label(ctx, 'elevator', SX, Y0 + 20, { align: 'center', size: 13, color: P.ink2 });
+    label(ctx, 'stairs', (XL + XR) / 2, Y0 + 20, { align: 'center', size: 13, color: P.ink2 });
+  }
+  function trail(ctx, s) {
+    if (s <= 0) return;
+    ctx.save(); ctx.strokeStyle = P.disp; ctx.globalAlpha = 0.45; ctx.lineWidth = 5; ctx.lineCap = 'round';
+    ctx.beginPath();
+    const a = stairAt(0); ctx.moveTo(a.x, yOf(a.h));
+    for (let k = 1; k <= FL && k / FL < s; k++) { const p = stairAt(k / FL - 1e-9); ctx.lineTo(p.x, yOf(p.h)); }
+    const e = stairAt(s); ctx.lineTo(e.x, yOf(e.h));
+    ctx.stroke(); ctx.restore();
+  }
+  function panel(ctx, he, hs, ans) {
+    const base = 440, full = 300, bw = 72, xs = [680, 830];
+    label(ctx, 'Gain in potential energy', 755, 36, { align: 'center', weight: 700, size: 17 });
+    if (ans) label(ctx, 'U = mgh = 50 × 10 × h', 755, 58, { align: 'center', size: 14, color: P.ink2 });
+    hline(ctx, 620, 900, base - full, P.grid2, 1);
+    hline(ctx, 620, 900, base, P.obj, 2);
+    [[he, 'elevator'], [hs, 'stairs']].forEach(([h, name], i) => {
+      const bh = full * h / H, x = xs[i];
+      ctx.fillStyle = P.pe; ctx.fillRect(x - bw / 2, base - bh, bw, bh);
+      if (bh > 0.5) { ctx.strokeStyle = P.obj; ctx.lineWidth = 1.2; ctx.strokeRect(x - bw / 2, base - bh, bw, bh); }
+      label(ctx, name, x, base + 18, { align: 'center', weight: 700, size: 15 });
+      if (ans) label(ctx, `${fmt(M * G * h)} J`, x, base - bh - 14, { align: 'center', weight: 700, size: 15 });
+    });
+  }
+  function draw(ctx, t, ans) {
+    bg(ctx);
+    axis(ctx);
+    building(ctx);
+    const he = liftH(t), s = t >= T2 ? climb(t) : 0, hs = stairAt(s).h * (t >= T2 ? 1 : 0);
+    trail(ctx, s);
+    // elevator car on its cable, with the student inside
+    const cy = yOf(he);
+    vline(ctx, SX, yOf(H) - 40, cy - 34, P.obj, 1.5);
+    ctx.fillStyle = P.sheet; ctx.fillRect(SX - 20, cy - 34, 40, 34);
+    ctx.strokeStyle = P.obj; ctx.lineWidth = 2; ctx.strokeRect(SX - 20, cy - 34, 40, 34);
+    person(ctx, SX, cy - 2, t < T2 + 0.3 ? 1 : 0.35);
+    const intro = 1 - ramp(t, T1, T1 + 0.5);
+    label(ctx, 'student, 50 kg', SX + 30, Y0 - 46, { size: 13, weight: 700, alpha: intro });
+    // the same student, later, on the stairs
+    const cA = ramp(t, T2, T2 + 0.5);
+    if (cA > 0) {
+      const p = stairAt(s);
+      person(ctx, p.x, yOf(p.h) - 1, cA);
+      label(ctx, 'later', p.x, yOf(p.h) - 38, { align: 'center', size: 13, weight: 700, alpha: cA * (1 - ramp(t, T2 + 2.5, T2 + 3)) });
+    }
+    const dA = ramp(t, T3, T3 + 0.6);
+    if (dA > 0) {
+      arrow(ctx, 222, Y0, 222, yOf(H), P.disp, { lw: 3.5, head: 12, alpha: dA });
+      arrow(ctx, 538, Y0, 538, yOf(H), P.disp, { lw: 3.5, head: 12, alpha: dA });
+      label(ctx, 'h', 230, (Y0 + yOf(H)) / 2, { color: P.disp, weight: 700, italic: true, size: 18, alpha: dA });
+      label(ctx, 'h', 530, (Y0 + yOf(H)) / 2, { align: 'right', color: P.disp, weight: 700, italic: true, size: 18, alpha: dA });
+    }
+    panel(ctx, he, hs, ans);
+    label(ctx, 'student and elevator drawn larger than scale; number of flights illustrative', 24, 528, { size: 12, color: P.ink2 });
+  }
+  return { stages, draw };
+})();
+
+/* ---------- Q7: raising a flag slowly or quickly ---------- */
+const Q7 = (() => {
+  const Y0 = 470, TOPY = 92, FH = 38, FW = 62;
+  const Y_START = Y0 - FH - 12, Y_END = TOPY + 14, L = Y_START - Y_END;   // the flag's top edge rises through L
+  const POLES = [
+    { x: 170, dur: 6, head: 'Slowly: speed v', sp: 'v', tl: 't' },
+    { x: 420, dur: 3, head: 'Quickly: speed 2v', sp: '2v', tl: 't/2' },
+  ];
+  const T1 = 4, T2 = T1 + 6.5, T3 = T2 + 4.5, T4 = T3 + 5.5;
+  const frac = (t, d) => glide((t - T1) / d);
+  const rate = (t, d) => glideRate((t - T1) / d) * (6 / d);          // speed, in units of the slow flag's steady speed
+  const stages = [
+    { title: 'Two identical flags', dur: T1,
+      text: 'Two identical flags (mass m) are raised to the tops of two identical poles (height h), using a pulley at the top. The left flag is raised at a steady speed v, the right one at 2v.',
+      ans: 'Energy needed = gain in PE of the flag = mgh. It depends on the mass of the flag m and the height of the pole h (and on g).' },
+    { title: 'Raising the flags', dur: T2 - T1,
+      text: 'While a flag moves at a steady speed, the rope pulls it up with a force equal to its weight mg. The faster flag reaches the top in half the time.',
+      ans: 'The same force mg acts through the same height h on both. Time taken: t for the slow flag, t/2 for the fast one.' },
+    { title: 'Both at the top', dur: T3 - T2,
+      text: 'Both flags have been raised through the same height against the same weight, so the same work has been done on each. The speed made no difference.',
+      ans: 'Work done = mg × h = mgh for both. Raising the flag slowly or quickly does not change the work done.' },
+    { title: 'Power: work per second', dur: T4 - T3,
+      text: 'Power is the rate of doing work. The fast flag needed the same work in half the time, so it needed twice the power.',
+      ans: 'P = W/t. Slow: mgh/t. Fast: mgh/(t/2) = 2mgh/t. Doubling the speed doubles the power.' },
+  ];
+  function puller(ctx, x) {
+    const hx = x - 10, hy = Y0 - 52, px = x - 36;
+    ctx.save(); ctx.strokeStyle = P.obj; ctx.fillStyle = P.obj; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+    ctx.lineWidth = 5; poly(ctx, [[px - 7, Y0], [px, Y0 - 26], [px + 6, Y0]]);
+    ctx.lineWidth = 7; seg(ctx, px, Y0 - 26, px, Y0 - 52);
+    ctx.lineWidth = 4; poly(ctx, [[px, Y0 - 48], [hx - 8, hy - 2], [hx, hy]]);
+    ctx.beginPath(); ctx.arc(px, Y0 - 62, 7, 0, Math.PI * 2); ctx.fill();
+    ctx.restore();
+  }
+  function vdim(ctx, x, y1, y2, color, alpha) {
+    if (alpha <= 0) return;
+    ctx.save(); ctx.globalAlpha *= alpha; ctx.strokeStyle = color; ctx.fillStyle = color; ctx.lineWidth = 1.5;
+    seg(ctx, x, y1, x, y2); seg(ctx, x - 7, y1, x + 7, y1); seg(ctx, x - 7, y2, x + 7, y2);
+    ctx.beginPath(); ctx.moveTo(x, y1); ctx.lineTo(x - 4.5, y1 - 9); ctx.lineTo(x + 4.5, y1 - 9); ctx.closePath(); ctx.fill();
+    ctx.beginPath(); ctx.moveTo(x, y2); ctx.lineTo(x - 4.5, y2 + 9); ctx.lineTo(x + 4.5, y2 + 9); ctx.closePath(); ctx.fill();
+    ctx.restore();
+  }
+  function pole(ctx, pl, t, ans) {
+    const x = pl.x, f = frac(t, pl.dur), r = rate(t, pl.dur), rn = glideRate((t - T1) / pl.dur);
+    const yTop = Y_START - L * f, fx = x + 10;
+    label(ctx, pl.head, x + 30, 34, { align: 'center', weight: 700, size: 16 });
+    hline(ctx, x - 70, x + 140, Y0, P.obj, 2);
+    ctx.fillStyle = P.objFill2; ctx.fillRect(x - 4, TOPY, 8, Y0 - TOPY);
+    ctx.strokeStyle = P.obj; ctx.lineWidth = 1.5; ctx.strokeRect(x - 4, TOPY, 8, Y0 - TOPY);
+    vline(ctx, x + 10, TOPY, Y0 - 8, P.ink2, 1.5);           // rope on the flag's side
+    vline(ctx, x - 10, TOPY, Y0 - 52, P.ink2, 1.5);          // rope down to the hands
+    ctx.fillStyle = P.ink; ctx.fillRect(x - 13, TOPY + 12 + L * f - 3, 6, 6);   // a mark on the rope: it moves down as the flag rises
+    ctx.fillStyle = P.objFill; ctx.strokeStyle = P.obj; ctx.lineWidth = 1.5;
+    ctx.beginPath(); ctx.arc(x, TOPY, 10, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+    ctx.fillStyle = P.obj; ctx.beginPath(); ctx.arc(x, TOPY, 2.5, 0, Math.PI * 2); ctx.fill();
+    label(ctx, 'pulley', x - 16, TOPY - 2, { align: 'right', size: 12, color: P.ink2 });
+    puller(ctx, x);
+    ctx.fillStyle = P.ke; ctx.fillRect(fx, yTop, FW, FH);
+    ctx.strokeStyle = P.obj; ctx.lineWidth = 1.5; ctx.strokeRect(fx, yTop, FW, FH);
+    // forces, drawn only while the speed is steady (then the pull equals the weight)
+    const fA = ramp(rn, 0.98, 1);
+    if (fA > 0) {
+      const cx = fx + FW / 2;
+      arrow(ctx, cx, yTop, cx, yTop - 36, P.force, { lw: 4, head: 11, alpha: fA });
+      arrow(ctx, cx, yTop + FH, cx, yTop + FH + 36, P.force, { lw: 4, head: 11, alpha: fA });
+      label(ctx, ans ? 'pull = mg' : 'pull', cx + 8, yTop - 24, { color: P.force, weight: 700, size: 14, alpha: fA });
+      label(ctx, 'mg', cx + 8, yTop + FH + 24, { color: P.force, weight: 700, size: 14, alpha: fA });
+    }
+    const vl = 26 * r;
+    if (vl > 1.5) arrow(ctx, fx + FW + 22, yTop + FH / 2 + vl / 2, fx + FW + 22, yTop + FH / 2 - vl / 2, P.vel, { lw: 4, head: 11 });
+    if (rn > 0.9) label(ctx, pl.sp, fx + FW + 32, yTop + FH / 2, { color: P.vel, weight: 700, italic: true, size: 16 });
+    // height risen
+    const hA = t < T1 ? 1 : ramp(t, T2, T2 + 0.5);
+    vdim(ctx, x + 124, Y_START, Y_END, P.disp, hA);
+    label(ctx, 'h', x + 132, (Y_START + Y_END) / 2, { color: P.disp, weight: 700, italic: true, size: 18, alpha: hA });
+    // stopwatch bar: full width = the slow flag's time
+    const w = 150, el = clamp(t - T1, 0, pl.dur);
+    ctx.fillStyle = P.grid2; rrect(ctx, x - 40, Y0 + 24, w, 8, 4); ctx.fill();
+    if (el > 0) { ctx.fillStyle = P.accent; rrect(ctx, x - 40, Y0 + 24, Math.max(8, w * el / 6), 8, 4); ctx.fill(); }
+    label(ctx, 'time', x - 48, Y0 + 28, { align: 'right', size: 13, color: P.ink2 });
+    if (t - T1 >= pl.dur) label(ctx, pl.tl, x - 40 + w * pl.dur / 6, Y0 + 46, { align: 'center', weight: 700, italic: true, size: 15 });
+  }
+  function panel(ctx, t, ans) {
+    const xs = [710, 830], bw = 64;
+    label(ctx, 'Work done on the flag', 770, 36, { align: 'center', weight: 700, size: 16 });
+    const wb = 230, wf = 150;
+    hline(ctx, 650, 890, wb - wf, P.grid2, 1);
+    hline(ctx, 650, 890, wb, P.obj, 2);
+    POLES.forEach((pl, i) => {
+      const f = frac(t, pl.dur), h = wf * f;
+      ctx.fillStyle = P.pe; ctx.fillRect(xs[i] - bw / 2, wb - h, bw, h);
+      if (h > 0.5) { ctx.strokeStyle = P.obj; ctx.lineWidth = 1.2; ctx.strokeRect(xs[i] - bw / 2, wb - h, bw, h); }
+      label(ctx, i ? 'fast' : 'slow', xs[i], wb + 16, { align: 'center', weight: 700, size: 14 });
+      if (ans && f >= 1) label(ctx, 'mgh', xs[i], wb - h - 14, { align: 'center', weight: 700, italic: true, size: 15 });
+    });
+    const avg = t >= T2;
+    label(ctx, avg ? 'Average power = work ÷ time' : 'Power = work done per second', 770, 290, { align: 'center', weight: 700, size: 16 });
+    const pb = 480, pf = 140;                                   // pf = twice the slow flag's power
+    hline(ctx, 650, 890, pb, P.obj, 2);
+    POLES.forEach((pl, i) => {
+      const val = avg ? 6 / pl.dur : rate(t, pl.dur), h = pf / 2 * val;
+      ctx.fillStyle = P.accent; ctx.fillRect(xs[i] - bw / 2, pb - h, bw, h);
+      label(ctx, i ? 'fast' : 'slow', xs[i], pb + 16, { align: 'center', weight: 700, size: 14 });
+      if (ans && avg) label(ctx, i ? '2mgh/t' : 'mgh/t', xs[i], pb - h - 14, { align: 'center', weight: 700, italic: true, size: 15 });
+    });
+  }
+  function draw(ctx, t, ans) {
+    bg(ctx);
+    vline(ctx, 610, 16, 524, P.rule, 1);
+    for (const pl of POLES) pole(ctx, pl, t, ans);
+    panel(ctx, t, ans);
+    label(ctx, 'ideal pulley (no friction); flags start and end at rest', 24, 528, { size: 12, color: P.ink2 });
+  }
+  return { stages, draw };
+})();
+
+/* ---------- player: a pure function of time, so stepping and scrubbing are exact ---------- */
+const ICON = {
+  play: '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2.5v11l9.5-5.5z" fill="currentColor"/></svg>',
+  pause: '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 2.5h3v11h-3zM9.5 2.5h3v11h-3z" fill="currentColor"/></svg>',
+  prev: '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 2.5h2v11H3zM14 2.5v11L6 8z" fill="currentColor"/></svg>',
+  next: '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M11 2.5h2v11h-2zM2 2.5v11L10 8z" fill="currentColor"/></svg>',
+  restart: '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2.2V0L4.6 3 8 6V3.8a4.2 4.2 0 1 1-4.2 4.2H2.2A5.8 5.8 0 1 0 8 2.2z" fill="currentColor"/></svg>',
+  eye: '<svg viewBox="0 0 16 16" aria-hidden="true"><path fill-rule="evenodd" d="M8 3C4.6 3 1.8 5.2.5 8c1.3 2.8 4.1 5 7.5 5s6.2-2.2 7.5-5C14.2 5.2 11.4 3 8 3zm0 1.8a3.2 3.2 0 1 0 0 6.4 3.2 3.2 0 0 0 0-6.4zm0 1.5a1.7 1.7 0 1 1 0 3.4 1.7 1.7 0 0 1 0-3.4z" fill="currentColor"/></svg>',
+};
+// control bar directly under the picture: everything a teacher presses while presenting
+function transportHTML(id) {
+  return `
+    <div class="transport">
+      <button type="button" class="btn icon" data-act="restart" aria-label="Restart" title="Restart">${ICON.restart}</button>
+      <button type="button" class="btn icon" data-act="prev" aria-label="Previous step" title="Previous step">${ICON.prev}</button>
+      <button type="button" class="btn primary" data-act="play" aria-label="Play">${ICON.play}<span>Play</span></button>
+      <button type="button" class="btn icon" data-act="next" aria-label="Next step" title="Next step">${ICON.next}</button>
+      <ol class="steps" aria-label="Steps"></ol>
+      <input type="range" class="scrub" id="scrub-${id}" min="0" max="1000" step="1" value="0" aria-label="Animation position">
+      <button type="button" class="btn reveal" data-act="answers" aria-pressed="false">${ICON.eye}<span>Show answers</span></button>
+    </div>`;
+}
+// text column beside the picture: step caption, answer line and the less-used options
+function sideHTML(id) {
+  return `
+    <div class="cap" aria-live="polite">
+      <p class="cap-step">Step <span data-k="n">1</span> of <span data-k="of"></span></p>
+      <h2 class="cap-title" data-k="title"></h2>
+      <p class="cap-text" data-k="text"></p>
+      <p class="cap-ans" data-k="ansbox" hidden><span class="tag">Answer</span><span data-k="ans"></span></p>
+    </div>
+    <div class="opts">
+      <label class="opt" for="speed-${id}">Speed
+        <select id="speed-${id}"><option value="0.5">0.5×</option><option value="1" selected>1×</option><option value="1.5">1.5×</option></select>
+      </label>
+      <label class="opt" for="stop-${id}"><input type="checkbox" id="stop-${id}">Pause after each step</label>
+      <button type="button" class="linkish" data-act="worked" hidden>Full worked answer ↓</button>
+    </div>`;
+}
+function makePlayer(panel, scene) {
+  panel.querySelector('.ctl').outerHTML = transportHTML(panel.id);
+  panel.querySelector('.side').insertAdjacentHTML('beforeend', sideHTML(panel.id));
+  const q = s => panel.querySelector(s);
+  const canvas = q('canvas'), ctx = canvas.getContext('2d');
+  const ui = {
+    play: q('[data-act="play"]'), prev: q('[data-act="prev"]'), next: q('[data-act="next"]'), restart: q('[data-act="restart"]'),
+    scrub: q('.scrub'), speed: q('select'), stop: q('input[type="checkbox"]'),
+    n: q('[data-k="n"]'), of: q('[data-k="of"]'), title: q('[data-k="title"]'), text: q('[data-k="text"]'), steps: q('.steps'),
+    answers: q('[data-act="answers"]'), ansBox: q('[data-k="ansbox"]'), ansText: q('[data-k="ans"]'), sheet: q('.answer'),
+    worked: q('[data-act="worked"]'),
+  };
+  const st = scene.stages;
+  let acc = 0;
+  for (const s of st) { s.t0 = acc; acc += s.dur; s.t1 = acc; }
+  const total = acc;
+  ui.of.textContent = st.length;
+  let t = 0, playing = false, last = 0, raf = 0, cur = -1, ans = false;   // answers always start hidden
+  const chips = st.map((s, k) => {
+    const li = document.createElement('li'), b = document.createElement('button');
+    b.type = 'button'; b.textContent = String(k + 1);
+    b.title = s.title; b.setAttribute('aria-label', `Step ${k + 1}: ${s.title}`);
+    b.addEventListener('click', () => seek(s.t0));
+    li.appendChild(b); ui.steps.appendChild(li);
+    return b;
+  });
+  const stageAt = x => { for (let i = 0; i < st.length; i++) if (x < st[i].t1) return i; return st.length - 1; };
+  function fit() {
+    const w = canvas.clientWidth;
+    if (!w) return false;
+    const dpr = Math.min(2.5, window.devicePixelRatio || 1);
+    const W = Math.round(w * dpr), H = Math.round(w * dpr * VH / VW);
+    if (canvas.width !== W || canvas.height !== H) { canvas.width = W; canvas.height = H; }
+    return true;
+  }
+  function render() {
+    if (!fit()) return;
+    const sc = canvas.width / VW;
+    ctx.setTransform(sc, 0, 0, sc, 0, 0);
+    scene.draw(ctx, t, ans);
+    const i = stageAt(t);
+    if (i !== cur) {
+      cur = i;
+      ui.n.textContent = i + 1; ui.title.textContent = st[i].title; ui.text.textContent = st[i].text;
+      ui.ansText.textContent = st[i].ans || '';
+      ui.ansBox.hidden = !(ans && st[i].ans);
+      chips.forEach((b, k) => { if (k === i) b.setAttribute('aria-current', 'step'); else b.removeAttribute('aria-current'); });
+    }
+    ui.scrub.value = Math.round(t / total * 1000);
+  }
+  function setPlayUI() {
+    const word = playing ? 'Pause' : t >= total - 1e-6 ? 'Replay' : 'Play';
+    ui.play.innerHTML = (playing ? ICON.pause : ICON.play) + `<span>${word}</span>`;
+    ui.play.setAttribute('aria-label', word);
+  }
+  function loop(now) {
+    if (!playing) return;
+    const dt = Math.min(0.1, Math.max(0, (now - last) / 1000));
+    last = now;
+    const nt = t + dt * parseFloat(ui.speed.value);
+    const i = stageAt(t);
+    if (ui.stop.checked && i < st.length - 1 && nt >= st[i].t1) { t = st[i].t1 - 1e-4; pause(); render(); return; }
+    if (nt >= total) { t = total; pause(); render(); return; }
+    t = nt; render();
+    raf = requestAnimationFrame(loop);
+  }
+  function play() {
+    if (playing) return;
+    if (t >= total - 1e-6) t = 0;
+    const i = stageAt(t);
+    if (i < st.length - 1 && st[i].t1 - t < 2e-4) t = st[i].t1;   // resume after a step pause
+    playing = true; last = performance.now(); setPlayUI();
+    raf = requestAnimationFrame(loop);
+  }
+  function pause() { playing = false; cancelAnimationFrame(raf); setPlayUI(); }
+  function setAnswers(on) {
+    ans = on;
+    ui.answers.setAttribute('aria-pressed', String(on));
+    ui.answers.querySelector('span').textContent = on ? 'Hide answers' : 'Show answers';
+    if (ui.sheet) ui.sheet.hidden = !on;
+    ui.worked.hidden = !(on && ui.sheet);
+    cur = -1; render();
+  }
+  function toggle() { playing ? pause() : play(); }
+  function seek(x) { t = clamp(x, 0, total); render(); setPlayUI(); }
+  function next() { const i = stageAt(t); seek(i < st.length - 1 ? st[i + 1].t0 : total); }
+  function prev() { const i = stageAt(t); seek(t - st[i].t0 > 0.6 || i === 0 ? st[i].t0 : st[i - 1].t0); }
+  ui.play.addEventListener('click', toggle);
+  ui.next.addEventListener('click', next);
+  ui.prev.addEventListener('click', prev);
+  ui.restart.addEventListener('click', () => { seek(0); play(); });
+  ui.answers.addEventListener('click', () => setAnswers(!ans));
+  ui.worked.addEventListener('click', () => ui.sheet.scrollIntoView({ behavior: 'smooth', block: 'start' }));
+  ui.scrub.addEventListener('input', () => { pause(); seek(ui.scrub.value / 1000 * total); });
+  const stage = q('.stage');
+  stage.addEventListener('click', toggle);
+  stage.addEventListener('keydown', e => {
+    if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); toggle(); }
+    else if (e.key === 'ArrowRight') { e.preventDefault(); next(); }
+    else if (e.key === 'ArrowLeft') { e.preventDefault(); prev(); }
+  });
+  if ('ResizeObserver' in window) new ResizeObserver(() => render()).observe(canvas);
+  else window.addEventListener('resize', render);
+  setPlayUI();
+  return { render, pause, toggle, next, prev };
+}
+
+/* ---------- page wiring ---------- */
+readPalette();
+const scenes = { q3: Q3, q5: Q5, q7: Q7 };
+const players = {};
+for (const id of Object.keys(scenes)) players[id] = makePlayer(document.getElementById(id), scenes[id]);
+const tabs = [...document.querySelectorAll('[role="tab"]')];
+let active = 'q3';
+/* Fit the picture and its control bar inside the window: the CSS sizes the picture from
+   --chrome (wide layout: everything above the picture plus the bar) or --bar (narrow layout). */
+function fitBench() {
+  const p = document.getElementById(active);
+  const stage = p.querySelector('.stage'), bar = p.querySelector('.transport');
+  const root = document.documentElement.style;
+  for (let pass = 0; pass < 2; pass++) {       // second pass: the bar may wrap differently at the new width
+    const top = stage.getBoundingClientRect().top + window.scrollY;
+    root.setProperty('--chrome', Math.round(top + bar.offsetHeight + 38) + 'px');
+    root.setProperty('--bar', Math.round(bar.offsetHeight + 30) + 'px');
+  }
+}
+let fitRaf = 0;
+window.addEventListener('resize', () => { cancelAnimationFrame(fitRaf); fitRaf = requestAnimationFrame(fitBench); });
+function show(id, focus) {
+  active = id;
+  tabs.forEach(b => {
+    const on = b.getAttribute('aria-controls') === id;
+    b.setAttribute('aria-selected', String(on));
+    b.tabIndex = on ? 0 : -1;
+    if (on && focus) b.focus();
+  });
+  for (const k of Object.keys(players)) {
+    const on = k === id;
+    if (!on) players[k].pause();
+    document.getElementById(k).hidden = !on;
+  }
+  fitBench();
+  players[id].render();
+  try { history.replaceState(null, '', '#' + id); } catch (e) { /* sandboxed frame */ }
+}
+tabs.forEach((b, i) => {
+  b.addEventListener('click', () => show(b.getAttribute('aria-controls')));
+  b.addEventListener('keydown', e => {
+    if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+    e.preventDefault();
+    const j = (i + (e.key === 'ArrowRight' ? 1 : -1) + tabs.length) % tabs.length;
+    show(tabs[j].getAttribute('aria-controls'), true);
+  });
+});
+document.addEventListener('keydown', e => {
+  if (e.target !== document.body) return;
+  const p = players[active];
+  if (e.key === ' ') { e.preventDefault(); p.toggle(); }
+  else if (e.key === 'ArrowRight') { e.preventDefault(); p.next(); }
+  else if (e.key === 'ArrowLeft') { e.preventDefault(); p.prev(); }
+});
+const hash = location.hash.slice(1);
+show(scenes[hash] ? hash : 'q3');
+
+const refresh = () => { readPalette(); fitBench(); players[active].render(); };
+const mq = matchMedia('(prefers-color-scheme: dark)');
+if (mq.addEventListener) mq.addEventListener('change', refresh); else if (mq.addListener) mq.addListener(refresh);
+new MutationObserver(refresh).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme', 'class', 'style'] });
+if (document.fonts) {
+  Promise.all([
+    document.fonts.load(`400 16px ${FB}`), document.fonts.load(`700 16px ${FB}`),
+    document.fonts.load(`italic 700 16px ${FB}`), document.fonts.load(`800 16px ${FD}`),
+  ]).catch(() => {}).then(refresh);
+  document.fonts.ready.then(refresh);
+}
+})();
+</script>
+
+</body></html>

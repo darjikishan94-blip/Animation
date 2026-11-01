@@ -11,12 +11,22 @@ web browser (Chrome, Edge, Safari or Firefox, on a computer or a phone).
 
 | Class | Subject | Chapter | Question | What it shows | Open | Added |
 |---|---|---|---|---|---|---|
+| 9 | Science (*Exploration*, NCERT) | 7 · Work, Energy and Simple Machines | Q3 · Ball at the top | A ball thrown straight up stops for an instant at its highest point and falls back. Arrows show that the force (*mg*) and the acceleration (*g*) never become zero; only the velocity does. Students tick the four statements. | [Q3](class-09/science/ch07-work-energy-and-simple-machines/work-energy-q3-q7.html#q3) | Nov 2026 |
+| 9 | Science (*Exploration*, NCERT) | 7 · Work, Energy and Simple Machines | Q5 · Elevator or stairs | A 50 kg student rises 72.5 m, first in an elevator and later up the stairs. The gain in potential energy is the same both ways (36,250 J): it depends only on the height. | [Q5](class-09/science/ch07-work-energy-and-simple-machines/work-energy-q3-q7.html#q5) | Nov 2026 |
+| 9 | Science (*Exploration*, NCERT) | 7 · Work, Energy and Simple Machines | Q7 · Raising a flag | Two identical flags are raised with pulleys, one at speed *v* and one at 2*v*. The work done (*mgh*) is the same; the faster one needs twice the power. | [Q7](class-09/science/ch07-work-energy-and-simple-machines/work-energy-q3-q7.html#q7) | Nov 2026 |
 | 9 | Science (*Exploration*, NCERT) | 7 · Work, Energy and Simple Machines | Q8 · Scooter and fuel | The same scooter speeds up to the same speed in the same time, first with the man alone (60 kg) and then with his son (40 kg) as well. Fuel energy used is compared with the kinetic energy gained. | [Q8](class-09/science/ch07-work-energy-and-simple-machines/work-energy-q8-q10.html#q8) | Oct 2026 |
 | 9 | Science (*Exploration*, NCERT) | 7 · Work, Energy and Simple Machines | Q9 · Seesaw balance | A child (*W*) and an adult (2*W*) sit on a seesaw with sliding seats. At equal distances it tips; the adult slides to *d*/2 and it balances. | [Q9](class-09/science/ch07-work-energy-and-simple-machines/work-energy-q8-q10.html#q9) | Oct 2026 |
 | 9 | Science (*Exploration*, NCERT) | 7 · Work, Energy and Simple Machines | Q10 · Ball thrown up | A 2 kg ball is thrown up at 20 m/s and, with air resistance, reaches 19.4 m. Shows the sign of the work done by gravity going up and coming down, and an energy bar. | [Q10](class-09/science/ch07-work-energy-and-simple-machines/work-energy-q8-q10.html#q10) | Oct 2026 |
+| 9 | Science (*Exploration*, NCERT) | 7 · Work, Energy and Simple Machines | Q12 · Ball on the Moon | The same throw on Earth and on the Moon (gravity 1/6). The Earth ball rises to 8 m; the Moon ball rises 6 times higher, to 48 m. | [Q12](class-09/science/ch07-work-energy-and-simple-machines/work-energy-q11-q15.html#q12) | Nov 2026 |
+| 9 | Science (*Exploration*, NCERT) | 7 · Work, Energy and Simple Machines | Q15 · Falling coconut | A 1.5 kg coconut falls 10 m onto wet sand (about 14.1 m/s at impact), and a magnified close-up shows the 3000 N sand force stopping it in 5 cm. | [Q15](class-09/science/ch07-work-energy-and-simple-machines/work-energy-q11-q15.html#q15) | Nov 2026 |
 
-Q8, Q9 and Q10 are three tabs in one file. Adding `#q8`, `#q9` or `#q10` to the end of the address opens
-that tab directly.
+Questions that share a file are tabs on one page. Adding `#q3`, `#q8`, `#q12` and so on to the end of
+the address opens that question's tab directly.
+
+**Still to do in Chapter 7:** Q1 (true or false), Q2 (fill in the blanks) and Q4 (energy transformations)
+are not motion problems, so how to animate them is still to be decided. Q6 (the crane) is waiting for the
+textbook's exact wording, because it can be read in two ways. Q11, Q13 and Q14 are waiting for the
+textbook's graphs (Fig. 7.37, 7.38 and 7.39).
 
 ## How to open an animation
 
@@ -71,4 +81,6 @@ long-term copies.
 
 | File | Original page | Published | Updated |
 |---|---|---|---|
-| `work-energy-q8-q10.html` | <https://claude.ai/artifact/NQVh5HYwETSH2N1kZBh4oi> | 29 Oct 2026 | 31 Oct 2026: Show answers button added |
+| `work-energy-q3-q7.html` | <https://claude.ai/artifact/7LpiQEmGxubu81E81tHkrQ> | 1 Nov 2026 | |
+| `work-energy-q8-q10.html` | <https://claude.ai/artifact/NQVh5HYwETSH2N1kZBh4oi> | 29 Oct 2026 | 31 Oct 2026: Show answers button and one-screen layout added |
+| `work-energy-q11-q15.html` | <https://claude.ai/artifact/3Z2uGaFSGgT4goxPCjC37A> | 1 Nov 2026 | |

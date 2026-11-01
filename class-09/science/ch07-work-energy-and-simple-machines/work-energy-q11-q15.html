@@ -1,0 +1,1079 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Work &amp; Energy Q11–Q15</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<style>
+/* Layout: one centred lab-sheet column. Header and colour key, then one tabbed bench per question:
+   16:9 animation stage, step caption, transport controls, step list, then given / asked / drawing notes. */
+:root {
+  --paper: #EDF1F3;
+  --sheet: #FFFFFF;
+  --ink: #15202A;
+  --ink-2: #4B5967;
+  --rule: #D3DCE2;
+  --grid: #EEF2F4;
+  --grid-2: #DCE4E9;
+  --accent: #0A6B66;
+  --accent-ink: #FFFFFF;
+  --accent-soft: #E0F0EE;
+  --vel: #1D5FD2;
+  --force: #CB2A36;
+  --drag: #9C5410;
+  --disp: #0E7C46;
+  --ke: #D68200;
+  --ke-soft: #F8E2B6;
+  --pe: #7044BE;
+  --loss: #7D8A96;
+  --obj: #2E3B47;
+  --obj-fill: #D5DEE4;
+  --obj-fill-2: #B8C5CE;
+  --wood: #D9B98C;
+  --road: #E2E7EA;
+  --acc: #B0287A;
+  --sand: #E6CF9E;
+  --leaf: #3F8A4E;
+  --bark: #8B5A33;
+  --font-display: "Archivo", "Arial Narrow", "Segoe UI", system-ui, sans-serif;
+  --font-body: "Atkinson Hyperlegible", "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0D1216; --sheet: #151C22; --ink: #E5ECF1; --ink-2: #A0AEBB; --rule: #2B3741;
+    --grid: #1A232A; --grid-2: #2A3640;
+    --accent: #46C3B8; --accent-ink: #052421; --accent-soft: #15332F;
+    --vel: #6FA4FF; --force: #FF6A72; --drag: #E39A50; --disp: #46D08D;
+    --ke: #FFB43A; --ke-soft: #5B4417; --pe: #B48CFF; --loss: #8C99A6;
+    --obj: #C9D3DB; --obj-fill: #2E3A44; --obj-fill-2: #3C4954; --wood: #7A5E3E; --road: #222C34; --acc: #F07BC2; --sand: #5E4D2F; --leaf: #58B06D; --bark: #A97B50;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #0D1216; --sheet: #151C22; --ink: #E5ECF1; --ink-2: #A0AEBB; --rule: #2B3741;
+  --grid: #1A232A; --grid-2: #2A3640;
+  --accent: #46C3B8; --accent-ink: #052421; --accent-soft: #15332F;
+  --vel: #6FA4FF; --force: #FF6A72; --drag: #E39A50; --disp: #46D08D;
+  --ke: #FFB43A; --ke-soft: #5B4417; --pe: #B48CFF; --loss: #8C99A6;
+  --obj: #C9D3DB; --obj-fill: #2E3A44; --obj-fill-2: #3C4954; --wood: #7A5E3E; --road: #222C34; --acc: #F07BC2; --sand: #5E4D2F; --leaf: #58B06D; --bark: #A97B50;
+  color-scheme: dark;
+}
+[hidden] { display: none !important; }
+* { box-sizing: border-box; }
+html { background: var(--paper); }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.5;
+}
+.wrap {
+  max-width: 1760px;
+  margin: 0 auto;
+  padding-block: 14px 48px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+/* Header: one compact band (titles left, question tabs right) so the first screen also holds
+   the whole animation bench below it. */
+.top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 8px 24px;
+  border-bottom: 1px solid var(--rule);
+}
+.titles { flex: 1 1 300px; display: grid; gap: 4px; min-width: 0; padding-bottom: 10px; }
+.eyebrow {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+h1 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-stretch: 112%;
+  font-size: clamp(22px, 2.3vw, 30px);
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+.about { margin-top: 18px; }
+.lede { margin: 0; max-width: 80ch; color: var(--ink-2); }
+.key {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 18px;
+  margin: 8px 0 0;
+  padding: 0;
+  font-size: 14px;
+  color: var(--ink-2);
+}
+.key li { display: inline-flex; align-items: center; gap: 7px; }
+.key svg { width: 28px; height: 12px; flex: none; }
+.tabs {
+  display: flex;
+  gap: 4px;
+  flex: none;
+  max-width: 100%;
+  margin-bottom: -1px;
+  overflow-x: auto;
+}
+.tab {
+  appearance: none;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 10px 16px 9px;
+  border: 1px solid transparent;
+  border-bottom: none;
+  border-radius: 8px 8px 0 0;
+  background: transparent;
+  color: var(--ink-2);
+  font: inherit;
+  font-size: 15px;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.tab .n {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-stretch: 110%;
+  font-size: 19px;
+  color: var(--ink);
+}
+.tab:hover { color: var(--ink); }
+.tab[aria-selected="true"] { background: var(--sheet); border-color: var(--rule); color: var(--ink); }
+.tab[aria-selected="true"] .n { color: var(--accent); }
+.panel {
+  display: grid;
+  gap: 18px;
+  padding: 16px;
+  background: var(--sheet);
+  border: 1px solid var(--rule);
+  border-top: none;
+  border-radius: 0 0 10px 10px;
+}
+/* Bench: question, picture, control bar, step caption, options.
+   Narrow screens: one column in that order, the picture capped so it and its control bar fit the window.
+   Landscape screens (media query below): picture and control bar on the left, sized to the window height,
+   question and caption on the right. --bar and --chrome are measured by fitBench() in the script. */
+.bench { display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.view, .side { display: contents; }
+.qline { order: 1; margin: 0; max-width: 78ch; font-size: 17px; }
+.qline b { font-family: var(--font-display); font-stretch: 110%; font-weight: 800; color: var(--accent); }
+.stage {
+  order: 2;
+  align-self: center;
+  width: min(100%, max(320px, calc((100vh - var(--bar, 120px)) * 16 / 9)));
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  overflow: hidden;
+  background: var(--sheet);
+  cursor: pointer;
+}
+.stage canvas { display: block; width: 100%; max-width: 100%; height: auto; aspect-ratio: 16 / 9; }
+.narrow-hint { order: 3; display: none; margin: -6px 0 0; font-size: 13px; color: var(--ink-2); }
+.transport { order: 4; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.cap { order: 5; display: grid; gap: 2px; }
+.opts { order: 6; display: flex; flex-wrap: wrap; align-items: center; gap: 8px 20px; }
+.cap-step {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.cap-title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-stretch: 106%;
+  font-size: 22px;
+  line-height: 1.2;
+  text-wrap: balance;
+}
+.cap-text { margin: 2px 0 0; max-width: 74ch; }
+.btn {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  height: 40px;
+  min-width: 40px;
+  padding: 0 12px;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  background: var(--sheet);
+  color: var(--ink);
+  font: 700 15px var(--font-body);
+  cursor: pointer;
+}
+.btn:hover { border-color: var(--ink-2); }
+.btn.icon { padding: 0; }
+.btn.primary { min-width: 112px; background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.btn svg { width: 16px; height: 16px; flex: none; }
+.scrub { flex: 1 1 140px; min-width: 80px; accent-color: var(--accent); }
+.opt { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; color: var(--ink-2); }
+.opt input { accent-color: var(--accent); width: 16px; height: 16px; }
+select {
+  height: 34px;
+  padding: 0 6px;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  background: var(--sheet);
+  color: var(--ink);
+  font: inherit;
+}
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.steps { list-style: none; display: flex; gap: 4px; margin: 0; padding: 0; }
+.steps button {
+  appearance: none;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 1px solid var(--rule);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--ink-2);
+  font: 700 14px var(--font-body);
+  cursor: pointer;
+}
+.steps button:hover { color: var(--ink); border-color: var(--ink-2); }
+.steps button[aria-current="step"] { border-color: var(--accent); background: var(--accent); color: var(--accent-ink); }
+.linkish {
+  appearance: none;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--accent);
+  font: 700 14px var(--font-body);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+@media (max-width: 680px) {
+  .stage { overflow-x: auto; }
+  .stage canvas { width: 640px; max-width: none; }
+  .narrow-hint { display: block; }
+  .panel { padding: 14px; }
+}
+@media (min-width: 960px) and (min-aspect-ratio: 5/4) {
+  .bench {
+    display: grid;
+    grid-template-columns: max(320px, min(calc(100% - 340px), calc((100vh - var(--chrome, 200px)) * 16 / 9))) minmax(0, 1fr);
+    gap: 20px;
+    align-items: start;
+  }
+  .view { display: grid; gap: 10px; min-width: 0; }
+  .side { display: grid; gap: 14px; align-content: start; min-width: 0; }
+  .stage { width: auto; align-self: auto; }
+  .qline { font-size: 16px; }
+  .cap-title { font-size: 20px; }
+  .cap-text, .cap-ans { font-size: 15px; }
+}
+.facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 16px 28px;
+  padding-top: 16px;
+  border-top: 1px solid var(--rule);
+  font-size: 15px;
+}
+.facts > div { min-width: 0; }
+.facts h3 {
+  margin: 0 0 6px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+}
+.facts ul { margin: 0; padding-left: 18px; display: grid; gap: 5px; }
+.facts p { margin: 0; }
+.foot { margin-top: 18px; font-size: 13px; color: var(--ink-2); max-width: 80ch; }
+/* Answer mode: hidden on every page load, revealed per question by the Show answers button. */
+.btn.reveal { margin-left: auto; border-color: var(--accent); color: var(--accent); }
+.btn.reveal[aria-pressed="true"] { background: var(--accent-soft); color: var(--ink); }
+.cap-ans {
+  margin: 8px 0 0;
+  max-width: 74ch;
+  padding: 6px 12px;
+  background: var(--accent-soft);
+  border-left: 3px solid var(--accent);
+  border-radius: 0 6px 6px 0;
+}
+.cap-ans .tag { margin-right: 8px; font-weight: 700; color: var(--accent); }
+.answer {
+  grid-column: 1 / -1;
+  padding: 14px 16px;
+  background: var(--accent-soft);
+  border-left: 4px solid var(--accent);
+  border-radius: 0 8px 8px 0;
+}
+.facts .answer h3 { color: var(--accent); }
+.answer ol { margin: 0; padding-left: 20px; display: grid; gap: 6px; }
+.facts .answer .final { margin-top: 10px; font-weight: 700; }
+@media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div class="titles">
+      <p class="eyebrow">Class 9 Science · Exploration · Chapter 7 · Revise, Reflect, Refine · Questions 12, 15</p>
+      <h1>Work, Energy and Simple Machines</h1>
+    </div>
+    <div class="tabs" role="tablist" aria-label="Questions">
+      <button type="button" class="tab" role="tab" id="tab-q12" aria-controls="q12" aria-selected="true"><span class="n">Q12</span>Ball on the Moon</button>
+      <button type="button" class="tab" role="tab" id="tab-q15" aria-controls="q15" aria-selected="false" tabindex="-1"><span class="n">Q15</span>Falling coconut</button>
+    </div>
+  </header>
+
+  <section class="panel" id="q12" role="tabpanel" aria-labelledby="tab-q12">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="The same ball is thrown straight up with the same speed on Earth and on the Moon. The Earth ball rises to 8 metres and is caught, while the Moon ball keeps rising much higher before falling back, with energy bars for both."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>Q12</b> The gravitational pull on the Moon is about 1/6 of that on Earth. An astronaut can throw a ball up to a height of 8 m on Earth. How high will the ball go on the Moon if it is thrown up with the same speed?</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Gravity on the Moon ≈ 1/6 of gravity on Earth.</li>
+          <li>On Earth the ball rises to 8 m.</li>
+          <li>The ball is thrown up with the same speed on the Moon.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The height the ball reaches on the Moon.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Heights are true to size, with grid lines every 8 m. Air resistance is neglected (the Moon has no air).</li>
+          <li>The question gives no value of <i>g</i>. The animation uses <i>g</i> = 9.8 m/s² for Earth so it runs in real time; the heights do not depend on this choice.</li>
+          <li>Both balls are thrown with the same speed <i>u</i>. The weight arrows are to scale (the Moon’s is 1/6 of Earth’s), and faint circles show each ball every 0.5 s.</li>
+          <li>The heights on the grid, other than 8 m, are labelled only when the answers are shown.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>At the highest point all the kinetic energy has become potential energy: ½<i>mu</i><sup>2</sup> = <i>mgh</i>, so <i>h</i> = <i>u</i><sup>2</sup>/(2<i>g</i>).</li>
+          <li><i>u</i> is the same on Earth and on the Moon, so <i>h</i> ∝ 1/<i>g</i>: gravity 6 times weaker gives a height 6 times greater.</li>
+          <li><i>h</i><sub>Moon</sub> = 6 × <i>h</i><sub>Earth</sub> = 6 × 8 m = 48 m.</li>
+        </ol>
+        <p class="final">The ball rises to about 48 m on the Moon.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel" id="q15" role="tabpanel" aria-labelledby="tab-q15" hidden>
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A coconut falls from the top of a 10 metre coconut tree onto wet sand. A magnified close-up shows it sinking into the sand and stopping, while an energy bar shows potential energy becoming kinetic energy and then being used on the sand."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>Q15</b> A 1.5 kg coconut falls from the top of a 10 m tall coconut tree onto wet sand and comes to rest, making a depression. (i) What is its speed just before it hits the sand? (ii) If the sand’s average resistive force is 3000 N and all the coconut’s energy goes into making the depression, how deep is it? Take <i>g</i> = 10 m/s².</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Mass of the coconut <i>m</i> = 1.5 kg; it falls from rest.</li>
+          <li>Height of the tree <i>h</i> = 10 m; <i>g</i> = 10 m/s².</li>
+          <li>Average resistive force of the sand <i>F</i> = 3000 N.</li>
+          <li>All the coconut’s energy goes into making the depression.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>(i) The coconut’s speed just before it hits the sand. (ii) The depth of the depression.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Heights in the main picture are true to size. The coconut’s size is not given, so it is drawn larger; the close-up is magnified, and its scale bar appears with the answers.</li>
+          <li>Air resistance is neglected. The fall runs at half speed; the stop in the sand, which takes about 7 milliseconds, runs 400 times slower.</li>
+          <li>The sand’s force is drawn as constant, equal to the average force given.</li>
+          <li>As the question says, all of the coconut’s energy goes into the depression. The small extra work done by its weight while it sinks (about 0.75 J) is ignored.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>(i) Falling from rest, <i>mgh</i> = ½<i>mv</i><sup>2</sup>, so <i>v</i> = √(2<i>gh</i>) = √(2 × 10 × 10) = √200 ≈ 14.1 m/s.</li>
+          <li>Energy at impact = <i>mgh</i> = 1.5 × 10 × 10 = 150 J, all of it kinetic.</li>
+          <li>(ii) The sand takes away all 150 J by doing work against the coconut: <i>F</i> × <i>d</i> = 150 J, so 3000 × <i>d</i> = 150 and <i>d</i> = 0.05 m.</li>
+        </ol>
+        <p class="final">(i) v ≈ 14.1 m/s (ii) The depression is 0.05 m = 5 cm deep.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="about" aria-label="About these animations">
+    <p class="lede">Each animation sets up the situation exactly as the question describes it, then plays out what the physics predicts, one step at a time. Answers stay hidden until you press <b>Show answers</b> under each picture.</p>
+    <ul class="key" aria-label="Colour key">
+      <li><svg viewBox="0 0 28 12" aria-hidden="true"><path d="M1 6h19" stroke="var(--vel)" stroke-width="3"/><path d="M27 6l-8-5v10z" fill="var(--vel)"/></svg>velocity</li>
+      <li><svg viewBox="0 0 28 12" aria-hidden="true"><path d="M1 6h19" stroke="var(--force)" stroke-width="3"/><path d="M27 6l-8-5v10z" fill="var(--force)"/></svg>force</li>
+      <li><svg viewBox="0 0 28 12" aria-hidden="true"><rect x="4" y="1" width="20" height="10" fill="var(--ke)"/></svg>kinetic energy</li>
+      <li><svg viewBox="0 0 28 12" aria-hidden="true"><rect x="4" y="1" width="20" height="10" fill="var(--pe)"/></svg>potential energy</li>
+      <li><svg viewBox="0 0 28 12" aria-hidden="true"><rect x="4.5" y="1.5" width="19" height="9" fill="none" stroke="var(--ink-2)"/><path d="M6 10l7-8M12 10l7-8M18 10l5-6" stroke="var(--loss)" stroke-width="1.5"/></svg>energy used on the sand</li>
+    </ul>
+  </section>
+
+  <p class="foot">Questions paraphrased from the NCERT Class 9 Science textbook <i>Exploration</i>, Chapter 7 (Work, Energy and Simple Machines), Revise, Reflect, Refine. Click a picture or press Space to play or pause; the arrow keys move between steps. Show answers reveals the worked answer and the calculated values for that question only; every time the page opens, the answers start hidden.</p>
+</div>
+
+<script>
+(() => {
+'use strict';
+
+/* ---------- shared drawing kit ---------- */
+const VW = 960, VH = 540;
+const FB = '"Atkinson Hyperlegible", "Segoe UI", system-ui, -apple-system, sans-serif';
+const FD = '"Archivo", "Arial Narrow", "Segoe UI", system-ui, sans-serif';
+const TOK = ['sheet', 'ink', 'ink-2', 'rule', 'grid', 'grid-2', 'accent', 'accent-ink', 'accent-soft', 'vel', 'force', 'drag', 'disp',
+  'ke', 'ke-soft', 'pe', 'loss', 'obj', 'obj-fill', 'obj-fill-2', 'wood', 'road', 'acc', 'sand', 'leaf', 'bark'];
+let P = {};
+function readPalette() {
+  const cs = getComputedStyle(document.documentElement);
+  const o = {};
+  for (const k of TOK) o[k.replace(/-([a-z0-9])/g, (_, c) => c.toUpperCase())] = cs.getPropertyValue('--' + k).trim();
+  P = o;
+}
+
+const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
+const ramp = (t, a, b) => clamp((t - a) / (b - a));
+const smooth = u => { u = clamp(u); return u * u * (3 - 2 * u); };
+// steady motion with a brief speed-up and slow-down at the ends: position (0..1) and speed (0..1 of the steady speed)
+const glide = (u, r = 0.1) => {
+  u = clamp(u); const vm = 1 / (1 - r);
+  if (u < r) return 0.5 * vm * u * u / r;
+  if (u > 1 - r) return 1 - 0.5 * vm * (1 - u) * (1 - u) / r;
+  return vm * (u - r / 2);
+};
+const glideRate = (u, r = 0.1) => (u <= 0 || u >= 1 ? 0 : u < r ? u / r : u > 1 - r ? (1 - u) / r : 1);
+
+function seg(ctx, x1, y1, x2, y2) { ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y2); ctx.stroke(); }
+function poly(ctx, pts) {
+  ctx.beginPath(); ctx.moveTo(pts[0][0], pts[0][1]);
+  for (let i = 1; i < pts.length; i++) ctx.lineTo(pts[i][0], pts[i][1]);
+  ctx.stroke();
+}
+function hline(ctx, x1, x2, y, color, lw = 1, dash) {
+  ctx.save(); ctx.strokeStyle = color; ctx.lineWidth = lw; if (dash) ctx.setLineDash(dash);
+  seg(ctx, x1, y, x2, y); ctx.restore();
+}
+function vline(ctx, x, y1, y2, color, lw = 1, dash) {
+  ctx.save(); ctx.strokeStyle = color; ctx.lineWidth = lw; if (dash) ctx.setLineDash(dash);
+  seg(ctx, x, y1, x, y2); ctx.restore();
+}
+function rrect(ctx, x, y, w, h, r) {
+  ctx.beginPath();
+  if (ctx.roundRect) ctx.roundRect(x, y, w, h, r); else ctx.rect(x, y, w, h);
+}
+function arrow(ctx, x1, y1, x2, y2, color, o = {}) {
+  const lw = o.lw ?? 4, head = o.head ?? 14, alpha = o.alpha ?? 1;
+  const dx = x2 - x1, dy = y2 - y1, len = Math.hypot(dx, dy);
+  if (len < 1 || alpha <= 0) return;
+  const ux = dx / len, uy = dy / len;
+  const h = Math.min(head, len * 0.7), w = h * 0.52;
+  const bx = x2 - ux * h, by = y2 - uy * h;
+  ctx.save();
+  ctx.globalAlpha *= alpha;
+  ctx.strokeStyle = color; ctx.fillStyle = color; ctx.lineWidth = lw; ctx.lineCap = 'butt';
+  seg(ctx, x1, y1, bx + ux, by + uy);
+  ctx.beginPath(); ctx.moveTo(x2, y2);
+  ctx.lineTo(bx - uy * w, by + ux * w); ctx.lineTo(bx + uy * w, by - ux * w);
+  ctx.closePath(); ctx.fill();
+  ctx.restore();
+}
+function label(ctx, str, x, y, o = {}) {
+  const size = o.size ?? 16, weight = o.weight ?? 400, alpha = o.alpha ?? 1;
+  ctx.save();
+  ctx.font = `${o.italic ? 'italic ' : ''}${weight} ${size}px ${o.display ? FD : FB}`;
+  const w = ctx.measureText(str).width;
+  if (alpha > 0 && str) {
+    ctx.globalAlpha *= alpha;
+    ctx.textAlign = o.align ?? 'left';
+    ctx.textBaseline = 'middle';
+    if (o.halo !== false) {
+      ctx.lineJoin = 'round'; ctx.lineWidth = o.haloW ?? 5; ctx.strokeStyle = o.haloColor ?? P.sheet;
+      ctx.strokeText(str, x, y);
+    }
+    ctx.fillStyle = o.color ?? P.ink;
+    ctx.fillText(str, x, y);
+  }
+  ctx.restore();
+  return w;
+}
+function labelSub(ctx, main, sub, x, y, o = {}) {
+  const size = o.size ?? 16, small = Math.round(size * 0.7);
+  ctx.save();
+  ctx.font = `700 ${size}px ${FB}`; const w1 = ctx.measureText(main).width;
+  ctx.font = `700 ${small}px ${FB}`; const w2 = ctx.measureText(sub).width;
+  ctx.restore();
+  const x0 = o.align === 'center' ? x - (w1 + w2 + 1) / 2 : o.align === 'right' ? x - (w1 + w2 + 1) : x;
+  label(ctx, main, x0, y, { ...o, weight: 700, align: 'left', italic: true });
+  label(ctx, sub, x0 + w1 + 1, y + size * 0.3, { ...o, weight: 700, size: small, align: 'left' });
+}
+function dim(ctx, x1, x2, y, color, alpha = 1) {
+  if (alpha <= 0 || Math.abs(x2 - x1) < 2) return;
+  const dir = Math.sign(x2 - x1), h = 9;
+  ctx.save();
+  ctx.globalAlpha *= alpha;
+  ctx.strokeStyle = color; ctx.fillStyle = color; ctx.lineWidth = 1.5;
+  seg(ctx, x1, y, x2, y);
+  seg(ctx, x1, y - 8, x1, y + 8); seg(ctx, x2, y - 8, x2, y + 8);
+  ctx.beginPath(); ctx.moveTo(x1, y); ctx.lineTo(x1 + dir * h, y - 4.5); ctx.lineTo(x1 + dir * h, y + 4.5); ctx.closePath(); ctx.fill();
+  ctx.beginPath(); ctx.moveTo(x2, y); ctx.lineTo(x2 - dir * h, y - 4.5); ctx.lineTo(x2 - dir * h, y + 4.5); ctx.closePath(); ctx.fill();
+  ctx.restore();
+}
+function hatchRect(ctx, x, y, w, h, color, bg) {
+  if (h <= 0.2) return;
+  ctx.save();
+  ctx.beginPath(); ctx.rect(x, y, w, h); ctx.clip();
+  ctx.fillStyle = bg; ctx.fillRect(x, y, w, h);
+  ctx.strokeStyle = color; ctx.lineWidth = 2;
+  for (let k = -h; k < w + h; k += 8) seg(ctx, x + k, y + h, x + k + h, y);
+  ctx.restore();
+}
+function rotArrow(ctx, x, y, r, cw, color, alpha = 1, lw = 2) {
+  if (alpha <= 0) return;
+  const a0 = cw ? -0.85 * Math.PI : -0.15 * Math.PI, a1 = cw ? -0.15 * Math.PI : -0.85 * Math.PI;
+  const dir = cw ? 1 : -1;
+  ctx.save();
+  ctx.globalAlpha *= alpha;
+  ctx.strokeStyle = color; ctx.fillStyle = color; ctx.lineWidth = lw;
+  ctx.beginPath(); ctx.arc(x, y, r, a0, a1, !cw); ctx.stroke();
+  const ex = x + r * Math.cos(a1), ey = y + r * Math.sin(a1);
+  const tx = -Math.sin(a1) * dir, ty = Math.cos(a1) * dir;
+  const h = Math.max(6, r * 0.42), w = h * 0.6;
+  ctx.beginPath();
+  ctx.moveTo(ex + tx * h, ey + ty * h);
+  ctx.lineTo(ex - ty * w, ey + tx * w);
+  ctx.lineTo(ex + ty * w, ey - tx * w);
+  ctx.closePath(); ctx.fill();
+  ctx.restore();
+}
+function bg(ctx) { ctx.fillStyle = P.sheet; ctx.fillRect(0, 0, VW, VH); }
+
+/* ---------- Q12: the same throw on Earth and on the Moon ---------- */
+const Q12 = (() => {
+  const GE = 9.8, GM = GE / 6, HE = 8;                 // g is not given; heights do not depend on it
+  const U = Math.sqrt(2 * GE * HE), HM = U * U / (2 * GM);
+  const TE = U / GE, TMN = U / GM;
+  const S1 = 3.5, S2 = S1 + TMN, S3 = S2 + 4, S4 = S3 + TMN + 1.5;
+  const Y0 = 470, K = 7.4, XE = 250, XM = 470, BR = 10, VS = 5, AX = 110;
+  const yOf = h => Y0 - h * K;
+  const hAt = (g, p) => { const tu = U / g; return p <= tu ? U * p - 0.5 * g * p * p : U * U / (2 * g) - 0.5 * g * (p - tu) ** 2; };
+  const stages = [
+    { title: 'The same throw on Earth and on the Moon', dur: S1,
+      text: 'The same ball is thrown straight up with the same speed u on Earth and on the Moon. Gravity on the Moon is about 1/6 of that on Earth, so the ball’s weight there, mg/6, is 1/6 as big.',
+      ans: 'Same mass and same speed u, so the same kinetic energy ½mu² at launch in both places.' },
+    { title: 'Rising', dur: S2 - S1,
+      text: 'Both balls slow down as they rise, but the Earth ball slows down 6 times faster. It stops at 8 m and is caught again while the Moon ball is still rising.',
+      ans: 'On Earth all the kinetic energy has become potential energy at 8 m: ½mu² = mg × 8.' },
+    { title: 'Highest point on the Moon', dur: S3 - S2,
+      text: 'For an instant the Moon ball is at rest, much higher up. With weaker gravity it had to rise much further before all its kinetic energy became potential energy.',
+      ans: 'On the Moon: ½mu² = m(g/6) × h. So mg × 8 = m(g/6) × h, which gives h = 6 × 8 = 48 m.' },
+    { title: 'Falling back on the Moon', dur: S4 - S3,
+      text: 'The Moon ball falls back just as slowly as it rose, and returns to the hand at the speed it was thrown with.',
+      ans: 'The same speed u with 1/6 of the gravity gives 6 times the height: 48 m.' },
+  ];
+  function earth(t) {
+    const p = t - S1;
+    if (p <= 0) return { h: 0, v: U, p: 0, ph: 0 };
+    if (p < 2 * TE) return { h: hAt(GE, p), v: U - GE * p, p, ph: 1 };
+    return { h: 0, v: 0, p: 2 * TE, ph: 9 };                  // caught
+  }
+  function moon(t) {
+    if (t < S1) return { h: 0, v: U, p: 0, ph: 0 };
+    if (t < S2) { const p = t - S1; return { h: hAt(GM, p), v: U - GM * p, p, ph: 1 }; }
+    if (t < S3) return { h: HM, v: 0, p: TMN, ph: 2 };
+    const q = t - S3;
+    if (q < TMN) return { h: hAt(GM, TMN + q), v: -GM * q, p: TMN + q, ph: 3 };
+    return { h: 0, v: 0, p: 2 * TMN, ph: 9 };                 // caught
+  }
+  function ball(ctx, x, y) {
+    ctx.fillStyle = P.obj; ctx.beginPath(); ctx.arc(x, y, BR, 0, Math.PI * 2); ctx.fill();
+    ctx.save(); ctx.globalAlpha = 0.4; ctx.fillStyle = P.sheet;
+    ctx.beginPath(); ctx.arc(x - 3.5, y - 3.5, 3.5, 0, Math.PI * 2); ctx.fill(); ctx.restore();
+  }
+  function ruler(ctx, ans) {
+    vline(ctx, AX, yOf(51), Y0, P.ink2, 1.5);
+    label(ctx, 'height', AX, yOf(51) - 14, { align: 'center', size: 13, color: P.ink2 });
+    hline(ctx, AX - 8, AX, Y0, P.ink2, 1.5);
+    label(ctx, '0', AX - 12, Y0, { align: 'right', size: 13, color: P.ink2 });
+    for (let h = 8; h <= 48; h += 8) {
+      hline(ctx, AX, 590, yOf(h), P.grid2, 1);
+      hline(ctx, AX - 8, AX, yOf(h), P.ink2, 1.5);
+      if (h === 8 || ans) label(ctx, `${h} m`, AX - 12, yOf(h), { align: 'right', size: 13, weight: h === 8 ? 700 : 400, color: h === 8 ? P.ink : P.ink2 });
+    }
+  }
+  function column(ctx, x, st, g, name, gl, wl, wlab, ground, peakText, t) {
+    label(ctx, name, x, 30, { align: 'center', weight: 700, size: 17 });
+    label(ctx, gl, x, 50, { align: 'center', size: 13, color: P.ink2 });
+    ctx.fillStyle = ground; ctx.fillRect(x - 70, Y0, 140, 14);
+    hline(ctx, x - 70, x + 70, Y0, P.obj, 2);
+    const hmax = U * U / (2 * g);
+    if (st.p >= U / g - 1e-9) {
+      hline(ctx, x - 70, x + 70, yOf(hmax), P.ink, 1.2, [6, 5]);
+      label(ctx, peakText, x + 74, yOf(hmax), { weight: 700, size: 13 });
+    }
+    ctx.save(); ctx.strokeStyle = P.obj; ctx.globalAlpha = 0.25; ctx.lineWidth = 1.5;
+    for (let k = 1; k * 0.5 <= st.p + 1e-9; k++) { ctx.beginPath(); ctx.arc(x, yOf(hAt(g, k * 0.5)) - BR, BR, 0, Math.PI * 2); ctx.stroke(); }
+    ctx.restore();
+    const y = yOf(st.h) - BR;                              // the ball sits on the launch level
+    ball(ctx, x, y);
+    if (st.ph === 9) { label(ctx, 'caught', x + 18, y, { size: 13, color: P.ink2 }); return; }
+    const len = st.v * VS;
+    if (Math.abs(len) > 1.5) arrow(ctx, x + 26, y, x + 26, y - len, P.vel, { lw: 4, head: 12 });
+    if (st.ph === 0) label(ctx, 'u', x + 34, y - len * 0.6, { color: P.vel, weight: 700, italic: true, size: 17 });
+    else if (st.ph === 2) label(ctx, 'v = 0', x + 18, y - 4, { color: P.vel, weight: 700, size: 15 });
+    else if (Math.abs(len) > 18) label(ctx, 'v', x + 34, y - len * 0.6, { color: P.vel, weight: 700, italic: true, size: 17 });
+    arrow(ctx, x, y + BR, x, y + BR + wl, P.force, { lw: 4, head: Math.min(11, wl * 0.9) });
+    label(ctx, wlab, x - 8, y + BR + Math.max(wl, 10) - 4, { align: 'right', color: P.force, weight: 700, size: 14 });
+  }
+  function energy(ctx, e, m, ans) {
+    label(ctx, 'Energy of each ball', 785, 30, { align: 'center', weight: 700, size: 16 });
+    label(ctx, 'same speed u, so the same total', 785, 50, { align: 'center', size: 13, color: P.ink2 });
+    const base = 380, full = 240, bw = 56, xs = [725, 845];
+    hline(ctx, 680, 900, base - full, P.ink2, 1.2, [6, 5]);
+    [[e, GE, 'Earth'], [m, GM, 'Moon']].forEach(([st, g, name], i) => {
+      const x = xs[i] - bw / 2;
+      const ke = st.ph === 9 ? 0 : st.v * st.v / (U * U), pe = st.ph === 9 ? 0 : 2 * g * st.h / (U * U);
+      ctx.fillStyle = P.pe; ctx.fillRect(x, base - full * pe, bw, full * pe);
+      ctx.fillStyle = P.ke; ctx.fillRect(x, base - full * (pe + ke), bw, full * ke);
+      ctx.strokeStyle = P.obj; ctx.lineWidth = 1.2; ctx.strokeRect(x, base - full, bw, full);
+      label(ctx, name, xs[i], base + 16, { align: 'center', weight: 700, size: 14 });
+      if (st.ph === 9) label(ctx, 'caught', xs[i], base - 14, { align: 'center', size: 12, color: P.ink2 });
+    });
+    if (ans) {
+      label(ctx, 'At the top: ½mu² = m × g × h', 785, 424, { align: 'center', size: 15 });
+      label(ctx, 'mg × 8 m = m(g/6) × h', 785, 448, { align: 'center', size: 15 });
+      label(ctx, 'h = 6 × 8 m = 48 m', 785, 476, { align: 'center', weight: 700, size: 18, color: P.accent });
+    }
+  }
+  function draw(ctx, t, ans) {
+    bg(ctx);
+    vline(ctx, 630, 16, 524, P.rule, 1);
+    ruler(ctx, ans);
+    const e = earth(t), m = moon(t);
+    column(ctx, XE, e, GE, 'Earth', 'gravity g', 48, 'mg', P.leaf, '8 m', t);
+    column(ctx, XM, m, GM, 'Moon', 'gravity g/6', 8, 'mg/6', P.objFill2, ans ? '48 m' : 'highest', t);
+    energy(ctx, e, m, ans);
+    label(ctx, 'heights to scale; faint circles every 0.5 s; air resistance neglected', 24, 528, { size: 12, color: P.ink2 });
+  }
+  return { stages, draw };
+})();
+
+/* ---------- Q15: a coconut falls into wet sand ---------- */
+const Q15 = (() => {
+  const M = 1.5, G = 10, H = 10, F = 3000;
+  const V = Math.sqrt(2 * G * H), E = M * G * H, D = E / F;       // 14.1 m/s, 150 J, 0.05 m
+  const TF = Math.sqrt(2 * H / G), A = V * V / (2 * D), TS = V / A; // fall 1.41 s; 2000 m/s² for about 7 ms in the sand
+  const SLOWF = 2, SLOWS = 400;
+  const S1 = 3.5, S2 = S1 + TF * SLOWF, P0 = S2 + 0.8, P1 = P0 + TS * SLOWS, S3 = P1 + 0.8, S4 = S3 + 4.5;
+  const Y0 = 440, K = 30, TX = 180, CX = 214, CR = 9, AX = 70;
+  const IX = 384, IY = 190, IW = 260, IH = 310, IS0 = 400, IPX = 5, ICR = 34, ICX = 514;   // close-up: 5 px per cm
+  const yOf = h => Y0 - h * K;
+  const stages = [
+    { title: 'At the top of the tree', dur: S1,
+      text: 'A 1.5 kg coconut hangs at the top of a 10 m tall coconut tree, above wet sand. It starts falling from rest.',
+      ans: 'PE at the top = mgh = 1.5 × 10 × 10 = 150 J. KE = 0.' },
+    { title: 'Falling', dur: S2 - S1,
+      text: 'Only its weight acts (air resistance is neglected), so it speeds up at a steady rate. Its potential energy changes into kinetic energy. Shown at half speed.',
+      ans: 'Just before it hits the sand, all 150 J is KE: ½ × 1.5 × v² = 150, so v² = 200 and v = √200 ≈ 14.1 m/s.' },
+    { title: 'Into the sand', dur: S3 - S2,
+      text: 'The sand pushes up on the coconut with an average force of 3000 N, against its motion, and stops it within a few centimetres. The close-up runs 400 times slower than real life.',
+      ans: 'Work done by the sand = −3000 N × d. It has to take away all 150 J of kinetic energy.' },
+    { title: 'At rest in the sand', dur: S4 - S3,
+      text: 'The coconut has stopped. All of its energy has been used in pushing the sand aside to make the depression.',
+      ans: '3000 × d = 150, so d = 150 / 3000 = 0.05 m = 5 cm.' },
+  ];
+  function state(t) {
+    if (t < S1) return { h: H, v: 0, d: 0, ph: 0 };
+    if (t < S2) { const p = (t - S1) / SLOWF; return { h: H - 0.5 * G * p * p, v: G * p, d: 0, ph: 1 }; }
+    if (t < P0) return { h: 0, v: V, d: 0, ph: 2 };
+    if (t < P1) { const q = (t - P0) / SLOWS; return { h: 0, v: V - A * q, d: V * q - 0.5 * A * q * q, ph: 3 }; }
+    return { h: 0, v: 0, d: D, ph: 4 };
+  }
+  function nut(ctx, x, y, r) {
+    ctx.fillStyle = P.bark; ctx.strokeStyle = P.obj; ctx.lineWidth = 1.2;
+    ctx.beginPath(); ctx.ellipse(x, y, r, r * 1.08, 0, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+    ctx.save(); ctx.globalAlpha = 0.35; ctx.fillStyle = P.sheet;
+    ctx.beginPath(); ctx.arc(x - r * 0.35, y - r * 0.38, r * 0.28, 0, Math.PI * 2); ctx.fill(); ctx.restore();
+  }
+  function tree(ctx) {
+    ctx.fillStyle = P.sand; ctx.fillRect(30, Y0, 330, 40);
+    hline(ctx, 30, 360, Y0, P.obj, 2);
+    label(ctx, 'wet sand', 310, Y0 + 22, { align: 'center', size: 13, color: P.ink2 });
+    ctx.save(); ctx.strokeStyle = P.bark; ctx.lineWidth = 12; ctx.lineCap = 'round';
+    ctx.beginPath(); ctx.moveTo(TX, Y0); ctx.quadraticCurveTo(TX - 14, yOf(5), TX + 4, yOf(H) + 4); ctx.stroke();
+    ctx.restore();
+    ctx.save(); ctx.strokeStyle = P.leaf; ctx.lineWidth = 5; ctx.lineCap = 'round';
+    const cx = TX + 4, cy = yOf(H) + 2;
+    for (const [dx, dy] of [[-74, 22], [-58, -20], [-22, -40], [26, -42], [64, -18], [78, 24]]) {
+      ctx.beginPath(); ctx.moveTo(cx, cy); ctx.quadraticCurveTo(cx + dx * 0.5, cy + dy - 18, cx + dx, cy + dy); ctx.stroke();
+    }
+    ctx.restore();
+    nut(ctx, TX - 8, yOf(H) + 12, CR); nut(ctx, TX + 10, yOf(H) + 16, CR);
+  }
+  function axis(ctx) {
+    vline(ctx, AX, yOf(H), Y0, P.ink2, 1.5);
+    for (let h = 0; h <= H; h += 2) {
+      hline(ctx, AX - 7, AX, yOf(h), P.ink2, 1.2);
+      label(ctx, String(h), AX - 11, yOf(h), { align: 'right', size: 13, color: h === H ? P.ink : P.ink2, weight: h === H ? 700 : 400 });
+    }
+    label(ctx, 'height (m)', AX, yOf(H) - 22, { align: 'center', size: 13, color: P.ink2 });
+  }
+  function main(ctx, st, ans) {
+    const y = yOf(st.h) - CR;
+    nut(ctx, CX, y, CR);
+    if (st.ph === 0) label(ctx, 'coconut, 1.5 kg', CX + 16, y - 14, { size: 13, weight: 700 });
+    if (st.ph === 1) {                                 // at impact the close-up takes over
+      const len = st.v * 5.5;
+      arrow(ctx, CX, y + CR, CX, y + CR + 36, P.force, { lw: 4, head: 11 });
+      label(ctx, 'mg', CX - 8, y + CR + 28, { align: 'right', color: P.force, weight: 700, size: 14 });
+      if (len > 1.5) arrow(ctx, CX + 22, y, CX + 22, y + len, P.vel, { lw: 4, head: 12 });
+      if (len > 18) label(ctx, 'v', CX + 32, y + Math.min(len, 60) * 0.5, { color: P.vel, weight: 700, size: 16, italic: true });
+    }
+    // where the close-up is taken
+    ctx.save(); ctx.strokeStyle = P.ink2; ctx.lineWidth = 1; ctx.setLineDash([4, 4]);
+    ctx.strokeRect(CX - 20, Y0 - 22, 40, 34);
+    seg(ctx, CX + 20, Y0 - 22, IX, IY); seg(ctx, CX + 20, Y0 + 12, IX, IY + IH);
+    ctx.restore();
+  }
+  function closeUp(ctx, st, t, ans) {
+    ctx.save();
+    rrect(ctx, IX, IY, IW, IH, 8); ctx.clip();
+    ctx.fillStyle = P.sheet; ctx.fillRect(IX, IY, IW, IH);
+    ctx.fillStyle = P.sand; ctx.fillRect(IX, IS0, IW, IY + IH - IS0);
+    hline(ctx, IX, IX + IW, IS0, P.obj, 2);
+    const dpx = st.d * 100 * IPX, cy = IS0 + dpx - ICR * 1.08;
+    if (t >= S2) {
+      if (dpx > 0.5) {                                   // the depression: sand pushed aside around the coconut
+        ctx.fillStyle = P.sheet;
+        ctx.beginPath(); ctx.ellipse(ICX, cy, ICR + 1, ICR * 1.08 + 1, 0, 0, Math.PI); ctx.fill();
+      }
+      nut(ctx, ICX, cy, ICR);
+      if (dpx > 1) hline(ctx, ICX - ICR - 18, ICX + ICR + 18, IS0, P.ink, 1.2, [5, 4]);
+    }
+    ctx.restore();
+    ctx.save(); ctx.strokeStyle = P.ink2; ctx.lineWidth = 1.5; rrect(ctx, IX, IY, IW, IH, 8); ctx.stroke(); ctx.restore();
+    label(ctx, 'close-up of the sand (magnified)', IX + 12, IY + 18, { size: 13, weight: 700 });
+    if (st.ph === 3) label(ctx, '400 times slower', IX + IW - 12, IY + 38, { align: 'right', size: 12, color: P.ink2 });
+    if (t < S2) return;
+    const bot = cy + ICR * 1.08;
+    if (st.ph === 2 || st.ph === 3) {
+      const len = st.v * 4.2;
+      if (len > 1.5) arrow(ctx, ICX - ICR - 22, cy - len / 2, ICX - ICR - 22, cy + len / 2, P.vel, { lw: 4, head: 12 });
+      if (len > 18) label(ctx, 'v', ICX - ICR - 32, cy, { align: 'right', color: P.vel, weight: 700, italic: true, size: 16 });
+      if (ans && st.ph === 2) label(ctx, 'just before impact: v ≈ 14.1 m/s', ICX - 6, cy - ICR - 26, { align: 'center', color: P.vel, weight: 700, size: 14 });
+    }
+    if (st.ph === 3) {
+      arrow(ctx, ICX + ICR + 22, bot, ICX + ICR + 22, bot - 66, P.force, { lw: 4, head: 12 });
+      label(ctx, 'sand', ICX + ICR + 30, bot - 48, { color: P.force, weight: 700, size: 14 });
+      label(ctx, '3000 N', ICX + ICR + 30, bot - 30, { color: P.force, weight: 700, size: 14 });
+    }
+    if (st.ph === 4) {
+      const xd = ICX + ICR + 14;
+      ctx.save(); ctx.strokeStyle = P.ink; ctx.lineWidth = 1.5;
+      seg(ctx, xd, IS0, xd, IS0 + dpx); seg(ctx, xd - 6, IS0, xd + 6, IS0); seg(ctx, xd - 6, IS0 + dpx, xd + 6, IS0 + dpx);
+      ctx.restore();
+      hline(ctx, ICX, xd, IS0 + dpx, P.ink2, 1, [3, 3]);
+      label(ctx, ans ? 'd = 5 cm' : 'depth d', xd + 10, IS0 + dpx / 2, { weight: 700, size: 15 });
+    }
+    if (ans) {                                          // scale bar, shown with the answers so it does not give the depth away
+      const sx = IX + 20, sy = IY + IH - 18;
+      ctx.save(); ctx.strokeStyle = P.ink; ctx.lineWidth = 2; seg(ctx, sx, sy, sx + 10 * IPX, sy);
+      seg(ctx, sx, sy - 5, sx, sy + 5); seg(ctx, sx + 10 * IPX, sy - 5, sx + 10 * IPX, sy + 5); ctx.restore();
+      label(ctx, '10 cm', sx + 5 * IPX, sy - 13, { align: 'center', size: 12, weight: 700 });
+    }
+  }
+  function energy(ctx, st, ans) {
+    const bx = 724, bw = 60, base = 440, top = 150, k = (base - top) / E;
+    label(ctx, 'Energy of the coconut', 795, 30, { align: 'center', weight: 700, size: 16 });
+    label(ctx, 'the bar’s total height never changes', 795, 50, { align: 'center', size: 13, color: P.ink2 });
+    hline(ctx, 700, 944, top, P.ink2, 1.2, [6, 5]);
+    label(ctx, ans ? 'total 150 J' : 'total', bx + bw + 14, top - 14, { size: 13, color: P.ink2 });
+    const pe = M * G * st.h, ke = 0.5 * M * st.v * st.v, used = Math.max(0, E - pe - ke);
+    const rp = Math.round(pe), rk = Math.round(ke), ru = E - rp - rk;
+    const hp = pe * k, hk = ke * k, hu = used * k;
+    ctx.fillStyle = P.pe; ctx.fillRect(bx, base - hp, bw, hp);
+    ctx.fillStyle = P.ke; ctx.fillRect(bx, base - hp - hk, bw, hk);
+    hatchRect(ctx, bx, base - hp - hk - hu, bw, hu, P.loss, P.sheet);
+    ctx.strokeStyle = P.obj; ctx.lineWidth = 1.5; ctx.strokeRect(bx, top, bw, base - top);
+    if (hp > 0.5 && hk > 0.5) seg(ctx, bx, base - hp, bx + bw, base - hp);
+    if (hu > 0.5 && hk > 0.5) seg(ctx, bx, base - hp - hk, bx + bw, base - hp - hk);
+    const items = [
+      { y: base - hp - hk - hu / 2, h: hu, text: ans ? `used on the sand ${ru} J` : 'used on the sand', color: P.ink2 },
+      { y: base - hp - hk / 2, h: hk, text: ans ? `kinetic (KE) ${rk} J` : 'kinetic (KE)', color: P.ke },
+      { y: base - hp / 2, h: hp, text: ans ? `potential (PE) ${rp} J` : 'potential (PE)', color: P.pe },
+    ].filter(it => it.h > 0.8);
+    let prev = top - 9;
+    for (const it of items) { it.ly = Math.max(it.y, prev + 21); prev = it.ly; }
+    let limit = base - 8;
+    for (let i = items.length - 1; i >= 0; i--) { items[i].ly = Math.min(items[i].ly, limit); limit = items[i].ly - 21; }
+    for (const it of items) {
+      ctx.save(); ctx.strokeStyle = P.ink2; ctx.lineWidth = 1;
+      poly(ctx, [[bx + bw + 2, it.y], [bx + bw + 10, it.ly], [bx + bw + 14, it.ly]]);
+      ctx.restore();
+      label(ctx, it.text, bx + bw + 18, it.ly, { size: 13, weight: 700, color: it.color });
+    }
+  }
+  function draw(ctx, t, ans) {
+    bg(ctx);
+    vline(ctx, 672, 16, 524, P.rule, 1);
+    axis(ctx);
+    tree(ctx);
+    const st = state(t);
+    main(ctx, st, ans);
+    closeUp(ctx, st, t, ans);
+    energy(ctx, st, ans);
+    label(ctx, 'heights to scale; coconut drawn larger than scale', 24, 510, { size: 12, color: P.ink2 });
+    label(ctx, 'air resistance neglected; fall shown at half speed', 24, 528, { size: 12, color: P.ink2 });
+  }
+  return { stages, draw };
+})();
+
+/* ---------- player: a pure function of time, so stepping and scrubbing are exact ---------- */
+const ICON = {
+  play: '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2.5v11l9.5-5.5z" fill="currentColor"/></svg>',
+  pause: '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 2.5h3v11h-3zM9.5 2.5h3v11h-3z" fill="currentColor"/></svg>',
+  prev: '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 2.5h2v11H3zM14 2.5v11L6 8z" fill="currentColor"/></svg>',
+  next: '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M11 2.5h2v11h-2zM2 2.5v11L10 8z" fill="currentColor"/></svg>',
+  restart: '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2.2V0L4.6 3 8 6V3.8a4.2 4.2 0 1 1-4.2 4.2H2.2A5.8 5.8 0 1 0 8 2.2z" fill="currentColor"/></svg>',
+  eye: '<svg viewBox="0 0 16 16" aria-hidden="true"><path fill-rule="evenodd" d="M8 3C4.6 3 1.8 5.2.5 8c1.3 2.8 4.1 5 7.5 5s6.2-2.2 7.5-5C14.2 5.2 11.4 3 8 3zm0 1.8a3.2 3.2 0 1 0 0 6.4 3.2 3.2 0 0 0 0-6.4zm0 1.5a1.7 1.7 0 1 1 0 3.4 1.7 1.7 0 0 1 0-3.4z" fill="currentColor"/></svg>',
+};
+// control bar directly under the picture: everything a teacher presses while presenting
+function transportHTML(id) {
+  return `
+    <div class="transport">
+      <button type="button" class="btn icon" data-act="restart" aria-label="Restart" title="Restart">${ICON.restart}</button>
+      <button type="button" class="btn icon" data-act="prev" aria-label="Previous step" title="Previous step">${ICON.prev}</button>
+      <button type="button" class="btn primary" data-act="play" aria-label="Play">${ICON.play}<span>Play</span></button>
+      <button type="button" class="btn icon" data-act="next" aria-label="Next step" title="Next step">${ICON.next}</button>
+      <ol class="steps" aria-label="Steps"></ol>
+      <input type="range" class="scrub" id="scrub-${id}" min="0" max="1000" step="1" value="0" aria-label="Animation position">
+      <button type="button" class="btn reveal" data-act="answers" aria-pressed="false">${ICON.eye}<span>Show answers</span></button>
+    </div>`;
+}
+// text column beside the picture: step caption, answer line and the less-used options
+function sideHTML(id) {
+  return `
+    <div class="cap" aria-live="polite">
+      <p class="cap-step">Step <span data-k="n">1</span> of <span data-k="of"></span></p>
+      <h2 class="cap-title" data-k="title"></h2>
+      <p class="cap-text" data-k="text"></p>
+      <p class="cap-ans" data-k="ansbox" hidden><span class="tag">Answer</span><span data-k="ans"></span></p>
+    </div>
+    <div class="opts">
+      <label class="opt" for="speed-${id}">Speed
+        <select id="speed-${id}"><option value="0.5">0.5×</option><option value="1" selected>1×</option><option value="1.5">1.5×</option></select>
+      </label>
+      <label class="opt" for="stop-${id}"><input type="checkbox" id="stop-${id}">Pause after each step</label>
+      <button type="button" class="linkish" data-act="worked" hidden>Full worked answer ↓</button>
+    </div>`;
+}
+function makePlayer(panel, scene) {
+  panel.querySelector('.ctl').outerHTML = transportHTML(panel.id);
+  panel.querySelector('.side').insertAdjacentHTML('beforeend', sideHTML(panel.id));
+  const q = s => panel.querySelector(s);
+  const canvas = q('canvas'), ctx = canvas.getContext('2d');
+  const ui = {
+    play: q('[data-act="play"]'), prev: q('[data-act="prev"]'), next: q('[data-act="next"]'), restart: q('[data-act="restart"]'),
+    scrub: q('.scrub'), speed: q('select'), stop: q('input[type="checkbox"]'),
+    n: q('[data-k="n"]'), of: q('[data-k="of"]'), title: q('[data-k="title"]'), text: q('[data-k="text"]'), steps: q('.steps'),
+    answers: q('[data-act="answers"]'), ansBox: q('[data-k="ansbox"]'), ansText: q('[data-k="ans"]'), sheet: q('.answer'),
+    worked: q('[data-act="worked"]'),
+  };
+  const st = scene.stages;
+  let acc = 0;
+  for (const s of st) { s.t0 = acc; acc += s.dur; s.t1 = acc; }
+  const total = acc;
+  ui.of.textContent = st.length;
+  let t = 0, playing = false, last = 0, raf = 0, cur = -1, ans = false;   // answers always start hidden
+  const chips = st.map((s, k) => {
+    const li = document.createElement('li'), b = document.createElement('button');
+    b.type = 'button'; b.textContent = String(k + 1);
+    b.title = s.title; b.setAttribute('aria-label', `Step ${k + 1}: ${s.title}`);
+    b.addEventListener('click', () => seek(s.t0));
+    li.appendChild(b); ui.steps.appendChild(li);
+    return b;
+  });
+  const stageAt = x => { for (let i = 0; i < st.length; i++) if (x < st[i].t1) return i; return st.length - 1; };
+  function fit() {
+    const w = canvas.clientWidth;
+    if (!w) return false;
+    const dpr = Math.min(2.5, window.devicePixelRatio || 1);
+    const W = Math.round(w * dpr), H = Math.round(w * dpr * VH / VW);
+    if (canvas.width !== W || canvas.height !== H) { canvas.width = W; canvas.height = H; }
+    return true;
+  }
+  function render() {
+    if (!fit()) return;
+    const sc = canvas.width / VW;
+    ctx.setTransform(sc, 0, 0, sc, 0, 0);
+    scene.draw(ctx, t, ans);
+    const i = stageAt(t);
+    if (i !== cur) {
+      cur = i;
+      ui.n.textContent = i + 1; ui.title.textContent = st[i].title; ui.text.textContent = st[i].text;
+      ui.ansText.textContent = st[i].ans || '';
+      ui.ansBox.hidden = !(ans && st[i].ans);
+      chips.forEach((b, k) => { if (k === i) b.setAttribute('aria-current', 'step'); else b.removeAttribute('aria-current'); });
+    }
+    ui.scrub.value = Math.round(t / total * 1000);
+  }
+  function setPlayUI() {
+    const word = playing ? 'Pause' : t >= total - 1e-6 ? 'Replay' : 'Play';
+    ui.play.innerHTML = (playing ? ICON.pause : ICON.play) + `<span>${word}</span>`;
+    ui.play.setAttribute('aria-label', word);
+  }
+  function loop(now) {
+    if (!playing) return;
+    const dt = Math.min(0.1, Math.max(0, (now - last) / 1000));
+    last = now;
+    const nt = t + dt * parseFloat(ui.speed.value);
+    const i = stageAt(t);
+    if (ui.stop.checked && i < st.length - 1 && nt >= st[i].t1) { t = st[i].t1 - 1e-4; pause(); render(); return; }
+    if (nt >= total) { t = total; pause(); render(); return; }
+    t = nt; render();
+    raf = requestAnimationFrame(loop);
+  }
+  function play() {
+    if (playing) return;
+    if (t >= total - 1e-6) t = 0;
+    const i = stageAt(t);
+    if (i < st.length - 1 && st[i].t1 - t < 2e-4) t = st[i].t1;   // resume after a step pause
+    playing = true; last = performance.now(); setPlayUI();
+    raf = requestAnimationFrame(loop);
+  }
+  function pause() { playing = false; cancelAnimationFrame(raf); setPlayUI(); }
+  function setAnswers(on) {
+    ans = on;
+    ui.answers.setAttribute('aria-pressed', String(on));
+    ui.answers.querySelector('span').textContent = on ? 'Hide answers' : 'Show answers';
+    if (ui.sheet) ui.sheet.hidden = !on;
+    ui.worked.hidden = !(on && ui.sheet);
+    cur = -1; render();
+  }
+  function toggle() { playing ? pause() : play(); }
+  function seek(x) { t = clamp(x, 0, total); render(); setPlayUI(); }
+  function next() { const i = stageAt(t); seek(i < st.length - 1 ? st[i + 1].t0 : total); }
+  function prev() { const i = stageAt(t); seek(t - st[i].t0 > 0.6 || i === 0 ? st[i].t0 : st[i - 1].t0); }
+  ui.play.addEventListener('click', toggle);
+  ui.next.addEventListener('click', next);
+  ui.prev.addEventListener('click', prev);
+  ui.restart.addEventListener('click', () => { seek(0); play(); });
+  ui.answers.addEventListener('click', () => setAnswers(!ans));
+  ui.worked.addEventListener('click', () => ui.sheet.scrollIntoView({ behavior: 'smooth', block: 'start' }));
+  ui.scrub.addEventListener('input', () => { pause(); seek(ui.scrub.value / 1000 * total); });
+  const stage = q('.stage');
+  stage.addEventListener('click', toggle);
+  stage.addEventListener('keydown', e => {
+    if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); toggle(); }
+    else if (e.key === 'ArrowRight') { e.preventDefault(); next(); }
+    else if (e.key === 'ArrowLeft') { e.preventDefault(); prev(); }
+  });
+  if ('ResizeObserver' in window) new ResizeObserver(() => render()).observe(canvas);
+  else window.addEventListener('resize', render);
+  setPlayUI();
+  return { render, pause, toggle, next, prev };
+}
+
+/* ---------- page wiring ---------- */
+readPalette();
+const scenes = { q12: Q12, q15: Q15 };
+const players = {};
+for (const id of Object.keys(scenes)) players[id] = makePlayer(document.getElementById(id), scenes[id]);
+const tabs = [...document.querySelectorAll('[role="tab"]')];
+let active = 'q12';
+/* Fit the picture and its control bar inside the window: the CSS sizes the picture from
+   --chrome (wide layout: everything above the picture plus the bar) or --bar (narrow layout). */
+function fitBench() {
+  const p = document.getElementById(active);
+  const stage = p.querySelector('.stage'), bar = p.querySelector('.transport');
+  const root = document.documentElement.style;
+  for (let pass = 0; pass < 2; pass++) {       // second pass: the bar may wrap differently at the new width
+    const top = stage.getBoundingClientRect().top + window.scrollY;
+    root.setProperty('--chrome', Math.round(top + bar.offsetHeight + 38) + 'px');
+    root.setProperty('--bar', Math.round(bar.offsetHeight + 30) + 'px');
+  }
+}
+let fitRaf = 0;
+window.addEventListener('resize', () => { cancelAnimationFrame(fitRaf); fitRaf = requestAnimationFrame(fitBench); });
+function show(id, focus) {
+  active = id;
+  tabs.forEach(b => {
+    const on = b.getAttribute('aria-controls') === id;
+    b.setAttribute('aria-selected', String(on));
+    b.tabIndex = on ? 0 : -1;
+    if (on && focus) b.focus();
+  });
+  for (const k of Object.keys(players)) {
+    const on = k === id;
+    if (!on) players[k].pause();
+    document.getElementById(k).hidden = !on;
+  }
+  fitBench();
+  players[id].render();
+  try { history.replaceState(null, '', '#' + id); } catch (e) { /* sandboxed frame */ }
+}
+tabs.forEach((b, i) => {
+  b.addEventListener('click', () => show(b.getAttribute('aria-controls')));
+  b.addEventListener('keydown', e => {
+    if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+    e.preventDefault();
+    const j = (i + (e.key === 'ArrowRight' ? 1 : -1) + tabs.length) % tabs.length;
+    show(tabs[j].getAttribute('aria-controls'), true);
+  });
+});
+document.addEventListener('keydown', e => {
+  if (e.target !== document.body) return;
+  const p = players[active];
+  if (e.key === ' ') { e.preventDefault(); p.toggle(); }
+  else if (e.key === 'ArrowRight') { e.preventDefault(); p.next(); }
+  else if (e.key === 'ArrowLeft') { e.preventDefault(); p.prev(); }
+});
+const hash = location.hash.slice(1);
+show(scenes[hash] ? hash : 'q12');
+
+const refresh = () => { readPalette(); fitBench(); players[active].render(); };
+const mq = matchMedia('(prefers-color-scheme: dark)');
+if (mq.addEventListener) mq.addEventListener('change', refresh); else if (mq.addListener) mq.addListener(refresh);
+new MutationObserver(refresh).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme', 'class', 'style'] });
+if (document.fonts) {
+  Promise.all([
+    document.fonts.load(`400 16px ${FB}`), document.fonts.load(`700 16px ${FB}`),
+    document.fonts.load(`italic 700 16px ${FB}`), document.fonts.load(`800 16px ${FD}`),
+  ]).catch(() => {}).then(refresh);
+  document.fonts.ready.then(refresh);
+}
+})();
+</script>
+
+</body></html>
