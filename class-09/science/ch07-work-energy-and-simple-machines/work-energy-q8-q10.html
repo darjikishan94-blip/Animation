@@ -477,7 +477,7 @@ select {
   </section>
 
   <section class="about" aria-label="About these animations">
-    <p class="lede">Each animation sets up the situation exactly as the question describes it, then plays out what the physics predicts, one step at a time. Answers stay hidden until you press <b>Show answers</b> under each picture.</p>
+    <p class="lede">Each animation sets up the situation exactly as the question describes it, then plays out what the physics predicts, one step at a time. The first run shows only what the question gives; press <b>Show answers</b> to replay it as the full worked solution.</p>
     <ul class="key" aria-label="Colour key">
       <li><svg viewBox="0 0 28 12" aria-hidden="true"><path d="M1 6h19" stroke="var(--vel)" stroke-width="3"/><path d="M27 6l-8-5v10z" fill="var(--vel)"/></svg>velocity</li>
       <li><svg viewBox="0 0 28 12" aria-hidden="true"><path d="M1 6h19" stroke="var(--force)" stroke-width="3"/><path d="M27 6l-8-5v10z" fill="var(--force)"/></svg>force (weight, driving force)</li>
@@ -489,7 +489,7 @@ select {
     </ul>
   </section>
 
-  <p class="foot">Questions from the NCERT Class 9 Science textbook <i>Exploration</i>, Chapter 7 (Work, Energy, and Simple Machines), Revise, Reflect, Refine, pages 136–138. Click a picture or press Space to play or pause; the arrow keys move between steps. Show answers reveals the worked answer and the calculated values for that question only; every time the page opens, the answers start hidden.</p>
+  <p class="foot">Questions from the NCERT Class 9 Science textbook <i>Exploration</i>, Chapter 7 (Work, Energy, and Simple Machines), Revise, Reflect, Refine, pages 136–138. Click a picture or press Space to play or pause; the arrow keys move between steps. The first run shows only what the question gives. Show answers restarts that question as the full worked solution, with every quantity the students have to find; every time the page opens, the answers start hidden.</p>
 </div>
 
 <script>
@@ -513,6 +513,39 @@ function readPalette() {
 const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
 const ramp = (t, a, b) => clamp((t - a) / (b - a));
 const smooth = u => { u = clamp(u); return u * u * (3 - 2 * u); };
+// steady motion with a brief speed-up and slow-down at the ends: position (0..1) and speed (0..1 of the steady speed)
+const glide = (u, r = 0.1) => {
+  u = clamp(u); const vm = 1 / (1 - r);
+  if (u < r) return 0.5 * vm * u * u / r;
+  if (u > 1 - r) return 1 - 0.5 * vm * (1 - u) * (1 - u) / r;
+  return vm * (u - r / 2);
+};
+const glideRate = (u, r = 0.1) => (u <= 0 || u >= 1 ? 0 : u < r ? u / r : u > 1 - r ? (1 - u) / r : 1);
+// split text into lines that fit a width, in the body font
+function wrapLines(ctx, str, maxW, size, weight = 400) {
+  ctx.save(); ctx.font = `${weight} ${size}px ${FB}`;
+  const lines = []; let cur = '';
+  for (const w of str.split(' ')) {
+    const t = cur ? cur + ' ' + w : w;
+    if (cur && ctx.measureText(t).width > maxW) { lines.push(cur); cur = w; } else cur = t;
+  }
+  if (cur) lines.push(cur);
+  ctx.restore(); return lines;
+}
+// question mode (before Show answers): the panel lists only what the question asks
+function askedPanel(ctx, x, y, w, items) {
+  label(ctx, 'What is asked', x, y, { weight: 700, size: 16 });
+  let yy = y + 32;
+  for (const it of items) {
+    const lines = wrapLines(ctx, it, w, 14);
+    lines.forEach((ln, j) => label(ctx, ln, x, yy + j * 19, { size: 14, halo: false }));
+    yy += lines.length * 19 + 12;
+  }
+}
+// question mode: a large prompt when the question gives no situation to draw
+function qText(ctx, lines, cx = 255, cy = 270) {
+  lines.forEach((ln, i) => label(ctx, ln, cx, cy + (i - (lines.length - 1) / 2) * 34, { align: 'center', weight: 700, size: 22, display: true }));
+}
 
 function seg(ctx, x1, y1, x2, y2) { ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y2); ctx.stroke(); }
 function poly(ctx, pts) {
@@ -644,6 +677,14 @@ const Q8 = (() => {
       ans: 'Day 1: ½ × 160 × v² = 80v². Day 2: ½ × 200 × v² = 100v². Fuel used, Day 1 : Day 2 = 4 : 5.' },
   ];
 
+  const qStages = [
+    { title: 'Two days, two loads', dur: T1,
+      text: 'Day 1: a man of mass 60 kg rides a scooter of mass 100 kg. Day 2: his son, of mass 40 kg, joins him as a passenger.' },
+    { title: 'Same speed in the same time', dur: T3 - T1,
+      text: 'On both days the scooter is accelerated to the same speed v in the same time interval.' },
+    { title: 'What is asked', dur: 5,
+      text: 'What is the ratio of the fuel used on the two days? All the energy comes from the fuel; there are no losses to air resistance or friction.' },
+  ];
   function rider(ctx, nx, gy, R) {
     const p = a => [nx + a[0], gy + a[1]];
     ctx.strokeStyle = P.obj; ctx.fillStyle = P.obj; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
@@ -710,7 +751,7 @@ const Q8 = (() => {
     label(ctx, L.desc, 24 + w + 10, L.top, { size: 15, color: P.ink2 });
     if (ans) label(ctx, `total ${L.M} kg`, 24, L.top + 20, { size: 14, weight: 700, color: P.accent });
     const dA = ramp(t, T2, T2 + 0.4);
-    if (dA > 0) {
+    if (ans && dA > 0) {
       label(ctx, 'dots: equal time gaps', 24, gy + 36, { size: 13, color: P.ink2, alpha: dA });
       ctx.save(); ctx.globalAlpha = dA; ctx.fillStyle = P.ink2;
       for (let k = 0; k <= 5; k++) {
@@ -729,7 +770,7 @@ const Q8 = (() => {
     if (tau > 0) arrow(ctx, nx - 70, gy - 142, nx - 70 + VMAX * tau, gy - 142, P.vel, { lw: 4.5, head: 14 });
     if (tau >= 1) label(ctx, 'v', nx - 70 + VMAX + 8, gy - 142, { color: P.vel, weight: 700, italic: true, size: 18 });
     const fA = ramp(t, T1 + 0.5, T1 + 1.3);
-    if (fA > 0) {
+    if (ans && fA > 0) {
       const rx = nx - 112;                 // rear tyre touches the road here
       arrow(ctx, rx, gy + 12, rx + L.F, gy + 12, P.force, { lw: 4.5, head: 13, alpha: fA });
       labelSub(ctx, 'F', L.sub, rx + L.F + 6, gy + 12, { color: P.force, size: 16, alpha: fA, haloColor: P.road });
@@ -784,13 +825,14 @@ const Q8 = (() => {
       label(ctx, 'after time t', X0 + S, 48, { align: 'center', size: 14, color: P.ink2, alpha: endA });
     }
     for (const L of lanes) lane(ctx, L, nx, tau, t, ans);
-    if (endA > 0) {
+    if (ans && endA > 0) {
       dim(ctx, X0, X0 + S, 512, P.ink2, endA);
       label(ctx, 'same distance on both days', X0 + S / 2, 528, { align: 'center', size: 14, color: P.ink2, alpha: endA });
     }
-    fuel(ctx, tau, t, ans);
+    if (ans) fuel(ctx, tau, t, ans);
+    else askedPanel(ctx, 728, 40, 212, ['The ratio of the fuel used on the two days.', 'Assume all the energy comes from the fuel, with no losses to air resistance or friction.']);
   }
-  return { stages, draw };
+  return { stages, qStages, draw };
 })();
 
 /* ---------- Q9: seesaw with sliding seats ---------- */
@@ -817,6 +859,50 @@ const Q9 = (() => {
       ans: 'The adult sits at half the child’s distance from the fulcrum: child at d, adult at d/2 (ratio 2 : 1).' },
   ];
   const wd = v => { const r = Math.round(v * 100) / 100; return (r === 1 ? '' : String(r)) + 'Wd'; };   // turning effect in units of W × d
+  const qStages = [
+    { title: 'A seesaw with sliding seats', dur: 6,
+      text: 'A child sits on one side of a seesaw with sliding seats and an adult on the other side. The adult weighs twice as much as the child: 2W and W.' },
+    { title: 'What is asked', dur: 6,
+      text: 'The seesaw is balanced. Draw a figure showing the distances from the fulcrum where the child and the adult are seated.' },
+  ];
+  function standing(ctx, x, k) {             // a person standing on the ground beside the seesaw
+    const p = (dx, dy) => [x + dx * k, GY + dy * k];
+    ctx.save(); ctx.strokeStyle = P.obj; ctx.fillStyle = P.obj; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+    ctx.lineWidth = 7 * k; poly(ctx, [p(-7, 0), p(0, -34), p(7, 0)]);
+    ctx.lineWidth = 10 * k; poly(ctx, [p(0, -34), p(0, -70)]);
+    ctx.lineWidth = 6 * k; poly(ctx, [p(-12, -40), p(0, -64), p(12, -40)]);
+    const h = p(0, -84); ctx.beginPath(); ctx.arc(h[0], h[1], 11 * k, 0, Math.PI * 2); ctx.fill();
+    ctx.restore();
+  }
+  function drawQ(ctx, t) {                   // only what the question gives: the seesaw, the two weights, balanced
+    hline(ctx, 20, 940, GY, P.obj, 2);
+    ctx.save(); ctx.strokeStyle = P.ink2; ctx.globalAlpha = 0.45; ctx.lineWidth = 1;
+    for (let x = 30; x < 940; x += 16) seg(ctx, x, GY + 1, x - 9, GY + 10);
+    ctx.restore();
+    ctx.fillStyle = P.objFill; ctx.strokeStyle = P.obj; ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.moveTo(PX, PY); ctx.lineTo(PX - 46, GY); ctx.lineTo(PX + 46, GY); ctx.closePath(); ctx.fill(); ctx.stroke();
+    label(ctx, 'fulcrum', PX + 50, GY - 14, { size: 14, color: P.ink2 });
+    ctx.fillStyle = P.wood; ctx.fillRect(PX - L, PY - TH, 2 * L, TH); ctx.strokeRect(PX - L, PY - TH, 2 * L, TH);
+    ctx.fillStyle = P.obj;
+    for (const sx of [PX - L + 40, PX + L - 40]) {
+      rrect(ctx, sx - 22, PY - TH - SH, 44, SH, 3); ctx.fill();
+      arrow(ctx, sx + 26, PY - TH - 16, sx + 52, PY - TH - 16, P.ink2, { lw: 2, head: 8 });
+      arrow(ctx, sx - 26, PY - TH - 16, sx - 52, PY - TH - 16, P.ink2, { lw: 2, head: 8 });
+    }
+    label(ctx, 'sliding seats', PX, PY - TH - 40, { align: 'center', size: 14, color: P.ink2 });
+    label(ctx, 'balanced', PX, PY - TH - 66, { align: 'center', weight: 700, size: 16, color: P.accent });
+    standing(ctx, 38, KC); standing(ctx, 926, KA);                     // standing clear of the plank ends
+    label(ctx, 'child', 38, GY - 112, { align: 'center', weight: 700, size: 15 });
+    label(ctx, 'adult', 926, GY - 128, { align: 'center', weight: 700, size: 15 });
+    arrow(ctx, 64, GY - 60, 64, GY - 60 + WC, P.force, { lw: 4, head: 12 });
+    label(ctx, 'W', 72, GY - 60 + WC / 2, { color: P.force, weight: 700, italic: true, size: 17 });
+    arrow(ctx, 893, GY - 80, 893, GY - 80 + WA, P.force, { lw: 4, head: 12 });
+    label(ctx, '2W', 883, GY - 80 + WA / 2, { align: 'right', color: P.force, weight: 700, italic: true, size: 17 });
+    const y = GY + 34;
+    dim(ctx, PX, PX - L + 40, y, P.ink2); dim(ctx, PX, PX + L - 40, y, P.ink2);
+    label(ctx, 'child sits at ?', PX - L / 2, y + 19, { align: 'center', weight: 700, size: 15 });
+    label(ctx, 'adult sits at ?', PX + L / 2, y + 19, { align: 'center', weight: 700, size: 15 });
+  }
   function theta(t) {                        // clockwise tilt; constant turning effect gives steady angular speed-up
     if (t < 4.7) return 0;
     if (t < 5.7) { const u = t - 4.7; return TMAX * u * u; }
@@ -868,6 +954,7 @@ const Q9 = (() => {
   }
   function draw(ctx, t, ans) {
     bg(ctx);
+    if (!ans) return drawQ(ctx, t);
     const th = theta(t), s = adultS(t), sup = support(t);
     hline(ctx, 20, 940, GY, P.obj, 2);
     ctx.save(); ctx.strokeStyle = P.ink2; ctx.globalAlpha = 0.45; ctx.lineWidth = 1;
@@ -938,7 +1025,7 @@ const Q9 = (() => {
     if (bA > 0) label(ctx, 'balanced: stays level', PX, PY - 64, { align: 'center', weight: 700, size: 16, color: P.accent, alpha: bA });
     if (ans && bA > 0) label(ctx, 'W × d = 2W × d/2', PX, PY - 92, { align: 'center', weight: 700, size: 16, alpha: bA });
   }
-  return { stages, draw };
+  return { stages, qStages, draw };
 })();
 
 /* ---------- Q10: ball thrown up against air resistance ---------- */
@@ -971,6 +1058,14 @@ const Q10 = (() => {
       ans: '(i) Work done by gravity: −388 J going up, +388 J coming down. (ii) Work done by air resistance while rising = −12 J.' },
   ];
   const workLabel = (sign, j) => j === 0 ? 'W = 0 J' : `W = ${sign}${j} J`;   // work done by gravity
+  const qStages = [
+    { title: 'Thrown up at 20 m/s', dur: S1, text: 'A ball of mass 2 kg is thrown straight up with a velocity of 20 m/s.' },
+    { title: 'Upward motion', dur: S2 - S1, text: 'The ball moves upward. Air resistance acts on it.' },
+    { title: 'Height reached: 19.4 m', dur: S3 - S2, text: 'The ball reaches a height of 19.4 m.' },
+    { title: 'Downward motion', dur: S4 - S3, text: 'The ball comes back down.' },
+    { title: 'What is asked', dur: S5 - S4,
+      text: '(i) The sign of the work done by gravity during the upward and the downward motion. (ii) The work done by air resistance (g = 10 m/s²).' },
+  ];
   function state(t) {
     if (t < S1) return { h: 0, v: U, ph: 0, p: 0 };
     if (t < S2) { const p = (t - S1) / SLOW; return { h: hUp(p), v: U - AUP * p, ph: 1, p }; }
@@ -1102,20 +1197,23 @@ const Q10 = (() => {
       ctx.save(); ctx.globalAlpha = mA; hline(ctx, 92, 440, yOf(HT), P.ink, 1.2, [6, 5]); ctx.restore();
       label(ctx, 'highest: 19.4 m', X + 72, yOf(HT) - 13, { weight: 700, size: 15, alpha: mA });
     }
-    strobe(ctx, st);
-    displacement(ctx, st);
+    if (ans) { strobe(ctx, st); displacement(ctx, st); }
     ball(ctx, y);
-    velocity(ctx, st, y);
-    arrow(ctx, X, y + BR, X, y + BR + WL, P.force, { lw: 4.5, head: 13 });
-    label(ctx, 'mg', X - 9, y + BR + WL - 6, { align: 'right', color: P.force, weight: 700, size: 16 });
-    airResistance(ctx, st, y);
+    if (ans || st.ph === 0) velocity(ctx, st, y);
+    if (ans) {
+      arrow(ctx, X, y + BR, X, y + BR + WL, P.force, { lw: 4.5, head: 13 });
+      label(ctx, 'mg', X - 9, y + BR + WL - 6, { align: 'right', color: P.force, weight: 700, size: 16 });
+      airResistance(ctx, st, y);
+    }
     label(ctx, 'm = 2 kg', X - 26, y - 18, { align: 'right', weight: 700, size: 15, alpha: 1 - ramp(t, S1, S1 + 0.4) });
-    cells(ctx, t, st, ans);
-    energy(ctx, st, ans);
-    label(ctx, 'faint circles: the ball every 0.2 s', 24, 510, { size: 12, color: P.ink2 });
-    label(ctx, 'air arrow enlarged: the real force is much smaller than mg', 24, 528, { size: 12, color: P.ink2 });
+    if (ans) {
+      cells(ctx, t, st, ans);
+      energy(ctx, st, ans);
+      label(ctx, 'faint circles: the ball every 0.2 s', 24, 510, { size: 12, color: P.ink2 });
+      label(ctx, 'air arrow enlarged: the real force is much smaller than mg', 24, 528, { size: 12, color: P.ink2 });
+    } else askedPanel(ctx, 480, 70, 430, ['(i) The sign of the work done by gravity on the ball during its upward motion and its downward motion.', '(ii) If the ball reaches a height of 19.4 m, how much work was done by air resistance? (g = 10 m s⁻²)']);
   }
-  return { stages, draw };
+  return { stages, qStages, draw };
 })();
 
 /* ---------- player: a pure function of time, so stepping and scrubbing are exact ---------- */
@@ -1169,21 +1267,28 @@ function makePlayer(panel, scene) {
     answers: q('[data-act="answers"]'), ansBox: q('[data-k="ansbox"]'), ansText: q('[data-k="ans"]'), sheet: q('.answer'),
     worked: q('[data-act="worked"]'),
   };
-  const st = scene.stages;
-  let acc = 0;
-  for (const s of st) { s.t0 = acc; acc += s.dur; s.t1 = acc; }
-  const total = acc;
-  ui.of.textContent = st.length;
-  if (st.length > 6) ui.steps.classList.add('many');
+  // two timelines: the question as given (qStages, first run) and the worked solution (stages, after Show answers)
+  let st = [], total = 0, chips = [];
   let t = 0, playing = false, last = 0, raf = 0, cur = -1, ans = false;   // answers always start hidden
-  const chips = st.map((s, k) => {
-    const li = document.createElement('li'), b = document.createElement('button');
-    b.type = 'button'; b.textContent = String(k + 1);
-    b.title = s.title; b.setAttribute('aria-label', `Step ${k + 1}: ${s.title}`);
-    b.addEventListener('click', () => seek(s.t0));
-    li.appendChild(b); ui.steps.appendChild(li);
-    return b;
-  });
+  function useStages(list) {
+    st = list;
+    let acc = 0;
+    for (const s of st) { s.t0 = acc; acc += s.dur; s.t1 = acc; }
+    total = acc;
+    ui.of.textContent = st.length;
+    ui.steps.classList.toggle('many', st.length > 6);
+    ui.steps.textContent = '';
+    chips = st.map((s, k) => {
+      const li = document.createElement('li'), b = document.createElement('button');
+      b.type = 'button'; b.textContent = String(k + 1);
+      b.title = s.title; b.setAttribute('aria-label', `Step ${k + 1}: ${s.title}`);
+      b.addEventListener('click', () => seek(s.t0));
+      li.appendChild(b); ui.steps.appendChild(li);
+      return b;
+    });
+    cur = -1;
+  }
+  useStages(scene.qStages || scene.stages);
   const stageAt = x => { for (let i = 0; i < st.length; i++) if (x < st[i].t1) return i; return st.length - 1; };
   function fit() {
     const w = canvas.clientWidth;
@@ -1239,6 +1344,7 @@ function makePlayer(panel, scene) {
     ui.answers.querySelector('span').textContent = on ? 'Hide answers' : 'Show answers';
     if (ui.sheet) ui.sheet.hidden = !on;
     ui.worked.hidden = !(on && ui.sheet);
+    if (scene.qStages) { pause(); useStages(on ? scene.stages : scene.qStages); t = 0; setPlayUI(); }   // each run starts from the beginning
     cur = -1; render();
   }
   function toggle() { playing ? pause() : play(); }

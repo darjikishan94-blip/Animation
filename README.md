@@ -1,8 +1,12 @@
 # Physics Animations
 
-Step-by-step animations of textbook physics questions. Each one sets up the situation exactly as the
-question describes it, then plays out what the physics predicts. Every animation opens with the answers
-hidden; a **Show answers** button reveals them when you are ready.
+Step-by-step animations of textbook physics questions. Each animation runs in two ways:
+
+1. **The question** (what opens first): only the situation and the values the question gives, plus a
+   *What is asked* panel. Nothing the students have to find, such as a time, a speed, an energy or a
+   force, is shown.
+2. **The solution** (after **Show answers**): the animation restarts as the full worked solution, with
+   every force, time, energy and power, and the calculated values.
 
 Every animation is a single, self-contained `.html` file. It needs no installation and opens in any
 web browser (Chrome, Edge, Safari or Firefox, on a computer or a phone).
@@ -58,13 +62,14 @@ the question and step explanation are in a column beside it. (On a phone the sam
 - **Step by step**: the ◀ ▶ buttons, the arrow keys, or the numbered step buttons below the picture.
 - **Speed**: 0.5×, 1× or 1.5×. Tick *Pause after each step* to stop at every stage. (Both are in the
   column beside the picture.)
-- **Show answers / Hide answers** (each question has its own button, at the right end of the button bar) reveals:
+- **Show answers / Hide answers** (each question has its own button, at the right end of the button bar)
+  switches between the two runs and starts the chosen one from the beginning. The solution run adds:
   - the worked answer below the picture;
   - an *Answer* line under each step's explanation;
-  - the calculated values drawn on the animation itself (for example the 4 : 5 fuel ratio, the turning
-    effects in *Wd*, and the work done in joules).
+  - everything the students have to work out, drawn on the animation (times, forces, energy and power
+    bars, calculated values such as the 4 : 5 fuel ratio or the work done in joules).
 
-  The answers start hidden every time the page opens, so the page is safe to show to students first.
+  The page always opens on the question run, so it is safe to show to students first.
 - Light and dark mode follow your device's setting.
 
 ## Folder layout
@@ -76,8 +81,9 @@ class-<NN>/<subject>/ch<NN>-<chapter-name>/<topic>-q<first>-q<last>.html
 For example, `class-09/science/ch07-work-energy-and-simple-machines/work-energy-q8-q10.html`.
 Question text is taken word for word from the NCERT textbook, and figures are redrawn from it.
 When a new animation is added, it goes in the matching folder and gets a new row in the index above.
-Every new animation must also open with its answers hidden, have the same **Show answers** button, and
-use the same one-screen layout (picture and button bar fit the window; text column beside the picture).
+Every new animation must also open on a question run that shows only what the question gives, have
+the same **Show answers** button for the solution run, and use the same one-screen layout (picture and
+button bar fit the window; text column beside the picture).
 
 ## Originals
 

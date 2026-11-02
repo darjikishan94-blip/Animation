@@ -479,7 +479,7 @@ select {
   </section>
 
   <section class="about" aria-label="About these animations">
-    <p class="lede">Each animation sets up the situation exactly as the question describes it, then plays out what the physics predicts, one step at a time. Answers stay hidden until you press <b>Show answers</b> under each picture.</p>
+    <p class="lede">Each animation sets up the situation exactly as the question describes it, then plays out what the physics predicts, one step at a time. The first run shows only what the question gives; press <b>Show answers</b> to replay it as the full worked solution.</p>
     <ul class="key" aria-label="Colour key">
       <li><svg viewBox="0 0 28 12" aria-hidden="true"><path d="M1 6h19" stroke="var(--vel)" stroke-width="3"/><path d="M27 6l-8-5v10z" fill="var(--vel)"/></svg>velocity</li>
       <li><svg viewBox="0 0 28 12" aria-hidden="true"><path d="M1 6h19" stroke="var(--force)" stroke-width="3"/><path d="M27 6l-8-5v10z" fill="var(--force)"/></svg>force</li>
@@ -489,7 +489,7 @@ select {
     </ul>
   </section>
 
-  <p class="foot">Questions from the NCERT Class 9 Science textbook <i>Exploration</i>, Chapter 7 (Work, Energy, and Simple Machines), Revise, Reflect, Refine, pages 136–138. Click a picture or press Space to play or pause; the arrow keys move between steps. Show answers reveals the worked answer and the calculated values for that question only; every time the page opens, the answers start hidden.</p>
+  <p class="foot">Questions from the NCERT Class 9 Science textbook <i>Exploration</i>, Chapter 7 (Work, Energy, and Simple Machines), Revise, Reflect, Refine, pages 136–138. Click a picture or press Space to play or pause; the arrow keys move between steps. The first run shows only what the question gives. Show answers restarts that question as the full worked solution, with every quantity the students have to find; every time the page opens, the answers start hidden.</p>
 </div>
 
 <script>
@@ -531,6 +531,20 @@ function wrapLines(ctx, str, maxW, size, weight = 400) {
   }
   if (cur) lines.push(cur);
   ctx.restore(); return lines;
+}
+// question mode (before Show answers): the panel lists only what the question asks
+function askedPanel(ctx, x, y, w, items) {
+  label(ctx, 'What is asked', x, y, { weight: 700, size: 16 });
+  let yy = y + 32;
+  for (const it of items) {
+    const lines = wrapLines(ctx, it, w, 14);
+    lines.forEach((ln, j) => label(ctx, ln, x, yy + j * 19, { size: 14, halo: false }));
+    yy += lines.length * 19 + 12;
+  }
+}
+// question mode: a large prompt when the question gives no situation to draw
+function qText(ctx, lines, cx = 255, cy = 270) {
+  lines.forEach((ln, i) => label(ctx, ln, cx, cy + (i - (lines.length - 1) / 2) * 34, { align: 'center', weight: 700, size: 22, display: true }));
 }
 
 function seg(ctx, x1, y1, x2, y2) { ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y2); ctx.stroke(); }
@@ -658,6 +672,12 @@ const Q5 = (() => {
       text: 'Both journeys start at the ground and end on the top floor: the same vertical rise of 72.5 m. The gain in potential energy is the same.',
       ans: 'The gain in PE depends only on the vertical height risen (the start and end positions), not on the path taken.' },
   ];
+  const qStages = [
+    { title: 'The building', dur: T1, text: 'A student of mass 50 kg is at the ground level of a building of height h = 72.5 m. Take g = 10 m/s².' },
+    { title: 'Lifted in the elevator', dur: T2 - T1, text: 'The student is slowly lifted straight up in an elevator to the top floor.' },
+    { title: 'Later: climbing the staircase', dur: T3 - T2, text: 'Later, the same student climbs the staircase all the way to the top.' },
+    { title: 'What is asked', dur: T4 - T3, text: '(i) and (ii) The gain in potential energy each time. (iii) What this shows about potential energy and the path taken.' },
+  ];
   const liftH = t => H * glide(ramp(t, T1 + 0.3, T2 - 0.3));        // slow and steady
   const climb = t => glide(ramp(t, T2 + 0.8, T3 - 0.3), 0.04);     // fraction of the stair path walked
   function stairAt(s) {
@@ -751,16 +771,17 @@ const Q5 = (() => {
       label(ctx, 'later', p.x, yOf(p.h) - 38, { align: 'center', size: 13, weight: 700, alpha: cA * (1 - ramp(t, T2 + 2.5, T2 + 3)) });
     }
     const dA = ramp(t, T3, T3 + 0.6);
-    if (dA > 0) {
+    if (ans && dA > 0) {
       arrow(ctx, 222, Y0, 222, yOf(H), P.disp, { lw: 3.5, head: 12, alpha: dA });
       arrow(ctx, 538, Y0, 538, yOf(H), P.disp, { lw: 3.5, head: 12, alpha: dA });
       label(ctx, 'h', 230, (Y0 + yOf(H)) / 2, { color: P.disp, weight: 700, italic: true, size: 18, alpha: dA });
       label(ctx, 'h', 530, (Y0 + yOf(H)) / 2, { align: 'right', color: P.disp, weight: 700, italic: true, size: 18, alpha: dA });
     }
-    panel(ctx, he, hs, ans);
+    if (ans) panel(ctx, he, hs, ans);
+    else askedPanel(ctx, 624, 40, 300, ['(i) The gain in potential energy if the student is lifted straight up to the top.', '(ii) The gain in potential energy when the student climbs the stairs to the same top.', '(iii) What do you conclude about the dependence of the potential energy on the path taken?']);
     label(ctx, 'student and elevator drawn larger than scale; number of flights illustrative', 24, 528, { size: 12, color: P.ink2 });
   }
-  return { stages, draw };
+  return { stages, qStages, draw };
 })();
 
 /* ---------- Q6: a crane lifts to the 10th floor, then to the 20th ---------- */
@@ -768,8 +789,8 @@ const Q6 = (() => {
   const Y0 = 470, FH = 16.5, NF = 20;                    // ground; height of one floor (px); floors
   const T1 = 4.5, TL = 4.5, T2 = T1 + TL, T3 = T1 + 2 * TL, T4 = T3 + 6;   // TL = time t for the first lift
   const LIFTS = [
-    { x: 70, floors: 10, dur: TL, head: '1st lift: to the 10th floor', tl: 't' },
-    { x: 330, floors: 20, dur: 2 * TL, head: '2nd lift: to the 20th floor', tl: '2t' },
+    { x: 70, floors: 10, dur: TL, head: '1st lift: to the 10th floor', tl: 't', qs: T1 },
+    { x: 330, floors: 20, dur: 2 * TL, head: '2nd lift: to the 20th floor', tl: '2t', qs: T1 + TL + 1 },   // qs: start time in the question run, one after the other
   ];
   const stages = [
     { title: 'Two lifts of the same mass', dur: T1,
@@ -785,9 +806,15 @@ const Q6 = (() => {
       text: 'The second load was raised twice as high, so it needed twice the energy. But that energy was spread over twice the time, so the energy needed per second — the power — is the same.',
       ans: 'E₂ = mg × 20d = 2E₁: 10mgd more energy (double). P₁ = 10mgd/t and P₂ = 20mgd/2t = 10mgd/t: no extra power.' },
   ];
+  const qStages = [
+    { title: 'A crane and a mass m', dur: T1, text: 'A crane lifts a mass m. All the floors of the building have equal height.' },
+    { title: 'To the 10th floor', dur: TL + 1, text: 'The crane lifts the mass to the 10th floor in a certain time t.' },
+    { title: 'To the 20th floor', dur: 2 * TL, text: 'It then raises the same mass to the 20th floor of the same building in double the time, 2t.' },
+    { title: 'What is asked', dur: 4.5, text: 'How much more energy and power are required?' },
+  ];
   const frac = (t, d) => glide((t - T1) / d, 0.02);       // almost constant speed: equal speeds need equal (tiny) speed-up times
   function crane(ctx, L, t, ans) {
-    const bx = L.x, bw = 96, top = Y0 - NF * FH, f = frac(t, L.dur), h = L.floors * f;   // h in floors
+    const s0 = ans ? T1 : L.qs, bx = L.x, bw = 96, top = Y0 - NF * FH, f = glide((t - s0) / L.dur, 0.02), h = L.floors * f;   // h in floors
     label(ctx, L.head, bx + 100, 30, { align: 'center', weight: 700, size: 15 });
     ctx.fillStyle = P.grid; ctx.fillRect(bx, top, bw, NF * FH);
     ctx.strokeStyle = P.obj; ctx.lineWidth = 2; ctx.strokeRect(bx, top, bw, NF * FH);
@@ -809,15 +836,15 @@ const Q6 = (() => {
     vline(ctx, lx, jy + 4, ly - 30, P.ink2, 1.5);
     ctx.fillStyle = P.wood; ctx.strokeStyle = P.obj; ctx.lineWidth = 2; ctx.fillRect(lx - 16, ly - 28, 32, 28); ctx.strokeRect(lx - 16, ly - 28, 32, 28);
     label(ctx, 'm', lx, ly - 14, { align: 'center', weight: 700, italic: true, size: 15, haloColor: P.wood });
-    const rn = glideRate((t - T1) / L.dur, 0.02);
-    if (rn > 0.05) { arrow(ctx, lx + 28, ly - 4, lx + 28, ly - 4 - 34 * rn, P.vel, { lw: 4, head: 11 }); if (rn > 0.9) label(ctx, 'v', lx + 38, ly - 22, { color: P.vel, weight: 700, italic: true, size: 15 }); }
+    const rn = glideRate((t - s0) / L.dur, 0.02);
+    if (ans && rn > 0.05) { arrow(ctx, lx + 28, ly - 4, lx + 28, ly - 4 - 34 * rn, P.vel, { lw: 4, head: 11 }); if (rn > 0.9) label(ctx, 'v', lx + 38, ly - 22, { color: P.vel, weight: 700, italic: true, size: 15 }); }
     hline(ctx, bx - 20, mx + 60, Y0, P.obj, 2);
     // stopwatch: full width = 2t
-    const w = 200, el = clamp(t - T1, 0, L.dur);
+    const w = 200, el = clamp(t - s0, 0, L.dur);
     ctx.fillStyle = P.grid2; rrect(ctx, bx, Y0 + 26, w, 8, 4); ctx.fill();
     if (el > 0) { ctx.fillStyle = P.accent; rrect(ctx, bx, Y0 + 26, Math.max(8, w * el / (2 * TL)), 8, 4); ctx.fill(); }
     label(ctx, 'time', bx - 8, Y0 + 30, { align: 'right', size: 12, color: P.ink2 });
-    if (t - T1 >= L.dur) label(ctx, L.tl, bx + w * L.dur / (2 * TL), Y0 + 48, { align: 'center', weight: 700, italic: true, size: 15 });
+    if (t - s0 >= L.dur) label(ctx, L.tl, bx + w * L.dur / (2 * TL), Y0 + 48, { align: 'center', weight: 700, italic: true, size: 15 });
   }
   function panel(ctx, t, ans) {
     const xs = [700, 840], bw = 70;
@@ -847,10 +874,11 @@ const Q6 = (() => {
     bg(ctx);
     vline(ctx, 630, 16, 524, P.rule, 1);
     for (const L of LIFTS) crane(ctx, L, t, ans);
-    panel(ctx, t, ans);
+    if (ans) panel(ctx, t, ans);
+    else askedPanel(ctx, 650, 40, 280, ['How much more energy is required for the second lift?', 'How much more power is required?']);
     label(ctx, 'both lifts start from the ground (see the notes)', 24, 528, { size: 12, color: P.ink2 });
   }
-  return { stages, draw };
+  return { stages, qStages, draw };
 })();
 
 /* ---------- Q7: raising a flag slowly or quickly ---------- */
@@ -877,6 +905,11 @@ const Q7 = (() => {
     { title: 'Power: work per second', dur: T4 - T3,
       text: 'Power is the rate of doing work. The fast flag needed the same work in half the time, so it needed twice the power.',
       ans: 'P = W/t. Slow: mgh/t. Fast: mgh/(t/2) = 2mgh/t. Doubling the speed doubles the power.' },
+  ];
+  const qStages = [
+    { title: 'Raising a flag', dur: T1, text: 'A flag is raised from the ground to the top of a tall flagpole using a pulley.' },
+    { title: 'Slowly, and twice as fast', dur: T2 - T1, text: 'It can be raised slowly or quickly. Here the right-hand flag is raised at double the speed of the left-hand flag.' },
+    { title: 'What is asked', dur: 5, text: 'Which factors determine the energy needed? Does raising the flag slowly or quickly change the work done? If the speed is doubled, how does the power needed change?' },
   ];
   function puller(ctx, x) {
     const hx = x - 10, hy = Y0 - 52, px = x - 36;
@@ -914,7 +947,7 @@ const Q7 = (() => {
     ctx.strokeStyle = P.obj; ctx.lineWidth = 1.5; ctx.strokeRect(fx, yTop, FW, FH);
     // forces, drawn only while the speed is steady (then the pull equals the weight)
     const fA = ramp(rn, 0.98, 1);
-    if (fA > 0) {
+    if (ans && fA > 0) {
       const cx = fx + FW / 2;
       arrow(ctx, cx, yTop, cx, yTop - 36, P.force, { lw: 4, head: 11, alpha: fA });
       arrow(ctx, cx, yTop + FH, cx, yTop + FH + 36, P.force, { lw: 4, head: 11, alpha: fA });
@@ -925,9 +958,10 @@ const Q7 = (() => {
     if (vl > 1.5) arrow(ctx, fx + FW + 22, yTop + FH / 2 + vl / 2, fx + FW + 22, yTop + FH / 2 - vl / 2, P.vel, { lw: 4, head: 11 });
     if (rn > 0.9) label(ctx, pl.sp, fx + FW + 32, yTop + FH / 2, { color: P.vel, weight: 700, italic: true, size: 16 });
     // height risen
-    const hA = t < T1 ? 1 : ramp(t, T2, T2 + 0.5);
+    const hA = !ans ? 0 : t < T1 ? 1 : ramp(t, T2, T2 + 0.5);
     vdim(ctx, x + 124, Y_START, Y_END, P.disp, hA);
     label(ctx, 'h', x + 132, (Y_START + Y_END) / 2, { color: P.disp, weight: 700, italic: true, size: 18, alpha: hA });
+    if (!ans) return;                          // time is not given in the question: shown only with the answers
     // stopwatch bar: full width = the slow flag's time
     const w = 150, el = clamp(t - T1, 0, pl.dur);
     ctx.fillStyle = P.grid2; rrect(ctx, x - 40, Y0 + 24, w, 8, 4); ctx.fill();
@@ -963,10 +997,12 @@ const Q7 = (() => {
     bg(ctx);
     vline(ctx, 610, 16, 524, P.rule, 1);
     for (const pl of POLES) pole(ctx, pl, t, ans);
-    panel(ctx, t, ans);
-    label(ctx, 'ideal pulley (no friction); flags start and end at rest', 24, 528, { size: 12, color: P.ink2 });
+    if (ans) {
+      panel(ctx, t, ans);
+      label(ctx, 'ideal pulley (no friction); flags start and end at rest', 24, 528, { size: 12, color: P.ink2 });
+    } else askedPanel(ctx, 632, 40, 300, ['Which factors determine the energy required to raise the flag?', 'Does raising the flag slowly or quickly change the amount of work done?', 'If the speed is doubled, how does the power requirement change?']);
   }
-  return { stages, draw };
+  return { stages, qStages, draw };
 })();
 
 /* ---------- player: a pure function of time, so stepping and scrubbing are exact ---------- */
@@ -1020,21 +1056,28 @@ function makePlayer(panel, scene) {
     answers: q('[data-act="answers"]'), ansBox: q('[data-k="ansbox"]'), ansText: q('[data-k="ans"]'), sheet: q('.answer'),
     worked: q('[data-act="worked"]'),
   };
-  const st = scene.stages;
-  let acc = 0;
-  for (const s of st) { s.t0 = acc; acc += s.dur; s.t1 = acc; }
-  const total = acc;
-  ui.of.textContent = st.length;
-  if (st.length > 6) ui.steps.classList.add('many');
+  // two timelines: the question as given (qStages, first run) and the worked solution (stages, after Show answers)
+  let st = [], total = 0, chips = [];
   let t = 0, playing = false, last = 0, raf = 0, cur = -1, ans = false;   // answers always start hidden
-  const chips = st.map((s, k) => {
-    const li = document.createElement('li'), b = document.createElement('button');
-    b.type = 'button'; b.textContent = String(k + 1);
-    b.title = s.title; b.setAttribute('aria-label', `Step ${k + 1}: ${s.title}`);
-    b.addEventListener('click', () => seek(s.t0));
-    li.appendChild(b); ui.steps.appendChild(li);
-    return b;
-  });
+  function useStages(list) {
+    st = list;
+    let acc = 0;
+    for (const s of st) { s.t0 = acc; acc += s.dur; s.t1 = acc; }
+    total = acc;
+    ui.of.textContent = st.length;
+    ui.steps.classList.toggle('many', st.length > 6);
+    ui.steps.textContent = '';
+    chips = st.map((s, k) => {
+      const li = document.createElement('li'), b = document.createElement('button');
+      b.type = 'button'; b.textContent = String(k + 1);
+      b.title = s.title; b.setAttribute('aria-label', `Step ${k + 1}: ${s.title}`);
+      b.addEventListener('click', () => seek(s.t0));
+      li.appendChild(b); ui.steps.appendChild(li);
+      return b;
+    });
+    cur = -1;
+  }
+  useStages(scene.qStages || scene.stages);
   const stageAt = x => { for (let i = 0; i < st.length; i++) if (x < st[i].t1) return i; return st.length - 1; };
   function fit() {
     const w = canvas.clientWidth;
@@ -1090,6 +1133,7 @@ function makePlayer(panel, scene) {
     ui.answers.querySelector('span').textContent = on ? 'Hide answers' : 'Show answers';
     if (ui.sheet) ui.sheet.hidden = !on;
     ui.worked.hidden = !(on && ui.sheet);
+    if (scene.qStages) { pause(); useStages(on ? scene.stages : scene.qStages); t = 0; setPlayUI(); }   // each run starts from the beginning
     cur = -1; render();
   }
   function toggle() { playing ? pause() : play(); }
