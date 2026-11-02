@@ -11,22 +11,27 @@ web browser (Chrome, Edge, Safari or Firefox, on a computer or a phone).
 
 | Class | Subject | Chapter | Question | What it shows | Open | Added |
 |---|---|---|---|---|---|---|
-| 9 | Science (*Exploration*, NCERT) | 7 · Work, Energy and Simple Machines | Q3 · Ball at the top | A ball thrown straight up stops for an instant at its highest point and falls back. Arrows show that the force (*mg*) and the acceleration (*g*) never become zero; only the velocity does. Students tick the four statements. | [Q3](class-09/science/ch07-work-energy-and-simple-machines/work-energy-q3-q7.html#q3) | Nov 2026 |
-| 9 | Science (*Exploration*, NCERT) | 7 · Work, Energy and Simple Machines | Q5 · Elevator or stairs | A 50 kg student rises 72.5 m, first in an elevator and later up the stairs. The gain in potential energy is the same both ways (36,250 J): it depends only on the height. | [Q5](class-09/science/ch07-work-energy-and-simple-machines/work-energy-q3-q7.html#q5) | Nov 2026 |
-| 9 | Science (*Exploration*, NCERT) | 7 · Work, Energy and Simple Machines | Q7 · Raising a flag | Two identical flags are raised with pulleys, one at speed *v* and one at 2*v*. The work done (*mgh*) is the same; the faster one needs twice the power. | [Q7](class-09/science/ch07-work-energy-and-simple-machines/work-energy-q3-q7.html#q7) | Nov 2026 |
-| 9 | Science (*Exploration*, NCERT) | 7 · Work, Energy and Simple Machines | Q8 · Scooter and fuel | The same scooter speeds up to the same speed in the same time, first with the man alone (60 kg) and then with his son (40 kg) as well. Fuel energy used is compared with the kinetic energy gained. | [Q8](class-09/science/ch07-work-energy-and-simple-machines/work-energy-q8-q10.html#q8) | Oct 2026 |
+| 9 | Science (*Exploration*, NCERT) | 7 · Work, Energy and Simple Machines | Q1 · True or false | One short scene tests each of the five statements: pushing a wall that does not move, lifting a bucket, a box gaining energy, a still stretched rubber band, and a swinging pendulum. | [Q1](class-09/science/ch07-work-energy-and-simple-machines/work-energy-q1-q4.html#q1) | Nov 2026 |
+| 9 | Science (*Exploration*, NCERT) | 7 · Work, Energy and Simple Machines | Q2 · Fill in the blanks | One scene per blank: force and displacement, a 1 N force moving a box 1 m, a moving mass, a raised mass, and the same work done in different times. | [Q2](class-09/science/ch07-work-energy-and-simple-machines/work-energy-q1-q4.html#q2) | Nov 2026 |
+| 9 | Science (*Exploration*, NCERT) | 7 · Work, Energy and Simple Machines | Q3 · Ball at the top | A ball thrown straight up stops for an instant at its highest point and falls back. The force (*mg*) and the acceleration (*g*) never become zero; only the velocity does. | [Q3](class-09/science/ch07-work-energy-and-simple-machines/work-energy-q1-q4.html#q3) | Nov 2026 |
+| 9 | Science (*Exploration*, NCERT) | 7 · Work, Energy and Simple Machines | Q4 · Energy changes | Nine short scenes (truck uphill, watch spring, photosynthesis, dam, matchstick, fire cracker, microphone, bulb, solar panel), each with an energy-flow diagram. | [Q4](class-09/science/ch07-work-energy-and-simple-machines/work-energy-q1-q4.html#q4) | Nov 2026 |
+| 9 | Science (*Exploration*, NCERT) | 7 · Work, Energy and Simple Machines | Q5 · Elevator or stairs | A 50 kg student rises 72.5 m, first in an elevator and later up the stairs. The gain in potential energy is the same both ways (36,250 J). | [Q5](class-09/science/ch07-work-energy-and-simple-machines/work-energy-q5-q7.html#q5) | Nov 2026 |
+| 9 | Science (*Exploration*, NCERT) | 7 · Work, Energy and Simple Machines | Q6 · Crane | Side by side: a crane lifts mass *m* to the 10th floor in time *t*, and to the 20th floor in 2*t*. Twice the energy, the same power. | [Q6](class-09/science/ch07-work-energy-and-simple-machines/work-energy-q5-q7.html#q6) | Nov 2026 |
+| 9 | Science (*Exploration*, NCERT) | 7 · Work, Energy and Simple Machines | Q7 · Raising a flag | Two identical flags are raised with pulleys, one at speed *v* and one at 2*v*. The work done (*mgh*) is the same; the faster one needs twice the power. | [Q7](class-09/science/ch07-work-energy-and-simple-machines/work-energy-q5-q7.html#q7) | Nov 2026 |
+| 9 | Science (*Exploration*, NCERT) | 7 · Work, Energy and Simple Machines | Q8 · Scooter and fuel | The same scooter speeds up to the same speed in the same time, first with the man alone (60 kg) and then with his son (40 kg) as well. Fuel used compares as 4 : 5. | [Q8](class-09/science/ch07-work-energy-and-simple-machines/work-energy-q8-q10.html#q8) | Oct 2026 |
 | 9 | Science (*Exploration*, NCERT) | 7 · Work, Energy and Simple Machines | Q9 · Seesaw balance | A child (*W*) and an adult (2*W*) sit on a seesaw with sliding seats. At equal distances it tips; the adult slides to *d*/2 and it balances. | [Q9](class-09/science/ch07-work-energy-and-simple-machines/work-energy-q8-q10.html#q9) | Oct 2026 |
 | 9 | Science (*Exploration*, NCERT) | 7 · Work, Energy and Simple Machines | Q10 · Ball thrown up | A 2 kg ball is thrown up at 20 m/s and, with air resistance, reaches 19.4 m. Shows the sign of the work done by gravity going up and coming down, and an energy bar. | [Q10](class-09/science/ch07-work-energy-and-simple-machines/work-energy-q8-q10.html#q10) | Oct 2026 |
-| 9 | Science (*Exploration*, NCERT) | 7 · Work, Energy and Simple Machines | Q12 · Ball on the Moon | The same throw on Earth and on the Moon (gravity 1/6). The Earth ball rises to 8 m; the Moon ball rises 6 times higher, to 48 m. | [Q12](class-09/science/ch07-work-energy-and-simple-machines/work-energy-q11-q15.html#q12) | Nov 2026 |
-| 9 | Science (*Exploration*, NCERT) | 7 · Work, Energy and Simple Machines | Q15 · Falling coconut | A 1.5 kg coconut falls 10 m onto wet sand (about 14.1 m/s at impact), and a magnified close-up shows the 3000 N sand force stopping it in 5 cm. | [Q15](class-09/science/ch07-work-energy-and-simple-machines/work-energy-q11-q15.html#q15) | Nov 2026 |
+| 9 | Science (*Exploration*, NCERT) | 7 · Work, Energy and Simple Machines | Q11 · Force graph | A 10 kg block is pushed by the force of Fig. 7.37 while the graph fills in under it. Its speed rises from 6 m/s to about 8.1 m/s; the acceleration is never negative. | [Q11](class-09/science/ch07-work-energy-and-simple-machines/work-energy-q11-q15.html#q11) | Nov 2026 |
+| 9 | Science (*Exploration*, NCERT) | 7 · Work, Energy and Simple Machines | Q12 · Moon throw | The same throw on Earth and on the Moon (gravity 1/6). The Earth ball rises to 8 m; the Moon ball rises 6 times higher, to 48 m. | [Q12](class-09/science/ch07-work-energy-and-simple-machines/work-energy-q11-q15.html#q12) | Nov 2026 |
+| 9 | Science (*Exploration*, NCERT) | 7 · Work, Energy and Simple Machines | Q13 · Car braking | A 1000 kg car follows Fig. 7.38: 35 m/s from A to B, then braking to rest at C. Its 6,12,500 J of kinetic energy turns into heat. | [Q13](class-09/science/ch07-work-energy-and-simple-machines/work-energy-q11-q15.html#q13) | Nov 2026 |
+| 9 | Science (*Exploration*, NCERT) | 7 · Work, Energy and Simple Machines | Q14 · Ball on a track | A 0.5 kg ball on a frictionless track shaped like Fig. 7.39. About 6.3 m/s at P, stops at Q, and never reaches R. | [Q14](class-09/science/ch07-work-energy-and-simple-machines/work-energy-q11-q15.html#q14) | Nov 2026 |
+| 9 | Science (*Exploration*, NCERT) | 7 · Work, Energy and Simple Machines | Q15 · Falling coconut | A 1.5 kg coconut falls 10 m onto wet sand (about 14.1 m/s at impact); a magnified close-up shows the 3000 N sand force stopping it in 5 cm. | [Q15](class-09/science/ch07-work-energy-and-simple-machines/work-energy-q11-q15.html#q15) | Nov 2026 |
+
+**Chapter 7 is complete:** all 15 end-of-chapter questions (Revise, Reflect, Refine, NCERT pages 136–138)
+have an animation, using the textbook's own wording and figures.
 
 Questions that share a file are tabs on one page. Adding `#q3`, `#q8`, `#q12` and so on to the end of
 the address opens that question's tab directly.
-
-**Still to do in Chapter 7:** Q1 (true or false), Q2 (fill in the blanks) and Q4 (energy transformations)
-are not motion problems, so how to animate them is still to be decided. Q6 (the crane) is waiting for the
-textbook's exact wording, because it can be read in two ways. Q11, Q13 and Q14 are waiting for the
-textbook's graphs (Fig. 7.37, 7.38 and 7.39).
 
 ## How to open an animation
 
@@ -69,6 +74,7 @@ class-<NN>/<subject>/ch<NN>-<chapter-name>/<topic>-q<first>-q<last>.html
 ```
 
 For example, `class-09/science/ch07-work-energy-and-simple-machines/work-energy-q8-q10.html`.
+Question text is taken word for word from the NCERT textbook, and figures are redrawn from it.
 When a new animation is added, it goes in the matching folder and gets a new row in the index above.
 Every new animation must also open with its answers hidden, have the same **Show answers** button, and
 use the same one-screen layout (picture and button bar fit the window; text column beside the picture).
@@ -81,6 +87,7 @@ long-term copies.
 
 | File | Original page | Published | Updated |
 |---|---|---|---|
-| `work-energy-q3-q7.html` | <https://claude.ai/artifact/7LpiQEmGxubu81E81tHkrQ> | 1 Nov 2026 | |
-| `work-energy-q8-q10.html` | <https://claude.ai/artifact/NQVh5HYwETSH2N1kZBh4oi> | 29 Oct 2026 | 31 Oct 2026: Show answers button and one-screen layout added |
-| `work-energy-q11-q15.html` | <https://claude.ai/artifact/3Z2uGaFSGgT4goxPCjC37A> | 1 Nov 2026 | |
+| `work-energy-q1-q4.html` | <https://claude.ai/artifact/M9Xmo1qpgRUttsNX66Xj2b> | 2 Nov 2026 | |
+| `work-energy-q5-q7.html` | <https://claude.ai/artifact/7LpiQEmGxubu81E81tHkrQ> | 1 Nov 2026 (as Q3–Q7) | 2 Nov 2026: now Q5–Q7 |
+| `work-energy-q8-q10.html` | <https://claude.ai/artifact/NQVh5HYwETSH2N1kZBh4oi> | 29 Oct 2026 | 31 Oct: Show answers, one-screen layout; 2 Nov: NCERT wording |
+| `work-energy-q11-q15.html` | <https://claude.ai/artifact/3Z2uGaFSGgT4goxPCjC37A> | 1 Nov 2026 | 2 Nov 2026: Q11, Q13, Q14 added |

@@ -99,7 +99,7 @@ h1 {
   font-family: var(--font-display);
   font-weight: 800;
   font-stretch: 112%;
-  font-size: clamp(22px, 2.3vw, 30px);
+  font-size: clamp(20px, 2vw, 26px);
   line-height: 1.08;
   letter-spacing: -0.01em;
   text-wrap: balance;
@@ -131,14 +131,14 @@ h1 {
   display: inline-flex;
   align-items: baseline;
   gap: 8px;
-  padding: 10px 16px 9px;
+  padding: 10px 12px 9px;
   border: 1px solid transparent;
   border-bottom: none;
   border-radius: 8px 8px 0 0;
   background: transparent;
   color: var(--ink-2);
   font: inherit;
-  font-size: 15px;
+  font-size: 14px;
   white-space: nowrap;
   cursor: pointer;
 }
@@ -146,7 +146,7 @@ h1 {
   font-family: var(--font-display);
   font-weight: 800;
   font-stretch: 110%;
-  font-size: 19px;
+  font-size: 17px;
   color: var(--ink);
 }
 .tab:hover { color: var(--ink); }
@@ -222,7 +222,7 @@ h1 {
 .btn.icon { padding: 0; }
 .btn.primary { min-width: 112px; background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
 .btn svg { width: 16px; height: 16px; flex: none; }
-.scrub { flex: 1 1 140px; min-width: 80px; accent-color: var(--accent); }
+.scrub { flex: 1 1 80px; min-width: 80px; accent-color: var(--accent); }
 .opt { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; color: var(--ink-2); }
 .opt input { accent-color: var(--accent); width: 16px; height: 16px; }
 select {
@@ -252,6 +252,7 @@ select {
 }
 .steps button:hover { color: var(--ink); border-color: var(--ink-2); }
 .steps button[aria-current="step"] { border-color: var(--accent); background: var(--accent); color: var(--accent-ink); }
+.steps.many button { width: 27px; height: 27px; font-size: 12px; }   /* questions with many steps keep the bar on one row */
 .linkish {
   appearance: none;
   padding: 0;
@@ -279,7 +280,7 @@ select {
   .view { display: grid; gap: 10px; min-width: 0; }
   .side { display: grid; gap: 14px; align-content: start; min-width: 0; }
   .stage { width: auto; align-self: auto; }
-  .qline { font-size: 16px; }
+  .qline { font-size: 15px; }
   .cap-title { font-size: 20px; }
   .cap-text, .cap-ans { font-size: 15px; }
 }
@@ -331,16 +332,64 @@ select {
 <div class="wrap">
   <header class="top">
     <div class="titles">
-      <p class="eyebrow">Class 9 Science · Exploration · Chapter 7 · Revise, Reflect, Refine · Questions 12, 15</p>
+      <p class="eyebrow">Class 9 Science · Ch. 7 · Revise, Reflect, Refine · Q11–Q15</p>
       <h1>Work, Energy and Simple Machines</h1>
     </div>
     <div class="tabs" role="tablist" aria-label="Questions">
-      <button type="button" class="tab" role="tab" id="tab-q12" aria-controls="q12" aria-selected="true"><span class="n">Q12</span>Ball on the Moon</button>
+      <button type="button" class="tab" role="tab" id="tab-q11" aria-controls="q11" aria-selected="true"><span class="n">Q11</span>Force graph</button>
+      <button type="button" class="tab" role="tab" id="tab-q12" aria-controls="q12" aria-selected="false" tabindex="-1"><span class="n">Q12</span>Moon throw</button>
+      <button type="button" class="tab" role="tab" id="tab-q13" aria-controls="q13" aria-selected="false" tabindex="-1"><span class="n">Q13</span>Car braking</button>
+      <button type="button" class="tab" role="tab" id="tab-q14" aria-controls="q14" aria-selected="false" tabindex="-1"><span class="n">Q14</span>Ball on a track</button>
       <button type="button" class="tab" role="tab" id="tab-q15" aria-controls="q15" aria-selected="false" tabindex="-1"><span class="n">Q15</span>Falling coconut</button>
     </div>
   </header>
 
-  <section class="panel" id="q12" role="tabpanel" aria-labelledby="tab-q12">
+  <section class="panel" id="q11" role="tabpanel" aria-labelledby="tab-q11">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A 10 kilogram block slides along a floor marked from 0 to 4 metres while a force pushes it forward. Under the floor, the force-displacement graph of Fig. 7.37 fills in as the block moves, and a bar shows its kinetic energy growing from 180 joules."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>Q11</b> A 10.0 kg block is moving on horizontal floor with negligible friction. As shown in the Fig. 7.37, a variable force is applied on the block in its direction of motion from its position at 0 m till 4 m. If the block had a kinetic energy of 180 J when it was at 0 m, find the block’s speed (i) at 0 m, and (ii) at 4 m. Does the block have negative acceleration in any portion of its motion?</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Mass of the block = 10.0 kg; negligible friction.</li>
+          <li>Fig. 7.37: the force rises from 0 to 50 N between 0 and 1 m, stays at 50 N from 1 m to 3 m, and falls back to 0 between 3 m and 4 m. It acts in the direction of motion.</li>
+          <li>Kinetic energy at 0 m = 180 J.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The block’s speed (i) at 0 m and (ii) at 4 m, and whether it has negative acceleration anywhere.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>The graph is drawn under the floor with the same horizontal scale, so the dot on the graph is always directly below the block.</li>
+          <li>The motion is worked out from energy at every point (KE = 180 J + work done so far) and shown 10 times slower than real life.</li>
+          <li>The shaded area is the work done so far. The force, velocity and acceleration arrows each keep one scale throughout.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>(i) 180 = ½ × 10 × <i>v</i><sup>2</sup>, so <i>v</i><sup>2</sup> = 36 and <i>v</i> = 6 m/s.</li>
+          <li>Work done by the force = area under the graph = (½ × 1 × 50) + (50 × 2) + (½ × 1 × 50) = 25 + 100 + 25 = 150 J.</li>
+          <li>(ii) KE at 4 m = 180 + 150 = 330 J = ½ × 10 × <i>v</i><sup>2</sup>, so <i>v</i><sup>2</sup> = 66 and <i>v</i> ≈ 8.1 m/s.</li>
+          <li>The force never acts backward, so <i>a</i> = <i>F</i>/<i>m</i> is never negative. The acceleration gets smaller between 3 m and 4 m and is zero only at 4 m.</li>
+        </ol>
+        <p class="final">(i) 6 m/s (ii) about 8.1 m/s. No portion of the motion has negative acceleration.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel" id="q12" role="tabpanel" aria-labelledby="tab-q12" hidden>
     <div class="bench">
       <div class="view">
         <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="The same ball is thrown straight up with the same speed on Earth and on the Moon. The Earth ball rises to 8 metres and is caught, while the Moon ball keeps rising much higher before falling back, with energy bars for both."></canvas></div>
@@ -348,7 +397,7 @@ select {
         <div class="ctl"></div>
       </div>
       <div class="side">
-        <p class="qline"><b>Q12</b> The gravitational pull on the Moon is about 1/6 of that on Earth. An astronaut can throw a ball up to a height of 8 m on Earth. How high will the ball go on the Moon if it is thrown up with the same speed?</p>
+        <p class="qline"><b>Q12</b> The gravitational attraction on the surface of the Moon (lunar surface) is about 1/6th of that on the surface of the Earth. An astronaut can throw a ball up to a height of 8 m from the surface of the Earth. How far up will the ball thrown with the same upward velocity travel from the surface of the Moon?</p>
       </div>
     </div>
     <div class="facts">
@@ -357,18 +406,18 @@ select {
         <ul>
           <li>Gravity on the Moon ≈ 1/6 of gravity on Earth.</li>
           <li>On Earth the ball rises to 8 m.</li>
-          <li>The ball is thrown up with the same speed on the Moon.</li>
+          <li>The ball is thrown up with the same velocity on the Moon.</li>
         </ul>
       </div>
       <div>
         <h3>Asked</h3>
-        <p>The height the ball reaches on the Moon.</p>
+        <p>How high the ball goes on the Moon.</p>
       </div>
       <div>
         <h3>How the animation is drawn</h3>
         <ul>
           <li>Heights are true to size, with grid lines every 8 m. Air resistance is neglected (the Moon has no air).</li>
-          <li>The question gives no value of <i>g</i>. The animation uses <i>g</i> = 9.8 m/s² for Earth so it runs in real time; the heights do not depend on this choice.</li>
+          <li>The question gives no value of <i>g</i>. The animation uses <i>g</i> = 9.8 m s<sup>−2</sup> for Earth so it runs in real time; the heights do not depend on this choice.</li>
           <li>Both balls are thrown with the same speed <i>u</i>. The weight arrows are to scale (the Moon’s is 1/6 of Earth’s), and faint circles show each ball every 0.5 s.</li>
           <li>The heights on the grid, other than 8 m, are labelled only when the answers are shown.</li>
         </ul>
@@ -385,6 +434,94 @@ select {
     </div>
   </section>
 
+  <section class="panel" id="q13" role="tabpanel" aria-labelledby="tab-q13" hidden>
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A car on a road passes points A, B and C while the speed-time graph of Fig. 7.38 is traced below it. Its speed stays at 35 metres per second from A to B, then falls to zero from B to C, while a bar shows its kinetic energy turning into heat."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>Q13</b> A 1000 kg car is moving along a road at a constant speed. Suddenly, the driver notices some obstruction ahead and applies the brakes to come to a complete stop. The graphical representation of motion of the car starting from the instant the driver spots the traffic ahead is shown in Fig. 7.38. (i) Describe how the car moves between positions A and B. (ii) Calculate the kinetic energy of the car at A. (iii) State the work done by the brakes in bringing the car to a halt between B and C. (iv) What does the kinetic energy of the car transform into?</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Mass of the car = 1000 kg.</li>
+          <li>Fig. 7.38: speed 35 m/s from A (0 s) to B (1 s); it then falls steadily to 0 at C (3 s).</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>(i) How the car moves between A and B. (ii) Its kinetic energy at A. (iii) The work done by the brakes between B and C. (iv) What the kinetic energy turns into.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Distances along the road are to scale: A to B and B to C are each 35 m (the areas under the graph). The car is drawn roughly to scale.</li>
+          <li>The position of the obstruction is not given; it is drawn just beyond C.</li>
+          <li>The motion runs at half speed. The braking force is shown only while the car slows down; the glow at the wheels stands for heat.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>(i) From A to B the speed stays at 35 m/s: the car moves uniformly, with no acceleration, covering 35 × 1 = 35 m. (This is the time before the brakes take effect.)</li>
+          <li>(ii) KE at A = ½<i>mv</i><sup>2</sup> = ½ × 1000 × 35<sup>2</sup> = 6,12,500 J (6.125 × 10<sup>5</sup> J).</li>
+          <li>(iii) Work done by the brakes = final KE − initial KE = 0 − 6,12,500 J = −6,12,500 J. It is negative because the braking force acts opposite to the motion.</li>
+          <li>(iv) Mainly into heat in the brakes, tyres and road (through friction), with a little sound.</li>
+        </ol>
+        <p class="final">(i) Uniform motion at 35 m/s (ii) 6,12,500 J (iii) −6,12,500 J (iv) heat, and a little sound.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel" id="q14" role="tabpanel" aria-labelledby="tab-q14" hidden>
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A ball on a frictionless track shaped like the potential-energy graph of Fig. 7.39. It starts at rest at O, rolls down and over a small hump, passes P, stops at Q and rolls back, never reaching R, while an energy bar shows that its total stays at 30 joules."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>Q14</b> The potential energy-displacement graph of a 0.5 kg ball moving along a frictionless track is shown in Fig. 7.39. At O, the velocity of the ball is 0 m s<sup>−1</sup> and potential energy is 30 J. Calculate the velocity of the ball at P, Q and R.</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Mass of the ball = 0.5 kg; the track is frictionless.</li>
+          <li>Fig. 7.39: at O the ball is at rest and its potential energy is 30 J. The potential energy is 20 J at P, 30 J at Q and 40 J at R.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The velocity of the ball at P, Q and R.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>The track has the same shape as the potential-energy graph, read off Fig. 7.39 (the higher the track, the greater the PE).</li>
+          <li>O is at the top of a small hump, so the ball is given a tiny nudge to the right; this does not change its 30 J.</li>
+          <li>The figure’s displacement axis has no scale, so the timing is illustrative; the speed at every point comes from energy. The ball is treated as sliding, without rolling.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>The track is frictionless, so the total energy stays 30 J (0 KE + 30 J PE at O). At any point KE = 30 J − PE and <i>v</i> = √(2KE/<i>m</i>).</li>
+          <li>At P: KE = 30 − 20 = 10 J, so <i>v</i> = √(2 × 10 / 0.5) = √40 ≈ 6.3 m/s.</li>
+          <li>At Q: KE = 30 − 30 = 0, so <i>v</i> = 0. The ball stops for an instant and turns back.</li>
+          <li>At R: the PE would be 40 J, more than the 30 J the ball has. KE cannot be negative, so the ball never reaches R and has no velocity there.</li>
+        </ol>
+        <p class="final">P: about 6.3 m/s. Q: 0 m/s. R: the ball never gets there.</p>
+      </div>
+    </div>
+  </section>
+
   <section class="panel" id="q15" role="tabpanel" aria-labelledby="tab-q15" hidden>
     <div class="bench">
       <div class="view">
@@ -393,7 +530,7 @@ select {
         <div class="ctl"></div>
       </div>
       <div class="side">
-        <p class="qline"><b>Q15</b> A 1.5 kg coconut falls from the top of a 10 m tall coconut tree onto wet sand and comes to rest, making a depression. (i) What is its speed just before it hits the sand? (ii) If the sand’s average resistive force is 3000 N and all the coconut’s energy goes into making the depression, how deep is it? Take <i>g</i> = 10 m/s².</p>
+        <p class="qline"><b>Q15</b> A coconut of mass 1.5 kg falls from the top of a coconut tree onto the wet sand on a beach. The height of the tree is 10 m. On impact, the coconut comes to rest by making a depression in the sand. (i) Calculate the velocity of the coconut just before it hits the sand. (ii) Assume that the average resistive force of sand is 3000 N and all of the coconut’s energy is used to create the depression in the sand. Calculate the depth of the depression the coconut makes in the sand. Assume <i>g</i> = 10 m s<sup>−2</sup>.</p>
       </div>
     </div>
     <div class="facts">
@@ -401,14 +538,14 @@ select {
         <h3>Given</h3>
         <ul>
           <li>Mass of the coconut <i>m</i> = 1.5 kg; it falls from rest.</li>
-          <li>Height of the tree <i>h</i> = 10 m; <i>g</i> = 10 m/s².</li>
+          <li>Height of the tree <i>h</i> = 10 m; <i>g</i> = 10 m s<sup>−2</sup>.</li>
           <li>Average resistive force of the sand <i>F</i> = 3000 N.</li>
-          <li>All the coconut’s energy goes into making the depression.</li>
+          <li>All the coconut’s energy is used to create the depression.</li>
         </ul>
       </div>
       <div>
         <h3>Asked</h3>
-        <p>(i) The coconut’s speed just before it hits the sand. (ii) The depth of the depression.</p>
+        <p>(i) The velocity of the coconut just before it hits the sand. (ii) The depth of the depression.</p>
       </div>
       <div>
         <h3>How the animation is drawn</h3>
@@ -436,13 +573,14 @@ select {
     <ul class="key" aria-label="Colour key">
       <li><svg viewBox="0 0 28 12" aria-hidden="true"><path d="M1 6h19" stroke="var(--vel)" stroke-width="3"/><path d="M27 6l-8-5v10z" fill="var(--vel)"/></svg>velocity</li>
       <li><svg viewBox="0 0 28 12" aria-hidden="true"><path d="M1 6h19" stroke="var(--force)" stroke-width="3"/><path d="M27 6l-8-5v10z" fill="var(--force)"/></svg>force</li>
+      <li><svg viewBox="0 0 28 12" aria-hidden="true"><path d="M1 6h19" stroke="var(--acc)" stroke-width="3"/><path d="M27 6l-8-5v10z" fill="var(--acc)"/></svg>acceleration</li>
       <li><svg viewBox="0 0 28 12" aria-hidden="true"><rect x="4" y="1" width="20" height="10" fill="var(--ke)"/></svg>kinetic energy</li>
       <li><svg viewBox="0 0 28 12" aria-hidden="true"><rect x="4" y="1" width="20" height="10" fill="var(--pe)"/></svg>potential energy</li>
-      <li><svg viewBox="0 0 28 12" aria-hidden="true"><rect x="4.5" y="1.5" width="19" height="9" fill="none" stroke="var(--ink-2)"/><path d="M6 10l7-8M12 10l7-8M18 10l5-6" stroke="var(--loss)" stroke-width="1.5"/></svg>energy used on the sand</li>
+      <li><svg viewBox="0 0 28 12" aria-hidden="true"><rect x="4.5" y="1.5" width="19" height="9" fill="none" stroke="var(--ink-2)"/><path d="M6 10l7-8M12 10l7-8M18 10l5-6" stroke="var(--loss)" stroke-width="1.5"/></svg>energy turned into heat or used on the sand</li>
     </ul>
   </section>
 
-  <p class="foot">Questions paraphrased from the NCERT Class 9 Science textbook <i>Exploration</i>, Chapter 7 (Work, Energy and Simple Machines), Revise, Reflect, Refine. Click a picture or press Space to play or pause; the arrow keys move between steps. Show answers reveals the worked answer and the calculated values for that question only; every time the page opens, the answers start hidden.</p>
+  <p class="foot">Questions from the NCERT Class 9 Science textbook <i>Exploration</i>, Chapter 7 (Work, Energy, and Simple Machines), Revise, Reflect, Refine, pages 136–138. Click a picture or press Space to play or pause; the arrow keys move between steps. Show answers reveals the worked answer and the calculated values for that question only; every time the page opens, the answers start hidden.</p>
 </div>
 
 <script>
@@ -474,6 +612,17 @@ const glide = (u, r = 0.1) => {
   return vm * (u - r / 2);
 };
 const glideRate = (u, r = 0.1) => (u <= 0 || u >= 1 ? 0 : u < r ? u / r : u > 1 - r ? (1 - u) / r : 1);
+// split text into lines that fit a width, in the body font
+function wrapLines(ctx, str, maxW, size, weight = 400) {
+  ctx.save(); ctx.font = `${weight} ${size}px ${FB}`;
+  const lines = []; let cur = '';
+  for (const w of str.split(' ')) {
+    const t = cur ? cur + ' ' + w : w;
+    if (cur && ctx.measureText(t).width > maxW) { lines.push(cur); cur = w; } else cur = t;
+  }
+  if (cur) lines.push(cur);
+  ctx.restore(); return lines;
+}
 
 function seg(ctx, x1, y1, x2, y2) { ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y2); ctx.stroke(); }
 function poly(ctx, pts) {
@@ -578,6 +727,298 @@ function rotArrow(ctx, x, y, r, cw, color, alpha = 1, lw = 2) {
   ctx.restore();
 }
 function bg(ctx) { ctx.fillStyle = P.sheet; ctx.fillRect(0, 0, VW, VH); }
+
+/* ---------- Q11: a block pushed by a variable force (Fig. 7.37) ---------- */
+const Q11 = (() => {
+  const M = 10, K0 = 180;                                    // kg; kinetic energy at 0 m (J)
+  const F = x => x < 1 ? 50 * x : x < 3 ? 50 : x <= 4 ? 50 * (4 - x) : 0;
+  const W = x => x < 1 ? 25 * x * x : x < 3 ? 25 + 50 * (x - 1) : 125 + 50 * (x - 3) - 25 * (x - 3) ** 2;   // area under the graph
+  const vAt = x => Math.sqrt(2 * (K0 + W(x)) / M);
+  // time to reach each position: t(x) = ∫ dx / v
+  const N = 800, TX = [0];
+  for (let i = 1; i <= N; i++) { const x = 4 * (i - 0.5) / N; TX.push(TX[i - 1] + (4 / N) / vAt(x)); }
+  const tOf = x => TX[Math.round(clamp(x / 4) * N)];
+  const xOf = tm => { let lo = 0, hi = N; if (tm >= TX[N]) return 4; while (hi - lo > 1) { const mid = (lo + hi) >> 1; TX[mid] <= tm ? lo = mid : hi = mid; } return 4 * (lo + (tm - TX[lo]) / (TX[lo + 1] - TX[lo])) / N; };
+  const SLOW = 10;
+  const S1 = 4, S2 = S1 + tOf(1) * SLOW, S3 = S1 + tOf(3) * SLOW, S4 = S1 + tOf(4) * SLOW, S5 = S4 + 5;
+  const X0 = 110, PXM = 112, FY = 230, GB = 470, GS = 2.6;   // 0 m at X0; px per metre; floor; graph base; px per newton
+  const xp = x => X0 + x * PXM;
+  const stages = [
+    { title: 'Already moving at 0 m', dur: S1,
+      text: 'At 0 m the 10.0 kg block is already moving, with kinetic energy 180 J. The floor has negligible friction, so the only horizontal force is the applied force F, which acts in the direction of motion. Fig. 7.37 shows F at each position.',
+      ans: '(i) KE = ½mv²: 180 = ½ × 10 × v², so v² = 36 and v = 6 m/s at 0 m.' },
+    { title: '0 m to 1 m: the force grows', dur: S2 - S1,
+      text: 'The force grows steadily from 0 to 50 N. The work it does is the area under the graph, and that much energy is added to the block’s kinetic energy.',
+      ans: 'Work from 0 to 1 m = area of the triangle = ½ × 1 × 50 = 25 J.' },
+    { title: '1 m to 3 m: a steady 50 N', dur: S3 - S2,
+      text: 'A constant 50 N pushes the block for 2 m. Its acceleration is steady and it keeps speeding up.',
+      ans: 'Work from 1 to 3 m = area of the rectangle = 50 × 2 = 100 J.' },
+    { title: '3 m to 4 m: the force shrinks', dur: S4 - S3,
+      text: 'The force falls to zero at 4 m, but until then it still points forward, so the block still speeds up, only more gently. The acceleration never points backward.',
+      ans: 'Work from 3 to 4 m = ½ × 1 × 50 = 25 J. Total work = 25 + 100 + 25 = 150 J.' },
+    { title: 'At 4 m', dur: S5 - S4,
+      text: 'All the work done by the force has been added to the block’s kinetic energy.',
+      ans: '(ii) KE at 4 m = 180 + 150 = 330 J = ½ × 10 × v², so v² = 66 and v ≈ 8.1 m/s. No: F is never backward, so the acceleration is never negative.' },
+  ];
+  function graph(ctx, x, ans) {
+    const top = GB - 50 * GS;
+    ctx.save(); ctx.fillStyle = P.ke; ctx.globalAlpha = 0.35; ctx.beginPath(); ctx.moveTo(xp(0), GB);
+    for (let i = 0; i <= 100; i++) { const xx = x * i / 100; ctx.lineTo(xp(xx), GB - F(xx) * GS); }
+    ctx.lineTo(xp(x), GB); ctx.closePath(); ctx.fill(); ctx.restore();
+    vline(ctx, X0, top - 20, GB, P.ink2, 1.5); hline(ctx, X0, xp(4) + 30, GB, P.ink2, 1.5);
+    for (let i = 1; i <= 4; i++) { vline(ctx, xp(i), GB, GB + 6, P.ink2, 1.2); label(ctx, String(i), xp(i), GB + 16, { align: 'center', size: 12, color: P.ink2 }); }
+    label(ctx, '0', X0 - 8, GB + 10, { align: 'right', size: 12, color: P.ink2 });
+    hline(ctx, X0 - 6, X0, top, P.ink2, 1.2); label(ctx, '50', X0 - 10, top, { align: 'right', size: 12, color: P.ink2 });
+    hline(ctx, X0, xp(3), top, P.grid2, 1, [4, 4]);
+    label(ctx, 'F (N)', X0 - 10, top - 26, { align: 'center', size: 12, color: P.ink2 });
+    label(ctx, 'displacement (m)', xp(4) + 34, GB + 16, { size: 12, color: P.ink2 });
+    ctx.save(); ctx.strokeStyle = P.force; ctx.lineWidth = 3; poly(ctx, [[xp(0), GB], [xp(1), top], [xp(3), top], [xp(4), GB]]); ctx.restore();
+    ctx.fillStyle = P.force; ctx.beginPath(); ctx.arc(xp(x), GB - F(x) * GS, 5, 0, Math.PI * 2); ctx.fill();
+    vline(ctx, xp(x), FY + 30, GB, P.ink2, 1, [3, 4]);
+    if (ans) {
+      if (x >= 1) label(ctx, '25 J', xp(0.68), GB - 30, { align: 'center', weight: 700, size: 14 });
+      if (x >= 3) label(ctx, '100 J', xp(2), GB - 60, { align: 'center', weight: 700, size: 15 });
+      if (x >= 4) label(ctx, '25 J', xp(3.32), GB - 30, { align: 'center', weight: 700, size: 14 });
+    }
+  }
+  function draw(ctx, t, ans) {
+    bg(ctx);
+    vline(ctx, 640, 16, 524, P.rule, 1);
+    const tm = t < S1 ? 0 : (t - S1) / SLOW, x = t >= S4 ? 4 : xOf(tm), v = vAt(x), f = F(x);
+    // floor and position marks
+    hline(ctx, 40, 620, FY, P.obj, 2);
+    ctx.save(); ctx.strokeStyle = P.ink2; ctx.globalAlpha = 0.45; ctx.lineWidth = 1;
+    for (let px = 46; px < 620; px += 16) seg(ctx, px, FY + 1, px - 9, FY + 10);
+    ctx.restore();
+    for (let i = 0; i <= 4; i++) { vline(ctx, xp(i), FY + 12, FY + 22, P.ink, 1.5); label(ctx, `${i} m`, xp(i), FY + 34, { align: 'center', size: 12, weight: 700 }); }
+    const bw = 56, bh = 44, bx = xp(x);
+    ctx.fillStyle = P.wood; ctx.strokeStyle = P.obj; ctx.lineWidth = 2; ctx.fillRect(bx - bw / 2, FY - bh, bw, bh); ctx.strokeRect(bx - bw / 2, FY - bh, bw, bh);
+    label(ctx, '10 kg', bx, FY - bh / 2, { align: 'center', weight: 700, size: 13, haloColor: P.wood });
+    if (f > 0.5) { arrow(ctx, bx - bw / 2 - 4 - f * 1.4, FY - bh / 2, bx - bw / 2 - 4, FY - bh / 2, P.force, { lw: 4.5, head: 12 }); label(ctx, 'F', bx - bw / 2 - 12 - f * 0.7, FY - bh / 2 - 16, { align: 'center', color: P.force, weight: 700, italic: true, size: 15 }); }
+    arrow(ctx, bx, FY - bh - 22, bx + v * 9, FY - bh - 22, P.vel, { lw: 4.5, head: 12 });
+    label(ctx, ans ? `v = ${v.toFixed(1)} m/s` : 'v', bx + v * 9 + 8, FY - bh - 22, { color: P.vel, weight: 700, size: 15, italic: !ans });
+    const a = f / M;
+    if (a > 0.05) { arrow(ctx, bx, FY - bh - 60, bx + a * 14, FY - bh - 60, P.acc, { lw: 3.5, head: 10 }); label(ctx, 'a', bx + a * 14 + 8, FY - bh - 60, { color: P.acc, weight: 700, italic: true, size: 15 }); }
+    else label(ctx, 'a = 0', bx, FY - bh - 60, { align: 'center', color: P.acc, weight: 700, size: 14 });
+    graph(ctx, x, ans);
+    // kinetic energy
+    const base = 470, k = 0.85, ke = K0 + W(x);
+    label(ctx, 'Kinetic energy of the block', 790, 30, { align: 'center', weight: 700, size: 15 });
+    ctx.fillStyle = P.ke; ctx.fillRect(760, base - ke * k, 60, ke * k);
+    ctx.strokeStyle = P.obj; ctx.lineWidth = 1.5; ctx.strokeRect(760, base - 330 * k, 60, 330 * k);
+    hline(ctx, 750, 830, base - K0 * k, P.ink, 1.5, [5, 4]);
+    label(ctx, 'at 0 m', 836, base - K0 * k, { size: 12, color: P.ink2 });
+    hatchRect(ctx, 760, base - ke * k, 60, (ke - K0) * k, P.ke, P.keSoft);
+    if (ke - K0 > 8) label(ctx, 'work done by F', 836, base - (K0 + ke) / 2 * k, { size: 12, color: P.ink2 });
+    if (ans) label(ctx, `${Math.round(ke)} J`, 790, base - ke * k - 14, { align: 'center', weight: 700, size: 15 });
+    label(ctx, 'negligible friction; motion shown 10 times slower', 24, 528, { size: 12, color: P.ink2 });
+  }
+  return { stages, draw };
+})();
+
+/* ---------- Q13: a car brakes to a stop (Fig. 7.38) ---------- */
+const Q13 = (() => {
+  const M = 1000, V0 = 35, TA = 1, TC = 3, DEC = V0 / (TC - TA);   // B at 1 s, C at 3 s
+  const SLOW = 2;
+  const S1 = 4, S2 = S1 + TA * SLOW, S3 = S1 + TC * SLOW, S4 = S3 + 5;
+  const RX = 60, PXM = 7.6, RY = 230, GX = 110, GT = 150, GB = 480, GV = 4;
+  const sOf = tm => tm <= TA ? V0 * tm : V0 * TA + V0 * (tm - TA) - 0.5 * DEC * (tm - TA) ** 2;
+  const vOf = tm => tm <= TA ? V0 : Math.max(0, V0 - DEC * (tm - TA));
+  const fmt = j => Math.round(j).toLocaleString('en-IN');
+  const stages = [
+    { title: 'A: the driver spots the obstruction', dur: S1,
+      text: 'The 1000 kg car moves along the road at a constant speed of 35 m/s. At A the driver notices an obstruction ahead. Fig. 7.38 shows its speed from this instant.',
+      ans: '(ii) KE at A = ½mv² = ½ × 1000 × 35² = 6,12,500 J.' },
+    { title: 'A to B', dur: S2 - S1,
+      text: 'For the first second the speed stays at 35 m/s: the graph is flat. The brakes have not acted yet.',
+      ans: '(i) Between A and B the car moves uniformly: constant speed 35 m/s, zero acceleration, covering 35 m in 1 s.' },
+    { title: 'B to C: braking', dur: S3 - S2,
+      text: 'The brakes act. The speed falls steadily from 35 m/s to zero in 2 s. The car’s kinetic energy is being turned into heat in the brakes and tyres.',
+      ans: '(iii) Work done by the brakes = final KE − initial KE = 0 − 6,12,500 J = −6,12,500 J.' },
+    { title: 'Stopped at C', dur: S4 - S3,
+      text: 'The car is at rest. All of its kinetic energy has been transformed.',
+      ans: '(iv) The kinetic energy is transformed mainly into heat (in the brakes, tyres and road), with a little sound.' },
+  ];
+  function car(ctx, x, braking, u) {
+    const y = RY;
+    ctx.fillStyle = P.objFill2; ctx.strokeStyle = P.obj; ctx.lineWidth = 2;
+    ctx.fillRect(x - 40, y - 21, 40, 13); ctx.strokeRect(x - 40, y - 21, 40, 13);                 // body: the front is at x
+    ctx.beginPath(); ctx.moveTo(x - 32, y - 21); ctx.lineTo(x - 26, y - 32); ctx.lineTo(x - 11, y - 32); ctx.lineTo(x - 4, y - 21); ctx.closePath(); ctx.fill(); ctx.stroke();
+    for (const wx of [x - 31, x - 9]) {
+      if (braking) { ctx.save(); ctx.globalAlpha = 0.5 + 0.3 * Math.sin(u * 20); ctx.fillStyle = P.ke; ctx.beginPath(); ctx.arc(wx, y - 6, 10, 0, Math.PI * 2); ctx.fill(); ctx.restore(); }
+      ctx.fillStyle = P.obj; ctx.beginPath(); ctx.arc(wx, y - 6, 6, 0, Math.PI * 2); ctx.fill();
+    }
+  }
+  function draw(ctx, t, ans) {
+    bg(ctx);
+    vline(ctx, 640, 16, 524, P.rule, 1);
+    const tm = t < S1 ? 0 : Math.min(TC, (t - S1) / SLOW), s = sOf(tm), v = vOf(tm), braking = tm > TA && tm < TC;
+    // road, marks A, B, C and the obstruction
+    ctx.fillStyle = P.road; ctx.fillRect(30, RY, 600, 26); hline(ctx, 30, 630, RY, P.obj, 2);
+    [['A', 0], ['B', 35], ['C', 70]].forEach(([n, d]) => { vline(ctx, RX + d * PXM, RY - 70, RY + 26, P.ink2, 1.2, [4, 4]); label(ctx, n, RX + d * PXM, RY - 82, { align: 'center', weight: 700, size: 16 }); });
+    ctx.fillStyle = P.force;
+    for (const ox of [RX + 73 * PXM, RX + 74.5 * PXM]) { ctx.beginPath(); ctx.moveTo(ox - 7, RY); ctx.lineTo(ox, RY - 24); ctx.lineTo(ox + 7, RY); ctx.closePath(); ctx.fill(); }
+    label(ctx, 'obstruction', 632, RY + 42, { align: 'right', size: 12, color: P.ink2 });
+    car(ctx, RX + s * PXM, braking, t);
+    const cx = RX + s * PXM;
+    if (v > 0.3) { arrow(ctx, cx - 18, RY - 50, cx - 18 + v * 2, RY - 50, P.vel, { lw: 4.5, head: 12 }); label(ctx, ans ? `${v.toFixed(1)} m/s` : 'v', cx - 10 + v * 2, RY - 50, { color: P.vel, weight: 700, size: 14, italic: !ans }); }
+    if (braking) { arrow(ctx, cx - 4, RY + 12, cx - 64, RY + 12, P.force, { lw: 4, head: 11 }); label(ctx, 'braking force', cx - 34, RY + 42, { align: 'center', color: P.force, weight: 700, size: 13 }); }
+    if (t < S1 + 0.6) label(ctx, '!', RX - 18, RY - 46, { align: 'center', weight: 800, size: 24, color: P.force, display: true });
+    if (ans && tm >= TC) {
+      dim(ctx, RX, RX + 35 * PXM, RY - 112, P.ink2); label(ctx, '35 m', RX + 17.5 * PXM, RY - 124, { align: 'center', size: 13, weight: 700 });
+      dim(ctx, RX + 35 * PXM, RX + 70 * PXM, RY - 112, P.ink2); label(ctx, '35 m', RX + 52.5 * PXM, RY - 124, { align: 'center', size: 13, weight: 700 });
+    }
+    // speed-time graph (Fig. 7.38)
+    const gx = tt => GX + tt * GT, gy = vv => GB - vv * GV;
+    vline(ctx, GX, gy(42), GB, P.ink2, 1.5); hline(ctx, GX, gx(3.3), GB, P.ink2, 1.5);
+    for (let i = 1; i <= 3; i++) { vline(ctx, gx(i), GB, GB + 6, P.ink2, 1.2); label(ctx, String(i), gx(i), GB + 16, { align: 'center', size: 12, color: P.ink2 }); }
+    label(ctx, '0', GX - 8, GB + 10, { align: 'right', size: 12, color: P.ink2 });
+    hline(ctx, GX - 6, GX, gy(35), P.ink2, 1.2); label(ctx, '35', GX - 10, gy(35), { align: 'right', size: 12, color: P.ink2 });
+    label(ctx, 'speed (m/s)', GX, gy(42) - 12, { align: 'center', size: 12, color: P.ink2 });
+    label(ctx, 'time (s)', gx(3.3) + 6, GB, { size: 12, color: P.ink2 });
+    ctx.save(); ctx.strokeStyle = P.vel; ctx.lineWidth = 3; poly(ctx, [[gx(0), gy(35)], [gx(1), gy(35)], [gx(3), gy(0)]]); ctx.restore();
+    [['A', 0, 35], ['B', 1, 35], ['C', 3, 0]].forEach(([n, tt, vv]) => label(ctx, n, gx(tt) + 8, gy(vv) - 12, { weight: 700, size: 14 }));
+    ctx.fillStyle = P.vel; ctx.beginPath(); ctx.arc(gx(tm), gy(v), 5, 0, Math.PI * 2); ctx.fill();
+    // energy
+    const base = 470, full = 300, ke = 0.5 * M * v * v, E = 0.5 * M * V0 * V0, hk = full * ke / E;
+    label(ctx, 'Energy of the car', 790, 30, { align: 'center', weight: 700, size: 15 });
+    ctx.fillStyle = P.ke; ctx.fillRect(760, base - hk, 60, hk);
+    hatchRect(ctx, 760, base - full, 60, full - hk, P.loss, P.sheet);
+    ctx.strokeStyle = P.obj; ctx.lineWidth = 1.5; ctx.strokeRect(760, base - full, 60, full);
+    label(ctx, ans ? `kinetic ${fmt(ke)} J` : 'kinetic (KE)', 828, base - Math.max(10, hk / 2), { size: 12, weight: 700, color: P.ke });
+    if (full - hk > 16) label(ctx, ans ? `heat ${fmt(E - ke)} J` : 'heat (and sound)', 828, base - hk - (full - hk) / 2, { size: 12, weight: 700, color: P.ink2 });
+    label(ctx, 'motion shown at half speed; the obstruction’s position is not given', 24, 528, { size: 12, color: P.ink2 });
+  }
+  return { stages, draw };
+})();
+
+/* ---------- Q14: a ball on a frictionless track (Fig. 7.39) ---------- */
+const Q14 = (() => {
+  const M = 0.5, E = 30;
+  // Fig. 7.39 read off the graph: [x (grid units), PE (J)]; O is the top of the first hump (30 J), P 20 J, Q 30 J, R 40 J
+  const PTS = [[0.06, 28.3], [0.36, 29.7], [0.76, 30], [1.03, 29.3], [1.27, 26.2], [1.58, 21.2], [1.88, 16.9], [2.24, 12], [2.64, 8.3],
+    [3.09, 6.8], [3.6, 6.6], [4.06, 7.7], [4.45, 10.1], [4.91, 14.4], [5.36, 17.5], [5.82, 18.8], [6.27, 19], [6.73, 18.1], [7.18, 16.3],
+    [7.64, 14.2], [8.09, 12], [8.55, 11], [9, 10.7], [9.45, 11.4], [9.91, 13.2], [10.36, 16.3], [10.88, 20], [11.33, 24.5], [11.85, 30],
+    [12.48, 34.2], [12.94, 37.3], [13.36, 40], [13.7, 41.9]];
+  const XO = 0.76, XP = 10.88, XQ = 11.85, XR = 13.36;
+  // monotone cubic interpolation (no overshoot, so O stays the top of its hump)
+  const n = PTS.length, dk = [], mk = [];
+  for (let i = 0; i < n - 1; i++) dk.push((PTS[i + 1][1] - PTS[i][1]) / (PTS[i + 1][0] - PTS[i][0]));
+  for (let i = 0; i < n; i++) mk.push(i === 0 ? dk[0] : i === n - 1 ? dk[n - 2] : dk[i - 1] * dk[i] <= 0 ? 0 : (dk[i - 1] + dk[i]) / 2);
+  for (let i = 0; i < n - 1; i++) {
+    if (dk[i] === 0) { mk[i] = mk[i + 1] = 0; continue; }
+    const a = mk[i] / dk[i], b = mk[i + 1] / dk[i], s = a * a + b * b;
+    if (s > 9) { const tau = 3 / Math.sqrt(s); mk[i] = tau * a * dk[i]; mk[i + 1] = tau * b * dk[i]; }
+  }
+  function U(x) {
+    x = clamp(x, PTS[0][0], PTS[n - 1][0]);
+    let i = 0; while (i < n - 2 && x > PTS[i + 1][0]) i++;
+    const [x0, y0] = PTS[i], [x1, y1] = PTS[i + 1], h = x1 - x0, s = (x - x0) / h;
+    const h00 = 2 * s ** 3 - 3 * s * s + 1, h10 = s ** 3 - 2 * s * s + s, h01 = -2 * s ** 3 + 3 * s * s, h11 = s ** 3 - s * s;
+    return h00 * y0 + h10 * h * mk[i] + h01 * y1 + h11 * h * mk[i + 1];
+  }
+  const dU = x => (U(x + 1e-4) - U(x - 1e-4)) / 2e-4;
+  // the ball's motion along the track (1 grid unit taken as 1 m: the figure gives no scale, so timing is illustrative)
+  const traj = [];
+  {
+    let x = XO + 0.05, v = Math.sqrt(Math.max(0, 2 * (E - U(x)) / M)), tm = 0, dt = 2e-4, turned = false;
+    while (tm < 20) {
+      if (traj.length === 0 || tm - traj[traj.length - 1].t >= 0.01) traj.push({ t: tm, x, v });
+      const a1 = -dU(x) / M; x += v * dt + 0.5 * a1 * dt * dt; const a2 = -dU(x) / M; v += 0.5 * (a1 + a2) * dt; tm += dt;
+      if (v < 0) turned = true;
+      if (turned && U(x) >= 29.9) { traj.push({ t: tm, x, v }); break; }       // back at O (the last creep onto the hump top is skipped)
+    }
+  }
+  const firstAt = test => traj.find(test);
+  const tStart = firstAt(p => U(p.x) < 29.9).t;              // skip the slow roll off the very top of the hump
+  const tP = firstAt(p => p.x >= XP).t, tQ = firstAt(p => p.v < 0).t, tEnd = traj[traj.length - 1].t;
+  const SLOW = 2;
+  const S1 = 4, S2 = S1 + (tP - tStart) * SLOW, S3 = S2 + 3.5, S4 = S3 + (tQ - tP) * SLOW, S5 = S4 + 4.5, S6 = S5 + (tEnd - tQ) * SLOW;
+  function at(tm) {
+    if (tm <= 0) return { x: XO, v: 0 };
+    let lo = 0, hi = traj.length - 1;
+    while (hi - lo > 1) { const mid = (lo + hi) >> 1; traj[mid].t <= tm ? lo = mid : hi = mid; }
+    const a = traj[lo], b = traj[hi], f = clamp((tm - a.t) / ((b.t - a.t) || 1));
+    return { x: a.x + (b.x - a.x) * f, v: a.v + (b.v - a.v) * f };
+  }
+  function state(t) {
+    if (t < S1) return { x: XO, v: 0, ph: 0 };
+    if (t < S2) return { ...at(tStart + (t - S1) / SLOW), ph: 1 };
+    if (t < S3) return { x: XP, v: Math.sqrt(2 * (E - U(XP)) / M), ph: 2 };   // paused exactly at P
+    if (t < S4) return { ...at(tP + (t - S3) / SLOW), ph: 3 };
+    if (t < S5) return { x: XQ, v: 0, ph: 4 };
+    if (t < S6) return { ...at(tQ + (t - S5) / SLOW), ph: 5 };
+    return { ...traj[traj.length - 1], ph: 6 };
+  }
+  const stages = [
+    { title: 'At rest at O', dur: S1,
+      text: 'The 0.5 kg ball is at rest at O, where its potential energy is 30 J. The track is frictionless, so its total mechanical energy stays 30 J all the way. The track has the same shape as the graph in Fig. 7.39.',
+      ans: 'Total energy = KE + PE = 0 + 30 J = 30 J at every point.' },
+    { title: 'Rolling down and over the hump', dur: S2 - S1,
+      text: 'As the ball goes down, potential energy turns into kinetic energy and it speeds up. It slows down going over the small hump, but it has enough energy to cross it.',
+      ans: 'At any point: KE = 30 J − PE, and v = √(2 × KE / m).' },
+    { title: 'At P', dur: S3 - S2,
+      text: 'At P the potential energy is 20 J, so the rest of the 30 J is kinetic energy.',
+      ans: 'At P: KE = 30 − 20 = 10 J, so v = √(2 × 10 / 0.5) = √40 ≈ 6.3 m/s.' },
+    { title: 'Climbing to Q', dur: S4 - S3,
+      text: 'The ball climbs and slows down. At Q its potential energy is 30 J, all of its energy, so it stops for an instant.',
+      ans: 'At Q: PE = 30 J, so KE = 0 and v = 0.' },
+    { title: 'Why it cannot reach R', dur: S5 - S4,
+      text: 'To reach R the ball would need 40 J of potential energy, but it only has 30 J in total. So it turns back at Q.',
+      ans: 'At R: PE would be 40 J > 30 J, so KE would be negative, which is impossible. The ball never reaches R; it has no velocity there.' },
+    { title: 'Rolling back to O', dur: S6 - S5,
+      text: 'The ball rolls back the way it came and returns to O. With no friction it keeps going to and fro between O and Q.',
+      ans: 'P: ≈ 6.3 m/s; Q: 0 m/s; R: never reached.' },
+    { title: 'Back at O', dur: 3, text: 'The ball is back at O with the same 30 J it started with.', ans: 'Mechanical energy is conserved on a frictionless track.' },
+  ];
+  const TX0 = 46, TXS = 37, TY0 = 470, TYS = 8.4;            // track drawing: px per grid unit; px per joule
+  const px = x => TX0 + x * TXS, py = u => TY0 - u * TYS;
+  function draw(ctx, t, ans) {
+    bg(ctx);
+    vline(ctx, 590, 16, 524, P.rule, 1);
+    const st = state(t), u = U(st.x);
+    // energy levels as in the figure
+    for (const [lv, name] of [[40, '40 J'], [30, '30 J'], [20, '20 J'], [10, '10 J']]) { hline(ctx, TX0 - 6, 560, py(lv), P.grid2, 1, [5, 5]); label(ctx, name, TX0 - 10, py(lv), { align: 'right', size: 12, color: P.ink2 }); }
+    // the track: same shape as the potential-energy graph
+    ctx.save(); ctx.beginPath(); ctx.moveTo(px(PTS[0][0]), TY0 + 10);
+    for (let x = PTS[0][0]; x <= PTS[n - 1][0]; x += 0.05) ctx.lineTo(px(x), py(U(x)));
+    ctx.lineTo(px(PTS[n - 1][0]), TY0 + 10); ctx.closePath(); ctx.fillStyle = P.objFill; ctx.fill();
+    ctx.beginPath(); for (let x = PTS[0][0]; x <= PTS[n - 1][0]; x += 0.05) { const X = px(x), Y = py(U(x)); x === PTS[0][0] ? ctx.moveTo(X, Y) : ctx.lineTo(X, Y); }
+    ctx.strokeStyle = P.obj; ctx.lineWidth = 3; ctx.stroke(); ctx.restore();
+    label(ctx, 'potential energy (J)', TX0 - 10, py(44), { size: 12, color: P.ink2 });
+    for (const [name, x] of [['O', XO], ['P', XP], ['Q', XQ], ['R', XR]]) {
+      ctx.fillStyle = P.ink; ctx.beginPath(); ctx.arc(px(x), py(U(x)), 4, 0, Math.PI * 2); ctx.fill();
+      label(ctx, name, px(x) + (name === 'O' ? -4 : 10), py(U(x)) - 16, { weight: 700, size: 15 });
+    }
+    if (ans) {
+      if (t >= S2) label(ctx, 'v ≈ 6.3 m/s', px(XP) + 12, py(20) + 18, { weight: 700, size: 13, color: P.vel });
+      if (t >= S4) label(ctx, 'never reached', px(XR) - 6, py(40) - 34, { align: 'right', weight: 700, size: 13, color: P.force });
+    }
+    // the ball, sitting on the track
+    const slope = -dU(st.x) * TYS / TXS, nx = -slope / Math.hypot(1, slope), ny = -1 / Math.hypot(1, slope), r = 10;
+    const bx = px(st.x) + nx * r, by = py(u) + ny * r;
+    ctx.fillStyle = P.vel; ctx.beginPath(); ctx.arc(bx, by, r, 0, Math.PI * 2); ctx.fill();
+    const vl = Math.abs(st.v) * 6;
+    if (vl > 2) { const tx = Math.sign(st.v) / Math.hypot(1, slope), ty = Math.sign(st.v) * slope / Math.hypot(1, slope); arrow(ctx, bx, by - 18, bx + tx * vl, by - 18 + ty * vl, P.vel, { lw: 4, head: 11 }); }
+    else label(ctx, 'v = 0', bx, by - 26, { align: 'center', weight: 700, size: 13, color: P.vel });
+    // energy bar: KE + PE = 30 J, never 40 J
+    const base = 470, k = 7;
+    label(ctx, 'Energy of the ball', 765, 30, { align: 'center', weight: 700, size: 15 });
+    hline(ctx, 690, 900, base - 40 * k, P.force, 1.5, [6, 4]);
+    label(ctx, 'needed to reach R: 40 J', 690, base - 40 * k - 14, { size: 12, weight: 700, color: P.force });
+    hline(ctx, 690, 900, base - E * k, P.ink, 1.5, [6, 4]);
+    label(ctx, 'total: 30 J', 690, base - E * k - 14, { size: 12, weight: 700 });
+    const ke = Math.max(0, E - u);
+    ctx.fillStyle = P.pe; ctx.fillRect(740, base - u * k, 64, u * k);
+    ctx.fillStyle = P.ke; ctx.fillRect(740, base - (u + ke) * k, 64, ke * k);
+    ctx.strokeStyle = P.obj; ctx.lineWidth = 1.5; ctx.strokeRect(740, base - E * k, 64, E * k);
+    label(ctx, ans ? `PE ${u.toFixed(1)} J` : 'PE', 812, base - u * k / 2, { size: 13, weight: 700, color: P.pe });
+    if (ke > 1.5) label(ctx, ans ? `KE ${ke.toFixed(1)} J` : 'KE', 812, base - (u + ke / 2) * k, { size: 13, weight: 700, color: P.ke });
+    if (ans) label(ctx, `v = ${Math.sqrt(2 * ke / M).toFixed(1)} m/s`, 772, base + 22, { align: 'center', weight: 700, size: 14, color: P.vel });
+    label(ctx, 'the figure’s x-axis has no scale, so the timing is illustrative', 24, 528, { size: 12, color: P.ink2 });
+  }
+  return { stages, draw };
+})();
 
 /* ---------- Q12: the same throw on Earth and on the Moon ---------- */
 const Q12 = (() => {
@@ -915,6 +1356,7 @@ function makePlayer(panel, scene) {
   for (const s of st) { s.t0 = acc; acc += s.dur; s.t1 = acc; }
   const total = acc;
   ui.of.textContent = st.length;
+  if (st.length > 6) ui.steps.classList.add('many');
   let t = 0, playing = false, last = 0, raf = 0, cur = -1, ans = false;   // answers always start hidden
   const chips = st.map((s, k) => {
     const li = document.createElement('li'), b = document.createElement('button');
@@ -1007,11 +1449,11 @@ function makePlayer(panel, scene) {
 
 /* ---------- page wiring ---------- */
 readPalette();
-const scenes = { q12: Q12, q15: Q15 };
+const scenes = { q11: Q11, q12: Q12, q13: Q13, q14: Q14, q15: Q15 };
 const players = {};
 for (const id of Object.keys(scenes)) players[id] = makePlayer(document.getElementById(id), scenes[id]);
 const tabs = [...document.querySelectorAll('[role="tab"]')];
-let active = 'q12';
+let active = 'q11';
 /* Fit the picture and its control bar inside the window: the CSS sizes the picture from
    --chrome (wide layout: everything above the picture plus the bar) or --bar (narrow layout). */
 function fitBench() {
@@ -1060,7 +1502,7 @@ document.addEventListener('keydown', e => {
   else if (e.key === 'ArrowLeft') { e.preventDefault(); p.prev(); }
 });
 const hash = location.hash.slice(1);
-show(scenes[hash] ? hash : 'q12');
+show(scenes[hash] ? hash : 'q11');
 
 const refresh = () => { readPalette(); fitBench(); players[active].render(); };
 const mq = matchMedia('(prefers-color-scheme: dark)');

@@ -1,5 +1,5 @@
 <!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
-<title>Work &amp; Energy Q3–Q7</title>
+<title>Work &amp; Energy Q5–Q7</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -99,7 +99,7 @@ h1 {
   font-family: var(--font-display);
   font-weight: 800;
   font-stretch: 112%;
-  font-size: clamp(22px, 2.3vw, 30px);
+  font-size: clamp(20px, 2vw, 26px);
   line-height: 1.08;
   letter-spacing: -0.01em;
   text-wrap: balance;
@@ -131,14 +131,14 @@ h1 {
   display: inline-flex;
   align-items: baseline;
   gap: 8px;
-  padding: 10px 16px 9px;
+  padding: 10px 12px 9px;
   border: 1px solid transparent;
   border-bottom: none;
   border-radius: 8px 8px 0 0;
   background: transparent;
   color: var(--ink-2);
   font: inherit;
-  font-size: 15px;
+  font-size: 14px;
   white-space: nowrap;
   cursor: pointer;
 }
@@ -146,7 +146,7 @@ h1 {
   font-family: var(--font-display);
   font-weight: 800;
   font-stretch: 110%;
-  font-size: 19px;
+  font-size: 17px;
   color: var(--ink);
 }
 .tab:hover { color: var(--ink); }
@@ -222,7 +222,7 @@ h1 {
 .btn.icon { padding: 0; }
 .btn.primary { min-width: 112px; background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
 .btn svg { width: 16px; height: 16px; flex: none; }
-.scrub { flex: 1 1 140px; min-width: 80px; accent-color: var(--accent); }
+.scrub { flex: 1 1 80px; min-width: 80px; accent-color: var(--accent); }
 .opt { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; color: var(--ink-2); }
 .opt input { accent-color: var(--accent); width: 16px; height: 16px; }
 select {
@@ -252,6 +252,7 @@ select {
 }
 .steps button:hover { color: var(--ink); border-color: var(--ink-2); }
 .steps button[aria-current="step"] { border-color: var(--accent); background: var(--accent); color: var(--accent-ink); }
+.steps.many button { width: 27px; height: 27px; font-size: 12px; }   /* questions with many steps keep the bar on one row */
 .linkish {
   appearance: none;
   padding: 0;
@@ -279,7 +280,7 @@ select {
   .view { display: grid; gap: 10px; min-width: 0; }
   .side { display: grid; gap: 14px; align-content: start; min-width: 0; }
   .stage { width: auto; align-self: auto; }
-  .qline { font-size: 16px; }
+  .qline { font-size: 15px; }
   .cap-title { font-size: 20px; }
   .cap-text, .cap-ans { font-size: 15px; }
 }
@@ -331,62 +332,17 @@ select {
 <div class="wrap">
   <header class="top">
     <div class="titles">
-      <p class="eyebrow">Class 9 Science · Exploration · Chapter 7 · Revise, Reflect, Refine · Questions 3, 5, 7</p>
+      <p class="eyebrow">Class 9 Science · Ch. 7 · Revise, Reflect, Refine · Q5–Q7</p>
       <h1>Work, Energy and Simple Machines</h1>
     </div>
     <div class="tabs" role="tablist" aria-label="Questions">
-      <button type="button" class="tab" role="tab" id="tab-q3" aria-controls="q3" aria-selected="true"><span class="n">Q3</span>Ball at the top</button>
-      <button type="button" class="tab" role="tab" id="tab-q5" aria-controls="q5" aria-selected="false" tabindex="-1"><span class="n">Q5</span>Elevator or stairs</button>
+      <button type="button" class="tab" role="tab" id="tab-q5" aria-controls="q5" aria-selected="true"><span class="n">Q5</span>Elevator or stairs</button>
+      <button type="button" class="tab" role="tab" id="tab-q6" aria-controls="q6" aria-selected="false" tabindex="-1"><span class="n">Q6</span>Crane</button>
       <button type="button" class="tab" role="tab" id="tab-q7" aria-controls="q7" aria-selected="false" tabindex="-1"><span class="n">Q7</span>Raising a flag</button>
     </div>
   </header>
 
-  <section class="panel" id="q3" role="tabpanel" aria-labelledby="tab-q3">
-    <div class="bench">
-      <div class="view">
-        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A ball is thrown straight up, stops for an instant at its highest point and falls back, with arrows for its velocity, its weight and its acceleration, bars for its kinetic and potential energy, and the four statements to check."></canvas></div>
-        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
-        <div class="ctl"></div>
-      </div>
-      <div class="side">
-        <p class="qline"><b>Q3</b> When a ball thrown upwards reaches its highest point, which of these statements are correct? (i) The force acting on the ball is zero. (ii) The acceleration of the ball is zero. (iii) Its kinetic energy is zero. (iv) Its potential energy is maximum.</p>
-      </div>
-    </div>
-    <div class="facts">
-      <div>
-        <h3>Given</h3>
-        <ul>
-          <li>A ball is thrown straight upward.</li>
-          <li>It reaches its highest point and comes back down.</li>
-        </ul>
-      </div>
-      <div>
-        <h3>Asked</h3>
-        <p>Which of the four statements are correct at the highest point.</p>
-      </div>
-      <div>
-        <h3>How the animation is drawn</h3>
-        <ul>
-          <li>No speeds or heights are given, so the speed, height and timing are illustrative. What matters is the direction and relative size of each arrow.</li>
-          <li>Air resistance is neglected, so the only force is the weight <i>mg</i> and the acceleration is <i>g</i>, downward, throughout.</li>
-          <li>The velocity arrow’s length is proportional to the speed. The weight and acceleration arrows never change.</li>
-          <li>Faint circles show the ball at equal time gaps; the flight runs at half speed. The two energy bars share one scale.</li>
-        </ul>
-      </div>
-      <div class="answer" hidden>
-        <h3>Answer</h3>
-        <ol>
-          <li>(i) Incorrect. The weight <i>mg</i> acts at every point of the flight, including the top.</li>
-          <li>(ii) Incorrect. Acceleration = force ÷ mass = <i>mg</i>/<i>m</i> = <i>g</i>, downward, even at the top.</li>
-          <li>(iii) Correct. The ball is at rest for an instant, <i>v</i> = 0, so KE = ½<i>mv</i><sup>2</sup> = 0.</li>
-          <li>(iv) Correct. Its height is greatest there, so PE = <i>mgh</i> is maximum: all the kinetic energy it was thrown with has become potential energy.</li>
-        </ol>
-        <p class="final">Correct statements: (iii) and (iv). At the top only the velocity is zero; the force and the acceleration are not.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="panel" id="q5" role="tabpanel" aria-labelledby="tab-q5" hidden>
+  <section class="panel" id="q5" role="tabpanel" aria-labelledby="tab-q5">
     <div class="bench">
       <div class="view">
         <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A building 72.5 metres tall with an elevator shaft and a zig-zag staircase. The student rides the elevator straight up, then later climbs the stairs, while two bars compare the gain in potential energy."></canvas></div>
@@ -394,7 +350,7 @@ select {
         <div class="ctl"></div>
       </div>
       <div class="side">
-        <p class="qline"><b>Q5</b> A 50 kg student is slowly lifted straight up in an elevator from the ground to the top floor of a building, 72.5 m high. Later, the same student climbs the stairs all the way to the top. Take <i>g</i> = 10 m/s². (i) Find the gain in potential energy in the elevator. (ii) Find the gain in potential energy when climbing the stairs. (iii) What do you conclude about how potential energy depends on the path taken?</p>
+        <p class="qline"><b>Q5</b> A student is slowly lifted straight up in an elevator from the ground level to the top floor of a building. Later, the same student climbs the staircase, all the way to the top. Given that the height of the building is <i>h</i> = 72.5 m, acceleration due to gravity is <i>g</i> = 10 m s<sup>−2</sup>, and student’s mass is <i>m</i> = 50 kg. (i) Find the gain in the potential energy if the student is lifted straight up to the top. (ii) Find the gain in the potential energy when the student climbs the stairs to the same top. (iii) What do you conclude about the dependence of the potential energy on the path taken?</p>
       </div>
     </div>
     <div class="facts">
@@ -402,9 +358,9 @@ select {
         <h3>Given</h3>
         <ul>
           <li>Mass of the student <i>m</i> = 50 kg.</li>
-          <li>Height of the top floor above the ground <i>h</i> = 72.5 m.</li>
-          <li><i>g</i> = 10 m/s².</li>
-          <li>Lifted slowly in the elevator; later climbs the stairs to the same top floor.</li>
+          <li>Height of the building <i>h</i> = 72.5 m.</li>
+          <li><i>g</i> = 10 m s<sup>−2</sup>.</li>
+          <li>Lifted slowly in the elevator; later climbs the stairs to the same top.</li>
         </ul>
       </div>
       <div>
@@ -432,6 +388,52 @@ select {
     </div>
   </section>
 
+  <section class="panel" id="q6" role="tabpanel" aria-labelledby="tab-q6" hidden>
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="Two identical buildings side by side, each with a tower crane. One crane lifts a load to the 10th floor in time t, the other lifts the same load to the 20th floor in time 2t, while bars compare the energy and the power."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>Q6</b> A crane lifts a mass <i>m</i> to the 10th floor of a building in a certain time. It then raises the same mass to the 20th floor of the same building in double the time. How much more energy and power are required? Assume that the height of all floors is equal.</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>A crane lifts mass <i>m</i> to the 10th floor in a certain time <i>t</i>.</li>
+          <li>It then raises the same mass to the 20th floor in double the time, 2<i>t</i>.</li>
+          <li>All floors have equal height.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>How much more energy and power the second lift needs.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>The question does not say where the second lift starts. Because it asks how much <i>more</i> energy is needed, both lifts are drawn starting from the ground. (If the second lift started from the 10th floor, it would need the same energy and half the power.)</li>
+          <li>Floors are counted from the ground floor at height 0, so the 10th floor is 10 floor heights up.</li>
+          <li>The two lifts are shown side by side so they can be compared. Each load rises at a steady speed, with a brief speed-up and slow-down.</li>
+          <li>The energy bars share one scale, and so do the power bars.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>Let each floor have height <i>d</i>. The 10th floor is at 10<i>d</i> and the 20th floor at 20<i>d</i>.</li>
+          <li>Energy: <i>E</i><sub>1</sub> = <i>mg</i> × 10<i>d</i> = 10<i>mgd</i>; <i>E</i><sub>2</sub> = <i>mg</i> × 20<i>d</i> = 20<i>mgd</i> = 2<i>E</i><sub>1</sub>. The second lift needs 10<i>mgd</i> more: twice the energy.</li>
+          <li>Power: <i>P</i><sub>1</sub> = 10<i>mgd</i>/<i>t</i>; <i>P</i><sub>2</sub> = 20<i>mgd</i>/(2<i>t</i>) = 10<i>mgd</i>/<i>t</i> = <i>P</i><sub>1</sub>. No extra power is needed.</li>
+          <li>Other reading: if the second lift started from the 10th floor, it would need 10<i>mgd</i> (no more energy) and 10<i>mgd</i>/(2<i>t</i>) (half the power).</li>
+        </ol>
+        <p class="final">Twice the energy (10mgd more), but the same power.</p>
+      </div>
+    </div>
+  </section>
+
   <section class="panel" id="q7" role="tabpanel" aria-labelledby="tab-q7" hidden>
     <div class="bench">
       <div class="view">
@@ -440,7 +442,7 @@ select {
         <div class="ctl"></div>
       </div>
       <div class="side">
-        <p class="qline"><b>Q7</b> A flag is raised from the ground to the top of a tall flagpole using a pulley. Which factors decide the energy needed? Does raising the flag slowly or quickly change the work done? If the speed is doubled, how does the power needed change?</p>
+        <p class="qline"><b>Q7</b> Which factors determine the energy required to raise a flag from the ground to the top of a tall flagpole using a pulley? Does raising the flag slowly or quickly change the amount of work done? If the speed at which the flag is raised is doubled, how does the power requirement change? Explain your answers.</p>
       </div>
     </div>
     <div class="facts">
@@ -481,15 +483,13 @@ select {
     <ul class="key" aria-label="Colour key">
       <li><svg viewBox="0 0 28 12" aria-hidden="true"><path d="M1 6h19" stroke="var(--vel)" stroke-width="3"/><path d="M27 6l-8-5v10z" fill="var(--vel)"/></svg>velocity</li>
       <li><svg viewBox="0 0 28 12" aria-hidden="true"><path d="M1 6h19" stroke="var(--force)" stroke-width="3"/><path d="M27 6l-8-5v10z" fill="var(--force)"/></svg>force</li>
-      <li><svg viewBox="0 0 28 12" aria-hidden="true"><path d="M1 6h19" stroke="var(--acc)" stroke-width="3"/><path d="M27 6l-8-5v10z" fill="var(--acc)"/></svg>acceleration</li>
       <li><svg viewBox="0 0 28 12" aria-hidden="true"><path d="M1 6h19" stroke="var(--disp)" stroke-width="3"/><path d="M27 6l-8-5v10z" fill="var(--disp)"/></svg>displacement / height risen</li>
-      <li><svg viewBox="0 0 28 12" aria-hidden="true"><rect x="4" y="1" width="20" height="10" fill="var(--ke)"/></svg>kinetic energy</li>
       <li><svg viewBox="0 0 28 12" aria-hidden="true"><rect x="4" y="1" width="20" height="10" fill="var(--pe)"/></svg>potential energy</li>
       <li><svg viewBox="0 0 28 12" aria-hidden="true"><rect x="4" y="1" width="20" height="10" fill="var(--accent)"/></svg>power</li>
     </ul>
   </section>
 
-  <p class="foot">Questions paraphrased from the NCERT Class 9 Science textbook <i>Exploration</i>, Chapter 7 (Work, Energy and Simple Machines), Revise, Reflect, Refine. Click a picture or press Space to play or pause; the arrow keys move between steps. Show answers reveals the worked answer and the calculated values for that question only; every time the page opens, the answers start hidden.</p>
+  <p class="foot">Questions from the NCERT Class 9 Science textbook <i>Exploration</i>, Chapter 7 (Work, Energy, and Simple Machines), Revise, Reflect, Refine, pages 136–138. Click a picture or press Space to play or pause; the arrow keys move between steps. Show answers reveals the worked answer and the calculated values for that question only; every time the page opens, the answers start hidden.</p>
 </div>
 
 <script>
@@ -521,6 +521,17 @@ const glide = (u, r = 0.1) => {
   return vm * (u - r / 2);
 };
 const glideRate = (u, r = 0.1) => (u <= 0 || u >= 1 ? 0 : u < r ? u / r : u > 1 - r ? (1 - u) / r : 1);
+// split text into lines that fit a width, in the body font
+function wrapLines(ctx, str, maxW, size, weight = 400) {
+  ctx.save(); ctx.font = `${weight} ${size}px ${FB}`;
+  const lines = []; let cur = '';
+  for (const w of str.split(' ')) {
+    const t = cur ? cur + ' ' + w : w;
+    if (cur && ctx.measureText(t).width > maxW) { lines.push(cur); cur = w; } else cur = t;
+  }
+  if (cur) lines.push(cur);
+  ctx.restore(); return lines;
+}
 
 function seg(ctx, x1, y1, x2, y2) { ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y2); ctx.stroke(); }
 function poly(ctx, pts) {
@@ -625,121 +636,6 @@ function rotArrow(ctx, x, y, r, cw, color, alpha = 1, lw = 2) {
   ctx.restore();
 }
 function bg(ctx) { ctx.fillStyle = P.sheet; ctx.fillRect(0, 0, VW, VH); }
-
-/* ---------- Q3: a ball thrown up, at its highest point ---------- */
-const Q3 = (() => {
-  const G = 10, U = 10, H = U * U / (2 * G);         // no values are given: speed and height are illustrative
-  const TUP = U / G, SLOW = 2;                       // flight shown at half speed
-  const S1 = 3.5, S2 = S1 + TUP * SLOW, S3 = S2 + 5, S4 = S3 + TUP * SLOW, S5 = S4 + 3;
-  const Y0 = 410, K = 56, X = 220, BR = 12, VS = 8, WL = 54, AL = 42, AX = 80;   // launch level leaves room for the arrows below it
-  const yOf = h => Y0 - h * K;
-  const hUp = p => U * p - 0.5 * G * p * p, hDn = p => H - 0.5 * G * p * p;
-  const CHECKS = [
-    ['(i) The force acting on the ball is zero.', false, 'No: its weight mg still acts.'],
-    ['(ii) The acceleration of the ball is zero.', false, 'No: it is g, downward.'],
-    ['(iii) Its kinetic energy is zero.', true, 'Yes: v = 0, so ½mv² = 0.'],
-    ['(iv) Its potential energy is maximum.', true, 'Yes: its height is the greatest.'],
-  ];
-  const stages = [
-    { title: 'Thrown straight up', dur: S1,
-      text: 'The ball leaves the hand moving upward. From the moment it is released, the only force on it is its weight mg, acting downward (air resistance is neglected). So its acceleration is g, downward.',
-      ans: 'Force on the ball = mg, downward, all the time. Acceleration = g, downward, all the time.' },
-    { title: 'Rising', dur: S2 - S1,
-      text: 'The velocity arrow points up but keeps getting shorter: the ball slows down at a steady rate. Kinetic energy is changing into potential energy, and the total stays the same.',
-      ans: 'KE = ½mv² falls as v falls, PE = mgh rises as h rises, and KE + PE stays constant.' },
-    { title: 'At the highest point', dur: S3 - S2,
-      text: 'For an instant the ball is at rest. Its weight still acts and its acceleration is still g downward, which is why it cannot stay there. Check each statement on the right against the picture.',
-      ans: '(i) No: the force is mg. (ii) No: the acceleration is g. (iii) Yes: v = 0, so KE = 0. (iv) Yes: h is greatest, so PE = mgh is maximum.' },
-    { title: 'Falling back', dur: S4 - S3,
-      text: 'The same force and the same acceleration act as on the way up, so now the ball speeds up downward. Potential energy changes back into kinetic energy.',
-      ans: 'Correct statements: (iii) and (iv).' },
-    { title: 'Back at the launch level', dur: S5 - S4,
-      text: 'The ball comes back to the launch level as fast as it was thrown, now moving down. Only its velocity changed during the flight; the force and the acceleration never did.',
-      ans: 'At the top only the velocity is zero. The force (mg) and the acceleration (g) are never zero.' },
-  ];
-  function state(t) {
-    if (t < S1) return { h: 0, v: U, ph: 0, p: 0 };
-    if (t < S2) { const p = (t - S1) / SLOW; return { h: hUp(p), v: U - G * p, ph: 1, p }; }
-    if (t < S3) return { h: H, v: 0, ph: 2, p: TUP };
-    if (t < S4) { const p = (t - S3) / SLOW; return { h: hDn(p), v: -G * p, ph: 3, p }; }
-    return { h: 0, v: -U, ph: 4, p: TUP };
-  }
-  function ball(ctx, y) {
-    ctx.fillStyle = P.obj; ctx.beginPath(); ctx.arc(X, y, BR, 0, Math.PI * 2); ctx.fill();
-    ctx.save(); ctx.globalAlpha = 0.4; ctx.fillStyle = P.sheet;
-    ctx.beginPath(); ctx.arc(X - 4, y - 4, 4, 0, Math.PI * 2); ctx.fill(); ctx.restore();
-  }
-  function flight(ctx, st, t) {
-    vline(ctx, AX, yOf(H) - 34, Y0, P.ink2, 1.5);
-    label(ctx, 'height', AX, yOf(H) - 48, { align: 'center', size: 14, color: P.ink2 });
-    hline(ctx, AX, 300, Y0, P.ink2, 1.2, [6, 5]);
-    label(ctx, 'launch level', AX + 8, Y0 + 16, { size: 13, color: P.ink2 });
-    const mA = ramp(t, S2 - 0.15, S2 + 0.35);
-    if (mA > 0) {
-      ctx.save(); ctx.globalAlpha = mA; hline(ctx, AX, 300, yOf(H), P.ink, 1.2, [6, 5]); ctx.restore();
-      label(ctx, 'highest point', 306, yOf(H), { weight: 700, size: 14, alpha: mA });
-    }
-    ctx.save(); ctx.strokeStyle = P.obj; ctx.globalAlpha = 0.25; ctx.lineWidth = 1.5;
-    const ring = h => { ctx.beginPath(); ctx.arc(X, yOf(h), BR, 0, Math.PI * 2); ctx.stroke(); };
-    if (st.ph === 1 || st.ph === 2) for (let k = 0; k * 0.1 <= st.p + 1e-9; k++) ring(hUp(k * 0.1));
-    if (st.ph >= 3) for (let k = 0; k * 0.1 <= st.p + 1e-9; k++) ring(hDn(k * 0.1));
-    ctx.restore();
-    const y = yOf(st.h), len = st.v * VS;
-    ball(ctx, y);
-    if (Math.abs(len) > 1.5) arrow(ctx, X + 44, y, X + 44, y - len, P.vel, { lw: 4.5, head: 13 });
-    if (st.ph === 2) label(ctx, 'v = 0', X + 22, y, { color: P.vel, weight: 700, size: 16 });
-    else if (Math.abs(len) > 20) label(ctx, 'v', X + 54, y - len * 0.55, { color: P.vel, weight: 700, italic: true, size: 18 });
-    arrow(ctx, X, y + BR, X, y + BR + WL, P.force, { lw: 4.5, head: 13 });
-    label(ctx, 'mg', X + 8, y + BR + WL - 4, { color: P.force, weight: 700, size: 16 });
-    arrow(ctx, X - 36, y - AL / 2, X - 36, y + AL / 2, P.acc, { lw: 3.5, head: 11 });
-    label(ctx, 'a = g', X - 46, y, { align: 'right', color: P.acc, weight: 700, size: 15 });
-  }
-  function energy(ctx, st) {
-    const x1 = 340, x2 = 392, bw = 40, full = 200, top = Y0 - full;
-    label(ctx, 'Energy', x1 + 46, top - 34, { align: 'center', weight: 700, size: 15 });
-    hline(ctx, x1 - 6, x2 + bw + 6, top, P.ink2, 1.2, [5, 4]);
-    label(ctx, 'total', x1 + 46, top - 14, { align: 'center', size: 12, color: P.ink2 });
-    const ke = st.v * st.v / (U * U), pe = st.h / H;         // fractions of the (constant) total
-    ctx.fillStyle = P.ke; ctx.fillRect(x1, Y0 - full * ke, bw, full * ke);
-    ctx.fillStyle = P.pe; ctx.fillRect(x2, Y0 - full * pe, bw, full * pe);
-    ctx.strokeStyle = P.obj; ctx.lineWidth = 1.2; ctx.strokeRect(x1, top, bw, full); ctx.strokeRect(x2, top, bw, full);
-    label(ctx, 'KE', x1 + bw / 2, Y0 + 16, { align: 'center', weight: 700, size: 14, color: P.ke });
-    label(ctx, 'PE', x2 + bw / 2, Y0 + 16, { align: 'center', weight: 700, size: 14, color: P.pe });
-  }
-  function mark(ctx, x, y, ok, a) {
-    ctx.save(); ctx.globalAlpha = a; ctx.lineWidth = 3; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
-    ctx.strokeStyle = ok ? P.accent : P.force;
-    if (ok) poly(ctx, [[x - 6, y], [x - 1, y + 6], [x + 8, y - 7]]);
-    else { seg(ctx, x - 6, y - 6, x + 6, y + 6); seg(ctx, x + 6, y - 6, x - 6, y + 6); }
-    ctx.restore();
-  }
-  function checklist(ctx, t, ans) {
-    const x0 = 468, y0 = 70, w = 470, h = 384;
-    ctx.save(); ctx.strokeStyle = P.rule; ctx.lineWidth = 1.5; rrect(ctx, x0, y0, w, h, 8); ctx.stroke(); ctx.restore();
-    label(ctx, 'At the highest point,', x0 + 18, y0 + 28, { weight: 700, size: 17 });
-    label(ctx, 'which statements are correct?', x0 + 18, y0 + 50, { size: 14, color: P.ink2 });
-    const a = ans ? ramp(t, S2 + 0.4, S2 + 1.0) : 0;
-    CHECKS.forEach(([text, ok, why], i) => {
-      const y = y0 + 104 + i * 72;
-      ctx.save(); ctx.strokeStyle = P.ink2; ctx.lineWidth = 1.5; ctx.strokeRect(x0 + 18, y - 11, 22, 22); ctx.restore();
-      label(ctx, text, x0 + 52, y, { size: 16 });
-      if (a > 0) {
-        mark(ctx, x0 + 29, y, ok, a);
-        label(ctx, why, x0 + 52, y + 23, { size: 14, weight: 700, color: ok ? P.accent : P.force, alpha: a });
-      }
-    });
-  }
-  function draw(ctx, t, ans) {
-    bg(ctx);
-    const st = state(t);
-    flight(ctx, st, t);
-    energy(ctx, st);
-    checklist(ctx, t, ans);
-    label(ctx, 'faint circles: the ball at equal time gaps', 24, 510, { size: 12, color: P.ink2 });
-    label(ctx, 'air resistance neglected', 24, 528, { size: 12, color: P.ink2 });
-  }
-  return { stages, draw };
-})();
 
 /* ---------- Q5: lifted in an elevator, then climbing the stairs ---------- */
 const Q5 = (() => {
@@ -863,6 +759,96 @@ const Q5 = (() => {
     }
     panel(ctx, he, hs, ans);
     label(ctx, 'student and elevator drawn larger than scale; number of flights illustrative', 24, 528, { size: 12, color: P.ink2 });
+  }
+  return { stages, draw };
+})();
+
+/* ---------- Q6: a crane lifts to the 10th floor, then to the 20th ---------- */
+const Q6 = (() => {
+  const Y0 = 470, FH = 16.5, NF = 20;                    // ground; height of one floor (px); floors
+  const T1 = 4.5, TL = 4.5, T2 = T1 + TL, T3 = T1 + 2 * TL, T4 = T3 + 6;   // TL = time t for the first lift
+  const LIFTS = [
+    { x: 70, floors: 10, dur: TL, head: '1st lift: to the 10th floor', tl: 't' },
+    { x: 330, floors: 20, dur: 2 * TL, head: '2nd lift: to the 20th floor', tl: '2t' },
+  ];
+  const stages = [
+    { title: 'Two lifts of the same mass', dur: T1,
+      text: 'A crane lifts mass m from the ground to the 10th floor in a time t. It then lifts the same mass to the 20th floor in twice the time, 2t. All floors have the same height. The two lifts are shown side by side.',
+      ans: 'With floor height d and the ground floor at height 0, the 10th floor is at 10d and the 20th floor at 20d.' },
+    { title: 'Both loads rising', dur: TL,
+      text: 'Ten floors in time t is the same speed as twenty floors in time 2t, so both loads rise side by side at the same steady speed.',
+      ans: 'Speed = 10d / t = 20d / 2t: the same in both lifts.' },
+    { title: 'The second lift keeps going', dur: TL,
+      text: 'After time t the first load is at the 10th floor and stops. The second load keeps rising at the same speed for another time t.',
+      ans: 'Energy for the 1st lift: E₁ = mg × 10d = 10mgd.' },
+    { title: 'Energy and power compared', dur: T4 - T3,
+      text: 'The second load was raised twice as high, so it needed twice the energy. But that energy was spread over twice the time, so the energy needed per second — the power — is the same.',
+      ans: 'E₂ = mg × 20d = 2E₁: 10mgd more energy (double). P₁ = 10mgd/t and P₂ = 20mgd/2t = 10mgd/t: no extra power.' },
+  ];
+  const frac = (t, d) => glide((t - T1) / d, 0.02);       // almost constant speed: equal speeds need equal (tiny) speed-up times
+  function crane(ctx, L, t, ans) {
+    const bx = L.x, bw = 96, top = Y0 - NF * FH, f = frac(t, L.dur), h = L.floors * f;   // h in floors
+    label(ctx, L.head, bx + 100, 30, { align: 'center', weight: 700, size: 15 });
+    ctx.fillStyle = P.grid; ctx.fillRect(bx, top, bw, NF * FH);
+    ctx.strokeStyle = P.obj; ctx.lineWidth = 2; ctx.strokeRect(bx, top, bw, NF * FH);
+    for (let i = 1; i < NF; i++) hline(ctx, bx, bx + bw, Y0 - i * FH, P.grid2, 1);
+    for (const n of [5, 10, 15, 20]) {
+      hline(ctx, bx - 6, bx, Y0 - n * FH, P.ink2, 1.2);
+      label(ctx, String(n), bx - 9, Y0 - n * FH, { align: 'right', size: 12, color: n === L.floors ? P.ink : P.ink2, weight: n === L.floors ? 700 : 400 });
+    }
+    hline(ctx, bx, bx + bw, Y0 - L.floors * FH, P.disp, 2.5);          // the target floor
+    // tower crane beside the building: mast, jib, trolley, cable, hook and load
+    const mx = bx + bw + 92, jy = top - 46;
+    ctx.save(); ctx.strokeStyle = P.obj; ctx.lineWidth = 2;
+    seg(ctx, mx - 8, Y0, mx - 8, jy); seg(ctx, mx + 8, Y0, mx + 8, jy);
+    for (let y = Y0; y > jy + 16; y -= 22) { seg(ctx, mx - 8, y, mx + 8, y - 22); seg(ctx, mx - 8, y - 22, mx + 8, y - 22); }
+    ctx.lineWidth = 3; seg(ctx, bx + bw - 20, jy, mx + 40, jy); seg(ctx, mx, jy - 26, bx + bw - 10, jy); seg(ctx, mx, jy - 26, mx + 40, jy);
+    ctx.restore();
+    const lx = bx + bw + 30, ly = Y0 - h * FH;                       // bottom of the load
+    ctx.fillStyle = P.obj; ctx.fillRect(lx - 8, jy - 4, 16, 8);
+    vline(ctx, lx, jy + 4, ly - 30, P.ink2, 1.5);
+    ctx.fillStyle = P.wood; ctx.strokeStyle = P.obj; ctx.lineWidth = 2; ctx.fillRect(lx - 16, ly - 28, 32, 28); ctx.strokeRect(lx - 16, ly - 28, 32, 28);
+    label(ctx, 'm', lx, ly - 14, { align: 'center', weight: 700, italic: true, size: 15, haloColor: P.wood });
+    const rn = glideRate((t - T1) / L.dur, 0.02);
+    if (rn > 0.05) { arrow(ctx, lx + 28, ly - 4, lx + 28, ly - 4 - 34 * rn, P.vel, { lw: 4, head: 11 }); if (rn > 0.9) label(ctx, 'v', lx + 38, ly - 22, { color: P.vel, weight: 700, italic: true, size: 15 }); }
+    hline(ctx, bx - 20, mx + 60, Y0, P.obj, 2);
+    // stopwatch: full width = 2t
+    const w = 200, el = clamp(t - T1, 0, L.dur);
+    ctx.fillStyle = P.grid2; rrect(ctx, bx, Y0 + 26, w, 8, 4); ctx.fill();
+    if (el > 0) { ctx.fillStyle = P.accent; rrect(ctx, bx, Y0 + 26, Math.max(8, w * el / (2 * TL)), 8, 4); ctx.fill(); }
+    label(ctx, 'time', bx - 8, Y0 + 30, { align: 'right', size: 12, color: P.ink2 });
+    if (t - T1 >= L.dur) label(ctx, L.tl, bx + w * L.dur / (2 * TL), Y0 + 48, { align: 'center', weight: 700, italic: true, size: 15 });
+  }
+  function panel(ctx, t, ans) {
+    const xs = [700, 840], bw = 70;
+    label(ctx, 'Energy needed (gain in PE)', 770, 30, { align: 'center', weight: 700, size: 15 });
+    const eb = 250, ef = 170;
+    hline(ctx, 650, 900, eb, P.obj, 2);
+    LIFTS.forEach((L, i) => {
+      const e = L.floors * frac(t, L.dur) / 20, h = ef * e;
+      ctx.fillStyle = P.pe; ctx.fillRect(xs[i] - bw / 2, eb - h, bw, h);
+      if (h > 0.5) { ctx.strokeStyle = P.obj; ctx.lineWidth = 1.2; ctx.strokeRect(xs[i] - bw / 2, eb - h, bw, h); }
+      label(ctx, i ? '2nd' : '1st', xs[i], eb + 16, { align: 'center', weight: 700, size: 14 });
+      if (ans && t >= T1 + L.dur) label(ctx, i ? '20mgd' : '10mgd', xs[i], eb - h - 14, { align: 'center', weight: 700, italic: true, size: 15 });
+    });
+    const avg = t >= T3;
+    label(ctx, avg ? 'Average power = energy ÷ time' : 'Power = energy per second', 770, 300, { align: 'center', weight: 700, size: 15 });
+    const pb = 480, pf = 120;
+    hline(ctx, 650, 900, pb, P.obj, 2);
+    LIFTS.forEach((L, i) => {
+      const val = avg ? 1 : glideRate((t - T1) / L.dur, 0.02), h = pf * val;
+      ctx.fillStyle = P.accent; ctx.fillRect(xs[i] - bw / 2, pb - h, bw, h);
+      label(ctx, i ? '2nd' : '1st', xs[i], pb + 16, { align: 'center', weight: 700, size: 14 });
+      if (ans && avg) label(ctx, i ? '20mgd/2t' : '10mgd/t', xs[i], pb - h - 14, { align: 'center', weight: 700, italic: true, size: 14 });
+    });
+    if (ans && avg) label(ctx, 'equal', 770, pb - pf - 40, { align: 'center', weight: 700, size: 14, color: P.accent });
+  }
+  function draw(ctx, t, ans) {
+    bg(ctx);
+    vline(ctx, 630, 16, 524, P.rule, 1);
+    for (const L of LIFTS) crane(ctx, L, t, ans);
+    panel(ctx, t, ans);
+    label(ctx, 'both lifts start from the ground (see the notes)', 24, 528, { size: 12, color: P.ink2 });
   }
   return { stages, draw };
 })();
@@ -1039,6 +1025,7 @@ function makePlayer(panel, scene) {
   for (const s of st) { s.t0 = acc; acc += s.dur; s.t1 = acc; }
   const total = acc;
   ui.of.textContent = st.length;
+  if (st.length > 6) ui.steps.classList.add('many');
   let t = 0, playing = false, last = 0, raf = 0, cur = -1, ans = false;   // answers always start hidden
   const chips = st.map((s, k) => {
     const li = document.createElement('li'), b = document.createElement('button');
@@ -1131,11 +1118,11 @@ function makePlayer(panel, scene) {
 
 /* ---------- page wiring ---------- */
 readPalette();
-const scenes = { q3: Q3, q5: Q5, q7: Q7 };
+const scenes = { q5: Q5, q6: Q6, q7: Q7 };
 const players = {};
 for (const id of Object.keys(scenes)) players[id] = makePlayer(document.getElementById(id), scenes[id]);
 const tabs = [...document.querySelectorAll('[role="tab"]')];
-let active = 'q3';
+let active = 'q5';
 /* Fit the picture and its control bar inside the window: the CSS sizes the picture from
    --chrome (wide layout: everything above the picture plus the bar) or --bar (narrow layout). */
 function fitBench() {
@@ -1184,7 +1171,7 @@ document.addEventListener('keydown', e => {
   else if (e.key === 'ArrowLeft') { e.preventDefault(); p.prev(); }
 });
 const hash = location.hash.slice(1);
-show(scenes[hash] ? hash : 'q3');
+show(scenes[hash] ? hash : 'q5');
 
 const refresh = () => { readPalette(); fitBench(); players[active].render(); };
 const mq = matchMedia('(prefers-color-scheme: dark)');

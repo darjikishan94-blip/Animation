@@ -95,7 +95,7 @@ h1 {
   font-family: var(--font-display);
   font-weight: 800;
   font-stretch: 112%;
-  font-size: clamp(22px, 2.3vw, 30px);
+  font-size: clamp(20px, 2vw, 26px);
   line-height: 1.08;
   letter-spacing: -0.01em;
   text-wrap: balance;
@@ -127,14 +127,14 @@ h1 {
   display: inline-flex;
   align-items: baseline;
   gap: 8px;
-  padding: 10px 16px 9px;
+  padding: 10px 12px 9px;
   border: 1px solid transparent;
   border-bottom: none;
   border-radius: 8px 8px 0 0;
   background: transparent;
   color: var(--ink-2);
   font: inherit;
-  font-size: 15px;
+  font-size: 14px;
   white-space: nowrap;
   cursor: pointer;
 }
@@ -142,7 +142,7 @@ h1 {
   font-family: var(--font-display);
   font-weight: 800;
   font-stretch: 110%;
-  font-size: 19px;
+  font-size: 17px;
   color: var(--ink);
 }
 .tab:hover { color: var(--ink); }
@@ -218,7 +218,7 @@ h1 {
 .btn.icon { padding: 0; }
 .btn.primary { min-width: 112px; background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
 .btn svg { width: 16px; height: 16px; flex: none; }
-.scrub { flex: 1 1 140px; min-width: 80px; accent-color: var(--accent); }
+.scrub { flex: 1 1 80px; min-width: 80px; accent-color: var(--accent); }
 .opt { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; color: var(--ink-2); }
 .opt input { accent-color: var(--accent); width: 16px; height: 16px; }
 select {
@@ -248,6 +248,7 @@ select {
 }
 .steps button:hover { color: var(--ink); border-color: var(--ink-2); }
 .steps button[aria-current="step"] { border-color: var(--accent); background: var(--accent); color: var(--accent-ink); }
+.steps.many button { width: 27px; height: 27px; font-size: 12px; }   /* questions with many steps keep the bar on one row */
 .linkish {
   appearance: none;
   padding: 0;
@@ -275,7 +276,7 @@ select {
   .view { display: grid; gap: 10px; min-width: 0; }
   .side { display: grid; gap: 14px; align-content: start; min-width: 0; }
   .stage { width: auto; align-self: auto; }
-  .qline { font-size: 16px; }
+  .qline { font-size: 15px; }
   .cap-title { font-size: 20px; }
   .cap-text, .cap-ans { font-size: 15px; }
 }
@@ -327,7 +328,7 @@ select {
 <div class="wrap">
   <header class="top">
     <div class="titles">
-      <p class="eyebrow">Class 9 Science · Exploration · Chapter 7 · Revise, Reflect, Refine · Questions 8, 9, 10</p>
+      <p class="eyebrow">Class 9 Science · Ch. 7 · Revise, Reflect, Refine · Q8–Q10</p>
       <h1>Work, Energy and Simple Machines</h1>
     </div>
     <div class="tabs" role="tablist" aria-label="Questions">
@@ -345,7 +346,7 @@ select {
         <div class="ctl"></div>
       </div>
       <div class="side">
-        <p class="qline"><b>Q8</b> A man (60 kg) rides a scooter (100 kg) up to speed <i>v</i>. The next day his son (40 kg) rides along, and the scooter reaches the same speed in the same time. How does the fuel used on the two days compare?</p>
+        <p class="qline"><b>Q8</b> A man of mass 60 kg rides a scooter of mass 100 kg. He accelerates the scooter to a velocity <i>v</i>. The next day, his son with a mass of 40 kg joins him as a passenger. If the scooter reaches the same speed on both days in the same time interval, what is the ratio of the fuel of the tank used on the two days? Assume that the energy transfer to the scooter happens entirely due to fuel, and no other losses occur due to air resistance and friction.</p>
       </div>
     </div>
     <div class="facts">
@@ -391,7 +392,7 @@ select {
         <div class="ctl"></div>
       </div>
       <div class="side">
-        <p class="qline"><b>Q9</b> A child sits on one side of a seesaw with sliding seats and an adult who weighs twice as much sits on the other. The seesaw is balanced. Draw the situation, showing how far from the fulcrum each one sits.</p>
+        <p class="qline"><b>Q9</b> On a seesaw with sliding seats, a child is sitting on one side and an adult on the other side. The adult weighs twice that of the child. The seesaw however is balanced. Draw a figure which depicts this situation showing the distances from the fulcrum where the child and the adult are seated.</p>
       </div>
     </div>
     <div class="facts">
@@ -436,7 +437,7 @@ select {
         <div class="ctl"></div>
       </div>
       <div class="side">
-        <p class="qline"><b>Q10</b> A 2 kg ball is thrown straight up at 20 m/s. (i) What is the sign of the work done by gravity on the way up and on the way down? (ii) With air resistance it rises only to 19.4 m. How much work did air resistance do? Take <i>g</i> = 10 m/s².</p>
+        <p class="qline"><b>Q10</b> A ball of mass 2 kg is thrown up with a velocity of 20 m s<sup>−1</sup>. (i) Identify the sign of the work done by gravity on the ball during its upward motion and its downward motion. (ii) If the ball reaches a height of 19.4 m, how much work was done by air resistance (assume <i>g</i> = 10 m s<sup>−2</sup>).</p>
       </div>
     </div>
     <div class="facts">
@@ -488,7 +489,7 @@ select {
     </ul>
   </section>
 
-  <p class="foot">Questions paraphrased from the NCERT Class 9 Science textbook <i>Exploration</i>, Chapter 7 (Work, Energy and Simple Machines), Revise, Reflect, Refine. Click a picture or press Space to play or pause; the arrow keys move between steps. Show answers reveals the worked answer and the calculated values for that question only; every time the page opens, the answers start hidden.</p>
+  <p class="foot">Questions from the NCERT Class 9 Science textbook <i>Exploration</i>, Chapter 7 (Work, Energy, and Simple Machines), Revise, Reflect, Refine, pages 136–138. Click a picture or press Space to play or pause; the arrow keys move between steps. Show answers reveals the worked answer and the calculated values for that question only; every time the page opens, the answers start hidden.</p>
 </div>
 
 <script>
@@ -1173,6 +1174,7 @@ function makePlayer(panel, scene) {
   for (const s of st) { s.t0 = acc; acc += s.dur; s.t1 = acc; }
   const total = acc;
   ui.of.textContent = st.length;
+  if (st.length > 6) ui.steps.classList.add('many');
   let t = 0, playing = false, last = 0, raf = 0, cur = -1, ans = false;   // answers always start hidden
   const chips = st.map((s, k) => {
     const li = document.createElement('li'), b = document.createElement('button');
