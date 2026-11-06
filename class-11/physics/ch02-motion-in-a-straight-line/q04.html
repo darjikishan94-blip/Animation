@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 2.4</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 2 Motion in a Straight Line</a></p>
+      <h1>Exercise 2.4 · The drunkard and the pit</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q03.html">‹ 2.3</a><a href="index.html">All questions</a><a href="q05.html">2.5 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 2.4">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A man steps 5 m forward and 3 m back repeatedly along a lane towards a pit 13 m away; the solution run draws the zig-zag x–t graph and shows that he reaches the pit at 37 s."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>2.4</b> A drunkard walking in a narrow lane takes 5 steps forward and 3 steps backward, followed again by 5 steps forward and 3 steps backward, and so on. Each step is 1 m long and requires 1 s. Plot the <i>x-t</i> graph of his motion. Determine graphically and otherwise how long the drunkard takes to fall in a pit 13 m away from the start.</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>5 steps forward, 3 back, repeated; each step 1 m and 1 s.</li>
+          <li>Pit 13 m from the start.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The <i>x–t</i> graph and the time to fall into the pit.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Shown at 2 steps per second (twice real speed).</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>Each 8-step cycle (8 s) gains 5 − 3 = 2 m.</li>
+          <li>After 4 cycles (32 s) he is at 8 m.</li>
+          <li>In the next 5 forward steps he reaches 8 + 5 = 13 m: the pit.</li>
+          <li>Time = 32 + 5 = 37 s.</li>
+        </ol>
+        <p class="final">37 s.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 2 (Motion in a Straight Line), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const SP = 2, TT = 37;                                  // 2 steps per second; he reaches the pit at 37 s
+  const xs = s => { s = Math.min(s, TT); const c = Math.floor(s / 8), r = s - 8 * c; return 2 * c + (r <= 5 ? r : 10 - r); };
+  const qStages = [
+    { title: 'Five forward, three back', dur: TT / SP + 1, text: 'A drunkard takes 5 steps forward and 3 back, again and again. Each step is 1 m long and takes 1 s. A pit lies 13 m from the start.' },
+    { title: 'What is asked', dur: 4, text: 'Plot his x–t graph. How long does he take to fall in the pit?' },
+  ];
+  const stages = [
+    { title: 'The x–t graph', dur: TT / SP + 1, text: 'Each 8 s cycle gains 5 − 3 = 2 m. The graph is a zig-zag that climbs 2 m every 8 s.', ans: 'After 4 cycles (32 s) he is at 8 m; 5 more forward steps take him to 13 m.' },
+    { title: 'Reading the graph', dur: 5, text: 'Find where the graph first reaches x = 13 m.', ans: 'He falls in the pit at t = 32 + 5 = 37 s.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    const s = clamp(t * SP, 0, TT), x = xs(s), LY = 480, rx = m => 50 + m * 36;
+    hline(ctx, rx(0), rx(13), LY, P.ink, 2);
+    ctx.fillStyle = P.ink; ctx.fillRect(rx(13), LY, rx(14.2) - rx(13), 26); label(ctx, 'pit', rx(13.6), LY - 14, { align: 'center', weight: 700, size: 13 });
+    for (let m = 0; m <= 13; m++) { vline(ctx, rx(m), LY, LY + 6, P.ink2, 1); if (m % 2 === 1 || m === 0) label(ctx, `${m}`, rx(m), LY + 16, { align: 'center', size: 11, color: P.ink2 }); }
+    person(ctx, rx(x), s >= TT ? LY + 40 : LY, 0.55);
+    const r = s % 8, fwd = r < 5 && s < TT;
+    if (s < TT) vec(ctx, rx(x) + (fwd ? 10 : -10), LY - 56, fwd ? 26 : -26, 0, fwd ? 'forward' : 'back', fwd ? P.vel : P.force, { side: -1, at: 0.5, size: 12 });
+    if (!ans) { askedPanel(ctx, 630, 34, 300, ['Plot the x–t graph of his motion.', 'Find (graphically and otherwise) how long he takes to fall in the pit 13 m away.']); note(ctx, 'shown at 2 steps per second (twice real speed)'); return; }
+    const g = axes(ctx, { x: 60, y: 60, w: 500, h: 300, x0: 0, x1: 40, y0: 0, y1: 14, xt: [8, 16, 24, 32, 37], yt: [2, 5, 8, 13], xl: 't (s)', yl: 'x (m)' });
+    hline(ctx, g.X(0), g.X(40), g.Y(13), P.force, 1, [5, 4]); label(ctx, 'pit', g.X(1), g.Y(13) - 12, { size: 12, color: P.force });
+    const pts = []; for (let k = 0; k <= Math.floor(s); k++) pts.push([g.X(k), g.Y(xs(k))]); pts.push([g.X(s), g.Y(x)]);
+    ctx.save(); ctx.strokeStyle = P.vel; ctx.lineWidth = 3; ctx.lineJoin = 'round'; poly(ctx, pts); ctx.restore();
+    clock(ctx, 420, 400, s, `t = ${s.toFixed(0)} s, x = ${x.toFixed(0)} m`);
+    if (s >= TT) { ball(ctx, g.X(TT), g.Y(13), 6, P.accent); label(ctx, '37 s', g.X(TT) - 8, g.Y(13) - 16, { align: 'right', weight: 800, size: 15, color: P.accent }); }
+    partsPanel(ctx, 630, 34, 300, 'Working', ['Each 8 s cycle: net 5 − 3 = 2 m forward', 'After 4 cycles (32 s): x = 8 m', 'Then 5 steps forward: 13 m at t = 37 s'], s < 32 ? 0 : s < TT ? 1 : 2, false);
+    note(ctx, 'shown at 2 steps per second (twice real speed)');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

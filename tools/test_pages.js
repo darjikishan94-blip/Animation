@@ -20,6 +20,7 @@ fs.mkdirSync(out, { recursive: true });
       errs = [];
       await p.goto('file://' + path.join(dir, f)); await p.waitForTimeout(150);
       const animated = await p.$('#q canvas') !== null;
+      if (animated && !(await p.$('#q .scrub'))) { report.push(`${scheme} ${f}: PLAYER DID NOT MOUNT ${errs.join(' | ')}`); continue; }
       let fit = '';
       if (animated) {
         // sweep the whole run; every 20th step, look for drawing that bleeds past the picture's edges

@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 2.9</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 2 Motion in a Straight Line</a></p>
+      <h1>Exercise 2.9 · Displacement versus path length</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q08.html">‹ 2.8</a><a href="index.html">All questions</a><a href="q10.html">2.10 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 2.9">
+    <p class="qline"><b>2.9</b> Explain clearly, with examples, the distinction between : (a) magnitude of displacement (sometimes called distance) over an interval of time, and the total length of path covered by a particle over the same interval; (b) magnitude of average velocity over an interval of time, and the average speed over the same interval. [Average speed of a particle over an interval of time is defined as the total path length divided by the time interval]. Show in both (a) and (b) that the second quantity is either greater than or equal to the first. When is the equality sign true ? [For simplicity, consider one-dimensional motion only].</p>
+    <p><button type="button" class="btn reveal" id="show" aria-pressed="false" style="margin-left:0">Show answer</button></p>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Definitions of displacement, path length, average velocity and average speed.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The distinctions, and when the second quantity equals the first.</p>
+      </div>
+      <div>
+        <h3>Why there is no animation</h3>
+        <ul>
+          <li>This question asks for an explanation (or a judgement) rather than describing one physical situation; the page shows the question and a worked answer.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>(a) Displacement depends only on the start and end points; path length adds up every bit travelled. A body that goes 5 m forward and 3 m back has displacement 2 m but path length 8 m.</li>
+          <li>Since back-and-forth movements add to the path but cancel in the displacement, path length ≥ |displacement|.</li>
+          <li>(b) |average velocity| = |displacement|/time and average speed = path length/time, over the same time, so average speed ≥ |average velocity|.</li>
+          <li>Equality holds when the particle moves in one direction only, without turning back.</li>
+        </ol>
+        <p class="final">Second ≥ first in both; equal only if the motion never reverses.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 2 (Motion in a Straight Line), Exercises. </p>
+</div>
+<script>
+const b = document.getElementById('show'), a = document.querySelector('.answer');
+b.addEventListener('click', () => { a.hidden = !a.hidden; b.setAttribute('aria-pressed', String(!a.hidden)); b.textContent = a.hidden ? 'Show answer' : 'Hide answer'; });
+</script>
+</body>
+</html>

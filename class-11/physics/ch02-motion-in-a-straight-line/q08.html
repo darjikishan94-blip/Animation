@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 2.8</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 2 Motion in a Straight Line</a></p>
+      <h1>Exercise 2.8 · A bouncing ball’s speed–time graph</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q07.html">‹ 2.7</a><a href="index.html">All questions</a><a href="q09.html">2.9 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 2.8">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A ball falls 90 m, bounces with nine-tenths of its speed, rises and falls again; its speed–time graph is drawn alongside up to 12 s."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>2.8</b> A ball is dropped from a height of 90 m on a floor. At each collision with the floor, the ball loses one tenth of its speed. Plot the speed-time graph of its motion between <i>t</i> = 0 to 12 s.</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Dropped from 90 m; loses one tenth of its speed at each bounce.</li>
+          <li>Graph wanted for 0 to 12 s. (g = 9.8 m s<sup>−2</sup>, as in NCERT’s solution.)</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The speed–time graph from 0 to 12 s.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Real time; heights at 4.4 px per metre.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>Fall: <i>t</i> = √(2 × 90/9.8) ≈ 4.29 s; speed at impact = 9.8 × 4.29 ≈ 42 m s<sup>−1</sup>.</li>
+          <li>After the bounce: 9/10 × 42 = 37.8 m s<sup>−1</sup> upward.</li>
+          <li>It rises for 37.8/9.8 ≈ 3.86 s (speed falling to 0 at ≈ 8.14 s) and falls back for 3.86 s, hitting the floor again at ≈ 12 s with 37.8 m s<sup>−1</sup>.</li>
+          <li>Speed–time graph: a straight rise from 0 to 42 m s<sup>−1</sup> (0–4.29 s), a drop to 37.8, a straight fall to 0 at 8.14 s, and a straight rise to 37.8 m s<sup>−1</sup> at 12 s.</li>
+        </ol>
+        <p class="final">Peaks of 42 m s<sup>−1</sup> at 4.29 s and 37.8 m s<sup>−1</sup> at 12 s; zero at 8.14 s.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 2 (Motion in a Straight Line), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const G = 9.8, H = 90, T1 = Math.sqrt(2 * H / G), V1 = G * T1, V2 = 0.9 * V1, TU = V2 / G, T2 = T1 + 2 * TU, K = 4.4, GY = 480, BX = 110;
+  const hOf = t => t < T1 ? H - 0.5 * G * t * t : (s => V2 * s - 0.5 * G * s * s)(Math.min(t, T2) - T1);
+  const vOf = t => t < T1 ? G * t : Math.abs(V2 - G * (Math.min(t, T2) - T1));
+  const qStages = [
+    { title: 'Dropped from 90 m', dur: 12.5, text: 'A ball is dropped from a height of 90 m. At each collision with the floor it loses one tenth of its speed.' },
+    { title: 'What is asked', dur: 4, text: 'Plot the speed–time graph of its motion from t = 0 to 12 s.' },
+  ];
+  const stages = [
+    { title: 'The fall', dur: T1, text: 'Falling freely, the speed grows steadily: v = gt.', ans: 'It hits the floor at t = √(2 × 90 / 9.8) ≈ 4.29 s with 42 m/s.' },
+    { title: 'The bounce', dur: TU, text: 'It leaves the floor with 9/10 of its speed and slows as it rises.', ans: 'Up at 37.8 m/s; speed 0 at the top, t ≈ 8.14 s.' },
+    { title: 'Falling again', dur: TU, text: 'It falls back, speeding up at the same rate.', ans: 'Hits the floor again at t ≈ 12 s with 37.8 m/s.' },
+    { title: 'The graph', dur: 4, text: 'The graph is made of straight lines of slope ±g, with a sudden drop at the bounce.', ans: 'Peaks: 42 m/s at 4.29 s and 37.8 m/s at 12 s; zero at 8.14 s.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1); ground(ctx, 40, 180, GY);
+    const ts = Math.min(t, T2), y = GY - hOf(ts) * K - 8;
+    vline(ctx, 50, GY - H * K, GY, P.ink2, 1.5);
+    for (const m of [0, 30, 60, 90]) { hline(ctx, 46, 54, GY - m * K, P.ink2, 1.2); label(ctx, `${m} m`, 58, GY - m * K, { size: 12, color: P.ink2 }); }
+    ball(ctx, BX, y, 8, P.force);
+    if (!ans) { askedPanel(ctx, 630, 34, 300, ['The speed–time graph of the ball’s motion from t = 0 to 12 s.']); note(ctx, 'real time; heights at 4.4 px per metre'); return; }
+    const g = axes(ctx, { x: 220, y: 70, w: 350, h: 300, x0: 0, x1: 12.6, y0: 0, y1: 46, xt: [4, 8, 12], yt: [20, 40], xl: 't (s)', yl: 'speed (m/s)' });
+    plot(ctx, g, vOf, 0, Math.min(ts, T1 - 1e-6), P.vel); if (ts > T1) plot(ctx, g, vOf, T1, ts, P.vel);
+    if (ts > T1) { ctx.save(); ctx.strokeStyle = P.vel; ctx.setLineDash([3, 3]); seg(ctx, g.X(T1), g.Y(V1), g.X(T1), g.Y(V2)); ctx.restore(); }
+    const mk = (x, v, s, al = 'left') => { ball(ctx, g.X(x), g.Y(v), 5, P.accent); label(ctx, s, g.X(x) + (al === 'left' ? 8 : -8), g.Y(v) - 14, { align: al, weight: 700, size: 13, color: P.accent }); };
+    if (ts >= T1) mk(T1, V1, '42 m/s, 4.29 s');
+    if (ts >= T1 + TU) mk(T1 + TU, 0, '0 at 8.14 s');
+    if (t >= T2) mk(T2, V2, '37.8 m/s, 12 s', 'right');
+    clock(ctx, 260, 420, ts, `t = ${ts.toFixed(2)} s, speed = ${vOf(ts).toFixed(1)} m/s`);
+    partsPanel(ctx, 630, 34, 300, 'Working (g = 9.8 m/s²)', ['Fall: t = √(2h/g) ≈ 4.29 s, v = 42 m/s', 'Bounce: 0.9 × 42 = 37.8 m/s; up for 3.86 s', 'Down again: floor at ≈ 12 s, 37.8 m/s', 'Graph: lines of slope ±g, drop at each bounce'], stageAt(stages, t), false);
+    note(ctx, 'real time; heights at 4.4 px per metre');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

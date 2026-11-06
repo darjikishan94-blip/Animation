@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 2.1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 2 Motion in a Straight Line</a></p>
+      <h1>Exercise 2.1 · When is a body a point object?</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><span>‹</span><a href="index.html">All questions</a><a href="q02.html">2.2 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 2.1">
+    <p class="qline"><b>2.1</b> In which of the following examples of motion, can the body be considered approximately a point object: (a) a railway carriage moving without jerks between two stations. (b) a monkey sitting on top of a man cycling smoothly on a circular track. (c) a spinning cricket ball that turns sharply on hitting the ground. (d) a tumbling beaker that has slipped off the edge of a table.</p>
+    <p><button type="button" class="btn reveal" id="show" aria-pressed="false" style="margin-left:0">Show answer</button></p>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Four moving bodies.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>Which can be treated approximately as point objects.</p>
+      </div>
+      <div>
+        <h3>Why there is no animation</h3>
+        <ul>
+          <li>This question asks for an explanation (or a judgement) rather than describing one physical situation; the page shows the question and a worked answer.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>A body can be treated as a point when its size is small compared with the distance it moves, and its rotation does not matter.</li>
+          <li>(a) Yes: the carriage is small compared with the distance between stations.</li>
+          <li>(b) Yes: the monkey is small compared with the size of the circular track.</li>
+          <li>(c) No: the spin matters, and the turn happens over a distance comparable to the ball’s size.</li>
+          <li>(d) No: the beaker tumbles and falls a height comparable to its own size.</li>
+        </ol>
+        <p class="final">(a) and (b).</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 2 (Motion in a Straight Line), Exercises. </p>
+</div>
+<script>
+const b = document.getElementById('show'), a = document.querySelector('.answer');
+b.addEventListener('click', () => { a.hidden = !a.hidden; b.setAttribute('aria-pressed', String(!a.hidden)); b.textContent = a.hidden ? 'Show answer' : 'Hide answer'; });
+</script>
+</body>
+</html>

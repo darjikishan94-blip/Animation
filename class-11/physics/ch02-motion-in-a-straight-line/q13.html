@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 2.13</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 2 Motion in a Straight Line</a></p>
+      <h1>Exercise 2.13 · Is the path a parabola? (Fig. 2.11)</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q12.html">‹ 2.12</a><a href="index.html">All questions</a><a href="q14.html">2.14 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 2.13">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="The x–t graph of Fig. 2.11, flat before t = 0 and curving up after, is traced while a car starts from rest and speeds up along a straight road: the curve is the graph, not the path."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>2.13</b> Figure 2.11 shows the <i>x-t</i> plot of one-dimensional motion of a particle. Is it correct to say from the graph that the particle moves in a straight line for <i>t</i> &lt; 0 and on a parabolic path for <i>t</i> &gt; 0 ? If not, suggest a suitable physical context for this graph.</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Fig. 2.11: x = 0 for t &lt; 0; for t &gt; 0, x grows like a parabola.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>Whether the path is straight then parabolic; a physical context.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>The acceleration is illustrative; none is given.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>No. An x–t graph is not the path: in one-dimensional motion the particle always moves along a straight line.</li>
+          <li>The graph says: at rest at x = 0 before t = 0, then x ∝ t<sup>2</sup>, i.e. uniformly accelerated from rest.</li>
+          <li>Context: a car at rest at a signal that starts moving with constant acceleration at t = 0 (or a stone dropped at t = 0).</li>
+        </ol>
+        <p class="final">No: the path is a straight line; e.g. a body at rest that starts uniformly accelerating at t = 0.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 2 (Motion in a Straight Line), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const xf = t => t > 0 ? t * t : 0, D = 7;
+  const qStages = [
+    { title: 'Fig. 2.11', dur: D, text: 'The x–t plot of a particle in one-dimensional motion: flat for t < 0, curving upward for t > 0.' },
+    { title: 'What is asked', dur: 4, text: 'Does the particle move in a straight line for t < 0 and on a parabolic path for t > 0? If not, suggest a physical context.' },
+  ];
+  const stages = [
+    { title: 'Reading the graph', dur: D, text: 'An x–t graph plots position against time. It is not a picture of the path. Watch the car on the road below.', ans: 'For t < 0 the car is at rest at x = 0; for t > 0, x ∝ t²: it accelerates uniformly from rest.' },
+    { title: 'The answer', dur: 5, text: 'In one-dimensional motion the particle always moves along one straight line.', ans: 'No. Context: a car at rest that starts with constant acceleration at t = 0 (or a stone dropped at t = 0).' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    const g = axes(ctx, { x: 80, y: 60, w: 460, h: 240, x0: -2, x1: 3, y0: 0, y1: 9, xl: 't', yl: 'x' });
+    label(ctx, '0', g.X(0) + 4, g.Y(0) + 14, { size: 12 });
+    const tt = -2 + 5 * clamp(t / (D - 1));
+    plot(ctx, g, xf, -2, tt, P.vel);
+    ball(ctx, g.X(tt), g.Y(xf(tt)), 5, P.accent);
+    if (ans) {
+      const RY = 430, rx = v => 80 + v / 9 * 460;
+      ctx.fillStyle = P.road; ctx.fillRect(40, RY, 540, 20); hline(ctx, 40, 580, RY, P.obj, 2);
+      vline(ctx, rx(0), RY - 6, RY + 26, P.ink, 1.5); label(ctx, 'x = 0', rx(0), RY + 38, { align: 'center', size: 12 });
+      block(ctx, rx(xf(tt)) - 20, RY - 20, 40, 20, '', P.objFill2);
+      label(ctx, 'the path: a straight road', 320, RY + 60, { align: 'center', weight: 700, size: 14, color: P.accent });
+      label(ctx, tt < 0 ? 'at rest' : 'speeding up', rx(xf(tt)), RY - 32, { align: 'center', weight: 700, size: 13, color: P.vel });
+      partsPanel(ctx, 630, 34, 300, 'Answer', ['The x–t graph is not the path', 'Here: at rest, then uniformly accelerated from rest (x ∝ t²) along a straight line', 'e.g. a car starting from a signal at t = 0'], t < 3 ? 0 : t < D ? 1 : 2, false);
+    } else askedPanel(ctx, 630, 34, 300, ['Is it correct to say the particle moves in a straight line for t < 0 and on a parabolic path for t > 0?', 'If not, suggest a suitable physical context for this graph.']);
+    note(ctx, ans ? 'the acceleration is illustrative; none is given' : 'Fig. 2.11 as given: no scale');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

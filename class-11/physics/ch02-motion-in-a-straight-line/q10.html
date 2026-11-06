@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 2.10</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 2 Motion in a Straight Line</a></p>
+      <h1>Exercise 2.10 · The market is closed</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q09.html">‹ 2.9</a><a href="index.html">All questions</a><a href="q11.html">2.11 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 2.10">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A man walks 2.5 km to a market and straight back; the solution run tracks his displacement and path length at 30, 40 and 50 minutes."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>2.10</b> A man walks on a straight road from his home to a market 2.5 km away with a speed of 5 km h<sup>–1</sup>. Finding the market closed, he instantly turns and walks back home with a speed of 7.5 km h<sup>–1</sup>. What is the (a) magnitude of average velocity, and (b) average speed of the man over the interval of time (i) 0 to 30 min, (ii) 0 to 50 min, (iii) 0 to 40 min ? [Note: You will appreciate from this exercise why it is better to define average speed as total path length divided by time, and not as magnitude of average velocity. You would not like to tell the tired man on his return home that his average speed was zero !]</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Home to market 2.5 km at 5 km h<sup>−1</sup>; back at 7.5 km h<sup>−1</sup>, turning instantly.</li>
+          <li>Intervals 0–30 min, 0–50 min, 0–40 min.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The magnitude of average velocity and the average speed over each interval.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>50 minutes shown in 15 s.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>Outward: 2.5/5 = 0.5 h = 30 min. Back: 2.5/7.5 h = 20 min, so home at 50 min.</li>
+          <li>(i) 0–30 min: displacement = path = 2.5 km in 0.5 h: |average velocity| = average speed = 5 km h<sup>−1</sup>.</li>
+          <li>(ii) 0–50 min: displacement 0, path 5 km in 5/6 h: |average velocity| = 0; average speed = 6 km h<sup>−1</sup>.</li>
+          <li>(iii) 0–40 min: in the last 10 min he walks back 7.5 × 1/6 = 1.25 km, so displacement 1.25 km, path 3.75 km, in 2/3 h: |average velocity| = 1.875 km h<sup>−1</sup>; average speed = 5.625 km h<sup>−1</sup>.</li>
+        </ol>
+        <p class="final">(i) 5, 5 (ii) 0, 6 (iii) 1.875, 5.625 km h<sup>−1</sup></p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 2 (Motion in a Straight Line), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const mOf = t => t < 9 ? 30 * t / 9 : t < 15 ? 30 + 20 * (t - 9) / 6 : 50;
+  const pos = m => m <= 30 ? 2.5 * m / 30 : m <= 50 ? 2.5 - 2.5 * (m - 30) / 20 : 0, path = m => m <= 30 ? 2.5 * m / 30 : 2.5 + 2.5 * (Math.min(m, 50) - 30) / 20;
+  const PARTS = ['(i) 0 to 30 min', '(iii) 0 to 40 min', '(ii) 0 to 50 min'];
+  const ANS = ['displacement 2.5 km, path 2.5 km, in 0.5 h: |v̄| = 5 km/h, speed 5 km/h', 'displacement 1.25 km, path 3.75 km, in 2/3 h: |v̄| = 1.875 km/h, speed 5.625 km/h', 'displacement 0, path 5 km, in 5/6 h: |v̄| = 0, speed 6 km/h'];
+  const qStages = [
+    { title: 'To the market', dur: 9, text: 'A man walks 2.5 km from home to the market at 5 km/h.' },
+    { title: 'Back home', dur: 6, text: 'Finding it closed, he turns at once and walks home at 7.5 km/h.' },
+    { title: 'What is asked', dur: 4, text: 'Find the magnitude of average velocity and the average speed over 0–30 min, 0–50 min and 0–40 min.' },
+  ];
+  const stages = [
+    { title: '0 to 30 min', dur: 9, text: 'Outward: 2.5 km at 5 km/h takes 0.5 h = 30 min. So far displacement and path length are equal.', ans: '(i) |average velocity| = average speed = 2.5 / 0.5 = 5 km/h.' },
+    { title: '0 to 40 min', dur: 3, text: 'In 10 min back he covers 7.5 × 10/60 = 1.25 km towards home.', ans: '(iii) |v̄| = 1.25 / (2/3) = 1.875 km/h; speed = 3.75 / (2/3) = 5.625 km/h.' },
+    { title: '0 to 50 min', dur: 3, text: 'The return takes 2.5 / 7.5 h = 20 min: he is home at 50 min.', ans: '(ii) |v̄| = 0 (back where he started); speed = 5 / (5/6) = 6 km/h.' },
+    { title: 'Why the two differ', dur: 4, text: 'Average velocity uses only the net displacement; average speed uses the whole path.', ans: 'After walking 5 km he would not like to hear that his average speed was zero.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    const m = mOf(t), x = pos(m), RY = 300, rx = v => 90 + v / 2.5 * 420;
+    hline(ctx, rx(0) - 30, rx(2.5) + 40, RY, P.ink, 2);
+    block(ctx, rx(0) - 30, RY - 40, 40, 40, 'home', P.objFill); block(ctx, rx(2.5) - 8, RY - 50, 56, 50, 'market', P.objFill);
+    dim(ctx, rx(0), rx(2.5), RY + 26, P.ink2); label(ctx, '2.5 km', (rx(0) + rx(2.5)) / 2, RY + 42, { align: 'center', weight: 700, size: 13 });
+    if (m < 50) { person(ctx, rx(x), RY, 0.6); vec(ctx, rx(x) + (m < 30 ? 12 : -12), RY - 66, m < 30 ? 40 : -40, 0, m < 30 ? '5 km/h' : '7.5 km/h', P.vel, { side: -1, at: 0.5, size: 12 }); }
+    else person(ctx, rx(0) + 26, RY, 0.6);
+    if (m >= 30 && m < 33) label(ctx, 'closed!', rx(2.5) + 20, RY - 64, { align: 'center', weight: 700, size: 14, color: P.force });
+    if (!ans) { askedPanel(ctx, 630, 34, 300, ['(a) The magnitude of average velocity and (b) the average speed over (i) 0 to 30 min, (ii) 0 to 50 min, (iii) 0 to 40 min.']); note(ctx, '50 minutes shown in 15 s'); return; }
+    clock(ctx, 60, 60, m, `t = ${m.toFixed(0)} min`);
+    if (x > 0.01) vec(ctx, rx(0), RY + 80, rx(x) - rx(0), 0, `displacement ${x.toFixed(2)} km`, P.disp, { side: 1, at: 0.5, size: 13 });
+    else label(ctx, 'displacement 0', rx(0), RY + 80, { weight: 700, size: 13, color: P.disp });
+    label(ctx, `path length ${path(m).toFixed(2)} km`, rx(0), RY + 130, { weight: 700, size: 14, color: P.vel });
+    const k = m < 30 ? -1 : m < 40 ? 0 : m < 50 ? 1 : 2;
+    partsPanel(ctx, 630, 34, 300, 'Over the interval…', PARTS, k, true, ANS);
+    note(ctx, '50 minutes shown in 15 s');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

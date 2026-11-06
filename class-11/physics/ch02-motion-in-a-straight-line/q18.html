@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 2.18</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 2 Motion in a Straight Line</a></p>
+      <h1>Exercise 2.18 · Speed–time graph: A, B, C, D (Fig. 2.15)</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q17.html">‹ 2.17</a><a href="index.html">All questions</a><span>›</span></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 2.18">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A particle moving in one direction speeds up and slows down as its speed–time graph is traced; three equal intervals are compared by slope and height, and the flat tops and bottoms A, B, C, D are marked."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>2.18</b> Figure 2.15 gives a speed-time graph of a particle in motion along a constant direction. Three equal intervals of time are shown. In which interval is the average acceleration greatest in magnitude? In which interval is the average speed greatest ? Choosing the positive direction as the constant direction of motion, give the signs of <i>v</i> and <i>a</i> in the three intervals. What are the accelerations at the points A, B, C and D ?</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Fig. 2.15: a speed–time curve with points A, B, C, D and three equal intervals 1, 2 and 3; motion in a constant direction.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>Greatest |average acceleration|; greatest average speed; signs of v and a; accelerations at A, B, C, D.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>The curve is drawn to match the shape of Fig. 2.15; no values are given.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>Average acceleration ≈ slope of the graph: steepest in interval 2, so |a| is greatest there.</li>
+          <li>Average speed is the height of the graph: greatest in interval 3.</li>
+          <li>v &gt; 0 in all three (constant direction). a &gt; 0 in 1 and 3 (speed rising), a &lt; 0 in 2 (speed falling).</li>
+          <li>At A, B, C and D the graph is flat: the acceleration is zero.</li>
+        </ol>
+        <p class="final">|a| greatest in 2; speed greatest in 3; v &gt; 0 in all; a &gt; 0 in 1, 3 and &lt; 0 in 2; a = 0 at A, B, C, D.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 2 (Motion in a Straight Line), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const vf = hermite([[0, 0.5, 0], [0.3, 0.5, 0], [1.0, 0.75, 0.6], [1.75, 2.0, 0], [2.05, 1.2, -3.2], [2.4, 0.6, 0], [2.75, 1.4, 2.0], [3.1, 2.4, 0], [3.4, 1.8, -2]]);
+  const IV = [[0.95, 1.05], [2.0, 2.1], [2.95, 3.05]], PTS = [['A', 0.15], ['B', 1.75], ['C', 2.4], ['D', 3.1]], D = 10;
+  const qStages = [
+    { title: 'Fig. 2.15', dur: D, text: 'The speed–time graph of a particle moving in a constant direction, with three equal intervals 1, 2 and 3.' },
+    { title: 'What is asked', dur: 5, text: 'Where is |average acceleration| greatest? Where is the average speed greatest? Signs of v and a in each interval; accelerations at A, B, C and D.' },
+  ];
+  const stages = [
+    { title: 'Following the particle', dur: D, text: 'Average acceleration over a short interval ≈ the slope of the speed–time graph; average speed ≈ its height.', ans: 'Slopes: 1 gentle up, 2 steep down, 3 gentle up. Heights: 3 is highest.' },
+    { title: 'Greatest values', dur: 4, text: 'Compare slopes and heights across the three equal intervals.', ans: '|Average acceleration| greatest in 2; average speed greatest in 3.' },
+    { title: 'Signs', dur: 4, text: 'The motion is always in the positive direction, so v > 0; a has the sign of the slope.', ans: 'v > 0 in all three; a > 0 in 1 and 3, a < 0 in 2.' },
+    { title: 'A, B, C, D', dur: 4, text: 'At these points the graph is flat.', ans: 'The acceleration is zero at A, B, C and D.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    const g = axes(ctx, { x: 70, y: 60, w: 470, h: 300, x0: 0, x1: 3.5, y0: 0, y1: 2.7, xt: [1, 2, 3], xl: 't', yl: 'speed' });
+    IV.forEach(([a, b]) => { ctx.fillStyle = P.grid; ctx.fillRect(g.X(a), g.Y(vf((a + b) / 2)), g.X(b) - g.X(a), g.Y(0) - g.Y(vf((a + b) / 2))); });
+    const tt = 3.45 * clamp(t / (D - 1));
+    plot(ctx, g, vf, 0, tt, P.vel);
+    PTS.forEach(([n, x]) => { if (tt >= x) label(ctx, n, g.X(x), g.Y(vf(x)) - 14, { align: 'center', weight: 700, size: 14 }); });
+    ball(ctx, g.X(tt), g.Y(vf(tt)), 5, P.accent);
+    let s = 0; for (let x = 0; x < tt; x += 0.01) s += vf(x) * 0.01;
+    const LY = 450; hline(ctx, 60, 590, LY, P.ink2, 1.5); ball(ctx, 70 + s * 105, LY - 10, 9, P.objFill2); label(ctx, 'direction of motion →', 70, LY + 20, { size: 12, color: P.ink2 });
+    if (ans && t >= D) IV.forEach(([a, b], i) => { const sl = (vf(b) - vf(a)) / (b - a); label(ctx, `${i + 1}: a ${sl > 0 ? '> 0' : '< 0'}`, (g.X(a) + g.X(b)) / 2, g.Y(vf(a)) + (sl > 0 ? 26 : -40), { align: 'center', weight: 700, size: 13, color: sl > 0 ? P.vel : P.force }); });
+    if (ans && stageAt(stages, t) === 3) PTS.forEach(([n, x]) => { ctx.save(); ctx.strokeStyle = P.accent; ctx.lineWidth = 2; seg(ctx, g.X(x) - 28, g.Y(vf(x)), g.X(x) + 28, g.Y(vf(x))); ctx.restore(); });
+    if (ans) partsPanel(ctx, 630, 34, 300, 'Answers', ['Slope = acceleration; height = speed', '|a| greatest in 2; speed greatest in 3', 'v > 0 in all; a > 0 in 1, 3; a < 0 in 2', 'a = 0 at A, B, C and D'], stageAt(stages, t), false);
+    else askedPanel(ctx, 630, 34, 300, ['The interval with the greatest |average acceleration|, and the one with the greatest average speed.', 'The signs of v and a in the three intervals.', 'The accelerations at A, B, C and D.']);
+    note(ctx, 'no values given: the curve matches the shape of Fig. 2.15');
+  }
+  return { qStages, stages, draw };
+})();
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

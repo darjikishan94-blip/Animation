@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 2.3</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 2 Motion in a Straight Line</a></p>
+      <h1>Exercise 2.3 · A woman’s day: x–t graph</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q02.html">‹ 2.2</a><a href="index.html">All questions</a><a href="q04.html">2.4 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 2.3">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A woman walks 2.5 km to her office, stays there through the day and returns by auto; the solution run draws her x–t graph with a time axis from 9 am to 5.30 pm."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>2.3</b> A woman starts from her home at 9.00 am, walks with a speed of 5 km h<sup>–1</sup> on a straight road up to her office 2.5 km away, stays at the office up to 5.00 pm, and returns home by an auto with a speed of 25 km h<sup>–1</sup>. Choose suitable scales and plot the <i>x-t</i> graph of her motion.</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Leaves home at 9.00 am; walks at 5 km h<sup>−1</sup>; office 2.5 km away.</li>
+          <li>Stays till 5.00 pm; returns by auto at 25 km h<sup>−1</sup>.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The <i>x–t</i> graph of her motion.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>The day is compressed: the walk, the stay and the ride are shown at different speeds; the graph is to scale.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>Walk: time = 2.5 km / 5 km h<sup>−1</sup> = 0.5 h, so she reaches the office at 9.30 am.</li>
+          <li>At the office x = 2.5 km from 9.30 am to 5.00 pm: a horizontal line.</li>
+          <li>Ride: time = 2.5 / 25 = 0.1 h = 6 min, so she is home at 5.06 pm.</li>
+          <li>Graph: a line rising from (9.00, 0) to (9.30, 2.5 km), flat to (5.00 pm, 2.5 km), then falling steeply to (5.06 pm, 0).</li>
+        </ol>
+        <p class="final">Office at 9.30 am; home again at 5.06 pm.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 2 (Motion in a Straight Line), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const xh = h => h < 0 ? 0 : h < 0.5 ? 5 * h : h < 8 ? 2.5 : h < 8.1 ? 2.5 - 25 * (h - 8) : 0;   // h = hours after 9.00 am
+  const hOf = t => t < 5 ? 0.5 * t / 5 : t < 8 ? 0.5 + 7.5 * (t - 5) / 3 : t < 11 ? 8 + 0.1 * (t - 8) / 3 : 8.1;
+  const qStages = [
+    { title: 'Walking to the office', dur: 5, text: 'She leaves home at 9.00 am and walks 2.5 km to her office at 5 km/h.' },
+    { title: 'At the office', dur: 3, text: 'She stays at the office until 5.00 pm.' },
+    { title: 'Home by auto', dur: 5, text: 'She returns home by auto at 25 km/h. Choose scales and plot her x–t graph.' },
+  ];
+  const stages = [
+    { title: 'The walk', dur: 5, text: 'Time to walk = distance / speed = 2.5 km / 5 km/h = 0.5 h.', ans: 'At the office at 9.30 am: a straight line from (9.00 am, 0) to (9.30 am, 2.5 km).' },
+    { title: 'At the office', dur: 3, text: 'Her position does not change while she is at the office.', ans: 'A horizontal line at x = 2.5 km from 9.30 am to 5.00 pm.' },
+    { title: 'The ride home', dur: 5, text: 'Time by auto = 2.5 km / 25 km/h = 0.1 h = 6 min.', ans: 'A steep line down to x = 0 at 5.06 pm.' },
+  ];
+  const fmt = h => { let m = Math.round((9 + h) * 60), hh = Math.floor(m / 60), mm = m % 60; const pm = hh >= 12; if (hh > 12) hh -= 12; return `${hh}.${String(mm).padStart(2, '0')} ${pm ? 'pm' : 'am'}`; };
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    const h = hOf(t), x = xh(h), RY = 440, rx = v => 90 + v / 2.5 * 420;
+    hline(ctx, rx(0) - 30, rx(2.5) + 40, RY, P.ink, 2);
+    block(ctx, rx(0) - 26, RY - 40, 40, 40, 'home', P.objFill); block(ctx, rx(2.5) - 10, RY - 60, 56, 60, 'office', P.objFill);
+    dim(ctx, rx(0), rx(2.5), RY + 26, P.ink2); label(ctx, '2.5 km', (rx(0) + rx(2.5)) / 2, RY + 42, { align: 'center', weight: 700, size: 13 });
+    if (h < 0.5) { person(ctx, rx(x), RY, 0.6); vec(ctx, rx(x) + 12, RY - 64, 40, 0, '5 km/h', P.vel, { side: -1, at: 0.5, size: 12 }); }
+    else if (h < 8) label(ctx, t < 5.3 ? 'at the office' : 'at the office until 5.00 pm', rx(2.5) + 18, RY - 80, { align: 'center', weight: 700, size: 13 });
+    else if (h < 8.1) { block(ctx, rx(x) - 24, RY - 26, 48, 22, 'auto', P.ke); vec(ctx, rx(x) - 20, RY - 44, -40, 0, '25 km/h', P.vel, { side: 1, at: 0.5, size: 12 }); }
+    else person(ctx, rx(0) + 30, RY, 0.6);
+    if (!ans) { if (t < 1.2) label(ctx, '9.00 am: leaves home', rx(0), RY - 84, { weight: 700, size: 14 }); askedPanel(ctx, 630, 34, 300, ['Choose suitable scales and plot the x–t graph of her motion.']); return; }
+    const g = axes(ctx, { x: 80, y: 60, w: 460, h: 200, x0: 0, x1: 8.6, y0: 0, y1: 3, yt: [2.5], xl: 't', yl: 'x (km)' });
+    for (const [v, s] of [[0, '9 am'], [0.5, '9.30'], [4, '1 pm'], [8, '5 pm']]) { vline(ctx, g.X(v), g.Y(0), g.Y(0) + 5, P.ink2, 1.2); label(ctx, s, g.X(v), g.Y(0) + 16, { align: 'center', size: 12, color: P.ink2 }); }
+    plot(ctx, g, xh, 0, h, P.vel, 3, 600);
+    if (h >= 8.1) { ball(ctx, g.X(8.1), g.Y(0), 5, P.accent); label(ctx, '5.06 pm', g.X(8.1) + 4, g.Y(0) - 14, { align: 'right', weight: 700, size: 13, color: P.accent }); }
+    if (h >= 0.5) { ball(ctx, g.X(0.5), g.Y(2.5), 5, P.accent); label(ctx, '9.30 am', g.X(0.5) + 8, g.Y(2.5) - 14, { weight: 700, size: 13, color: P.accent }); }
+    clock(ctx, 60, 300, h * 60, fmt(h));
+    partsPanel(ctx, 630, 34, 300, 'Working', ['Walk: 2.5 / 5 = 0.5 h: office at 9.30 am', 'Flat at 2.5 km until 5.00 pm', 'Auto: 2.5 / 25 = 0.1 h = 6 min: home at 5.06 pm'], stageAt(stages, t), false);
+    note(ctx, 'scale: 1 hour = 53 px, 1 km = 67 px; the stay at the office is shown speeded up');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

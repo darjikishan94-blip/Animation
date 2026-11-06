@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 2.14</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 2 Motion in a Straight Line</a></p>
+      <h1>Exercise 2.14 · Police van fires at a thief’s car</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q13.html">‹ 2.13</a><a href="index.html">All questions</a><a href="q15.html">2.15 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 2.14">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A police van fires a bullet at a car speeding away on the same road; the solution compares the bullet’s ground speed with the car’s and shows the 105 m/s at which it closes on the car."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>2.14</b> A police van moving on a highway with a speed of 30 km h<sup>–1</sup> fires a bullet at a thief’s car speeding away in the same direction with a speed of 192 km h<sup>–1</sup>. If the muzzle speed of the bullet is 150 m s<sup>–1</sup>, with what speed does the bullet hit the thief’s car ? (Note: Obtain that speed which is relevant for damaging the thief’s car).</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Van 30 km h<sup>−1</sup>; thief’s car 192 km h<sup>−1</sup>, same direction; muzzle speed 150 m s<sup>−1</sup> (relative to the van).</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The speed of the bullet relative to the car (the one that matters for damage).</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Motion slowed down greatly; distances illustrative.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>Van: 30 km h<sup>−1</sup> = 8.33 m s<sup>−1</sup>; car: 192 km h<sup>−1</sup> = 53.3 m s<sup>−1</sup>.</li>
+          <li>Bullet’s speed over the ground = 150 + 8.33 = 158.3 m s<sup>−1</sup>.</li>
+          <li>Relative to the car: 158.3 − 53.3 = 105 m s<sup>−1</sup>.</li>
+        </ol>
+        <p class="final">105 m s<sup>−1</sup>.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 2 (Motion in a Straight Line), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const VV = 30 / 3.6, VC = 192 / 3.6, VB = 150 + VV, REL = VB - VC, D0 = 250, TH = D0 / REL, K = 1.1, SLOW = 5, RY = 260, X0 = 40;
+  const qStages = [
+    { title: 'The chase', dur: 2, text: 'A police van at 30 km/h chases a thief’s car speeding away at 192 km/h along the same highway.' },
+    { title: 'A shot is fired', dur: TH * SLOW + 1, text: 'A bullet is fired from the van at the car. Its muzzle speed is 150 m/s.' },
+    { title: 'What is asked', dur: 4, text: 'With what speed does the bullet hit the car? (The speed that matters for the damage.)' },
+  ];
+  const stages = [
+    { title: 'Speeds in m/s', dur: 2, text: 'Convert both speeds to m/s.', ans: 'Van: 30 km/h = 8.33 m/s. Car: 192 km/h = 53.3 m/s.' },
+    { title: 'The bullet', dur: TH * SLOW + 1, text: 'The muzzle speed is measured relative to the van, so over the ground the bullet also has the van’s speed.', ans: 'Bullet over the ground: 150 + 8.33 = 158.3 m/s.' },
+    { title: 'Relative to the car', dur: 4, text: 'The damage depends on how fast the bullet closes in on the car.', ans: 'Speed relative to the car = 158.3 − 53.3 = 105 m/s.' },
+  ];
+  function veh(ctx, x, w, col, txt, y = RY) { block(ctx, x - w, y - 30, w, 26, txt, col); for (const wx of [x - w + 10, x - 10]) { ctx.fillStyle = P.obj; ctx.beginPath(); ctx.arc(wx, y - 4, 6, 0, Math.PI * 2); ctx.fill(); } }
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    ctx.fillStyle = P.road; ctx.fillRect(20, RY, 580, 24); hline(ctx, 20, 600, RY, P.obj, 2);
+    const rt = Math.min((t - 2) / SLOW, TH), vx = X0 + 60 + VV * rt * K, cx = X0 + 60 + D0 * K + VC * rt * K;
+    veh(ctx, vx, 60, P.objFill, 'police'); veh(ctx, cx + 60, 60, P.ke, 'thief');
+    vec(ctx, vx - 50, RY - 50, 24, 0, ans ? '8.33 m/s' : '30 km/h', P.vel, { side: -1, at: 0.5, size: 12 });
+    vec(ctx, cx + 10, RY - 50, 50, 0, ans ? '53.3 m/s' : '192 km/h', P.vel, { side: -1, at: 0.5, size: 12 });
+    if (rt >= 0) {
+      const bx = Math.min(X0 + 60 + VB * rt * K, cx);
+      ctx.fillStyle = P.ink; ctx.fillRect(bx - 8, RY - 20, 8, 4);
+      if (rt < TH) vec(ctx, bx - 4, RY - 90, 60, 0, ans ? '158.3 m/s (ground)' : '150 m/s from the van', P.force, { side: -1, at: 0.5, size: 12 });
+      else label(ctx, 'hit!', cx, RY - 46, { align: 'center', weight: 800, size: 15, color: P.force });
+    }
+    if (!ans) { askedPanel(ctx, 630, 34, 300, ['The speed with which the bullet hits the thief’s car (the speed relevant for damaging it).']); note(ctx, 'motion slowed 5 times; starting gap illustrative'); return; }
+    // as seen from the thief's car
+    const IY = 420; label(ctx, 'as seen from the thief’s car', 300, IY - 80, { align: 'center', weight: 700, size: 14 });
+    hline(ctx, 60, 560, IY, P.ink2, 1, [4, 4]); veh(ctx, 560, 60, P.ke, 'thief', IY);
+    if (rt >= 0) { const bx = 80 + (500 - 80) * rt / TH; ctx.fillStyle = P.ink; ctx.fillRect(bx - 8, IY - 20, 8, 4); if (rt < TH) vec(ctx, bx - 4, IY - 30, 50, 0, '105 m/s', P.accent, { side: -1, at: 0.5, size: 13 }); }
+    partsPanel(ctx, 630, 34, 300, 'Working', ['Van 8.33 m/s; car 53.3 m/s', 'Bullet over the ground: 150 + 8.33 = 158.3 m/s', 'Relative to the car: 158.3 − 53.3 = 105 m/s'], stageAt(stages, t), false);
+    note(ctx, 'motion slowed 5 times; starting gap illustrative');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

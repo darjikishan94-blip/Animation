@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 2.6</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 2 Motion in a Straight Line</a></p>
+      <h1>Exercise 2.6 · Ball thrown up at 29.4 m/s</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q05.html">‹ 2.5</a><a href="index.html">All questions</a><a href="q07.html">2.7 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 2.6">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A ball thrown straight up rises, stops for an instant and falls back; the solution run shows its velocity and acceleration arrows, the signs of x, v and a with x measured downward from the top, and the 44.1 m height and 6 s flight."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>2.6</b> A player throws a ball upwards with an initial speed of 29.4 m s<sup>–1</sup>. (a) What is the direction of acceleration during the upward motion of the ball ? (b) What are the velocity and acceleration of the ball at the highest point of its motion ? (c) Choose the <i>x</i> = 0 m and <i>t</i> = 0 s to be the location and time of the ball at its highest point, vertically downward direction to be the positive direction of <i>x</i>-axis, and give the signs of position, velocity and acceleration of the ball during its upward, and downward motion. (d) To what height does the ball rise and after how long does the ball return to the player’s hands ? (Take <i>g</i> = 9.8 m s<sup>–2</sup> and neglect air resistance).</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Initial speed 29.4 m s<sup>−1</sup> upward; <i>g</i> = 9.8 m s<sup>−2</sup>; no air resistance.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>(a)–(c) directions and signs; (d) the height reached and the time to return.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Real time; 8 px per metre.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>(a) Vertically downward (the acceleration due to gravity).</li>
+          <li>(b) At the top: velocity 0, acceleration 9.8 m s<sup>−2</sup> downward.</li>
+          <li>(c) With x = 0 at the top and downward positive: going up, x &lt; 0, v &lt; 0, a &gt; 0; coming down, x &gt; 0, v &gt; 0, a &gt; 0.</li>
+          <li>(d) Height = <i>u</i><sup>2</sup>/2<i>g</i> = 29.4<sup>2</sup>/19.6 = 44.1 m. Time up = <i>u</i>/<i>g</i> = 3 s; down also 3 s; it returns after 6 s.</li>
+        </ol>
+        <p class="final">(d) 44.1 m; 6 s.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 2 (Motion in a Straight Line), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const U = 29.4, G = 9.8, H = U * U / (2 * G), TU = U / G, K = 8, BX = 200, Y0 = 452, YT = Y0 - H * K;   // H = 44.1 m, TU = 3 s
+  const ftOf = t => t < 2.85 ? t : t < 4.35 ? 2.85 + 0.3 * (t - 2.85) / 1.5 : Math.min(6, 3.15 + (t - 4.35));
+  const qStages = [
+    { title: 'Thrown up', dur: 7, text: 'A player throws a ball upwards at 29.4 m/s. Take g = 9.8 m/s²; neglect air resistance.' },
+    { title: 'What is asked', dur: 5, text: '(a) direction of the acceleration going up; (b) velocity and acceleration at the top; (c) signs of x, v, a with x = 0 at the top, downward positive; (d) the height and the time to return.' },
+  ];
+  const stages = [
+    { title: 'Going up', dur: 2.85, text: 'Gravity pulls down, against the motion: the ball slows down.', ans: '(a) The acceleration is 9.8 m/s², vertically downward.' },
+    { title: 'At the top (slow motion)', dur: 1.5, text: 'For an instant the ball is at rest, but gravity still acts.', ans: '(b) v = 0, a = 9.8 m/s² downward.' },
+    { title: 'Coming down', dur: 2.85, text: 'Take x = 0 at the top and downward as positive.', ans: '(c) Up: x < 0, v < 0, a > 0. Down: x > 0, v > 0, a > 0.' },
+    { title: 'Height and time', dur: 5, text: 'Height h = u²/2g; time up = u/g, and the fall takes as long.', ans: '(d) h = 29.4² / 19.6 = 44.1 m; back in the hands after 3 + 3 = 6 s.' },
+  ];
+  const sg = v => (Math.abs(v) < 1e-6 ? '0' : v > 0 ? '+' : '−');
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1); ground(ctx, 40, 590, Y0 + 40);
+    person(ctx, BX - 22, Y0 + 40, 0.9);
+    const ft = ans ? ftOf(t) : Math.min(t, 6), h = U * ft - 0.5 * G * ft * ft, v = U - G * ft, y = Y0 - h * K;   // v: upward positive
+    ball(ctx, BX, y, 9, P.force);
+    if (ft < 6) {
+      if (Math.abs(v) > 0.3) vec(ctx, BX + 26, y, 0, -v * 2.4, ans ? `${Math.abs(v).toFixed(1)} m/s` : (ft < 0.15 ? '29.4 m/s' : ''), P.vel, { side: 1, at: 0.6, align: 'left', ax: 4, size: 12 });
+      else label(ctx, 'v = 0', BX + 22, y, { weight: 700, size: 14, color: P.vel });
+      if (ans) vec(ctx, BX - 26, y, 0, 40, 'g', P.acc, { side: 1, at: 0.7, align: 'right', ax: -4, italic: true });
+    }
+    if (!ans) { askedPanel(ctx, 630, 34, 300, ['(a) The direction of the acceleration during the upward motion.', '(b) The velocity and acceleration at the highest point.', '(c) The signs of x, v and a going up and coming down (x = 0 at the top, downward positive).', '(d) The height reached and the time to return to the hands.']); note(ctx, 'real time'); return; }
+    const AX = 380;
+    arrow(ctx, AX, YT, AX, Y0 + 20, P.ink2, { lw: 1.5, head: 8 }); label(ctx, 'x (downward +)', AX + 8, Y0 + 14, { size: 12, color: P.ink2 });
+    hline(ctx, AX - 6, AX + 6, YT, P.ink, 2); label(ctx, 'x = 0 (top)', AX + 10, YT, { size: 12, weight: 700 });
+    hline(ctx, BX + 12, AX, YT, P.ink2, 1, [3, 4]);
+    vdim(ctx, 520, YT, Y0, P.accent); label(ctx, '44.1 m', 528, (YT + Y0) / 2, { weight: 800, size: 15, color: P.accent });
+    const xd = H - h, vd = -v;                                     // downward-positive position and velocity
+    label(ctx, `signs now:  x ${sg(Math.abs(xd) < 0.05 ? 0 : xd)}   v ${sg(Math.abs(vd) < 0.3 ? 0 : vd)}   a +`, 40, 110, { weight: 800, size: 16, color: P.accent });
+    clock(ctx, 60, 60, ft, `t = ${ft.toFixed(2)} s`);
+    partsPanel(ctx, 630, 34, 300, 'Answers', ['(a) a: 9.8 m/s², downward', '(b) top: v = 0, a = 9.8 m/s² down', '(c) up: x −, v −, a +; down: x +, v +, a +', '(d) h = 44.1 m; returns after 6 s'], stageAt(stages, t), false);
+    note(ctx, 'real time except slow motion near the top; 8 px per metre');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

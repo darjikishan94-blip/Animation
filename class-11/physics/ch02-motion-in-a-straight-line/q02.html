@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 2.2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 2 Motion in a Straight Line</a></p>
+      <h1>Exercise 2.2 · Two children walking home (Fig. 2.9)</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q01.html">‹ 2.1</a><a href="index.html">All questions</a><a href="q03.html">2.3 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 2.2">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="The x–t graphs of two children are traced while the children walk along a road from school O to homes P and Q; B starts later, walks faster and overtakes A once."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>2.2</b> The position-time (<i>x-t</i>) graphs for two children A and B returning from their school O to their homes P and Q respectively are shown in Fig. 2.9. Choose the correct entries in the brackets below ; (a) (A/B) lives closer to the school than (B/A) (b) (A/B) starts from the school earlier than (B/A) (c) (A/B) walks faster than (B/A) (d) A and B reach home at the (same/different) time (e) (A/B) overtakes (B/A) on the road (once/twice).</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Fig. 2.9: straight-line x–t graphs of A (from O at t = 0 to P) and B (starting later, steeper, to Q, farther than P).</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The correct entries in (a) to (e).</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>No numbers are given: the graph is drawn to match the shape of Fig. 2.9, with both children reaching home together as in the NCERT answer.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>(a) A lives closer: P is lower on the x-axis than Q.</li>
+          <li>(b) A starts earlier: A’s graph begins at t = 0, B’s later.</li>
+          <li>(c) B walks faster: B’s graph is steeper (greater slope = greater speed).</li>
+          <li>(d) The same time (NCERT answer): both graphs end at the same instant.</li>
+          <li>(e) B overtakes A once: the graphs cross at one point.</li>
+        </ol>
+        <p class="final">(a) A, B (b) A, B (c) B, A (d) same (e) B, A, once</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 2 (Motion in a Straight Line), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const T = 10, TB = 4, PA = 2, QB = 3, D = 10, TC = (QB * TB / (T - TB)) / (QB / (T - TB) - PA / T);   // graphs cross once at TC
+  const xa = t => PA * clamp(t / T), xb = t => t < TB ? 0 : QB * clamp((t - TB) / (T - TB));
+  const PARTS = ['(a) (A/B) lives closer to the school than (B/A)', '(b) (A/B) starts from the school earlier than (B/A)', '(c) (A/B) walks faster than (B/A)', '(d) A and B reach home at the (same/different) time', '(e) (A/B) overtakes (B/A) on the road (once/twice)'];
+  const ANS = ['A lives closer than B', 'A starts earlier than B', 'B walks faster than A', 'the same time', 'B overtakes A, once'];
+  const qStages = [
+    { title: 'Fig. 2.9', dur: D + 1, text: 'The x–t graphs of two children, A and B, walking from their school O to their homes P and Q.' },
+    { title: 'Choose the entries', dur: 5, text: 'Choose the correct entries in the brackets, (a) to (e).' },
+  ];
+  const stages = [
+    { title: 'Following the graphs', dur: D + 1, text: 'A graph shows where a child is at every instant. Watch the two children on the road below.', ans: 'A sets off at t = 0; B sets off later but covers ground faster.' },
+    { title: '(a) and (b)', dur: 4, text: 'Compare where the graphs end and where they begin.', ans: '(a) A lives closer (P is below Q). (b) A starts earlier.' },
+    { title: '(c) and (d)', dur: 4, text: 'Speed is the slope of an x–t graph.', ans: '(c) B walks faster (steeper line). (d) They reach home at the same time.' },
+    { title: '(e) Overtaking', dur: 4, text: 'Where the graphs cross, both children are at the same place at the same time.', ans: '(e) B overtakes A, once.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    const g = axes(ctx, { x: 80, y: 60, w: 440, h: 230, x0: 0, x1: 11, y0: 0, y1: 3.4, xl: 't', yl: 'x' });
+    label(ctx, 'O', g.X(0) - 10, g.Y(0) + 12, { align: 'right', weight: 700, size: 14 });
+    for (const [v, n] of [[PA, 'P'], [QB, 'Q']]) { hline(ctx, g.X(0) - 6, g.X(0), g.Y(v), P.ink2, 1.5); label(ctx, n, g.X(0) - 12, g.Y(v), { align: 'right', weight: 700, size: 14 }); }
+    const tm = clamp(t / D) * T;
+    ctx.save(); ctx.globalAlpha = 0.25; plot(ctx, g, xa, 0, T, P.vel); plot(ctx, g, xb, TB, T, P.force); ctx.restore();
+    plot(ctx, g, xa, 0, tm, P.vel); if (tm > TB) plot(ctx, g, xb, TB, tm, P.force);
+    label(ctx, 'A', g.X(T) + 8, g.Y(PA), { weight: 700, size: 15, color: P.vel }); label(ctx, 'B', g.X(T) + 8, g.Y(QB), { weight: 700, size: 15, color: P.force });
+    // the road
+    const RY = 420, rx = x => 80 + x / 3.4 * 440;
+    hline(ctx, rx(0), rx(3.4), RY, P.ink, 2);
+    for (const [v, n] of [[0, 'O (school)'], [PA, 'P'], [QB, 'Q']]) { vline(ctx, rx(v), RY - 6, RY + 6, P.ink, 2); label(ctx, n, rx(v), RY + 22, { align: 'center', weight: 700, size: 13 }); }
+    ball(ctx, rx(xa(tm)), RY - 16, 9, P.vel); label(ctx, 'A', rx(xa(tm)), RY - 36, { align: 'center', weight: 700, size: 13, color: P.vel });
+    ball(ctx, rx(xb(tm)), RY - 46, 9, P.force); label(ctx, 'B', rx(xb(tm)), RY - 66, { align: 'center', weight: 700, size: 13, color: P.force });
+    const k = ans ? [-1, 1, 3, 4][stageAt(stages, t)] : -1;
+    if (ans && k >= 4) { ball(ctx, g.X(TC), g.Y(xa(TC)), 6, P.accent); label(ctx, 'B overtakes A', g.X(TC) + 10, g.Y(xa(TC)) + 16, { weight: 700, size: 13, color: P.accent }); }
+    partsPanel(ctx, 630, 34, 300, 'Choose the correct entries', PARTS, k, ans, ANS);
+    note(ctx, 'no values given: drawn to match Fig. 2.9 (both reach home together, as in the NCERT answer)');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

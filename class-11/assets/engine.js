@@ -227,6 +227,26 @@ function vec(ctx, x, y, dx, dy, text, color, o = {}) {
       { align: o.align ?? 'center', color, weight: 700, size: o.size ?? 14, italic: o.italic, alpha: o.alpha ?? 1 });
   }
 }
+// plot y = f(x) on axes g (from axes()) for x in [a, b]
+function plot(ctx, g, f, a, b, color, lw = 3, n = 240) {
+  if (b <= a) return;
+  ctx.save(); ctx.strokeStyle = color; ctx.lineWidth = lw; ctx.lineJoin = 'round'; ctx.beginPath();
+  for (let i = 0; i <= n; i++) { const x = a + (b - a) * i / n, y = f(x); if (i) ctx.lineTo(g.X(x), g.Y(y)); else ctx.moveTo(g.X(x), g.Y(y)); }
+  ctx.stroke(); ctx.restore();
+}
+// a smooth curve through [x, y, slope] points (cubic Hermite); straight lines beyond the ends
+function hermite(pts) {
+  return x => {
+    if (x <= pts[0][0]) return pts[0][1] + pts[0][2] * (x - pts[0][0]);
+    for (let i = 0; i < pts.length - 1; i++) {
+      const [x0, y0, m0] = pts[i], [x1, y1, m1] = pts[i + 1];
+      if (x <= x1) { const h = x1 - x0, s = (x - x0) / h, s2 = s * s, s3 = s2 * s; return (2 * s3 - 3 * s2 + 1) * y0 + (s3 - 2 * s2 + s) * h * m0 + (-2 * s3 + 3 * s2) * y1 + (s3 - s2) * h * m1; }
+    }
+    const L = pts[pts.length - 1]; return L[1] + L[2] * (x - L[0]);
+  };
+}
+// index of the stage that time t falls in (the last one after the end)
+function stageAt(stages, t) { const i = stages.findIndex(s => t < s.t1); return i < 0 ? stages.length - 1 : i; }
 // a stopwatch-style time readout
 function clock(ctx, x, y, t, text) {
   ctx.save(); ctx.strokeStyle = P.ink2; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(x, y, 14, 0, Math.PI * 2); ctx.stroke();
