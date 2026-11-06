@@ -1,10 +1,22 @@
-"""Every NCERT physics chapter the library will cover, in build order (Class 11 first).
+"""Every NCERT physics chapter the library will cover (Classes 9 and 10: the physics chapters of the Science books).
 
 Each chapter: (number, title, slug, NCERT PDF code). The PDFs live at https://ncert.nic.in/textbook/pdf/<code>.pdf.
 A chapter is "done" when tools/content/class-NN/chNN/chapter.py exists and builds.
 """
 
 PLAN = [
+    {'class': 9, 'subject': 'science', 'book': 'Science: Exploration (NCERT, Class 9)', 'chapters': [
+        (4, 'Describing Motion Around Us', 'describing-motion-around-us', 'iesc104'),
+        (6, 'How Forces Affect Motion', 'how-forces-affect-motion', 'iesc106'),
+        (7, 'Work, Energy and Simple Machines', 'work-energy-and-simple-machines', 'iesc107'),
+        (10, 'Sound Waves: Characteristics and Applications', 'sound-waves-characteristics-and-applications', 'iesc110'),
+    ]},
+    {'class': 10, 'subject': 'science', 'book': 'Science (NCERT, Class 10)', 'chapters': [
+        (9, 'Light – Reflection and Refraction', 'light-reflection-and-refraction', 'jesc109'),
+        (10, 'The Human Eye and the Colourful World', 'the-human-eye-and-the-colourful-world', 'jesc110'),
+        (11, 'Electricity', 'electricity', 'jesc111'),
+        (12, 'Magnetic Effects of Electric Current', 'magnetic-effects-of-electric-current', 'jesc112'),
+    ]},
     {'class': 11, 'subject': 'physics', 'book': 'Physics (NCERT, Class 11)', 'chapters': [
         (1, 'Units and Measurement', 'units-and-measurement', 'keph101'),
         (2, 'Motion in a Straight Line', 'motion-in-a-straight-line', 'keph102'),

@@ -1,5 +1,240 @@
 [
  {
+  "class": 9,
+  "subject": "science",
+  "chapter": 4,
+  "chapter_title": "Describing Motion Around Us",
+  "status": "planned",
+  "ncert_pdf": "https://ncert.nic.in/textbook/pdf/iesc104.pdf"
+ },
+ {
+  "class": 9,
+  "subject": "science",
+  "chapter": 6,
+  "chapter_title": "How Forces Affect Motion",
+  "status": "planned",
+  "ncert_pdf": "https://ncert.nic.in/textbook/pdf/iesc106.pdf"
+ },
+ {
+  "class": 9,
+  "subject": "science",
+  "chapter": 10,
+  "chapter_title": "Sound Waves: Characteristics and Applications",
+  "status": "planned",
+  "ncert_pdf": "https://ncert.nic.in/textbook/pdf/iesc110.pdf"
+ },
+ {
+  "class": 10,
+  "subject": "science",
+  "chapter": 9,
+  "chapter_title": "Light – Reflection and Refraction",
+  "question": "9.1",
+  "title": "Which material cannot make a lens?",
+  "status": "worked answer",
+  "file": "class-10/science/ch09-light-reflection-and-refraction/q01.html",
+  "text": "Which one of the following materials cannot be used to make a lens? (a) Water (b) Glass (c) Plastic (d) Clay"
+ },
+ {
+  "class": 10,
+  "subject": "science",
+  "chapter": 9,
+  "chapter_title": "Light – Reflection and Refraction",
+  "question": "9.2",
+  "title": "Concave mirror: virtual, erect, larger",
+  "status": "worked answer",
+  "file": "class-10/science/ch09-light-reflection-and-refraction/q02.html",
+  "text": "The image formed by a concave mirror is observed to be virtual, erect and larger than the object. Where should be the position of the object? (a) Between the principal focus and the centre of curvature (b) At the centre of curvature (c) Beyond the centre of curvature (d) Between the pole of the mirror and its principal focus."
+ },
+ {
+  "class": 10,
+  "subject": "science",
+  "chapter": 9,
+  "chapter_title": "Light – Reflection and Refraction",
+  "question": "9.3",
+  "title": "Convex lens: real image of the same size",
+  "status": "worked answer",
+  "file": "class-10/science/ch09-light-reflection-and-refraction/q03.html",
+  "text": "Where should an object be placed in front of a convex lens to get a real image of the size of the object? (a) At the principal focus of the lens (b) At twice the focal length (c) At infinity (d) Between the optical centre of the lens and its principal focus."
+ },
+ {
+  "class": 10,
+  "subject": "science",
+  "chapter": 9,
+  "chapter_title": "Light – Reflection and Refraction",
+  "question": "9.4",
+  "title": "Mirror and lens both with f = −15 cm",
+  "status": "worked answer",
+  "file": "class-10/science/ch09-light-reflection-and-refraction/q04.html",
+  "text": "A spherical mirror and a thin spherical lens have each a focal length of –15 cm. The mirror and the lens are likely to be (a) both concave. (b) both convex. (c) the mirror is concave and the lens is convex. (d) the mirror is convex, but the lens is concave."
+ },
+ {
+  "class": 10,
+  "subject": "science",
+  "chapter": 9,
+  "chapter_title": "Light – Reflection and Refraction",
+  "question": "9.5",
+  "title": "Always an erect image",
+  "status": "worked answer",
+  "file": "class-10/science/ch09-light-reflection-and-refraction/q05.html",
+  "text": "No matter how far you stand from a mirror, your image appears erect. The mirror is likely to be (a) only plane. (b) only concave. (c) only convex. (d) either plane or convex."
+ },
+ {
+  "class": 10,
+  "subject": "science",
+  "chapter": 9,
+  "chapter_title": "Light – Reflection and Refraction",
+  "question": "9.6",
+  "title": "Lens for reading small letters",
+  "status": "worked answer",
+  "file": "class-10/science/ch09-light-reflection-and-refraction/q06.html",
+  "text": "Which of the following lenses would you prefer to use while reading small letters found in a dictionary? (a) A convex lens of focal length 50 cm. (b) A concave lens of focal length 50 cm. (c) A convex lens of focal length 5 cm. (d) A concave lens of focal length 5 cm."
+ },
+ {
+  "class": 10,
+  "subject": "science",
+  "chapter": 9,
+  "chapter_title": "Light – Reflection and Refraction",
+  "question": "9.7",
+  "title": "Erect image from a concave mirror",
+  "status": "animated",
+  "file": "class-10/science/ch09-light-reflection-and-refraction/q07.html",
+  "text": "We wish to obtain an erect image of an object, using a concave mirror of focal length 15 cm. What should be the range of distance of the object from the mirror? What is the nature of the image? Is the image larger or smaller than the object? Draw a ray diagram to show the image formation in this case."
+ },
+ {
+  "class": 10,
+  "subject": "science",
+  "chapter": 9,
+  "chapter_title": "Light – Reflection and Refraction",
+  "question": "9.8",
+  "title": "Mirrors in headlights, rear-view and solar furnace",
+  "status": "animated",
+  "file": "class-10/science/ch09-light-reflection-and-refraction/q08.html",
+  "text": "Name the type of mirror used in the following situations. (a) Headlights of a car. (b) Side/rear-view mirror of a vehicle. (c) Solar furnace. Support your answer with reason."
+ },
+ {
+  "class": 10,
+  "subject": "science",
+  "chapter": 9,
+  "chapter_title": "Light – Reflection and Refraction",
+  "question": "9.9",
+  "title": "Half of a lens covered",
+  "status": "animated",
+  "file": "class-10/science/ch09-light-reflection-and-refraction/q09.html",
+  "text": "One-half of a convex lens is covered with a black paper. Will this lens produce a complete image of the object? Verify your answer experimentally. Explain your observations."
+ },
+ {
+  "class": 10,
+  "subject": "science",
+  "chapter": 9,
+  "chapter_title": "Light – Reflection and Refraction",
+  "question": "9.10",
+  "title": "Image by a converging lens",
+  "status": "animated",
+  "file": "class-10/science/ch09-light-reflection-and-refraction/q10.html",
+  "text": "An object 5 cm in length is held 25 cm away from a converging lens of focal length 10 cm. Draw the ray diagram and find the position, size and the nature of the image formed."
+ },
+ {
+  "class": 10,
+  "subject": "science",
+  "chapter": 9,
+  "chapter_title": "Light – Reflection and Refraction",
+  "question": "9.11",
+  "title": "Object distance for a concave lens",
+  "status": "animated",
+  "file": "class-10/science/ch09-light-reflection-and-refraction/q11.html",
+  "text": "A concave lens of focal length 15 cm forms an image 10 cm from the lens. How far is the object placed from the lens? Draw the ray diagram."
+ },
+ {
+  "class": 10,
+  "subject": "science",
+  "chapter": 9,
+  "chapter_title": "Light – Reflection and Refraction",
+  "question": "9.12",
+  "title": "Image in a convex mirror (f = 15 cm)",
+  "status": "animated",
+  "file": "class-10/science/ch09-light-reflection-and-refraction/q12.html",
+  "text": "An object is placed at a distance of 10 cm from a convex mirror of focal length 15 cm. Find the position and nature of the image."
+ },
+ {
+  "class": 10,
+  "subject": "science",
+  "chapter": 9,
+  "chapter_title": "Light – Reflection and Refraction",
+  "question": "9.13",
+  "title": "Magnification +1 of a plane mirror",
+  "status": "worked answer",
+  "file": "class-10/science/ch09-light-reflection-and-refraction/q13.html",
+  "text": "The magnification produced by a plane mirror is +1. What does this mean?"
+ },
+ {
+  "class": 10,
+  "subject": "science",
+  "chapter": 9,
+  "chapter_title": "Light – Reflection and Refraction",
+  "question": "9.14",
+  "title": "Convex mirror of radius 30 cm",
+  "status": "animated",
+  "file": "class-10/science/ch09-light-reflection-and-refraction/q14.html",
+  "text": "An object 5.0 cm in length is placed at a distance of 20 cm in front of a convex mirror of radius of curvature 30 cm. Find the position of the image, its nature and size."
+ },
+ {
+  "class": 10,
+  "subject": "science",
+  "chapter": 9,
+  "chapter_title": "Light – Reflection and Refraction",
+  "question": "9.15",
+  "title": "Screen for a concave mirror image",
+  "status": "animated",
+  "file": "class-10/science/ch09-light-reflection-and-refraction/q15.html",
+  "text": "An object of size 7.0 cm is placed at 27 cm in front of a concave mirror of focal length 18 cm. At what distance from the mirror should a screen be placed, so that a sharp focussed image can be obtained? Find the size and the nature of the image."
+ },
+ {
+  "class": 10,
+  "subject": "science",
+  "chapter": 9,
+  "chapter_title": "Light – Reflection and Refraction",
+  "question": "9.16",
+  "title": "Focal length of a −2.0 D lens",
+  "status": "worked answer",
+  "file": "class-10/science/ch09-light-reflection-and-refraction/q16.html",
+  "text": "Find the focal length of a lens of power – 2.0 D. What type of lens is this?"
+ },
+ {
+  "class": 10,
+  "subject": "science",
+  "chapter": 9,
+  "chapter_title": "Light – Reflection and Refraction",
+  "question": "9.17",
+  "title": "A +1.5 D prescription",
+  "status": "worked answer",
+  "file": "class-10/science/ch09-light-reflection-and-refraction/q17.html",
+  "text": "A doctor has prescribed a corrective lens of power +1.5 D. Find the focal length of the lens. Is the prescribed lens diverging or converging?"
+ },
+ {
+  "class": 10,
+  "subject": "science",
+  "chapter": 10,
+  "chapter_title": "The Human Eye and the Colourful World",
+  "status": "planned",
+  "ncert_pdf": "https://ncert.nic.in/textbook/pdf/jesc110.pdf"
+ },
+ {
+  "class": 10,
+  "subject": "science",
+  "chapter": 11,
+  "chapter_title": "Electricity",
+  "status": "planned",
+  "ncert_pdf": "https://ncert.nic.in/textbook/pdf/jesc111.pdf"
+ },
+ {
+  "class": 10,
+  "subject": "science",
+  "chapter": 12,
+  "chapter_title": "Magnetic Effects of Electric Current",
+  "status": "planned",
+  "ncert_pdf": "https://ncert.nic.in/textbook/pdf/jesc112.pdf"
+ },
+ {
   "class": 11,
   "subject": "physics",
   "chapter": 1,

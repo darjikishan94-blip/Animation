@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 10 Science · Exercise 9.15</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 10 Science</a> · <a href="index.html">Ch. 9 Light – Reflection and Refraction</a></p>
+      <h1>Exercise 9.15 · Screen for a concave mirror image</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q14.html">‹ 9.14</a><a href="index.html">All questions</a><a href="q16.html">9.16 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 9.15">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A 7 cm object 27 cm in front of a concave mirror (f = 18 cm): the rays meet 54 cm in front of the mirror, where a screen catches a real, inverted image 14 cm tall."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>9.15</b> An object of size 7.0 cm is placed at 27 cm in front of a concave mirror of focal length 18 cm. At what distance from the mirror should a screen be placed, so that a sharp focussed image can be obtained? Find the size and the nature of the image.</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>h = 7.0 cm; u = −27 cm; f = −18 cm. New Cartesian sign convention: distances from the pole/optical centre, positive along the incident light; heights positive upward.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>Screen distance; size and nature of the image.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Distances 6 px per cm; heights 8 px per cm (straight lines and meeting points are not affected).</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>1/v = 1/f − 1/u = −1/18 + 1/27 = −1/54, so v = −54 cm: the screen goes 54 cm in front of the mirror.</li>
+          <li>m = −v/u = −2, so h′ = −14 cm.</li>
+          <li>Real, inverted, enlarged (14 cm).</li>
+        </ol>
+        <p class="final">54 cm in front; 14 cm; real, inverted, enlarged.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Science (NCERT, Class 10), Chapter 9 (Light – Reflection and Refraction), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const M = 560, A = 230, S = 6, VS = 8, F = 18, U = 27, H = 7;   // 6 px per cm across, 8 px per cm up
+  const qStages = [
+    { title: 'A concave mirror', dur: 5, text: 'An object 7.0 cm tall is 27 cm in front of a concave mirror of focal length 18 cm.' },
+    { title: 'What is asked', dur: 5, text: 'Where should a screen be placed for a sharp image? The size and nature of the image.' },
+  ];
+  const stages = [
+    { title: 'Ray diagram', dur: 6, text: 'A ray parallel to the axis reflects through F; a ray to the pole reflects symmetrically.', ans: 'They meet beyond C.' },
+    { title: 'Mirror formula', dur: 6, text: '1/v = 1/f − 1/u = −1/18 + 1/27 = −1/54.', ans: 'v = −54 cm: screen 54 cm in front; m = −2, h′ = −14 cm: real, inverted, enlarged.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    hline(ctx, 20, 600, A, P.ink2, 1); mirror(ctx, M, A, 150, 900, true);
+    [['F', F], ['C', 2 * F]].forEach(([n, d]) => { vline(ctx, M - S * d, A - 5, A + 5, P.ink, 2); label(ctx, n, M - S * d, A - 16, { align: 'center', weight: 800, size: 12 }); });
+    const ox = M - S * U; objArrow(ctx, ox, A, VS * H, P.vel); label(ctx, '7.0 cm', ox + 8, A - VS * H - 10, { weight: 700, size: 12 });
+    if (ans) {
+      const r = mirrorRays(ctx, M, A, S * F, ox, VS * H, clamp(t / 3)), st = stageAt(stages, t);
+      if (t > 3) { ctx.save(); ctx.fillStyle = P.objFill2; ctx.globalAlpha = 0.7; ctx.fillRect(r.ix - 4, A - 30, 8, 160); ctx.restore(); label(ctx, 'screen', r.ix, A - 40, { align: 'center', weight: 700, size: 12 }); }
+      if (st >= 1) { dim(ctx, r.ix, M, A + 160, P.ink2); label(ctx, '54 cm', (r.ix + M) / 2, A + 176, { align: 'center', weight: 800, size: 13, color: P.force }); label(ctx, '14 cm, inverted', r.ix + 12, r.iy + 4, { weight: 800, size: 12, color: P.force }); }
+      partsPanel(ctx, 630, 34, 300, 'Answer', ['Rays meet beyond C', 'Screen 54 cm in front; 14 cm; real, inverted, enlarged'], st, false);
+    } else askedPanel(ctx, 630, 34, 300, ['Where to place the screen for a sharp image.', 'The size and nature of the image.']);
+    note(ctx, 'distances 6 px per cm, heights 8 px per cm; mirror curvature drawn flatter');
+  }
+  return { qStages, stages, draw };
+})();
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

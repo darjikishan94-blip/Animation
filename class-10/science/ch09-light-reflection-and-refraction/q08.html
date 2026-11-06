@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 10 Science · Exercise 9.8</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 10 Science</a> · <a href="index.html">Ch. 9 Light – Reflection and Refraction</a></p>
+      <h1>Exercise 9.8 · Mirrors in headlights, rear-view and solar furnace</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q07.html">‹ 9.7</a><a href="index.html">All questions</a><a href="q09.html">9.9 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 9.8">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A bulb at the focus of a concave mirror sends out a parallel beam (headlight); a convex mirror shows a wide view with small upright images (rear-view mirror); a large concave mirror gathers sunlight to its focus (solar furnace)."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>9.8</b> Name the type of mirror used in the following situations. (a) Headlights of a car. (b) Side/rear-view mirror of a vehicle. (c) Solar furnace. Support your answer with reason.</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Three uses.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>Mirror type and reason for each.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Schematic; sizes illustrative.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>(a) Concave: with the bulb at its focus, it sends out a strong parallel beam.</li>
+          <li>(b) Convex: it always gives an erect (diminished) image and shows a much wider field of view.</li>
+          <li>(c) Concave: it concentrates parallel sunlight at its focus, producing a high temperature there.</li>
+        </ol>
+        <p class="final">(a) concave (b) convex (c) concave.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Science (NCERT, Class 10), Chapter 9 (Light – Reflection and Refraction), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const D = 6;
+  const qStages = [
+    { title: 'Three uses of mirrors', dur: 5, text: '(a) Headlights of a car. (b) Side/rear-view mirror of a vehicle. (c) Solar furnace.' },
+    { title: 'What is asked', dur: 4, text: 'Name the type of mirror in each, with a reason.' },
+  ];
+  const stages = [
+    { title: '(a) Headlight', dur: D, text: 'A bulb at the focus of a concave mirror: the reflected rays come out parallel.', ans: 'Concave: a strong parallel beam.' },
+    { title: '(b) Rear-view mirror', dur: D, text: 'A convex mirror spreads reflected rays out: it shows a wide area, with small erect images.', ans: 'Convex: erect images and a wide field of view.' },
+    { title: '(c) Solar furnace', dur: D, text: 'Parallel sunlight on a large concave mirror converges at its focus.', ans: 'Concave: concentrates sunlight, giving high temperature.' },
+  ];
+  function row(ctx, y, lab) { label(ctx, lab, 24, y - 58, { weight: 800, size: 13 }); }
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    const st = ans ? stageAt(stages, t) : 3, k = s => ans ? (st > s ? 1 : st === s ? clamp((t - stages[s].t0) / 3) : 0) : 0;
+    // (a) headlight: concave mirror facing left at x = 300, bulb at F
+    { const y = 105, M = 300, f = 70; row(ctx, y, '(a) car headlight'); hline(ctx, 40, M, y, P.grid, 1); mirror(ctx, M, y, 55, 400, true); ball(ctx, M - f, y, 7, P.ke); label(ctx, 'bulb at F', M - f, y + 22, { align: 'center', size: 11 });
+      [-45, -25, 25, 45].forEach(h => { const kk = k(0); if (kk > 0) ray(ctx, [[M - f, y], [M, y + h], [M - (M - 60) * kk, y + h]], P.ke, { lw: 1.6 }); }); }
+    // (b) convex rear-view mirror at x = 300
+    { const y = 270, M = 300; row(ctx, y, '(b) rear-view mirror'); hline(ctx, 40, M, y, P.grid, 1); mirror(ctx, M, y, 55, 300, false);
+      [[90, 30], [170, 26], [240, 20]].forEach(([x, h]) => { objArrow(ctx, x, y + 40, h, P.vel); const kk = k(1); if (kk >= 1) { const u = M - x, f = -110, v = 1 / (1 / f - 1 / u); objArrow(ctx, M - v, y + 40, h * (-v / u), P.force, true); } });
+      [-40, -15, 15, 40].forEach(h => { const kk = k(1); if (kk > 0) { const sl = h / 110; ray(ctx, [[60, y + h], [M, y + h], [M - 220 * kk, y + h - 220 * sl * kk]], P.accent, { lw: 1.4 }); } });
+      if (k(1) >= 1) label(ctx, 'small erect images', 420, y + 40, { weight: 700, size: 12, color: P.force }); }
+    // (c) solar furnace: concave mirror at x = 560 facing left, focus at 400
+    { const y = 435, M = 560, f = 150; row(ctx, y, '(c) solar furnace'); hline(ctx, 40, M, y, P.grid, 1); mirror(ctx, M, y, 60, 700, true); label(ctx, '☀ sunlight', 40, y - 40, { weight: 700, size: 12, color: P.ke });
+      [-50, -25, 0, 25, 50].forEach(h => { const kk = k(2); if (kk > 0) ray(ctx, [[80, y + h], [M, y + h], [M - f * kk, y + h - h * kk]], P.ke, { lw: 1.6 }); else ray(ctx, [[80, y + h], [M, y + h]], P.ke, { lw: 1.2, alpha: 0.5 }); });
+      ctx.save(); ctx.fillStyle = P.force; ctx.globalAlpha = 0.6 * k(2); ctx.beginPath(); ctx.arc(M - f, y, 16, 0, 2 * Math.PI); ctx.fill(); ctx.restore(); label(ctx, 'F: very hot', M - f, y + 32, { align: 'center', weight: 700, size: 12, color: P.force, alpha: k(2) }); }
+    if (ans) partsPanel(ctx, 630, 34, 300, 'Answers', ['(a) Concave: parallel beam', '(b) Convex: erect images, wide view', '(c) Concave: concentrates sunlight'], st, false);
+    else askedPanel(ctx, 630, 34, 300, ['The type of mirror used in (a) car headlights, (b) a rear-view mirror, (c) a solar furnace, with reasons.']);
+    note(ctx, 'schematic; sizes illustrative');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

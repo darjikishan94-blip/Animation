@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 10 Science · Exercise 9.14</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 10 Science</a> · <a href="index.html">Ch. 9 Light – Reflection and Refraction</a></p>
+      <h1>Exercise 9.14 · Convex mirror of radius 30 cm</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q13.html">‹ 9.13</a><a href="index.html">All questions</a><a href="q15.html">9.15 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 9.14">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="An object 5 cm tall, 20 cm from a convex mirror with focal length 15 cm: its image is 8.6 cm behind the mirror, virtual, erect and 2.1 cm tall."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>9.14</b> An object 5.0 cm in length is placed at a distance of 20 cm in front of a convex mirror of radius of curvature 30 cm. Find the position of the image, its nature and size.</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>h = 5.0 cm; u = −20 cm; R = +30 cm, f = +15 cm. New Cartesian sign convention: distances from the pole/optical centre, positive along the incident light; heights positive upward.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>Position, nature and size.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>10 px per cm in both directions.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>1/v = 1/f − 1/u = 1/15 + 1/20 = 7/60, so v = +8.6 cm (behind the mirror).</li>
+          <li>m = −v/u = 8.6/20 = 0.43, so h′ = 2.1 cm.</li>
+          <li>Virtual, erect, diminished.</li>
+        </ol>
+        <p class="final">8.6 cm behind; virtual, erect; 2.1 cm.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Science (NCERT, Class 10), Chapter 9 (Light – Reflection and Refraction), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const M = 380, A = 290, S = 10, F = 15, U = 20, H = 5;   // 10 px per cm
+  const qStages = [
+    { title: 'A convex mirror', dur: 5, text: 'An object 5.0 cm tall is 20 cm in front of a convex mirror of radius of curvature 30 cm (f = 15 cm).' },
+    { title: 'What is asked', dur: 4, text: 'The position, nature and size of the image.' },
+  ];
+  const stages = [
+    { title: 'Ray diagram', dur: 6, text: 'A ray parallel to the axis reflects as if from F; a ray to the pole reflects symmetrically.', ans: 'Traced back, they meet behind the mirror.' },
+    { title: 'Mirror formula', dur: 5, text: '1/v = 1/f − 1/u = 1/15 + 1/20.', ans: 'v = +8.6 cm (behind); m = 0.43; h′ = 2.1 cm: virtual, erect, diminished.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    hline(ctx, 20, 600, A, P.ink2, 1); mirror(ctx, M, A, 150, 800, false);
+    [['F', F], ['C', 2 * F]].forEach(([n, d]) => { if (M + S * d < 600) { vline(ctx, M + S * d, A - 5, A + 5, P.ink, 2); label(ctx, n, M + S * d, A + 18, { align: 'center', weight: 800, size: 12 }); } });
+    const ox = M - S * U; objArrow(ctx, ox, A, S * H, P.vel); label(ctx, '5.0 cm', ox - 8, A - S * H / 2, { align: 'right', weight: 700, size: 12 });
+    dim(ctx, ox, M, A + 70, P.ink2); label(ctx, '20 cm', (ox + M) / 2, A + 86, { align: 'center', weight: 700, size: 12 });
+    if (ans) {
+      const r = mirrorRays(ctx, M, A, -S * F, ox, S * H, clamp(t / 3)), st = stageAt(stages, t);
+      if (st >= 1) { dim(ctx, M, r.ix, A + 110, P.ink2); label(ctx, '8.6 cm', (M + r.ix) / 2, A + 126, { align: 'center', weight: 800, size: 13, color: P.force }); label(ctx, '2.1 cm', r.ix + 10, r.iy - 6, { weight: 800, size: 12, color: P.force }); }
+      partsPanel(ctx, 630, 34, 300, 'Answer', ['Rays traced back meet behind the mirror', 'v = 8.6 cm behind; 2.1 cm; virtual, erect'], st, false);
+    } else askedPanel(ctx, 630, 34, 300, ['The position of the image, its nature and size.']);
+    note(ctx, '10 px per cm in both directions; mirror curvature drawn flatter');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 10 Science · Exercise 9.10</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 10 Science</a> · <a href="index.html">Ch. 9 Light – Reflection and Refraction</a></p>
+      <h1>Exercise 9.10 · Image by a converging lens</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q09.html">‹ 9.9</a><a href="index.html">All questions</a><a href="q11.html">9.11 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 9.10">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="An object 5 cm tall, 25 cm from a convex lens of focal length 10 cm: the rays meet 16.7 cm behind the lens in a real, inverted, diminished image 3.3 cm tall."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>9.10</b> An object 5 cm in length is held 25 cm away from a converging lens of focal length 10 cm. Draw the ray diagram and find the position, size and the nature of the image formed.</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>h = 5 cm; u = −25 cm; f = +10 cm. New Cartesian sign convention: distances from the pole/optical centre, positive along the incident light; heights positive upward.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>Position, size and nature of the image.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>10 px per cm in both directions.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>1/v − 1/u = 1/f: 1/v = 1/10 − 1/25 = 3/50, so v = +16.7 cm (on the other side of the lens).</li>
+          <li>m = v/u = 16.7/(−25) = −0.67, so h′ = −3.3 cm.</li>
+          <li>Real, inverted, diminished: 3.3 cm tall, 16.7 cm behind the lens.</li>
+        </ol>
+        <p class="final">16.7 cm behind the lens; 3.3 cm; real, inverted, diminished.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Science (NCERT, Class 10), Chapter 9 (Light – Reflection and Refraction), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const L = 320, A = 260, S = 10, F = 10, U = 25, H = 5;   // 10 px per cm
+  const qStages = [
+    { title: 'An object and a convex lens', dur: 5, text: 'An object 5 cm tall is 25 cm from a converging lens of focal length 10 cm.' },
+    { title: 'What is asked', dur: 4, text: 'Draw the ray diagram. Find the position, size and nature of the image.' },
+  ];
+  const stages = [
+    { title: 'Ray diagram', dur: 6, text: 'A ray parallel to the axis refracts through F₂; a ray through the optical centre goes straight on.', ans: 'They meet beyond F₂ on the other side.' },
+    { title: 'Lens formula', dur: 6, text: '1/v − 1/u = 1/f with u = −25 cm, f = +10 cm.', ans: 'v = +16.7 cm; m = v/u = −0.67; h′ = −3.3 cm: real, inverted, diminished.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    hline(ctx, 20, 600, A, P.ink2, 1); lens(ctx, L, A, 120, true);
+    [['F₁', -F], ['F₂', F], ['2F₁', -2 * F], ['2F₂', 2 * F]].forEach(([n, d]) => { vline(ctx, L + S * d, A - 5, A + 5, P.ink, 2); label(ctx, n, L + S * d, A + 18, { align: 'center', weight: 800, size: 12 }); });
+    const ox = L - S * U; objArrow(ctx, ox, A, S * H, P.vel); label(ctx, '5 cm', ox - 8, A - S * H / 2, { align: 'right', weight: 700, size: 12 });
+    dim(ctx, ox, L, A + 60, P.ink2); label(ctx, '25 cm', (ox + L) / 2, A + 76, { align: 'center', weight: 700, size: 12 });
+    if (ans) {
+      const r = lensRays(ctx, L, A, S * F, ox, S * H, clamp(t / 3)), st = stageAt(stages, t);
+      if (st >= 1) { dim(ctx, L, r.ix, A + 100, P.ink2); label(ctx, '16.7 cm', (L + r.ix) / 2, A + 116, { align: 'center', weight: 800, size: 13, color: P.force }); label(ctx, '3.3 cm, inverted', r.ix + 10, r.iy + 10, { weight: 800, size: 12, color: P.force }); }
+      partsPanel(ctx, 630, 34, 300, 'Answer', ['Ray diagram: rays meet beyond F₂', 'v = 16.7 cm; h′ = 3.3 cm; real, inverted, diminished'], st, false);
+    } else askedPanel(ctx, 630, 34, 300, ['The ray diagram.', 'The position, size and nature of the image.']);
+    note(ctx, '10 px per cm in both directions');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

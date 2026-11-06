@@ -3,8 +3,9 @@
     python3 -I tools/build_library.py            (run from the repository root)
 
 For every chapter folder tools/content/class-NN/chNN/ with a chapter.py it writes
-  class-NN/physics/chNN-<slug>/qNN.html   one page per exercise question (animated or worked answer only)
-  class-NN/physics/chNN-<slug>/index.html the chapter's question list
+  class-NN/<subject>/chNN-<slug>/qNN.html   one page per exercise question (animated or worked answer only)
+  class-NN/<subject>/chNN-<slug>/index.html the chapter's question list
+(<subject> is 'physics' for Classes 11-12 and 'science' for the physics chapters of the Class 9-10 Science books.)
   class-NN/index.html                     the class library (also the claude.ai artifact's main page)
   class-NN/assets/engine.{js,css}         the shared engine (copied from tools/engine)
 and at the repository root: index.html (the whole library), catalog.json (machine-readable list) and PROGRESS.md.
@@ -80,8 +81,8 @@ def facts(q):
 
 def question_page(cls, ch, q, prev_q, next_q, chdir):
     n = q['num']
-    title = f'Class {cls} Physics · Exercise {n}'
-    crumbs = (f'<a href="../../index.html">Class {cls} Physics</a> · '
+    title = f'Class {cls} {lbl(cls)} · Exercise {n}'
+    crumbs = (f'<a href="../../index.html">Class {cls} {lbl(cls)}</a> · '
               f'<a href="index.html">Ch. {ch["num"]} {escape(ch["title"])}</a>')
     nav = []
     nav.append(f'<a href="{prev_q["file"]}.html">‹ {prev_q["num"]}</a>' if prev_q else '<span>‹</span>')
@@ -137,8 +138,8 @@ def chapter_index(cls, ch, qs):
         st = 'animation' if q.get('scene') else 'worked answer'
         items.append(f'    <li><span class="n">{q["num"]}</span><span><a href="{q["file"]}.html">{escape(q["short"])}</a>'
                      f'<span class="tx">{escape(strip(q["question"]))[:150]}…</span></span><span class="st">{st}</span></li>')
-    return (head(f'Class {cls} Physics · Ch. {ch["num"]} {ch["title"]}', '../../assets/engine.css') +
-            f'<div class="wrap lib">\n  <p class="eyebrow"><a href="../../index.html">Class {cls} Physics</a></p>\n'
+    return (head(f'Class {cls} {lbl(cls)} · Ch. {ch["num"]} {ch["title"]}', '../../assets/engine.css') +
+            f'<div class="wrap lib">\n  <p class="eyebrow"><a href="../../index.html">Class {cls} {lbl(cls)}</a></p>\n'
             f'  <h1>Ch. {ch["num"]} · {escape(ch["title"])}</h1>\n'
             f'  <p class="lede">NCERT exercise questions. Each animation opens on the question as given; press Show answers for the worked solution.</p>\n'
             f'  <ol class="qlist">\n' + '\n'.join(items) + '\n  </ol>\n</div>\n</body>\n</html>\n')
@@ -166,18 +167,28 @@ def class_index(cls, built):
         b = built.get(num)
         if b:
             n_anim = sum(1 for q in b['questions'] if q.get('scene'))
-            cards.append(f'    <a class="card" href="physics/ch{num:02d}-{slug}/index.html" data-find="{escape(f"ch {num} chapter {num} {title}".lower())}">'
+            cards.append(f'    <a class="card" href="{sub(cls)}/ch{num:02d}-{slug}/index.html" data-find="{escape(f"ch {num} chapter {num} {title}".lower())}">'
                          f'<span class="k">Chapter {num}</span><span class="t">{escape(title)}</span>'
                          f'<span class="s">{len(b["questions"])} questions · {n_anim} animated</span></a>')
             for q in b['questions']:
                 rows.append(f'    <li data-find="{escape((f"{q["num"]} ch {num} chapter {num} q {q["num"].split(".")[-1]} question {q["num"].split(".")[-1]} " + title + " " + q["short"] + " " + strip(q["question"])).lower())}" hidden>'
-                            f'<span class="n">{q["num"]}</span><span><a href="physics/ch{num:02d}-{slug}/{q["file"]}.html">{escape(q["short"])}</a>'
+                            f'<span class="n">{q["num"]}</span><span><a href="{sub(cls)}/ch{num:02d}-{slug}/{q["file"]}.html">{escape(q["short"])}</a>'
                             f'<span class="tx">Ch. {num} {escape(title)}</span></span><span class="st">{"animation" if q.get("scene") else "worked answer"}</span></li>')
+        elif (cls, num) in EXTRA_BY_CH:
+            e = EXTRA_BY_CH[(cls, num)]; rel = lambda pth: pth.split('/', 1)[1]
+            n_q = sum(len(x[2]) for x in e['pages'])
+            cards.append(f'    <a class="card" href="{rel(e["pages"][0][1])}" data-find="{escape(f"ch {num} chapter {num} {title}".lower())}">'
+                         f'<span class="k">Chapter {num}</span><span class="t">{escape(title)}</span><span class="s">{n_q} questions · all animated</span></a>')
+            for (lab, pth, nums) in e['pages']:
+                for qn in nums:
+                    k = qn.split('.')[-1]
+                    rows.append(f'    <li data-find="{escape(f"{qn} ch {num} chapter {num} q {k} question {k} {title}".lower())}" hidden>'
+                                f'<span class="n">{qn}</span><span><a href="{rel(pth)}#q{k}">Question {qn}</a><span class="tx">Ch. {num} {escape(title)}</span></span><span class="st">animation</span></li>')
         else:
             cards.append(f'    <div class="card" data-find="{escape(f"ch {num} chapter {num} {title}".lower())}"><span class="k">Chapter {num}</span>'
                          f'<span class="t">{escape(title)}</span><span class="s">coming soon</span></div>')
-    return (head(f'Class {cls} Physics Animations', 'assets/engine.css') +
-            f'<div class="wrap lib">\n  <p class="eyebrow">NCERT exercise animations</p>\n  <h1>Class {cls} Physics</h1>\n'
+    return (head(f'Class {cls} {lbl(cls)} Animations', 'assets/engine.css') +
+            f'<div class="wrap lib">\n  <p class="eyebrow">NCERT exercise animations{"" if sub(cls) == "physics" else " · physics chapters of " + escape(plan["book"])}</p>\n  <h1>Class {cls} {lbl(cls)}</h1>\n'
             f'  <p class="lede">Every exercise question, chapter by chapter. Type to find a question, for example “4.8” or “chapter 4 question 8” or “lift”.</p>\n'
             f'  <input class="search" id="find" type="search" placeholder="Find a chapter or question…" aria-label="Find a chapter or question">\n'
             f'  <div class="cards">\n' + '\n'.join(cards) + '\n  </div>\n'
@@ -190,10 +201,11 @@ def root_index(built_all):
     cards = []
     for p in PLAN:
         cls = p['class']
-        done = len(built_all.get(cls, {}))
+        done = len(built_all.get(cls, {})) + sum(1 for e in EXTRA_PAGES if e['class'] == cls)
         cards.append(f'    <a class="card" href="class-{cls:02d}/index.html"><span class="k">Class {cls}</span><span class="t">{escape(p["book"])}</span>'
                      f'<span class="s">{done} of {len(p["chapters"])} chapters ready</span></a>')
     for e in EXTRA_PAGES:
+        if e['class'] in PLAN_BY_CLASS: continue   # listed inside its class page
         for (lab, path, nums) in e['pages']:
             cards.append(f'    <a class="card" href="{path}"><span class="k">Class {e["class"]} · Ch. {e["chapter"]} · {lab}</span>'
                          f'<span class="t">{escape(e["title"])}</span><span class="s">{escape(e["book"])}</span></a>')
@@ -205,6 +217,9 @@ def root_index(built_all):
 
 
 PLAN_BY_CLASS = {p['class']: p for p in PLAN}
+EXTRA_BY_CH = {(e['class'], e['chapter']): e for e in EXTRA_PAGES}
+sub = lambda cls: PLAN_BY_CLASS[cls]['subject']
+lbl = lambda cls: 'Physics' if sub(cls) == 'physics' else 'Science'
 
 
 def main():
@@ -217,6 +232,7 @@ def main():
             chdir = os.path.join(TOOLS, 'content', f'class-{cls:02d}', f'ch{num:02d}')
             cfile = os.path.join(chdir, 'chapter.py')
             if not os.path.exists(cfile):
+                if (cls, num) in EXTRA_BY_CH: continue   # hand-built pages, catalogued below
                 catalog.append({'class': cls, 'subject': p['subject'], 'chapter': num, 'chapter_title': title, 'status': 'planned',
                                 'ncert_pdf': f'https://ncert.nic.in/textbook/pdf/{code}.pdf'})
                 continue
@@ -226,18 +242,18 @@ def main():
             for q in qs:
                 q['file'] = 'q' + q['num'].split('.')[-1].zfill(2)
             ch = {'num': num, 'title': title}
-            out = os.path.join(cdir, 'physics', f'ch{num:02d}-{slug}')
+            out = os.path.join(cdir, p['subject'], f'ch{num:02d}-{slug}')
             os.makedirs(out, exist_ok=True)
             for i, q in enumerate(qs):
                 html = question_page(cls, ch, q, qs[i - 1] if i else None, qs[i + 1] if i + 1 < len(qs) else None, chdir)
                 open(os.path.join(out, q['file'] + '.html'), 'w', encoding='utf-8').write(html)
                 catalog.append({'class': cls, 'subject': p['subject'], 'chapter': num, 'chapter_title': title, 'question': q['num'],
                                 'title': q['short'], 'status': 'animated' if q.get('scene') else 'worked answer',
-                                'file': f'class-{cls:02d}/physics/ch{num:02d}-{slug}/{q["file"]}.html',
+                                'file': f'class-{cls:02d}/{p["subject"]}/ch{num:02d}-{slug}/{q["file"]}.html',
                                 'text': strip(q['question'])})
             open(os.path.join(out, 'index.html'), 'w', encoding='utf-8').write(chapter_index(cls, ch, qs))
             built[num] = {'questions': qs}
-        if built:
+        if built or any(e['class'] == cls for e in EXTRA_PAGES):
             os.makedirs(os.path.join(cdir, 'assets'), exist_ok=True)
             for f in ('engine.js', 'engine.css'):
                 shutil.copy(os.path.join(TOOLS, 'engine', f), os.path.join(cdir, 'assets', f))
@@ -257,6 +273,9 @@ def main():
             b = built_all[p['class']].get(num)
             if b:
                 lines.append(f'| {num} | {title} | done | {len(b["questions"])} | {sum(1 for q in b["questions"] if q.get("scene"))} |')
+            elif (p['class'], num) in EXTRA_BY_CH:
+                n_q = sum(len(x[2]) for x in EXTRA_BY_CH[(p['class'], num)]['pages'])
+                lines.append(f'| {num} | {title} | done (hand-built pages) | {n_q} | {n_q} |')
             else:
                 lines.append(f'| {num} | {title} | pending | | |')
         lines.append('')

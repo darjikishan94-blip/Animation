@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 10 Science · Exercise 9.7</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 10 Science</a> · <a href="index.html">Ch. 9 Light – Reflection and Refraction</a></p>
+      <h1>Exercise 9.7 · Erect image from a concave mirror</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q06.html">‹ 9.6</a><a href="index.html">All questions</a><a href="q08.html">9.8 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 9.7">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="An object between the pole and the focus of a concave mirror (f = 15 cm): the reflected rays spread out, and traced back they meet behind the mirror in a virtual, erect, enlarged image; it stays so wherever the object is inside 15 cm."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>9.7</b> We wish to obtain an erect image of an object, using a concave mirror of focal length 15 cm. What should be the range of distance of the object from the mirror? What is the nature of the image? Is the image larger or smaller than the object? Draw a ray diagram to show the image formation in this case.</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Concave mirror, f = 15 cm.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>Range of object distance; nature and size of the image; ray diagram.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>7 px per cm. The object is drawn at 10 cm (and then moved within the range); its height is illustrative.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>The image is erect only when the object is between the pole P and the focus F: 0 < distance < 15 cm.</li>
+          <li>The image is then virtual (behind the mirror), erect and larger than the object.</li>
+          <li>Ray diagram: a ray parallel to the axis reflects through F; a ray to the pole reflects symmetrically. The reflected rays diverge; extended backwards they meet behind the mirror.</li>
+        </ol>
+        <p class="final">Between P and F (less than 15 cm); virtual, erect, enlarged.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Science (NCERT, Class 10), Chapter 9 (Light – Reflection and Refraction), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const M = 330, A = 300, S = 7, F = 15, H = 32, D = 8;   // 7 px per cm
+  const qStages = [
+    { title: 'A concave mirror', dur: 5, text: 'A concave mirror of focal length 15 cm. We want an erect image of an object.' },
+    { title: 'What is asked', dur: 5, text: 'The range of object distance; the nature and size of the image; a ray diagram.' },
+  ];
+  const stages = [
+    { title: 'Object inside F', dur: D, text: 'Put the object between P and F (here 10 cm). A ray parallel to the axis reflects through F; a ray to the pole reflects symmetrically.', ans: 'The reflected rays spread out; traced back they meet behind the mirror.' },
+    { title: 'Anywhere inside F', dur: D, text: 'Move the object anywhere between P and F.', ans: 'The image is always virtual, erect and larger. Range: 0 to 15 cm.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    hline(ctx, 20, 600, A, P.ink2, 1); mirror(ctx, M, A, 150, 800, true);
+    [['F', F], ['C', 2 * F]].forEach(([n, d]) => { vline(ctx, M - S * d, A - 5, A + 5, P.ink, 2); label(ctx, n, M - S * d, A + 18, { align: 'center', weight: 800, size: 13 }); });
+    label(ctx, 'P', M + 10, A + 18, { weight: 800, size: 13 });
+    const st = ans ? stageAt(stages, t) : -1, u = st === 1 ? 7.5 + 3 * Math.sin((t - stages[1].t0) * 0.9) : 10, ox = M - S * u;
+    objArrow(ctx, ox, A, H, P.vel); label(ctx, 'object', ox, A - H - 14, { align: 'center', weight: 700, size: 12 });
+    if (ans) {
+      const r = mirrorRays(ctx, M, A, S * F, ox, H, clamp(t / 3));
+      label(ctx, `object ${u.toFixed(1)} cm → image ${(-r.v / S).toFixed(1)} cm behind, ${r.m.toFixed(1)}× size`, 300, 480, { align: 'center', weight: 800, size: 14, color: P.force });
+      partsPanel(ctx, 630, 34, 300, 'Answer', ['Ray diagram with the object inside F', 'Range 0–15 cm: virtual, erect, enlarged'], st, false);
+    } else askedPanel(ctx, 630, 34, 300, ['The range of object distance for an erect image.', 'The nature of the image, and whether it is larger or smaller.', 'A ray diagram.']);
+    note(ctx, '7 px per cm; object height illustrative; mirror curvature drawn flatter');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

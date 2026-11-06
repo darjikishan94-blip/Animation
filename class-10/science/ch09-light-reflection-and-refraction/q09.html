@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 10 Science · Exercise 9.9</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 10 Science</a> · <a href="index.html">Ch. 9 Light – Reflection and Refraction</a></p>
+      <h1>Exercise 9.9 · Half of a lens covered</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q08.html">‹ 9.8</a><a href="index.html">All questions</a><a href="q10.html">9.10 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 9.9">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="Rays from the tip of an object pass through every part of a convex lens and meet at the image. With the top half covered, the rays through the bottom half still meet there, so the whole image forms, only dimmer."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>9.9</b> One-half of a convex lens is covered with a black paper. Will this lens produce a complete image of the object? Verify your answer experimentally. Explain your observations.</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Convex lens with its upper half covered.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>Is the image complete? Why?</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Distances illustrative (object beyond 2F).</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>Yes, the complete image is formed.</li>
+          <li>Rays from every point of the object pass through every part of the lens. Covering half the lens blocks half of these rays, but the rest still converge to the same image points.</li>
+          <li>The image is complete but less bright, since only about half the light reaches it. (Experiment: cover half a lens, focus a candle flame on a screen; the full flame is seen, dimmer.)</li>
+        </ol>
+        <p class="final">Yes: a complete but dimmer image.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Science (NCERT, Class 10), Chapter 9 (Light – Reflection and Refraction), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const L = 330, A = 280, F = 100, OX = 80, H = 60, D = 7;
+  const u = L - OX, v = 1 / (1 / F - 1 / u), IX = L + v, IY = A + H * v / u;
+  const qStages = [
+    { title: 'A half-covered lens', dur: 5, text: 'The upper half of a convex lens is covered with black paper. An object stands in front of it.' },
+    { title: 'What is asked', dur: 4, text: 'Will the lens still form a complete image? Explain.' },
+  ];
+  const stages = [
+    { title: 'Uncovered lens', dur: D, text: 'Light from the tip of the object passes through every part of the lens and meets at one image point.', ans: '' },
+    { title: 'Half covered', dur: D, text: 'The paper blocks the rays through the top half; those through the bottom half still meet at the same point.', ans: 'A complete image forms, but dimmer (about half the light).' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    hline(ctx, 20, 600, A, P.ink2, 1); lens(ctx, L, A, 130, true);
+    [['F', L - F], ['F', L + F], ['2F', L - 2 * F], ['2F', L + 2 * F]].forEach(([n, x]) => { vline(ctx, x, A - 5, A + 5, P.ink, 2); label(ctx, n, x, A + 18, { align: 'center', weight: 800, size: 12 }); });
+    objArrow(ctx, OX, A, H, P.vel); label(ctx, 'object', OX, A - H - 14, { align: 'center', weight: 700, size: 12 });
+    const st = ans ? stageAt(stages, t) : 1, cover = st >= 1;
+    if (cover) { ctx.fillStyle = P.ink; ctx.fillRect(L - 10, A - 132, 20, 130); label(ctx, 'black paper', L + 16, A - 120, { weight: 700, size: 12 }); }
+    if (ans) {
+      const k = clamp((t - (st === 0 ? 0 : stages[1].t0)) / 3);
+      [-110, -70, -30, 10, 50, 90, 120].forEach(yl => { const yy = A + yl, blocked = cover && yy < A; ray(ctx, [[OX, A - H], [L, yy]], P.accent, { lw: 1.5, alpha: blocked ? 0.35 : 1 }); if (!blocked) ray(ctx, [[L, yy], [L + (IX - L) * k, yy + (IY - yy) * k]], P.accent, { lw: 1.5 }); });
+      if (k >= 1) { ctx.save(); ctx.globalAlpha = cover ? 0.5 : 1; objArrow(ctx, IX, A, A - IY, P.force); ctx.restore(); label(ctx, cover ? 'complete image, dimmer' : 'image', IX, A + 26, { align: 'center', weight: 800, size: 13, color: P.force }); }
+      partsPanel(ctx, 630, 34, 300, 'Answer', ['Every part of the lens forms the whole image', 'Yes: complete, but less bright'], st, false);
+    } else askedPanel(ctx, 630, 34, 300, ['Whether the half-covered lens forms a complete image, with an explanation.']);
+    note(ctx, 'distances illustrative (object beyond 2F)');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

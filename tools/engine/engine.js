@@ -337,6 +337,28 @@ function objArrow(ctx, x, y, h, color, virt = false) {
   ctx.save(); if (virt) ctx.setLineDash([5, 4]); ctx.strokeStyle = color; ctx.lineWidth = 3; seg(ctx, x, y, x, y - h * 0.8); ctx.restore();
   arrow(ctx, x, y - h * 0.75, x, y - h, color, { lw: 3, head: Math.min(12, Math.abs(h) * 0.4) });
 }
+// principal-ray diagrams, computed with the real-is-positive form 1/u + 1/v = 1/f (u, v, f in px; object on the left).
+// Thin lens at x = L on the axis y = A, f > 0 converging, f < 0 diverging; object at x = ox, height h (px, up).
+// k (0..1) reveals the rays. Draws the image arrow (dashed if virtual) once k = 1 and returns {v, m, ix, iy}.
+function lensRays(ctx, L, A, f, ox, h, k = 1, cols = [P.accent, P.leaf]) {
+  const u = L - ox, v = 1 / (1 / f - 1 / u), m = -v / u, ix = L + v, iy = A + h * v / u, top = [ox, A - h];
+  const y1 = x => A - h + (h / f) * (x - L), y2 = x => A - h + (h / u) * (x - ox);
+  const xe = v > 0 ? Math.max(ix + 70, L + 120) : L + 190, xk = L + (xe - L) * k;
+  ray(ctx, [top, [L, A - h], [xk, y1(xk)]], cols[0]); ray(ctx, [top, [L, A], [xk, y2(xk)]], cols[1]);
+  if (v < 0 && k >= 1) { ray(ctx, [[L, A - h], [ix, iy]], cols[0], { dash: [5, 4], heads: false, lw: 1.3 }); ray(ctx, [[L, A], [ix, iy]], cols[1], { dash: [5, 4], heads: false, lw: 1.3 }); }
+  if (k >= 1 && isFinite(v)) objArrow(ctx, ix, A, A - iy, P.force, v < 0);
+  return { v, m, ix, iy };
+}
+// Spherical mirror facing left, pole at x = M on the axis y = A; f > 0 concave, f < 0 convex. Same conventions as lensRays.
+function mirrorRays(ctx, M, A, f, ox, h, k = 1, cols = [P.accent, P.leaf]) {
+  const u = M - ox, v = 1 / (1 / f - 1 / u), m = -v / u, ix = M - v, iy = A + h * v / u, top = [ox, A - h];
+  const y1 = x => A - h + (h / f) * (M - x), y2 = x => A + (h / u) * (M - x);
+  const xe = v > 0 ? Math.min(ix - 60, M - 120) : M - 200, xk = M - (M - xe) * k;
+  ray(ctx, [top, [M, A - h], [xk, y1(xk)]], cols[0]); ray(ctx, [top, [M, A], [xk, y2(xk)]], cols[1]);
+  if (v < 0 && k >= 1) { ray(ctx, [[M, A - h], [ix, iy]], cols[0], { dash: [5, 4], heads: false, lw: 1.3 }); ray(ctx, [[M, A], [ix, iy]], cols[1], { dash: [5, 4], heads: false, lw: 1.3 }); }
+  if (k >= 1 && isFinite(v)) objArrow(ctx, ix, A, A - iy, P.force, v < 0);
+  return { v, m, ix, iy };
+}
 function stageAt(stages, t) { const i = stages.findIndex(s => t < s.t1); return i < 0 ? stages.length - 1 : i; }
 // a stopwatch-style time readout
 function clock(ctx, x, y, t, text) {
