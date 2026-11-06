@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 8.6</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 8 Mechanical Properties of Solids</a></p>
+      <h1>Exercise 8.6 · Shearing an aluminium cube</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q05.html">‹ 8.5</a><a href="index.html">All questions</a><a href="q07.html">8.7 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 8.6">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="An aluminium cube is fixed to a wall by one face; a 100 kg mass hangs from the opposite face, which shears down by 3.92 × 10⁻⁷ m."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>8.6</b> The edge of an aluminium cube is 10 cm long. One face of the cube is firmly fixed to a vertical wall. A mass of 100 kg is then attached to the opposite face of the cube. The shear modulus of aluminium is 25 GPa. What is the vertical deflection of this face?</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Edge 10 cm; mass 100 kg; G = 25 GPa.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The vertical deflection of the free face.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Cube drawn 200 px for 10 cm; the deflection is exaggerated about 40 000 times.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>Shear stress = F/A = 100 × 9.8 / (0.10)<sup>2</sup> = 9.8 × 10<sup>4</sup> N m<sup>−2</sup>.</li>
+          <li>Shear strain = stress/G = 9.8 × 10<sup>4</sup>/25 × 10<sup>9</sup> = 3.92 × 10<sup>−6</sup>.</li>
+          <li>Deflection = strain × edge = 3.92 × 10<sup>−6</sup> × 0.10 = 3.92 × 10<sup>−7</sup> m.</li>
+        </ol>
+        <p class="final">3.92 × 10<sup>−7</sup> m.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 8 (Mechanical Properties of Solids), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const S = 200, X0 = 120, Y0 = 140, DEF = 30;                             // deflection drawn as 30 px (exaggerated ~38 000×)
+  const qStages = [
+    { title: 'Cube on a wall', dur: 4, text: 'An aluminium cube of edge 10 cm has one face fixed to a vertical wall.' },
+    { title: 'Loaded', dur: 4, text: 'A 100 kg mass is attached to the opposite face. The shear modulus of aluminium is 25 GPa.' },
+    { title: 'What is asked', dur: 4, text: 'What is the vertical deflection of the loaded face?' },
+  ];
+  const stages = [
+    { title: 'Shear stress', dur: 4, text: 'The weight acts along the free face: a shearing force over the face area.', ans: 'Stress = 100 × 9.8 / (0.10)² = 9.8 × 10⁴ N/m².' },
+    { title: 'Shear strain', dur: 4, text: 'Strain = stress / G.', ans: 'Strain = 9.8 × 10⁴ / 25 × 10⁹ = 3.92 × 10⁻⁶.' },
+    { title: 'Deflection', dur: 4, text: 'Deflection = strain × edge length.', ans: '3.92 × 10⁻⁶ × 0.10 m = 3.92 × 10⁻⁷ m.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    hatchRect(ctx, X0 - 30, 60, 30, 400, P.obj, P.objFill); vline(ctx, X0, 60, 460, P.obj, 2);
+    const d = DEF * smooth(clamp((t - 4) / 2));
+    ctx.fillStyle = P.objFill2; ctx.strokeStyle = P.obj; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(X0, Y0); ctx.lineTo(X0 + S, Y0 + d); ctx.lineTo(X0 + S, Y0 + S + d); ctx.lineTo(X0, Y0 + S); ctx.closePath(); ctx.fill(); ctx.stroke();
+    label(ctx, 'aluminium', X0 + S / 2, Y0 + S / 2, { align: 'center', weight: 700, size: 14 });
+    dim(ctx, X0, X0 + S, Y0 - 24, P.ink2); label(ctx, '10 cm', X0 + S / 2, Y0 - 38, { align: 'center', weight: 700, size: 13 });
+    if (t >= 4) { ctx.save(); ctx.strokeStyle = P.ink; ctx.lineWidth = 2; seg(ctx, X0 + S + 2, Y0 + S / 2 + d, X0 + S + 60, Y0 + S / 2 + d); seg(ctx, X0 + S + 60, Y0 + S / 2 + d, X0 + S + 60, Y0 + S + 80 + d); ctx.restore(); block(ctx, X0 + S + 30, Y0 + S + 80 + d, 60, 40, '100 kg', P.water); }
+    if (d > 1) { hline(ctx, X0 + S, X0 + S + 40, Y0, P.ink2, 1, [2, 3]); vdim(ctx, X0 + S + 24, Y0, Y0 + d, P.force); label(ctx, ans && t >= stages[2].t0 ? '3.92 × 10⁻⁷ m' : 'deflection', X0 + S + 34, Y0 + d / 2 - 4, { weight: 800, size: 13, color: P.force }); }
+    if (ans) partsPanel(ctx, 630, 34, 300, 'Working (g = 9.8 m/s²)', ['Stress = F/A = 9.8 × 10⁴ N/m²', 'Strain = stress/G = 3.92 × 10⁻⁶', 'Deflection = 3.92 × 10⁻⁷ m'], stageAt(stages, t), false);
+    else askedPanel(ctx, 630, 34, 300, ['The vertical deflection of the face to which the mass is attached.']);
+    note(ctx, 'cube 200 px for 10 cm; deflection exaggerated about 40 000 times');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

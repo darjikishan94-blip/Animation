@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 8.1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 8 Mechanical Properties of Solids</a></p>
+      <h1>Exercise 8.1 · Steel and copper wires stretched equally</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><span>‹</span><a href="index.html">All questions</a><a href="q02.html">8.2 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 8.1">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A steel wire and a copper wire carry the same load and stretch by the same amount; the solution compares their lengths and areas to find Y_steel/Y_copper ≈ 1.79."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>8.1</b> A steel wire of length 4.7 m and cross-sectional area 3.0 × 10<sup>-5</sup> m<sup>2</sup> stretches by the same amount as a copper wire of length 3.5 m and cross-sectional area of 4.0 × 10<sup>–5</sup> m<sup>2</sup> under a given load. What is the ratio of the Young’s modulus of steel to that of copper?</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Steel: L = 4.7 m, A = 3.0 × 10<sup>−5</sup> m<sup>2</sup>. Copper: L = 3.5 m, A = 4.0 × 10<sup>−5</sup> m<sup>2</sup>.</li>
+          <li>Same load, same extension.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>Y<sub>steel</sub>/Y<sub>copper</sub>.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Wire lengths to scale with each other; the extension is exaggerated.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>Y = FL/(AΔL). With the same F and ΔL, Y ∝ L/A.</li>
+          <li>Y<sub>s</sub>/Y<sub>c</sub> = (4.7/3.0 × 10<sup>−5</sup>) / (3.5/4.0 × 10<sup>−5</sup>) = (4.7 × 4.0)/(3.0 × 3.5) ≈ 1.79.</li>
+        </ol>
+        <p class="final">About 1.79.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 8 (Mechanical Properties of Solids), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const K = 60, TOP = 50, LS = 4.7, LC = 3.5, EXT = 18;                   // 60 px per metre; extension exaggerated to 18 px
+  const qStages = [
+    { title: 'Two wires', dur: 4, text: 'A steel wire (4.7 m, 3.0 × 10⁻⁵ m²) and a copper wire (3.5 m, 4.0 × 10⁻⁵ m²) carry the same load.' },
+    { title: 'Same stretch', dur: 4, text: 'They stretch by the same amount.' },
+    { title: 'What is asked', dur: 4, text: 'What is the ratio of the Young’s modulus of steel to that of copper?' },
+  ];
+  const stages = [
+    { title: 'Young’s modulus', dur: 4, text: 'Y = stress/strain = (F/A)/(ΔL/L) = FL/(AΔL).', ans: 'Same F and same ΔL, so Y ∝ L/A.' },
+    { title: 'Compare', dur: 4, text: 'Steel is longer and thinner: it must be stiffer to stretch only as much as copper.', ans: 'Y_s/Y_c = (L_s/A_s)/(L_c/A_c) = (4.7 × 4.0)/(3.0 × 3.5).' },
+    { title: 'The ratio', dur: 4, text: 'Work it out.', ans: 'Y_s/Y_c ≈ 1.79.' },
+  ];
+  function wire(ctx, x, L, w, name, col, e) {
+    ctx.save(); ctx.strokeStyle = col; ctx.lineWidth = w; seg(ctx, x, TOP, x, TOP + L * K + e); ctx.restore();
+    block(ctx, x - 22, TOP + L * K + e, 44, 30, 'load', P.objFill2); label(ctx, name, x + 14, TOP + L * K / 2, { weight: 700, size: 14 });
+  }
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    hatchRect(ctx, 80, TOP - 16, 420, 16, P.obj, P.objFill); hline(ctx, 80, 500, TOP, P.obj, 2);
+    const e = EXT * smooth(clamp((t - 3) / 1.5));
+    wire(ctx, 200, LS, 3, 'steel 4.7 m', P.ink, e); wire(ctx, 380, LC, 4, 'copper 3.5 m', P.ke, e);
+    label(ctx, 'A = 3.0 × 10⁻⁵ m²', 214, TOP + LS * K / 2 + 20, { size: 12, color: P.ink2 }); label(ctx, 'A = 4.0 × 10⁻⁵ m²', 394, TOP + LC * K / 2 + 20, { size: 12, color: P.ink2 });
+    if (e > 1) { for (const [x, L] of [[200, LS], [380, LC]]) { hline(ctx, x - 40, x - 26, TOP + L * K, P.ink2, 1, [2, 2]); vdim(ctx, x - 32, TOP + L * K, TOP + L * K + e, P.vel); } label(ctx, 'same ΔL', 290, TOP + LC * K + 40, { align: 'center', weight: 700, size: 13, color: P.vel }); }
+    if (ans) partsPanel(ctx, 630, 34, 300, 'Working', ['Y = FL/(AΔL): Y ∝ L/A here', 'Y_s/Y_c = (4.7/3.0)/(3.5/4.0)', '≈ 1.79'], stageAt(stages, t), false);
+    else askedPanel(ctx, 630, 34, 300, ['The ratio of the Young’s modulus of steel to that of copper.']);
+    note(ctx, 'lengths to scale (60 px per metre); the stretch is exaggerated');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

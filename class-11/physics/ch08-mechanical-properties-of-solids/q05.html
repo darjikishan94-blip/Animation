@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 8.5</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 8 Mechanical Properties of Solids</a></p>
+      <h1>Exercise 8.5 · Steel and brass wires in series (Fig. 8.11)</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q04.html">‹ 8.4</a><a href="index.html">All questions</a><a href="q06.html">8.6 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 8.5">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A steel wire hangs from the ceiling with a 4.0 kg mass, and below it a brass wire with a 6.0 kg mass. The steel wire carries both masses and the brass only the lower one; their elongations are 1.5 × 10⁻⁴ m and 1.3 × 10⁻⁴ m."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>8.5</b> Two wires of diameter 0.25 cm, one made of steel and the other made of brass are loaded as shown in Fig. 8.11. The unloaded length of steel wire is 1.5 m and that of brass wire is 1.0 m. Compute the elongations of the steel and the brass wires.</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Diameter 0.25 cm (both); steel 1.5 m with 4.0 kg below it; brass 1.0 m with 6.0 kg (Fig. 8.11).</li>
+          <li>Y<sub>steel</sub> = 2.0 × 10<sup>11</sup> N m<sup>−2</sup> (Table 8.1); Y<sub>brass</sub> = 0.91 × 10<sup>11</sup> N m<sup>−2</sup> (standard value).</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The elongation of each wire.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Elongations exaggerated about 2000 times.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>Area A = π(0.125 × 10<sup>−2</sup>)<sup>2</sup> ≈ 4.91 × 10<sup>−6</sup> m<sup>2</sup>.</li>
+          <li>Steel carries both masses: F = (4.0 + 6.0) × 9.8 = 98 N. ΔL = FL/(AY) = 98 × 1.5/(4.91 × 10<sup>−6</sup> × 2.0 × 10<sup>11</sup>) ≈ 1.5 × 10<sup>−4</sup> m.</li>
+          <li>Brass carries only 6.0 kg: F = 58.8 N. ΔL = 58.8 × 1.0/(4.91 × 10<sup>−6</sup> × 0.91 × 10<sup>11</sup>) ≈ 1.3 × 10<sup>−4</sup> m.</li>
+        </ol>
+        <p class="final">Steel ≈ 1.5 × 10<sup>−4</sup> m; brass ≈ 1.3 × 10<sup>−4</sup> m.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 8 (Mechanical Properties of Solids), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const K = 120, TOP = 50, X = 260, X1 = 1500, ES = 1.5e-4 * X1 * K / 1.5 * 1.5, EB = 1.3e-4 * X1 * K;   // extensions ×1500
+  const qStages = [
+    { title: 'Fig. 8.11', dur: 4, text: 'A steel wire (1.5 m) holds a 4.0 kg mass; a brass wire (1.0 m) hangs below it holding 6.0 kg. Both wires have diameter 0.25 cm.' },
+    { title: 'Loaded', dur: 3, text: 'The wires stretch.' },
+    { title: 'What is asked', dur: 4, text: 'Compute the elongations of the steel and the brass wires.' },
+  ];
+  const stages = [
+    { title: 'Tension in each wire', dur: 4, text: 'The steel wire holds up everything below it: both masses. The brass wire holds only the 6.0 kg.', ans: 'Steel: (4.0 + 6.0) × 9.8 = 98 N. Brass: 6.0 × 9.8 = 58.8 N.' },
+    { title: 'Elongations', dur: 3, text: 'ΔL = FL/(AY), with A = π(0.125 × 10⁻²)² ≈ 4.91 × 10⁻⁶ m².', ans: 'Steel: 98 × 1.5 / (4.91 × 10⁻⁶ × 2.0 × 10¹¹) ≈ 1.5 × 10⁻⁴ m.' },
+    { title: 'Brass', dur: 4, text: 'Y (brass) = 0.91 × 10¹¹ N/m².', ans: 'Brass: 58.8 × 1.0 / (4.91 × 10⁻⁶ × 0.91 × 10¹¹) ≈ 1.3 × 10⁻⁴ m.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    hatchRect(ctx, X - 120, TOP - 16, 240, 16, P.obj, P.objFill); hline(ctx, X - 120, X + 120, TOP, P.obj, 2);
+    const f = smooth(clamp((t - 4) / 2)), es = ES * f, eb = EB * f;
+    const y1 = TOP + 1.5 * K + es, y2 = y1 + 22 + 1.0 * K + eb;
+    ctx.save(); ctx.strokeStyle = P.ink; ctx.lineWidth = 2; seg(ctx, X, TOP, X, y1); seg(ctx, X, y1 + 22, X, y2); ctx.restore();
+    block(ctx, X - 24, y1, 48, 22, '4.0 kg', P.water); block(ctx, X - 32, y2, 64, 28, '6.0 kg', P.water);
+    label(ctx, 'steel, 1.5 m', X + 14, TOP + 0.75 * K, { weight: 700, size: 14 }); label(ctx, 'brass, 1.0 m', X + 14, y1 + 22 + 0.5 * K, { weight: 700, size: 14 });
+    if (f > 0.05) { vdim(ctx, X - 60, TOP + 1.5 * K, y1, P.vel); vdim(ctx, X - 60, y1 + 22 + 1.0 * K, y2, P.vel); hline(ctx, X - 70, X - 4, TOP + 1.5 * K, P.ink2, 1, [2, 2]); hline(ctx, X - 70, X - 4, y1 + 22 + K, P.ink2, 1, [2, 2]); }
+    if (ans) {
+      vec(ctx, X + 110, TOP + 0.75 * K + 30, 0, -40, 'T = 98 N', P.force, { side: 1, at: 1, align: 'left', ax: 4, size: 13 });
+      vec(ctx, X + 110, y1 + 22 + 0.5 * K + 30, 0, -40, 'T = 58.8 N', P.force, { side: 1, at: 1, align: 'left', ax: 4, size: 13 });
+      if (t >= stages[1].t0) label(ctx, 'ΔL ≈ 1.5 × 10⁻⁴ m', X - 70, TOP + 1.5 * K - 16, { align: 'right', weight: 800, size: 13, color: P.vel });
+      if (t >= stages[2].t0) label(ctx, 'ΔL ≈ 1.3 × 10⁻⁴ m', X - 70, y1 + 22 + K - 16, { align: 'right', weight: 800, size: 13, color: P.vel });
+      partsPanel(ctx, 630, 34, 300, 'Working (g = 9.8 m/s²)', ['Steel carries 98 N; brass 58.8 N', 'Steel: ΔL ≈ 1.5 × 10⁻⁴ m', 'Brass: ΔL ≈ 1.3 × 10⁻⁴ m'], stageAt(stages, t), false);
+    } else askedPanel(ctx, 630, 34, 300, ['The elongations of the steel and the brass wires.']);
+    note(ctx, 'lengths 120 px per metre; elongations exaggerated 1500 times');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

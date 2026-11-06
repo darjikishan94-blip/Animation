@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 8.2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 8 Mechanical Properties of Solids</a></p>
+      <h1>Exercise 8.2 · Reading a stress–strain curve (Fig. 8.9)</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q01.html">‹ 8.1</a><a href="index.html">All questions</a><a href="q03.html">8.3 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 8.2">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="The stress–strain graph of Fig. 8.9 is traced: a straight line through 150 × 10⁶ N/m² at strain 0.002, levelling off near 300 × 10⁶ N/m²."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>8.2</b> Figure 8.9 shows the strain-stress curve for a given material. What are (a) Young’s modulus and (b) approximate yield strength for this material?</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Fig. 8.9: stress (10<sup>6</sup> N m<sup>−2</sup>) against strain; straight up to about 300 at strain 0.004.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>(a) Young’s modulus (b) approximate yield strength.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>The curve follows Fig. 8.9.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>(a) Y = slope of the straight part = 150 × 10<sup>6</sup> / 0.002 = 7.5 × 10<sup>10</sup> N m<sup>−2</sup>.</li>
+          <li>(b) The curve stops being straight at about 300 × 10<sup>6</sup> N m<sup>−2</sup>: yield strength ≈ 3 × 10<sup>8</sup> N m<sup>−2</sup>.</li>
+        </ol>
+        <p class="final">(a) 7.5 × 10<sup>10</sup> N m<sup>−2</sup> (b) ≈ 3 × 10<sup>8</sup> N m<sup>−2</sup></p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 8 (Mechanical Properties of Solids), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const f = s => s <= 0.004 ? 75000 * s : 300 + 2e4 * (s - 0.004) - 1.5e8 * (s - 0.004) ** 2, D = 7;
+  const qStages = [
+    { title: 'Fig. 8.9', dur: D, text: 'The stress–strain curve of a material: stress in 10⁶ N/m², strain up to about 0.004.' },
+    { title: 'What is asked', dur: 4, text: 'Find (a) Young’s modulus and (b) the approximate yield strength.' },
+  ];
+  const stages = [
+    { title: 'The straight part', dur: D, text: 'Young’s modulus is the slope of the straight (elastic) part.', ans: 'At strain 0.002 the stress is 150 × 10⁶ N/m².' },
+    { title: 'Young’s modulus', dur: 4, text: 'Y = stress / strain.', ans: '(a) Y = 150 × 10⁶ / 0.002 = 7.5 × 10¹⁰ N/m².' },
+    { title: 'Yield strength', dur: 4, text: 'Where the curve stops being straight, the material yields.', ans: '(b) ≈ 300 × 10⁶ = 3 × 10⁸ N/m².' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    const g = axes(ctx, { x: 90, y: 60, w: 450, h: 360, x0: 0, x1: 0.0045, y0: 0, y1: 330, xt: [0.001, 0.002, 0.003, 0.004], yt: [50, 100, 150, 200, 250, 300], xl: 'strain', yl: 'stress (10⁶ N/m²)' });
+    for (const v of [50, 100, 150, 200, 250, 300]) hline(ctx, g.X(0), g.X(0.0045), g.Y(v), P.grid, 1);
+    for (const v of [0.001, 0.002, 0.003, 0.004]) vline(ctx, g.X(v), g.Y(0), g.Y(330), P.grid, 1);
+    plot(ctx, g, f, 0, Math.min(0.0043, 0.0043 * clamp(t / (D - 1))), P.vel);
+    if (ans && t >= stages[1].t0) { ctx.save(); ctx.strokeStyle = P.accent; ctx.lineWidth = 2; ctx.setLineDash([5, 4]); seg(ctx, g.X(0.002), g.Y(0), g.X(0.002), g.Y(150)); seg(ctx, g.X(0), g.Y(150), g.X(0.002), g.Y(150)); ctx.restore(); ball(ctx, g.X(0.002), g.Y(150), 6, P.accent); label(ctx, 'Y = 150 × 10⁶ / 0.002 = 7.5 × 10¹⁰ N/m²', g.X(0.0021), g.Y(150) + 22, { weight: 800, size: 14, color: P.accent }); }
+    if (ans && t >= stages[2].t0) { ball(ctx, g.X(0.004), g.Y(300), 6, P.force); label(ctx, 'yield ≈ 3 × 10⁸ N/m²', g.X(0.004) - 8, g.Y(300) - 18, { align: 'right', weight: 800, size: 14, color: P.force }); }
+    if (ans) partsPanel(ctx, 630, 34, 300, 'Answers', ['Read a point on the straight part', '(a) Y = 7.5 × 10¹⁰ N/m²', '(b) yield strength ≈ 3 × 10⁸ N/m²'], stageAt(stages, t), false);
+    else askedPanel(ctx, 630, 34, 300, ['(a) The Young’s modulus of the material.', '(b) Its approximate yield strength.']);
+    note(ctx, 'curve follows Fig. 8.9');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

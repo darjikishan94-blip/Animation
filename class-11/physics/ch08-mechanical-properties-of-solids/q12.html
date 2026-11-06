@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 8.12</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 8 Mechanical Properties of Solids</a></p>
+      <h1>Exercise 8.12 · Bulk modulus of water vs air</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q11.html">‹ 8.11</a><a href="index.html">All questions</a><a href="q13.html">8.13 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 8.12">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A piston pressing on 100 litres of water and on the same volume of air with 100 atm extra: the water barely changes volume while the air is squeezed to a tiny fraction."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>8.12</b> Compute the bulk modulus of water from the following data: Initial volume = 100.0 litre, Pressure increase = 100.0 atm (1 atm = 1.013 × 10<sup>5</sup> Pa), Final volume = 100.5 litre. Compare the bulk modulus of water with that of air (at constant temperature). Explain in simple terms why the ratio is so large.</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Volume change 0.5 L out of 100.0 L for Δp = 100.0 atm = 1.013 × 10<sup>7</sup> Pa.</li>
+          <li>For air at constant temperature, B = p = 1.013 × 10<sup>5</sup> Pa.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The bulk modulus of water; its ratio to that of air; why it is so large.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>The water’s 0.5% change is exaggerated; the air column is to scale (Boyle’s law).</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>B<sub>water</sub> = Δp/(ΔV/V) = 1.013 × 10<sup>7</sup>/(0.5/100) ≈ 2.0 × 10<sup>9</sup> Pa. (The volume decreases; the data list it as a change of 0.5 L.)</li>
+          <li>B<sub>air</sub> (isothermal) = p ≈ 1.0 × 10<sup>5</sup> Pa. Ratio ≈ 2 × 10<sup>4</sup>.</li>
+          <li>In a liquid the molecules are already close together and resist being pushed closer; in a gas they are far apart and easily squeezed.</li>
+        </ol>
+        <p class="final">B<sub>water</sub> ≈ 2.0 × 10<sup>9</sup> Pa ≈ 2 × 10<sup>4</sup> × B<sub>air</sub>.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 8 (Mechanical Properties of Solids), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const H = 300, BY = 450, D = 6;
+  const qStages = [
+    { title: 'Squeezing water', dur: D, text: '100.0 L of water is put under 100.0 atm more pressure; its volume changes by 0.5 L (to 100.5 L in the data as given).' },
+    { title: 'What is asked', dur: 5, text: 'Compute the bulk modulus of water. Compare it with that of air at constant temperature, and explain why the ratio is so large.' },
+  ];
+  const stages = [
+    { title: 'Bulk modulus of water', dur: D, text: 'B = Δp / (ΔV/V), with Δp = 100 × 1.013 × 10⁵ Pa and ΔV/V = 0.5/100.', ans: 'B_water ≈ 1.013 × 10⁷ / 0.005 ≈ 2.0 × 10⁹ Pa.' },
+    { title: 'Air', dur: 5, text: 'For air at constant temperature (Boyle’s law, pV constant) B = p ≈ 1.0 × 10⁵ Pa. The same extra pressure squeezes air to about 1/101 of its volume.', ans: 'B_water / B_air ≈ 2 × 10⁴.' },
+    { title: 'Why', dur: 4, text: 'Compare the spacing of the molecules.', ans: 'Liquid molecules are packed close and repel strongly when pushed closer; gas molecules are far apart, with lots of empty space.' },
+  ];
+  function cyl(ctx, x, h, col, name) {
+    ctx.strokeStyle = P.obj; ctx.lineWidth = 2; ctx.strokeRect(x, BY - H - 20, 120, H + 20);
+    ctx.fillStyle = col; ctx.globalAlpha = 0.6; ctx.fillRect(x + 2, BY - h, 116, h); ctx.globalAlpha = 1;
+    ctx.fillStyle = P.objFill2; ctx.fillRect(x + 2, BY - h - 16, 116, 16); ctx.strokeRect(x + 2, BY - h - 16, 116, 16);
+    vec(ctx, x + 60, BY - h - 60, 0, 40, '', P.force); label(ctx, name, x + 60, BY + 20, { align: 'center', weight: 700, size: 14 });
+  }
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    const f = smooth(clamp((t - 1) / 3));
+    cyl(ctx, 80, H * (1 - 0.05 * f), P.water, 'water, 100 L');
+    label(ctx, f > 0.5 ? '+100 atm' : '', 140, BY - H - 80, { align: 'center', weight: 700, size: 14, color: P.force });
+    if (ans && t >= stages[1].t0) { const g = smooth(clamp((t - stages[1].t0) / 2.5)); cyl(ctx, 360, H * (1 - g * (1 - 1 / 101)), P.ink2, 'air, 100 L'); label(ctx, '+100 atm', 420, BY - H * (1 - g * (1 - 1 / 101)) - 80, { align: 'center', weight: 700, size: 14, color: P.force }); if (g > 0.9) label(ctx, '≈ 1 L left', 420, BY - 30, { align: 'center', weight: 800, size: 14, color: P.accent }); }
+    if (ans) partsPanel(ctx, 630, 34, 300, 'Working', ['B_water = Δp/(ΔV/V) ≈ 2.0 × 10⁹ Pa', 'B_air (isothermal) = p ≈ 10⁵ Pa: ratio ≈ 2 × 10⁴', 'Liquid molecules are tightly packed; gas molecules far apart'], stageAt(stages, t), false);
+    else askedPanel(ctx, 630, 34, 300, ['The bulk modulus of water.', 'Its ratio to the bulk modulus of air at constant temperature, and why it is so large.']);
+    note(ctx, 'water’s 0.5% change exaggerated 10 times; air drawn to scale (Boyle’s law)');
+  }
+  return { qStages, stages, draw };
+})();
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 8.3</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 8 Mechanical Properties of Solids</a></p>
+      <h1>Exercise 8.3 · Which material is stiffer and stronger? (Fig. 8.10)</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q02.html">‹ 8.2</a><a href="index.html">All questions</a><a href="q04.html">8.4 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 8.3">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="The two stress–strain curves of Fig. 8.10 drawn on one set of axes: A rises more steeply and reaches a higher breaking stress than B."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>8.3</b> The stress-strain graphs for materials A and B are shown in Fig. 8.10. The graphs are drawn to the same scale. (a) Which of the materials has the greater Young’s modulus? (b) Which of the two is the stronger material?</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Fig. 8.10: stress–strain curves of A and B, same scale.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>(a) Greater Young’s modulus (b) stronger material.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Curves follow the shapes in Fig. 8.10, overlaid on one set of axes.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>(a) A: its straight initial part is steeper (larger stress for the same strain).</li>
+          <li>(b) A: it withstands a larger stress before breaking (higher ultimate strength).</li>
+        </ol>
+        <p class="final">(a) A (b) A</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 8 (Mechanical Properties of Solids), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const A = hermite([[0, 0, 6], [0.9, 5.2, 2.5], [1.6, 6.2, 0.6], [3.4, 7.3, 0.4], [4.0, 7.5, -0.6]]), B = hermite([[0, 0, 2.6], [2.2, 5.7, 2.4], [2.5, 6.2, 0], [2.9, 6.0, 0], [3.3, 6.2, 0]]), D = 8;
+  const qStages = [
+    { title: 'Fig. 8.10', dur: D, text: 'The stress–strain graphs of materials A and B, drawn to the same scale (here on one set of axes).' },
+    { title: 'What is asked', dur: 4, text: '(a) Which has the greater Young’s modulus? (b) Which is stronger?' },
+  ];
+  const stages = [
+    { title: 'Slopes', dur: D, text: 'Young’s modulus is the slope of the initial straight part of the curve.', ans: '(a) A rises more steeply: A has the greater Young’s modulus.' },
+    { title: 'Breaking stress', dur: 4, text: 'Strength is the greatest stress a material can take before it breaks.', ans: '(b) A reaches a higher stress before breaking: A is stronger.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    const g = axes(ctx, { x: 90, y: 60, w: 450, h: 360, x0: 0, x1: 4.3, y0: 0, y1: 8.5, xl: 'strain', yl: 'stress' });
+    const u = clamp(t / (D - 1));
+    plot(ctx, g, A, 0, 4.0 * u, P.vel); plot(ctx, g, B, 0, 3.3 * u, P.force);
+    if (u > 0.95) { label(ctx, 'A', g.X(4.0) + 6, g.Y(7.5), { weight: 800, size: 16, color: P.vel }); label(ctx, 'B', g.X(3.3) + 6, g.Y(6.2), { weight: 800, size: 16, color: P.force }); }
+    if (ans && t >= D - 1) {
+      ctx.save(); ctx.lineWidth = 2; ctx.setLineDash([5, 4]); ctx.strokeStyle = P.vel; seg(ctx, g.X(0), g.Y(0), g.X(1.2), g.Y(7.2)); ctx.strokeStyle = P.force; seg(ctx, g.X(0), g.Y(0), g.X(2.9), g.Y(7.54)); ctx.restore();
+      if (t >= stages[1].t0) { hline(ctx, g.X(0), g.X(4.0), g.Y(7.5), P.vel, 1, [3, 3]); hline(ctx, g.X(0), g.X(3.3), g.Y(6.2), P.force, 1, [3, 3]); label(ctx, 'breaking stress', g.X(0) + 6, g.Y(7.5) - 12, { size: 12, color: P.vel }); }
+    }
+    if (ans) partsPanel(ctx, 630, 34, 300, 'Answers', ['(a) Steeper initial slope: A', '(b) Higher breaking stress: A'], stageAt(stages, t), false);
+    else askedPanel(ctx, 630, 34, 300, ['(a) The material with the greater Young’s modulus.', '(b) The stronger material.']);
+    note(ctx, 'curve shapes follow Fig. 8.10; no values given');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

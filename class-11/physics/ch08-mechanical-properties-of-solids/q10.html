@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 8.10</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 8 Mechanical Properties of Solids</a></p>
+      <h1>Exercise 8.10 · A bar on three wires</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q09.html">‹ 8.9</a><a href="index.html">All questions</a><a href="q11.html">8.11 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 8.10">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A rigid bar hangs level from three 2 m wires, copper at the ends and iron in the middle; with equal tensions and equal stretch, the copper wires must be thicker in the ratio 1.31."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>8.10</b> A rigid bar of mass 15 kg is supported symmetrically by three wires each 2.0 m long. Those at each end are of copper and the middle one is of iron. Determine the ratios of their diameters if each is to have the same tension.</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Bar 15 kg; three wires of 2.0 m (copper, iron, copper), symmetric; equal tensions.</li>
+          <li>Y (copper) = 1.1 × 10<sup>11</sup>, Y (iron) = 1.9 × 10<sup>11</sup> N m<sup>−2</sup> (Table 8.1).</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The ratio of the diameters.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Wire thicknesses exaggerated but in the right ratio.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>Each tension = 15 × 9.8/3 = 49 N. The bar is rigid and level, so all wires stretch by the same ΔL; their lengths are equal too.</li>
+          <li>T = YAΔL/L is the same for all, so Y × A is the same: A<sub>Cu</sub>/A<sub>Fe</sub> = Y<sub>Fe</sub>/Y<sub>Cu</sub> = 190/110.</li>
+          <li>d<sub>Cu</sub>/d<sub>Fe</sub> = √(190/110) ≈ 1.31.</li>
+        </ol>
+        <p class="final">d<sub>copper</sub> : d<sub>iron</sub> ≈ 1.31 : 1.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 8 (Mechanical Properties of Solids), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const TOP = 60, L = 220, XL = 140, XM = 300, XR = 460, R = Math.sqrt(190 / 110);
+  const qStages = [
+    { title: 'Three wires', dur: 5, text: 'A rigid 15 kg bar hangs symmetrically from three 2.0 m wires: copper at the ends, iron in the middle.' },
+    { title: 'What is asked', dur: 4, text: 'What must be the ratio of their diameters if each wire has the same tension?' },
+  ];
+  const stages = [
+    { title: 'Equal tensions, equal stretch', dur: 5, text: 'Equal tensions: each holds 15 × 9.8 / 3 = 49 N. The bar is rigid and stays level, so all three wires stretch by the same ΔL; they have equal lengths.', ans: 'T = YAΔL/L the same for all ⇒ Y × A the same.' },
+    { title: 'Diameters', dur: 5, text: 'Iron is stiffer (Y = 190 GPa) than copper (110 GPa), so the copper wires must be thicker.', ans: 'd_Cu / d_Fe = √(Y_Fe / Y_Cu) = √(190/110) ≈ 1.31.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    hatchRect(ctx, 80, TOP - 16, 440, 16, P.obj, P.objFill); hline(ctx, 80, 520, TOP, P.obj, 2);
+    const w = 4;
+    ctx.save(); ctx.lineWidth = w * R; ctx.strokeStyle = P.ke; seg(ctx, XL, TOP, XL, TOP + L); seg(ctx, XR, TOP, XR, TOP + L); ctx.lineWidth = w; ctx.strokeStyle = P.ink; seg(ctx, XM, TOP, XM, TOP + L); ctx.restore();
+    ctx.fillStyle = P.wood; ctx.fillRect(XL - 30, TOP + L, XR - XL + 60, 18); ctx.strokeStyle = P.obj; ctx.strokeRect(XL - 30, TOP + L, XR - XL + 60, 18);
+    label(ctx, 'copper', XL - 10, TOP + L / 2, { align: 'right', weight: 700, size: 13 }); label(ctx, 'iron', XM + 10, TOP + L / 2, { weight: 700, size: 13 }); label(ctx, 'copper', XR + 10, TOP + L / 2, { weight: 700, size: 13 });
+    label(ctx, 'rigid bar, 15 kg', 300, TOP + L + 40, { align: 'center', weight: 700, size: 14 }); label(ctx, '2.0 m each', 380, TOP + 20, { align: 'center', size: 12, color: P.ink2 });
+    if (ans) {
+      for (const x of [XL, XM, XR]) vec(ctx, x + (x === XM ? 0 : 0), TOP + L, 0, -60, '49 N', P.force, { side: 1, at: 1, align: 'left', ax: 8, size: 13 });
+      if (t >= stages[1].t0) label(ctx, 'd(copper) : d(iron) = 1.31 : 1', 300, 420, { align: 'center', weight: 800, size: 18, color: P.accent });
+      partsPanel(ctx, 630, 34, 300, 'Working', ['Equal T and equal ΔL ⇒ Y_Cu A_Cu = Y_Fe A_Fe', 'd_Cu/d_Fe = √(190/110) ≈ 1.31'], stageAt(stages, t), false);
+    } else askedPanel(ctx, 630, 34, 300, ['The ratio of the diameters of the copper and iron wires if each has the same tension.']);
+    note(ctx, 'wire thicknesses drawn in the ratio 1.31 : 1');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 8.11</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 8 Mechanical Properties of Solids</a></p>
+      <h1>Exercise 8.11 · Mass whirled on a steel wire</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q10.html">‹ 8.10</a><a href="index.html">All questions</a><a href="q12.html">8.12 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 8.11">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A 14.5 kg mass whirls in a vertical circle on a 1 m steel wire; at the bottom the wire must supply the weight plus the centripetal force, 2432 N, stretching it by 1.87 mm."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>8.11</b> A 14.5 kg mass, fastened to the end of a steel wire of unstretched length 1.0 m, is whirled in a vertical circle with an angular velocity of 2 rev/s at the bottom of the circle. The cross-sectional area of the wire is 0.065 cm<sup>2</sup>. Calculate the elongation of the wire when the mass is at the lowest point of its path.</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>m = 14.5 kg; L = 1.0 m; ω = 2 rev/s at the bottom; A = 0.065 cm<sup>2</sup>; Y (steel) = 2.0 × 10<sup>11</sup> N m<sup>−2</sup>.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The elongation at the lowest point.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Shown 4 times slower than real; tension arrows not to scale.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>At the bottom: T − mg = mω<sup>2</sup>r, with ω = 2 × 2π = 4π rad s<sup>−1</sup>, r = 1.0 m.</li>
+          <li>T = 14.5 × 9.8 + 14.5 × (4π)<sup>2</sup> × 1.0 ≈ 142 + 2290 ≈ 2432 N.</li>
+          <li>ΔL = TL/(AY) = 2432 × 1.0/(0.065 × 10<sup>−4</sup> × 2.0 × 10<sup>11</sup>) ≈ 1.87 × 10<sup>−3</sup> m.</li>
+        </ol>
+        <p class="final">About 1.87 mm.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 8 (Mechanical Properties of Solids), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const M = 14.5, L = 1.0, W = 4 * Math.PI, G = 9.8, T = M * G + M * W * W * L, CX = 300, CY = 220, RP = 170, SLOW = 4, D = 8;
+  const qStages = [
+    { title: 'Whirled in a vertical circle', dur: D, text: 'A 14.5 kg mass on a 1.0 m steel wire (area 0.065 cm²) is whirled in a vertical circle at 2 rev/s at the bottom.' },
+    { title: 'What is asked', dur: 4, text: 'Calculate the elongation of the wire when the mass is at the lowest point.' },
+  ];
+  const stages = [
+    { title: 'At the bottom', dur: D, text: 'At the lowest point the wire must hold up the weight and also provide the centripetal force.', ans: 'T − mg = mω²r, ω = 4π rad/s, r = 1.0 m.' },
+    { title: 'Tension', dur: 4, text: 'T = mg + mω²r.', ans: 'T = 142 + 2290 ≈ 2432 N.' },
+    { title: 'Elongation', dur: 4, text: 'ΔL = TL/(AY), with A = 6.5 × 10⁻⁶ m² and Y = 2.0 × 10¹¹ N/m².', ans: 'ΔL ≈ 1.87 × 10⁻³ m.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    ctx.save(); ctx.strokeStyle = P.ink2; ctx.setLineDash([4, 4]); ctx.beginPath(); ctx.arc(CX, CY, RP, 0, Math.PI * 2); ctx.stroke(); ctx.restore();
+    const tt = ans && t >= stages[0].t1 ? D : Math.min(t, D), a = Math.PI / 2 + (W / SLOW) * (tt - D);      // ends at the bottom
+    const x = CX + RP * Math.cos(a), y = CY + RP * Math.sin(a);
+    ctx.save(); ctx.strokeStyle = P.ink; ctx.lineWidth = 2; seg(ctx, CX, CY, x, y); ctx.restore(); ball(ctx, CX, CY, 5, P.ink); ball(ctx, x, y, 14, P.objFill2);
+    label(ctx, '14.5 kg', x + 20, y + 4, { weight: 700, size: 13 }); label(ctx, '1.0 m', CX + 8, CY + 60, { weight: 700, size: 13 });
+    label(ctx, '2 rev/s at the bottom', 40, 480, { weight: 700, size: 13, color: P.vel });
+    if (ans && t >= stages[0].t1 - 0.01) {
+      vec(ctx, x - 40, y - 14, 0, -80, 'T ≈ 2432 N', P.force, { side: 1, at: 1, align: 'right', ax: -4, size: 13 });
+      vec(ctx, x - 40, y + 14, 0, 30, 'mg = 142 N', P.drag, { side: 1, at: 1, align: 'right', ax: -4, ay: 6, size: 13 });
+      label(ctx, 'net upward force = mω²r ≈ 2290 N (centripetal)', CX, 40, { align: 'center', weight: 700, size: 14, color: P.acc });
+    }
+    if (ans) partsPanel(ctx, 630, 34, 300, 'Working (g = 9.8 m/s²)', ['T − mg = mω²r at the bottom', 'T ≈ 142 + 2290 = 2432 N', 'ΔL = TL/(AY) ≈ 1.87 × 10⁻³ m'], stageAt(stages, t), false);
+    else askedPanel(ctx, 630, 34, 300, ['The elongation of the wire when the mass is at the lowest point of its path.']);
+    note(ctx, 'shown 4 times slower; uniform speed assumed for the drawing; force arrows not to scale');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>
