@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 12 Physics · Exercise 7.1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 12 Physics</a> · <a href="index.html">Ch. 7 Alternating Current</a></p>
+      <h1>Exercise 7.1 · A resistor on 220 V ac</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><span>‹</span><a href="index.html">All questions</a><a href="q02.html">7.2 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 7.1">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="Voltage and current in a 100 Ω resistor rise and fall together; the power vi is never negative and averages 484 W over a cycle; the rms current is 2.2 A."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>7.1</b> A 100 Ω resistor is connected to a 220 V, 50 Hz ac supply. (a) What is the rms value of current in the circuit? (b) What is the net power consumed over a full cycle?</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>R = 100 Ω; V<sub>rms</sub> = 220 V; 50 Hz.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>(a) I<sub>rms</sub> (b) the average power.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Graphs over two cycles (40 ms); curves to scale.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>(a) I<sub>rms</sub> = V<sub>rms</sub>/R = 220/100 = 2.2 A.</li>
+          <li>(b) For a resistor v and i are in phase, so p = vi ≥ 0 and its average is V<sub>rms</sub>I<sub>rms</sub> = 220 × 2.2 = 484 W.</li>
+        </ol>
+        <p class="final">(a) 2.2 A (b) 484 W.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 12), Chapter 7 (Alternating Current), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const D = 8, W = 2 * Math.PI * 50, V0 = 220 * Math.SQRT2, I0 = 2.2 * Math.SQRT2;
+  const GV = { x: 60, y: 200, w: 480, h: 130, x0: 0, x1: 40, y0: -320, y1: 320, xt: [10, 20, 30, 40], yt: [-311, 311], xl: 't (ms)', yl: 'v (V), i × 50 (A)' };
+  const GP = { x: 60, y: 370, w: 480, h: 120, x0: 0, x1: 40, y0: 0, y1: 1000, xt: [], yt: [484, 968], xl: 't', yl: 'p (W)' };
+  const qStages = [
+    { title: 'A resistor on ac', dur: 5, text: 'A 100 Ω resistor is connected to a 220 V, 50 Hz ac supply.' },
+    { title: 'What is asked', dur: 4, text: '(a) The rms current. (b) The net power over a full cycle.' },
+  ];
+  const stages = [
+    { title: 'In phase', dur: D, text: 'For a resistor i = v/R at every instant: they rise and fall together.', ans: '(a) I_rms = 220/100 = 2.2 A (peak 3.11 A).' },
+    { title: 'Power', dur: 5, text: 'p = vi is never negative; its average is V_rms I_rms.', ans: '(b) P = 220 × 2.2 = 484 W.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    wire(ctx, [[120, 60], [120, 40], [280, 40]]); resistor(ctx, 280, 40, 380, 40); wire(ctx, [[380, 40], [480, 40], [480, 140], [120, 140], [120, 116]]); acSource(ctx, 120, 90, 22);
+    label(ctx, '100 Ω', 330, 18, { align: 'center', weight: 700, size: 13 }); label(ctx, '220 V, 50 Hz', 150, 90, { weight: 700, size: 13 });
+    if (ans) {
+      const st = stageAt(stages, t), te = 40 * clamp(t / (D - 1));
+      const g = axes(ctx, GV); plot(ctx, g, s => V0 * Math.sin(W * s / 1000), 0, te, P.vel); plot(ctx, g, s => 50 * I0 * Math.sin(W * s / 1000), 0, te, P.force);
+      label(ctx, 'v', 550, 210, { weight: 800, size: 14, color: P.vel, italic: true }); label(ctx, 'i × 50', 550, 232, { weight: 800, size: 14, color: P.force });
+      const h = axes(ctx, GP); plot(ctx, h, s => V0 * I0 * Math.sin(W * s / 1000) ** 2, 0, te, P.pe);
+      if (st >= 1) hline(ctx, h.X(0), h.X(40), h.Y(484), P.accent, 2, [6, 4]), label(ctx, 'average 484 W', h.X(40), h.Y(484) - 12, { align: 'right', weight: 800, size: 13, color: P.accent });
+      partsPanel(ctx, 630, 34, 300, 'Answers', ['(a) I_rms = 2.2 A', '(b) P = 484 W'], st, false);
+    } else askedPanel(ctx, 630, 34, 300, ['(a) The rms value of the current.', '(b) The net power consumed over a full cycle.']);
+    if (ans) note(ctx, 'two cycles (40 ms); current shown × 50 to share the axis');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

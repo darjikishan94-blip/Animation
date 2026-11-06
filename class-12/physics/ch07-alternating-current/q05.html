@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 12 Physics · Exercise 7.5</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 12 Physics</a> · <a href="index.html">Ch. 7 Alternating Current</a></p>
+      <h1>Exercise 7.5 · Power in a pure L or C circuit</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q04.html">‹ 7.4</a><a href="index.html">All questions</a><a href="q06.html">7.6 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 7.5">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="For the inductor the current lags the voltage by a quarter cycle and for the capacitor it leads by a quarter cycle; in both the power vi is positive for one quarter and equally negative for the next, so it averages to zero."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>7.5</b> In Exercises 7.3 and 7.4, what is the net power absorbed by each circuit over a complete cycle. Explain your answer.</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>The inductor of 7.3 (220 V, 50 Hz, I<sub>rms</sub> 15.9 A) and the capacitor of 7.4 (110 V, 60 Hz, I<sub>rms</sub> 2.49 A).</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The average power in each, and why.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Curves to scale within each panel, over two cycles.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>P = V<sub>rms</sub>I<sub>rms</sub> cos φ. In a pure inductor the current lags the voltage by 90°; in a pure capacitor it leads by 90°. Either way cos φ = 0.</li>
+          <li>Energy taken in during one quarter cycle is given back during the next: the net power is zero in both circuits.</li>
+        </ol>
+        <p class="final">Zero in both.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 12), Chapter 7 (Alternating Current), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const D = 8;
+  const qStages = [
+    { title: 'Pure L and pure C', dur: 5, text: 'The 44 mH inductor of Ex. 7.3 and the 60 μF capacitor of Ex. 7.4, each on its own ac supply.' },
+    { title: 'What is asked', dur: 4, text: 'The net power absorbed by each over a complete cycle. Explain.' },
+  ];
+  const stages = [
+    { title: 'Phase', dur: D, text: 'Inductor: the current lags the voltage by 90°. Capacitor: the current leads by 90°.', ans: 'p = vi is positive for a quarter cycle and equally negative for the next.' },
+    { title: 'Net power', dur: 5, text: 'P = V_rms I_rms cos φ with φ = 90°.', ans: 'Zero in both: energy stored in one quarter is returned in the next.' },
+  ];
+  function panel(ctx, y, name, sh, te, show) {
+    label(ctx, name, 40, y - 8, { weight: 800, size: 14 });
+    const g = axes(ctx, { x: 60, y, w: 470, h: 170, x0: 0, x1: 2, y0: -1.2, y1: 1.2, xt: [1, 2], yt: [], xl: 'cycles' });
+    if (!show) return;
+    const f = s => Math.sin(2 * Math.PI * s), fi = s => Math.sin(2 * Math.PI * s + sh), fp = s => f(s) * fi(s);
+    ctx.save(); ctx.beginPath(); ctx.moveTo(g.X(0), g.Y(0)); for (let i = 0; i <= 200; i++) { const s = te * i / 200; ctx.lineTo(g.X(s), g.Y(fp(s))); } ctx.lineTo(g.X(te), g.Y(0)); ctx.closePath(); ctx.fillStyle = P.pe; ctx.globalAlpha = 0.25; ctx.fill(); ctx.restore();
+    plot(ctx, g, f, 0, te, P.vel); plot(ctx, g, fi, 0, te, P.force); plot(ctx, g, fp, 0, te, P.pe, 2);
+  }
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    const te = ans ? 2 * clamp(t / (D - 1)) : 0;
+    panel(ctx, 50, 'Inductor (7.3): i lags v by 90°', -Math.PI / 2, te, ans); panel(ctx, 300, 'Capacitor (7.4): i leads v by 90°', Math.PI / 2, te, ans);
+    if (ans) {
+      const st = stageAt(stages, t);
+      [['v', P.vel], ['i', P.force], ['p = vi', P.pe]].forEach(([n, c], k) => label(ctx, n, 560, 56 + k * 22, { weight: 800, size: 13, color: c }));
+      if (st >= 1) { label(ctx, 'average p = 0', 300, 236, { align: 'center', weight: 800, size: 15, color: P.accent }); label(ctx, 'average p = 0', 300, 486, { align: 'center', weight: 800, size: 15, color: P.accent }); }
+      partsPanel(ctx, 630, 34, 300, 'Answers', ['L: i lags 90°; C: i leads 90°', 'cos φ = 0: net power zero in both'], st, false);
+    } else askedPanel(ctx, 630, 34, 300, ['The net power absorbed by each circuit over a complete cycle, with a reason.']);
+    if (ans) note(ctx, 'amplitudes scaled to 1 in each panel; shaded: p = vi');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

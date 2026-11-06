@@ -261,6 +261,15 @@ function resistor(ctx, x1, y1, x2, y2, color) {
 function capacitor(ctx, x1, y1, x2, y2, color, gap = 10, ph = 20) {
   circEl(ctx, x1, y1, x2, y2, gap / 2, () => { ctx.lineWidth = 4; seg(ctx, -gap / 2, -ph, -gap / 2, ph); seg(ctx, gap / 2, -ph, gap / 2, ph); }, color);
 }
+function inductor(ctx, x1, y1, x2, y2, color) {
+  circEl(ctx, x1, y1, x2, y2, 24, () => { ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(-24, 0); for (let i = 0; i < 4; i++) ctx.arc(-18 + i * 12, 0, 6, Math.PI, 0); ctx.stroke(); }, color);
+}
+// an ac source: a circle with a sine wave, centred at (x, y)
+function acSource(ctx, x, y, r = 18, color) {
+  ctx.save(); ctx.strokeStyle = color || P.ink; ctx.lineWidth = 2; ctx.fillStyle = P.sheet;
+  ctx.beginPath(); ctx.arc(x, y, r, 0, 2 * Math.PI); ctx.fill(); ctx.stroke();
+  ctx.beginPath(); for (let i = 0; i <= 24; i++) { const u = i / 24, px = x - r * 0.6 + 1.2 * r * u, py = y - r * 0.35 * Math.sin(u * 2 * Math.PI); i ? ctx.lineTo(px, py) : ctx.moveTo(px, py); } ctx.stroke(); ctx.restore();
+}
 // a cell: the long thin plate (+) is on the (x1, y1) side
 function cell(ctx, x1, y1, x2, y2, color) {
   circEl(ctx, x1, y1, x2, y2, 4, () => { ctx.lineWidth = 2; seg(ctx, -4, -16, -4, 16); ctx.lineWidth = 5; seg(ctx, 4, -8, 4, 8); }, color);

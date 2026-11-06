@@ -3557,8 +3557,88 @@
   "subject": "physics",
   "chapter": 7,
   "chapter_title": "Alternating Current",
-  "status": "planned",
-  "ncert_pdf": "https://ncert.nic.in/textbook/pdf/leph107.pdf"
+  "question": "7.1",
+  "title": "A resistor on 220 V ac",
+  "status": "animated",
+  "file": "class-12/physics/ch07-alternating-current/q01.html",
+  "text": "A 100 Ω resistor is connected to a 220 V, 50 Hz ac supply. (a) What is the rms value of current in the circuit? (b) What is the net power consumed over a full cycle?"
+ },
+ {
+  "class": 12,
+  "subject": "physics",
+  "chapter": 7,
+  "chapter_title": "Alternating Current",
+  "question": "7.2",
+  "title": "Peak and rms values",
+  "status": "worked answer",
+  "file": "class-12/physics/ch07-alternating-current/q02.html",
+  "text": "(a) The peak voltage of an ac supply is 300 V. What is the rms voltage? (b) The rms value of current in an ac circuit is 10 A. What is the peak current?"
+ },
+ {
+  "class": 12,
+  "subject": "physics",
+  "chapter": 7,
+  "chapter_title": "Alternating Current",
+  "question": "7.3",
+  "title": "Current through a 44 mH inductor",
+  "status": "worked answer",
+  "file": "class-12/physics/ch07-alternating-current/q03.html",
+  "text": "A 44 mH inductor is connected to 220 V, 50 Hz ac supply. Determine the rms value of the current in the circuit."
+ },
+ {
+  "class": 12,
+  "subject": "physics",
+  "chapter": 7,
+  "chapter_title": "Alternating Current",
+  "question": "7.4",
+  "title": "Current through a 60 μF capacitor",
+  "status": "worked answer",
+  "file": "class-12/physics/ch07-alternating-current/q04.html",
+  "text": "A 60 μF capacitor is connected to a 110 V, 60 Hz ac supply. Determine the rms value of the current in the circuit."
+ },
+ {
+  "class": 12,
+  "subject": "physics",
+  "chapter": 7,
+  "chapter_title": "Alternating Current",
+  "question": "7.5",
+  "title": "Power in a pure L or C circuit",
+  "status": "animated",
+  "file": "class-12/physics/ch07-alternating-current/q05.html",
+  "text": "In Exercises 7.3 and 7.4, what is the net power absorbed by each circuit over a complete cycle. Explain your answer."
+ },
+ {
+  "class": 12,
+  "subject": "physics",
+  "chapter": 7,
+  "chapter_title": "Alternating Current",
+  "question": "7.6",
+  "title": "Free LC oscillations",
+  "status": "animated",
+  "file": "class-12/physics/ch07-alternating-current/q06.html",
+  "text": "A charged 30 μF capacitor is connected to a 27 mH inductor. What is the angular frequency of free oscillations of the circuit?"
+ },
+ {
+  "class": 12,
+  "subject": "physics",
+  "chapter": 7,
+  "chapter_title": "Alternating Current",
+  "question": "7.7",
+  "title": "Power at resonance",
+  "status": "worked answer",
+  "file": "class-12/physics/ch07-alternating-current/q07.html",
+  "text": "A series LCR circuit with R = 20 Ω, L = 1.5 H and C = 35 μF is connected to a variable-frequency 200 V ac supply. When the frequency of the supply equals the natural frequency of the circuit, what is the average power transferred to the circuit in one complete cycle?"
+ },
+ {
+  "class": 12,
+  "subject": "physics",
+  "chapter": 7,
+  "chapter_title": "Alternating Current",
+  "question": "7.8",
+  "title": "An LCR circuit at resonance (Fig. 7.17)",
+  "status": "animated",
+  "file": "class-12/physics/ch07-alternating-current/q08.html",
+  "text": "Figure 7.17 shows a series LCR circuit connected to a variable frequency 230 V source. L = 5.0 H, C = 80 μF, R = 40 Ω. (a) Determine the source frequency which drives the circuit in resonance. (b) Obtain the impedance of the circuit and the amplitude of current at the resonating frequency. (c) Determine the rms potential drops across the three elements of the circuit. Show that the potential drop across the LC combination is zero at the resonating frequency."
  },
  {
   "class": 12,

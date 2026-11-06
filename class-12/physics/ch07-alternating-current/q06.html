@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 12 Physics · Exercise 7.6</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 12 Physics</a> · <a href="index.html">Ch. 7 Alternating Current</a></p>
+      <h1>Exercise 7.6 · Free LC oscillations</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q05.html">‹ 7.5</a><a href="index.html">All questions</a><a href="q07.html">7.7 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 7.6">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A charged capacitor discharges through an inductor; the energy swings back and forth between the capacitor’s electric field and the inductor’s magnetic field at ω = 1/√(LC) ≈ 1.1 × 10³ rad/s."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>7.6</b> A charged 30 μF capacitor is connected to a 27 mH inductor. What is the angular frequency of free oscillations of the circuit?</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>C = 30 × 10<sup>−6</sup> F; L = 27 × 10<sup>−3</sup> H.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>ω of free oscillations.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Slowed down; no resistance assumed.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>ω = 1/√(LC) = 1/√(27 × 10<sup>−3</sup> × 30 × 10<sup>−6</sup>) = 1/√(8.1 × 10<sup>−7</sup>) = 1/(9 × 10<sup>−4</sup>) ≈ 1.1 × 10<sup>3</sup> rad/s.</li>
+        </ol>
+        <p class="final">≈ 1.1 × 10<sup>3</sup> rad s<sup>−1</sup>.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 12), Chapter 7 (Alternating Current), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const XC = 150, XL = 420, YT = 140, YB = 360, WS = 0.9;   // shown at 0.9 rad/s (really 1.1 × 10³ rad/s)
+  const qStages = [
+    { title: 'A charged capacitor and an inductor', dur: 5, text: 'A charged 30 μF capacitor is connected to a 27 mH inductor.' },
+    { title: 'What is asked', dur: 4, text: 'The angular frequency of the free oscillations.' },
+  ];
+  const stages = [
+    { title: 'Energy sloshes back and forth', dur: 10, text: 'The capacitor discharges through the inductor; the current builds a magnetic field, which then recharges the capacitor the other way.', ans: 'Electric and magnetic energy trade places twice each cycle.' },
+    { title: 'Angular frequency', dur: 5, text: 'ω = 1/√(LC).', ans: 'ω = 1/√(27 × 10⁻³ × 30 × 10⁻⁶) = 1/(9 × 10⁻⁴) ≈ 1.1 × 10³ rad/s.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    wire(ctx, [[XC, 220], [XC, YT], [XL, YT], [XL, 210]]); wire(ctx, [[XL, 290], [XL, YB], [XC, YB], [XC, 280]]);
+    capacitor(ctx, XC, 220, XC, 280, P.ink, 14, 34); inductor(ctx, XL, 210, XL, 290);
+    label(ctx, '30 μF', XC - 46, 250, { align: 'right', weight: 700, size: 14 }); label(ctx, '27 mH', XL + 20, 250, { weight: 700, size: 14 });
+    const ph = ans ? WS * t : 0, q = Math.cos(ph), i = -Math.sin(ph);
+    const n = Math.round(4 * Math.abs(q));
+    for (let k = 0; k < n; k++) { const x = XC - (n - 1) * 8 + k * 16; label(ctx, q > 0 ? '+' : '−', x, 222, { align: 'center', weight: 800, size: 14, color: q > 0 ? P.force : P.vel }); label(ctx, q > 0 ? '−' : '+', x, 280, { align: 'center', weight: 800, size: 14, color: q > 0 ? P.vel : P.force }); }
+    if (ans) {
+      const st = stageAt(stages, t);
+      if (Math.abs(i) > 0.05) flow(ctx, i < 0 ? [[XC, 220], [XC, YT], [XL, YT], [XL, YB], [XC, YB], [XC, 280]] : [[XC, 280], [XC, YB], [XL, YB], [XL, YT], [XC, YT], [XC, 220]], 60 * Math.abs(i) * t, P.force, 26, 3);
+      const BX = 120, BY = 420;
+      label(ctx, 'electric (capacitor)', BX - 10, BY, { align: 'right', size: 12 }); ctx.fillStyle = P.vel; ctx.fillRect(BX, BY - 9, 300 * q * q, 18);
+      label(ctx, 'magnetic (inductor)', BX - 10, BY + 30, { align: 'right', size: 12 }); ctx.fillStyle = P.force; ctx.fillRect(BX, BY + 21, 300 * i * i, 18);
+      if (st >= 1) label(ctx, 'ω ≈ 1.1 × 10³ rad/s', 300, 490, { align: 'center', weight: 800, size: 17, color: P.accent });
+      partsPanel(ctx, 630, 34, 300, 'Answer', ['Energy swaps between C and L', 'ω = 1/√(LC) ≈ 1.1 × 10³ rad/s'], st, false);
+    } else askedPanel(ctx, 630, 34, 300, ['The angular frequency of free oscillations of the circuit.']);
+    note(ctx, ans ? 'slowed down; no resistance; signs and bars in proportion' : 'the capacitor starts charged');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>
