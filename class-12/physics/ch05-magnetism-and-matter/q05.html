@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 12 Physics · Exercise 5.5</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 12 Physics</a> · <a href="index.html">Ch. 5 Magnetism and Matter</a></p>
+      <h1>Exercise 5.5 · Work to turn a magnet</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q04.html">‹ 5.4</a><a href="index.html">All questions</a><a href="q06.html">5.6 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 5.5">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="An external torque slowly turns a magnet from along the field to across it and then to against it; the work done grows to 0.33 J at 90° and 0.66 J at 180°, while the field’s torque is 0.33 N m at 90° and zero at 180°."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>5.5</b> A bar magnet of magnetic moment 1.5 J T<sup>–1</sup> lies aligned with the direction of a uniform magnetic field of 0.22 T. (a) What is the amount of work required by an external torque to turn the magnet so as to align its magnetic moment: (i) normal to the field direction, (ii) opposite to the field direction? (b) What is the torque on the magnet in cases (i) and (ii)?</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>m = 1.5 J T<sup>−1</sup>; B = 0.22 T; starts at θ = 0°.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>(a) Work to reach (i) 90° (ii) 180° (b) torque at each.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Bars show work done and torque to scale with each other.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>Work = increase in U = mB(cos θ₁ − cos θ₂).</li>
+          <li>(a)(i) W = mB(1 − 0) = 1.5 × 0.22 = 0.33 J. (ii) W = mB(1 − (−1)) = 0.66 J.</li>
+          <li>(b) τ = mB sin θ: (i) 0.33 N m (turning it back towards the field); (ii) sin 180° = 0, so τ = 0.</li>
+        </ol>
+        <p class="final">(a) (i) 0.33 J (ii) 0.66 J (b) (i) 0.33 N m (ii) 0.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 12), Chapter 5 (Magnetism and Matter), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const MX = 160, MY = 250, mB = 0.33, D = 6;
+  const qStages = [
+    { title: 'A magnet along a field', dur: 5, text: 'A bar magnet, m = 1.5 J T⁻¹, lies along a uniform field of 0.22 T.' },
+    { title: 'What is asked', dur: 5, text: 'Work by an external torque to turn it (i) normal to the field, (ii) opposite to it; the torque on it in each case.' },
+  ];
+  const stages = [
+    { title: 'Turn to 90°', dur: D, text: 'Work = rise in U = mB(cos θ₁ − cos θ₂).', ans: '(i) W = mB(1 − 0) = 0.33 J; τ = mB sin 90° = 0.33 N m.' },
+    { title: 'Turn on to 180°', dur: D, text: 'Keep turning until the moment points against the field.', ans: '(ii) W = mB(1 + 1) = 0.66 J; τ = mB sin 180° = 0.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    for (let y = 110; y <= 390; y += 56) arrow(ctx, 30, y, 300, y, P.grid, { lw: 1.5, head: 9 });
+    label(ctx, 'B = 0.22 T', 290, 86, { align: 'right', weight: 700, size: 13, color: P.ink2 });
+    let th = 0;
+    if (ans) th = t < stages[0].t1 ? 90 * smooth(clamp(t / (D - 1))) : 90 + 90 * smooth(clamp((t - stages[1].t0) / (D - 1)));
+    barMagnet(ctx, MX, MY, 140, 28, -th * Math.PI / 180);
+    label(ctx, `θ = ${Math.round(th)}°`, MX, 430, { align: 'center', weight: 800, size: 15 });
+    if (ans) {
+      const st = stageAt(stages, t), r = th * Math.PI / 180, W = mB * (1 - Math.cos(r)), tau = mB * Math.sin(r);
+      rotArrow(ctx, MX, MY, 90, false, P.acc); label(ctx, 'external torque', MX, MY - 110, { align: 'center', size: 12, color: P.acc });
+      const BX = 370;
+      label(ctx, 'work done', BX, 140, { weight: 700, size: 13 }); ctx.fillStyle = P.pe; ctx.fillRect(BX, 152, 300 * W, 22); label(ctx, `${W.toFixed(2)} J`, BX + 4, 190, { weight: 800, size: 14, color: P.pe });
+      label(ctx, 'field’s torque', BX, 240, { weight: 700, size: 13 }); ctx.fillStyle = P.force; ctx.fillRect(BX, 252, 300 * tau, 22); label(ctx, `${Math.abs(tau).toFixed(2)} N m`, BX + 4, 290, { weight: 800, size: 14, color: P.force });
+      partsPanel(ctx, 630, 34, 300, 'Answers', ['(i) 90°: W = 0.33 J, τ = 0.33 N m', '(ii) 180°: W = 0.66 J, τ = 0'], st, false);
+    } else askedPanel(ctx, 630, 34, 300, ['(a) The work needed to turn the moment (i) normal to the field, (ii) opposite to it.', '(b) The torque on the magnet in cases (i) and (ii).']);
+    note(ctx, ans ? 'turned slowly; bars to scale (300 px per J or N m)' : 'magnet size illustrative');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

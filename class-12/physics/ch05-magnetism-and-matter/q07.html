@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 12 Physics · Exercise 5.7</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 12 Physics</a> · <a href="index.html">Ch. 5 Magnetism and Matter</a></p>
+      <h1>Exercise 5.7 · Field of a short magnet: axis and equator</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q06.html">‹ 5.6</a><a href="index.html">All questions</a><span>›</span></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 5.7">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="Around a short magnet, the field 10 cm along its axis points along its moment with 9.6 × 10⁻⁵ T; 10 cm out on the equator it points the opposite way with half that, 4.8 × 10⁻⁵ T."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>5.7</b> A short bar magnet has a magnetic moment of 0.48 J T<sup>–1</sup>. Give the direction and magnitude of the magnetic field produced by the magnet at a distance of 10 cm from the centre of the magnet on (a) the axis, (b) the equatorial lines (normal bisector) of the magnet.</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>m = 0.48 J T<sup>−1</sup>; r = 0.10 m; μ<sub>0</sub>/4π = 10<sup>−7</sup> T m A<sup>−1</sup>.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>B on the axis and on the equator at 10 cm.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Field lines computed for a short magnet; arrows at the two points to scale with each other.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>(a) Axis: B = (μ<sub>0</sub>/4π) 2m/r<sup>3</sup> = 10<sup>−7</sup> × 2 × 0.48/0.001 = 9.6 × 10<sup>−5</sup> T, along m (from the S end towards the N end, pointing away from N).</li>
+          <li>(b) Equator: B = (μ<sub>0</sub>/4π) m/r<sup>3</sup> = 4.8 × 10<sup>−5</sup> T, opposite to m (parallel to the magnet, from N towards S).</li>
+        </ol>
+        <p class="final">(a) 9.6 × 10<sup>−5</sup> T along m (b) 4.8 × 10<sup>−5</sup> T opposite to m.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 12), Chapter 5 (Magnetism and Matter), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const CX = 230, CY = 290, A = 22, R = 200;   // 10 cm = 200 px; pole separation 2A (short magnet)
+  let lines = null;
+  function Bf(x, y) { const ax = x - (CX + A), ay = y - CY, bx = x - (CX - A), by = y - CY, ra = Math.hypot(ax, ay) ** 3, rb = Math.hypot(bx, by) ** 3; return [ax / ra - bx / rb, ay / ra - by / rb]; }
+  function build() {
+    lines = [];
+    for (let k = 1; k < 9; k++) {
+      const a = -k * Math.PI / 9; let x = CX + A + 6 * Math.cos(a), y = CY + 6 * Math.sin(a); const pts = [[x, y]];
+      for (let i = 0; i < 1600; i++) { const [ex, ey] = Bf(x, y), L = Math.hypot(ex, ey); x += 2.5 * ex / L; y += 2.5 * ey / L; pts.push([x, y]); if (Math.hypot(x - CX + A, y - CY) < 6 || x < 8 || x > 600 || y < 26 || y > 510) break; }
+      lines.push(pts);
+    }
+  }
+  const qStages = [
+    { title: 'A short bar magnet', dur: 5, text: 'Magnetic moment 0.48 J T⁻¹. Two points 10 cm from its centre: one on the axis, one on the equator.' },
+    { title: 'What is asked', dur: 4, text: 'The direction and magnitude of its field at each point.' },
+  ];
+  const stages = [
+    { title: 'Field pattern', dur: 5, text: 'Field lines leave N and return to S.', ans: '' },
+    { title: 'On the axis', dur: 5, text: 'B = (μ₀/4π) 2m/r³.', ans: '(a) 10⁻⁷ × 2 × 0.48/0.1³ = 9.6 × 10⁻⁵ T, along m (away from N).' },
+    { title: 'On the equator', dur: 5, text: 'B = (μ₀/4π) m/r³: half as big.', ans: '(b) 4.8 × 10⁻⁵ T, opposite to m (parallel to the magnet, N → S).' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    if (!lines) build();
+    const st = ans ? stageAt(stages, t) : -1;
+    if (ans) { ctx.save(); ctx.strokeStyle = P.grid; ctx.lineWidth = 1.4; ctx.globalAlpha = clamp(t / 3); lines.forEach(p => { poly(ctx, p); poly(ctx, p.map(([x, y]) => [x, 2 * CY - y])); }); ctx.restore(); }
+    barMagnet(ctx, CX, CY, 2 * A + 30, 18, 0);
+    vec(ctx, CX - 20, CY + 30, 40, 0, 'm', P.acc, { side: 1, at: 0.5, italic: true, lw: 3, head: 9 });
+    ball(ctx, CX + R, CY, 6, P.ink); label(ctx, 'axial point', CX + R, CY + 24, { align: 'center', weight: 700, size: 12 });
+    ball(ctx, CX, CY - R, 6, P.ink); label(ctx, 'equatorial point', CX + 12, CY - R - 16, { weight: 700, size: 12 });
+    hline(ctx, CX + 40, CX + R - 8, CY, P.ink2, 1, [4, 4]); vline(ctx, CX, CY - 20, CY - R + 8, P.ink2, 1, [4, 4]);
+    label(ctx, '10 cm', CX + R / 2 + 20, CY - 12, { align: 'center', weight: 700, size: 12 }); label(ctx, '10 cm', CX - 10, CY - R / 2, { align: 'right', weight: 700, size: 12 });
+    if (st >= 1) vec(ctx, CX + R, CY, 96, 0, '9.6 × 10⁻⁵ T', P.accent, { side: -1, at: 0.5, lw: 4 });
+    if (st >= 2) vec(ctx, CX, CY - R, -48, 0, '4.8 × 10⁻⁵ T', P.accent, { side: -1, at: 0.5, lw: 4, ax: -20 });
+    if (ans) partsPanel(ctx, 630, 34, 300, 'Answers', ['Field lines from N round to S', '(a) Axis: 9.6 × 10⁻⁵ T along m', '(b) Equator: 4.8 × 10⁻⁵ T opposite to m'], st, false);
+    else askedPanel(ctx, 630, 34, 300, ['The magnitude and direction of the field 10 cm from the centre (a) on the axis, (b) on the equatorial line.']);
+    note(ctx, ans ? 'distances 2 px per mm; field lines computed for a short magnet; arrows 10 px per 10⁻⁵ T' : 'distances 2 px per mm');
+  }
+  return { qStages, stages, draw };
+})();
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

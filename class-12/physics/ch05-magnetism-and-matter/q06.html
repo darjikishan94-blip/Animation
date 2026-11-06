@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 12 Physics · Exercise 5.6</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 12 Physics</a> · <a href="index.html">Ch. 5 Magnetism and Matter</a></p>
+      <h1>Exercise 5.6 · A solenoid in a field: force and torque</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q05.html">‹ 5.5</a><a href="index.html">All questions</a><a href="q07.html">5.7 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 5.6">
+    <p class="qline"><b>5.6</b> A closely wound solenoid of 2000 turns and area of cross-section 1.6 × 10<sup>–4</sup> m<sup>2</sup>, carrying a current of 4.0 A, is suspended through its centre allowing it to turn in a horizontal plane. (a) What is the magnetic moment associated with the solenoid? (b) What is the force and torque on the solenoid if a uniform horizontal magnetic field of 7.5 × 10<sup>–2</sup> T is set up at an angle of 30° with the axis of the solenoid?</p>
+    <p><button type="button" class="btn reveal" id="show" aria-pressed="false" style="margin-left:0">Show answer</button></p>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>N = 2000; A = 1.6 × 10<sup>−4</sup> m<sup>2</sup>; I = 4.0 A; B = 7.5 × 10<sup>−2</sup> T at 30° to the axis.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>(a) m (b) force and torque.</p>
+      </div>
+      <div>
+        <h3>Why there is no animation</h3>
+        <ul>
+          <li>This is a direct calculation with nothing moving to show; the page shows the question and a worked answer.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>(a) m = NIA = 2000 × 4.0 × 1.6 × 10<sup>−4</sup> = 1.28 A m<sup>2</sup>, along the axis.</li>
+          <li>(b) In a uniform field the net force is zero. τ = mB sin θ = 1.28 × 7.5 × 10<sup>−2</sup> × 0.5 = 4.8 × 10<sup>−2</sup> N m, tending to align the axis with B.</li>
+        </ol>
+        <p class="final">(a) 1.28 A m<sup>2</sup> (b) force 0; torque 4.8 × 10<sup>−2</sup> N m.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 12), Chapter 5 (Magnetism and Matter), Exercises. </p>
+</div>
+<script>
+const b = document.getElementById('show'), a = document.querySelector('.answer');
+b.addEventListener('click', () => { a.hidden = !a.hidden; b.setAttribute('aria-pressed', String(!a.hidden)); b.textContent = a.hidden ? 'Show answer' : 'Hide answer'; });
+</script>
+</body>
+</html>

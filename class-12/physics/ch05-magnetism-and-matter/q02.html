@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 12 Physics · Exercise 5.2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 12 Physics</a> · <a href="index.html">Ch. 5 Magnetism and Matter</a></p>
+      <h1>Exercise 5.2 · Stable and unstable equilibrium of a magnet</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q01.html">‹ 5.1</a><a href="index.html">All questions</a><a href="q03.html">5.3 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 5.2">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A magnet turned slowly through a full circle in a uniform field; its potential energy −mB cos θ is lowest (−0.048 J) when it points along the field, the stable position, and highest (+0.048 J) when it points against it, the unstable one."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>5.2</b> A short bar magnet of magnetic moment m = 0.32 J T<sup>–1</sup> is placed in a uniform magnetic field of 0.15 T. If the bar is free to rotate in the plane of the field, which orientation would correspond to its (a) stable, and (b) unstable equilibrium? What is the potential energy of the magnet in each case?</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>m = 0.32 J T<sup>−1</sup>; B = 0.15 T.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>Stable and unstable orientations; U in each.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>U(θ) = −mB cos θ is computed; magnet size illustrative.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>U = −mB cos θ, where θ is the angle between m and B. Equilibrium where the torque mB sin θ = 0: θ = 0° or 180°.</li>
+          <li>(a) θ = 0° (m along B): U is a minimum, −mB = −0.32 × 0.15 = −4.8 × 10<sup>−2</sup> J. A small twist brings it back: stable.</li>
+          <li>(b) θ = 180° (m against B): U is a maximum, +4.8 × 10<sup>−2</sup> J. A small twist makes it turn away: unstable.</li>
+        </ol>
+        <p class="final">(a) m parallel to B, U = −4.8 × 10<sup>−2</sup> J (b) m antiparallel to B, U = +4.8 × 10<sup>−2</sup> J.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 12), Chapter 5 (Magnetism and Matter), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const MX = 140, MY = 260, G = { x: 300, y: 110, w: 250, h: 300, x0: 0, x1: 360, y0: -0.06, y1: 0.06, xt: [90, 180, 270, 360], yt: [-0.048, 0.048], xl: 'θ (°)', yl: 'U (J)' }, D = 10;
+  const U = th => -0.32 * 0.15 * Math.cos(th * Math.PI / 180);
+  const qStages = [
+    { title: 'A magnet free to turn', dur: 5, text: 'A short bar magnet, m = 0.32 J T⁻¹, in a uniform field of 0.15 T, free to rotate in the plane of the field.' },
+    { title: 'What is asked', dur: 4, text: 'Which orientations are (a) stable and (b) unstable equilibrium? What is U in each?' },
+  ];
+  const stages = [
+    { title: 'Energy against angle', dur: D, text: 'Turn the magnet slowly through a full circle: U = −mB cos θ.', ans: 'Equilibrium (no torque) only at θ = 0° and 180°.' },
+    { title: 'Stable', dur: 5, text: 'At θ = 0° U is a minimum: a small twist is pulled back.', ans: '(a) m along B: U = −0.048 J.' },
+    { title: 'Unstable', dur: 5, text: 'At θ = 180° U is a maximum: a small twist runs away.', ans: '(b) m against B: U = +0.048 J.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    for (let y = 120; y <= 400; y += 56) arrow(ctx, 30, y, 260, y, P.grid, { lw: 1.5, head: 9 });
+    label(ctx, 'B = 0.15 T', 250, 96, { align: 'right', weight: 700, size: 13, color: P.ink2 });
+    let th = 30;
+    if (ans) { const st = stageAt(stages, t); th = st === 0 ? 360 * clamp(t / (D - 1)) : st === 1 ? 0 : 180; }
+    barMagnet(ctx, MX, MY, 130, 26, -th * Math.PI / 180);
+    if (ans) {
+      const st = stageAt(stages, t), g = axes(ctx, G);
+      plot(ctx, g, U, 0, st === 0 ? th : 360, P.pe);
+      ball(ctx, g.X(th), g.Y(U(th)), 6, P.pe);
+      if (st >= 1) { label(ctx, 'stable', g.X(0) + 10, g.Y(U(0)) + 18, { weight: 800, size: 13, color: P.accent }); label(ctx, '−0.048 J', MX, 440, { align: 'center', weight: 800, size: 15, color: P.accent }); }
+      if (st >= 2) { label(ctx, 'unstable', g.X(180), g.Y(U(180)) - 18, { align: 'center', weight: 800, size: 13, color: P.force }); label(ctx, '+0.048 J', MX, 470, { align: 'center', weight: 800, size: 15, color: P.force }); }
+      label(ctx, `θ = ${Math.round(th)}°`, MX, 180, { align: 'center', weight: 800, size: 14 });
+      partsPanel(ctx, 630, 34, 300, 'Answers', ['U = −mB cos θ', '(a) θ = 0°: U = −4.8 × 10⁻² J', '(b) θ = 180°: U = +4.8 × 10⁻² J'], st, false);
+    } else askedPanel(ctx, 630, 34, 300, ['(a) The orientation of stable equilibrium and its potential energy.', '(b) The orientation of unstable equilibrium and its potential energy.']);
+    note(ctx, ans ? 'U(θ) computed; magnet size illustrative' : 'magnet size illustrative');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 12 Physics · Exercise 5.3</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 12 Physics</a> · <a href="index.html">Ch. 5 Magnetism and Matter</a></p>
+      <h1>Exercise 5.3 · A solenoid acts like a bar magnet</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q02.html">‹ 5.2</a><a href="index.html">All questions</a><a href="q04.html">5.4 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 5.3">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="The field lines of a current-carrying solenoid emerge from one end and enter the other, exactly like those of a bar magnet; its magnetic moment is NIA = 0.6 J/T along the axis."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>5.3</b> A closely wound solenoid of 800 turns and area of cross section 2.5 × 10<sup>–4</sup> m<sup>2</sup> carries a current of 3.0 A. Explain the sense in which the solenoid acts like a bar magnet. What is its associated magnetic moment?</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>N = 800; A = 2.5 × 10<sup>−4</sup> m<sup>2</sup>; I = 3.0 A.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The analogy with a bar magnet; the magnetic moment.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Outside field lines computed for a thin solenoid (equivalent to two poles at its ends).</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>Each turn is a small current loop (a magnetic dipole). Together they give a field like a bar magnet’s: lines leave one end (north), loop round outside and re-enter the other end (south); inside they run along the axis. The solenoid also aligns itself north–south when free to turn.</li>
+          <li>m = NIA = 800 × 3.0 × 2.5 × 10<sup>−4</sup> = 0.6 J T<sup>−1</sup>, along the axis (direction by the right-hand rule).</li>
+        </ol>
+        <p class="final">Its field is that of a bar magnet; m = 0.6 J T<sup>−1</sup> along the axis.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 12), Chapter 5 (Magnetism and Matter), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const CX = 300, CY = 270, HL = 90, HW = 28;   // solenoid half-length, half-width (px)
+  let lines = null;
+  function Bf(x, y) { const ax = x - (CX + HL), ay = y - CY, bx = x - (CX - HL), by = y - CY, ra = Math.hypot(ax, ay) ** 3, rb = Math.hypot(bx, by) ** 3; return [ax / ra - bx / rb, ay / ra - by / rb]; }
+  function build() {
+    lines = [];
+    for (const deg of [-50, -70, -90, -110, -130, -145]) {
+      const a = deg * Math.PI / 180; let x = CX + HL + 46 * Math.cos(a), y = CY + 46 * Math.sin(a); const pts = [[CX + HL, CY - 8], [x, y]];
+      for (let i = 0; i < 1400; i++) { const [ex, ey] = Bf(x, y), L = Math.hypot(ex, ey); x += 3 * ex / L; y += 3 * ey / L; pts.push([x, y]); if ((Math.abs(x - CX) < HL + 2 && Math.abs(y - CY) < HW + 2) || x < 8 || x > 600 || y < 26 || y > 510) break; }
+      lines.push(pts);
+    }
+  }
+  const qStages = [
+    { title: 'A current-carrying solenoid', dur: 5, text: '800 turns, cross-section 2.5 × 10⁻⁴ m², current 3.0 A.' },
+    { title: 'What is asked', dur: 4, text: 'In what sense does it act like a bar magnet? What is its magnetic moment?' },
+  ];
+  const stages = [
+    { title: 'Its field', dur: 6, text: 'Each turn is a small current loop. Together their field leaves one end, loops round outside and re-enters the other end; inside it runs along the axis.', ans: 'Exactly the pattern of a bar magnet: one end acts as N, the other as S.' },
+    { title: 'Magnetic moment', dur: 5, text: 'm = NIA.', ans: 'm = 800 × 3.0 × 2.5 × 10⁻⁴ = 0.6 J T⁻¹, along the axis.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    if (!lines) build();
+    if (ans) { const f = clamp(t / 3); ctx.save(); ctx.strokeStyle = P.accent; ctx.lineWidth = 1.4; ctx.globalAlpha = 0.75 * f; lines.forEach(p => { poly(ctx, p); poly(ctx, p.map(([x, y]) => [x, 2 * CY - y])); }); ctx.restore(); [-14, 0, 14].forEach(dy => arrow(ctx, CX - HL + 10, CY + dy, CX + HL - 10, CY + dy, P.accent, { lw: 1.5, head: 9, alpha: f })); }
+    ctx.save(); ctx.fillStyle = P.objFill; ctx.globalAlpha = 0.5; ctx.fillRect(CX - HL, CY - HW, 2 * HL, 2 * HW); ctx.restore();
+    ctx.save(); ctx.strokeStyle = P.wood; ctx.lineWidth = 3; for (let i = 0; i <= 16; i++) { const x = CX - HL + i * 2 * HL / 16; seg(ctx, x - 5, CY - HW, x + 5, CY + HW); } ctx.restore();
+    fieldSym(ctx, CX - 60, CY - HW, true, 6, P.force); fieldSym(ctx, CX - 60, CY + HW, false, 6, P.force); label(ctx, 'I = 3.0 A', 40, 60, { weight: 700, size: 14, color: P.force });
+    label(ctx, '800 turns, A = 2.5 × 10⁻⁴ m²', 40, 84, { weight: 700, size: 14 });
+    if (ans) { label(ctx, 'N', CX + HL + 22, CY + 4, { weight: 800, size: 18, color: P.force }); label(ctx, 'S', CX - HL - 34, CY + 4, { weight: 800, size: 18, color: P.vel });
+      if (t >= stages[1].t0) { vec(ctx, CX - 60, 470, 120, 0, 'm = 0.6 J T⁻¹', P.acc, { side: 1, at: 0.5, lw: 4 }); }
+      partsPanel(ctx, 630, 34, 300, 'Answer', ['Field like a bar magnet’s: N and S ends', 'm = NIA = 0.6 J T⁻¹'], stageAt(stages, t), false); }
+    else askedPanel(ctx, 630, 34, 300, ['In what sense the solenoid acts like a bar magnet.', 'Its magnetic moment.']);
+    note(ctx, ans ? 'outside lines computed for a thin solenoid; current ⊙ on top, ⊗ below' : 'current comes out of the page on top (⊙), goes in below (⊗)');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

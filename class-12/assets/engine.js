@@ -286,6 +286,14 @@ function fieldSym(ctx, x, y, out, r = 7, color) {
   else { const d = r * 0.62; seg(ctx, x - d, y - d, x + d, y + d); seg(ctx, x - d, y + d, x + d, y - d); }
   ctx.restore();
 }
+// a bar magnet centred at (x, y): N half (P.force) points along canvas angle ang (rad; positive turns clockwise on screen)
+function barMagnet(ctx, x, y, len, w, ang = 0) {
+  ctx.save(); ctx.translate(x, y); ctx.rotate(ang);
+  ctx.fillStyle = P.vel; ctx.fillRect(-len / 2, -w / 2, len / 2, w); ctx.fillStyle = P.force; ctx.fillRect(0, -w / 2, len / 2, w);
+  ctx.strokeStyle = P.ink; ctx.lineWidth = 1.5; ctx.strokeRect(-len / 2, -w / 2, len, w); ctx.restore();
+  const c = Math.cos(ang), s = Math.sin(ang), o = { align: 'center', weight: 800, size: Math.min(15, w * 0.7), color: P.sheet, halo: false };
+  label(ctx, 'N', x + c * len * 0.3, y + s * len * 0.3, o); label(ctx, 'S', x - c * len * 0.3, y - s * len * 0.3, o);
+}
 function stageAt(stages, t) { const i = stages.findIndex(s => t < s.t1); return i < 0 ? stages.length - 1 : i; }
 // a stopwatch-style time readout
 function clock(ctx, x, y, t, text) {
