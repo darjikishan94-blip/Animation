@@ -11,7 +11,96 @@ Step-by-step animations of textbook physics questions. Each animation runs in tw
 Every animation is a single, self-contained `.html` file. It needs no installation and opens in any
 web browser (Chrome, Edge, Safari or Firefox, on a computer or a phone).
 
-## Index
+## The library: every exercise question, Classes 9–12
+
+All end-of-chapter exercise questions of the NCERT physics chapters are here: Class 11 and Class 12 *Physics*,
+and the physics chapters of the Class 10 *Science* and Class 9 *Science: Exploration* books — 532 questions,
+270 of them animated (the rest, such as multiple-choice, definitions and one-line calculations, have a page with
+the question and a full worked answer). Every page opens on the question as given; **Show answers** replays it
+as the worked solution.
+
+### Finding a question (for example, Class 11, Chapter 4, Question 8)
+
+1. **By address.** Every question has a fixed address:
+
+   ```
+   class-<NN>/<physics|science>/ch<NN>-<chapter-name>/q<NN>.html
+   ```
+
+   Class 11, Chapter 4 (Laws of Motion), Question 8 is `class-11/physics/ch04-laws-of-motion/q08.html`.
+   Question numbers are always two digits (`q08`, `q15`). Classes 11–12 use `physics`; Classes 9–10 use `science`.
+2. **By search.** Open `index.html` (the whole library) → the class → type into the search box, for example
+   `4.8`, `chapter 4 question 8`, or a word from the question such as `lift`.
+3. **By asking Claude.** `catalog.json` lists every question with its class, chapter, number, title, status and
+   file, so Claude (or any program) can look up “Class 11 chapter 4 question 8” directly.
+
+Each chapter folder also has an `index.html` listing all its questions. `PROGRESS.md` shows the counts per chapter.
+
+### Chapters
+
+| Class | Ch | Title | Questions | Animated | Folder |
+|---|---|---|---|---|---|
+| 9 | 4 | Describing Motion Around Us | 16 | 10 | `class-09/science/ch04-describing-motion-around-us/` |
+| 9 | 6 | How Forces Affect Motion | 16 | 10 | `class-09/science/ch06-how-forces-affect-motion/` |
+| 9 | 7 | Work, Energy and Simple Machines | 15 | 15 | `class-09/science/ch07-work-energy-and-simple-machines/` |
+| 9 | 10 | Sound Waves: Characteristics and Applications | 15 | 10 | `class-09/science/ch10-sound-waves-characteristics-and-applications/` |
+| 10 | 9 | Light – Reflection and Refraction | 17 | 8 | `class-10/science/ch09-light-reflection-and-refraction/` |
+| 10 | 10 | The Human Eye and the Colourful World | 12 | 4 | `class-10/science/ch10-the-human-eye-and-the-colourful-world/` |
+| 10 | 11 | Electricity | 18 | 6 | `class-10/science/ch11-electricity/` |
+| 10 | 12 | Magnetic Effects of Electric Current | 9 | 4 | `class-10/science/ch12-magnetic-effects-of-electric-current/` |
+| 11 | 1 | Units and Measurement | 17 | 6 | `class-11/physics/ch01-units-and-measurement/` |
+| 11 | 2 | Motion in a Straight Line | 18 | 13 | `class-11/physics/ch02-motion-in-a-straight-line/` |
+| 11 | 3 | Motion in a Plane | 22 | 13 | `class-11/physics/ch03-motion-in-a-plane/` |
+| 11 | 4 | Laws of Motion | 23 | 23 | `class-11/physics/ch04-laws-of-motion/` |
+| 11 | 5 | Work, Energy and Power | 23 | 12 | `class-11/physics/ch05-work-energy-and-power/` |
+| 11 | 6 | System of Particles and Rotational Motion | 17 | 11 | `class-11/physics/ch06-system-of-particles-and-rotational-motion/` |
+| 11 | 7 | Gravitation | 21 | 12 | `class-11/physics/ch07-gravitation/` |
+| 11 | 8 | Mechanical Properties of Solids | 16 | 8 | `class-11/physics/ch08-mechanical-properties-of-solids/` |
+| 11 | 9 | Mechanical Properties of Fluids | 20 | 9 | `class-11/physics/ch09-mechanical-properties-of-fluids/` |
+| 11 | 10 | Thermal Properties of Matter | 20 | 8 | `class-11/physics/ch10-thermal-properties-of-matter/` |
+| 11 | 11 | Thermodynamics | 8 | 3 | `class-11/physics/ch11-thermodynamics/` |
+| 11 | 12 | Kinetic Theory | 10 | 3 | `class-11/physics/ch12-kinetic-theory/` |
+| 11 | 13 | Oscillations | 18 | 9 | `class-11/physics/ch13-oscillations/` |
+| 11 | 14 | Waves | 19 | 8 | `class-11/physics/ch14-waves/` |
+| 12 | 1 | Electric Charges and Fields | 23 | 6 | `class-12/physics/ch01-electric-charges-and-fields/` |
+| 12 | 2 | Electrostatic Potential and Capacitance | 11 | 7 | `class-12/physics/ch02-electrostatic-potential-and-capacitance/` |
+| 12 | 3 | Current Electricity | 9 | 5 | `class-12/physics/ch03-current-electricity/` |
+| 12 | 4 | Moving Charges and Magnetism | 13 | 6 | `class-12/physics/ch04-moving-charges-and-magnetism/` |
+| 12 | 5 | Magnetism and Matter | 7 | 4 | `class-12/physics/ch05-magnetism-and-matter/` |
+| 12 | 6 | Electromagnetic Induction | 8 | 4 | `class-12/physics/ch06-electromagnetic-induction/` |
+| 12 | 7 | Alternating Current | 8 | 4 | `class-12/physics/ch07-alternating-current/` |
+| 12 | 8 | Electromagnetic Waves | 10 | 4 | `class-12/physics/ch08-electromagnetic-waves/` |
+| 12 | 9 | Ray Optics and Optical Instruments | 31 | 10 | `class-12/physics/ch09-ray-optics-and-optical-instruments/` |
+| 12 | 10 | Wave Optics | 6 | 5 | `class-12/physics/ch10-wave-optics/` |
+| 12 | 11 | Dual Nature of Radiation and Matter | 11 | 3 | `class-12/physics/ch11-dual-nature-of-radiation-and-matter/` |
+| 12 | 12 | Atoms | 9 | 3 | `class-12/physics/ch12-atoms/` |
+| 12 | 13 | Nuclei | 10 | 2 | `class-12/physics/ch13-nuclei/` |
+| 12 | 14 | Semiconductor Electronics | 6 | 2 | `class-12/physics/ch14-semiconductor-electronics/` |
+
+(Class 9 Chapter 7 was built earlier as four hand-made pages; its questions open as tabs, for example
+`work-energy-q8-q10.html#q9`.)
+
+### Library pages on claude.ai
+
+Each class is also published as a private page on the owner's claude.ai account (the repository files are the
+long-term copies):
+
+| Class | Page |
+|---|---|
+| 9 | <https://claude.ai/artifact/JLJmrQpT5FCYs2vUSu2yki> |
+| 10 | <https://claude.ai/artifact/SZTMukovPmUvyPcArvZK2M> |
+| 11 | <https://claude.ai/artifact/HsVYfcXvDFgmCCWkxJRWKX> |
+| 12 | <https://claude.ai/artifact/V9r416fLZchse2rxut7tbK> |
+
+### How the library is built
+
+The question text, given data, answers and animation code live in `tools/content/class-NN/chNN/`
+(`chapter.py` plus `scenes-*.js`); `python3 tools/build_library.py` regenerates every page, the indexes,
+`catalog.json` and `PROGRESS.md`. `tools/test_pages.js` checks that every page loads, fits one laptop screen and
+draws nothing outside the picture. Where the NCERT text or answer key appears to contain a misprint, the page
+says so and shows both values.
+
+## Hand-built pages (Class 9, Chapter 7)
 
 | Class | Subject | Chapter | Question | What it shows | Open | Added |
 |---|---|---|---|---|---|---|
