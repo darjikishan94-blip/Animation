@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 6.7</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 6 System of Particles and Rotational Motion</a></p>
+      <h1>Exercise 6.7 · Two particles on parallel lines</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q06.html">‹ 6.6</a><a href="index.html">All questions</a><a href="q08.html">6.8 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 6.7">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="Two particles move in opposite directions along parallel lines a distance d apart; a reference point is dragged around the picture and the total angular momentum about it stays mvd."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>6.7</b> Two particles, each of mass m and speed v, travel in opposite directions along parallel lines separated by a distance d. Show that the angular momentum vector of the two particle system is the same whatever be the point about which the angular momentum is taken.</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Masses m, speeds v, opposite directions, lines a distance d apart.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>Show the total angular momentum is the same about any point.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>The reference point moves around to test different choices; values illustrative.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>About a point O, L = r₁ × p + r₂ × (−p) = (r₁ − r₂) × p.</li>
+          <li>r₁ − r₂ joins one particle to the other and does not depend on O; its component perpendicular to p is d.</li>
+          <li>So |L| = m v d, in the same direction, for every point O.</li>
+        </ol>
+        <p class="final">L = mvd about every point (it depends only on r₁ − r₂).</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 6 (System of Particles and Rotational Motion), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const Y1 = 330, Y2 = 210, D = 12, V = 26;                               // particle 1 moves right on Y1, particle 2 left on Y2; d = 120 px
+  const qStages = [
+    { title: 'Opposite directions', dur: D, text: 'Two particles, each of mass m and speed v, move in opposite directions along parallel lines a distance d apart.' },
+    { title: 'What is asked', dur: 4, text: 'Show that the angular momentum of the pair is the same about every point.' },
+  ];
+  const stages = [
+    { title: 'Any reference point O', dur: D, text: 'About O: L = r₁ × p + r₂ × (−p) = (r₁ − r₂) × p. Move O around and watch the two contributions.', ans: 'Each particle’s own L changes with O, but their sum does not.' },
+    { title: 'Why', dur: 5, text: 'r₁ − r₂ goes from one particle to the other, whatever O is; its part perpendicular to p is d.', ans: 'L = mvd, the same about every point.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    hline(ctx, 30, 590, Y1, P.ink2, 1, [5, 5]); hline(ctx, 30, 590, Y2, P.ink2, 1, [5, 5]);
+    const x1 = 90 + V * t, x2 = 520 - V * t;
+    ball(ctx, x1 % 560, Y1, 10, P.vel); vec(ctx, x1 % 560 + 14, Y1, 40, 0, 'mv', P.vel, { side: -1, at: 0.6, italic: true, size: 13 });
+    ball(ctx, 30 + ((x2 - 30) % 560 + 560) % 560, Y2, 10, P.force); vec(ctx, 30 + ((x2 - 30) % 560 + 560) % 560 - 14, Y2, -40, 0, 'mv', P.force, { side: 1, at: 0.6, italic: true, size: 13 });
+    vdim(ctx, 50, Y2, Y1, P.ink2); label(ctx, 'd', 40, (Y1 + Y2) / 2, { align: 'right', italic: true, weight: 700, size: 15 });
+    if (ans) {
+      const ox = 300 + 200 * Math.sin(t * 0.7), oy = 270 + 170 * Math.sin(t * 1.1);
+      ball(ctx, ox, oy, 5, P.ink); label(ctx, 'O', ox + 10, oy - 10, { weight: 700, size: 14 });
+      ctx.save(); ctx.strokeStyle = P.ink2; ctx.setLineDash([2, 4]); seg(ctx, ox, oy, x1 % 560, Y1); seg(ctx, ox, oy, 30 + ((x2 - 30) % 560 + 560) % 560, Y2); ctx.restore();
+      const L1 = (Y1 - oy) / (Y1 - Y2), L2 = (oy - Y2) / (Y1 - Y2);          // in units of mvd (counter-clockwise positive)
+      const BX = 400, BY = 80, KB = 50;
+      [['L₁', L1, P.vel], ['L₂', L2, P.force], ['total', L1 + L2, P.accent]].forEach(([n, v, c], i) => { const y = BY + i * 30; label(ctx, n, BX - 8, y, { align: 'right', size: 13, weight: 700 }); ctx.fillStyle = c; ctx.fillRect(v >= 0 ? BX : BX + v * KB, y - 8, Math.abs(v) * KB, 16); label(ctx, `${v.toFixed(2)} mvd`, BX + Math.max(v, 0) * KB + 6, y, { size: 12, weight: 700, color: c }); });
+      vline(ctx, BX, BY - 16, BY + 76, P.ink2, 1);
+      partsPanel(ctx, 630, 34, 300, 'Proof', ['L about O = (r₁ − r₂) × p', 'r₁ − r₂ does not depend on O: L = mvd always'], stageAt(stages, t), false);
+    } else askedPanel(ctx, 630, 34, 300, ['Show that the angular momentum of the two-particle system is the same about whatever point it is taken.']);
+    note(ctx, 'positions and the moving reference point O illustrative');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

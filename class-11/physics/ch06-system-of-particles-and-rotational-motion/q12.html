@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 6.12</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 6 System of Particles and Rotational Motion</a></p>
+      <h1>Exercise 6.12 · Child on a turntable folds his arms</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q11.html">‹ 6.11</a><a href="index.html">All questions</a><a href="q13.html">6.13 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 6.12">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="Seen from above, a child on a turntable spins at 40 rev/min with arms out; he pulls his arms in, his moment of inertia falls to 2/5 and he spins at 100 rev/min."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>6.12</b> (a) A child stands at the centre of a turntable with his two arms outstretched. The turntable is set rotating with an angular speed of 40 rev/min. How much is the angular speed of the child if he folds his hands back and thereby reduces his moment of inertia to 2/5 times the initial value ? Assume that the turntable rotates without friction. (b) Show that the child’s new kinetic energy of rotation is more than the initial kinetic energy of rotation. How do you account for this increase in kinetic energy?</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Initial 40 rev/min; I₂ = (2/5) I₁; no friction.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>(a) The new angular speed. (b) Show K increases and explain.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Seen from above; spin rates to scale with each other.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>(a) No external torque: I₁ω₁ = I₂ω₂, so ω₂ = ω₁ × I₁/I₂ = 40 × 5/2 = 100 rev/min.</li>
+          <li>(b) K₂/K₁ = (½I₂ω₂<sup>2</sup>)/(½I₁ω₁<sup>2</sup>) = (2/5) × (5/2)<sup>2</sup> = 2.5: K increases 2.5 times.</li>
+          <li>The extra energy comes from the work the child does with his muscles (his internal energy) in pulling his arms in.</li>
+        </ol>
+        <p class="final">(a) 100 rev/min (b) K becomes 2.5 times; supplied by the child’s muscular work.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 6 (System of Particles and Rotational Motion), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const W1 = 40, W2 = 100, CX = 280, CY = 260, SL = 0.5, T1 = 5, T2 = 6.5, D = 12;   // rev/min; spins drawn at half speed
+  const qStages = [
+    { title: 'Arms outstretched', dur: T1, text: 'A child stands at the centre of a frictionless turntable, arms outstretched, rotating at 40 rev/min.' },
+    { title: 'Arms folded', dur: D - T1, text: 'He folds his arms, reducing his moment of inertia to 2/5 of its initial value.' },
+    { title: 'What is asked', dur: 4, text: '(a) His new angular speed. (b) Show his rotational kinetic energy increases, and account for it.' },
+  ];
+  const stages = [
+    { title: 'Before', dur: T1, text: 'No friction means no external torque: angular momentum Iω stays the same.', ans: 'L = I₁ × 40 rev/min.' },
+    { title: 'After folding', dur: D - T1, text: 'I falls to (2/5) I₁, so ω rises by 5/2.', ans: '(a) ω₂ = 40 × 5/2 = 100 rev/min.' },
+    { title: 'Kinetic energy', dur: 5, text: 'K = ½Iω² = ½Lω: with L fixed, K grows with ω.', ans: '(b) K₂/K₁ = (2/5)(5/2)² = 2.5. The extra energy comes from the child’s muscles doing work to pull his arms in.' },
+  ];
+  let ang = 0, lastT = null;
+  function angleAt(t) { const w = W1 / 60 * 2 * Math.PI * SL; if (t < T1) return w * t; const f = clamp((t - T1) / (T2 - T1)), arm = 1 - 0.6 * f; const w2 = w * (1 / (arm * arm * 0.6 + 0.4)) * 1; let a = w * T1; const n = 60, s = Math.min(t, D) - T1; for (let i = 0; i < n; i++) { const tt = s * (i + 0.5) / n, ff = clamp(tt / (T2 - T1)), ar = 1 - 0.6 * ff, ww = W1 / 60 * 2 * Math.PI * SL * (1 / (0.6 * ar * ar + 0.4)) / (1 / (0.6 + 0.4)); a += ww * s / n; } return a; }
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    label(ctx, 'seen from above', CX, 40, { align: 'center', size: 13, color: P.ink2 });
+    ctx.save(); ctx.fillStyle = P.objFill; ctx.strokeStyle = P.obj; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(CX, CY, 180, 0, Math.PI * 2); ctx.fill(); ctx.stroke(); ctx.restore();
+    const a = angleAt(Math.min(t, D)), f = clamp((t - T1) / (T2 - T1)), arm = 150 * (1 - 0.6 * f);
+    ctx.save(); ctx.strokeStyle = P.ink2; ctx.setLineDash([3, 6]); seg(ctx, CX + 170 * Math.cos(a + 1.2), CY + 170 * Math.sin(a + 1.2), CX + 120 * Math.cos(a + 1.2), CY + 120 * Math.sin(a + 1.2)); ctx.restore();
+    ctx.save(); ctx.strokeStyle = P.ink; ctx.lineWidth = 8; ctx.lineCap = 'round'; seg(ctx, CX - arm * Math.cos(a), CY - arm * Math.sin(a), CX + arm * Math.cos(a), CY + arm * Math.sin(a)); ctx.restore();
+    ctx.fillStyle = P.ink; ctx.beginPath(); ctx.ellipse(CX, CY, 34, 22, a, 0, Math.PI * 2); ctx.fill(); ball(ctx, CX, CY, 14, P.objFill2);
+    rotArrow(ctx, CX, CY, 200, true, P.vel);
+    const wNow = t < T1 ? W1 : W1 / (0.6 * (1 - 0.6 * f) ** 2 + 0.4);
+    if (ans) {
+      label(ctx, `ω ≈ ${wNow.toFixed(0)} rev/min`, 40, 70, { weight: 800, size: 16, color: P.vel });
+      label(ctx, `I = ${(0.6 * (1 - 0.6 * f) ** 2 + 0.4).toFixed(2)} I₁`, 40, 96, { weight: 700, size: 14 });
+      if (t >= stages[2].t0) { label(ctx, 'K₂ = 2.5 K₁', 40, 470, { weight: 800, size: 16, color: P.accent }); label(ctx, 'from the child’s muscular work', 40, 494, { size: 13 }); }
+      partsPanel(ctx, 630, 34, 300, 'Working', ['No external torque: I₁ω₁ = I₂ω₂', '(a) ω₂ = 40 × 5/2 = 100 rev/min', '(b) K₂/K₁ = 2.5: work done by the child'], stageAt(stages, t), false);
+    } else { label(ctx, t < T1 ? '40 rev/min' : 'arms folded: I → (2/5) I', 40, 70, { weight: 700, size: 15 }); askedPanel(ctx, 630, 34, 300, ['(a) The child’s new angular speed.', '(b) Show that the new kinetic energy of rotation is more than the initial one, and account for the increase.']); }
+    note(ctx, 'arm-folding modelled smoothly (I from I₁ to 0.4 I₁); spins drawn at half speed');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

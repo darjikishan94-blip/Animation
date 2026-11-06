@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 6.13</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 6 System of Particles and Rotational Motion</a></p>
+      <h1>Exercise 6.13 · Rope pulled off a hollow cylinder</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q12.html">‹ 6.12</a><a href="index.html">All questions</a><a href="q14.html">6.14 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 6.13">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A 30 N pull on a rope wound round a 3 kg hollow cylinder of radius 40 cm makes it spin up at 25 rad/s² while the rope runs off at 10 m/s²."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>6.13</b> A rope of negligible mass is wound round a hollow cylinder of mass 3 kg and radius 40 cm. What is the angular acceleration of the cylinder if the rope is pulled with a force of 30 N ? What is the linear acceleration of the rope ? Assume that there is no slipping.</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Hollow cylinder: M = 3 kg, R = 0.40 m; pull 30 N; no slipping.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The angular acceleration of the cylinder and the linear acceleration of the rope.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Shown slowed; 250 px per metre.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>I = MR<sup>2</sup> = 3 × 0.40<sup>2</sup> = 0.48 kg m<sup>2</sup>; τ = FR = 30 × 0.40 = 12 N m.</li>
+          <li>α = τ/I = 12/0.48 = 25 rad s<sup>−2</sup>.</li>
+          <li>a = Rα = 0.40 × 25 = 10 m s<sup>−2</sup>.</li>
+        </ol>
+        <p class="final">α = 25 rad s<sup>−2</sup>; a = 10 m s<sup>−2</sup>.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 6 (System of Particles and Rotational Motion), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const M = 3, R = 0.4, F = 30, I = M * R * R, AL = F * R / I, A = AL * R, KP = 250, CX = 200, CY = 250, SLOW = 10, D = 10;   // α = 25 rad/s², a = 10 m/s²
+  const qStages = [
+    { title: 'Pulling the rope', dur: D, text: 'A light rope is wound round a hollow cylinder of mass 3 kg and radius 40 cm and pulled with a force of 30 N. No slipping.' },
+    { title: 'What is asked', dur: 4, text: 'Find the angular acceleration of the cylinder and the linear acceleration of the rope.' },
+  ];
+  const stages = [
+    { title: 'Torque', dur: D, text: 'The pull acts tangentially at radius R: τ = FR. For a hollow cylinder I = MR².', ans: 'τ = 30 × 0.40 = 12 N m; I = 3 × 0.40² = 0.48 kg m².' },
+    { title: 'Accelerations', dur: 5, text: 'α = τ/I; the rope unwinds without slipping, so a = Rα.', ans: 'α = 12 / 0.48 = 25 rad/s²; a = 0.40 × 25 = 10 m/s².' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    const tr = Math.min(t, D) / SLOW, th = 0.5 * AL * tr * tr, s = 0.5 * A * tr * tr, RP = R * KP;
+    ctx.save(); ctx.fillStyle = P.sheet; ctx.strokeStyle = P.obj; ctx.lineWidth = 10; ctx.beginPath(); ctx.arc(CX, CY, RP, 0, Math.PI * 2); ctx.fill(); ctx.stroke(); ctx.restore();
+    ctx.save(); ctx.strokeStyle = P.force; ctx.lineWidth = 3; seg(ctx, CX, CY, CX + RP * Math.cos(th), CY + RP * Math.sin(th)); ctx.restore(); ball(ctx, CX, CY, 5, P.ink);
+    hline(ctx, CX, 580, CY - RP, P.ink, 2.5);
+    for (let k = 0; k < 6; k++) { const x = CX + ((s * KP + k * 80) % 380); ctx.fillStyle = P.ink; ctx.fillRect(x, CY - RP - 4, 3, 8); }
+    vec(ctx, 500, CY - RP, 60, 0, 'F = 30 N', P.force, { side: -1, at: 0.5, size: 13 });
+    dim(ctx, CX - RP - 30, CX - RP - 30, CY, P.ink2); vdim(ctx, CX - RP - 24, CY - RP, CY, P.ink2); label(ctx, '40 cm', CX - RP - 30, CY - RP / 2, { align: 'right', weight: 700, size: 13 });
+    label(ctx, 'hollow, 3 kg', CX, CY + RP + 24, { align: 'center', weight: 700, size: 14 });
+    if (ans) {
+      rotArrow(ctx, CX, CY, RP + 26, true, P.acc); label(ctx, 'α = 25 rad/s²', CX - 40, CY - RP - 46, { weight: 700, size: 14, color: P.acc });
+      vec(ctx, 400, CY - RP + 30, 50, 0, 'a = 10 m/s²', P.acc, { side: 1, at: 0.5, size: 13 });
+      label(ctx, `t = ${tr.toFixed(2)} s   ω = ${(AL * tr).toFixed(1)} rad/s`, 300, 470, { align: 'center', weight: 700, size: 14 });
+      partsPanel(ctx, 630, 34, 300, 'Working', ['τ = FR = 12 N m; I = MR² = 0.48 kg m²', 'α = τ/I = 25 rad/s²; a = Rα = 10 m/s²'], stageAt(stages, t), false);
+    } else askedPanel(ctx, 630, 34, 300, ['The angular acceleration of the cylinder.', 'The linear acceleration of the rope.']);
+    note(ctx, 'end view; shown 10 times slower than real; 250 px per metre');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 6.11</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 6 System of Particles and Rotational Motion</a></p>
+      <h1>Exercise 6.11 · A spinning solid cylinder</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q10.html">‹ 6.10</a><a href="index.html">All questions</a><a href="q12.html">6.12 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 6.11">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A 20 kg solid cylinder of radius 0.25 m spins at 100 rad/s; the solution gives I = 0.625 kg m², rotational kinetic energy 3125 J and angular momentum 62.5 J s."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>6.11</b> A solid cylinder of mass 20 kg rotates about its axis with angular speed 100 rad s<sup>-1</sup>. The radius of the cylinder is 0.25 m. What is the kinetic energy associated with the rotation of the cylinder? What is the magnitude of angular momentum of the cylinder about its axis?</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>M = 20 kg; R = 0.25 m; ω = 100 rad s<sup>−1</sup>; solid cylinder about its axis.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The rotational kinetic energy and the angular momentum.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>The spin is drawn much slower than 100 rad/s.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>I = ½MR<sup>2</sup> = ½ × 20 × 0.25<sup>2</sup> = 0.625 kg m<sup>2</sup>.</li>
+          <li>K = ½Iω<sup>2</sup> = ½ × 0.625 × 100<sup>2</sup> = 3125 J.</li>
+          <li>L = Iω = 0.625 × 100 = 62.5 J s.</li>
+        </ol>
+        <p class="final">K = 3125 J; L = 62.5 J s.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 6 (System of Particles and Rotational Motion), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const M = 20, R = 0.25, W = 100, I = 0.5 * M * R * R, KE = 0.5 * I * W * W, L = I * W, CX = 280, CY = 250, RP = 140;
+  const qStages = [
+    { title: 'Spinning cylinder', dur: 6, text: 'A solid cylinder of mass 20 kg and radius 0.25 m rotates about its axis at 100 rad/s.' },
+    { title: 'What is asked', dur: 4, text: 'Find its rotational kinetic energy and its angular momentum about the axis.' },
+  ];
+  const stages = [
+    { title: 'Moment of inertia', dur: 4, text: 'Solid cylinder about its axis: I = ½MR².', ans: 'I = ½ × 20 × 0.25² = 0.625 kg m².' },
+    { title: 'Kinetic energy', dur: 4, text: 'K = ½Iω².', ans: 'K = ½ × 0.625 × 100² = 3125 J.' },
+    { title: 'Angular momentum', dur: 4, text: 'L = Iω, along the axis.', ans: 'L = 0.625 × 100 = 62.5 J s.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    ctx.save(); ctx.fillStyle = P.objFill2; ctx.strokeStyle = P.obj; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(CX, CY, RP, 0, Math.PI * 2); ctx.fill(); ctx.stroke(); ctx.restore();
+    for (let i = 0; i < 6; i++) { const a = t * 1.5 + i * Math.PI / 3; ctx.save(); ctx.strokeStyle = i ? P.ink2 : P.force; ctx.lineWidth = i ? 1.5 : 3; seg(ctx, CX, CY, CX + RP * Math.cos(a), CY + RP * Math.sin(a)); ctx.restore(); }
+    ball(ctx, CX, CY, 5, P.ink); rotArrow(ctx, CX, CY, RP + 24, true, P.vel); label(ctx, 'ω = 100 rad/s', CX + RP + 10, CY - RP, { weight: 700, size: 14, color: P.vel });
+    dim(ctx, CX, CX + RP, CY + RP + 30, P.ink2); label(ctx, 'R = 0.25 m', CX + RP / 2, CY + RP + 46, { align: 'center', weight: 700, size: 13 });
+    label(ctx, '20 kg', CX, CY - 20, { align: 'center', weight: 700, size: 15, halo: true });
+    if (ans) partsPanel(ctx, 630, 34, 300, 'Working', ['I = ½MR² = 0.625 kg m²', 'K = ½Iω² = 3125 J', 'L = Iω = 62.5 J s'], stageAt(stages, t), false);
+    else askedPanel(ctx, 630, 34, 300, ['The kinetic energy of rotation.', 'The magnitude of the angular momentum about the axis.']);
+    note(ctx, 'end view; spin drawn far slower than 100 rad/s');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

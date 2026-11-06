@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 6.16</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 6 System of Particles and Rotational Motion</a></p>
+      <h1>Exercise 6.16 · Balancing a metre stick with coins</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q15.html">‹ 6.15</a><a href="index.html">All questions</a><a href="q17.html">6.17 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 6.16">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A metre stick balances at its 50 cm mark; two 5 g coins are placed at 12 cm, and the knife edge is moved to 45 cm to balance it again. Torques about 45 cm give the stick’s mass, 66 g."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>6.16</b> A metre stick is balanced on a knife edge at its centre. When two coins, each of mass 5 g are put one on top of the other at the 12.0 cm mark, the stick is found to be balanced at 45.0 cm. What is the mass of the metre stick?</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Balances at 50.0 cm alone; two 5 g coins at 12.0 cm; new balance point 45.0 cm.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The mass of the metre stick.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>5 px per cm.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>The stick’s weight acts at its centre of gravity, the 50.0 cm mark.</li>
+          <li>Torques about 45.0 cm: 10 g × (45.0 − 12.0) = m × (50.0 − 45.0).</li>
+          <li>330 = 5m, so m = 66 g.</li>
+        </ol>
+        <p class="final">66 g.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 6 (System of Particles and Rotational Motion), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const K = 5, X0 = 50, Y = 300, MS = 66, MC = 10;                         // 5 px per cm
+  const qStages = [
+    { title: 'Balanced at the centre', dur: 3, text: 'A metre stick balances on a knife edge at its centre, the 50 cm mark.' },
+    { title: 'Coins added', dur: 3, text: 'Two 5 g coins, one on top of the other, are put at the 12.0 cm mark.' },
+    { title: 'New balance point', dur: 4, text: 'The stick now balances with the knife edge at 45.0 cm. What is the mass of the stick?' },
+  ];
+  const stages = [
+    { title: 'Weight at 50 cm', dur: 3, text: 'A uniform stick balances at its centre: its weight acts at the 50 cm mark.', ans: 'The stick’s weight mg acts at 50.0 cm.' },
+    { title: 'Coins tip it', dur: 3, text: 'The coins (10 g) at 12 cm give a torque that tips the stick.', ans: '' },
+    { title: 'Torques about 45 cm', dur: 4, text: 'At balance the two torques about the knife edge are equal.', ans: '10 g × (45 − 12) cm = m × (50 − 45) cm → 330 = 5m → m = 66 g.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    const kx = t < 6 ? 50 : 50 - 5 * smooth(clamp((t - 6) / 2.5)), coins = t >= 3;
+    const torque = (coins ? MC * (kx - 12) : 0) - MS * (50 - kx), tilt = clamp(torque / 300, -0.12, 0.12) * (t < 6 ? clamp((t - 3) / 1) : 1);
+    const px = cm => X0 + cm * K, kpx = px(kx);
+    ctx.save(); ctx.translate(kpx, Y); ctx.rotate(-tilt);
+    ctx.fillStyle = P.wood; ctx.fillRect(px(0) - kpx, -8, 100 * K, 10); ctx.strokeStyle = P.obj; ctx.strokeRect(px(0) - kpx, -8, 100 * K, 10);
+    for (let c = 0; c <= 100; c += 10) { vline(ctx, px(c) - kpx, -8, -2, P.ink, 1); label(ctx, String(c), px(c) - kpx, -18, { align: 'center', size: 10, color: P.ink2 }); }
+    if (coins) { ctx.fillStyle = P.ke; ctx.fillRect(px(12) - kpx - 10, -16, 20, 4); ctx.fillRect(px(12) - kpx - 10, -21, 20, 4); }
+    ctx.restore();
+    ctx.fillStyle = P.ink; ctx.beginPath(); ctx.moveTo(kpx, Y + 2); ctx.lineTo(kpx - 14, Y + 30); ctx.lineTo(kpx + 14, Y + 30); ctx.closePath(); ctx.fill();
+    label(ctx, `knife edge at ${kx.toFixed(1)} cm`, kpx, Y + 48, { align: 'center', weight: 700, size: 13 });
+    if (coins) label(ctx, '2 × 5 g at 12.0 cm', px(12), Y - 60, { align: 'center', weight: 700, size: 13, color: P.ke });
+    if (ans) {
+      vec(ctx, px(50), Y + 4, 0, 50, 'mg (at 50 cm)', P.force, { side: -1, at: 1, align: 'left', ax: 4, ay: 6, size: 12 });
+      if (coins) vec(ctx, px(12), Y + 4, 0, 30, '10 g', P.ke, { side: 1, at: 1, align: 'right', ax: -4, ay: 6, size: 12 });
+      if (t >= stages[2].t0 + 2.5) { dim(ctx, px(12), px(45), Y + 110, P.ink2); label(ctx, '33 cm', px(28.5), Y + 126, { align: 'center', weight: 700, size: 13 }); dim(ctx, px(45), px(50), Y + 110, P.ink2); label(ctx, '5 cm', px(47.5), Y + 140, { align: 'center', weight: 700, size: 13 }); label(ctx, 'm = 10 × 33 / 5 = 66 g', 300, 140, { align: 'center', weight: 800, size: 18, color: P.accent }); }
+      partsPanel(ctx, 630, 34, 300, 'Working', ['Stick’s weight acts at 50.0 cm', '10 g at 12.0 cm tips it', '10 × 33 = m × 5 → m = 66 g'], stageAt(stages, t), false);
+    } else askedPanel(ctx, 630, 34, 300, ['The mass of the metre stick.']);
+    note(ctx, '5 px per cm; tilt exaggerated');
+  }
+  return { qStages, stages, draw };
+})();
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

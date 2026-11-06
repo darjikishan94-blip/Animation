@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 6.2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 6 System of Particles and Rotational Motion</a></p>
+      <h1>Exercise 6.2 · Centre of mass of HCl</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q01.html">‹ 6.1</a><a href="index.html">All questions</a><a href="q03.html">6.3 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 6.2">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="An H nucleus and a Cl nucleus 1.27 Å apart; the centre of mass marker slides to 1.24 Å from H, very close to the heavy Cl nucleus."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>6.2</b> In the HCl molecule, the separation between the nuclei of the two atoms is about 1.27 Å (1 Å = 10<sup>-10</sup> m). Find the approximate location of the CM of the molecule, given that a chlorine atom is about 35.5 times as massive as a hydrogen atom and nearly all the mass of an atom is concentrated in its nucleus.</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Separation 1.27 Å; m<sub>Cl</sub> = 35.5 m<sub>H</sub>; mass concentrated in the nuclei.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The location of the centre of mass.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Nuclei drawn as dots (their sizes are not to scale); 350 px per Å.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>Take H at x = 0 and Cl at x = 1.27 Å.</li>
+          <li>x<sub>CM</sub> = (m × 0 + 35.5m × 1.27)/(m + 35.5m) = 35.5 × 1.27/36.5 ≈ 1.24 Å from H.</li>
+          <li>That is only about 0.035 Å from the Cl nucleus.</li>
+        </ol>
+        <p class="final">About 1.24 Å from the H nucleus, on the line joining them.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 6 (System of Particles and Rotational Motion), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const SEP = 1.27, RAT = 35.5, K = 350, HX = 100, Y = 260, XCM = SEP * RAT / (1 + RAT);   // 350 px per Å
+  const qStages = [
+    { title: 'HCl', dur: 5, text: 'In HCl the nuclei are about 1.27 Å apart. A chlorine atom is about 35.5 times as massive as a hydrogen atom; nearly all the mass is in the nuclei.' },
+    { title: 'What is asked', dur: 4, text: 'Find the approximate location of the centre of mass of the molecule.' },
+  ];
+  const stages = [
+    { title: 'Weighted average', dur: 5, text: 'Put H at x = 0 and Cl at x = 1.27 Å. The CM is the mass-weighted average position.', ans: 'x_CM = (m × 0 + 35.5m × 1.27) / 36.5m.' },
+    { title: 'The CM', dur: 4, text: 'The heavy chlorine pulls the CM almost onto itself.', ans: 'x_CM ≈ 1.24 Å from H (about 0.035 Å from Cl).' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    const CX = HX + SEP * K;
+    ctx.save(); ctx.strokeStyle = P.ink2; ctx.lineWidth = 2; ctx.setLineDash([3, 5]); seg(ctx, HX, Y, CX, Y); ctx.restore();
+    ball(ctx, HX, Y, 8, P.vel); label(ctx, 'H', HX, Y - 24, { align: 'center', weight: 800, size: 16 }); label(ctx, 'm', HX, Y + 26, { align: 'center', italic: true, size: 14 });
+    ball(ctx, CX, Y, 22, P.leaf); label(ctx, 'Cl', CX, Y - 38, { align: 'center', weight: 800, size: 16 }); label(ctx, '35.5 m', CX, Y + 40, { align: 'center', size: 14 });
+    dim(ctx, HX, CX, Y + 80, P.ink2); label(ctx, '1.27 Å', (HX + CX) / 2, Y + 96, { align: 'center', weight: 700, size: 14 });
+    if (ans) {
+      const x = HX + (SEP / 2 + (XCM - SEP / 2) * smooth(clamp(t / 4))) * K;
+      ctx.save(); ctx.strokeStyle = P.accent; ctx.lineWidth = 3; seg(ctx, x, Y - 70, x, Y + 50); ctx.restore(); label(ctx, 'CM', x, Y - 82, { align: 'center', weight: 800, size: 15, color: P.accent });
+      if (t >= stages[1].t0) { dim(ctx, HX, HX + XCM * K, Y - 120, P.accent); label(ctx, '≈ 1.24 Å', HX + XCM * K / 2, Y - 136, { align: 'center', weight: 800, size: 15, color: P.accent }); }
+      partsPanel(ctx, 630, 34, 300, 'Working', ['x_CM = (35.5m × 1.27) / (36.5m)', '≈ 1.24 Å from the H nucleus'], stageAt(stages, t), false);
+    } else askedPanel(ctx, 630, 34, 300, ['The approximate location of the centre of mass of the HCl molecule.']);
+    note(ctx, 'nuclei drawn as dots, sizes not to scale; 350 px per Å');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

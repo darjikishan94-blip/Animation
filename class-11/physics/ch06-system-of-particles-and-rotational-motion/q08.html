@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 6.8</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 6 System of Particles and Rotational Motion</a></p>
+      <h1>Exercise 6.8 · Bar hung by two strings (Fig. 6.33)</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q07.html">‹ 6.7</a><a href="index.html">All questions</a><a href="q09.html">6.9 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 6.8">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A 2 m bar hangs from two strings at 36.9° and 53.1° to the vertical. The solution balances the horizontal pulls, the vertical forces and the torques, placing the centre of gravity 0.72 m from the left end."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>6.8</b> A non-uniform bar of weight W is suspended at rest by two strings of negligible weight as shown in Fig.6.33. The angles made by the strings with the vertical are 36.9° and 53.1° respectively. The bar is 2 m long. Calculate the distance d of the centre of gravity of the bar from its left end.</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Bar length 2 m, weight W; strings at 36.9° (left) and 53.1° (right) to the vertical.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The distance d of the centre of gravity from the left end.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Tension arrows to scale with W; 200 px per metre.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>Horizontal balance: T₁ sin 36.9° = T₂ sin 53.1°, i.e. 0.6 T₁ = 0.8 T₂.</li>
+          <li>Vertical balance: T₁ cos 36.9° + T₂ cos 53.1° = W, i.e. 0.8 T₁ + 0.6 T₂ = W. These give T₁ = 0.8 W, T₂ = 0.6 W.</li>
+          <li>Torques about the left end: W × d = T₂ cos 53.1° × 2 = 0.6 W × 0.6 × 2, so d = 0.72 m.</li>
+        </ol>
+        <p class="final">d ≈ 0.72 m from the left end.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 6 (System of Particles and Rotational Motion), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const K = 150, BY = 420, XL = 150, XR = XL + 2 * K, A1 = 36.9 * Math.PI / 180, A2 = 53.1 * Math.PI / 180, W = 150, D = 0.72;
+  const L1 = [XL - 110, BY - 110 / Math.tan(A1)], L2 = [XR + 120, BY - 120 / Math.tan(A2)];
+  const qStages = [
+    { title: 'Fig. 6.33', dur: 5, text: 'A non-uniform bar of weight W, 2 m long, hangs at rest from two strings making 36.9° and 53.1° with the vertical.' },
+    { title: 'What is asked', dur: 4, text: 'Find the distance d of the centre of gravity from the left end.' },
+  ];
+  const stages = [
+    { title: 'Three forces', dur: 5, text: 'T₁ along the left string, T₂ along the right string, W at the centre of gravity. At rest: no net force and no net torque.', ans: 'Horizontal: T₁ sin 36.9° = T₂ sin 53.1° → 0.6 T₁ = 0.8 T₂.' },
+    { title: 'Vertical balance', dur: 5, text: 'The upward parts of T₁ and T₂ hold up W.', ans: '0.8 T₁ + 0.6 T₂ = W → T₂ = 0.6 W, T₁ = 0.8 W.' },
+    { title: 'Torques about the left end', dur: 5, text: 'T₁ acts at the left end: no torque about it.', ans: 'W d = (T₂ cos 53.1°) × 2 = 0.6 W × 0.6 × 2 → d = 0.72 m.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    for (const x of [L1[0], L2[0]]) { hatchRect(ctx, x - (x < 300 ? 14 : 0), 60, 14, 440, P.obj, P.objFill); }
+    ctx.save(); ctx.strokeStyle = P.ink; ctx.lineWidth = 1.5; seg(ctx, ...L1, XL, BY); seg(ctx, ...L2, XR, BY); ctx.restore();
+    ctx.save(); ctx.strokeStyle = P.ink2; ctx.setLineDash([3, 4]); seg(ctx, L1[0], L1[1], L1[0], L1[1] + 70); seg(ctx, L2[0], L2[1], L2[0], L2[1] + 70); ctx.restore();
+    label(ctx, '36.9°', L1[0] + 8, L1[1] + 60, { size: 13, weight: 700 }); label(ctx, '53.1°', L2[0] - 8, L2[1] + 60, { align: 'right', size: 13, weight: 700 });
+    ctx.fillStyle = P.wood; ctx.fillRect(XL, BY - 5, 2 * K, 10); ctx.strokeStyle = P.obj; ctx.strokeRect(XL, BY - 5, 2 * K, 10);
+    dim(ctx, XL, XR, BY - 30, P.ink2); label(ctx, '2 m', (XL + XR) / 2, BY - 44, { align: 'center', weight: 700, size: 13 });
+    const xg = XL + D * K;
+    vec(ctx, xg, BY + 5, 0, ans ? W * 0.5 : 40, 'W', P.force, { side: -1, at: 0.7, align: 'left', ax: 4, italic: true });
+    dim(ctx, XL, xg, BY + 40, P.ink2); label(ctx, ans && t >= stages[2].t0 ? 'd = 0.72 m' : 'd', (XL + xg) / 2, BY + 56, { align: 'center', weight: 800, size: 14, color: ans && t >= stages[2].t0 ? P.accent : P.ink, italic: !(ans && t >= stages[2].t0) });
+    if (ans) {
+      const T1 = 0.8 * W * 0.5, T2 = 0.6 * W * 0.5;
+      vec(ctx, XL, BY, -T1 * Math.sin(A1), -T1 * Math.cos(A1), 'T₁ = 0.8 W', P.vel, { side: 1, at: 0.6, size: 13 });
+      vec(ctx, XR, BY, T2 * Math.sin(A2), -T2 * Math.cos(A2), 'T₂ = 0.6 W', P.vel, { side: -1, at: 0.6, size: 13 });
+      partsPanel(ctx, 630, 34, 300, 'Working', ['0.6 T₁ = 0.8 T₂ (horizontal)', '0.8 T₁ + 0.6 T₂ = W → T₁ = 0.8 W, T₂ = 0.6 W', 'W d = 0.6 W × 0.6 × 2 → d = 0.72 m'], stageAt(stages, t), false);
+    } else askedPanel(ctx, 630, 34, 300, ['The distance d of the centre of gravity of the bar from its left end.']);
+    note(ctx, 'bar 150 px per metre; force arrows to scale with W');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

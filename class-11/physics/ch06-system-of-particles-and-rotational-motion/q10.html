@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 6.10</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 6 System of Particles and Rotational Motion</a></p>
+      <h1>Exercise 6.10 · Hollow cylinder or solid sphere?</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q09.html">‹ 6.9</a><a href="index.html">All questions</a><a href="q11.html">6.11 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 6.10">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A hollow cylinder and a solid sphere of the same mass and radius are given the same torque; the sphere, with the smaller moment of inertia, spins up 2.5 times as fast."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>6.10</b> Torques of equal magnitude are applied to a hollow cylinder and a solid sphere, both having the same mass and radius. The cylinder is free to rotate about its standard axis of symmetry, and the sphere is free to rotate about an axis passing through its centre. Which of the two will acquire a greater angular speed after a given time.</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Same torque, mass and radius; hollow cylinder about its axis, solid sphere about a diameter.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>Which reaches the greater angular speed in a given time.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Torque and time illustrative; spins shown slowed.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>α = τ/I. Hollow cylinder: I = MR<sup>2</sup>. Solid sphere: I = (2/5)MR<sup>2</sup>.</li>
+          <li>The sphere has the smaller I, so the larger α: 2.5 times the cylinder’s.</li>
+          <li>Starting from rest, ω = αt: the sphere spins faster.</li>
+        </ol>
+        <p class="final">The solid sphere (2.5 times the angular speed).</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 6 (System of Particles and Rotational Motion), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const AC = 0.12, AS = AC * 2.5, D = 10;                                   // angular accelerations (illustrative), ratio 2.5
+  const qStages = [
+    { title: 'Equal torques', dur: D, text: 'Equal torques act on a hollow cylinder (about its axis) and a solid sphere (about a diameter) of the same mass and radius.' },
+    { title: 'What is asked', dur: 4, text: 'Which acquires the greater angular speed after a given time?' },
+  ];
+  const stages = [
+    { title: 'Moments of inertia', dur: D, text: 'α = τ/I. Hollow cylinder: I = MR². Solid sphere: I = (2/5)MR², smaller, because its mass is nearer the axis.', ans: 'α(sphere) = 2.5 α(cylinder).' },
+    { title: 'The answer', dur: 4, text: 'Starting from rest, ω = αt.', ans: 'The solid sphere spins faster: 2.5 times the cylinder’s angular speed at any time.' },
+  ];
+  function wheel(ctx, x, y, R, th, hollow) {
+    ctx.save(); ctx.fillStyle = hollow ? P.sheet : P.objFill2; ctx.strokeStyle = P.obj; ctx.lineWidth = hollow ? 10 : 2; ctx.beginPath(); ctx.arc(x, y, R, 0, Math.PI * 2); ctx.fill(); ctx.stroke(); ctx.restore();
+    ctx.save(); ctx.strokeStyle = P.force; ctx.lineWidth = 3; seg(ctx, x, y, x + R * Math.cos(th), y + R * Math.sin(th)); ctx.restore(); ball(ctx, x, y, 4, P.ink);
+  }
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    const tm = Math.min(t, D);
+    wheel(ctx, 160, 170, 80, 0.5 * AC * tm * tm * 6, true); wheel(ctx, 430, 170, 80, 0.5 * AS * tm * tm * 6, false);
+    label(ctx, 'hollow cylinder (end view)', 160, 280, { align: 'center', weight: 700, size: 14 }); label(ctx, 'solid sphere', 430, 280, { align: 'center', weight: 700, size: 14 });
+    rotArrow(ctx, 160, 170, 100, true, P.vel); rotArrow(ctx, 430, 170, 100, true, P.vel); label(ctx, 'τ', 160, 56, { align: 'center', italic: true, weight: 700, size: 16, color: P.vel }); label(ctx, 'τ', 430, 56, { align: 'center', italic: true, weight: 700, size: 16, color: P.vel });
+    if (ans) {
+      label(ctx, 'I = MR²', 160, 304, { align: 'center', size: 14 }); label(ctx, 'I = (2/5)MR²', 430, 304, { align: 'center', size: 14 });
+      const g = axes(ctx, { x: 90, y: 340, w: 440, h: 150, x0: 0, x1: D, y0: 0, y1: AS * D * 1.1, xl: 't', yl: 'ω' });
+      plot(ctx, g, s => AC * s, 0, tm, P.ink2); plot(ctx, g, s => AS * s, 0, tm, P.force);
+      label(ctx, 'sphere', g.X(tm) + 6, g.Y(AS * tm), { size: 12, weight: 700, color: P.force }); label(ctx, 'cylinder', g.X(tm) + 6, g.Y(AC * tm), { size: 12, weight: 700, color: P.ink2 });
+      partsPanel(ctx, 630, 34, 300, 'Answer', ['α = τ/I; I(sphere) = (2/5) I(cylinder)', 'The sphere: 2.5 times the angular speed'], stageAt(stages, t), false);
+    } else askedPanel(ctx, 630, 34, 300, ['Which acquires the greater angular speed after a given time: the hollow cylinder or the solid sphere?']);
+    note(ctx, 'torque and time illustrative; spins slowed');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

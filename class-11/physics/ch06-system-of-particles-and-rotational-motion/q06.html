@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 6.6</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 6 System of Particles and Rotational Motion</a></p>
+      <h1>Exercise 6.6 · Components of l = r × p</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q05.html">‹ 6.5</a><a href="index.html">All questions</a><a href="q07.html">6.7 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 6.6">
+    <p class="qline"><b>6.6</b> Find the components along the x, y, z axes of the angular momentum <b>l</b> of a particle, whose position vector is <b>r</b> with components x, y, z and momentum is <b>p</b> with components p<sub>x</sub>, p<sub>y</sub> and p<sub>z</sub>. Show that if the particle moves only in the x-y plane the angular momentum has only a z-component.</p>
+    <p><button type="button" class="btn reveal" id="show" aria-pressed="false" style="margin-left:0">Show answer</button></p>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li><b>r</b> = (x, y, z), <b>p</b> = (p<sub>x</sub>, p<sub>y</sub>, p<sub>z</sub>).</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The components of <b>l</b> = <b>r</b> × <b>p</b>; the case of motion in the x–y plane.</p>
+      </div>
+      <div>
+        <h3>Why there is no animation</h3>
+        <ul>
+          <li>This question asks for a proof, an explanation or a short calculation with nothing moving to show; the page shows the question and a worked answer.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li><b>l</b> = <b>r</b> × <b>p</b>: l<sub>x</sub> = y p<sub>z</sub> − z p<sub>y</sub>, l<sub>y</sub> = z p<sub>x</sub> − x p<sub>z</sub>, l<sub>z</sub> = x p<sub>y</sub> − y p<sub>x</sub>.</li>
+          <li>In the x–y plane z = 0 and p<sub>z</sub> = 0, so l<sub>x</sub> = l<sub>y</sub> = 0 and only l<sub>z</sub> = x p<sub>y</sub> − y p<sub>x</sub> remains.</li>
+        </ol>
+        <p class="final">l = (yp<sub>z</sub> − zp<sub>y</sub>, zp<sub>x</sub> − xp<sub>z</sub>, xp<sub>y</sub> − yp<sub>x</sub>); in the x–y plane only l<sub>z</sub>.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 6 (System of Particles and Rotational Motion), Exercises. </p>
+</div>
+<script>
+const b = document.getElementById('show'), a = document.querySelector('.answer');
+b.addEventListener('click', () => { a.hidden = !a.hidden; b.setAttribute('aria-pressed', String(!a.hidden)); b.textContent = a.hidden ? 'Show answer' : 'Hide answer'; });
+</script>
+</body>
+</html>

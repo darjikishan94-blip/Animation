@@ -147,7 +147,7 @@ function rotArrow(ctx, x, y, r, cw, color, alpha = 1, lw = 2) {
   ctx.beginPath(); ctx.arc(x, y, r, a0, a1, !cw); ctx.stroke();
   const ex = x + r * Math.cos(a1), ey = y + r * Math.sin(a1);
   const tx = -Math.sin(a1) * dir, ty = Math.cos(a1) * dir;
-  const h = Math.max(6, r * 0.42), w = h * 0.6;
+  const h = Math.min(14, Math.max(6, r * 0.42)), w = h * 0.6;
   ctx.beginPath();
   ctx.moveTo(ex + tx * h, ey + ty * h);
   ctx.lineTo(ex - ty * w, ey + tx * w);

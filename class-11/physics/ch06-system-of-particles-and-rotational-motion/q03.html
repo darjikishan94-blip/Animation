@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 6.3</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 6 System of Particles and Rotational Motion</a></p>
+      <h1>Exercise 6.3 · Child running on a moving trolley</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q02.html">‹ 6.2</a><a href="index.html">All questions</a><a href="q04.html">6.4 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 6.3">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A trolley rolls at speed V; a child runs back and forth on it, making the trolley jerk slightly; the marker for the centre of mass of child and trolley keeps moving steadily at V."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>6.3</b> A child sits stationary at one end of a long trolley moving uniformly with a speed V on a smooth horizontal floor. If the child gets up and runs about on the trolley in any manner, what is the speed of the CM of the (trolley + child) system ?</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Trolley + child moving uniformly at V; smooth floor; the child runs about.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The speed of the centre of mass of the system.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Masses and the child’s running are illustrative.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>The forces between the child and the trolley are internal; the smooth floor exerts no horizontal force.</li>
+          <li>With no external horizontal force, the CM velocity cannot change.</li>
+          <li>So the CM keeps moving at speed V, however the child runs.</li>
+        </ol>
+        <p class="final">V (unchanged).</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 6 (System of Particles and Rotational Motion), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const MT = 4, MC = 1, V = 24, X0 = 150, RY = 360, D = 12;               // masses and speeds illustrative
+  const r = t => t < 2 ? -85 : -85 * Math.cos(1.4 * (t - 2));            // child’s position on the trolley (px from its centre)
+  const qStages = [
+    { title: 'Moving uniformly', dur: 2, text: 'A child sits at one end of a long trolley that moves uniformly at speed V on a smooth floor.' },
+    { title: 'The child runs', dur: D - 2, text: 'The child gets up and runs about on the trolley in any manner.' },
+    { title: 'What is asked', dur: 4, text: 'What is the speed of the centre of mass of the trolley + child?' },
+  ];
+  const stages = [
+    { title: 'Before', dur: 2, text: 'The trolley and the child move together at V.', ans: 'The CM moves at V.' },
+    { title: 'Running about', dur: D - 2, text: 'The child pushes the trolley and the trolley pushes the child: internal forces. The smooth floor gives no horizontal force.', ans: 'The trolley jerks back and forth, but the CM (marker) moves steadily.' },
+    { title: 'The answer', dur: 4, text: 'No external horizontal force, so the CM velocity cannot change.', ans: 'Speed of the CM = V.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1); ground(ctx, 20, 600, RY + 20);
+    const tm = Math.min(t, D), xcm = X0 + V * tm, xt = xcm - MC * r(tm) / (MT + MC), xc = xt + r(tm);
+    block(ctx, xt - 110, RY - 26, 220, 26, '', P.objFill2); for (const wx of [xt - 80, xt + 80]) { ctx.fillStyle = P.obj; ctx.beginPath(); ctx.arc(wx, RY + 8, 12, 0, Math.PI * 2); ctx.fill(); }
+    person(ctx, xc, RY - 26, 0.75);
+    vec(ctx, xt + 116, RY - 13, 36, 0, 'V', P.vel, { side: -1, at: 0.6, italic: true });
+    if (ans) {
+      ctx.save(); ctx.strokeStyle = P.accent; ctx.lineWidth = 3; seg(ctx, xcm, RY - 130, xcm, RY + 30); ctx.restore(); label(ctx, 'CM', xcm, RY - 142, { align: 'center', weight: 800, size: 14, color: P.accent });
+      vec(ctx, xcm, RY - 160, 36, 0, 'V', P.accent, { side: -1, at: 0.6, italic: true });
+      const pts = []; for (let s = 0; s <= tm; s += 0.1) pts.push([X0 + V * s, 120]); if (pts.length > 1) { ctx.save(); ctx.strokeStyle = P.accent; ctx.lineWidth = 2; poly(ctx, pts); ctx.restore(); }
+      label(ctx, 'path of the CM: steady', X0, 104, { size: 12, color: P.accent });
+      partsPanel(ctx, 630, 34, 300, 'Answer', ['CM moves at V', 'Child–trolley forces are internal', 'No external horizontal force: CM speed stays V'], stageAt(stages, t), false);
+    } else askedPanel(ctx, 630, 34, 300, ['The speed of the centre of mass of the (trolley + child) system.']);
+    note(ctx, 'masses, speed and the child’s running illustrative');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

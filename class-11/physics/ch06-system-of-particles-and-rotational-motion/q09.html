@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 6.9</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 6 System of Particles and Rotational Motion</a></p>
+      <h1>Exercise 6.9 · Forces on a car’s wheels</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q08.html">‹ 6.8</a><a href="index.html">All questions</a><a href="q10.html">6.10 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 6.9">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A car with its centre of gravity 1.05 m behind the front axle; the ground pushes up on the front and back wheels, and torque balance gives 3675 N on each front wheel and 5145 N on each back wheel."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>6.9</b> A car weighs 1800 kg. The distance between its front and back axles is 1.8 m. Its centre of gravity is 1.05 m behind the front axle. Determine the force exerted by the level ground on each front wheel and each back wheel.</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Mass 1800 kg; axles 1.8 m apart; centre of gravity 1.05 m behind the front axle (0.75 m in front of the back axle). (g = 9.8 m s<sup>−2</sup>.)</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The normal force on each front wheel and each back wheel.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Side view; 170 px per metre; forces to scale (1 px = 160 N).</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>Weight W = 1800 × 9.8 = 17640 N.</li>
+          <li>Torques about the back axle: R<sub>f</sub> × 1.8 = W × 0.75, so R<sub>f</sub> = 7350 N (both front wheels).</li>
+          <li>R<sub>f</sub> + R<sub>b</sub> = W gives R<sub>b</sub> = 10290 N (both back wheels).</li>
+          <li>Each front wheel: 3675 N; each back wheel: 5145 N.</li>
+        </ol>
+        <p class="final">Front wheel 3675 N each; back wheel 5145 N each.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 6 (System of Particles and Rotational Motion), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const M = 1800, G = 9.8, WT = M * G, LA = 1.8, CG = 1.05, K = 170, FX = 450, BXa = FX - LA * K, GX = FX - CG * K, GY = 420, KF = 1 / 160;   // 1 px = 160 N
+  const RF = WT * (LA - CG) / LA, RB = WT - RF;
+  const qStages = [
+    { title: 'A parked car', dur: 5, text: 'A car of mass 1800 kg has its axles 1.8 m apart. Its centre of gravity is 1.05 m behind the front axle.' },
+    { title: 'What is asked', dur: 4, text: 'Find the force exerted by the level ground on each front wheel and each back wheel.' },
+  ];
+  const stages = [
+    { title: 'Forces', dur: 5, text: 'Weight W = 1800 × 9.8 = 17 640 N acts at the centre of gravity; the ground pushes up at the front and back wheels.', ans: 'R_f + R_b = 17 640 N.' },
+    { title: 'Torques', dur: 5, text: 'Take torques about the back axle (the CG is 0.75 m in front of it).', ans: 'R_f × 1.8 = 17 640 × 0.75 → R_f = 7350 N; R_b = 10 290 N.' },
+    { title: 'Per wheel', dur: 4, text: 'Two wheels share each axle’s load.', ans: 'Each front wheel 3675 N; each back wheel 5145 N.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1); ground(ctx, 30, 590, GY);
+    ctx.fillStyle = P.objFill2; ctx.strokeStyle = P.obj; ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.moveTo(BXa - 70, GY - 30); ctx.lineTo(BXa - 70, GY - 80); ctx.lineTo(BXa + 30, GY - 85); ctx.lineTo(BXa + 80, GY - 130); ctx.lineTo(FX - 40, GY - 130); ctx.lineTo(FX + 10, GY - 85); ctx.lineTo(FX + 80, GY - 75); ctx.lineTo(FX + 80, GY - 30); ctx.closePath(); ctx.fill(); ctx.stroke();
+    for (const wx of [BXa, FX]) { ctx.fillStyle = P.obj; ctx.beginPath(); ctx.arc(wx, GY - 22, 22, 0, Math.PI * 2); ctx.fill(); }
+    label(ctx, 'back', BXa, GY + 18, { align: 'center', size: 12 }); label(ctx, 'front', FX, GY + 18, { align: 'center', size: 12 });
+    ball(ctx, GX, GY - 112, 6, P.accent); label(ctx, 'CG', GX + 10, GY - 122, { weight: 700, size: 13 });
+    dim(ctx, BXa, FX, GY + 40, P.ink2); label(ctx, '1.8 m', (BXa + FX) / 2, GY + 56, { align: 'center', weight: 700, size: 13 });
+    dim(ctx, GX, FX, GY - 150, P.ink2); label(ctx, '1.05 m', (GX + FX) / 2, GY - 164, { align: 'center', weight: 700, size: 13 });
+    if (ans) {
+      vec(ctx, GX, GY - 112, 0, WT * KF, 'W = 17 640 N', P.force, { side: -1, at: 0.5, align: 'left', ax: 6, size: 13 });
+      if (t >= stages[1].t0) { vec(ctx, FX, GY + 2, 0, -RF * KF, 'R_f = 7350 N', P.vel, { side: -1, at: 1, align: 'left', ax: 8, size: 13 }); vec(ctx, BXa, GY + 2, 0, -RB * KF, 'R_b = 10 290 N', P.vel, { side: 1, at: 1, align: 'right', ax: -8, size: 13 }); }
+      if (t >= stages[2].t0) label(ctx, 'each front wheel 3675 N; each back wheel 5145 N', 300, 500, { align: 'center', weight: 800, size: 15, color: P.accent });
+      partsPanel(ctx, 630, 34, 300, 'Working (g = 9.8 m/s²)', ['W = 17 640 N = R_f + R_b', 'About the back axle: R_f × 1.8 = W × 0.75', 'Front wheel 3675 N; back wheel 5145 N'], stageAt(stages, t), false);
+    } else askedPanel(ctx, 630, 34, 300, ['The force exerted by the level ground on each front wheel and each back wheel.']);
+    note(ctx, 'side view; 170 px per metre; forces 1 px = 160 N');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

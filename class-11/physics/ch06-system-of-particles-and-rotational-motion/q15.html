@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 6.15</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 6 System of Particles and Rotational Motion</a></p>
+      <h1>Exercise 6.15 · Disc with a hole: centre of gravity</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q14.html">‹ 6.14</a><a href="index.html">All questions</a><a href="q16.html">6.16 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 6.15">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A hole of half the radius is cut from a uniform disc, touching its edge; treating the hole as negative mass, the centre of gravity moves R/6 away from the hole."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>6.15</b> From a uniform disk of radius R, a circular hole of radius R/2 is cut out. The centre of the hole is at R/2 from the centre of the original disc. Locate the centre of gravity of the resulting flat body.</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Disc radius R; hole radius R/2, centred R/2 from the disc’s centre.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The centre of gravity of what remains.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>R drawn as 160 px.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>Mass is proportional to area. Full disc: M at the centre O. Hole: (R/2)<sup>2</sup>/R<sup>2</sup> = 1/4 of it, M/4, at x = R/2.</li>
+          <li>Remainder: 3M/4. M × 0 = (3M/4) x + (M/4)(R/2), so x = −R/6.</li>
+        </ol>
+        <p class="final">R/6 from the centre of the original disc, on the side away from the hole.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 6 (System of Particles and Rotational Motion), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const R = 160, CX = 300, CY = 260, HX = CX + R / 2;
+  const qStages = [
+    { title: 'Cutting the hole', dur: 5, text: 'From a uniform disc of radius R, a circular hole of radius R/2 is cut out; its centre is R/2 from the centre of the disc.' },
+    { title: 'What is asked', dur: 4, text: 'Locate the centre of gravity of the remaining flat body.' },
+  ];
+  const stages = [
+    { title: 'Masses by area', dur: 5, text: 'Mass ∝ area. The hole has (R/2)²/R² = 1/4 of the disc’s area.', ans: 'Full disc M at O; hole M/4 at x = R/2; remainder 3M/4.' },
+    { title: 'Balance the moments', dur: 5, text: 'The full disc = remainder + hole: M × 0 = (3M/4) x + (M/4)(R/2).', ans: 'x = −R/6: R/6 from O, on the side away from the hole.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    const f = ans ? 1 : clamp((t - 1) / 2);
+    ctx.save(); ctx.fillStyle = P.objFill2; ctx.strokeStyle = P.obj; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(CX, CY, R, 0, Math.PI * 2); ctx.fill(); ctx.stroke(); ctx.restore();
+    ctx.save(); ctx.fillStyle = P.sheet; ctx.strokeStyle = P.obj; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(HX, CY, R / 2 * f, 0, Math.PI * 2); ctx.fill(); if (f > 0) ctx.stroke(); ctx.restore();
+    ball(ctx, CX, CY, 4, P.ink); label(ctx, 'O', CX - 8, CY - 14, { align: 'right', weight: 700, size: 14 });
+    dim(ctx, CX - R, CX, CY + R + 26, P.ink2); label(ctx, 'R', CX - R / 2, CY + R + 42, { align: 'center', italic: true, weight: 700, size: 14 });
+    dim(ctx, CX, HX, CY + R / 2 + 26, P.ink2); label(ctx, 'R/2', (CX + HX) / 2, CY + R / 2 + 42, { align: 'center', weight: 700, size: 13 });
+    if (ans) {
+      label(ctx, 'hole: M/4', HX, CY, { align: 'center', weight: 700, size: 13, color: P.force });
+      if (t >= stages[1].t0) {
+        const gx = CX - R / 6; ball(ctx, gx, CY, 7, P.accent); label(ctx, 'G', gx - 10, CY + 18, { align: 'right', weight: 800, size: 15, color: P.accent });
+        dim(ctx, gx, CX, CY - R - 20, P.accent); label(ctx, 'R/6', (gx + CX) / 2, CY - R - 36, { align: 'center', weight: 800, size: 15, color: P.accent });
+        ctx.fillStyle = P.ink; ctx.beginPath(); ctx.moveTo(gx, CY + R + 60); ctx.lineTo(gx - 10, CY + R + 80); ctx.lineTo(gx + 10, CY + R + 80); ctx.fill();
+      }
+      partsPanel(ctx, 630, 34, 300, 'Working', ['Hole mass M/4 at R/2; remainder 3M/4', '0 = (3M/4)x + (M/4)(R/2) → x = −R/6'], stageAt(stages, t), false);
+    } else askedPanel(ctx, 630, 34, 300, ['The centre of gravity of the disc with the hole cut out.']);
+    note(ctx, 'R drawn as 160 px');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>
