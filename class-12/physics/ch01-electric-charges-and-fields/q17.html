@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 12 Physics · Exercise 1.17</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 12 Physics</a> · <a href="index.html">Ch. 1 Electric Charges and Fields</a></p>
+      <h1>Exercise 1.17 · Flux through a square under a charge (Fig. 1.31)</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q16.html">‹ 1.16</a><a href="index.html">All questions</a><a href="q18.html">1.18 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 1.17">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A charge 5 cm above the centre of a 10 cm square sits at the centre of a 10 cm cube built on the square; its flux leaves equally through the six faces, so one face gets one sixth of q/ε₀."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>1.17</b> A point charge +10 μC is a distance 5 cm directly above the centre of a square of side 10 cm, as shown in Fig. 1.31. What is the magnitude of the electric flux through the square? (Hint: Think of the square as one face of a cube with edge 10 cm.)</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>q = +10 μC, 5 cm above the centre of a 10 cm square.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The flux through the square.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>The cube is imagined (dashed).</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>The charge is at the centre of a 10 cm cube of which the square is one face.</li>
+          <li>By symmetry the total flux q/ε<sub>0</sub> divides equally among the 6 faces.</li>
+          <li>Φ = q/6ε<sub>0</sub> = 10<sup>−5</sup>/(6 × 8.854 × 10<sup>−12</sup>) ≈ 1.9 × 10<sup>5</sup> N m<sup>2</sup>/C.</li>
+        </ol>
+        <p class="final">About 1.9 × 10<sup>5</sup> N m<sup>2</sup>/C.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 12), Chapter 1 (Electric Charges and Fields), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const CX = 300, CY = 260, A = 110, D = 8;
+  const pr = (x, y, z) => [CX + x * A + z * A * 0.45, CY - y * A + z * A * 0.3];   // oblique projection, unit = half edge (5 cm)
+  const qStages = [
+    { title: 'Fig. 1.31', dur: 5, text: 'A point charge +10 μC is 5 cm directly above the centre of a square of side 10 cm.' },
+    { title: 'What is asked', dur: 4, text: 'What is the electric flux through the square?' },
+  ];
+  const stages = [
+    { title: 'Build a cube', dur: D, text: 'The square is one face of a 10 cm cube whose centre is exactly where the charge is.', ans: 'By symmetry each of the 6 faces gets the same flux.' },
+    { title: 'Gauss’s law', dur: 5, text: 'Total flux out of the cube = q/ε₀.', ans: 'Φ(square) = q/6ε₀ = 10⁻⁵/(6 × 8.854 × 10⁻¹²) ≈ 1.9 × 10⁵ N m²/C.' },
+  ];
+  function quad(ctx, pts, fill, a, stroke, dash) { ctx.save(); ctx.beginPath(); pts.forEach((p, i) => i ? ctx.lineTo(...pr(...p)) : ctx.moveTo(...pr(...p))); ctx.closePath(); if (fill) { ctx.fillStyle = fill; ctx.globalAlpha = a; ctx.fill(); ctx.globalAlpha = 1; } ctx.strokeStyle = stroke; ctx.lineWidth = 1.5; if (dash) ctx.setLineDash(dash); ctx.stroke(); ctx.restore(); }
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    quad(ctx, [[-1, -1, -1], [1, -1, -1], [1, -1, 1], [-1, -1, 1]], P.water, 0.6, P.obj);
+    if (ans) { const c = [[-1, -1, -1], [1, -1, -1], [1, 1, -1], [-1, 1, -1], [-1, -1, 1], [1, -1, 1], [1, 1, 1], [-1, 1, 1]], E = [[0, 1], [1, 2], [2, 3], [3, 0], [4, 5], [5, 6], [6, 7], [7, 4], [0, 4], [1, 5], [2, 6], [3, 7]]; ctx.save(); ctx.strokeStyle = P.ink2; ctx.setLineDash([5, 4]); ctx.globalAlpha = clamp(t / 3); E.forEach(([a, b]) => seg(ctx, ...pr(...c[a]), ...pr(...c[b]))); ctx.restore();
+      const n = 14; for (let i = 0; i < n; i++) { const a = i / n * Math.PI * 2, L = 30 + 60 * clamp((t - 2) / 4); const [x, y] = pr(0, 0, 0); arrow(ctx, x, y, x + L * Math.cos(a), y + L * Math.sin(a), P.force, { lw: 1.5, head: 7, alpha: 0.6 }); } }
+    const [qx, qy] = pr(0, 0, 0); ctx.save(); ctx.strokeStyle = P.ink; ctx.lineWidth = 1.5; seg(ctx, qx, qy, ...pr(0, -1, 0)); ctx.restore(); ball(ctx, qx, qy, 9, P.force); label(ctx, '+10 μC', qx + 14, qy - 12, { weight: 700, size: 13 });
+    label(ctx, '5 cm', qx + 8, (qy + pr(0, -1, 0)[1]) / 2 + 10, { weight: 700, size: 12 }); label(ctx, '10 cm', ...pr(0, -1.25, -1), { align: 'center', weight: 700, size: 12 });
+    if (ans && t >= stages[1].t0) label(ctx, 'Φ = q/6ε₀ ≈ 1.9 × 10⁵ N m²/C', 300, 480, { align: 'center', weight: 800, size: 17, color: P.accent });
+    if (ans) partsPanel(ctx, 630, 34, 300, 'Working', ['The square is one face of a cube centred on the charge', 'Φ = q/6ε₀ ≈ 1.9 × 10⁵ N m²/C'], stageAt(stages, t), false);
+    else askedPanel(ctx, 630, 34, 300, ['The magnitude of the electric flux through the square.']);
+    note(ctx, 'the cube is imagined (dashed); field lines illustrative');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

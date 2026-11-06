@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 12 Physics · Exercise 1.6</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 12 Physics</a> · <a href="index.html">Ch. 1 Electric Charges and Fields</a></p>
+      <h1>Exercise 1.6 · Charge at the centre of a square</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q05.html">‹ 1.5</a><a href="index.html">All questions</a><a href="q07.html">1.7 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 1.6">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="Four charges at the corners of a square push and pull a 1 μC charge at the centre; the forces from opposite corners, which carry equal charges, cancel in pairs, leaving zero net force."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>1.6</b> Four point charges q<sub>A</sub> = 2 μC, q<sub>B</sub> = –5 μC, q<sub>C</sub> = 2 μC, and q<sub>D</sub> = –5 μC are located at the corners of a square ABCD of side 10 cm. What is the force on a charge of 1 μC placed at the centre of the square?</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>q<sub>A</sub> = q<sub>C</sub> = 2 μC and q<sub>B</sub> = q<sub>D</sub> = −5 μC at the corners of a 10 cm square (A and C opposite, B and D opposite); 1 μC at the centre.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The net force on the centre charge.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Force arrows to scale with each other.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>The centre is equidistant from all four corners.</li>
+          <li>A and C have equal charges at opposite corners: their forces on the centre charge are equal and opposite and cancel.</li>
+          <li>B and D likewise cancel.</li>
+          <li>Net force = 0.</li>
+        </ol>
+        <p class="final">Zero.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 12), Chapter 1 (Electric Charges and Fields), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const S = 260, CX = 300, CY = 260, H = S / 2, CH = [['A', 2, -1, -1], ['B', -5, 1, -1], ['C', 2, 1, 1], ['D', -5, -1, 1]];
+  const qStages = [
+    { title: 'Four charges on a square', dur: 5, text: 'q_A = 2 μC, q_B = −5 μC, q_C = 2 μC, q_D = −5 μC sit at the corners of a 10 cm square ABCD. A 1 μC charge is at the centre.' },
+    { title: 'What is asked', dur: 4, text: 'What is the force on the centre charge?' },
+  ];
+  const stages = [
+    { title: 'Four forces', dur: 5, text: 'All corners are the same distance from the centre. The positive corners push the centre charge away; the negative corners pull it towards themselves.', ans: 'A and C (opposite, equal charges) give equal and opposite forces; so do B and D.' },
+    { title: 'Net force', dur: 4, text: 'The forces cancel in pairs.', ans: 'Net force = 0.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    ctx.save(); ctx.strokeStyle = P.ink2; ctx.lineWidth = 1.5; ctx.strokeRect(CX - H, CY - H, S, S); ctx.restore();
+    CH.forEach(([n, q, sx, sy]) => { const x = CX + sx * H, y = CY + sy * H; ball(ctx, x, y, 14, q > 0 ? P.force : P.vel); label(ctx, q > 0 ? '+' : '−', x, y, { align: 'center', weight: 800, size: 16, color: P.sheet, halo: false }); label(ctx, `${n}: ${q} μC`, x + sx * 26, y + sy * 26, { align: sx > 0 ? 'left' : 'right', weight: 700, size: 13 }); });
+    ball(ctx, CX, CY, 9, P.accent); label(ctx, '1 μC', CX, CY + 26, { align: 'center', weight: 700, size: 12 });
+    dim(ctx, CX - H, CX + H, CY + H + 40, P.ink2); label(ctx, '10 cm', CX, CY + H + 56, { align: 'center', weight: 700, size: 13 });
+    if (ans) {
+      const show = clamp(t / 3);
+      CH.forEach(([n, q, sx, sy]) => { const ux = sx / Math.SQRT2, uy = sy / Math.SQRT2, L = 20 * Math.abs(q) * show, d = q > 0 ? -1 : 1; vec(ctx, CX, CY, d * ux * L, d * uy * L, `F_${n}`, q > 0 ? P.force : P.vel, { side: 1, at: 1, size: 12, lw: 3 }); });
+      if (t >= stages[1].t0) label(ctx, 'net force = 0', CX, 60, { align: 'center', weight: 800, size: 18, color: P.accent });
+      partsPanel(ctx, 630, 34, 300, 'Answer', ['Opposite corners have equal charges: forces cancel in pairs', 'Net force on 1 μC = 0'], stageAt(stages, t), false);
+    } else askedPanel(ctx, 630, 34, 300, ['The force on the 1 μC charge at the centre of the square.']);
+    note(ctx, 'force arrows to scale with each other');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 12 Physics · Exercise 1.23</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 12 Physics</a> · <a href="index.html">Ch. 1 Electric Charges and Fields</a></p>
+      <h1>Exercise 1.23 · Field around two charged plates</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q22.html">‹ 1.22</a><a href="index.html">All questions</a><span>›</span></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 1.23">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="Two parallel plates carry equal and opposite surface charges on their inner faces; the fields of the two sheets cancel outside and add between them, giving E = σ/ε₀ = 1.9 × 10⁻¹⁰ N/C between and zero outside."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>1.23</b> Two large, thin metal plates are parallel and close to each other. On their inner faces, the plates have surface charge densities of opposite signs and of magnitude 17.0 × 10<sup>–22</sup> C/m<sup>2</sup>. What is E: (a) in the outer region of the first plate, (b) in the outer region of the second plate, and (c) between the plates?</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>σ = 17.0 × 10<sup>−22</sup> C/m<sup>2</sup> (+ on one, − on the other).</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>E outside each plate and between them.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Field arrows show directions only (the field is tiny).</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>Each sheet alone gives σ/2ε<sub>0</sub> on both sides, pointing away from + and towards −.</li>
+          <li>(a), (b) Outside the plates the two fields are opposite: E = 0.</li>
+          <li>(c) Between them they add: E = σ/ε<sub>0</sub> = 17.0 × 10<sup>−22</sup>/8.854 × 10<sup>−12</sup> ≈ 1.9 × 10<sup>−10</sup> N/C, from the positive to the negative plate.</li>
+        </ol>
+        <p class="final">(a) 0 (b) 0 (c) ≈ 1.9 × 10<sup>−10</sup> N/C</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 12), Chapter 1 (Electric Charges and Fields), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const X1 = 230, X2 = 370, D = 8;
+  const qStages = [
+    { title: 'Two charged plates', dur: 5, text: 'Two large thin metal plates, close and parallel, carry +σ and −σ on their inner faces, σ = 17.0 × 10⁻²² C/m².' },
+    { title: 'What is asked', dur: 4, text: 'Find E (a) outside the first plate, (b) outside the second, (c) between them.' },
+  ];
+  const stages = [
+    { title: 'Each sheet alone', dur: D, text: 'A large sheet gives σ/2ε₀ on both sides, away from + and towards −.', ans: 'Outside: the two fields point opposite ways. Between: the same way.' },
+    { title: 'Add them', dur: 5, text: 'Outside they cancel; between they add.', ans: '(a), (b) E = 0. (c) E = σ/ε₀ ≈ 1.9 × 10⁻¹⁰ N/C, from + to −.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    ctx.fillStyle = P.objFill2; ctx.fillRect(X1 - 8, 70, 8, 400); ctx.fillRect(X2, 70, 8, 400);
+    for (let y = 90; y < 470; y += 30) { label(ctx, '+', X1 + 8, y, { weight: 800, size: 14, color: P.force }); label(ctx, '−', X2 - 10, y, { weight: 800, size: 14, color: P.vel }); }
+    label(ctx, 'plate 1', X1 - 4, 56, { align: 'center', weight: 700, size: 13 }); label(ctx, 'plate 2', X2 + 4, 56, { align: 'center', weight: 700, size: 13 });
+    if (ans) {
+      const st = stageAt(stages, t), Y1 = 150, Y2 = 200;
+      if (st === 0) {
+        vec(ctx, 120, Y1, -50, 0, '+σ', P.force, { side: -1, at: 0.5, size: 12 }); vec(ctx, 270, Y1, 50, 0, '+σ', P.force, { side: -1, at: 0.5, size: 12 }); vec(ctx, 440, Y1, 50, 0, '+σ', P.force, { side: -1, at: 0.5, size: 12 });
+        vec(ctx, 70, Y2, 50, 0, '−σ', P.vel, { side: 1, at: 0.5, size: 12 }); vec(ctx, 270, Y2, 50, 0, '−σ', P.vel, { side: 1, at: 0.5, size: 12 }); vec(ctx, 540, Y2, -50, 0, '−σ', P.vel, { side: 1, at: 0.5, size: 12 });
+      } else {
+        for (let y = 120; y <= 420; y += 60) vec(ctx, X1 + 20, y, X2 - X1 - 40, 0, '', P.accent, { lw: 3 });
+        label(ctx, 'E = σ/ε₀', 300, 450, { align: 'center', weight: 800, size: 16, color: P.accent }); label(ctx, 'E = 0', 110, 300, { align: 'center', weight: 800, size: 18, color: P.accent }); label(ctx, 'E = 0', 490, 300, { align: 'center', weight: 800, size: 18, color: P.accent });
+      }
+      partsPanel(ctx, 630, 34, 300, 'Answers', ['Each sheet: σ/2ε₀ either side', '(a), (b) 0; (c) σ/ε₀ ≈ 1.9 × 10⁻¹⁰ N/C'], st, false);
+    } else askedPanel(ctx, 630, 34, 300, ['E in the outer region of the first plate, in the outer region of the second plate, and between the plates.']);
+    note(ctx, 'arrows show directions only; the field here is tiny');
+  }
+  return { qStages, stages, draw };
+})();
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

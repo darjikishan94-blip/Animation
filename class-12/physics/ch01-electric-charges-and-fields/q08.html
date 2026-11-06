@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 12 Physics · Exercise 1.8</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 12 Physics</a> · <a href="index.html">Ch. 1 Electric Charges and Fields</a></p>
+      <h1>Exercise 1.8 · Field midway between +3 μC and −3 μC</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q07.html">‹ 1.7</a><a href="index.html">All questions</a><a href="q09.html">1.9 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 1.8">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="Midway between +3 μC and −3 μC, both fields point from A towards B and add to 5.4 × 10⁶ N/C; a small negative test charge there is pushed back towards A with 8.1 × 10⁻³ N."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>1.8</b> Two point charges q<sub>A</sub> = 3 μC and q<sub>B</sub> = –3 μC are located 20 cm apart in vacuum. (a) What is the electric field at the midpoint O of the line AB joining the two charges? (b) If a negative test charge of magnitude 1.5 × 10<sup>–9</sup> C is placed at this point, what is the force experienced by the test charge?</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>q<sub>A</sub> = 3 μC, q<sub>B</sub> = −3 μC, 20 cm apart; test charge −1.5 × 10<sup>−9</sup> C. (k = 1/4πε<sub>0</sub> = 9 × 10<sup>9</sup> N m<sup>2</sup> C<sup>−2</sup>; ε<sub>0</sub> = 8.854 × 10<sup>−12</sup> C<sup>2</sup> N<sup>−1</sup> m<sup>−2</sup>.)</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>(a) E at the midpoint (b) the force on the test charge.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Field arrows to scale with each other; 2 px per mm.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>Each charge is 0.10 m from O: E = kq/r<sup>2</sup> = 9 × 10<sup>9</sup> × 3 × 10<sup>−6</sup>/0.01 = 2.7 × 10<sup>6</sup> N/C each.</li>
+          <li>(a) Both fields point from A to B (away from +, towards −): E = 5.4 × 10<sup>6</sup> N/C along AB.</li>
+          <li>(b) F = qE = 1.5 × 10<sup>−9</sup> × 5.4 × 10<sup>6</sup> = 8.1 × 10<sup>−3</sup> N; the charge is negative, so the force points from B to A.</li>
+        </ol>
+        <p class="final">(a) 5.4 × 10<sup>6</sup> N/C along AB (b) 8.1 × 10<sup>−3</sup> N, along BA.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 12), Chapter 1 (Electric Charges and Fields), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const AX = 100, BX = 500, Y = 240, OX = 300, E1 = 2.7e6;
+  const qStages = [
+    { title: 'Two opposite charges', dur: 5, text: 'q_A = 3 μC and q_B = −3 μC are 20 cm apart in vacuum. O is the midpoint.' },
+    { title: 'What is asked', dur: 4, text: '(a) The electric field at O. (b) The force on a −1.5 × 10⁻⁹ C test charge placed at O.' },
+  ];
+  const stages = [
+    { title: 'Field of each charge', dur: 5, text: 'Each is 10 cm from O: E = kq/r² = 9 × 10⁹ × 3 × 10⁻⁶ / 0.01.', ans: '2.7 × 10⁶ N/C from each, both pointing from A to B.' },
+    { title: 'Total field', dur: 4, text: 'Away from the + charge and towards the − charge: the same way.', ans: '(a) E = 5.4 × 10⁶ N/C along AB.' },
+    { title: 'Force on the test charge', dur: 5, text: 'F = qE; a negative charge feels a force opposite to E.', ans: '(b) F = 1.5 × 10⁻⁹ × 5.4 × 10⁶ = 8.1 × 10⁻³ N, from B towards A.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    hline(ctx, AX, BX, Y, P.ink2, 1, [4, 4]);
+    ball(ctx, AX, Y, 18, P.force); label(ctx, '+', AX, Y, { align: 'center', weight: 800, size: 18, color: P.sheet, halo: false }); label(ctx, 'A: +3 μC', AX, Y + 34, { align: 'center', weight: 700, size: 13 });
+    ball(ctx, BX, Y, 18, P.vel); label(ctx, '−', BX, Y, { align: 'center', weight: 800, size: 18, color: P.sheet, halo: false }); label(ctx, 'B: −3 μC', BX, Y + 34, { align: 'center', weight: 700, size: 13 });
+    vline(ctx, OX, Y - 8, Y + 8, P.ink, 2); label(ctx, 'O', OX, Y + 34, { align: 'center', weight: 800, size: 14 });
+    dim(ctx, AX, BX, Y + 70, P.ink2); label(ctx, '20 cm', OX, Y + 86, { align: 'center', weight: 700, size: 13 });
+    if (ans) {
+      const st = stageAt(stages, t);
+      vec(ctx, OX, Y - 40, 60, 0, 'from A', P.force, { side: -1, at: 0.5, size: 12 }); vec(ctx, OX + 60, Y - 40, 60, 0, 'from B', P.vel, { side: -1, at: 0.5, size: 12 });
+      if (st >= 1) vec(ctx, OX, Y - 90, 120, 0, 'E = 5.4 × 10⁶ N/C', P.accent, { side: -1, at: 0.5, lw: 5, size: 13 });
+      if (st >= 2) { ball(ctx, OX, Y, 7, P.vel); vec(ctx, OX - 10, Y + 120, -80, 0, 'F = 8.1 × 10⁻³ N', P.vel, { side: -1, at: 0.5, size: 13 }); label(ctx, 'test charge −1.5 nC at O', OX, Y + 160, { align: 'center', size: 12 }); }
+      partsPanel(ctx, 630, 34, 300, 'Working', ['Each: 2.7 × 10⁶ N/C, along AB', '(a) E = 5.4 × 10⁶ N/C along AB', '(b) F = 8.1 × 10⁻³ N, along BA'], st, false);
+    } else askedPanel(ctx, 630, 34, 300, ['(a) The electric field at the midpoint O.', '(b) The force on a negative test charge of 1.5 × 10⁻⁹ C at O.']);
+    note(ctx, '2 px per mm; field arrows to scale with each other');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

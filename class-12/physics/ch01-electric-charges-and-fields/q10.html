@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 12 Physics · Exercise 1.10</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 12 Physics</a> · <a href="index.html">Ch. 1 Electric Charges and Fields</a></p>
+      <h1>Exercise 1.10 · Torque on a dipole at 30°</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q09.html">‹ 1.9</a><a href="index.html">All questions</a><a href="q11.html">1.11 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 1.10">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A dipole at 30° to a uniform field; the forces on its two charges are equal and opposite and form a couple, turning it towards the field with a torque of 10⁻⁴ N m."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>1.10</b> An electric dipole with dipole moment 4 × 10<sup>–9</sup> C m is aligned at 30° with the direction of a uniform electric field of magnitude 5 × 10<sup>4</sup> NC<sup>–1</sup>. Calculate the magnitude of the torque acting on the dipole.</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>p = 4 × 10<sup>−9</sup> C m; θ = 30°; E = 5 × 10<sup>4</sup> N C<sup>−1</sup>.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The torque.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Dipole length and charges illustrative.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>τ = pE sin θ = 4 × 10<sup>−9</sup> × 5 × 10<sup>4</sup> × sin 30° = 10<sup>−4</sup> N m.</li>
+          <li>It turns the dipole towards the field direction.</li>
+        </ol>
+        <p class="final">10<sup>−4</sup> N m.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 12), Chapter 1 (Electric Charges and Fields), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const CX = 300, CY = 270, L = 150, TH = 30 * Math.PI / 180, D = 8;
+  const qStages = [
+    { title: 'Dipole in a field', dur: 5, text: 'A dipole of moment 4 × 10⁻⁹ C m makes 30° with a uniform field of 5 × 10⁴ N/C.' },
+    { title: 'What is asked', dur: 4, text: 'What is the magnitude of the torque on the dipole?' },
+  ];
+  const stages = [
+    { title: 'A couple', dur: 5, text: 'The field pushes +q along E and −q against E with equal forces: no net force, but a turning couple.', ans: 'τ = pE sin θ.' },
+    { title: 'Torque', dur: 4, text: 'Substitute.', ans: 'τ = 4 × 10⁻⁹ × 5 × 10⁴ × sin 30° = 10⁻⁴ N m.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    for (let y = 80; y <= 460; y += 50) arrow(ctx, 40, y, 580, y, P.grid, { lw: 1.5, head: 9 });
+    label(ctx, 'E = 5 × 10⁴ N/C', 560, 60, { align: 'right', weight: 700, size: 14, color: P.ink2 });
+    const th = ans && t >= stages[1].t1 - 0.01 ? TH : TH;
+    const dx = L * Math.cos(th), dy = -L * Math.sin(th);
+    ctx.save(); ctx.strokeStyle = P.ink; ctx.lineWidth = 4; seg(ctx, CX - dx, CY - dy, CX + dx, CY + dy); ctx.restore();
+    ball(ctx, CX + dx, CY + dy, 14, P.force); label(ctx, '+q', CX + dx + 18, CY + dy - 14, { weight: 800, size: 14 });
+    ball(ctx, CX - dx, CY - dy, 14, P.vel); label(ctx, '−q', CX - dx - 18, CY - dy + 18, { align: 'right', weight: 800, size: 14 });
+    ctx.save(); ctx.strokeStyle = P.ink; ctx.lineWidth = 1.5; ctx.beginPath(); ctx.arc(CX, CY, 60, -th, 0); ctx.stroke(); ctx.restore(); label(ctx, '30°', CX + 66, CY - 16, { weight: 700, size: 14 });
+    vec(ctx, CX - 30, CY + 30, 0.6 * dx, 0.6 * dy, 'p', P.accent, { side: -1, at: 1, italic: true, lw: 3 });
+    if (ans) { vec(ctx, CX + dx, CY + dy, 70, 0, 'qE', P.force, { side: 1, at: 0.6 }); vec(ctx, CX - dx, CY - dy, -70, 0, 'qE', P.vel, { side: 1, at: 0.6 }); rotArrow(ctx, CX, CY, 110, true, P.acc); if (t >= stages[1].t0) label(ctx, 'τ = 10⁻⁴ N m', CX, 470, { align: 'center', weight: 800, size: 18, color: P.accent }); partsPanel(ctx, 630, 34, 300, 'Working', ['Couple: τ = pE sin θ', 'τ = 4 × 10⁻⁹ × 5 × 10⁴ × ½ = 10⁻⁴ N m'], stageAt(stages, t), false); }
+    else askedPanel(ctx, 630, 34, 300, ['The magnitude of the torque on the dipole.']);
+    note(ctx, 'dipole size and charge illustrative');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

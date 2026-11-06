@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 12 Physics · Exercise 1.13</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 12 Physics</a> · <a href="index.html">Ch. 1 Electric Charges and Fields</a></p>
+      <h1>Exercise 1.13 · Three tracks in a field (Fig. 1.30)</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q12.html">‹ 1.12</a><a href="index.html">All questions</a><a href="q14.html">1.14 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 1.13">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="Three particles enter the field between a positive plate (top) and a negative plate (bottom): tracks 1 and 2 bend up towards the positive plate, track 3 bends down most sharply."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>1.13</b> Figure 1.30 shows tracks of three charged particles in a uniform electrostatic field. Give the signs of the three charges. Which particle has the highest charge to mass ratio?</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Fig. 1.30: positive plate above, negative below (field downward); tracks 1 and 2 bend upward, track 3 bends downward and most.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>Signs of the charges; the largest q/m.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Tracks follow Fig. 1.30; equal entry speeds assumed.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>The field points from the + plate to the − plate (downward). A positive charge is pushed down, a negative charge up.</li>
+          <li>Particles 1 and 2 bend up: negative. Particle 3 bends down: positive.</li>
+          <li>The sideways deflection (for the same speed) is ∝ q/m; particle 3 is deflected most, so it has the highest q/m.</li>
+        </ol>
+        <p class="final">1 and 2 negative, 3 positive; 3 has the highest q/m.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 12), Chapter 1 (Electric Charges and Fields), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const X0 = 60, X1 = 470, YT = 150, YB = 360, D = 8;
+  const TR = [[1, 215, -55, P => P.force], [2, 245, -35, P => P.vel], [3, 280, 70, P => P.leaf]];   // [n, entry y, total deflection at X1]
+  const qStages = [
+    { title: 'Fig. 1.30', dur: D, text: 'Three charged particles enter a uniform field between a positive plate (top) and a negative plate (bottom).' },
+    { title: 'What is asked', dur: 4, text: 'Give the signs of the three charges. Which has the highest charge-to-mass ratio?' },
+  ];
+  const stages = [
+    { title: 'Direction of force', dur: D, text: 'The field points from + to −: downward. Positive charges are pushed down, negative charges up.', ans: 'Particles 1 and 2 bend up: negative. Particle 3 bends down: positive.' },
+    { title: 'Charge to mass ratio', dur: 4, text: 'For the same entry speed, the sideways acceleration qE/m decides the bending.', ans: 'Particle 3 bends most: highest q/m.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    hline(ctx, X0 + 40, X1, YT, P.ink, 3); hline(ctx, X0 + 40, X1, YB, P.ink, 3);
+    for (let x = X0 + 60; x < X1; x += 40) { label(ctx, '+', x, YT - 14, { align: 'center', weight: 800, size: 16, color: P.force }); label(ctx, '−', x, YB + 14, { align: 'center', weight: 800, size: 16, color: P.vel }); }
+    if (ans) for (let x = X0 + 80; x < X1; x += 80) vec(ctx, x, YT + 20, 0, 40, '', P.grid, { lw: 2, head: 8 });
+    const u = clamp(t / (D - 1));
+    TR.forEach(([n, y0, dmax, col]) => {
+      const pts = []; for (let s = 0; s <= u; s += 0.01) { const x = X0 + (X1 + 80 - X0) * s, f = clamp((x - (X0 + 40)) / (X1 - X0 - 40)); pts.push([x, y0 + dmax * f * f]); }
+      ctx.save(); ctx.strokeStyle = col(P); ctx.lineWidth = 2.5; if (pts.length > 1) poly(ctx, pts); ctx.restore();
+      if (u >= 1) { const p = pts[pts.length - 1]; label(ctx, String(n), p[0] + 10, p[1], { weight: 800, size: 15, color: col(P) }); }
+    });
+    if (ans && t >= stages[0].t1 - 1) { label(ctx, '1, 2: negative', 70, 450, { weight: 800, size: 15, color: P.vel }); label(ctx, '3: positive, highest q/m', 70, 476, { weight: 800, size: 15, color: P.leaf }); }
+    if (ans) partsPanel(ctx, 630, 34, 300, 'Answers', ['1 and 2 negative; 3 positive', '3 has the highest q/m'], stageAt(stages, t), false);
+    else askedPanel(ctx, 630, 34, 300, ['The signs of the three charges.', 'The particle with the highest charge-to-mass ratio.']);
+    note(ctx, 'tracks follow Fig. 1.30; equal entry speeds assumed');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>
