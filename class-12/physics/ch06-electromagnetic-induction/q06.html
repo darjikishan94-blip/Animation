@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 12 Physics · Exercise 6.6</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 12 Physics</a> · <a href="index.html">Ch. 6 Electromagnetic Induction</a></p>
+      <h1>Exercise 6.6 · A falling east–west wire</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q05.html">‹ 6.5</a><a href="index.html">All questions</a><a href="q07.html">6.7 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 6.6">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="Looking north, the horizontal field points into the page; as the east–west wire falls, the force on positive charges qv × B points east, so the emf acts from west to east and the east end becomes positive, with 1.5 × 10⁻³ V."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>6.6</b> A horizontal straight wire 10 m long extending from east to west is falling with a speed of 5.0 m s<sup>–1</sup>, at right angles to the horizontal component of the earth’s magnetic field, 0.30 × 10<sup>–4</sup> Wb m<sup>–2</sup>. (a) What is the instantaneous value of the emf induced in the wire? (b) What is the direction of the emf? (c) Which end of the wire is at the higher electrical potential?</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>l = 10 m, east–west; v = 5.0 m/s downward; B<sub>H</sub> = 0.30 × 10<sup>−4</sup> T (pointing north).</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>(a) The emf (b) its direction (c) the higher-potential end.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>View looking north: B<sub>H</sub> points into the page.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>(a) ε = Blv = 0.30 × 10<sup>−4</sup> × 10 × 5.0 = 1.5 × 10<sup>−3</sup> V.</li>
+          <li>(b) Force on a positive charge: q(v × B) with v down and B north points east: the emf acts from west to east.</li>
+          <li>(c) Positive charge collects at the east end: the east end is at the higher potential.</li>
+        </ol>
+        <p class="final">(a) 1.5 × 10<sup>−3</sup> V (b) west to east (c) the eastern end.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 12), Chapter 6 (Electromagnetic Induction), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const X0 = 100, X1 = 500, Y0 = 130, D = 6;
+  const qStages = [
+    { title: 'A falling wire', dur: D, text: 'A horizontal wire 10 m long, lying east–west, falls at 5.0 m/s across the horizontal component of the earth’s field, 0.30 × 10⁻⁴ T.' },
+    { title: 'What is asked', dur: 4, text: '(a) The emf. (b) Its direction. (c) Which end is at higher potential?' },
+  ];
+  const stages = [
+    { title: 'Emf', dur: 5, text: 'ε = Blv.', ans: '(a) 0.30 × 10⁻⁴ × 10 × 5.0 = 1.5 × 10⁻³ V.' },
+    { title: 'Direction', dur: D, text: 'Looking north, B points into the page. On a positive charge, q(v × B) with v down points east.', ans: '(b) The emf acts from west to east.' },
+    { title: 'Higher potential', dur: 5, text: 'Positive charge piles up at the east end.', ans: '(c) The eastern end is at the higher potential.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    for (let x = 60; x <= 580; x += 44) for (let y = 70; y <= 470; y += 44) fieldSym(ctx, x, y, false, 5, P.grid);
+    label(ctx, 'looking north: B_H into the page', 590, 30, { align: 'right', weight: 700, size: 13, color: P.ink2 });
+    label(ctx, 'W', 40, 300, { align: 'center', weight: 800, size: 16 }); label(ctx, 'E', 570, 300, { align: 'center', weight: 800, size: 16 });
+    const per = ans ? ((t % 5) / 5) : clamp(t / (D - 1)), y = Y0 + 260 * per;
+    ctx.save(); ctx.strokeStyle = P.obj; ctx.lineWidth = 6; seg(ctx, X0, y, X1, y); ctx.restore();
+    vec(ctx, 300, y + 10, 0, 50, 'v = 5.0 m/s', P.vel, { side: -1, at: 0.6, lw: 3, align: 'left', off: 10 });
+    label(ctx, '10 m', 300, y - 16, { align: 'center', weight: 700, size: 13 });
+    if (ans) {
+      const st = stageAt(stages, t);
+      if (st >= 1) { vec(ctx, 380, y - 40, 60, 0, 'force on + charge', P.force, { side: -1, at: 0.5, lw: 3, head: 9 }); }
+      if (st >= 2) { label(ctx, '+', X1 - 8, y - 18, { align: 'center', weight: 800, size: 20, color: P.force }); label(ctx, '−', X0 + 8, y - 18, { align: 'center', weight: 800, size: 20, color: P.vel }); label(ctx, 'east end higher', X1, y + 30, { align: 'right', weight: 800, size: 14, color: P.force }); }
+      label(ctx, 'ε = 1.5 × 10⁻³ V', 300, 500, { align: 'center', weight: 800, size: 16, color: P.accent });
+      partsPanel(ctx, 630, 34, 300, 'Answers', ['(a) ε = Blv = 1.5 × 10⁻³ V', '(b) From west to east', '(c) The eastern end'], st, false);
+    } else askedPanel(ctx, 630, 34, 300, ['(a) The instantaneous emf.', '(b) The direction of the emf.', '(c) The end at higher potential.']);
+    note(ctx, 'not to scale');
+  }
+  return { qStages, stages, draw };
+})();
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

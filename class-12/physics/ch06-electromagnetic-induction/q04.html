@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 12 Physics · Exercise 6.4</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 12 Physics</a> · <a href="index.html">Ch. 6 Electromagnetic Induction</a></p>
+      <h1>Exercise 6.4 · A loop sliding out of a field</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q03.html">‹ 6.3</a><a href="index.html">All questions</a><a href="q05.html">6.5 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 6.4">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="Two copies of an 8 cm × 2 cm loop leave a field at 1 cm/s. Moving across its long side, the loop has an emf of 2.4 × 10⁻⁴ V for 2 s; moving along its long side, 6 × 10⁻⁵ V for 8 s."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>6.4</b> A rectangular wire loop of sides 8 cm and 2 cm with a small cut is moving out of a region of uniform magnetic field of magnitude 0.3 T directed normal to the loop. What is the emf developed across the cut if the velocity of the loop is 1 cm s<sup>–1</sup> in a direction normal to the (a) longer side, (b) shorter side of the loop? For how long does the induced voltage last in each case?</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Loop 8 cm × 2 cm with a cut; B = 0.3 T normal to the loop; v = 1 cm/s.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The emf across the cut and how long it lasts, for motion normal to (a) the longer side (b) the shorter side.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>20 px per cm; real time (1 cm/s).</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>While the loop crosses the edge of the field, the flux changes at B l v, where l is the side lying along the edge.</li>
+          <li>(a) Moving normal to the longer side, l = 8 cm: ε = 0.3 × 0.08 × 0.01 = 2.4 × 10<sup>−4</sup> V, lasting (2 cm)/(1 cm/s) = 2 s.</li>
+          <li>(b) Moving normal to the shorter side, l = 2 cm: ε = 0.3 × 0.02 × 0.01 = 6 × 10<sup>−5</sup> V, lasting (8 cm)/(1 cm/s) = 8 s.</li>
+        </ol>
+        <p class="final">(a) 2.4 × 10<sup>−4</sup> V for 2 s (b) 6 × 10<sup>−5</sup> V for 8 s.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 12), Chapter 6 (Electromagnetic Induction), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const XB = 200, S = 20, D = 10, GX = 405, GW = 175;   // field edge at XB; 20 px per cm
+  const qStages = [
+    { title: 'Loops leaving a field', dur: D, text: 'An 8 cm × 2 cm loop with a small cut moves out of a 0.3 T field at 1 cm/s: (a) across its long side, (b) along it.' },
+    { title: 'What is asked', dur: 4, text: 'The emf across the cut in each case, and how long it lasts.' },
+  ];
+  const stages = [
+    { title: 'Flux changes at the edge', dur: D, text: 'While the loop crosses the edge, the flux changes at B l v, with l the side along the edge.', ans: '(a) l = 8 cm: 2.4 × 10⁻⁴ V for 2 s. (b) l = 2 cm: 6 × 10⁻⁵ V for 8 s.' },
+  ];
+  function loop(ctx, x, y, w, h) { ctx.save(); ctx.strokeStyle = P.obj; ctx.lineWidth = 3; ctx.beginPath(); ctx.moveTo(x, y + h / 2 - 4); ctx.lineTo(x, y); ctx.lineTo(x + w, y); ctx.lineTo(x + w, y + h); ctx.lineTo(x, y + h); ctx.lineTo(x, y + h / 2 + 4); ctx.stroke(); ctx.restore(); }
+  function graph(ctx, y, lvl, dur, tt, name) {
+    const g = axes(ctx, { x: GX, y, w: GW, h: 100, x0: 0, x1: 10, y0: 0, y1: 3, xt: [2, 8], yt: [lvl], xl: 't (s)', yl: name });
+    plot(ctx, g, s => (s < dur ? lvl : 0), 0, tt, P.force);
+  }
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    ctx.save(); ctx.fillStyle = P.accentSoft; ctx.globalAlpha = 0.5; ctx.fillRect(20, 40, XB - 20, 450); ctx.restore();
+    for (let x = 40; x < XB; x += 40) for (let y = 60; y < 480; y += 40) fieldSym(ctx, x, y, false, 5, P.ink2);
+    vline(ctx, XB, 40, 490, P.ink2, 1.5, [5, 4]); label(ctx, 'B = 0.3 T', 30, 30, { weight: 700, size: 13, color: P.ink2 });
+    const tt = clamp(t, 0, D), da = Math.min(S * tt, 2 * S + 30), db = Math.min(S * tt, 8 * S + 2);   // each loop shown until just clear of the field
+    loop(ctx, XB - 2 * S + da, 70, 2 * S, 8 * S); label(ctx, '(a)', XB - 2 * S + da - 20, 60, { weight: 800, size: 14 });
+    loop(ctx, XB - 8 * S + db, 320, 8 * S, 2 * S); label(ctx, '(b)', XB - 8 * S + db, 300, { weight: 800, size: 14 });
+    vec(ctx, XB + da + 8, 150, 26, 0, 'v', P.vel, { side: -1, at: 1, italic: true, lw: 3, head: 9 }); vec(ctx, XB + db + 8, 340, 26, 0, 'v', P.vel, { side: -1, at: 1, italic: true, lw: 3, head: 9 });
+    if (ans) {
+      graph(ctx, 70, 2.4, 2, tt, 'ε (10⁻⁴ V)'); graph(ctx, 320, 0.6, 8, tt, 'ε (10⁻⁴ V)');
+      label(ctx, '(a) 2.4 × 10⁻⁴ V for 2 s', GX, 210, { weight: 800, size: 13, color: P.force }); label(ctx, '(b) 6 × 10⁻⁵ V for 8 s', GX, 460, { weight: 800, size: 13, color: P.force });
+      clock(ctx, 60, 510 - 6, tt);
+      partsPanel(ctx, 630, 34, 300, 'Answers', ['(a) Blv = 0.3 × 0.08 × 0.01 = 2.4 × 10⁻⁴ V, 2 s; (b) 0.3 × 0.02 × 0.01 = 6 × 10⁻⁵ V, 8 s'], 0, false);
+    } else askedPanel(ctx, 630, 34, 300, ['The emf across the cut for motion normal to (a) the longer side, (b) the shorter side.', 'How long the voltage lasts in each case.']);
+    if (!ans) note(ctx, '20 px per cm; real time');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

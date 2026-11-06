@@ -3469,8 +3469,88 @@
   "subject": "physics",
   "chapter": 6,
   "chapter_title": "Electromagnetic Induction",
-  "status": "planned",
-  "ncert_pdf": "https://ncert.nic.in/textbook/pdf/leph106.pdf"
+  "question": "6.1",
+  "title": "Direction of induced current (Fig. 6.15)",
+  "status": "worked answer",
+  "file": "class-12/physics/ch06-electromagnetic-induction/q01.html",
+  "text": "Predict the direction of induced current in the situations described by the following Figs. 6.15(a) to (f)."
+ },
+ {
+  "class": 12,
+  "subject": "physics",
+  "chapter": 6,
+  "chapter_title": "Electromagnetic Induction",
+  "question": "6.2",
+  "title": "Lenz’s law for changing shapes (Fig. 6.16)",
+  "status": "animated",
+  "file": "class-12/physics/ch06-electromagnetic-induction/q02.html",
+  "text": "Use Lenz’s law to determine the direction of induced current in the situations described by Fig. 6.16: (a) A wire of irregular shape turning into a circular shape; (b) A circular loop being deformed into a narrow straight wire."
+ },
+ {
+  "class": 12,
+  "subject": "physics",
+  "chapter": 6,
+  "chapter_title": "Electromagnetic Induction",
+  "question": "6.3",
+  "title": "Emf in a loop inside a solenoid",
+  "status": "worked answer",
+  "file": "class-12/physics/ch06-electromagnetic-induction/q03.html",
+  "text": "A long solenoid with 15 turns per cm has a small loop of area 2.0 cm2 placed inside the solenoid normal to its axis. If the current carried by the solenoid changes steadily from 2.0 A to 4.0 A in 0.1 s, what is the induced emf in the loop while the current is changing?"
+ },
+ {
+  "class": 12,
+  "subject": "physics",
+  "chapter": 6,
+  "chapter_title": "Electromagnetic Induction",
+  "question": "6.4",
+  "title": "A loop sliding out of a field",
+  "status": "animated",
+  "file": "class-12/physics/ch06-electromagnetic-induction/q04.html",
+  "text": "A rectangular wire loop of sides 8 cm and 2 cm with a small cut is moving out of a region of uniform magnetic field of magnitude 0.3 T directed normal to the loop. What is the emf developed across the cut if the velocity of the loop is 1 cm s–1 in a direction normal to the (a) longer side, (b) shorter side of the loop? For how long does the induced voltage last in each case?"
+ },
+ {
+  "class": 12,
+  "subject": "physics",
+  "chapter": 6,
+  "chapter_title": "Electromagnetic Induction",
+  "question": "6.5",
+  "title": "Emf of a rotating rod",
+  "status": "animated",
+  "file": "class-12/physics/ch06-electromagnetic-induction/q05.html",
+  "text": "A 1.0 m long metallic rod is rotated with an angular frequency of 400 rad s–1 about an axis normal to the rod passing through its one end. The other end of the rod is in contact with a circular metallic ring. A constant and uniform magnetic field of 0.5 T parallel to the axis exists everywhere. Calculate the emf developed between the centre and the ring."
+ },
+ {
+  "class": 12,
+  "subject": "physics",
+  "chapter": 6,
+  "chapter_title": "Electromagnetic Induction",
+  "question": "6.6",
+  "title": "A falling east–west wire",
+  "status": "animated",
+  "file": "class-12/physics/ch06-electromagnetic-induction/q06.html",
+  "text": "A horizontal straight wire 10 m long extending from east to west is falling with a speed of 5.0 m s–1, at right angles to the horizontal component of the earth’s magnetic field, 0.30 × 10–4 Wb m–2. (a) What is the instantaneous value of the emf induced in the wire? (b) What is the direction of the emf? (c) Which end of the wire is at the higher electrical potential?"
+ },
+ {
+  "class": 12,
+  "subject": "physics",
+  "chapter": 6,
+  "chapter_title": "Electromagnetic Induction",
+  "question": "6.7",
+  "title": "Self-inductance from an emf",
+  "status": "worked answer",
+  "file": "class-12/physics/ch06-electromagnetic-induction/q07.html",
+  "text": "Current in a circuit falls from 5.0 A to 0.0 A in 0.1 s. If an average emf of 200 V induced, give an estimate of the self-inductance of the circuit."
+ },
+ {
+  "class": 12,
+  "subject": "physics",
+  "chapter": 6,
+  "chapter_title": "Electromagnetic Induction",
+  "question": "6.8",
+  "title": "Flux linkage from mutual inductance",
+  "status": "worked answer",
+  "file": "class-12/physics/ch06-electromagnetic-induction/q08.html",
+  "text": "A pair of adjacent coils has a mutual inductance of 1.5 H. If the current in one coil changes from 0 to 20 A in 0.5 s, what is the change of flux linkage with the other coil?"
  },
  {
   "class": 12,

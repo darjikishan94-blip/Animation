@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 12 Physics · Exercise 6.5</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 12 Physics</a> · <a href="index.html">Ch. 6 Electromagnetic Induction</a></p>
+      <h1>Exercise 6.5 · Emf of a rotating rod</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q04.html">‹ 6.4</a><a href="index.html">All questions</a><a href="q06.html">6.6 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 6.5">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A rod pivoted at the centre sweeps round a ring in a field along the axis; each part of the rod moves at a different speed, the average being ωR/2, and the emf between centre and ring is ½BωR² = 100 V."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>6.5</b> A 1.0 m long metallic rod is rotated with an angular frequency of 400 rad s<sup>–1</sup> about an axis normal to the rod passing through its one end. The other end of the rod is in contact with a circular metallic ring. A constant and uniform magnetic field of 0.5 T parallel to the axis exists everywhere. Calculate the emf developed between the centre and the ring.</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>R = 1.0 m; ω = 400 rad s<sup>−1</sup>; B = 0.5 T along the axis.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The emf between the centre and the ring.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Rotation slowed down for viewing.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>A piece dr at distance r moves at ωr: dε = Bωr dr. Adding up from 0 to R: ε = ½BωR<sup>2</sup> (the same as B × R × average speed ωR/2).</li>
+          <li>ε = ½ × 0.5 × 400 × 1.0<sup>2</sup> = 100 V.</li>
+        </ol>
+        <p class="final">100 V.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 12), Chapter 6 (Electromagnetic Induction), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const CX = 220, CY = 270, R = 190, W = 1.2;   // shown at 1.2 rad/s (really 400 rad/s)
+  const qStages = [
+    { title: 'A rotating rod', dur: 6, text: 'A 1.0 m metal rod turns at 400 rad/s about one end; its other end slides on a metal ring. A 0.5 T field is parallel to the axis.' },
+    { title: 'What is asked', dur: 4, text: 'The emf between the centre and the ring.' },
+  ];
+  const stages = [
+    { title: 'Speed along the rod', dur: 6, text: 'A piece at distance r moves at ωr: its emf is Bωr dr. Speeds grow from 0 at the centre to ωR at the ring.', ans: 'Average speed = ωR/2.' },
+    { title: 'Total emf', dur: 5, text: 'ε = BR × (ωR/2) = ½BωR².', ans: 'ε = ½ × 0.5 × 400 × 1.0² = 100 V.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    for (let x = 40; x <= 580; x += 40) for (let y = 60; y <= 490; y += 40) fieldSym(ctx, x, y, true, 4, P.grid);
+    ctx.save(); ctx.strokeStyle = P.obj; ctx.lineWidth = 5; ctx.beginPath(); ctx.arc(CX, CY, R, 0, 2 * Math.PI); ctx.stroke(); ctx.restore();
+    const a = -W * t, ex = CX + R * Math.cos(a), ey = CY + R * Math.sin(a);
+    ctx.save(); ctx.strokeStyle = P.wood; ctx.lineWidth = 7; seg(ctx, CX, CY, ex, ey); ctx.restore(); ball(ctx, CX, CY, 7, P.ink);
+    rotArrow(ctx, CX, CY, 60, false, P.acc); label(ctx, 'ω = 400 rad/s', CX, CY + 84, { align: 'center', weight: 700, size: 13, color: P.acc });
+    label(ctx, 'B = 0.5 T (out of page)', 590, 30, { align: 'right', weight: 700, size: 13, color: P.ink2 }); label(ctx, 'R = 1.0 m', CX + R + 10, CY + 4, { weight: 700, size: 13 });
+    if (ans) {
+      const st = stageAt(stages, t);
+      [0.25, 0.5, 0.75, 1].forEach(f => { const x = CX + f * R * Math.cos(a), y = CY + f * R * Math.sin(a); vec(ctx, x, y, 50 * f * Math.sin(a), -50 * f * Math.cos(a), '', P.vel, { lw: 2.5, head: 8 }); });
+      wire(ctx, [[CX, CY], [CX, 500], [470, 500], [470, CY + R * 0.4]]); wire(ctx, [[470, CY + R * 0.4 - 40], [470, CY - R + 40], [CX + R * 0.7, CY - R * 0.72]]);
+      ctx.save(); ctx.strokeStyle = P.ink; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(470, CY + R * 0.4 - 20, 20, 0, 2 * Math.PI); ctx.stroke(); ctx.restore(); label(ctx, 'V', 470, CY + R * 0.4 - 20, { align: 'center', weight: 800, size: 15 });
+      if (st >= 1) label(ctx, 'ε = 100 V', 470, CY + R * 0.4 + 20, { align: 'left', weight: 800, size: 16, color: P.accent, });
+      partsPanel(ctx, 630, 34, 300, 'Working', ['Speeds 0 to ωR: average ωR/2', 'ε = ½BωR² = 100 V'], st, false);
+    } else askedPanel(ctx, 630, 34, 300, ['The emf developed between the centre and the ring.']);
+    note(ctx, 'rotation slowed down; blue arrows: speeds of points on the rod (to scale with each other)');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

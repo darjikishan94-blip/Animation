@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 12 Physics · Exercise 6.2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 12 Physics</a> · <a href="index.html">Ch. 6 Electromagnetic Induction</a></p>
+      <h1>Exercise 6.2 · Lenz’s law for changing shapes (Fig. 6.16)</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q01.html">‹ 6.1</a><a href="index.html">All questions</a><a href="q03.html">6.3 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 6.2">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="In a field into the page, an irregular loop opens into a circle, its area and flux grow, and the induced current flows anticlockwise, a→d→c→b; in a field out of the page, a circle is squashed flat, its flux falls, and the induced current again flows anticlockwise, a′→d′→c′→b′."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>6.2</b> Use Lenz’s law to determine the direction of induced current in the situations described by Fig. 6.16: (a) A wire of irregular shape turning into a circular shape; (b) A circular loop being deformed into a narrow straight wire.</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Fig. 6.16(a): field into the page (×), irregular loop abcd opening into a circle. (b): field out of the page (·), circle a′b′c′d′ squashed into a narrow loop.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The induced current direction in each.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Shapes illustrative; dots on the wire show the induced current.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>(a) The area, and so the flux into the page, increases. The induced current makes a field out of the page inside the loop: anticlockwise as seen, along adcb.</li>
+          <li>(b) The area, and so the flux out of the page, decreases. The induced current makes a field out of the page to make up for it: anticlockwise as seen, along a′d′c′b′.</li>
+        </ol>
+        <p class="final">(a) along adcb (anticlockwise) (b) along a′d′c′b′ (anticlockwise).</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 12), Chapter 6 (Electromagnetic Induction), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const C1 = [150, 270], C2 = [455, 270], R = 90, D = 8;
+  const gA = ph => 0.32 * (0.5 + 0.5 * Math.sin(3 * ph + 1)) * (0.6 + 0.4 * Math.cos(5 * ph));   // inward dents of the irregular loop
+  function shapeA(s) { const p = []; for (let i = 0; i <= 120; i++) { const ph = i / 120 * 2 * Math.PI, r = R * (1 - (1 - s) * gA(ph)); p.push([C1[0] + r * Math.cos(ph), C1[1] - r * Math.sin(ph)]); } return p; }
+  function shapeB(s) { const p = [], rx = R * (1 + 0.35 * s), ry = R * (1 - 0.88 * s); for (let i = 0; i <= 120; i++) { const ph = i / 120 * 2 * Math.PI; p.push([C2[0] + rx * Math.cos(ph), C2[1] - ry * Math.sin(ph)]); } return p; }
+  const qStages = [
+    { title: 'Fig. 6.16', dur: D, text: '(a) In a field into the page, an irregular wire loop turns into a circle. (b) In a field out of the page, a circular loop is squashed into a narrow straight wire.' },
+    { title: 'What is asked', dur: 4, text: 'Use Lenz’s law to find the direction of the induced current in each.' },
+  ];
+  const stages = [
+    { title: 'Flux changes', dur: D, text: '(a) The area grows, so the flux into the page grows. (b) The area shrinks, so the flux out of the page falls.', ans: 'Dots show the induced current while the shape is changing.' },
+    { title: 'Directions', dur: 5, text: 'The induced current opposes the change: (a) its field points out of the page; (b) its field points out of the page too.', ans: '(a) along adcb (b) along a′d′c′b′ — both anticlockwise as seen.' },
+  ];
+  function sym(ctx, cx, out) { for (let x = cx - 126; x <= cx + 130; x += 42) for (let y = 110; y <= 440; y += 42) fieldSym(ctx, x, y, out, 5, P.ink2); }
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1); vline(ctx, 303, 40, 500, P.rule, 1);
+    sym(ctx, C1[0], false); sym(ctx, C2[0], true);
+    label(ctx, '(a) B into page', C1[0], 60, { align: 'center', weight: 800, size: 14 }); label(ctx, '(b) B out of page', C2[0], 60, { align: 'center', weight: 800, size: 14 });
+    const s = clamp(t / (D - 1));
+    const A = shapeA(s), B = shapeB(s);
+    wire(ctx, A, P.obj, 3); wire(ctx, B, P.obj, 3);
+    const at = (pts, deg) => pts[Math.round(deg / 3)];
+    [['a', 270], ['b', 180], ['c', 90], ['d', 0]].forEach(([n, deg]) => { const pa = at(A, deg), pb = at(B, deg), ux = Math.cos(deg * Math.PI / 180), uy = -Math.sin(deg * Math.PI / 180);
+      label(ctx, n, pa[0] + 16 * ux, pa[1] + 16 * uy, { align: 'center', weight: 800, size: 14 }); label(ctx, n + '′', pb[0] + 16 * ux, pb[1] + 16 * uy, { align: 'center', weight: 800, size: 14 }); });
+    if (ans && s < 1) { flow(ctx, A, t * 40, P.force, 24, 3.5); flow(ctx, B, t * 40, P.force, 24, 3.5); }
+    if (ans && t >= stages[1].t0) { label(ctx, 'adcb', C1[0], 470, { align: 'center', weight: 800, size: 16, color: P.force }); label(ctx, 'a′d′c′b′', C2[0], 470, { align: 'center', weight: 800, size: 16, color: P.force }); rotArrow(ctx, C1[0], C1[1], 30, false, P.force); rotArrow(ctx, C2[0], C2[1], 24, false, P.force); }
+    if (ans) partsPanel(ctx, 630, 34, 300, 'Answers', ['(a) flux in ↑ → current anticlockwise', '(a) along adcb; (b) along a′d′c′b′'], stageAt(stages, t), false);
+    else askedPanel(ctx, 630, 34, 300, ['The direction of the induced current (a) as the irregular loop becomes a circle, (b) as the circle is squashed flat.']);
+    note(ctx, ans ? 'shapes illustrative; dots show the induced current while the shape changes' : 'shapes illustrative');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>
