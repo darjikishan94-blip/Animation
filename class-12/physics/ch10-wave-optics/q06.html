@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 12 Physics · Exercise 10.6</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 12 Physics</a> · <a href="index.html">Ch. 10 Wave Optics</a></p>
+      <h1>Exercise 10.6 · Fringes of two wavelengths</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q05.html">‹ 10.5</a><a href="index.html">All questions</a><span>›</span></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 10.6">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="Bright fringes of 650 nm and 520 nm light are drawn on the same screen; the third 650 nm fringe is at 3 × 650 nm × D/d, and the first place both are bright together is where the fourth 650 nm and fifth 520 nm fringes meet, at 2600 nm × D/d."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>10.6</b> A beam of light consisting of two wavelengths, 650 nm and 520 nm, is used to obtain interference fringes in a Young’s double-slit experiment. (a) Find the distance of the third bright fringe on the screen from the central maximum for wavelength 650 nm. (b) What is the least distance from the central maximum where the bright fringes due to both the wavelengths coincide?</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>λ₁ = 650 nm; λ₂ = 520 nm. The reprint does not give the slit separation d or the screen distance D.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>(a) y of the 3rd bright fringe of 650 nm (b) the nearest coincidence.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Positions in units of D/d (to scale with each other).</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>(a) y<sub>3</sub> = 3λ₁D/d = 1950 nm × D/d.</li>
+          <li>(b) Coincidence needs n₁ × 650 = n₂ × 520, i.e. n₁/n₂ = 4/5. The first is n₁ = 4, n₂ = 5: y = 4 × 650 nm × D/d = 2600 nm × D/d.</li>
+          <li>With d = 2 mm and D = 1.2 m (the values behind the NCERT answers): (a) 1.17 mm (b) 1.56 mm.</li>
+        </ol>
+        <p class="final">(a) 1950 nm × D/d (1.17 mm) (b) 2600 nm × D/d (1.56 mm).</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 12), Chapter 10 (Wave Optics), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const X0 = 60, K = 0.17, Y1 = 170, Y2 = 300;   // x = X0 + K × (position in nm × D/d)
+  const qStages = [
+    { title: 'Two colours at once', dur: 5, text: 'Light of 650 nm and 520 nm passes through the same double slit.' },
+    { title: 'What is asked', dur: 5, text: '(a) Where is the 3rd bright fringe of the 650 nm light? (b) Where do bright fringes of both first coincide?' },
+  ];
+  const stages = [
+    { title: '650 nm fringes', dur: 5, text: 'Bright fringes at y_n = nλD/d.', ans: '(a) y₃ = 3 × 650 nm × D/d = 1950 nm × D/d (1.17 mm for d = 2 mm, D = 1.2 m).' },
+    { title: 'Coincidence', dur: 6, text: 'Both bright where n₁ × 650 = n₂ × 520, i.e. n₁ : n₂ = 4 : 5.', ans: '(b) y = 4 × 650 = 5 × 520 = 2600 nm × D/d (1.56 mm).' },
+  ];
+  function row(ctx, y, lam, col, name, upto) {
+    for (let x = X0; x <= 590; x++) { const s = (x - X0) / K, I = Math.cos(Math.PI * s / lam) ** 2; ctx.fillStyle = col; ctx.globalAlpha = I * (s <= upto ? 1 : 0.15); ctx.fillRect(x, y - 30, 1, 60); } ctx.globalAlpha = 1;
+    label(ctx, name, X0 - 6, y, { align: 'right', weight: 800, size: 13, color: col });
+  }
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    const st = ans ? stageAt(stages, t) : -1, up = ans ? 3200 * clamp(t / 4) : 3200;
+    row(ctx, Y1, 650, P.force, '650', up); row(ctx, Y2, 520, P.leaf, '520', up);
+    hline(ctx, X0, 590, 400, P.ink2, 1.5); [0, 1000, 2000, 3000].forEach(v => { vline(ctx, X0 + K * v, 395, 405, P.ink2, 1.2); label(ctx, String(v), X0 + K * v, 418, { align: 'center', size: 12, color: P.ink2 }); }); label(ctx, 'y in nm × D/d', 590, 440, { align: 'right', size: 12, color: P.ink2 });
+    label(ctx, 'central', X0, 110, { align: 'center', size: 12 });
+    if (ans) {
+      if (st >= 0) { const x = X0 + K * 1950; vline(ctx, x, Y1 - 40, Y1 + 40, P.ink, 2, [4, 3]); label(ctx, '3rd: 1950', x, Y1 - 50, { align: 'center', weight: 800, size: 13, color: P.force }); }
+      if (st >= 1) { const x = X0 + K * 2600; vline(ctx, x, Y1 - 40, Y2 + 40, P.accent, 3); label(ctx, '2600: both bright', x, Y2 + 56, { align: 'center', weight: 800, size: 14, color: P.accent }); }
+      partsPanel(ctx, 630, 34, 300, 'Answers', ['(a) 1950 nm × D/d (1.17 mm)', '(b) 2600 nm × D/d (1.56 mm)'], st, false);
+    } else askedPanel(ctx, 630, 34, 300, ['(a) The distance of the third bright fringe of 650 nm from the central maximum.', '(b) The least distance where bright fringes of both wavelengths coincide.']);
+    note(ctx, 'fringe patterns computed; the reprint gives no d or D (mm values use d = 2 mm, D = 1.2 m)');
+  }
+  return { qStages, stages, draw };
+})();
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

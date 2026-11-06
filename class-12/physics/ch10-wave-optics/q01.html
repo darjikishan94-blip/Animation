@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 12 Physics · Exercise 10.1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 12 Physics</a> · <a href="index.html">Ch. 10 Wave Optics</a></p>
+      <h1>Exercise 10.1 · Light reflected and refracted at water</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><span>‹</span><a href="index.html">All questions</a><a href="q02.html">10.2 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 10.1">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="Wavefronts of 589 nm light meet a water surface: the reflected wave keeps the same wavelength and speed, while in the water the wavefronts crowd closer (443 nm) and move slower (2.26 × 10⁸ m/s); every wave keeps the same frequency, 5.09 × 10¹⁴ Hz."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>10.1</b> Monochromatic light of wavelength 589 nm is incident from air on a water surface. What are the wavelength, frequency and speed of (a) reflected, and (b) refracted light? Refractive index of water is 1.33.</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>λ = 589 nm in air; n<sub>water</sub> = 1.33; c = 3 × 10<sup>8</sup> m/s.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>λ, ν and v for (a) the reflected (b) the refracted light.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Wavefront spacing to scale between the media (589 : 443); speeds slowed down.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>(a) Reflected light stays in air: λ = 589 nm, v = 3 × 10<sup>8</sup> m/s, ν = c/λ = 3 × 10<sup>8</sup>/589 × 10<sup>−9</sup> ≈ 5.09 × 10<sup>14</sup> Hz.</li>
+          <li>(b) The frequency does not change on refraction: ν = 5.09 × 10<sup>14</sup> Hz. v = c/n = 3 × 10<sup>8</sup>/1.33 ≈ 2.26 × 10<sup>8</sup> m/s; λ = v/ν = 589/1.33 ≈ 443 nm.</li>
+        </ol>
+        <p class="final">(a) 589 nm, 5.09 × 10<sup>14</sup> Hz, 3 × 10<sup>8</sup> m/s (b) 443 nm, 5.09 × 10<sup>14</sup> Hz, 2.26 × 10<sup>8</sup> m/s.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 12), Chapter 10 (Wave Optics), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const O = [300, 270], I = 40 * Math.PI / 180, N = 1.33, R = Math.asin(Math.sin(I) / N), L1 = 44, L2 = L1 / N, F = 0.6, W = 70;   // F: frequency shown (Hz)
+  const di = [Math.sin(I), Math.cos(I)], dr = [Math.sin(I), -Math.cos(I)], dt = [Math.sin(R), Math.cos(R)];
+  const qStages = [
+    { title: 'Light meets water', dur: 6, text: 'Light of wavelength 589 nm in air falls on a water surface (n = 1.33). Part is reflected, part refracted.' },
+    { title: 'What is asked', dur: 4, text: 'The wavelength, frequency and speed of (a) the reflected and (b) the refracted light.' },
+  ];
+  const stages = [
+    { title: 'Reflected', dur: 6, text: 'The reflected light is still in air.', ans: '(a) λ = 589 nm, v = 3 × 10⁸ m/s, ν = c/λ ≈ 5.09 × 10¹⁴ Hz.' },
+    { title: 'Refracted', dur: 7, text: 'Crossing into water the frequency stays the same; the speed drops to c/n, so the wavelength shrinks by n.', ans: '(b) ν = 5.09 × 10¹⁴ Hz, v ≈ 2.26 × 10⁸ m/s, λ = 589/1.33 ≈ 443 nm.' },
+  ];
+  function beam(ctx, d, lam, t, s0, s1, col) {
+    const n = [-d[1], d[0]];
+    for (let m = -20; m <= 20; m++) { const s = m * lam + (lam * F * t) % lam; if (s < s0 || s > s1) continue; const c = [O[0] + d[0] * s, O[1] + d[1] * s]; ctx.save(); ctx.strokeStyle = col; ctx.lineWidth = 2.5; seg(ctx, c[0] - n[0] * W, c[1] - n[1] * W, c[0] + n[0] * W, c[1] + n[1] * W); ctx.restore(); }
+  }
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    ctx.save(); ctx.fillStyle = P.water; ctx.globalAlpha = 0.5; ctx.fillRect(20, O[1], 580, 250); ctx.restore(); hline(ctx, 20, 600, O[1], P.ink, 2);
+    label(ctx, 'air', 40, 60, { weight: 700, size: 14 }); label(ctx, 'water, n = 1.33', 40, O[1] + 24, { weight: 700, size: 14 });
+    ctx.save(); ctx.beginPath(); ctx.rect(0, 0, 610, O[1]); ctx.clip(); beam(ctx, di, L1, t, -260, 90, P.force); if (ans) beam(ctx, dr, L1, t, 0, 240, P.acc); ctx.restore();
+    if (ans) { ctx.save(); ctx.beginPath(); ctx.rect(0, O[1], 610, 260); ctx.clip(); beam(ctx, dt, L2, t, -90, 230, P.vel); ctx.restore(); }
+    ray(ctx, [[O[0] - di[0] * 250, O[1] - di[1] * 250], O], P.ink2, { dash: [4, 4], lw: 1 });
+    label(ctx, '589 nm', O[0] - di[0] * 200 - 70, O[1] - di[1] * 200, { weight: 800, size: 14, color: P.force });
+    if (ans) {
+      const st = stageAt(stages, t);
+      label(ctx, 'reflected: 589 nm, 3 × 10⁸ m/s', O[0] + 50, 60, { weight: 800, size: 13, color: P.acc });
+      if (st >= 1) label(ctx, 'refracted: 443 nm, 2.26 × 10⁸ m/s', O[0] - 40, 500, { weight: 800, size: 13, color: P.vel });
+      label(ctx, 'ν = 5.09 × 10¹⁴ Hz for all three', 40, 330, { weight: 800, size: 13, color: P.accent });
+      partsPanel(ctx, 630, 34, 300, 'Answers', ['(a) 589 nm, 5.09 × 10¹⁴ Hz, 3 × 10⁸ m/s', '(b) 443 nm, 5.09 × 10¹⁴ Hz, 2.26 × 10⁸ m/s'], st, false);
+    } else askedPanel(ctx, 630, 34, 300, ['The wavelength, frequency and speed of (a) the reflected light, (b) the refracted light.']);
+    note(ctx, 'wavefront spacing to scale between the two media; motion slowed enormously');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 12 Physics · Exercise 10.2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 12 Physics</a> · <a href="index.html">Ch. 10 Wave Optics</a></p>
+      <h1>Exercise 10.2 · Shapes of wavefronts</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q01.html">‹ 10.1</a><a href="index.html">All questions</a><a href="q03.html">10.3 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 10.2">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="Wavefronts spread as spheres from a point source; a convex lens with the source at its focus turns them into flat planes; and the tiny piece of a star’s huge spherical wavefront that reaches the Earth is, for all purposes, flat."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>10.2</b> What is the shape of the wavefront in each of the following cases: (a) Light diverging from a point source. (b) Light emerging out of a convex lens when a point source is placed at its focus. (c) The portion of the wavefront of light from a distant star intercepted by the Earth.</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Three situations.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The shape of the wavefront in each.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Sizes illustrative.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>(a) Spherical, centred on the source.</li>
+          <li>(b) Plane: the lens makes the rays parallel, and wavefronts are perpendicular to the rays.</li>
+          <li>(c) Plane: it is a tiny part of an enormous sphere.</li>
+        </ol>
+        <p class="final">(a) spherical (b) plane (c) plane.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 12), Chapter 10 (Wave Optics), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const D = 8;
+  const qStages = [
+    { title: 'Three sources of light', dur: 5, text: '(a) A point source. (b) A point source at the focus of a convex lens. (c) A distant star seen from the Earth.' },
+    { title: 'What is asked', dur: 4, text: 'The shape of the wavefront in each case.' },
+  ];
+  const stages = [
+    { title: 'Point source', dur: D, text: 'Light spreads equally in all directions: the wavefronts are spheres centred on the source.', ans: '(a) Spherical.' },
+    { title: 'Source at the focus', dur: D, text: 'The lens makes the rays parallel; wavefronts are perpendicular to the rays.', ans: '(b) Plane.' },
+    { title: 'Distant star', dur: D, text: 'The Earth intercepts a tiny piece of an enormous sphere.', ans: '(c) Plane, for all practical purposes.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    const st = ans ? stageAt(stages, t) : -1, ph = (t * 30) % 40;
+    if (!ans) { label(ctx, '(a)', 40, 100, { weight: 800, size: 16 }); ball(ctx, 120, 130, 7, P.ke); label(ctx, '(b)', 40, 260, { weight: 800, size: 16 }); ball(ctx, 120, 290, 7, P.ke); lens(ctx, 240, 290, 60, true); label(ctx, 'F', 120, 312, { align: 'center', weight: 800, size: 13 }); label(ctx, '(c)', 40, 420, { weight: 800, size: 16 }); label(ctx, '★ far away', 80, 440, { weight: 700, size: 14 }); ball(ctx, 520, 440, 22, P.leaf); label(ctx, 'Earth', 520, 474, { align: 'center', size: 12 }); askedPanel(ctx, 630, 34, 300, ['The shape of the wavefront for (a), (b) and (c).']); return; }
+    if (st === 0) { const c = [300, 270]; ball(ctx, ...c, 8, P.ke); for (let r = ph + 10; r < 200; r += 40) { ctx.save(); ctx.strokeStyle = P.accent; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(...c, r, 0, 2 * Math.PI); ctx.stroke(); ctx.restore(); } }
+    if (st === 1) { const LX = 300, FX = 160, A = 270; ball(ctx, FX, A, 8, P.ke); label(ctx, 'F', FX, A + 24, { align: 'center', weight: 800, size: 13 }); lens(ctx, LX, A, 130, true);
+      for (let r = ph + 10; r < LX - FX; r += 40) { const a = Math.asin(Math.min(1, 125 / r)); ctx.save(); ctx.strokeStyle = P.accent; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(FX, A, r, -Math.min(a, 1.2), Math.min(a, 1.2)); ctx.stroke(); ctx.restore(); }
+      for (let x = LX + 20 + ph; x < 590; x += 40) vline(ctx, x, A - 125, A + 125, P.accent, 2);
+      [-100, -50, 0, 50, 100].forEach(h => ray(ctx, [[FX, A], [LX, A + h], [590, A + h]], P.ke, { lw: 1, alpha: 0.6 })); }
+    if (st === 2) { const R = 2000, cx = -R + 300; for (let r = R - 120 + ph; r < R + 300; r += 40) { ctx.save(); ctx.strokeStyle = P.accent; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(cx, 270, r, -0.12, 0.12); ctx.stroke(); ctx.restore(); }
+      ball(ctx, 520, 270, 26, P.leaf); label(ctx, 'Earth', 520, 314, { align: 'center', size: 12 }); label(ctx, 'from a star very far to the left', 40, 60, { weight: 700, size: 13 }); }
+    label(ctx, ['(a) spherical', '(b) plane', '(c) plane'][st], 300, 500, { align: 'center', weight: 800, size: 17, color: P.accent });
+    partsPanel(ctx, 630, 34, 300, 'Answers', ['(a) Spherical', '(b) Plane', '(c) Plane'], st, false);
+    note(ctx, 'sizes illustrative; orange: rays');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>
