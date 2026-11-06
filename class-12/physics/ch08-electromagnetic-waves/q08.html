@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 12 Physics · Exercise 8.8</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 12 Physics</a> · <a href="index.html">Ch. 8 Electromagnetic Waves</a></p>
+      <h1>Exercise 8.8 · A 50 MHz wave: B₀, ω, k, λ</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q07.html">‹ 8.7</a><a href="index.html">All questions</a><a href="q09.html">8.9 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 8.8">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A 50 MHz wave with an electric amplitude of 120 N/C travels along x; its magnetic amplitude is 400 nT, its wavelength 6.0 m, ω = 3.14 × 10⁸ rad/s and k = 1.05 rad/m."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>8.8</b> Suppose that the electric field amplitude of an electromagnetic wave is E<sub>0</sub> = 120 N/C and that its frequency is ν = 50.0 MHz. (a) Determine, B<sub>0</sub>, ω, k, and λ. (b) Find expressions for E and B.</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>E<sub>0</sub> = 120 N/C; ν = 50.0 MHz; c = 3 × 10<sup>8</sup> m/s.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>(a) B<sub>0</sub>, ω, k, λ (b) expressions for E and B.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Direction of travel (x) and of E (y) chosen for the picture.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>(a) B<sub>0</sub> = E<sub>0</sub>/c = 120/3 × 10<sup>8</sup> = 4.0 × 10<sup>−7</sup> T (400 nT).</li>
+          <li>ω = 2πν = 2π × 50 × 10<sup>6</sup> ≈ 3.14 × 10<sup>8</sup> rad/s; k = ω/c ≈ 1.05 rad/m; λ = c/ν = 6.0 m.</li>
+          <li>(b) For a wave along x with E along y: E = 120 sin(1.05 x − 3.14 × 10<sup>8</sup> t) ĵ N/C and B = 4.0 × 10<sup>−7</sup> sin(1.05 x − 3.14 × 10<sup>8</sup> t) k̂ T.</li>
+        </ol>
+        <p class="final">(a) 400 nT; 3.14 × 10<sup>8</sup> rad/s; 1.05 rad/m; 6.0 m (b) E = 120 sin(1.05x − 3.14 × 10<sup>8</sup>t) ĵ, B = 4 × 10<sup>−7</sup> sin(1.05x − 3.14 × 10<sup>8</sup>t) k̂.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 12), Chapter 8 (Electromagnetic Waves), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const OX = 130, OY = 290, LX = 420, LAM = 150, AE = 110, AB = 90;   // 150 px = one wavelength (6.0 m)
+  const pr = (y, z, x) => [OX + x - 0.55 * z, OY - y + 0.35 * z];   // travel along x; E along y (up); B along z (drawn down-left)
+  const qStages = [
+    { title: 'A 50 MHz wave', dur: 5, text: 'An electromagnetic wave with E₀ = 120 N/C and ν = 50.0 MHz.' },
+    { title: 'What is asked', dur: 5, text: '(a) B₀, ω, k and λ. (b) Expressions for E and B.' },
+  ];
+  const stages = [
+    { title: 'B₀', dur: 5, text: 'In vacuum E₀ = cB₀.', ans: 'B₀ = 120/3 × 10⁸ = 4.0 × 10⁻⁷ T (400 nT).' },
+    { title: 'ω, k, λ', dur: 6, text: 'ω = 2πν, k = ω/c, λ = c/ν.', ans: 'ω ≈ 3.14 × 10⁸ rad/s, k ≈ 1.05 rad/m, λ = 6.0 m.' },
+    { title: 'Expressions', dur: 6, text: 'For travel along x with E along y:', ans: 'E = 120 sin(1.05x − 3.14 × 10⁸ t) ĵ N/C; B = 4.0 × 10⁻⁷ sin(1.05x − 3.14 × 10⁸ t) k̂ T.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    arrow(ctx, ...pr(0, 0, 0), ...pr(0, 0, LX + 20), P.ink2, { lw: 1.5, head: 9 }); label(ctx, 'x', ...pr(0, 0, LX + 34), { weight: 800, size: 15, italic: true });
+    arrow(ctx, ...pr(0, 0, 0), ...pr(150, 0, 0), P.ink2, { lw: 1.5, head: 9 }); label(ctx, 'y', ...pr(160, 0, 4), { weight: 800, size: 15, italic: true });
+    arrow(ctx, ...pr(0, 0, 0), ...pr(0, 170, 0), P.ink2, { lw: 1.5, head: 9 }); label(ctx, 'z', ...pr(-10, 186, 0), { weight: 800, size: 15, italic: true });
+    const ph = 1.4 * t, f = x => Math.sin(2 * Math.PI * x / LAM - ph);
+    const ce = [], cb = []; for (let x = 0; x <= LX; x += 4) { ce.push(pr(AE * f(x), 0, x)); cb.push(pr(0, AB * f(x), x)); }
+    for (let x = 0; x <= LX; x += 10) { ctx.save(); ctx.globalAlpha = 0.6; ctx.strokeStyle = P.force; ctx.lineWidth = 1.5; seg(ctx, ...pr(0, 0, x), ...pr(AE * f(x), 0, x)); if (ans) { ctx.strokeStyle = P.vel; seg(ctx, ...pr(0, 0, x), ...pr(0, AB * f(x), x)); } ctx.restore(); }
+    wire(ctx, ce, P.force, 2.5); label(ctx, 'E₀ = 120 N/C', ...pr(AE + 20, 0, 40), { weight: 800, size: 14, color: P.force });
+    label(ctx, 'ν = 50.0 MHz', 590, 40, { align: 'right', weight: 700, size: 13 });
+    if (ans) {
+      const st = stageAt(stages, t);
+      wire(ctx, cb, P.vel, 2.5); label(ctx, 'B₀ = 400 nT', ...pr(0, AB + 26, 110), { weight: 800, size: 14, color: P.vel });
+      if (st >= 1) { const a = pr(-140, 0, 200), b = pr(-140, 0, 200 + LAM); dim(ctx, a[0], b[0], a[1], P.ink2); label(ctx, 'λ = 6.0 m', (a[0] + b[0]) / 2, a[1] + 16, { align: 'center', weight: 800, size: 15, color: P.accent }); }
+      partsPanel(ctx, 630, 34, 300, 'Answers', ['B₀ = 4.0 × 10⁻⁷ T', 'ω = 3.14 × 10⁸ rad/s; k = 1.05 rad/m; λ = 6.0 m', 'E = 120 sin(1.05x − 3.14 × 10⁸t) ĵ; B = 4 × 10⁻⁷ sin(…) k̂'], st, false);
+    } else askedPanel(ctx, 630, 34, 300, ['(a) B₀, ω, k and λ.', '(b) Expressions for E and B.']);
+    note(ctx, 'travel along x and E along y chosen for the picture; 25 px per m along x; amplitudes not to scale');
+  }
+  return { qStages, stages, draw };
+})();
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

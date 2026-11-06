@@ -3645,8 +3645,110 @@
   "subject": "physics",
   "chapter": 8,
   "chapter_title": "Electromagnetic Waves",
-  "status": "planned",
-  "ncert_pdf": "https://ncert.nic.in/textbook/pdf/leph108.pdf"
+  "question": "8.1",
+  "title": "Displacement current in a charging capacitor",
+  "status": "animated",
+  "file": "class-12/physics/ch08-electromagnetic-waves/q01.html",
+  "text": "Figure 8.5 shows a capacitor made of two circular plates each of radius 12 cm, and separated by 5.0 cm. The capacitor is being charged by an external source (not shown in the figure). The charging current is constant and equal to 0.15A. (a) Calculate the capacitance and the rate of change of potential difference between the plates. (b) Obtain the displacement current across the plates. (c) Is Kirchhoff’s first rule (junction rule) valid at each plate of the capacitor? Explain."
+ },
+ {
+  "class": 12,
+  "subject": "physics",
+  "chapter": 8,
+  "chapter_title": "Electromagnetic Waves",
+  "question": "8.2",
+  "title": "Field inside a capacitor on ac",
+  "status": "animated",
+  "file": "class-12/physics/ch08-electromagnetic-waves/q02.html",
+  "text": "A parallel plate capacitor (Fig. 8.6) made of circular plates each of radius R = 6.0 cm has a capacitance C = 100 pF. The capacitor is connected to a 230 V ac supply with a (angular) frequency of 300 rad s–1. (a) What is the rms value of the conduction current? (b) Is the conduction current equal to the displacement current? (c) Determine the amplitude of B at a point 3.0 cm from the axis between the plates."
+ },
+ {
+  "class": 12,
+  "subject": "physics",
+  "chapter": 8,
+  "chapter_title": "Electromagnetic Waves",
+  "question": "8.3",
+  "title": "What X-rays, light and radio share",
+  "status": "worked answer",
+  "file": "class-12/physics/ch08-electromagnetic-waves/q03.html",
+  "text": "What physical quantity is the same for X-rays of wavelength 10–10 m, red light of wavelength 6800 Å and radiowaves of wavelength 500m?"
+ },
+ {
+  "class": 12,
+  "subject": "physics",
+  "chapter": 8,
+  "chapter_title": "Electromagnetic Waves",
+  "question": "8.4",
+  "title": "A plane wave along z at 30 MHz",
+  "status": "animated",
+  "file": "class-12/physics/ch08-electromagnetic-waves/q04.html",
+  "text": "A plane electromagnetic wave travels in vacuum along z-direction. What can you say about the directions of its electric and magnetic field vectors? If the frequency of the wave is 30 MHz, what is its wavelength?"
+ },
+ {
+  "class": 12,
+  "subject": "physics",
+  "chapter": 8,
+  "chapter_title": "Electromagnetic Waves",
+  "question": "8.5",
+  "title": "Wavelength band of a radio",
+  "status": "worked answer",
+  "file": "class-12/physics/ch08-electromagnetic-waves/q05.html",
+  "text": "A radio can tune in to any station in the 7.5 MHz to 12 MHz band. What is the corresponding wavelength band?"
+ },
+ {
+  "class": 12,
+  "subject": "physics",
+  "chapter": 8,
+  "chapter_title": "Electromagnetic Waves",
+  "question": "8.6",
+  "title": "Frequency radiated by an oscillating charge",
+  "status": "worked answer",
+  "file": "class-12/physics/ch08-electromagnetic-waves/q06.html",
+  "text": "A charged particle oscillates about its mean equilibrium position with a frequency of 109 Hz. What is the frequency of the electromagnetic waves produced by the oscillator?"
+ },
+ {
+  "class": 12,
+  "subject": "physics",
+  "chapter": 8,
+  "chapter_title": "Electromagnetic Waves",
+  "question": "8.7",
+  "title": "E amplitude from B amplitude",
+  "status": "worked answer",
+  "file": "class-12/physics/ch08-electromagnetic-waves/q07.html",
+  "text": "The amplitude of the magnetic field part of a harmonic electromagnetic wave in vacuum is B0 = 510 nT. What is the amplitude of the electric field part of the wave?"
+ },
+ {
+  "class": 12,
+  "subject": "physics",
+  "chapter": 8,
+  "chapter_title": "Electromagnetic Waves",
+  "question": "8.8",
+  "title": "A 50 MHz wave: B₀, ω, k, λ",
+  "status": "animated",
+  "file": "class-12/physics/ch08-electromagnetic-waves/q08.html",
+  "text": "Suppose that the electric field amplitude of an electromagnetic wave is E0 = 120 N/C and that its frequency is ν = 50.0 MHz. (a) Determine, B0, ω, k, and λ. (b) Find expressions for E and B."
+ },
+ {
+  "class": 12,
+  "subject": "physics",
+  "chapter": 8,
+  "chapter_title": "Electromagnetic Waves",
+  "question": "8.9",
+  "title": "Photon energies across the spectrum",
+  "status": "worked answer",
+  "file": "class-12/physics/ch08-electromagnetic-waves/q09.html",
+  "text": "The terminology of different parts of the electromagnetic spectrum is given in the text. Use the formula E = hν (for energy of a quantum of radiation: photon) and obtain the photon energy in units of eV for different parts of the electromagnetic spectrum. In what way are the different scales of photon energies that you obtain related to the sources of electromagnetic radiation?"
+ },
+ {
+  "class": 12,
+  "subject": "physics",
+  "chapter": 8,
+  "chapter_title": "Electromagnetic Waves",
+  "question": "8.10",
+  "title": "A 2 × 10¹⁰ Hz wave: λ, B₀, energy densities",
+  "status": "worked answer",
+  "file": "class-12/physics/ch08-electromagnetic-waves/q10.html",
+  "text": "In a plane electromagnetic wave, the electric field oscillates sinusoidally at a frequency of 2.0 × 1010 Hz and amplitude 48 V m–1. (a) What is the wavelength of the wave? (b) What is the amplitude of the oscillating magnetic field? (c) Show that the average energy density of the E field equals the average energy density of the B field. [c = 3 × 108 m s–1.]"
  },
  {
   "class": 12,

@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 12 Physics · Exercise 8.4</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 12 Physics</a> · <a href="index.html">Ch. 8 Electromagnetic Waves</a></p>
+      <h1>Exercise 8.4 · A plane wave along z at 30 MHz</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q03.html">‹ 8.3</a><a href="index.html">All questions</a><a href="q05.html">8.5 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 8.4">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A wave moving along z with its electric field oscillating along x and its magnetic field along y, at right angles to each other and to the direction of travel; at 30 MHz its wavelength is 10 m."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>8.4</b> A plane electromagnetic wave travels in vacuum along z-direction. What can you say about the directions of its electric and magnetic field vectors? If the frequency of the wave is 30 MHz, what is its wavelength?</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Propagation along z, in vacuum; ν = 30 MHz.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>Directions of E and B; λ.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>E chosen along x; it could be any direction in the xy-plane, with B at right angles to it.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>E and B both lie in the xy-plane, perpendicular to z and to each other, with E × B along +z.</li>
+          <li>λ = c/ν = 3 × 10<sup>8</sup>/30 × 10<sup>6</sup> = 10 m.</li>
+        </ol>
+        <p class="final">E ⟂ B, both in the xy-plane; λ = 10 m.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 12), Chapter 8 (Electromagnetic Waves), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const OX = 130, OY = 300, LZ = 420, LAM = 200, AE = 110, AB = 90;   // 200 px = one wavelength (10 m)
+  const pr = (x, y, z) => [OX + z - 0.55 * y, OY - x + 0.35 * y];   // x: E axis (up), y: B axis (towards viewer, drawn down-left), z: travel
+  const qStages = [
+    { title: 'A plane wave along z', dur: 6, text: 'A plane electromagnetic wave travels in vacuum along the z-direction; its frequency is 30 MHz.' },
+    { title: 'What is asked', dur: 4, text: 'The directions of E and B. The wavelength.' },
+  ];
+  const stages = [
+    { title: 'E and B', dur: 8, text: 'Both fields are at right angles to the direction of travel and to each other; E × B points along +z. They rise and fall together.', ans: 'E along x, B along y (both in the xy-plane), E ⟂ B ⟂ z.' },
+    { title: 'Wavelength', dur: 5, text: 'λ = c/ν.', ans: 'λ = 3 × 10⁸/30 × 10⁶ = 10 m.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    arrow(ctx, ...pr(0, 0, 0), ...pr(0, 0, LZ + 20), P.ink2, { lw: 1.5, head: 9 }); label(ctx, 'z', ...pr(0, 0, LZ + 34), { weight: 800, size: 15, italic: true });
+    arrow(ctx, ...pr(0, 0, 0), ...pr(150, 0, 0), P.ink2, { lw: 1.5, head: 9 }); label(ctx, 'x', ...pr(160, 0, 4), { weight: 800, size: 15, italic: true });
+    arrow(ctx, ...pr(0, 0, 0), ...pr(0, 170, 0), P.ink2, { lw: 1.5, head: 9 }); label(ctx, 'y', ...pr(-10, 186, 0), { weight: 800, size: 15, italic: true });
+    if (!ans) { vec(ctx, ...pr(0, 0, 260), 80, 0, 'direction of travel', P.ink, { side: -1, at: 0.5, lw: 3 }); askedPanel(ctx, 630, 34, 300, ['The directions of the electric and magnetic field vectors.', 'The wavelength at 30 MHz.']); return; }
+    const st = stageAt(stages, t), ph = 1.4 * t, f = z => Math.sin(2 * Math.PI * z / LAM - ph);
+    for (let z = 0; z <= LZ; z += 10) { const e = AE * f(z), b = AB * f(z); ctx.save(); ctx.globalAlpha = 0.6; ctx.strokeStyle = P.force; ctx.lineWidth = 1.5; seg(ctx, ...pr(0, 0, z), ...pr(e, 0, z)); ctx.strokeStyle = P.vel; seg(ctx, ...pr(0, 0, z), ...pr(0, b, z)); ctx.restore(); }
+    const ce = [], cb = []; for (let z = 0; z <= LZ; z += 4) { ce.push(pr(AE * f(z), 0, z)); cb.push(pr(0, AB * f(z), z)); }
+    wire(ctx, ce, P.force, 2.5); wire(ctx, cb, P.vel, 2.5);
+    label(ctx, 'E', ...pr(AE + 18, 0, 50), { weight: 800, size: 16, color: P.force }); label(ctx, 'B', ...pr(0, AB + 20, 100), { weight: 800, size: 16, color: P.vel });
+    if (st >= 1) { const a = pr(-140, 0, 150), b = pr(-140, 0, 150 + LAM); dim(ctx, a[0], b[0], a[1], P.ink2); label(ctx, 'λ = 10 m', (a[0] + b[0]) / 2, a[1] + 16, { align: 'center', weight: 800, size: 15, color: P.accent }); }
+    partsPanel(ctx, 630, 34, 300, 'Answers', ['E ⟂ B, both ⟂ z (in the xy-plane)', 'λ = c/ν = 10 m'], st, false);
+    note(ctx, 'E drawn along x (any direction in the xy-plane is possible); 20 px per m along z');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

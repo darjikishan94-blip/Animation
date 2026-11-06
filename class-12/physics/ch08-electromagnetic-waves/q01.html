@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 12 Physics · Exercise 8.1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 12 Physics</a> · <a href="index.html">Ch. 8 Electromagnetic Waves</a></p>
+      <h1>Exercise 8.1 · Displacement current in a charging capacitor</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><span>‹</span><a href="index.html">All questions</a><a href="q02.html">8.2 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 8.1">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A steady 0.15 A charges two circular plates; the field between them grows steadily, and that changing field carries a displacement current of 0.15 A across the gap, continuing the conduction current."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>8.1</b> Figure 8.5 shows a capacitor made of two circular plates each of radius 12 cm, and separated by 5.0 cm. The capacitor is being charged by an external source (not shown in the figure). The charging current is constant and equal to 0.15A. (a) Calculate the capacitance and the rate of change of potential difference between the plates. (b) Obtain the displacement current across the plates. (c) Is Kirchhoff’s first rule (junction rule) valid at each plate of the capacitor? Explain.</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Circular plates, r = 0.12 m; d = 0.050 m; air; charging current I = 0.15 A (constant); ε<sub>0</sub> = 8.85 × 10<sup>−12</sup> C<sup>2</sup> N<sup>−1</sup> m<sup>−2</sup>.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>(a) C and dV/dt (b) the displacement current (c) does the junction rule hold at each plate?</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Side view, 1 px per mm; field lines between the plates thicken as the field grows.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>(a) C = ε<sub>0</sub>πr<sup>2</sup>/d = 8.85 × 10<sup>−12</sup> × π × 0.12<sup>2</sup>/0.050 ≈ 8.0 × 10<sup>−12</sup> F (8.0 pF).</li>
+          <li>dV/dt = I/C = 0.15/8.0 × 10<sup>−12</sup> ≈ 1.9 × 10<sup>10</sup> V s<sup>−1</sup>.</li>
+          <li>(b) i<sub>d</sub> = ε<sub>0</sub> dΦ<sub>E</sub>/dt = C dV/dt = 0.15 A, the same as the conduction current.</li>
+          <li>(c) Yes, if the displacement current is counted: the conduction current reaching a plate equals the displacement current leaving it across the gap.</li>
+        </ol>
+        <p class="final">(a) 8.0 pF; 1.9 × 10<sup>10</sup> V/s (b) 0.15 A (c) Yes, counting the displacement current.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 12), Chapter 8 (Electromagnetic Waves), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const XL = 275, XR = 325, YT = 150, YB = 390, D = 10;   // plates 240 mm across, 50 mm apart: 1 px per mm
+  const qStages = [
+    { title: 'A capacitor charging', dur: 6, text: 'Circular plates of radius 12 cm, 5.0 cm apart, charged by a constant current of 0.15 A.' },
+    { title: 'What is asked', dur: 5, text: '(a) C and the rate of change of V. (b) The displacement current. (c) Does the junction rule hold at each plate?' },
+  ];
+  const stages = [
+    { title: 'Capacitance and dV/dt', dur: 6, text: 'C = ε₀πr²/d; dV/dt = I/C.', ans: '(a) C ≈ 8.0 pF; dV/dt = 0.15/8.0 × 10⁻¹² ≈ 1.9 × 10¹⁰ V/s.' },
+    { title: 'Displacement current', dur: D, text: 'The field between the plates grows steadily; i_d = ε₀ dΦ_E/dt = C dV/dt.', ans: '(b) i_d = 0.15 A: the conduction current carries on across the gap.' },
+    { title: 'Junction rule', dur: 5, text: 'Current into a plate (conduction) = current out across the gap (displacement).', ans: '(c) Yes, when the displacement current is counted.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    ctx.fillStyle = P.obj; ctx.fillRect(XL - 6, YT, 6, YB - YT); ctx.fillRect(XR, YT, 6, YB - YT);
+    wire(ctx, [[40, 270], [XL - 6, 270]], P.ink, 3); wire(ctx, [[XR + 6, 270], [570, 270]], P.ink, 3);
+    flow(ctx, [[40, 270], [XL - 6, 270]], t * 40, P.force, 24, 3.5); flow(ctx, [[XR + 6, 270], [570, 270]], t * 40, P.force, 24, 3.5);
+    label(ctx, 'I = 0.15 A', 150, 250, { align: 'center', weight: 800, size: 14, color: P.force }); label(ctx, 'I = 0.15 A', 450, 250, { align: 'center', weight: 800, size: 14, color: P.force });
+    vdim(ctx, XL - 30, YT, YB, P.ink2); label(ctx, '24 cm', XL - 38, 210, { align: 'right', weight: 700, size: 12 }); dim(ctx, XL, XR, YB + 22, P.ink2); label(ctx, '5.0 cm', 300, YB + 38, { align: 'center', weight: 700, size: 12 });
+    const grow = ans ? clamp(t / (stages[1].t1)) : clamp(t / (qStages[0].dur + qStages[1].dur));
+    const n = 2 + Math.round(9 * grow);
+    for (let k = 0; k < n; k++) { const y = YT + 12 + k * (YB - YT - 24) / Math.max(1, n - 1); arrow(ctx, XL + 2, y, XR - 2, y, P.vel, { lw: 1.5, head: 7, alpha: 0.8 }); }
+    if (ans) {
+      const st = stageAt(stages, t);
+      label(ctx, 'C ≈ 8.0 pF;  dV/dt ≈ 1.9 × 10¹⁰ V/s', 300, 120, { align: 'center', weight: 800, size: 14, color: P.vel });
+      if (st >= 1) { ctx.save(); ctx.setLineDash([6, 4]); arrow(ctx, XL + 8, 450, XR - 8, 450, P.accent, { lw: 3, head: 10 }); ctx.restore(); label(ctx, 'i_d = 0.15 A', 300, 474, { align: 'center', weight: 800, size: 15, color: P.accent }); }
+      partsPanel(ctx, 630, 34, 300, 'Answers', ['(a) C ≈ 8.0 pF; dV/dt ≈ 1.9 × 10¹⁰ V/s', '(b) i_d = 0.15 A', '(c) Yes, counting i_d'], st, false);
+    } else askedPanel(ctx, 630, 34, 300, ['(a) The capacitance and the rate of change of potential difference.', '(b) The displacement current across the plates.', '(c) Whether the junction rule is valid at each plate.']);
+    note(ctx, ans ? 'side view, 1 px per mm; blue: E between the plates (more lines = stronger field)' : 'side view, 1 px per mm');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

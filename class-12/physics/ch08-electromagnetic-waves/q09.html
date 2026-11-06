@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 12 Physics · Exercise 8.9</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 12 Physics</a> · <a href="index.html">Ch. 8 Electromagnetic Waves</a></p>
+      <h1>Exercise 8.9 · Photon energies across the spectrum</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q08.html">‹ 8.8</a><a href="index.html">All questions</a><a href="q10.html">8.10 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 8.9">
+    <p class="qline"><b>8.9</b> The terminology of different parts of the electromagnetic spectrum is given in the text. Use the formula E = hν (for energy of a quantum of radiation: photon) and obtain the photon energy in units of eV for different parts of the electromagnetic spectrum. In what way are the different scales of photon energies that you obtain related to the sources of electromagnetic radiation?</p>
+    <p><button type="button" class="btn reveal" id="show" aria-pressed="false" style="margin-left:0">Show answer</button></p>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>E = hν = hc/λ; hc ≈ 1240 eV nm.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>Photon energies for each part of the spectrum; link to the sources.</p>
+      </div>
+      <div>
+        <h3>Why there is no animation</h3>
+        <ul>
+          <li>This question asks for a short explanation or a table rather than describing one situation to follow; the page shows the question and a worked answer.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>Using E (eV) ≈ 1240/λ (nm):</li>
+          <li>Radio (λ ≳ 0.1 m): ≲ 10<sup>−5</sup> eV. Microwaves (1 mm–0.1 m): 10<sup>−5</sup>–10<sup>−3</sup> eV. Infrared (700 nm–1 mm): 10<sup>−3</sup>–1.8 eV.</li>
+          <li>Visible (400–700 nm): 1.8–3.1 eV. Ultraviolet (1–400 nm): 3.1 eV–1.2 keV. X-rays (about 0.001–10 nm): 0.1 keV–1 MeV. Gamma rays (≲ 0.01 nm): ≳ 0.1 MeV.</li>
+          <li>The photon energy matches the spacing of the energy levels of the source: radio and microwaves from accelerated charges in circuits and molecular rotations; infrared from molecular vibrations; visible and UV from outer (valence) electrons of atoms; X-rays from inner electrons; gamma rays from nuclei.</li>
+        </ol>
+        <p class="final">Energies range from ≲ 10<sup>−5</sup> eV (radio) to ≳ 10<sup>5</sup> eV (γ); each matches the energy-level spacing of its source.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 12), Chapter 8 (Electromagnetic Waves), Exercises. </p>
+</div>
+<script>
+const b = document.getElementById('show'), a = document.querySelector('.answer');
+b.addEventListener('click', () => { a.hidden = !a.hidden; b.setAttribute('aria-pressed', String(!a.hidden)); b.textContent = a.hidden ? 'Show answer' : 'Hide answer'; });
+</script>
+</body>
+</html>

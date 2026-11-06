@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 12 Physics · Exercise 8.2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 12 Physics</a> · <a href="index.html">Ch. 8 Electromagnetic Waves</a></p>
+      <h1>Exercise 8.2 · Field inside a capacitor on ac</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q01.html">‹ 8.1</a><a href="index.html">All questions</a><a href="q03.html">8.3 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 8.2">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="Looking face-on at the plates, the alternating displacement current between them makes a magnetic field circling the axis; it grows in proportion to the distance from the axis, reaching 1.63 × 10⁻¹¹ T at 3 cm."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>8.2</b> A parallel plate capacitor (Fig. 8.6) made of circular plates each of radius R = 6.0 cm has a capacitance C = 100 pF. The capacitor is connected to a 230 V ac supply with a (angular) frequency of 300 rad s<sup>–1</sup>. (a) What is the rms value of the conduction current? (b) Is the conduction current equal to the displacement current? (c) Determine the amplitude of B at a point 3.0 cm from the axis between the plates.</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>R = 0.060 m; C = 100 pF; V<sub>rms</sub> = 230 V; ω = 300 rad s<sup>−1</sup>; point at r = 0.030 m; μ<sub>0</sub> = 4π × 10<sup>−7</sup> T m A<sup>−1</sup>.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>(a) I<sub>rms</sub> (b) is i<sub>c</sub> = i<sub>d</sub>? (c) B<sub>0</sub> at 3.0 cm.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Face-on view of the plates, 2.5 px per mm; the graph is B<sub>0</sub>(r) computed.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>(a) I<sub>rms</sub> = V<sub>rms</sub>ωC = 230 × 300 × 100 × 10<sup>−12</sup> = 6.9 × 10<sup>−6</sup> A (6.9 μA).</li>
+          <li>(b) Yes: the displacement current between the plates equals the conduction current in the wires at every instant.</li>
+          <li>(c) Inside, only the fraction r<sup>2</sup>/R<sup>2</sup> of i<sub>d</sub> is enclosed: B = μ<sub>0</sub>ri/(2πR<sup>2</sup>). With the peak current I<sub>0</sub> = √2 × 6.9 μA = 9.76 μA:</li>
+          <li>B<sub>0</sub> = 4π × 10<sup>−7</sup> × 0.030 × 9.76 × 10<sup>−6</sup>/(2π × 0.060<sup>2</sup>) ≈ 1.63 × 10<sup>−11</sup> T.</li>
+        </ol>
+        <p class="final">(a) 6.9 μA (b) Yes (c) 1.63 × 10<sup>−11</sup> T.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 12), Chapter 8 (Electromagnetic Waves), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const CX = 160, CY = 270, R = 150, r = 75, D = 10, WS = 1.6;   // 2.5 px per mm; ac shown slowed
+  const G = { x: 340, y: 120, w: 220, h: 260, x0: 0, x1: 12, y0: 0, y1: 3.6, xt: [3, 6, 12], yt: [1.63, 3.25], xl: 'r (cm)', yl: 'B₀ (10⁻¹¹ T)' };
+  const B0 = x => x <= 6 ? 3.254 * x / 6 : 3.254 * 6 / x;   // 10⁻¹¹ T; 3.25 at the rim
+  const qStages = [
+    { title: 'A capacitor on ac', dur: 5, text: 'Circular plates, R = 6.0 cm, C = 100 pF, on a 230 V supply at ω = 300 rad/s. Looking face-on at the plates.' },
+    { title: 'What is asked', dur: 5, text: '(a) The rms conduction current. (b) Is it equal to the displacement current? (c) The amplitude of B 3.0 cm from the axis, between the plates.' },
+  ];
+  const stages = [
+    { title: 'Conduction current', dur: 5, text: 'I_rms = V_rms/X_C = V_rms ωC.', ans: '(a) 230 × 300 × 100 × 10⁻¹² = 6.9 × 10⁻⁶ A. (b) Yes: i_d = i_c.' },
+    { title: 'B between the plates', dur: D, text: 'Ampère–Maxwell: a circle of radius r encloses r²/R² of the displacement current, so B = μ₀ri/2πR².', ans: '(c) With I₀ = 9.76 μA: B₀ = μ₀ × 0.030 × I₀/(2π × 0.060²) ≈ 1.63 × 10⁻¹¹ T.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    ctx.save(); ctx.fillStyle = P.objFill; ctx.beginPath(); ctx.arc(CX, CY, R, 0, 2 * Math.PI); ctx.fill(); ctx.strokeStyle = P.obj; ctx.lineWidth = 2; ctx.stroke(); ctx.restore();
+    label(ctx, 'plate, R = 6.0 cm', CX, CY - R - 16, { align: 'center', weight: 700, size: 13 });
+    const ph = Math.sin(WS * t), out = ph > 0;   // E ∝ sin ωt; B (below) ∝ dE/dt ∝ cos ωt, a quarter cycle ahead
+    for (let x = CX - 120; x <= CX + 120; x += 40) for (let y = CY - 120; y <= CY + 120; y += 40) if (Math.hypot(x - CX, y - CY) < R - 12) fieldSym(ctx, x, y, out, 4 + 3 * Math.abs(ph), P.vel);
+    ctx.save(); ctx.strokeStyle = P.ink2; ctx.setLineDash([4, 4]); ctx.lineWidth = 1.2; ctx.beginPath(); ctx.arc(CX, CY, r, 0, 2 * Math.PI); ctx.stroke(); ctx.restore();
+    ball(ctx, CX + r, CY, 5, P.ink); label(ctx, '3.0 cm', CX + r / 2, CY + 14, { align: 'center', weight: 700, size: 12 });
+    if (ans) {
+      const st = stageAt(stages, t);
+      if (st >= 1) {
+        const L = -40 * Math.cos(WS * t); [0, 1, 2, 3].forEach(k => { const a = k * Math.PI / 2, x = CX + r * Math.cos(a), y = CY + r * Math.sin(a); vec(ctx, x, y, -L * Math.sin(a), L * Math.cos(a), '', P.accent, { lw: 3, head: 9 }); });
+        const g = axes(ctx, G); plot(ctx, g, B0, 0, 12 * clamp((t - stages[1].t0) / 4), P.accent);
+        if (t - stages[1].t0 > 4) { ball(ctx, g.X(3), g.Y(1.63), 5, P.accent); hline(ctx, g.X(0), g.X(3), g.Y(1.63), P.accent, 1, [3, 3]); }
+        label(ctx, 'B₀ = 1.63 × 10⁻¹¹ T at 3 cm', 450, 430, { align: 'center', weight: 800, size: 14, color: P.accent });
+      }
+      partsPanel(ctx, 630, 34, 300, 'Answers', ['(a) I_rms = 6.9 μA; (b) yes, i_d = i_c', '(c) B₀ ≈ 1.63 × 10⁻¹¹ T'], st, false);
+    } else askedPanel(ctx, 630, 34, 300, ['(a) The rms conduction current.', '(b) Whether it equals the displacement current.', '(c) The amplitude of B at 3.0 cm from the axis.']);
+    note(ctx, ans ? 'face-on, 2.5 px per mm; blue: E between the plates (alternating, slowed); green: B; graph computed' : 'face-on, 2.5 px per mm; blue: E between the plates, alternating (slowed)');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

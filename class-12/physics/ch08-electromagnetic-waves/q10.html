@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 12 Physics · Exercise 8.10</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 12 Physics</a> · <a href="index.html">Ch. 8 Electromagnetic Waves</a></p>
+      <h1>Exercise 8.10 · A 2 × 10¹⁰ Hz wave: λ, B₀, energy densities</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q09.html">‹ 8.9</a><a href="index.html">All questions</a><span>›</span></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 8.10">
+    <p class="qline"><b>8.10</b> In a plane electromagnetic wave, the electric field oscillates sinusoidally at a frequency of 2.0 × 10<sup>10</sup> Hz and amplitude 48 V m<sup>–1</sup>. (a) What is the wavelength of the wave? (b) What is the amplitude of the oscillating magnetic field? (c) Show that the average energy density of the E field equals the average energy density of the B field. [c = 3 × 10<sup>8</sup> m s<sup>–1</sup>.]</p>
+    <p><button type="button" class="btn reveal" id="show" aria-pressed="false" style="margin-left:0">Show answer</button></p>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>ν = 2.0 × 10<sup>10</sup> Hz; E<sub>0</sub> = 48 V/m; c = 3 × 10<sup>8</sup> m/s.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>(a) λ (b) B<sub>0</sub> (c) u<sub>E</sub> = u<sub>B</sub>.</p>
+      </div>
+      <div>
+        <h3>Why there is no animation</h3>
+        <ul>
+          <li>This is a direct calculation with nothing moving to show; the page shows the question and a worked answer.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>(a) λ = c/ν = 3 × 10<sup>8</sup>/2.0 × 10<sup>10</sup> = 1.5 × 10<sup>−2</sup> m.</li>
+          <li>(b) B<sub>0</sub> = E<sub>0</sub>/c = 48/3 × 10<sup>8</sup> = 1.6 × 10<sup>−7</sup> T.</li>
+          <li>(c) u<sub>E</sub> = ½ε<sub>0</sub>E<sup>2</sup> and u<sub>B</sub> = B<sup>2</sup>/2μ<sub>0</sub>. With B = E/c and c<sup>2</sup> = 1/μ<sub>0</sub>ε<sub>0</sub>: B<sup>2</sup>/2μ<sub>0</sub> = E<sup>2</sup>/(2μ<sub>0</sub>c<sup>2</sup>) = ½ε<sub>0</sub>E<sup>2</sup>. Equal at every instant, so their averages (¼ε<sub>0</sub>E<sub>0</sub><sup>2</sup>) are equal.</li>
+        </ol>
+        <p class="final">(a) 1.5 cm (b) 1.6 × 10<sup>−7</sup> T (c) u<sub>E</sub> = u<sub>B</sub> = ¼ε<sub>0</sub>E<sub>0</sub><sup>2</sup> on average.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 12), Chapter 8 (Electromagnetic Waves), Exercises. </p>
+</div>
+<script>
+const b = document.getElementById('show'), a = document.querySelector('.answer');
+b.addEventListener('click', () => { a.hidden = !a.hidden; b.setAttribute('aria-pressed', String(!a.hidden)); b.textContent = a.hidden ? 'Show answer' : 'Hide answer'; });
+</script>
+</body>
+</html>
