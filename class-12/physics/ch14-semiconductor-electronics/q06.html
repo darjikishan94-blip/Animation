@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 12 Physics · Exercise 14.6</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 12 Physics</a> · <a href="index.html">Ch. 14 Semiconductor Electronics</a></p>
+      <h1>Exercise 14.6 · Output frequency of rectifiers</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q05.html">‹ 14.5</a><a href="index.html">All questions</a><span>›</span></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 14.6">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A 50 Hz input sine: the half-wave rectifier passes one hump per cycle (50 Hz output); the full-wave rectifier turns every half-cycle into a hump, giving 100 humps per second (100 Hz)."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>14.6</b> In half-wave rectification, what is the output frequency if the input frequency is 50 Hz. What is the output frequency of a full-wave rectifier for the same input frequency.</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Input 50 Hz ac.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>Output frequency for half-wave and full-wave rectification.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Three cycles (60 ms); curves to scale.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>Half-wave: one output pulse per input cycle: 50 Hz.</li>
+          <li>Full-wave: both halves of each cycle give a pulse: 2 × 50 = 100 Hz.</li>
+        </ol>
+        <p class="final">50 Hz; 100 Hz.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 12), Chapter 14 (Semiconductor Electronics), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const D = 8, W = 2 * Math.PI * 50;
+  const gs = y => ({ x: 60, y, w: 470, h: 110, x0: 0, x1: 60, y0: -1.2, y1: 1.2, xt: [20, 40, 60], yt: [], xl: 't (ms)' });
+  const qStages = [
+    { title: 'Rectifying 50 Hz ac', dur: 5, text: 'A 50 Hz alternating voltage is rectified, (a) half-wave, (b) full-wave.' },
+    { title: 'What is asked', dur: 4, text: 'The output frequency in each case.' },
+  ];
+  const stages = [
+    { title: 'Half-wave', dur: D, text: 'Only the positive half of each cycle gets through.', ans: 'One pulse per cycle: 50 Hz.' },
+    { title: 'Full-wave', dur: D, text: 'Both halves are turned the same way.', ans: 'Two pulses per cycle: 100 Hz.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    const te = 60 * clamp(t / (D - 2)), f = s => Math.sin(W * s / 1000);
+    label(ctx, 'input 50 Hz', 70, 34, { weight: 800, size: 13 }); let g = axes(ctx, gs(40)); plot(ctx, g, f, 0, ans ? 60 : te, P.vel);
+    if (ans) {
+      const st = stageAt(stages, t), k1 = st === 0 ? te : 60, k2 = st === 1 ? 60 * clamp((t - stages[1].t0) / (D - 2)) : 0;
+      label(ctx, 'half-wave output: 50 Hz', 70, 184, { weight: 800, size: 13, color: P.force }); g = axes(ctx, gs(190)); plot(ctx, g, s => Math.max(0, f(s)), 0, k1, P.force);
+      if (st >= 1) { label(ctx, 'full-wave output: 100 Hz', 70, 334, { weight: 800, size: 13, color: P.leaf }); g = axes(ctx, gs(340)); plot(ctx, g, s => Math.abs(f(s)), 0, k2, P.leaf); }
+      partsPanel(ctx, 630, 34, 300, 'Answers', ['Half-wave: 50 Hz', 'Full-wave: 100 Hz'], st, false);
+    } else askedPanel(ctx, 630, 34, 300, ['The output frequency of a half-wave rectifier, and of a full-wave rectifier, for a 50 Hz input.']);
+    note(ctx, 'three cycles (60 ms); amplitudes scaled to 1');
+  }
+  return { qStages, stages, draw };
+})();
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

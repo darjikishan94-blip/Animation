@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 12 Physics · Exercise 14.5</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 12 Physics</a> · <a href="index.html">Ch. 14 Semiconductor Electronics</a></p>
+      <h1>Exercise 14.5 · What forward bias does to the barrier</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q04.html">‹ 14.4</a><a href="index.html">All questions</a><a href="q06.html">14.6 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 14.5">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A p-n junction’s potential barrier, then a forward bias applied: the barrier height drops from V₀ to V₀ − V, the depletion layer narrows, and many more majority carriers can cross."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>14.5</b> When a forward bias is applied to a p-n junction, it (a) raises the potential barrier. (b) reduces the majority carrier current to zero. (c) lowers the potential barrier. (d) None of the above.</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>A p-n junction; forward bias V (p side to +).</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The effect of forward bias.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Barrier heights and widths illustrative.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>Forward bias opposes the built-in potential: the barrier falls from V<sub>0</sub> to V<sub>0</sub> − V and the depletion layer narrows, so the majority-carrier (diffusion) current rises sharply.</li>
+        </ol>
+        <p class="final">(c)</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 12), Chapter 14 (Semiconductor Electronics), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const XJ = 300, D = 7;
+  const qStages = [
+    { title: 'A p-n junction', dur: 5, text: 'At the junction a depletion layer and a potential barrier V₀ form. Now a forward bias is applied (p side to +).' },
+    { title: 'What is asked', dur: 4, text: 'Does forward bias (a) raise the barrier, (b) stop the majority current, (c) lower the barrier, (d) none?' },
+  ];
+  const stages = [
+    { title: 'No bias', dur: 5, text: 'The built-in potential V₀ holds back most majority carriers.', ans: '' },
+    { title: 'Forward bias', dur: D, text: 'The applied V opposes V₀: the barrier drops to V₀ − V and the depletion layer narrows.', ans: '(c) It lowers the potential barrier; the majority current rises sharply.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    const st = ans ? stageAt(stages, t) : -1, f = st === 1 ? smooth(clamp((t - stages[1].t0) / 3)) : 0, W = 70 * (1 - 0.5 * f), Hb = 120 * (1 - 0.6 * f);
+    ctx.save(); ctx.fillStyle = P.accentSoft; ctx.fillRect(60, 80, XJ - 60, 140); ctx.fillStyle = P.water; ctx.globalAlpha = 0.6; ctx.fillRect(XJ, 80, 540 - XJ, 140); ctx.restore();
+    ctx.save(); ctx.fillStyle = P.objFill2; ctx.globalAlpha = 0.7; ctx.fillRect(XJ - W / 2, 80, W, 140); ctx.restore();
+    label(ctx, 'p', 100, 100, { weight: 800, size: 18 }); label(ctx, 'n', 510, 100, { weight: 800, size: 18 }); label(ctx, 'depletion layer', XJ, 70, { align: 'center', weight: 700, size: 12 });
+    for (let k = 0; k < 12; k++) { const x = 80 + (k * 37) % 200, y = 100 + (k * 53) % 110; if (x < XJ - W / 2 - 6) label(ctx, '+', x, y, { align: 'center', weight: 800, size: 13, color: P.force }); const x2 = XJ + 20 + (k * 41) % 210; if (x2 > XJ + W / 2 + 6) label(ctx, '−', x2, 100 + (k * 47) % 110, { align: 'center', weight: 800, size: 14, color: P.vel }); }
+    if (ans) {
+      const BY = 440; label(ctx, 'energy of an electron across the junction (the barrier it must climb from n to p)', 300, 290, { align: 'center', size: 12, color: P.ink2 });
+      ctx.save(); ctx.strokeStyle = P.force; ctx.lineWidth = 3; ctx.beginPath(); ctx.moveTo(60, BY - Hb); ctx.lineTo(XJ - W / 2, BY - Hb); ctx.bezierCurveTo(XJ, BY - Hb, XJ, BY, XJ + W / 2, BY); ctx.lineTo(540, BY); ctx.stroke(); ctx.restore();
+      vdim(ctx, 570, BY - Hb, BY, P.ink2); label(ctx, st === 0 ? 'V₀' : 'V₀ − V', 562, BY - Hb / 2, { align: 'right', weight: 800, size: 14, color: P.accent });
+      if (st === 1) { wire(ctx, [[60, 150], [30, 150], [30, 240], [270, 240]]); wire(ctx, [[330, 240], [570, 240], [570, 150], [540, 150]]); cell(ctx, 290, 240, 310, 240); label(ctx, '+', 284, 220, { weight: 800, size: 13, color: P.force }); label(ctx, 'V (forward)', 300, 252 + 12, { align: 'center', weight: 700, size: 12 }); }
+      partsPanel(ctx, 630, 34, 300, 'Answer', ['Unbiased: barrier V₀', '(c) Forward bias lowers the barrier'], st, false);
+    } else askedPanel(ctx, 630, 34, 300, ['What forward bias does: (a) raises the barrier, (b) reduces the majority current to zero, (c) lowers the barrier, (d) none of these.']);
+    note(ctx, 'sizes illustrative');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

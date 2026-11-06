@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 12 Physics · Exercise 14.4</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 12 Physics</a> · <a href="index.html">Ch. 14 Semiconductor Electronics</a></p>
+      <h1>Exercise 14.4 · Why holes diffuse across a junction</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q03.html">‹ 14.3</a><a href="index.html">All questions</a><a href="q05.html">14.5 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 14.4">
+    <p class="qline"><b>14.4</b> In an unbiased p-n junction, holes diffuse from the p-region to n-region because (a) free electrons in the n-region attract them. (b) they move across the junction by the potential difference. (c) hole concentration in p-region is more as compared to n-region. (d) All the above.</p>
+    <p><button type="button" class="btn reveal" id="show" aria-pressed="false" style="margin-left:0">Show answer</button></p>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>An unbiased p-n junction.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The reason for hole diffusion.</p>
+      </div>
+      <div>
+        <h3>Why there is no animation</h3>
+        <ul>
+          <li>This is a multiple-choice question about ideas rather than one situation to follow; the page shows the question and the reasoned answer.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>Diffusion is driven by a difference in concentration: there are far more holes on the p side than on the n side. (The junction potential actually opposes this flow.)</li>
+        </ol>
+        <p class="final">(c)</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 12), Chapter 14 (Semiconductor Electronics), Exercises. </p>
+</div>
+<script>
+const b = document.getElementById('show'), a = document.querySelector('.answer');
+b.addEventListener('click', () => { a.hidden = !a.hidden; b.setAttribute('aria-pressed', String(!a.hidden)); b.textContent = a.hidden ? 'Show answer' : 'Hide answer'; });
+</script>
+</body>
+</html>

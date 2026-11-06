@@ -4492,8 +4492,66 @@
   "subject": "physics",
   "chapter": 14,
   "chapter_title": "Semiconductor Electronics",
-  "status": "planned",
-  "ncert_pdf": "https://ncert.nic.in/textbook/pdf/leph206.pdf"
+  "question": "14.1",
+  "title": "Carriers and dopants in n-type silicon",
+  "status": "worked answer",
+  "file": "class-12/physics/ch14-semiconductor-electronics/q01.html",
+  "text": "In an n-type silicon, which of the following statement is true: (a) Electrons are majority carriers and trivalent atoms are the dopants. (b) Electrons are minority carriers and pentavalent atoms are the dopants. (c) Holes are minority carriers and pentavalent atoms are the dopants. (d) Holes are majority carriers and trivalent atoms are the dopants."
+ },
+ {
+  "class": 12,
+  "subject": "physics",
+  "chapter": 14,
+  "chapter_title": "Semiconductor Electronics",
+  "question": "14.2",
+  "title": "Which statement fits p-type?",
+  "status": "worked answer",
+  "file": "class-12/physics/ch14-semiconductor-electronics/q02.html",
+  "text": "Which of the statements given in Exercise 14.1 is true for p-type semiconductors."
+ },
+ {
+  "class": 12,
+  "subject": "physics",
+  "chapter": 14,
+  "chapter_title": "Semiconductor Electronics",
+  "question": "14.3",
+  "title": "Band gaps of C, Si and Ge",
+  "status": "worked answer",
+  "file": "class-12/physics/ch14-semiconductor-electronics/q03.html",
+  "text": "Carbon, silicon and germanium have four valence electrons each. These are characterised by valence and conduction bands separated by energy band gap respectively equal to (Eg)C, (Eg)Si and (Eg)Ge. Which of the following statements is true? (a) (Eg)Si g)Ge g)C (b) (Eg)C g)Ge > (Eg)Si (c) (Eg)C > (Eg)Si > (Eg)Ge (d) (Eg)C = (Eg)Si = (Eg)Ge"
+ },
+ {
+  "class": 12,
+  "subject": "physics",
+  "chapter": 14,
+  "chapter_title": "Semiconductor Electronics",
+  "question": "14.4",
+  "title": "Why holes diffuse across a junction",
+  "status": "worked answer",
+  "file": "class-12/physics/ch14-semiconductor-electronics/q04.html",
+  "text": "In an unbiased p-n junction, holes diffuse from the p-region to n-region because (a) free electrons in the n-region attract them. (b) they move across the junction by the potential difference. (c) hole concentration in p-region is more as compared to n-region. (d) All the above."
+ },
+ {
+  "class": 12,
+  "subject": "physics",
+  "chapter": 14,
+  "chapter_title": "Semiconductor Electronics",
+  "question": "14.5",
+  "title": "What forward bias does to the barrier",
+  "status": "animated",
+  "file": "class-12/physics/ch14-semiconductor-electronics/q05.html",
+  "text": "When a forward bias is applied to a p-n junction, it (a) raises the potential barrier. (b) reduces the majority carrier current to zero. (c) lowers the potential barrier. (d) None of the above."
+ },
+ {
+  "class": 12,
+  "subject": "physics",
+  "chapter": 14,
+  "chapter_title": "Semiconductor Electronics",
+  "question": "14.6",
+  "title": "Output frequency of rectifiers",
+  "status": "animated",
+  "file": "class-12/physics/ch14-semiconductor-electronics/q06.html",
+  "text": "In half-wave rectification, what is the output frequency if the input frequency is 50 Hz. What is the output frequency of a full-wave rectifier for the same input frequency."
  },
  {
   "class": 9,
