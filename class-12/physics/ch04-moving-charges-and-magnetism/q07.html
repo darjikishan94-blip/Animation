@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 12 Physics · Exercise 4.7</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 12 Physics</a> · <a href="index.html">Ch. 4 Moving Charges and Magnetism</a></p>
+      <h1>Exercise 4.7 · Two parallel currents attract</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q06.html">‹ 4.6</a><a href="index.html">All questions</a><a href="q08.html">4.8 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 4.7">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="Wire B’s field at wire A points out of the page; the force on 10 cm of A, carrying 8 A upward, is 2 × 10⁻⁵ N towards B: parallel currents attract."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>4.7</b> Two long and parallel straight wires A and B carrying currents of 8.0 A and 5.0 A in the same direction are separated by a distance of 4.0 cm. Estimate the force on a 10 cm section of wire A.</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>I<sub>A</sub> = 8.0 A, I<sub>B</sub> = 5.0 A, same direction; d = 0.040 m; section L = 0.10 m. (μ<sub>0</sub> = 4π × 10<sup>−7</sup> T m A<sup>−1</sup>.)</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The force on 10 cm of A.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Separation and section length not to scale.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>Field of B at A: B = μ<sub>0</sub>I<sub>B</sub>/2πd.</li>
+          <li>F = B I<sub>A</sub> L = μ<sub>0</sub>I<sub>A</sub>I<sub>B</sub>L/2πd = 2 × 10<sup>−7</sup> × 8.0 × 5.0 × 0.10/0.040 = 2 × 10<sup>−5</sup> N.</li>
+          <li>Currents in the same direction attract: the force on A is towards B.</li>
+        </ol>
+        <p class="final">2 × 10<sup>−5</sup> N, attractive (towards B).</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 12), Chapter 4 (Moving Charges and Magnetism), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const XA = 200, XB = 400, Y0 = 60, Y1 = 480, S0 = 180, S1 = 360;
+  const qStages = [
+    { title: 'Two parallel wires', dur: 5, text: 'Long parallel wires A (8.0 A) and B (5.0 A) carry currents in the same direction, 4.0 cm apart.' },
+    { title: 'What is asked', dur: 4, text: 'Estimate the force on a 10 cm section of wire A.' },
+  ];
+  const stages = [
+    { title: 'Field of B at A', dur: 5, text: 'B’s field at A: μ₀I_B/2πd, out of the page here (right-hand rule).', ans: 'B = 2 × 10⁻⁷ × 5.0/0.040 = 2.5 × 10⁻⁵ T.' },
+    { title: 'Force on A', dur: 5, text: 'F = BI_A L, at right angles to both the wire and the field.', ans: 'F = 2.5 × 10⁻⁵ × 8.0 × 0.10 = 2 × 10⁻⁵ N, towards B: the wires attract.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    vline(ctx, XA, Y0, Y1, P.obj, 5); vline(ctx, XB, Y0, Y1, P.obj, 4);
+    [XA, XB].forEach(x => [110, 430].forEach(y => vec(ctx, x, y + 25, 0, -50, '', P.force, { lw: 3, head: 10 })));
+    label(ctx, 'A: 8.0 A', XA, Y1 + 22, { align: 'center', weight: 800, size: 14 }); label(ctx, 'B: 5.0 A', XB, Y1 + 22, { align: 'center', weight: 800, size: 14 });
+    ctx.save(); ctx.strokeStyle = P.accent; ctx.lineWidth = 10; ctx.globalAlpha = 0.35; seg(ctx, XA, S0, XA, S1); ctx.restore();
+    label(ctx, '10 cm', XA - 18, (S0 + S1) / 2, { align: 'right', weight: 700, size: 13, color: P.accent });
+    dim(ctx, XA, XB, 70, P.ink2); label(ctx, '4.0 cm', (XA + XB) / 2, 54, { align: 'center', weight: 700, size: 13 });
+    if (ans) {
+      const st = stageAt(stages, t);
+      [200, 245, 350].forEach(y => fieldSym(ctx, XA + 26, y, true, 8, P.vel));
+      label(ctx, 'field of B at A: ⊙', XA + 12, 170, { weight: 700, size: 12, color: P.vel });
+      if (st >= 1) { vec(ctx, XA + 6, 300, 80, 0, 'F on A', P.accent, { side: -1, at: 0.5, lw: 4 }); vec(ctx, XB - 6, 300, -80, 0, 'F on B', P.accent, { side: 1, at: 0.5, lw: 4 }); label(ctx, 'F = 2 × 10⁻⁵ N', (XA + XB) / 2, 390, { align: 'center', weight: 800, size: 15, color: P.accent }); }
+      partsPanel(ctx, 630, 34, 300, 'Working', ['Field of B at A = 2.5 × 10⁻⁵ T', 'F = BI_A L = 2 × 10⁻⁵ N, attractive'], st, false);
+    } else askedPanel(ctx, 630, 34, 300, ['The force on a 10 cm section of wire A.']);
+    note(ctx, 'separation and section length not to scale');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

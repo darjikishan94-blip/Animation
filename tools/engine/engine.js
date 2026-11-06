@@ -278,6 +278,14 @@ function flow(ctx, pts, s, color, gap = 26, r = 3) {
   }
   ctx.restore();
 }
+// a field (or current) direction symbol: out of the page ⊙ (out = true) or into it ⊗
+function fieldSym(ctx, x, y, out, r = 7, color) {
+  ctx.save(); ctx.strokeStyle = color || P.ink; ctx.fillStyle = color || P.ink; ctx.lineWidth = 1.6;
+  ctx.beginPath(); ctx.arc(x, y, r, 0, 2 * Math.PI); ctx.stroke();
+  if (out) { ctx.beginPath(); ctx.arc(x, y, Math.max(1.6, r * 0.25), 0, 2 * Math.PI); ctx.fill(); }
+  else { const d = r * 0.62; seg(ctx, x - d, y - d, x + d, y + d); seg(ctx, x - d, y + d, x + d, y - d); }
+  ctx.restore();
+}
 function stageAt(stages, t) { const i = stages.findIndex(s => t < s.t1); return i < 0 ? stages.length - 1 : i; }
 // a stopwatch-style time readout
 function clock(ctx, x, y, t, text) {

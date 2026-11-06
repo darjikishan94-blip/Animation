@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 12 Physics · Exercise 4.9</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 12 Physics</a> · <a href="index.html">Ch. 4 Moving Charges and Magnetism</a></p>
+      <h1>Exercise 4.9 · Torque on a square coil</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q08.html">‹ 4.8</a><a href="index.html">All questions</a><a href="q10.html">4.10 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 4.9">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="Seen from above, the hanging coil is edge-on with its normal 30° from the field; the forces on its two vertical sides are equal and opposite and form a couple of 0.96 N m that turns the normal towards the field."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>4.9</b> A square coil of side 10 cm consists of 20 turns and carries a current of 12 A. The coil is suspended vertically and the normal to the plane of the coil makes an angle of 30º with the direction of a uniform horizontal magnetic field of magnitude 0.80 T. What is the magnitude of torque experienced by the coil?</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>N = 20; side 0.10 m (A = 0.010 m<sup>2</sup>); I = 12 A; θ = 30°; B = 0.80 T.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The torque.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Top view: the vertical coil appears edge-on.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>The forces on the two vertical sides are equal and opposite: a couple.</li>
+          <li>τ = NIAB sin θ = 20 × 12 × 0.010 × 0.80 × sin 30° = 0.96 N m.</li>
+        </ol>
+        <p class="final">0.96 N m.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 12), Chapter 4 (Moving Charges and Magnetism), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const CX = 300, CY = 270, L = 90, TH = 30 * Math.PI / 180;
+  const n = [Math.cos(TH), Math.sin(TH)], u = [-Math.sin(TH), Math.cos(TH)];   // math axes (y up): normal and the coil’s horizontal edge direction
+  const cv = (x, y) => [CX + x, CY - y];
+  const qStages = [
+    { title: 'A hanging coil', dur: 5, text: 'A square coil, side 10 cm, 20 turns, 12 A, hangs vertically. Its normal makes 30° with a horizontal field of 0.80 T. View from above.' },
+    { title: 'What is asked', dur: 4, text: 'What is the magnitude of the torque on the coil?' },
+  ];
+  const stages = [
+    { title: 'A couple', dur: 5, text: 'The two vertical sides carry current up (⊙) and down (⊗); the forces on them are equal and opposite but not in line.', ans: 'The couple turns the normal towards B.' },
+    { title: 'Torque', dur: 5, text: 'τ = NIAB sin θ.', ans: 'τ = 20 × 12 × 0.010 × 0.80 × sin 30° = 0.96 N m.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    for (let y = 70; y <= 470; y += 50) arrow(ctx, 30, y, 590, y, P.grid, { lw: 1.5, head: 9 });
+    label(ctx, 'B = 0.80 T', 580, 50, { align: 'right', weight: 700, size: 14, color: P.ink2 }); label(ctx, 'view from above', 30, 50, { weight: 700, size: 13, color: P.ink2 });
+    const p1 = cv(L * u[0], L * u[1]), p2 = cv(-L * u[0], -L * u[1]);
+    ctx.save(); ctx.strokeStyle = P.obj; ctx.lineWidth = 6; seg(ctx, ...p1, ...p2); ctx.restore();
+    fieldSym(ctx, ...p1, true, 10, P.force); fieldSym(ctx, ...p2, false, 10, P.force);
+    label(ctx, 'current up', p1[0] - 16, p1[1] - 14, { align: 'right', size: 12, color: P.force }); label(ctx, 'current down', p2[0] + 16, p2[1] + 16, { size: 12, color: P.force });
+    vec(ctx, CX, CY, 110 * n[0], -110 * n[1], 'normal', P.accent, { side: -1, at: 1, lw: 3 });
+    ctx.save(); ctx.strokeStyle = P.ink; ctx.lineWidth = 1.5; ctx.beginPath(); ctx.arc(CX, CY, 60, -TH, 0); ctx.stroke(); ctx.restore(); hline(ctx, CX, CX + 120, CY, P.ink2, 1, [4, 4]); label(ctx, '30°', CX + 70, CY - 14, { weight: 700, size: 13 });
+    label(ctx, 'coil (edge-on), 10 cm', CX - 70, CY + 30, { align: 'right', size: 12 });
+    if (ans) {
+      const st = stageAt(stages, t);
+      vec(ctx, ...p1, 0, -70, 'F', P.vel, { side: 1, at: 1, ax: 10 }); vec(ctx, ...p2, 0, 70, 'F', P.vel, { side: 1, at: 1, ax: -10 });
+      rotArrow(ctx, CX, CY, 150, true, P.acc);
+      if (st >= 1) label(ctx, 'τ = 0.96 N m', CX, 490, { align: 'center', weight: 800, size: 18, color: P.accent });
+      partsPanel(ctx, 630, 34, 300, 'Working', ['Equal, opposite forces on the vertical sides: a couple', 'τ = NIAB sin θ = 0.96 N m'], st, false);
+    } else askedPanel(ctx, 630, 34, 300, ['The magnitude of the torque on the coil.']);
+    note(ctx, 'top view; the coil is held at 30°');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

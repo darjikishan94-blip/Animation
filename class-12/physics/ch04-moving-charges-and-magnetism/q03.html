@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 12 Physics · Exercise 4.3</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 12 Physics</a> · <a href="index.html">Ch. 4 Moving Charges and Magnetism</a></p>
+      <h1>Exercise 4.3 · Wire running north to south</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q02.html">‹ 4.2</a><a href="index.html">All questions</a><a href="q04.html">4.4 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 4.3">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="Seen from above, a wire carries 50 A southward; seen end-on from the south, its field circles anticlockwise, so at the point 2.5 m east the field of 4 × 10⁻⁶ T points straight up."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>4.3</b> A long straight wire in the horizontal plane carries a current of 50 A in north to south direction. Give the magnitude and direction of B at a point 2.5 m east of the wire.</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>I = 50 A, north to south, in a horizontal plane; point 2.5 m east. (μ<sub>0</sub> = 4π × 10<sup>−7</sup> T m A<sup>−1</sup>.)</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>Magnitude and direction of B.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Two views: from above, and end-on looking north.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>B = μ<sub>0</sub>I/2πr = 2 × 10<sup>−7</sup> × 50/2.5 = 4 × 10<sup>−6</sup> T.</li>
+          <li>Right-hand rule: thumb along the current (south), the fingers curl upward on the east side.</li>
+        </ol>
+        <p class="final">4 × 10<sup>−6</sup> T, vertically upward.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 12), Chapter 4 (Moving Charges and Magnetism), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const D = 6;
+  const qStages = [
+    { title: 'A north–south wire', dur: 5, text: 'A long straight wire in a horizontal plane carries 50 A from north to south.' },
+    { title: 'What is asked', dur: 4, text: 'The magnitude and direction of B at a point 2.5 m east of the wire.' },
+  ];
+  const stages = [
+    { title: 'Magnitude', dur: 5, text: 'B = μ₀I/2πr.', ans: 'B = 2 × 10⁻⁷ × 50/2.5 = 4 × 10⁻⁶ T.' },
+    { title: 'Direction', dur: D, text: 'Look along the wire from the south: the current comes towards you (⊙), so the field circles anticlockwise.', ans: 'At the point on the east side, the field points vertically upward.' },
+  ];
+  function compass(ctx, x, y, labels) { arrow(ctx, x, y + 16, x, y - 16, P.ink2, { lw: 1.5, head: 8 }); label(ctx, labels[0], x, y - 26, { align: 'center', weight: 800, size: 12, color: P.ink2 }); arrow(ctx, x - 16, y, x + 16, y, P.ink2, { lw: 1.5, head: 8 }); label(ctx, labels[1], x + 26, y, { align: 'center', weight: 800, size: 12, color: P.ink2 }); }
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1); vline(ctx, 300, 40, 500, P.rule, 1);
+    // left: from above
+    label(ctx, 'from above', 150, 50, { align: 'center', weight: 800, size: 14 }); compass(ctx, 50, 110, ['N', 'E']);
+    vline(ctx, 110, 80, 480, P.obj, 4); [180, 300, 420].forEach(y => vec(ctx, 110, y - 30, 0, 50, '', P.force, { lw: 3, head: 10 })); label(ctx, '50 A', 96, 250, { align: 'right', weight: 800, size: 14, color: P.force });
+    ball(ctx, 240, 280, 6, P.ink); label(ctx, 'P', 252, 268, { weight: 800, size: 14 }); dim(ctx, 110, 240, 320, P.ink2); label(ctx, '2.5 m', 175, 336, { align: 'center', weight: 700, size: 13 });
+    // right: end-on looking north
+    label(ctx, 'end-on, looking north', 455, 50, { align: 'center', weight: 800, size: 14 }); compass(ctx, 340, 110, ['up', 'E']);
+    const WX = 420, WY = 300; fieldSym(ctx, WX, WY, true, 12, P.force); label(ctx, 'current towards you', WX, WY + 34, { align: 'center', size: 12, color: P.force });
+    ball(ctx, WX + 130, WY, 6, P.ink); label(ctx, 'P', WX + 142, WY + 16, { weight: 800, size: 14 });
+    if (ans) {
+      const st = stageAt(stages, t), u = clamp((t - stages[1].t0) / (D - 2));
+      if (st >= 1) { [60, 100, 130].forEach(r => { ctx.save(); ctx.strokeStyle = P.accent; ctx.lineWidth = 1.5; ctx.globalAlpha = 0.7; ctx.beginPath(); ctx.arc(WX, WY, r, 0, -2 * Math.PI * u, true); ctx.stroke(); ctx.restore(); });
+        if (u > 0.3) { arrow(ctx, WX - 100, WY + 6, WX - 100, WY + 16, P.accent, { lw: 1.5, head: 9 }); arrow(ctx, WX + 6, WY - 100, WX - 8, WY - 100, P.accent, { lw: 1.5, head: 9 }); } }
+      if (st >= 1 && u >= 1) { vec(ctx, WX + 130, WY, 0, -70, 'B up', P.accent, { side: 1, at: 1, lw: 4 }); fieldSym(ctx, 240, 280, true, 13, P.accent); label(ctx, 'B up (⊙)', 260, 300, { weight: 800, size: 13, color: P.accent }); }
+      label(ctx, 'B = 4 × 10⁻⁶ T', 455, 470, { align: 'center', weight: 800, size: 16, color: P.accent });
+      partsPanel(ctx, 630, 34, 300, 'Answer', ['B = μ₀I/2πr = 4 × 10⁻⁶ T', 'Direction: vertically upward'], st, false);
+    } else askedPanel(ctx, 630, 34, 300, ['The magnitude and direction of B at a point 2.5 m east of the wire.']);
+    note(ctx, 'not to scale');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

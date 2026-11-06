@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 12 Physics · Exercise 4.12</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 12 Physics</a> · <a href="index.html">Ch. 4 Moving Charges and Magnetism</a></p>
+      <h1>Exercise 4.12 · Frequency of the electron’s orbit</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q11.html">‹ 4.11</a><a href="index.html">All questions</a><a href="q13.html">4.13 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 4.12">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="Two electrons start together in the same field, one twice as fast as the other; the faster one goes round a circle twice as big, and both complete their orbits at the same moment."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>4.12</b> In Exercise 4.11 obtain the frequency of revolution of the electron in its circular orbit. Does the answer depend on the speed of the electron? Explain.</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>As in 4.11: B = 6.5 × 10<sup>−4</sup> T, m<sub>e</sub> = 9.1 × 10<sup>−31</sup> kg, e = 1.6 × 10<sup>−19</sup> C.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The frequency; does it depend on speed?</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>A second electron at twice the speed is added to show the independence of speed.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>T = 2πr/v = 2πm/eB, so ν = eB/2πm = 1.6 × 10<sup>−19</sup> × 6.5 × 10<sup>−4</sup>/(2π × 9.1 × 10<sup>−31</sup>) ≈ 1.8 × 10<sup>7</sup> Hz (18 MHz).</li>
+          <li>No: r is proportional to v, so the time for one turn is the same at any (non-relativistic) speed. (With the printed e = 1.5 × 10<sup>−19</sup> C, ν ≈ 1.7 × 10<sup>7</sup> Hz.)</li>
+        </ol>
+        <p class="final">≈ 18 MHz; independent of the speed.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 12), Chapter 4 (Moving Charges and Magnetism), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const XE = 200, Y0 = 250, R = 80, D = 9;
+  const qStages = [
+    { title: 'The electron of Ex. 4.11', dur: 6, text: 'The electron goes round its circle in the 6.5 G field.' },
+    { title: 'What is asked', dur: 4, text: 'Find the frequency of revolution. Does it depend on the speed?' },
+  ];
+  const stages = [
+    { title: 'Period', dur: D, text: 'T = 2πr/v and r = mv/eB, so T = 2πm/eB: v cancels. A twice-as-fast electron goes round a twice-as-big circle in the same time.', ans: 'Both electrons finish their turn together.' },
+    { title: 'Frequency', dur: 5, text: 'ν = eB/2πm.', ans: 'ν = 1.6 × 10⁻¹⁹ × 6.5 × 10⁻⁴/(2π × 9.1 × 10⁻³¹) ≈ 1.8 × 10⁷ Hz: independent of speed.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    for (let x = 60; x <= 580; x += 50) for (let y = 40; y <= 500; y += 50) fieldSym(ctx, x, y, false, 6, P.grid);
+    const a = Math.min(2 * Math.PI, t * 2 * Math.PI / (D - 2));
+    const es = ans ? [[R, P.vel, 'v'], [2 * R, P.force, '2v']] : [[R, P.vel, 'v']];
+    es.forEach(([r, col, nm]) => {
+      const cx = XE, cy = Y0 - 80 + r;   // all start at the same point, moving right
+      ctx.save(); ctx.strokeStyle = col; ctx.lineWidth = 2; ctx.setLineDash([5, 4]); ctx.beginPath(); ctx.arc(cx, cy, r, -Math.PI / 2, -Math.PI / 2 + a); ctx.stroke(); ctx.restore();
+      const x = cx + r * Math.sin(a), y = cy - r * Math.cos(a); ball(ctx, x, y, 7, col); label(ctx, nm, x + 12, y + (nm === 'v' ? 14 : -12), { weight: 800, size: 13, color: col });
+    });
+    if (ans) {
+      const st = stageAt(stages, t);
+      if (a >= 2 * Math.PI) label(ctx, 'same time for one turn', 300, 500, { align: 'center', weight: 800, size: 15, color: P.accent });
+      partsPanel(ctx, 630, 34, 300, 'Answer', ['T = 2πm/eB: speed cancels', 'ν ≈ 1.8 × 10⁷ Hz; no dependence on v'], st, false);
+    } else askedPanel(ctx, 630, 34, 300, ['The frequency of revolution of the electron.', 'Whether it depends on the electron’s speed, and why.']);
+    note(ctx, 'B into the page; circles not to scale');
+  }
+  return { qStages, stages, draw };
+})();
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

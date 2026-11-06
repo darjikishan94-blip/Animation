@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 12 Physics · Exercise 4.4</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 12 Physics</a> · <a href="index.html">Ch. 4 Moving Charges and Magnetism</a></p>
+      <h1>Exercise 4.4 · Under an east–west power line</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q03.html">‹ 4.3</a><a href="index.html">All questions</a><a href="q05.html">4.5 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 4.4">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A power line carries 90 A westward; seen end-on from the west, its field circles anticlockwise, so 1.5 m below the line the field of 1.2 × 10⁻⁵ T points south."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>4.4</b> A horizontal overhead power line carries a current of 90 A in east to west direction. What is the magnitude and direction of the magnetic field due to the current 1.5 m below the line?</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>I = 90 A, east to west; point 1.5 m below. (μ<sub>0</sub> = 4π × 10<sup>−7</sup> T m A<sup>−1</sup>.)</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>Magnitude and direction of B.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Two views: from the side (looking north), and end-on looking east.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>B = 2 × 10<sup>−7</sup> × 90/1.5 = 1.2 × 10<sup>−5</sup> T.</li>
+          <li>Right-hand rule: thumb pointing west, the fingers below the wire point south.</li>
+        </ol>
+        <p class="final">1.2 × 10<sup>−5</sup> T, towards the south.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 12), Chapter 4 (Moving Charges and Magnetism), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const D = 6;
+  const qStages = [
+    { title: 'An east–west power line', dur: 5, text: 'A horizontal overhead line carries 90 A from east to west.' },
+    { title: 'What is asked', dur: 4, text: 'The magnitude and direction of the field 1.5 m below the line.' },
+  ];
+  const stages = [
+    { title: 'Magnitude', dur: 5, text: 'B = μ₀I/2πr.', ans: 'B = 2 × 10⁻⁷ × 90/1.5 = 1.2 × 10⁻⁵ T.' },
+    { title: 'Direction', dur: D, text: 'Look along the line from the west: the current comes towards you (⊙), so the field circles anticlockwise.', ans: 'Below the line the field points south.' },
+  ];
+  function compass(ctx, x, y, up, right) { arrow(ctx, x, y + 16, x, y - 16, P.ink2, { lw: 1.5, head: 8 }); label(ctx, up, x, y - 26, { align: 'center', weight: 800, size: 12, color: P.ink2 }); arrow(ctx, x - 16, y, x + 16, y, P.ink2, { lw: 1.5, head: 8 }); label(ctx, right, x + 22, y, { weight: 800, size: 12, color: P.ink2 }); }
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1); vline(ctx, 300, 40, 500, P.rule, 1);
+    label(ctx, 'side view, looking north', 150, 50, { align: 'center', weight: 800, size: 14 }); compass(ctx, 40, 110, 'up', 'E');
+    hline(ctx, 20, 285, 180, P.obj, 4); [250, 150].forEach(x => vec(ctx, x, 180, -50, 0, '', P.force, { lw: 3, head: 10 })); label(ctx, '90 A', 200, 160, { align: 'center', weight: 800, size: 14, color: P.force });
+    ball(ctx, 150, 340, 6, P.ink); label(ctx, 'P', 164, 340, { weight: 800, size: 14 }); vdim(ctx, 110, 180, 340, P.ink2); label(ctx, '1.5 m', 102, 260, { align: 'right', weight: 700, size: 13 });
+    label(ctx, 'end-on, looking east', 455, 50, { align: 'center', weight: 800, size: 14 }); compass(ctx, 330, 110, 'up', 'S');
+    const WX = 450, WY = 220; fieldSym(ctx, WX, WY, true, 12, P.force); label(ctx, 'current towards you', WX + 24, WY - 22, { size: 12, color: P.force });
+    ball(ctx, WX, WY + 130, 6, P.ink); label(ctx, 'P', WX - 16, WY + 146, { weight: 800, size: 14 });
+    if (ans) {
+      const st = stageAt(stages, t), u = clamp((t - stages[1].t0) / (D - 2));
+      if (st >= 1) { [70, 130].forEach(r => { ctx.save(); ctx.strokeStyle = P.accent; ctx.lineWidth = 1.5; ctx.globalAlpha = 0.7; ctx.beginPath(); ctx.arc(WX, WY, r, 0, -2 * Math.PI * u, true); ctx.stroke(); ctx.restore(); }); }
+      if (st >= 1 && u >= 1) { vec(ctx, WX, WY + 130, 70, 0, 'B (south)', P.accent, { side: 1, at: 0.6, lw: 4 }); fieldSym(ctx, 150, 340, true, 13, P.accent); label(ctx, 'B south (⊙, towards you)', 150, 372, { align: 'center', weight: 800, size: 13, color: P.accent }); }
+      label(ctx, 'B = 1.2 × 10⁻⁵ T', 455, 470, { align: 'center', weight: 800, size: 16, color: P.accent });
+      partsPanel(ctx, 630, 34, 300, 'Answer', ['B = μ₀I/2πr = 1.2 × 10⁻⁵ T', 'Direction: towards the south'], st, false);
+    } else askedPanel(ctx, 630, 34, 300, ['The magnitude and direction of the magnetic field 1.5 m below the line.']);
+    note(ctx, 'not to scale');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>
