@@ -4283,8 +4283,99 @@
   "subject": "physics",
   "chapter": 12,
   "chapter_title": "Atoms",
-  "status": "planned",
-  "ncert_pdf": "https://ncert.nic.in/textbook/pdf/leph204.pdf"
+  "question": "12.1",
+  "title": "Thomson’s and Rutherford’s models",
+  "status": "worked answer",
+  "file": "class-12/physics/ch12-atoms/q01.html",
+  "text": "Choose the correct alternative from the clues given at the end of the each statement: (a) The size of the atom in Thomson’s model is .......... the atomic size in Rutherford’s model. (much greater than/no different from/much less than.) (b) In the ground state of .......... electrons are in stable equilibrium, while in .......... electrons always experience a net force. (Thomson’s model/ Rutherford’s model.) (c) A classical atom based on .......... is doomed to collapse. (Thomson’s model/ Rutherford’s model.) (d) An atom has a nearly continuous mass distribution in a .......... but has a highly non-uniform mass distribution in .......... (Thomson’s model/ Rutherford’s model.) (e) The positively charged part of the atom possesses most of the mass in .......... (Rutherford’s model/both the models.)"
+ },
+ {
+  "class": 12,
+  "subject": "physics",
+  "chapter": 12,
+  "chapter_title": "Atoms",
+  "question": "12.2",
+  "title": "Alpha particles on solid hydrogen",
+  "status": "worked answer",
+  "file": "class-12/physics/ch12-atoms/q02.html",
+  "text": "Suppose you are given a chance to repeat the alpha-particle scattering experiment using a thin sheet of solid hydrogen in place of the gold foil. (Hydrogen is a solid at temperatures below 14 K.) What results do you expect?"
+ },
+ {
+  "class": 12,
+  "subject": "physics",
+  "chapter": 12,
+  "chapter_title": "Atoms",
+  "question": "12.3",
+  "title": "Frequency from a 2.3 eV transition",
+  "status": "worked answer",
+  "file": "class-12/physics/ch12-atoms/q03.html",
+  "text": "A difference of 2.3 eV separates two energy levels in an atom. What is the frequency of radiation emitted when the atom make a transition from the upper level to the lower level?"
+ },
+ {
+  "class": 12,
+  "subject": "physics",
+  "chapter": 12,
+  "chapter_title": "Atoms",
+  "question": "12.4",
+  "title": "KE and PE in the ground state",
+  "status": "worked answer",
+  "file": "class-12/physics/ch12-atoms/q04.html",
+  "text": "The ground state energy of hydrogen atom is –13.6 eV. What are the kinetic and potential energies of the electron in this state?"
+ },
+ {
+  "class": 12,
+  "subject": "physics",
+  "chapter": 12,
+  "chapter_title": "Atoms",
+  "question": "12.5",
+  "title": "Exciting hydrogen to n = 4",
+  "status": "animated",
+  "file": "class-12/physics/ch12-atoms/q05.html",
+  "text": "A hydrogen atom initially in the ground level absorbs a photon, which excites it to the n = 4 level. Determine the wavelength and frequency of photon."
+ },
+ {
+  "class": 12,
+  "subject": "physics",
+  "chapter": 12,
+  "chapter_title": "Atoms",
+  "question": "12.6",
+  "title": "Bohr speeds and periods for n = 1, 2, 3",
+  "status": "animated",
+  "file": "class-12/physics/ch12-atoms/q06.html",
+  "text": "(a) Using the Bohr’s model calculate the speed of the electron in a hydrogen atom in the n = 1, 2, and 3 levels. (b) Calculate the orbital period in each of these levels."
+ },
+ {
+  "class": 12,
+  "subject": "physics",
+  "chapter": 12,
+  "chapter_title": "Atoms",
+  "question": "12.7",
+  "title": "Radii of the n = 2 and n = 3 orbits",
+  "status": "worked answer",
+  "file": "class-12/physics/ch12-atoms/q07.html",
+  "text": "The radius of the innermost electron orbit of a hydrogen atom is 5.3×10–11 m. What are the radii of the n = 2 and n =3 orbits?"
+ },
+ {
+  "class": 12,
+  "subject": "physics",
+  "chapter": 12,
+  "chapter_title": "Atoms",
+  "question": "12.8",
+  "title": "Lines from 12.5 eV electron bombardment",
+  "status": "animated",
+  "file": "class-12/physics/ch12-atoms/q08.html",
+  "text": "A 12.5 eV electron beam is used to bombard gaseous hydrogen at room temperature. What series of wavelengths will be emitted?"
+ },
+ {
+  "class": 12,
+  "subject": "physics",
+  "chapter": 12,
+  "chapter_title": "Atoms",
+  "question": "12.9",
+  "title": "The earth’s Bohr quantum number",
+  "status": "worked answer",
+  "file": "class-12/physics/ch12-atoms/q09.html",
+  "text": "In accordance with the Bohr’s model, find the quantum number that characterises the earth’s revolution around the sun in an orbit of radius 1.5 × 1011 m with orbital speed 3 × 104 m/s. (Mass of earth = 6.0 × 1024 kg.)"
  },
  {
   "class": 12,

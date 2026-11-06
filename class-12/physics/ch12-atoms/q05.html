@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 12 Physics · Exercise 12.5</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 12 Physics</a> · <a href="index.html">Ch. 12 Atoms</a></p>
+      <h1>Exercise 12.5 · Exciting hydrogen to n = 4</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q04.html">‹ 12.4</a><a href="index.html">All questions</a><a href="q06.html">12.6 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 12.5">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="On the hydrogen energy-level ladder, a photon of 12.75 eV lifts the electron from n = 1 (−13.6 eV) to n = 4 (−0.85 eV); its wavelength is 97 nm and frequency 3.1 × 10¹⁵ Hz."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>12.5</b> A hydrogen atom initially in the ground level absorbs a photon, which excites it to the n = 4 level. Determine the wavelength and frequency of photon.</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>E<sub>n</sub> = −13.6/n<sup>2</sup> eV; n: 1 → 4; hc ≈ 1240 eV nm.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>λ and ν of the photon.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Energy levels to scale (25 px per eV).</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>ΔE = 13.6(1 − 1/16) = 12.75 eV.</li>
+          <li>λ = hc/ΔE ≈ 1240/12.75 ≈ 97 nm.</li>
+          <li>ν = ΔE/h = 12.75 × 1.6 × 10<sup>−19</sup>/6.63 × 10<sup>−34</sup> ≈ 3.1 × 10<sup>15</sup> Hz.</li>
+        </ol>
+        <p class="final">≈ 97 nm; ≈ 3.1 × 10<sup>15</sup> Hz.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 12), Chapter 12 (Atoms), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const Y0 = 70, K = 25, LX = 180, LW = 260, D = 6;   // y = Y0 − K × E (E in eV, negative)
+  const Y = E => Y0 - K * E, En = n => -13.6 / (n * n);
+  const qStages = [
+    { title: 'Hydrogen energy levels', dur: 5, text: 'A hydrogen atom in its ground level (n = 1) absorbs a photon and is excited to n = 4.' },
+    { title: 'What is asked', dur: 4, text: 'The wavelength and frequency of the photon.' },
+  ];
+  const stages = [
+    { title: 'Energy needed', dur: D, text: 'E_n = −13.6/n² eV: from −13.6 eV to −0.85 eV.', ans: 'ΔE = 13.6(1 − 1/16) = 12.75 eV.' },
+    { title: 'The photon', dur: 5, text: 'λ = hc/ΔE, ν = ΔE/h.', ans: 'λ ≈ 1240/12.75 ≈ 97 nm; ν ≈ 3.1 × 10¹⁵ Hz.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    [1, 2, 3, 4, 5].forEach(n => { hline(ctx, LX, LX + LW, Y(En(n)), P.ink, 2); label(ctx, `n = ${n}`, LX - 12, Y(En(n)) + (n === 5 ? -8 : n === 4 ? 2 : 0), { align: 'right', weight: 700, size: 12 }); if (n <= 3 || n === 4) label(ctx, `${En(n).toFixed(2)} eV`, LX + LW + 10, Y(En(n)) + (n === 4 ? 4 : 0), { weight: 700, size: 12, color: P.ink2 }); });
+    hline(ctx, LX, LX + LW, Y(0), P.ink2, 1, [4, 4]); label(ctx, '0 (n = ∞)', LX + LW + 10, Y(0) - 10, { size: 12, color: P.ink2 });
+    const u = ans ? smooth(clamp((t - 1.5) / 2.5)) : 0, ex = LX + 140, ey = Y(En(1)) + (Y(En(4)) - Y(En(1))) * u;
+    ball(ctx, ex, ey - 7, 7, P.vel);
+    if (ans) {
+      const st = stageAt(stages, t), pk = clamp(t / 1.5);
+      if (u < 1) { ctx.save(); ctx.strokeStyle = P.acc; ctx.lineWidth = 2.5; ctx.beginPath(); for (let j = 0; j <= 40; j++) { const s = j / 40, x = 40 + (ex - 50) * pk * s, y = Y(En(1)) - 30 + 8 * Math.sin(s * 16 * Math.PI); j ? ctx.lineTo(x, y) : ctx.moveTo(x, y); } ctx.stroke(); ctx.restore(); label(ctx, 'photon', 60, Y(En(1)) - 54, { weight: 700, size: 12, color: P.acc }); }
+      arrow(ctx, LX + 90, Y(En(1)), LX + 90, Y(En(4)) + 2, P.acc, { lw: 3, head: 12, alpha: u });
+      if (u >= 1) label(ctx, 'ΔE = 12.75 eV', LX + 100, (Y(En(1)) + Y(En(4))) / 2, { weight: 800, size: 15, color: P.acc });
+      if (st >= 1) label(ctx, 'λ ≈ 97 nm,  ν ≈ 3.1 × 10¹⁵ Hz', 300, 490, { align: 'center', weight: 800, size: 16, color: P.accent });
+      partsPanel(ctx, 630, 34, 300, 'Working', ['ΔE = 13.6(1 − 1/16) = 12.75 eV', 'λ ≈ 97 nm; ν ≈ 3.1 × 10¹⁵ Hz'], st, false);
+    } else askedPanel(ctx, 630, 34, 300, ['The wavelength and frequency of the photon that excites the atom from n = 1 to n = 4.']);
+    note(ctx, 'energy levels to scale (25 px per eV)');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

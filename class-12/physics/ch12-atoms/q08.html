@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 12 Physics · Exercise 12.8</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 12 Physics</a> · <a href="index.html">Ch. 12 Atoms</a></p>
+      <h1>Exercise 12.8 · Lines from 12.5 eV electron bombardment</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q07.html">‹ 12.7</a><a href="index.html">All questions</a><a href="q09.html">12.9 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 12.8">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A 12.5 eV electron can lift hydrogen from n = 1 up to n = 3 (12.09 eV) but not to n = 4 (12.75 eV); falling back gives three lines: 102.6 nm and 121.6 nm in the Lyman series and 656 nm in the Balmer series."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>12.8</b> A 12.5 eV electron beam is used to bombard gaseous hydrogen at room temperature. What series of wavelengths will be emitted?</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Electron energy 12.5 eV; hydrogen at room temperature (in n = 1); E<sub>n</sub> = −13.6/n<sup>2</sup> eV.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The emitted wavelengths.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Energy levels to scale (25 px per eV).</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>Excitation energies: to n = 2, 10.2 eV; to n = 3, 12.09 eV; to n = 4, 12.75 eV. 12.5 eV reaches n = 3 at most.</li>
+          <li>From n = 3 the atom can return as 3 → 1, or 3 → 2 → 1.</li>
+          <li>λ(3 → 1) = 1240/12.09 ≈ 102.6 nm and λ(2 → 1) = 1240/10.2 ≈ 121.6 nm (Lyman series, ultraviolet); λ(3 → 2) = 1240/1.89 ≈ 656 nm (Balmer series, red).</li>
+        </ol>
+        <p class="final">102.6 nm and 121.6 nm (Lyman); 656 nm (Balmer).</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 12), Chapter 12 (Atoms), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const Y0 = 70, K = 25, LX = 140, LW = 300, D = 6;
+  const Y = E => Y0 - K * E, En = n => -13.6 / (n * n);
+  const qStages = [
+    { title: 'Electron bombardment', dur: 5, text: 'A 12.5 eV electron beam bombards hydrogen gas at room temperature (atoms in n = 1).' },
+    { title: 'What is asked', dur: 4, text: 'What series of wavelengths will be emitted?' },
+  ];
+  const stages = [
+    { title: 'How high can it go?', dur: D, text: 'Excitation energies: n = 2: 10.2 eV; n = 3: 12.09 eV; n = 4: 12.75 eV.', ans: '12.5 eV can reach n = 3, not n = 4.' },
+    { title: 'Falling back', dur: 8, text: 'From n = 3 the atom returns directly (3 → 1) or in two steps (3 → 2 → 1).', ans: '102.6 nm (3 → 1) and 121.6 nm (2 → 1): Lyman; 656 nm (3 → 2): Balmer.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    [1, 2, 3, 4].forEach(n => { hline(ctx, LX, LX + LW, Y(En(n)), P.ink, 2); label(ctx, `n = ${n}`, LX - 12, Y(En(n)) + (n === 4 ? -6 : 0), { align: 'right', weight: 700, size: 12 }); label(ctx, `${En(n).toFixed(2)} eV`, LX + LW + 10, Y(En(n)) + (n === 4 ? -6 : n === 3 ? 6 : 0), { weight: 700, size: 12, color: P.ink2 }); });
+    hline(ctx, LX, LX + LW, Y(0), P.ink2, 1, [4, 4]);
+    if (ans) {
+      const st = stageAt(stages, t), top = Y(-13.6 + 12.5);
+      ctx.save(); ctx.fillStyle = P.accentSoft; ctx.globalAlpha = 0.7; ctx.fillRect(LX + 10, top, 40, Y(En(1)) - top); ctx.restore(); label(ctx, '12.5 eV', LX + 30, (top + Y(En(1))) / 2, { align: 'center', weight: 800, size: 11, color: P.accent });
+      hline(ctx, LX + 4, LX + 56, top, P.accent, 2, [3, 2]);
+      if (st >= 1) {
+        const k = clamp((t - stages[1].t0) / 5);
+        const lines = [[3, 1, LX + 100, '102.6 nm', P.acc], [3, 2, LX + 170, '656 nm', P.force], [2, 1, LX + 240, '121.6 nm', P.acc]];
+        lines.forEach(([a, b, x, txt, col], i) => { const ki = clamp(k * 3 - i); if (ki <= 0) return; arrow(ctx, x, Y(En(a)), x, Y(En(a)) + (Y(En(b)) - Y(En(a))) * ki, col, { lw: 3, head: 11 }); if (ki >= 1) label(ctx, txt, x + 6, (Y(En(a)) + Y(En(b))) / 2 + (b === 2 ? -30 : 0), { weight: 800, size: 13, color: col }); });
+        label(ctx, 'Lyman (UV): 102.6 nm, 121.6 nm   Balmer (red): 656 nm', 300, 490, { align: 'center', weight: 800, size: 13, color: P.accent });
+      }
+      partsPanel(ctx, 630, 34, 300, 'Answers', ['12.5 eV reaches n = 3 only', '102.6, 121.6 nm (Lyman); 656 nm (Balmer)'], st, false);
+    } else askedPanel(ctx, 630, 34, 300, ['The series of wavelengths emitted.']);
+    note(ctx, 'energy levels to scale (25 px per eV)');
+  }
+  return { qStages, stages, draw };
+})();
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

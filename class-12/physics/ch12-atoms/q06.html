@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 12 Physics · Exercise 12.6</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 12 Physics</a> · <a href="index.html">Ch. 12 Atoms</a></p>
+      <h1>Exercise 12.6 · Bohr speeds and periods for n = 1, 2, 3</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q05.html">‹ 12.5</a><a href="index.html">All questions</a><a href="q07.html">12.7 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 12.6">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="Electrons in the first three Bohr orbits: the orbits grow as n², the speeds fall as 1/n (2.18, 1.09 and 0.73 × 10⁶ m/s), so the periods grow as n³ (1.5, 12 and 41 × 10⁻¹⁶ s)."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>12.6</b> (a) Using the Bohr’s model calculate the speed of the electron in a hydrogen atom in the n = 1, 2, and 3 levels. (b) Calculate the orbital period in each of these levels.</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>v<sub>n</sub> = e<sup>2</sup>/(2ε<sub>0</sub>nh); r<sub>n</sub> = n<sup>2</sup> × 0.53 × 10<sup>−10</sup> m.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>(a) v for n = 1, 2, 3 (b) the periods.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Radii to scale with each other; motion slowed by about 10<sup>16</sup>; speeds to scale.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>(a) v<sub>1</sub> = e<sup>2</sup>/(2ε<sub>0</sub>h) ≈ 2.18 × 10<sup>6</sup> m/s; v<sub>n</sub> = v<sub>1</sub>/n: v<sub>2</sub> ≈ 1.09 × 10<sup>6</sup> m/s, v<sub>3</sub> ≈ 7.27 × 10<sup>5</sup> m/s.</li>
+          <li>(b) T = 2πr/v. T<sub>1</sub> = 2π × 0.53 × 10<sup>−10</sup>/2.18 × 10<sup>6</sup> ≈ 1.53 × 10<sup>−16</sup> s; T ∝ n<sup>3</sup>: T<sub>2</sub> ≈ 1.22 × 10<sup>−15</sup> s, T<sub>3</sub> ≈ 4.12 × 10<sup>−15</sup> s.</li>
+        </ol>
+        <p class="final">(a) 2.18, 1.09, 0.727 × 10<sup>6</sup> m/s (b) 1.53 × 10<sup>−16</sup>, 1.22 × 10<sup>−15</sup>, 4.12 × 10<sup>−15</sup> s.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 12), Chapter 12 (Atoms), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const CX = 260, CY = 270, R1 = 20, T1 = 0.6, V1 = 66;   // radius 20 px × n²; period 0.6 s × n³ (slowed); speed arrow 66 px / n
+  const qStages = [
+    { title: 'Bohr orbits', dur: 5, text: 'The electron of a hydrogen atom in the n = 1, 2 and 3 orbits of Bohr’s model.' },
+    { title: 'What is asked', dur: 4, text: '(a) Its speed in each. (b) Its orbital period in each.' },
+  ];
+  const stages = [
+    { title: 'Speeds', dur: 7, text: 'v_n = e²/(2ε₀nh) = v₁/n with v₁ ≈ 2.18 × 10⁶ m/s. Arrows to scale.', ans: '(a) 2.18 × 10⁶, 1.09 × 10⁶, 7.27 × 10⁵ m/s.' },
+    { title: 'Periods', dur: 8, text: 'T = 2πr/v; r ∝ n² and v ∝ 1/n, so T ∝ n³.', ans: '(b) 1.53 × 10⁻¹⁶ s, 1.22 × 10⁻¹⁵ s, 4.12 × 10⁻¹⁵ s.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    ball(ctx, CX, CY, 7, P.force); label(ctx, '+', CX, CY, { align: 'center', weight: 800, size: 11, color: P.sheet, halo: false });
+    const st = ans ? stageAt(stages, t) : -1;
+    [1, 2, 3].forEach(n => {
+      const r = R1 * n * n, col = [P.vel, P.leaf, P.acc][n - 1];
+      ctx.save(); ctx.strokeStyle = col; ctx.lineWidth = 1.5; ctx.setLineDash([4, 4]); ctx.beginPath(); ctx.arc(CX, CY, r, 0, 2 * Math.PI); ctx.stroke(); ctx.restore();
+      const a = ans ? -2 * Math.PI * t / (T1 * n ** 3) : -Math.PI / 4 * n, x = CX + r * Math.cos(a), y = CY + r * Math.sin(a);
+      ball(ctx, x, y, 6, col);
+      if (ans) vec(ctx, x, y, (V1 / n) * Math.sin(a), -(V1 / n) * Math.cos(a), '', col, { lw: 2.5, head: 9 });
+      label(ctx, `n = ${n}`, CX + r * 0.71 + 6, CY + r * 0.71 + 12, { weight: 800, size: 12, color: col });
+      if (ans) { const y0 = 320 + n * 62; label(ctx, `n = ${n}:`, 480, y0 - 120, { weight: 800, size: 13, color: col }); label(ctx, ['2.18 × 10⁶', '1.09 × 10⁶', '7.27 × 10⁵'][n - 1] + ' m/s', 480, y0 - 102, { size: 12 }); if (st >= 1) label(ctx, 'T = ' + ['1.53 × 10⁻¹⁶', '1.22 × 10⁻¹⁵', '4.12 × 10⁻¹⁵'][n - 1] + ' s', 480, y0 - 86, { size: 12, color: P.accent }); }
+    });
+    if (ans) partsPanel(ctx, 630, 34, 300, 'Answers', ['(a) v = v₁/n: 2.18, 1.09, 0.727 × 10⁶ m/s', '(b) T ∝ n³: 1.53 × 10⁻¹⁶, 1.22 × 10⁻¹⁵, 4.12 × 10⁻¹⁵ s'], st, false);
+    else askedPanel(ctx, 630, 34, 300, ['(a) The speed of the electron in n = 1, 2, 3.', '(b) The orbital period in each.']);
+    note(ctx, 'radii to scale with each other (r ∝ n²); motion slowed by ~10¹⁶; speed arrows to scale');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

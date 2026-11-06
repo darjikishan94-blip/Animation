@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 12 Physics · Exercise 12.9</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 12 Physics</a> · <a href="index.html">Ch. 12 Atoms</a></p>
+      <h1>Exercise 12.9 · The earth’s Bohr quantum number</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q08.html">‹ 12.8</a><a href="index.html">All questions</a><span>›</span></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 12.9">
+    <p class="qline"><b>12.9</b> In accordance with the Bohr’s model, find the quantum number that characterises the earth’s revolution around the sun in an orbit of radius 1.5 × 10<sup>11</sup> m with orbital speed 3 × 10<sup>4</sup> m/s. (Mass of earth = 6.0 × 10<sup>24</sup> kg.)</p>
+    <p><button type="button" class="btn reveal" id="show" aria-pressed="false" style="margin-left:0">Show answer</button></p>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>m = 6.0 × 10<sup>24</sup> kg; v = 3 × 10<sup>4</sup> m/s; r = 1.5 × 10<sup>11</sup> m; h = 6.63 × 10<sup>−34</sup> J s.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>n.</p>
+      </div>
+      <div>
+        <h3>Why there is no animation</h3>
+        <ul>
+          <li>This is a direct calculation with nothing moving to show; the page shows the question and a worked answer.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>Bohr: mvr = nh/2π, so n = 2πmvr/h = 2π × 6.0 × 10<sup>24</sup> × 3 × 10<sup>4</sup> × 1.5 × 10<sup>11</sup>/6.63 × 10<sup>−34</sup> ≈ 2.6 × 10<sup>74</sup>.</li>
+          <li>So enormous that quantisation of the earth’s orbit is completely unnoticeable.</li>
+        </ol>
+        <p class="final">≈ 2.6 × 10<sup>74</sup>.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 12), Chapter 12 (Atoms), Exercises. </p>
+</div>
+<script>
+const b = document.getElementById('show'), a = document.querySelector('.answer');
+b.addEventListener('click', () => { a.hidden = !a.hidden; b.setAttribute('aria-pressed', String(!a.hidden)); b.textContent = a.hidden ? 'Show answer' : 'Hide answer'; });
+</script>
+</body>
+</html>
