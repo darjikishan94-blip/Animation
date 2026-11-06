@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 4.10</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 4 Laws of Motion</a></p>
+      <h1>Exercise 4.10 · Positions under a reversing force</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q09.html">‹ 4.9</a><a href="index.html">All questions</a><a href="q11.html">4.11 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 4.10">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A body moving north is slowed and turned back by a southward force for 30 seconds; the solution run plots its position against time from minus 5 to 100 seconds."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>4.10</b> A body of mass 0.40 kg moving initially with a constant speed of 10 m s<sup>−1</sup> to the north is subject to a constant force of 8.0 N directed towards the south for 30 s. Take the instant the force is applied to be <i>t</i> = 0, the position of the body at that time to be <i>x</i> = 0, and predict its position at <i>t</i> = −5 s, 25 s, 100 s.</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Mass 0.40 kg; initial velocity 10 m s<sup>−1</sup> north; force 8.0 N south for 0 ≤ t ≤ 30 s.</li>
+          <li>x = 0 at t = 0 (north positive).</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The position at t = −5 s, 25 s and 100 s.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>North is positive. The x–t graph and the north–south line share one scale; 8 s of motion per second of animation.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>t = −5 s: no force yet, so x = 10 × (−5) = −50 m.</li>
+          <li>a = −8.0/0.40 = −20 m s<sup>−2</sup> for 0 ≤ t ≤ 30 s. At t = 25 s: x = 10 × 25 − ½ × 20 × 25² = −6000 m.</li>
+          <li>At t = 30 s: x = 300 − 9000 = −8700 m, v = 10 − 600 = −590 m s<sup>−1</sup>. After that no force: x(100) = −8700 − 590 × 70 = −50,000 m.</li>
+        </ol>
+        <p class="final">−50 m, −6 km and −50 km (i.e. 50 m, 6 km and 50 km south of x = 0).</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 4 (Laws of Motion), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const M = 0.4, U = 10, F = 8, A = F / M, TF = 30;                     // a = 20 m/s² southward for 0 ≤ t ≤ 30 s
+  const x = t => t < 0 ? U * t : t <= TF ? U * t - 0.5 * A * t * t : (U * TF - 0.5 * A * TF * TF) + (U - A * TF) * (t - TF);
+  const v = t => t < 0 ? U : t <= TF ? U - A * t : U - A * TF;
+  const SP = 8, S1 = 3;                                                   // 8 s of motion per second of animation
+  const qStages = [
+    { title: 'Moving north at 10 m/s', dur: 5, text: 'A body of mass 0.40 kg moves north with a constant speed of 10 m/s. At t = 0, at x = 0, a constant force of 8.0 N towards the south starts to act on it, for 30 s.' },
+    { title: 'What is asked', dur: 4, text: 'Predict its position at t = −5 s, 25 s and 100 s.' },
+  ];
+  const stages = [
+    { title: 'Before the force: t < 0', dur: S1 + 5 / SP, text: 'Before t = 0 the body moves north uniformly, so 5 s earlier it was 50 m to the south.', ans: 'x(−5 s) = 10 × (−5) = −50 m.' },
+    { title: 'The force acts: 0 to 30 s', dur: 30 / SP, text: 'The southward force gives an acceleration of 20 m/s² southward: the body stops after 0.5 s and then speeds up southward.', ans: 'a = −8.0/0.40 = −20 m/s²; x(25 s) = 10 × 25 − ½ × 20 × 25² = −6000 m.' },
+    { title: 'After the force: t > 30 s', dur: 70 / SP + 3, text: 'After 30 s no force acts, so the body moves uniformly with the velocity it had at 30 s.', ans: 'At 30 s: x = −8700 m, v = −590 m/s; x(100 s) = −8700 − 590 × 70 = −50,000 m.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    const tt = ans ? Math.min(100, -5 + Math.max(0, t - S1) * SP) : 0;
+    // north–south line with the body
+    const NY = 70, SY = 480, LX = 90, xmin = -50000, xmax = 1000, Y = xv => NY + (xmax - xv) / (xmax - xmin) * (SY - NY);
+    vline(ctx, LX, NY - 20, SY, P.ink2, 1.5); label(ctx, 'N', LX, NY - 32, { align: 'center', weight: 700, size: 14 }); label(ctx, 'S', LX, SY + 14, { align: 'center', weight: 700, size: 14 });
+    hline(ctx, LX - 8, LX + 8, Y(0), P.ink, 1.5); label(ctx, 'x = 0', LX + 12, Y(0), { size: 12, color: P.ink2 });
+    ball(ctx, LX, Y(x(tt)), 8, P.objFill2);
+    if (!ans) {
+      vec(ctx, LX + 30, Y(0), 0, -40, '10 m/s', P.vel, { side: 1, at: 0.6, align: 'left', ax: 6 });
+      vec(ctx, LX + 70, Y(0) - 20, 0, 40, '8.0 N, for 30 s', P.force, { side: 1, at: 0.6, align: 'left', ax: 6 });
+      askedPanel(ctx, 630, 34, 300, ['The position of the body at t = −5 s, 25 s and 100 s.']);
+      return;
+    }
+    const g = axes(ctx, { x: 190, y: 70, w: 380, h: 400, x0: -5, x1: 100, y0: -52000, y1: 2000, xt: [25, 50, 100], yt: [-50000, -25000], xl: 't (s)', yl: 'x (m)' });
+    const pts = []; for (let s = -5; s <= tt; s += 0.5) pts.push([g.X(s), g.Y(x(s))]);
+    ctx.save(); ctx.strokeStyle = P.vel; ctx.lineWidth = 3; if (pts.length > 1) poly(ctx, pts); ctx.restore();
+    for (const [ts, txt] of [[-5, '−50 m'], [25, '−6000 m'], [100, '−50,000 m']]) if (tt >= ts) { ball(ctx, g.X(ts), g.Y(x(ts)), 5, P.accent); label(ctx, `t = ${ts} s: ${txt}`, ts < 0 ? g.X(0) + 8 : ts === 100 ? g.X(ts) - 8 : g.X(ts) + 8, g.Y(x(ts)) - 14, { weight: 700, size: 13, align: ts === 100 ? 'right' : 'left' }); }
+    clock(ctx, 230, 490, tt, `t = ${tt.toFixed(0)} s, v = ${v(tt).toFixed(0)} m/s`);
+    partsPanel(ctx, 630, 34, 300, 'Positions', ['t = −5 s: x = −50 m', 't = 25 s: x = −6000 m', 't = 100 s: x = −50,000 m (50 km south)'],
+      tt < 0 ? 0 : tt <= 30 ? 1 : 2, false);
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

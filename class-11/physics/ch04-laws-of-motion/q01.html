@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 4.1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 4 Laws of Motion</a></p>
+      <h1>Exercise 4.1 · Net force in five situations</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><span>‹</span><a href="index.html">All questions</a><a href="q02.html">4.2 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 4.1">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="Five short scenes: a raindrop falling at constant speed, a cork floating, a kite held still, a car at constant velocity, and an electron in empty space, each with the forces on it."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>4.1</b> Give the magnitude and direction of the net force acting on (a) a drop of rain falling down with a constant speed, (b) a cork of mass 10 g floating on water, (c) a kite skillfully held stationary in the sky, (d) a car moving with a constant velocity of 30 km/h on a rough road, (e) a high-speed electron in space far from all material objects, and free of electric and magnetic fields.</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Five objects, each either at rest or moving with constant velocity (the electron: no forces of any kind).</li>
+          <li>Cork mass 10 g; car speed 30 km/h; g = 10 m s<sup>−2</sup>.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The magnitude and direction of the net force on each.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Force arrows are drawn only in the solution run; within each scene the balancing forces are drawn equal.</li>
+          <li>The motion in each scene is illustrative.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>(a) Zero: constant velocity, so the air resistance balances the weight.</li>
+          <li>(b) Zero: the cork is at rest; the buoyant force balances its weight of 0.1 N.</li>
+          <li>(c) Zero: the kite is at rest; weight, tension and wind force balance.</li>
+          <li>(d) Zero: constant velocity; the forward force balances friction and air drag.</li>
+          <li>(e) Zero: no force acts on it.</li>
+        </ol>
+        <p class="final">The net force is zero in all five cases (no acceleration).</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 4 (Laws of Motion), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const D = 6;
+  const PARTS = ['(a) a drop of rain falling down with a constant speed', '(b) a cork of mass 10 g floating on water', '(c) a kite skilfully held stationary in the sky',
+    '(d) a car moving with a constant velocity of 30 km/h on a rough road', '(e) a high-speed electron in space, far from all objects and free of fields'];
+  const ANS = ['Zero: its weight is balanced by the air resistance.', 'Zero: its weight (0.1 N) is balanced by the buoyant force of the water.',
+    'Zero: weight, string tension and the force of the wind balance.', 'Zero: the driving force balances the road friction and air drag.', 'Zero: no force acts on it at all.'];
+  const qStages = partStages(['(a) Raindrop', '(b) Floating cork', '(c) Kite', '(d) Car on a rough road', '(e) Electron in space'],
+    ['A drop of rain falls with a constant speed.', 'A cork of mass 10 g floats on water.', 'A kite is held stationary in the sky.', 'A car moves with a constant velocity of 30 km/h on a rough road.',
+     'A high-speed electron moves through space, far from all material objects and free of electric and magnetic fields.'], D);
+  const stages = partStages(qStages.map(s => s.title), [
+    'Constant speed in a straight line means zero acceleration, so the net force is zero: the air resistance upward equals the weight downward.',
+    'The cork is at rest, so the net force is zero: the water pushes up (buoyant force) as hard as gravity pulls down.',
+    'The kite does not move, so the three forces on it, weight, the string’s pull and the wind’s push, add up to zero.',
+    'Constant velocity means zero acceleration: the forward force from the road on the driving wheels balances friction and air drag. The weight balances the normal force.',
+    'Far from everything and free of fields, nothing pushes or pulls the electron: it keeps moving uniformly, with zero net force.'], D, ANS);
+  function drop(ctx, u, ans) {
+    const y = 70 + (u * 70) % 360, x = 300;
+    ctx.fillStyle = P.water; ctx.beginPath(); ctx.moveTo(x, y - 16); ctx.quadraticCurveTo(x + 12, y + 2, x, y + 10); ctx.quadraticCurveTo(x - 12, y + 2, x, y - 16); ctx.fill();
+    vec(ctx, x + 40, y - 20, 0, 50, 'constant speed', P.vel, { side: -1, off: 14, at: 0.5, align: 'left', ax: 8 });
+    if (ans) { vec(ctx, x, y + 14, 0, 50, 'weight', P.force, { side: 1, off: 12, at: 0.7, align: 'right' }); vec(ctx, x, y - 20, 0, -50, 'air resistance', P.drag, { side: -1, off: 12, at: 0.7, align: 'right' }); }
+  }
+  function cork(ctx, u, ans) {
+    ctx.fillStyle = P.water; ctx.globalAlpha = 0.6; ctx.fillRect(60, 300, 500, 180); ctx.globalAlpha = 1; hline(ctx, 60, 560, 300, P.vel, 2);
+    const y = 300 + 2 * Math.sin(u * 2);
+    block(ctx, 270, y - 22, 60, 40, '10 g', P.wood);
+    if (ans) { vec(ctx, 300, y + 18, 0, 50, 'weight 0.1 N', P.force, { side: 1, at: 0.8, align: 'left', ax: 4 }); vec(ctx, 300, y - 22, 0, -50, 'buoyant force 0.1 N', P.vel, { side: 1, at: 0.8, align: 'left', ax: 4 }); }
+  }
+  function kite(ctx, u, ans) {
+    const kx = 420, ky = 160 + 2 * Math.sin(u * 3), hx = 120, hy = 460;
+    ground(ctx, 40, 580, 470); person(ctx, hx - 20, 470, 1);
+    ctx.save(); ctx.strokeStyle = P.ink2; ctx.lineWidth = 1.5; seg(ctx, hx - 8, hy - 50, kx, ky + 30); ctx.restore();
+    ctx.fillStyle = P.force; ctx.beginPath(); ctx.moveTo(kx, ky - 40); ctx.lineTo(kx + 26, ky); ctx.lineTo(kx, ky + 30); ctx.lineTo(kx - 26, ky); ctx.closePath(); ctx.fill();
+    if (ans) {
+      const L = Math.hypot(hx - 8 - kx, hy - 50 - ky - 30), tx = (hx - 8 - kx) / L * 70, ty = (hy - 50 - ky - 30) / L * 70, W = 40;
+      vec(ctx, kx, ky, tx, ty, 'tension', P.force, { side: -1, at: 0.6 });
+      vec(ctx, kx, ky, 0, W, 'weight', P.force, { side: 1, at: 1, ay: 10 });
+      vec(ctx, kx, ky, -(tx), -(ty + W), 'wind', P.drag, { side: 1, at: 0.8 });
+    }
+  }
+  function car(ctx, u, ans) {
+    ctx.fillStyle = P.road; ctx.fillRect(30, 330, 560, 26); hline(ctx, 30, 590, 330, P.obj, 2);
+    const x = 60 + (u * 70) % 460, y = 330;
+    ctx.fillStyle = P.objFill2; ctx.strokeStyle = P.obj; ctx.lineWidth = 2; ctx.fillRect(x - 50, y - 26, 90, 18); ctx.strokeRect(x - 50, y - 26, 90, 18);
+    ctx.beginPath(); ctx.moveTo(x - 36, y - 26); ctx.lineTo(x - 26, y - 42); ctx.lineTo(x + 8, y - 42); ctx.lineTo(x + 20, y - 26); ctx.fill(); ctx.stroke();
+    for (const wx of [x - 30, x + 22]) { ctx.fillStyle = P.obj; ctx.beginPath(); ctx.arc(wx, y - 6, 8, 0, Math.PI * 2); ctx.fill(); }
+    vec(ctx, x - 5, y - 105, 60, 0, '30 km/h, constant', P.vel, { side: -1, at: 0.5 });
+    if (ans) {
+      vec(ctx, x + 24, y + 4, 56, 0, 'forward force', P.force, { side: 1, at: 0.6, ay: 18 });
+      vec(ctx, x - 30, y + 4, -56, 0, 'friction + drag', P.drag, { side: -1, at: 0.6, ay: 18 });
+      vec(ctx, x - 5, y - 26, 0, -40, 'normal', P.ink2, { side: 1, at: 1, align: 'left', ax: 6, ay: -6 });
+    }
+  }
+  function electron(ctx, u, ans) {
+    ctx.fillStyle = P.ink2; for (let i = 0; i < 40; i++) { const sx = (i * 137) % 560 + 30, sy = (i * 89) % 420 + 50; ctx.globalAlpha = 0.4; ctx.fillRect(sx, sy, 2, 2); } ctx.globalAlpha = 1;
+    const x = 60 + (u * 90) % 500, y = 270;
+    ball(ctx, x, y, 8, P.vel); label(ctx, 'e⁻', x, y - 18, { align: 'center', weight: 700, size: 14 });
+    vec(ctx, x + 14, y, 60, 0, 'high speed', P.vel, { side: -1, at: 0.5 });
+    if (ans) label(ctx, 'no forces act', x, y + 40, { align: 'center', weight: 700, size: 15, color: P.force });
+  }
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    const k = Math.min(4, Math.floor(t / D)), u = t - k * D;
+    [drop, cork, kite, car, electron][k](ctx, u, ans);
+    if (ans) { partsPanel(ctx, 630, 34, 300, 'Net force on…', PARTS, k, true, ANS); label(ctx, 'net force = 0', 300, 510, { align: 'center', weight: 800, size: 18, color: P.accent }); }
+    else partsPanel(ctx, 630, 34, 300, 'Give the net force on…', PARTS, k, false);
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

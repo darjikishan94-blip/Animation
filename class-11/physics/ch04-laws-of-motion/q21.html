@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 4.21</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 4 Laws of Motion</a></p>
+      <h1>Exercise 4.21 · Stone whirled on a string</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q20.html">‹ 4.20</a><a href="index.html">All questions</a><a href="q22.html">4.22 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 4.21">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="Top view of a stone whirled on a 1.5 m string at 40 revolutions per minute; the solution run shows the tension, then the maximum speed for 200 N."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>4.21</b> A stone of mass 0.25 kg tied to the end of a string is whirled round in a circle of radius 1.5 m with a speed of 40 rev./min in a horizontal plane. What is the tension in the string? What is the maximum speed with which the stone can be whirled around if the string can withstand a maximum tension of 200 N?</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Mass 0.25 kg; radius 1.5 m; 40 rev/min in a horizontal plane; maximum tension 200 N.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The tension at 40 rev/min, and the maximum speed.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Seen from above; gravity ignored (horizontal circle). The fast case is shown slowed down.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>v = 2πrn = 2π × 1.5 × (40/60) ≈ 6.28 m s<sup>−1</sup>.</li>
+          <li>T = mv²/r = 0.25 × 6.28²/1.5 ≈ 6.6 N.</li>
+          <li>v<sub>max</sub> = √(T<sub>max</sub> r/m) = √(200 × 1.5/0.25) = √1200 ≈ 35 m s<sup>−1</sup>.</li>
+        </ol>
+        <p class="final">T ≈ 6.6 N; maximum speed ≈ 35 m s⁻¹.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 4 (Laws of Motion), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const M = 0.25, R = 1.5, N = 40 / 60, OM = 2 * Math.PI * N, V = OM * R, T = M * V * V / R, TMAX = 200, VMAX = Math.sqrt(TMAX * R / M);
+  const CX = 290, CY = 270, RP = 150, S1 = 7, S2 = S1 + 6;
+  const qStages = [
+    { title: 'Whirled in a circle', dur: 6, text: 'A stone of mass 0.25 kg tied to a string is whirled round in a horizontal circle of radius 1.5 m at 40 rev/min.' },
+    { title: 'What is asked', dur: 4, text: 'What is the tension in the string? What is the maximum speed if the string can withstand a tension of 200 N?' },
+  ];
+  const stages = [
+    { title: 'At 40 rev/min', dur: S1, text: 'The tension provides the centripetal force. First find the speed: 40 rev/min is 2/3 rev every second.', ans: 'v = 2πrn = 2π × 1.5 × 40/60 ≈ 6.28 m/s; T = mv²/r = 0.25 × 6.28²/1.5 ≈ 6.6 N.' },
+    { title: 'At the breaking point', dur: S2 - S1, text: 'The faster the stone, the more tension is needed. The largest tension allowed is 200 N.', ans: 'v_max = √(T_max r/m) = √(200 × 1.5/0.25) = √1200 ≈ 35 m/s.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    label(ctx, 'seen from above', CX, 40, { align: 'center', size: 13, color: P.ink2 });
+    ctx.save(); ctx.strokeStyle = P.ink2; ctx.setLineDash([4, 4]); ctx.beginPath(); ctx.arc(CX, CY, RP, 0, Math.PI * 2); ctx.stroke(); ctx.restore();
+    const fast = ans && t >= S1, a = fast ? OM * S1 + (t - S1) * OM * 4 : t * OM;      // the fast case is drawn slowed down
+    const x = CX + RP * Math.cos(a), y = CY + RP * Math.sin(a);
+    ctx.save(); ctx.strokeStyle = P.obj; ctx.lineWidth = 2; seg(ctx, CX, CY, x, y); ctx.restore();
+    ball(ctx, CX, CY, 5, P.obj); ball(ctx, x, y, 10, P.objFill2);
+    label(ctx, 'radius 1.5 m', CX, CY + RP + 24, { align: 'center', weight: 700, size: 13 });
+    vec(ctx, x, y, -Math.sin(a) * 50, Math.cos(a) * 50, ans ? (fast ? '35 m/s' : '6.3 m/s') : '40 rev/min', P.vel, { size: 12 });
+    if (ans) vec(ctx, x, y, (CX - x) / RP * (fast ? 100 : 40), (CY - y) / RP * (fast ? 100 : 40), fast ? 'T = 200 N' : 'T = 6.6 N', P.force, { at: 0.5, size: 12 });
+    if (ans) partsPanel(ctx, 630, 34, 300, 'Working', ['v = 2π × 1.5 × (40/60) ≈ 6.28 m/s', 'T = mv²/r = 0.25 × 6.28² / 1.5 ≈ 6.6 N', 'v_max = √(200 × 1.5 / 0.25) ≈ 35 m/s'], t < S1 ? 1 : 2, false);
+    else askedPanel(ctx, 630, 34, 300, ['The tension in the string.', 'The maximum speed at which the stone can be whirled if the string can withstand a maximum tension of 200 N.']);
+    note(ctx, ans && t >= S1 ? 'at 35 m/s the stone would go round 3.7 times a second; shown slowed' : 'gravity is ignored, as for a horizontal circle');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

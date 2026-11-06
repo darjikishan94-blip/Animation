@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 4.14</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 4 Laws of Motion</a></p>
+      <h1>Exercise 4.14 · Force and impulse from an x–t graph</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q13.html">‹ 4.13</a><a href="index.html">All questions</a><a href="q15.html">4.15 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 4.14">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="The position-time graph of Fig. 4.16 (at rest, then 3 m in 4 s, then at rest) with a 4 kg particle moving along a line; the solution run marks the impulses at the corners."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>4.14</b> Figure 4.16 shows the position-time graph of a particle of mass 4 kg. What is the (a) force on the particle for <i>t</i> &lt; 0, <i>t</i> &gt; 4 s, 0 &lt; <i>t</i> &lt; 4 s? (b) impulse at <i>t</i> = 0 and <i>t</i> = 4 s? (Consider one-dimensional motion only).</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Mass 4 kg. Fig. 4.16: x = 0 for t &lt; 0; x rises uniformly to 3 m at t = 4 s; x = 3 m for t &gt; 4 s.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The force in each interval and the impulse at t = 0 and t = 4 s.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>The graph is redrawn from Fig. 4.16; the particle’s line uses its own scale.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>(a) t &lt; 0: at rest; 0 &lt; t &lt; 4 s: v = 3/4 = 0.75 m s<sup>−1</sup>, constant; t &gt; 4 s: at rest. Constant velocity in each, so the force is zero in all three.</li>
+          <li>(b) Impulse at t = 0: 4 × (0.75 − 0) = +3 kg m s<sup>−1</sup>. At t = 4 s: 4 × (0 − 0.75) = −3 kg m s<sup>−1</sup>.</li>
+        </ol>
+        <p class="final">(a) zero in all three intervals (b) +3 kg m s⁻¹ at t = 0 and −3 kg m s⁻¹ at t = 4 s.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 4 (Laws of Motion), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const M = 4, V = 0.75, x = t => t < 0 ? 0 : t < 4 ? V * t : 3;
+  const S = 6, T0 = -2, T1 = 7, SP = (T1 - T0) / S;
+  const qStages = [
+    { title: 'The graph', dur: 6, text: 'Fig. 4.16: the position–time graph of a particle of mass 4 kg moving along a line.' },
+    { title: 'What is asked', dur: 4, text: '(a) The force on the particle for t < 0, t > 4 s and 0 < t < 4 s. (b) The impulse at t = 0 and t = 4 s.' },
+  ];
+  const stages = [
+    { title: 'Following the graph', dur: S, text: 'Each straight part of the x–t graph means a constant velocity, so no force acts during it. The velocity jumps only at t = 0 and t = 4 s.', ans: 'For t < 0: v = 0; for 0 < t < 4 s: v = 3/4 = 0.75 m/s; for t > 4 s: v = 0. So F = 0 in all three intervals.' },
+    { title: 'The impulses', dur: 5, text: 'At each corner of the graph the momentum changes suddenly: that change is the impulse.', ans: 'At t = 0: 4 × (0.75 − 0) = +3 kg m/s; at t = 4 s: 4 × (0 − 0.75) = −3 kg m/s.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    const g = axes(ctx, { x: 90, y: 70, w: 440, h: 230, x0: -2, x1: 7, y0: 0, y1: 4, xt: [0, 4], yt: [3], xl: 't (s)', yl: 'x (m)' });
+    ctx.save(); ctx.strokeStyle = P.vel; ctx.lineWidth = 3; poly(ctx, [[g.X(-2), g.Y(0)], [g.X(0), g.Y(0)], [g.X(4), g.Y(3)], [g.X(7), g.Y(3)]]); ctx.restore();
+    label(ctx, 'A', g.X(4) + 4, g.Y(3) - 14, { weight: 700, size: 14 });
+    // the particle on its line
+    const LY = 400, LX = 120, KX = 110;
+    hline(ctx, LX - 20, LX + 3.4 * KX, LY, P.ink2, 1.5); for (let i = 0; i <= 3; i++) { vline(ctx, LX + i * KX, LY - 6, LY + 6, P.ink2, 1.2); label(ctx, `${i} m`, LX + i * KX, LY + 18, { align: 'center', size: 12 }); }
+    const tt = ans ? Math.min(T1, T0 + Math.min(t, S) * SP) : T0;
+    ball(ctx, LX + x(tt) * KX, LY - 14, 10, P.objFill2); label(ctx, '4 kg', LX + x(tt) * KX, LY - 34, { align: 'center', size: 12, weight: 700 });
+    if (ans) {
+      vline(ctx, g.X(tt), g.Y(4), g.Y(0), P.ink2, 1, [3, 4]);
+      ball(ctx, g.X(tt), g.Y(x(tt)), 5, P.accent);
+      const v = tt > 0 && tt < 4 ? V : 0;
+      label(ctx, `v = ${v} m/s, F = 0`, 120, 470, { weight: 700, size: 15, color: P.vel });
+      if (t >= S) { vec(ctx, g.X(0), g.Y(0) + 30, 50, 0, '+3 kg m/s', P.force, { side: 1, at: 0.6, ay: 4 }); vec(ctx, g.X(4) + 60, g.Y(3) + 30, -50, 0, '−3 kg m/s', P.force, { side: -1, at: 0.5, ay: 4 }); }
+      partsPanel(ctx, 630, 34, 300, 'Answers', ['(a) t < 0, 0 < t < 4 s, t > 4 s: force = 0 (constant velocity in each)', '(b) impulse at t = 0: +3 kg m/s; at t = 4 s: −3 kg m/s'], t < S ? 0 : 1, false);
+    } else askedPanel(ctx, 630, 34, 300, ['(a) The force on the particle for t < 0, t > 4 s, 0 < t < 4 s.', '(b) The impulse at t = 0 and t = 4 s. (One-dimensional motion only.)']);
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

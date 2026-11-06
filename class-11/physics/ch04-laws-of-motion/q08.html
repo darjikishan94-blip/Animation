@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 4.8</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 4 Laws of Motion</a></p>
+      <h1>Exercise 4.8 · Three-wheeler stops for a child</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q07.html">‹ 4.7</a><a href="index.html">All questions</a><a href="q09.html">4.9 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 4.8">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A three-wheeler at 36 km/h brakes and stops in 4 seconds just in front of a child on the road; the solution run shows the retarding force."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>4.8</b> The driver of a three-wheeler moving with a speed of 36 km/h sees a child standing in the middle of the road and brings his vehicle to rest in 4.0 s just in time to save the child. What is the average retarding force on the vehicle? The mass of the three-wheeler is 400 kg and the mass of the driver is 65 kg.</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Speed = 36 km/h; stops in 4.0 s.</li>
+          <li>Mass of the three-wheeler 400 kg; driver 65 kg.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The average retarding force on the vehicle.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Uniform retardation assumed (the question asks for the average force); 24 px per metre.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>u = 36 km/h = 10 m s<sup>−1</sup>; total mass = 400 + 65 = 465 kg.</li>
+          <li>a = (0 − 10)/4.0 = −2.5 m s<sup>−2</sup>.</li>
+          <li>F = 465 × 2.5 ≈ 1.16 × 10<sup>3</sup> N, opposite to the motion.</li>
+        </ol>
+        <p class="final">About 1.16 × 10³ N, opposing the motion.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 4 (Laws of Motion), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const M = 465, U = 10, TS = 4, A = U / TS, K = 20, X0 = 150, RY = 260;   // 36 km/h = 10 m/s; 20 px per metre
+  const S1 = 3, S2 = S1 + TS, S3 = S2 + 4;
+  const qStages = [
+    { title: 'A child on the road', dur: S1, text: 'A three-wheeler (400 kg, driver 65 kg) moves at 36 km/h. The driver sees a child standing in the middle of the road.' },
+    { title: 'Braking', dur: S2 - S1, text: 'He brings the vehicle to rest in 4.0 s, just in time to save the child.' },
+    { title: 'What is asked', dur: S3 - S2, text: 'What is the average retarding force on the vehicle?' },
+  ];
+  const stages = [
+    { title: 'At 36 km/h', dur: S1, text: 'Convert the speed to m/s. The vehicle and the driver slow down together, so both masses count.', ans: '36 km/h = 10 m/s; total mass = 400 + 65 = 465 kg.' },
+    { title: 'Braking for 4.0 s', dur: S2 - S1, text: 'The average retardation is the change of speed divided by the time.', ans: 'a = (0 − 10)/4.0 = −2.5 m/s².' },
+    { title: 'The retarding force', dur: S3 - S2, text: 'Newton’s second law, with the total mass.', ans: 'F = ma = 465 × 2.5 ≈ 1.16 × 10³ N, opposite to the motion (it stops after 20 m).' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    ctx.fillStyle = P.road; ctx.fillRect(30, RY, 570, 30); hline(ctx, 30, 600, RY, P.obj, 2);
+    const tm = clamp(t - S1, 0, TS), x = U * tm - 0.5 * A * tm * tm, v = U - A * tm, fx = X0 + x * K;
+    // three-wheeler (front at fx)
+    ctx.fillStyle = P.ke; ctx.strokeStyle = P.obj; ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.moveTo(fx, RY - 12); ctx.lineTo(fx - 6, RY - 50); ctx.lineTo(fx - 54, RY - 54); ctx.lineTo(fx - 60, RY - 12); ctx.closePath(); ctx.fill(); ctx.stroke();
+    for (const wx of [fx - 12, fx - 50]) { ctx.fillStyle = P.obj; ctx.beginPath(); ctx.arc(wx, RY - 7, 7, 0, Math.PI * 2); ctx.fill(); }
+    person(ctx, X0 + 20 * K + 22, RY, 0.7);
+    label(ctx, 'child', X0 + 20 * K + 22, RY - 82, { align: 'center', size: 13, weight: 700 });
+    if (v > 0.05) vec(ctx, fx - 30, RY - 80, v * 6, 0, t < S1 ? '36 km/h' : (ans ? `${v.toFixed(1)} m/s` : 'v'), P.vel, { side: -1, at: 0.6 });
+    if (ans && t >= S1 && v > 0.05) vec(ctx, fx - 60, RY + 14, -60, 0, 'retarding force', P.force, { side: -1, at: 0.5, ay: 14 });
+    clock(ctx, 60, 60, tm, `t = ${tm.toFixed(1)} s`);
+    if (ans) partsPanel(ctx, 630, 34, 300, 'Working', ['u = 36 km/h = 10 m/s, m = 400 + 65 = 465 kg', 'a = (0 − 10)/4.0 = −2.5 m/s²', 'F = 465 × 2.5 ≈ 1.16 × 10³ N, opposite to the motion'], Math.min(2, t < S1 ? 0 : t < S2 ? 1 : 2), false);
+    else askedPanel(ctx, 630, 34, 300, ['The average retarding force on the vehicle.']);
+    note(ctx, 'scale: 20 px per metre');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

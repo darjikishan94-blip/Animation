@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 4.23</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 4 Laws of Motion</a></p>
+      <h1>Exercise 4.23 · Four everyday explanations</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q22.html">‹ 4.22</a><a href="index.html">All questions</a><span>›</span></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 4.23">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="Four scenes: a horse and cart on the ground and in empty space, passengers lurching forward when a bus stops, pulling versus pushing a lawn mower, and force-time graphs for catching a ball."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>4.23</b> Explain why (a) a horse cannot pull a cart and run in empty space, (b) passengers are thrown forward from their seats when a speeding bus stops suddenly, (c) it is easier to pull a lawn mower than to push it, (d) a cricketer moves his hands backwards while holding a catch.</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Four everyday situations.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>An explanation for each.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Illustrative scenes; force arrows only in the solution run.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>(a) To move forward the horse pushes the ground backward and the ground pushes it forward (Newton’s third law). In empty space there is nothing to push on, and the horse–cart forces are internal and cancel.</li>
+          <li>(b) The bus stops, but the passengers’ bodies keep moving forward by inertia (Newton’s first law).</li>
+          <li>(c) Pulling at an angle has an upward component that reduces the normal force and so the friction; pushing adds a downward component that increases them.</li>
+          <li>(d) Moving the hands back increases the time over which the ball stops. For the same change in momentum, a longer time means a smaller force (F = Δp/Δt).</li>
+        </ol>
+        <p class="final">Third law, inertia, normal force and friction, and impulse respectively.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 4 (Laws of Motion), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const D = 7;
+  const PARTS = ['(a) a horse cannot pull a cart and run in empty space', '(b) passengers are thrown forward when a speeding bus stops suddenly', '(c) it is easier to pull a lawn mower than to push it', '(d) a cricketer moves his hands backwards while holding a catch'];
+  const ANS = ['On the ground the horse pushes the ground back and the ground pushes it forward (friction). In space there is nothing to push against; the horse–cart forces are internal and cancel.',
+    'The bus stops but the passengers’ bodies, by inertia, keep moving forward until a force stops them.',
+    'Pulling at an angle lifts the mower slightly: the normal force, and so the friction, is reduced. Pushing presses it down and increases friction.',
+    'Moving the hands back makes the catch last longer. For the same change in momentum, a longer time means a smaller force on the hands.'];
+  const qStages = partStages(['(a) Horse and cart', '(b) Bus stops suddenly', '(c) Lawn mower', '(d) Taking a catch'], PARTS.map(p => 'Explain why ' + p.slice(4) + '.'), D);
+  const stages = partStages(qStages.map(s => s.title), ['Newton’s third law: the ground’s push makes the horse move.', 'Newton’s first law: inertia of motion.', 'The vertical part of the applied force changes the normal force, and friction depends on the normal force.', 'Newton’s second law: force = change of momentum ÷ time.'], D, ANS);
+  function horse(ctx, u, ans) {
+    const space = u > 3.5, x = space ? 250 : 165 + u * 30;
+    if (!space) ground(ctx, 30, 580, 360); else { ctx.fillStyle = P.ink2; for (let i = 0; i < 30; i++) { ctx.globalAlpha = 0.4; ctx.fillRect((i * 137) % 540 + 30, (i * 71) % 380 + 60, 2, 2); } ctx.globalAlpha = 1; label(ctx, 'in empty space: no ground', 300, 60, { align: 'center', weight: 700, size: 14 }); }
+    block(ctx, x - 150, 300, 90, 50, 'cart'); ctx.save(); ctx.strokeStyle = P.obj; ctx.lineWidth = 3; seg(ctx, x - 60, 320, x - 20, 320); ctx.restore();
+    ctx.fillStyle = P.bark; ctx.fillRect(x - 20, 290, 90, 36); ctx.fillRect(x + 60, 260, 20, 40);
+    for (const lx of [x - 10, x + 10, x + 40, x + 60]) { ctx.fillRect(lx, 326, 7, 34 + 3 * Math.sin(u * 10 + lx)); }
+    label(ctx, 'horse', x + 25, 280, { align: 'center', size: 13, color: P.sheet, halo: false });
+    if (ans && !space) { vec(ctx, x + 10, 378, -50, 0, 'horse pushes ground back', P.ink2, { side: -1, at: 0.5, ay: 6, size: 12 }); vec(ctx, x + 72, 352, 50, 0, 'ground pushes horse forward', P.force, { side: 0, at: 1, align: 'left', ax: 6, size: 12 }); }
+    if (ans && space) label(ctx, 'horse ↔ cart forces cancel: no motion', 300, 450, { align: 'center', weight: 700, size: 14, color: P.force });
+  }
+  function bus(ctx, u, ans) {
+    ground(ctx, 30, 580, 380);
+    const stopT = 2, x = u < stopT ? 120 + u * 90 : 120 + stopT * 90, lean = u < stopT ? 0 : Math.min(1, (u - stopT) / 0.4) * 0.5;
+    ctx.fillStyle = P.objFill; ctx.strokeStyle = P.obj; ctx.lineWidth = 2; ctx.fillRect(x - 100, 250, 260, 120); ctx.strokeRect(x - 100, 250, 260, 120);
+    for (const wx of [x - 60, x + 120]) { ctx.fillStyle = P.obj; ctx.beginPath(); ctx.arc(wx, 372, 14, 0, Math.PI * 2); ctx.fill(); }
+    ctx.save(); ctx.translate(x + 30, 360); ctx.rotate(lean); person(ctx, 0, 0, 0.9); ctx.restore();
+    label(ctx, u < stopT ? 'moving fast' : 'stops suddenly', x + 30, 230, { align: 'center', weight: 700, size: 14 });
+    if (ans && u >= stopT) vec(ctx, x + 50, 290, 50, 0, 'body keeps moving (inertia)', P.vel, { side: -1, at: 0.5, size: 12 });
+  }
+  function mower(ctx, u, ans) {
+    const th = 0.6;
+    [[150, 'pull', -1], [430, 'push', 1]].forEach(([x, name, s]) => {
+      ground(ctx, x - 120, x + 120, 380);
+      block(ctx, x - 40, 340, 80, 30, '', P.leaf); for (const wx of [x - 26, x + 26]) { ctx.fillStyle = P.obj; ctx.beginPath(); ctx.arc(wx, 372, 8, 0, Math.PI * 2); ctx.fill(); }
+      ctx.save(); ctx.strokeStyle = P.obj; ctx.lineWidth = 4; seg(ctx, x, 345, x + s * 110 * Math.cos(th), 345 - 110 * Math.sin(th)); ctx.restore();
+      label(ctx, name, x, 300 - 60, { align: 'center', weight: 700, size: 15 });
+      if (ans) {
+        if (s < 0) vec(ctx, x, 345, -70 * Math.cos(th), -70 * Math.sin(th), 'F', P.force, { at: 1, side: 0, ax: -10 });            // pull: along the handle, away from the mower
+        else vec(ctx, x + 110 * Math.cos(th), 345 - 110 * Math.sin(th), -70 * Math.cos(th), 70 * Math.sin(th), 'F', P.force, { at: 0, side: 0, ax: 12, ay: -6 });   // push: along the handle, into the mower
+        const N = s > 0 ? 'N = mg + F sin θ (larger)' : 'N = mg − F sin θ (smaller)';
+        label(ctx, N, x, 420, { align: 'center', weight: 700, size: 13, color: s > 0 ? P.force : P.accent });
+        label(ctx, s > 0 ? 'more friction' : 'less friction', x, 442, { align: 'center', size: 13 });
+      }
+    });
+  }
+  function catch_(ctx, u, ans) {
+    const g = axes(ctx, { x: 60, y: 260, w: 460, h: 180, x0: 0, x1: 1, y0: 0, y1: 1, xl: 'time', yl: 'force on hands' });
+    if (ans) {
+      ctx.save(); ctx.fillStyle = P.force; ctx.globalAlpha = 0.5; ctx.fillRect(g.X(0.05), g.Y(0.9), (g.X(0.15) - g.X(0.05)), g.Y(0) - g.Y(0.9)); ctx.restore();
+      ctx.save(); ctx.fillStyle = P.accent; ctx.globalAlpha = 0.5; ctx.fillRect(g.X(0.3), g.Y(0.3), (g.X(0.6) - g.X(0.3)), g.Y(0) - g.Y(0.3)); ctx.restore();
+      label(ctx, 'hands held still: short, big force', g.X(0.1), g.Y(0.95), { align: 'left', size: 12, weight: 700 });
+      label(ctx, 'hands moved back: same area, smaller force', g.X(0.3), g.Y(0.35), { size: 12, weight: 700 });
+    }
+    const bx = 120 + Math.min(u, 2) * 120;
+    ball(ctx, bx, 150, 9, P.force); person(ctx, 400, 220, 0.9);
+    vec(ctx, bx - 40, 125, 40, 0, 'ball', P.vel, { side: -1, at: 0.5, size: 12 });
+    if (u > 2) vec(ctx, 390, 120, 30 * Math.min(1, (u - 2) / 1), 0, 'hands move back', P.acc, { side: -1, at: 0.6, size: 12 });
+  }
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 600, 16, 524, P.rule, 1);
+    const k = Math.min(3, Math.floor(t / D)), u = t - k * D;
+    [horse, bus, mower, catch_][k](ctx, u, ans);
+    partsPanel(ctx, 620, 34, 320, ans ? 'Explanations' : 'Explain why…', PARTS, k, ans, ANS);
+  }
+  return { qStages, stages, draw };
+})();
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 4.19</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 4 Laws of Motion</a></p>
+      <h1>Exercise 4.19 · Recoil of a gun</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q18.html">‹ 4.18</a><a href="index.html">All questions</a><a href="q20.html">4.20 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 4.19">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A 100 kg gun fires a 0.020 kg shell at 80 metres per second; the solution run shows equal and opposite momenta and the gun’s slow recoil."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>4.19</b> A shell of mass 0.020 kg is fired by a gun of mass 100 kg. If the muzzle speed of the shell is 80 m s<sup>−1</sup>, what is the recoil speed of the gun?</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Shell 0.020 kg at 80 m s<sup>−1</sup>; gun 100 kg; both initially at rest.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The recoil speed of the gun.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>The recoil (0.016 m s<sup>−1</sup>) is far too slow to see and is exaggerated.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>Momentum before = 0, so after: 0.020 × 80 + 100 × v = 0.</li>
+          <li>v = −1.6/100 = −0.016 m s<sup>−1</sup>.</li>
+        </ol>
+        <p class="final">0.016 m s⁻¹, opposite to the shell.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 4 (Laws of Motion), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const MS = 0.02, MG = 100, VS = 80, VG = MS * VS / MG, S1 = 3, S2 = S1 + 3, S3 = S2 + 4, GY = 330;
+  const qStages = [
+    { title: 'A gun and its shell', dur: S1, text: 'A gun of mass 100 kg fires a shell of mass 0.020 kg.' },
+    { title: 'Fired', dur: S2 - S1, text: 'The muzzle speed of the shell is 80 m/s.' },
+    { title: 'What is asked', dur: S3 - S2, text: 'What is the recoil speed of the gun?' },
+  ];
+  const stages = [
+    { title: 'Before firing', dur: S1, text: 'Gun and shell are at rest: total momentum zero.', ans: 'Total momentum before = 0.' },
+    { title: 'Fired', dur: S2 - S1, text: 'The explosion pushes the shell forward and the gun backward with equal and opposite forces, so their momenta are equal and opposite.', ans: 'Shell: 0.020 × 80 = 1.6 kg m/s forward; gun: 1.6 kg m/s backward.' },
+    { title: 'Recoil speed', dur: S3 - S2, text: 'The gun is 5000 times heavier, so it moves 5000 times slower.', ans: 'v = 1.6/100 = 0.016 m/s (1.6 cm/s), backward.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1); ground(ctx, 30, 600, GY);
+    const u = Math.max(0, t - S1), gx = 180 - (ans ? Math.min(u, 3) * 6 : 0);          // recoil exaggerated
+    ctx.fillStyle = P.objFill2; ctx.strokeStyle = P.obj; ctx.lineWidth = 2;
+    ctx.fillRect(gx - 90, GY - 60, 150, 26); ctx.strokeRect(gx - 90, GY - 60, 150, 26); ctx.fillRect(gx - 70, GY - 34, 70, 30); ctx.strokeRect(gx - 70, GY - 34, 70, 30);
+    for (const wx of [gx - 60, gx - 10]) { ctx.fillStyle = P.obj; ctx.beginPath(); ctx.arc(wx, GY - 6, 6, 0, Math.PI * 2); ctx.fill(); }
+    label(ctx, 'gun 100 kg', gx - 20, GY - 76, { align: 'center', weight: 700, size: 13 });
+    const sx = t < S1 ? gx + 50 : 240 + u * 160;
+    if (sx < 600) { ball(ctx, sx, GY - 47, 6, P.force); label(ctx, '0.020 kg', sx, GY - 66, { align: 'center', size: 12 }); }
+    if (t >= S1 && t < S1 + 0.25) { ctx.fillStyle = P.ke; ctx.beginPath(); ctx.arc(gx + 70, GY - 47, 14, 0, Math.PI * 2); ctx.fill(); }
+    if (t >= S1) vec(ctx, Math.min(sx, 520), GY - 100, 60, 0, '80 m/s', P.vel, { side: -1, at: 0.6 });
+    if (ans && t >= S1) {
+      vec(ctx, gx - 30, GY + 30, -50, 0, '0.016 m/s', P.vel, { side: 1, at: 0.6, ay: 4 });
+      const bx = 120, by = 430;
+      label(ctx, 'momentum', bx, by - 26, { weight: 700, size: 13 });
+      ctx.fillStyle = P.vel; ctx.fillRect(bx + 200, by - 10, 160, 18); ctx.fillRect(bx + 200 - 160, by + 16, 160, 18);
+      label(ctx, 'shell +1.6', bx + 200 + 166, by, { size: 12, weight: 700 }); label(ctx, 'gun −1.6 kg m/s', bx + 200 - 166, by + 25, { align: 'right', size: 12, weight: 700 });
+      vline(ctx, bx + 200, by - 20, by + 44, P.ink, 1.5);
+    }
+    if (ans) partsPanel(ctx, 630, 34, 300, 'Momentum is conserved', ['Before: 0', 'After: 0.020 × 80 + 100 × v = 0', 'v = −0.016 m/s: the gun recoils at 0.016 m/s'], t < S1 ? 0 : t < S2 ? 1 : 2, false);
+    else askedPanel(ctx, 630, 34, 300, ['The recoil speed of the gun.']);
+    note(ctx, ans ? 'the gun’s recoil is far too slow to see; it is exaggerated here' : '');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

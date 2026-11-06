@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 4.18</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 4 Laws of Motion</a></p>
+      <h1>Exercise 4.18 · Billiard balls rebound</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q17.html">‹ 4.17</a><a href="index.html">All questions</a><a href="q19.html">4.19 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 4.18">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="Two billiard balls approach at 6 metres per second, collide and rebound at the same speed; the solution run shows the impulse on each."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>4.18</b> Two billiard balls each of mass 0.05 kg moving in opposite directions with speed 6 m s<sup>−1</sup> collide and rebound with the same speed. What is the impulse imparted to each ball due to the other?</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Each ball 0.05 kg; 6 m s<sup>−1</sup> in opposite directions; they rebound with the same speed.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The impulse imparted to each ball.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Right is taken as positive.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>Ball A: momentum changes from +0.3 to −0.3 kg m s<sup>−1</sup>, so impulse = −0.6 kg m s<sup>−1</sup>.</li>
+          <li>Ball B: from −0.3 to +0.3, impulse = +0.6 kg m s<sup>−1</sup>.</li>
+        </ol>
+        <p class="final">0.6 kg m s⁻¹ on each ball, in opposite directions.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 4 (Laws of Motion), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const M = 0.05, V = 6, CX = 300, CY = 260, S1 = 3, SC = S1 + 2, S2 = SC + 2.5, S3 = S2 + 4;
+  const qStages = [
+    { title: 'Two billiard balls', dur: SC, text: 'Two billiard balls, each of mass 0.05 kg, move in opposite directions at 6 m/s.' },
+    { title: 'Collision', dur: S2 - SC, text: 'They collide and rebound with the same speed.' },
+    { title: 'What is asked', dur: S3 - S2, text: 'What is the impulse imparted to each ball by the other?' },
+  ];
+  const stages = [
+    { title: 'Before', dur: SC, text: 'Take the direction of ball A’s initial motion (to the right) as positive.', ans: 'Ball A: p = 0.05 × 6 = 0.3 kg m/s; ball B: −0.3 kg m/s.' },
+    { title: 'After the collision', dur: S2 - SC, text: 'Each ball reverses its velocity, keeping the same speed.', ans: 'Ball A: −0.3 kg m/s; ball B: +0.3 kg m/s.' },
+    { title: 'Impulse', dur: S3 - S2, text: 'Impulse = change in momentum.', ans: 'On A: −0.3 − 0.3 = −0.6 kg m/s; on B: +0.6 kg m/s. Each receives 0.6 kg m/s, in opposite directions.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    ctx.fillStyle = P.leaf; ctx.globalAlpha = 0.25; ctx.fillRect(40, 150, 540, 220); ctx.globalAlpha = 1;
+    const gap = t < SC - 2 ? 180 : t < SC ? 180 * (SC - t) / 2 : 180 * Math.min(1, (t - SC) / 2), before = t < SC;
+    ball(ctx, CX - 16 - gap, CY, 16, P.force); ball(ctx, CX + 16 + gap, CY, 16, P.ke);
+    label(ctx, 'A', CX - 16 - gap, CY - 30, { align: 'center', weight: 700 }); label(ctx, 'B', CX + 16 + gap, CY - 30, { align: 'center', weight: 700 });
+    const dir = before ? 1 : -1;
+    vec(ctx, CX - 16 - gap, CY + 30, dir * 50, 0, '6 m/s', P.vel, { side: 1, at: 0.6, size: 12 });
+    vec(ctx, CX + 16 + gap, CY + 30, -dir * 50, 0, '6 m/s', P.vel, { side: 1, at: 0.6, size: 12 });
+    if (ans && t >= S2) { vec(ctx, CX - 16 - gap, CY + 80, -70, 0, 'impulse 0.6 kg m/s', P.force, { side: -1, at: 1, align: 'left', ay: 4 }); vec(ctx, CX + 16 + gap, CY + 80, 70, 0, 'impulse 0.6 kg m/s', P.force, { side: 1, at: 1, align: 'right', ay: 4 }); }
+    if (ans) partsPanel(ctx, 630, 34, 300, 'Working (right = +)', ['A before: +0.3 kg m/s; B before: −0.3 kg m/s', 'A after: −0.3 kg m/s; B after: +0.3 kg m/s', 'Impulse on each = 0.6 kg m/s, in opposite directions'], t < SC ? 0 : t < S2 ? 1 : 2, false);
+    else askedPanel(ctx, 630, 34, 300, ['The impulse imparted to each ball due to the other.']);
+  }
+  return { qStages, stages, draw };
+})();
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 4.15</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 4 Laws of Motion</a></p>
+      <h1>Exercise 4.15 · Two bodies tied by a string</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q14.html">‹ 4.14</a><a href="index.html">All questions</a><a href="q16.html">4.16 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 4.15">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="Two blocks, 10 kg (A) and 20 kg (B), joined by a string are pulled by 600 N, first by A and then by B; the solution run shows the tension in each case."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>4.15</b> Two bodies of masses 10 kg and 20 kg respectively kept on a smooth, horizontal surface are tied to the ends of a light string. A horizontal force F = 600 N is applied to (i) A, (ii) B along the direction of string. What is the tension in the string in each case?</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>A = 10 kg, B = 20 kg; smooth horizontal surface; light string; F = 600 N along the string.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The tension in the string when F is applied to A, and when it is applied to B.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Motion shown much slower than real (a = 20 m s<sup>−2</sup>).</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>a = 600/(10 + 20) = 20 m s<sup>−2</sup> in both cases.</li>
+          <li>(i) Force on A: the string pulls B, T = 20 × 20 = 400 N.</li>
+          <li>(ii) Force on B: the string pulls A, T = 10 × 20 = 200 N.</li>
+        </ol>
+        <p class="final">(i) 400 N (ii) 200 N.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 4 (Laws of Motion), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const MA = 10, MB = 20, F = 600, A = F / (MA + MB), D = 7;
+  const qStages = [
+    { title: '(i) Force on A', dur: D, text: 'Bodies A (10 kg) and B (20 kg) on a smooth horizontal surface are tied by a light string. A horizontal force F = 600 N is applied to A, along the string.' },
+    { title: '(ii) Force on B', dur: D, text: 'Now the 600 N force is applied to B instead. What is the tension in the string in each case?' },
+  ];
+  const stages = [
+    { title: '(i) Force on A', dur: D, text: 'Both bodies move together: a = F/(m_A + m_B) = 600/30 = 20 m/s². The string has to pull B along.', ans: '(i) T = m_B × a = 20 × 20 = 400 N.' },
+    { title: '(ii) Force on B', dur: D, text: 'The acceleration is the same 20 m/s², but now the string only has to pull the lighter body A.', ans: '(ii) T = m_A × a = 10 × 20 = 200 N.' },
+  ];
+  function pair(ctx, y, pulled, u, ans, active) {
+    const s = active ? 0.5 * 6 * u * u : 0;                      // illustrative travel, shown very slowly
+    const lead = pulled === 'A' ? { m: MA, n: 'A' } : { m: MB, n: 'B' }, trail_ = pulled === 'A' ? { m: MB, n: 'B' } : { m: MA, n: 'A' };
+    const wt = 60 + trail_.m * 2, wl = 60 + lead.m * 2, x1 = 80 + s, x2 = x1 + wt + 90;
+    hline(ctx, 40, 600, y + 40, P.obj, 2);
+    block(ctx, x1, y + 40 - (30 + trail_.m), wt, 30 + trail_.m, `${trail_.n}: ${trail_.m} kg`);
+    block(ctx, x2, y + 40 - (30 + lead.m), wl, 30 + lead.m, `${lead.n}: ${lead.m} kg`);
+    ctx.save(); ctx.strokeStyle = P.ink; ctx.lineWidth = 2; seg(ctx, x1 + wt, y + 22, x2, y + 22); ctx.restore();
+    vec(ctx, x2 + wl, y + 22, 70, 0, 'F = 600 N', P.force, { side: -1, at: 0.6 });
+    if (ans && active) { const T = trail_.m * A; vec(ctx, x1 + wt, y + 22, T / 10, 0, '', P.vel); vec(ctx, x2, y + 22, -T / 10, 0, '', P.vel); label(ctx, `T = ${T} N`, x1 + wt + 45, y + 4, { align: 'center', weight: 700, size: 14, color: P.vel }); }
+    label(ctx, pulled === 'A' ? '(i) force applied to A' : '(ii) force applied to B', 60, y - 40, { weight: 700, size: 15, color: active ? P.ink : P.ink2 });
+  }
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    const k = t < D ? 0 : 1, u = Math.max(0, t - k * D - 1);
+    pair(ctx, 150, 'A', k === 0 ? u : 0, ans, k === 0);
+    pair(ctx, 380, 'B', k === 1 ? u : 0, ans, k === 1);
+    if (ans) partsPanel(ctx, 630, 34, 300, 'Tension in the string', ['a = 600/(10 + 20) = 20 m/s² in both cases', '(i) force on A: T = 20 kg × 20 = 400 N', '(ii) force on B: T = 10 kg × 20 = 200 N'], k + 1, false);
+    else askedPanel(ctx, 630, 34, 300, ['The tension in the string when the 600 N force is applied to (i) A, (ii) B.']);
+    note(ctx, 'smooth surface; motion shown much slower than real (a = 20 m/s²)');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

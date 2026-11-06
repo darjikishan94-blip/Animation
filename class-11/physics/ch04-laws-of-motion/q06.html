@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 4.6</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 4 Laws of Motion</a></p>
+      <h1>Exercise 4.6 · Force from a change of speed</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q05.html">‹ 4.5</a><a href="index.html">All questions</a><a href="q07.html">4.7 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 4.6">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A 3 kilogram block speeds up from 2.0 to 3.5 metres per second over 25 seconds; the solution run shows the force pushing it along its motion."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>4.6</b> A constant force acting on a body of mass 3.0 kg changes its speed from 2.0 m s<sup>−1</sup> to 3.5 m s<sup>−1</sup> in 25 s. The direction of the motion of the body remains unchanged. What is the magnitude and direction of the force?</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Mass = 3.0 kg; speed 2.0 → 3.5 m s<sup>−1</sup> in 25 s; direction unchanged.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The magnitude and direction of the force.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>25 s is shown in 5 s; 7.4 px per metre.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>a = (3.5 − 2.0)/25 = 0.06 m s<sup>−2</sup>.</li>
+          <li>F = ma = 3.0 × 0.06 = 0.18 N.</li>
+          <li>The speed increases with no change of direction, so the force is along the direction of motion.</li>
+        </ol>
+        <p class="final">0.18 N, along the direction of motion.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 4 (Laws of Motion), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const M = 3, V1 = 2, V2 = 3.5, TT = 25, A = (V2 - V1) / TT, SP = 5, X0 = 130, K = 6;   // 25 s shown in 5 s; 6 px per metre
+  const S1 = 3, S2 = S1 + TT / SP, S3 = S2 + 4;
+  const qStages = [
+    { title: 'A body of 3.0 kg', dur: S1, text: 'A body of mass 3.0 kg moves at 2.0 m/s. A constant force acts on it.' },
+    { title: 'Speeding up for 25 s', dur: S2 - S1, text: 'In 25 s its speed changes from 2.0 m/s to 3.5 m/s. Its direction of motion stays the same.' },
+    { title: 'What is asked', dur: S3 - S2, text: 'What is the magnitude and direction of the force?' },
+  ];
+  const stages = [
+    { title: 'A constant force', dur: S1, text: 'A constant force gives a constant acceleration in its own direction.', ans: 'The speed increases and the direction is unchanged, so the force acts along the motion.' },
+    { title: 'Speeding up for 25 s', dur: S2 - S1, text: 'The speed grows steadily from 2.0 m/s to 3.5 m/s.', ans: 'a = (3.5 − 2.0)/25 = 0.06 m/s².' },
+    { title: 'The force', dur: S3 - S2, text: 'Newton’s second law gives the force from the acceleration.', ans: 'F = ma = 3.0 × 0.06 = 0.18 N, in the direction of motion.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1); ground(ctx, 40, 600, 250);
+    const tm = clamp((t - S1) * SP, 0, TT), x = V1 * tm + 0.5 * A * tm * tm, v = V1 + A * tm, bx = X0 + x * K;
+    block(ctx, bx - 26, 208, 52, 42, '3 kg');
+    vec(ctx, bx, 180, v * 16, 0, t < S1 ? '2.0 m/s' : t >= S2 ? '3.5 m/s' : (ans ? `${v.toFixed(2)} m/s` : 'v'), P.vel, { side: -1, at: 0.6 });
+    if (ans) vec(ctx, bx - 28 - 45, 229, 45, 0, 'F = 0.18 N', P.force, { side: -1, at: 1, align: 'right', ax: -4 });
+    clock(ctx, 60, 60, tm, `t = ${tm.toFixed(1)} s`);
+    if (ans) partsPanel(ctx, 630, 34, 300, 'Working', ['a = Δv/Δt = (3.5 − 2.0)/25 = 0.06 m/s²', 'F = ma = 3.0 × 0.06 = 0.18 N', 'along the direction of motion'], Math.min(2, Math.floor(t / S2 * 2)), false);
+    else askedPanel(ctx, 630, 34, 300, ['The magnitude and direction of the force.']);
+    note(ctx, '25 s shown in 5 s; scale 6 px per metre');
+  }
+  return { qStages, stages, draw };
+})();
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

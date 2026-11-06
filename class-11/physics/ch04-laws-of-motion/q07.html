@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 4.7</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 4 Laws of Motion</a></p>
+      <h1>Exercise 4.7 · Two perpendicular forces</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q06.html">‹ 4.6</a><a href="index.html">All questions</a><a href="q08.html">4.8 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 4.7">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="Top view of a 5 kg body with an 8 newton force and a perpendicular 6 newton force; the solution run adds their 10 newton resultant and the body accelerating along it."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>4.7</b> A body of mass 5 kg is acted upon by two perpendicular forces 8 N and 6 N. Give the magnitude and direction of the acceleration of the body.</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Mass = 5 kg; two perpendicular forces of 8 N and 6 N.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The magnitude and direction of the acceleration.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Seen from above; force arrows to scale; the body starts from rest in the picture.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>Resultant = √(8² + 6²) = 10 N, at tan<sup>−1</sup>(6/8) ≈ 37° to the 8 N force.</li>
+          <li>a = F/m = 10/5 = 2 m s<sup>−2</sup>, along the resultant.</li>
+        </ol>
+        <p class="final">2 m s⁻², at about 37° to the 8 N force (towards the 6 N force).</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 4 (Laws of Motion), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const M = 5, F1 = 8, F2 = 6, FR = 10, A = FR / M, OX = 200, OY = 330, KF = 18, KS = 28, ANG = Math.atan2(F2, F1);
+  const qStages = [
+    { title: 'Two perpendicular forces', dur: 6, text: 'A body of mass 5 kg is acted upon by two perpendicular forces, 8 N and 6 N (seen from above).' },
+    { title: 'What is asked', dur: 4, text: 'Give the magnitude and direction of the acceleration of the body.' },
+  ];
+  const stages = [
+    { title: 'Adding the forces', dur: 5, text: 'The two forces add like vectors: they form the sides of a rectangle, and the diagonal is the resultant force.', ans: 'Resultant F = √(8² + 6²) = 10 N, at θ = tan⁻¹(6/8) ≈ 37° to the 8 N force.' },
+    { title: 'The acceleration', dur: 6, text: 'The body accelerates along the resultant, starting from rest in this picture.', ans: 'a = F/m = 10/5 = 2 m/s², at about 37° to the 8 N force (towards the 6 N force).' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    label(ctx, 'seen from above', 300, 40, { align: 'center', size: 13, color: P.ink2 });
+    let ox = OX, oy = OY;
+    if (ans && t > 5) { const s = 0.5 * A * Math.min(t - 5, 2.5) ** 2 * KS; ox += s * Math.cos(ANG); oy -= s * Math.sin(ANG); }
+    vec(ctx, ox, oy, F1 * KF, 0, '8 N', P.force, { at: 1, ax: 20, side: 0 });
+    vec(ctx, ox, oy, 0, -F2 * KF, '6 N', P.force, { at: 1, ay: -12, side: 0 });
+    if (ans) {
+      ctx.save(); ctx.strokeStyle = P.ink2; ctx.setLineDash([5, 4]); seg(ctx, ox + F1 * KF, oy, ox + F1 * KF, oy - F2 * KF); seg(ctx, ox, oy - F2 * KF, ox + F1 * KF, oy - F2 * KF); ctx.restore();
+      vec(ctx, ox, oy, F1 * KF, -F2 * KF, '10 N', P.accent, { side: -1, at: 0.55, lw: 5 });
+      ctx.save(); ctx.strokeStyle = P.ink; ctx.lineWidth = 1.5; ctx.beginPath(); ctx.arc(ox, oy, 46, -ANG, 0); ctx.stroke(); ctx.restore();
+      label(ctx, '37°', ox + 54, oy - 14, { weight: 700, size: 14 });
+      if (t > 5) vec(ctx, ox + 20, oy + 60, 2 * 30 * Math.cos(ANG), -2 * 30 * Math.sin(ANG), 'a = 2 m/s²', P.acc, { side: 0, at: 1, align: 'left', ax: 8, ay: 4 });
+    }
+    ball(ctx, ox, oy, 14, P.objFill2); label(ctx, '5 kg', ox, oy + 28, { align: 'center', weight: 700, size: 13 });
+    if (ans) partsPanel(ctx, 630, 34, 300, 'Working', ['Resultant: √(8² + 6²) = 10 N', 'Direction: tan θ = 6/8, θ ≈ 37° from the 8 N force', 'a = F/m = 10/5 = 2 m/s², along the resultant'], t < 5 ? 1 : 2, false);
+    else askedPanel(ctx, 630, 34, 300, ['The magnitude and direction of the acceleration of the body.']);
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

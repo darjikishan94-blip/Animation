@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 4.22</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 4 Laws of Motion</a></p>
+      <h1>Exercise 4.22 · When the string breaks</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q21.html">‹ 4.21</a><a href="index.html">All questions</a><a href="q23.html">4.23 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 4.22">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="Top view of a stone whirled on a string; the string breaks and the stone moves off in a straight line along the tangent."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>4.22</b> If, in Exercise 4.21, the speed of the stone is increased beyond the maximum permissible value, and the string breaks suddenly, which of the following correctly describes the trajectory of the stone after the string breaks: (a) the stone moves radially outwards, (b) the stone flies off tangentially from the instant the string breaks, (c) the stone flies off at an angle with the tangent whose magnitude depends on the speed of the particle?</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>The stone of Exercise 4.21, whirled too fast; the string breaks.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>Which description of the path after the break is correct.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Seen from above; speeds illustrative.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>At every instant the stone’s velocity is along the tangent; the string’s pull only bends its path.</li>
+          <li>When the string breaks, no horizontal force acts, so the stone keeps that tangential velocity and moves in a straight line (Newton’s first law).</li>
+        </ol>
+        <p class="final">(b) It flies off tangentially from the instant the string breaks.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 4 (Laws of Motion), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const CX = 260, CY = 270, RP = 140, OM = 2.2, TB = 4.2, S2 = TB + 4;
+  const OPTS = ['(a) the stone moves radially outwards', '(b) the stone flies off tangentially from the instant the string breaks', '(c) the stone flies off at an angle with the tangent that depends on its speed'];
+  const qStages = [
+    { title: 'Whirled too fast', dur: TB + 0.3, text: 'In Exercise 4.21 the stone is whirled faster than the maximum allowed speed.' },
+    { title: 'The string breaks', dur: S2 - TB - 0.3, text: 'The string breaks suddenly. Which statement correctly describes the trajectory of the stone?' },
+  ];
+  const stages = [
+    { title: 'Just before', dur: TB, text: 'The string’s pull towards the centre keeps bending the stone’s path into a circle. Its velocity is always along the tangent.', ans: 'Velocity: tangential. Force: towards the centre.' },
+    { title: 'The string breaks', dur: S2 - TB, text: 'With the string gone, no horizontal force acts. The stone keeps the velocity it had at that instant, along the tangent, in a straight line.', ans: '(b) It flies off tangentially from the instant the string breaks.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 560, 16, 524, P.rule, 1);
+    ctx.save(); ctx.strokeStyle = P.ink2; ctx.setLineDash([4, 4]); ctx.beginPath(); ctx.arc(CX, CY, RP, 0, Math.PI * 2); ctx.stroke(); ctx.restore();
+    ball(ctx, CX, CY, 5, P.obj);
+    const showBreak = ans || t > TB;
+    let x, y;
+    if (t < TB || !showBreak) { const a = t * OM; x = CX + RP * Math.cos(a); y = CY + RP * Math.sin(a); ctx.save(); ctx.strokeStyle = P.obj; ctx.lineWidth = 2; seg(ctx, CX, CY, x, y); ctx.restore();
+      if (ans) { vec(ctx, x, y, -Math.sin(a) * 50, Math.cos(a) * 50, 'v', P.vel, { italic: true }); vec(ctx, x, y, (CX - x) / RP * 40, (CY - y) / RP * 40, 'T', P.force, { italic: true, at: 0.6 }); } }
+    else if (ans) {
+      const a = TB * OM, x0 = CX + RP * Math.cos(a), y0 = CY + RP * Math.sin(a), tx = -Math.sin(a), ty = Math.cos(a), s = (t - TB) * OM * RP;
+      x = x0 + tx * s; y = y0 + ty * s;
+      trail(ctx, [[x0, y0], [x, y]], P.accent, 0.9);
+      ctx.save(); ctx.strokeStyle = P.obj; ctx.lineWidth = 2; seg(ctx, CX, CY, CX + (x0 - CX) * 0.4, CY + (y0 - CY) * 0.4); ctx.restore();
+      vec(ctx, x, y, tx * 50, ty * 50, 'v', P.vel, { italic: true });
+    } else { const a = TB * OM; x = CX + RP * Math.cos(a); y = CY + RP * Math.sin(a); label(ctx, 'string breaks here: which path?', x, y - 30, { align: 'center', weight: 700, size: 14 }); }
+    if (x !== undefined) ball(ctx, x, y, 10, P.objFill2);
+    label(ctx, 'Which describes the path after the string breaks?', 580, 40, { weight: 700, size: 15 });
+    OPTS.forEach((o, i) => {
+      const yy = 90 + i * 70, lines = wrapLines(ctx, o, 310, 14);
+      ctx.save(); ctx.strokeStyle = P.ink2; ctx.lineWidth = 1.5; ctx.strokeRect(582, yy - 11, 22, 22); ctx.restore();
+      lines.forEach((ln, j) => label(ctx, ln, 614, yy + j * 18, { size: 14 }));
+      if (ans && t >= TB) { ctx.save(); ctx.strokeStyle = i === 1 ? P.accent : P.force; ctx.lineWidth = 3; if (i === 1) poly(ctx, [[587, yy], [592, yy + 6], [601, yy - 7]]); else { seg(ctx, 587, yy - 6, 599, yy + 6); seg(ctx, 599, yy - 6, 587, yy + 6); } ctx.restore(); }
+    });
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

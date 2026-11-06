@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 4.11</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 4 Laws of Motion</a></p>
+      <h1>Exercise 4.11 · Stone dropped from a truck</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q10.html">‹ 4.10</a><a href="index.html">All questions</a><a href="q12.html">4.12 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 4.11">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="An accelerating truck with a person on top drops a stone at t = 10 s; the stone falls in a curve, and at t = 11 s its velocity and acceleration are shown."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>4.11</b> A truck starts from rest and accelerates uniformly at 2.0 m s<sup>−2</sup>. At <i>t</i> = 10 s, a stone is dropped by a person standing on the top of the truck (6 m high from the ground). What are the (a) velocity, and (b) acceleration of the stone at <i>t</i> = 11 s? (Neglect air resistance.)</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Truck: from rest, a = 2.0 m s<sup>−2</sup>.</li>
+          <li>Stone dropped at t = 10 s from 6 m; air resistance neglected; g = 10 m s<sup>−2</sup>.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The velocity and acceleration of the stone at t = 11 s.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>The view covers 60 m to 140 m from the truck’s start; 7 px per metre; the fall is shown at half speed.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>At t = 10 s the truck (and stone) move at 2 × 10 = 20 m s<sup>−1</sup>.</li>
+          <li>The stone lands after √(2 × 6/10) ≈ 1.1 s, so at t = 11 s it is still in the air.</li>
+          <li>(a) v<sub>x</sub> = 20 m s<sup>−1</sup>, v<sub>y</sub> = 10 × 1 = 10 m s<sup>−1</sup> down: v = √(20² + 10²) ≈ 22.4 m s<sup>−1</sup>, at tan<sup>−1</sup>(10/20) ≈ 27° below the horizontal.</li>
+          <li>(b) a = g = 10 m s<sup>−2</sup>, vertically downward: no horizontal force acts on the stone once it is dropped.</li>
+        </ol>
+        <p class="final">(a) ≈ 22.4 m s⁻¹ at ≈ 27° below the horizontal (b) 10 m s⁻², vertically down.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 4 (Laws of Motion), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const A = 2, G = 10, H = 6, K = 7, VX0 = 60, GY = 440;                 // 7 px per metre; the view starts 60 m from the start
+  const TD = 10, tFall = Math.sqrt(2 * H / G), SLOW = 2, TA = 8, S1 = 2, S2 = S1 + (TD - TA) * SLOW, S3 = S2 + 1 * SLOW, S4 = S3 + 5;
+  const px = xm => 40 + (xm - VX0) * K, py = hm => GY - hm * K;
+  const qStages = [
+    { title: 'A truck speeding up', dur: S2, text: 'A truck starts from rest and accelerates uniformly at 2.0 m/s². A person stands on top of it, 6 m above the ground.' },
+    { title: 'The stone is dropped', dur: S3 - S2, text: 'At t = 10 s the person drops a stone. Neglect air resistance.' },
+    { title: 'What is asked', dur: S4 - S3, text: 'What are the velocity and acceleration of the stone at t = 11 s?' },
+  ];
+  const stages = [
+    { title: 'Up to t = 10 s', dur: S2, text: 'Until it is dropped, the stone moves with the truck.', ans: 'At t = 10 s the truck’s velocity is 2 × 10 = 20 m/s.' },
+    { title: 'Falling', dur: S3 - S2, text: 'Once dropped, the stone keeps its horizontal velocity of 20 m/s, but gravity alone acts on it: it falls as a projectile.', ans: 'It takes √(2 × 6/10) ≈ 1.1 s to land, so at t = 11 s it is still in the air.' },
+    { title: 'At t = 11 s', dur: S4 - S3, text: 'After 1 s of falling it has gained 10 m/s downward; the horizontal 20 m/s is unchanged.', ans: 'v = √(20² + 10²) ≈ 22.4 m/s at tan⁻¹(10/20) ≈ 27° below the horizontal; a = 10 m/s², vertically down.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1); ground(ctx, 30, 600, GY);
+    const tt = t < S2 ? TA + t / S2 * (TD - TA) : t < S3 ? TD + (t - S2) / SLOW : TD + 1;
+    const xt = 0.5 * A * tt * tt, vt = A * tt;
+    const tx = px(xt);
+    ctx.fillStyle = P.objFill2; ctx.strokeStyle = P.obj; ctx.lineWidth = 2; ctx.fillRect(tx - 60, py(4), 60, 4 * K - 8); ctx.strokeRect(tx - 60, py(4), 60, 4 * K - 8);
+    ctx.fillRect(tx, py(2.6), 16, 2.6 * K - 8); ctx.strokeRect(tx, py(2.6), 16, 2.6 * K - 8);
+    for (const wx of [tx - 48, tx - 8]) { ctx.fillStyle = P.obj; ctx.beginPath(); ctx.arc(wx, GY - 5, 5, 0, Math.PI * 2); ctx.fill(); }
+    person(ctx, tx - 30, py(4), 0.45);
+    let sx, sy, svx = vt, svy = 0;
+    if (tt <= TD) { sx = tx - 24; sy = py(H); }
+    else {
+      const f = Math.min(tt - TD, tFall), x0 = px(0.5 * A * TD * TD) - 24;
+      sx = x0 + 20 * f * K; sy = py(H - 5 * f * f); svx = 20; svy = -G * f;
+      const pts = []; for (let s = 0; s <= f; s += 0.02) pts.push([x0 + 20 * s * K, py(H - 5 * s * s)]); trail(ctx, pts, P.ink2, 0.6);
+    }
+    ball(ctx, sx, sy, 5, P.ink);
+    vec(ctx, tx - 30, py(7.5), vt * 2, 0, ans ? `truck ${vt.toFixed(1)} m/s` : 'truck', P.vel, { side: -1, at: 0.5, size: 12 });
+    if (ans && tt > TD) {                                                  // the stone's velocity, drawn large in an inset (5 px per m/s)
+      const IX = 300, IY = 130, KV = 5, vy = -svy;
+      label(ctx, `stone’s velocity at t = ${tt.toFixed(1)} s`, IX, IY - 40, { weight: 700, size: 13 });
+      vec(ctx, IX, IY, 20 * KV, 0, '20 m/s', P.vel, { side: -1, at: 0.5, size: 12 });
+      if (vy > 0.6) vec(ctx, IX + 20 * KV, IY, 0, vy * KV, `${vy.toFixed(1)} m/s`, P.vel, { side: -1, at: 0.6, align: 'left', ax: 2, size: 12 });
+      if (t >= S3) {
+        vec(ctx, IX, IY, 20 * KV, 10 * KV, '22.4 m/s', P.accent, { side: 1, at: 0.5, size: 13 });
+        ctx.save(); ctx.strokeStyle = P.ink; ctx.lineWidth = 1.5; ctx.beginPath(); ctx.arc(IX, IY, 30, 0, Math.atan2(1, 2)); ctx.stroke(); ctx.restore();
+        label(ctx, '27°', IX + 34, IY + 9, { size: 12, weight: 700 });
+        vec(ctx, IX + 150, IY - 20, 0, 50, 'a = g = 10 m/s²', P.acc, { side: -1, at: 0.5, align: 'left', ax: 2, size: 12 });
+      }
+    }
+    clock(ctx, 60, 60, tt, `t = ${tt.toFixed(2)} s`);
+    if (ans) partsPanel(ctx, 630, 34, 300, 'At t = 11 s', ['(a) velocity: 20 m/s horizontal + 10 m/s down → 22.4 m/s at ≈ 27° below the horizontal', '(b) acceleration: 10 m/s², vertically downward (no horizontal force on the stone)'], t < S3 ? 0 : 1, false);
+    else askedPanel(ctx, 630, 34, 300, ['(a) The velocity and (b) the acceleration of the stone at t = 11 s.']);
+    note(ctx, 'view starts 60 m from the truck’s start; 7 px per metre; fall shown at half speed');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

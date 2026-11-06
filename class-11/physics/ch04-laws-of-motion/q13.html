@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 4.13</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 4 Laws of Motion</a></p>
+      <h1>Exercise 4.13 · Weighing scale in a lift</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q12.html">‹ 4.12</a><a href="index.html">All questions</a><a href="q14.html">4.14 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 4.13">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A man stands on a weighing scale in a lift that moves in four ways; the solution run shows his weight, the scale’s push and the reading in each case."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>4.13</b> A man of mass 70 kg stands on a weighing scale in a lift which is moving (a) upwards with a uniform speed of 10 m s<sup>−1</sup>, (b) downwards with a uniform acceleration of 5 m s<sup>−2</sup>, (c) upwards with a uniform acceleration of 5 m s<sup>−2</sup>. What would be the readings on the scale in each case? (d) What would be the reading if the lift mechanism failed and it hurtled down freely under gravity?</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Mass of the man = 70 kg; g = 10 m s<sup>−2</sup>.</li>
+          <li>Lift: up at uniform 10 m s<sup>−1</sup>; down with a = 5 m s<sup>−2</sup>; up with a = 5 m s<sup>−2</sup>; free fall.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The scale reading in each case.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>The scale reads the normal force N it exerts on the man. Lift motion is illustrative.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>(a) a = 0: N = mg = 700 N (70 kg wt).</li>
+          <li>(b) N = m(g − a) = 70 × 5 = 350 N (35 kg wt).</li>
+          <li>(c) N = m(g + a) = 70 × 15 = 1050 N (105 kg wt).</li>
+          <li>(d) a = g: N = 0; the scale reads zero.</li>
+        </ol>
+        <p class="final">700 N, 350 N, 1050 N and 0.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 4 (Laws of Motion), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const M = 70, G = 10, D = 6.5;
+  const CASES = [
+    { name: '(a) moving up at a uniform 10 m/s', a: 0, v0: 1, read: 700 },
+    { name: '(b) going down with acceleration 5 m/s²', a: -5, v0: 0, read: 350 },
+    { name: '(c) going up with acceleration 5 m/s²', a: 5, v0: 0, read: 1050 },
+    { name: '(d) falling freely (mechanism failed)', a: -10, v0: 0, read: 0 },
+  ];
+  const ANS = ['N = mg = 700 N (scale shows 70 kg)', 'N = m(g − a) = 70 × 5 = 350 N (35 kg)', 'N = m(g + a) = 70 × 15 = 1050 N (105 kg)', 'N = m(g − g) = 0: the scale reads zero'];
+  const qStages = partStages(CASES.map(c => c.name.slice(0, 3) + ' ' + ['Uniform speed up', 'Accelerating down', 'Accelerating up', 'Free fall'][CASES.indexOf(c)]),
+    CASES.map(c => `A man of mass 70 kg stands on a weighing scale in a lift that is ${c.name.slice(4)}. What does the scale read?`), D);
+  const stages = partStages(qStages.map(s => s.title), [
+    'Uniform velocity means zero acceleration: the scale pushes up exactly as hard as gravity pulls down.',
+    'Accelerating downward, the man needs a net downward force, so the scale pushes up less than his weight.',
+    'Accelerating upward, he needs a net upward force, so the scale pushes up more than his weight.',
+    'In free fall the man and the scale fall together with acceleration g: the scale does not push on him at all.'], D, ANS);
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    const k = Math.min(3, Math.floor(t / D)), u = Math.max(0, t - k * D - 1), c = CASES[k];
+    const sh = 30 * (c.v0 * u) + 6 * 0.5 * c.a * u * u;                 // illustrative cabin travel (px)
+    const cy = clamp(300 - sh, 90, 420);
+    ctx.fillStyle = P.grid; ctx.fillRect(160, 40, 200, 470); ctx.strokeStyle = P.ink2; ctx.lineWidth = 1.5; ctx.strokeRect(160, 40, 200, 470);
+    vline(ctx, 260, 40, cy - 120, P.obj, 2);
+    ctx.fillStyle = P.sheet; ctx.fillRect(180, cy - 120, 160, 180); ctx.strokeStyle = P.obj; ctx.lineWidth = 2; ctx.strokeRect(180, cy - 120, 160, 180);
+    ctx.fillStyle = P.objFill2; ctx.fillRect(225, cy + 48, 70, 12); ctx.strokeRect(225, cy + 48, 70, 12);
+    person(ctx, 260, cy + 48, 0.95);
+    label(ctx, ans ? `${c.read} N` : '? N', 260, cy + 72, { align: 'center', weight: 800, size: 15, color: P.accent });
+    if (c.v0) vec(ctx, 380, cy - 20, 0, -50, '10 m/s', P.vel, { side: 1, at: 0.6, align: 'left', ax: 6 });
+    if (c.a) vec(ctx, 380, cy + 30, 0, -c.a * 8, `a = ${Math.abs(c.a)} m/s²`, P.acc, { side: 1, at: 0.6, align: 'left', ax: 6 });
+    if (ans) {
+      vec(ctx, 200, cy - 20, 0, 70, 'mg = 700 N', P.force, { side: 1, at: 0.8, align: 'right', ax: -6 });
+      if (c.read) vec(ctx, 200, cy + 46, 0, -c.read / 10, `N = ${c.read} N`, P.vel, { side: -1, at: 0.8, align: 'right', ax: -6 });
+    }
+    label(ctx, '70 kg', 300, cy - 100, { weight: 700, size: 13 });
+    partsPanel(ctx, 630, 34, 300, ans ? 'Scale reading (N = normal force)' : 'Scale reading when the lift is…', CASES.map(c => c.name), k, ans, ANS);
+    note(ctx, 'take g = 10 m/s²; lift motion illustrative');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

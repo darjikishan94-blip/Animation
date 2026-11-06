@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 4.5</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 4 Laws of Motion</a></p>
+      <h1>Exercise 4.5 · Retarding force on a body</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q04.html">‹ 4.4</a><a href="index.html">All questions</a><a href="q06.html">4.6 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 4.5">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A 20 kg block slides at 15 metres per second while a 50 newton force acts backwards on it until it stops; the solution run adds a clock and a speed-time graph."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>4.5</b> A constant retarding force of 50 N is applied to a body of mass 20 kg moving initially with a speed of 15 m s<sup>−1</sup>. How long does the body take to stop?</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Retarding force = 50 N; mass = 20 kg; initial speed = 15 m s<sup>−1</sup>.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The time taken to stop.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Real time; 11 px per metre.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>a = F/m = 50/20 = 2.5 m s<sup>−2</sup>, opposite to the motion.</li>
+          <li>v = u − at: 0 = 15 − 2.5t, so t = 6 s.</li>
+        </ol>
+        <p class="final">6 s.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 4 (Laws of Motion), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const M = 20, U = 15, F = 50, A = F / M, TS = U / A, X0 = 120, K = 9.5;   // 9.5 px per metre
+  const S1 = 3, S2 = S1 + TS, S3 = S2 + 4;
+  const qStages = [
+    { title: 'Moving at 15 m/s', dur: S1, text: 'A body of mass 20 kg moves at 15 m/s. A constant retarding force of 50 N acts on it.' },
+    { title: 'Slowing down', dur: S2 - S1, text: 'The retarding force slows the body down until it stops.' },
+    { title: 'What is asked', dur: S3 - S2, text: 'How long does the body take to stop?' },
+  ];
+  const stages = [
+    { title: 'Moving at 15 m/s', dur: S1, text: 'The retarding force acts against the motion, so the acceleration points backward.', ans: 'a = F/m = 50/20 = 2.5 m/s², opposite to the motion.' },
+    { title: 'Slowing down', dur: S2 - S1, text: 'The speed falls by 2.5 m/s every second. The v–t graph is a straight line sloping down.', ans: 'v = u − at = 15 − 2.5t.' },
+    { title: 'Stopped', dur: S3 - S2, text: 'The body stops when v = 0.', ans: '0 = 15 − 2.5t, so t = 6 s (it travels 45 m meanwhile).' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1); ground(ctx, 40, 600, 230);
+    const tm = clamp(t - S1, 0, TS), x = U * tm - 0.5 * A * tm * tm, v = U - A * tm, bx = X0 + x * K;
+    block(ctx, bx - 28, 186, 56, 44, '20 kg');
+    if (v > 0.05) vec(ctx, bx, 160, v * 6, 0, ans ? `${v.toFixed(1)} m/s` : (t < S1 ? '15 m/s' : 'v'), P.vel, { side: -1, at: 0.6, italic: !ans && t >= S1 });
+    else label(ctx, 'stopped', bx, 160, { align: 'center', weight: 700, size: 14, color: P.vel });
+    if (v > 0.05) vec(ctx, bx - 30, 208, -50, 0, '50 N', P.force, { side: 1, at: 0.6, ay: 4 });
+    if (ans) {
+      clock(ctx, 60, 60, tm);
+      const g = axes(ctx, { x: 80, y: 300, w: 440, h: 170, x0: 0, x1: 7, y0: 0, y1: 16, xt: [2, 4, 6], yt: [15], xl: 't (s)', yl: 'v (m/s)' });
+      ctx.save(); ctx.strokeStyle = P.vel; ctx.lineWidth = 3; poly(ctx, [[g.X(0), g.Y(15)], [g.X(tm), g.Y(v)]]); ctx.restore();
+      partsPanel(ctx, 630, 34, 300, 'Working', ['a = F/m = 50 / 20 = 2.5 m/s² (retarding)', 'v = u − at → 0 = 15 − 2.5t', 't = 6 s'], Math.min(2, stages.findIndex(s => t < s.t1) < 0 ? 2 : stages.findIndex(s => t < s.t1)), false);
+    } else askedPanel(ctx, 630, 34, 300, ['How long does the body take to stop?']);
+    note(ctx, 'scale: 9.5 px per metre');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

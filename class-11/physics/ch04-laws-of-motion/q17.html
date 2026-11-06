@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 4.17</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 4 Laws of Motion</a></p>
+      <h1>Exercise 4.17 · Nucleus splits in two</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q16.html">‹ 4.16</a><a href="index.html">All questions</a><a href="q18.html">4.18 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 4.17">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A nucleus at rest splits into two smaller nuclei that fly apart in opposite directions; the solution run shows equal and opposite momenta."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>4.17</b> A nucleus is at rest in the laboratory frame of reference. Show that if it disintegrates into two smaller nuclei the products must move in opposite directions.</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>A nucleus at rest; it splits into two smaller nuclei.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>Show that the products move in opposite directions.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>The fragment masses are not given; one is drawn twice the other.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>Before: momentum = 0. No external force acts, so momentum is conserved.</li>
+          <li>After: m₁v₁ + m₂v₂ = 0, so v₁ = −(m₂/m₁) v₂.</li>
+          <li>The two velocities are along one line in opposite directions.</li>
+        </ol>
+        <p class="final">Momentum conservation makes the two momenta equal and opposite, so the products move in opposite directions.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 4 (Laws of Motion), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const M1 = 1, M2 = 2, CX = 300, CY = 260, S1 = 3, S2 = S1 + 4, S3 = S2 + 4;   // fragment masses illustrative (not given)
+  const qStages = [
+    { title: 'A nucleus at rest', dur: S1, text: 'A nucleus is at rest in the laboratory frame of reference.' },
+    { title: 'It disintegrates', dur: S2 - S1, text: 'It disintegrates into two smaller nuclei.' },
+    { title: 'What is asked', dur: S3 - S2, text: 'Show that the products must move in opposite directions.' },
+  ];
+  const stages = [
+    { title: 'Momentum before', dur: S1, text: 'At rest, the nucleus has zero momentum. No external force acts during the break-up, so the total momentum stays zero.', ans: 'Total momentum before = 0.' },
+    { title: 'Momentum after', dur: S2 - S1, text: 'The two products fly apart. Their momenta must add up to zero.', ans: 'm₁v₁ + m₂v₂ = 0, so v₁ = −(m₂/m₁) v₂.' },
+    { title: 'Opposite directions', dur: S3 - S2, text: 'Two vectors add to zero only if they are equal in size and opposite in direction.', ans: 'v₁ and v₂ are along the same line in opposite directions; the lighter product moves faster.' },
+  ];
+  function nuc(ctx, x, y, n, r) { for (let i = 0; i < n; i++) { const a = i * 2.4, rr = r * Math.sqrt(i / n); ball(ctx, x + rr * Math.cos(a), y + rr * Math.sin(a), 6, i % 2 ? P.force : P.objFill2); } }
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    if (t < S1) { nuc(ctx, CX, CY, 18, 24); label(ctx, 'at rest', CX, CY + 50, { align: 'center', weight: 700, size: 14 }); }
+    else {
+      const u = Math.min(t - S1, 3.5), v2 = 30, v1 = v2 * M2 / M1;
+      nuc(ctx, CX - v1 * u, CY, 6, 12); nuc(ctx, CX + v2 * u, CY, 12, 18);
+      if (ans) { vec(ctx, CX - v1 * u, CY - 40, -60, 0, 'p₁', P.vel, { side: -1, at: 0.6 }); vec(ctx, CX + v2 * u, CY - 40, 60, 0, 'p₂', P.vel, { side: -1, at: 0.6 }); label(ctx, 'p₁ + p₂ = 0', CX, CY + 80, { align: 'center', weight: 700, size: 16, color: P.accent }); }
+    }
+    if (ans) partsPanel(ctx, 630, 34, 300, 'Momentum is conserved', ['Before: momentum = 0', 'After: m₁v₁ + m₂v₂ = 0', 'So v₁ = −(m₂/m₁)v₂: opposite directions'], t < S1 ? 0 : t < S2 ? 1 : 2, false);
+    else askedPanel(ctx, 630, 34, 300, ['Show that the products must move in opposite directions.']);
+    note(ctx, 'fragment sizes illustrative (not given)');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

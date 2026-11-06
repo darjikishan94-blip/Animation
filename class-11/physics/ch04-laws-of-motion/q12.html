@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 4.12</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 4 Laws of Motion</a></p>
+      <h1>Exercise 4.12 · Pendulum string cut</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q11.html">‹ 4.11</a><a href="index.html">All questions</a><a href="q13.html">4.13 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 4.12">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A pendulum bob on a 2 m string swings; its string is cut at an extreme position (it falls straight down) and at the mean position (it follows a parabola)."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>4.12</b> A bob of mass 0.1 kg hung from the ceiling of a room by a string 2 m long is set into oscillation. The speed of the bob at its mean position is 1 m s<sup>−1</sup>. What is the trajectory of the bob if the string is cut when the bob is (a) at one of its extreme positions, (b) at its mean position.</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Bob mass 0.1 kg; string 2 m; speed at the mean position 1 m s<sup>−1</sup>.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The trajectory after the string is cut at an extreme position and at the mean position.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>The amplitude (about 13°) follows from the speed at the mean position. The floor is not given, so the fall is shown for 0.75 s, at half speed.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>(a) At an extreme position the bob is momentarily at rest; with only gravity acting it falls vertically downward in a straight line.</li>
+          <li>(b) At the mean position it moves horizontally at 1 m s<sup>−1</sup>; with only gravity acting it moves like a horizontally projected body, along a parabola.</li>
+        </ol>
+        <p class="final">(a) a vertical straight line (b) a parabola.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 4 (Laws of Motion), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const L = 2, V = 1, G = 10, K = 140, PX = 300, PY = 60, W = Math.sqrt(G / L), T0 = Math.acos(1 - V * V / (2 * G * L));   // amplitude ≈ 12.8°
+  const D = 7, SLOW = 2;
+  const qStages = [
+    { title: 'A swinging bob', dur: 5, text: 'A bob of mass 0.1 kg hangs from the ceiling by a 2 m string and oscillates. Its speed at the mean position is 1 m/s.' },
+    { title: 'What is asked', dur: 4, text: 'What is the trajectory of the bob if the string is cut (a) at an extreme position, (b) at the mean position?' },
+  ];
+  const stages = [
+    { title: '(a) Cut at an extreme position', dur: D, text: 'At an extreme position the bob is momentarily at rest. When the string is cut, only gravity acts on it.', ans: '(a) It falls vertically downward along a straight line.' },
+    { title: '(b) Cut at the mean position', dur: D, text: 'At the mean position the bob moves horizontally at 1 m/s. After the cut, gravity acts but the horizontal velocity stays.', ans: '(b) It follows a parabola, like a horizontally thrown ball.' },
+  ];
+  function bob(ctx, th) { const x = PX + L * K * Math.sin(th), y = PY + L * K * Math.cos(th); return [x, y]; }
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    hline(ctx, PX - 80, PX + 80, PY, P.obj, 3);
+    ctx.save(); ctx.strokeStyle = P.ink2; ctx.globalAlpha = 0.4; ctx.setLineDash([4, 4]); ctx.beginPath(); ctx.arc(PX, PY, L * K, Math.PI / 2 - T0, Math.PI / 2 + T0); ctx.stroke(); ctx.restore();
+    if (!ans) {
+      const th = T0 * Math.sin(W * t), [x, y] = bob(ctx, th);
+      ctx.save(); ctx.strokeStyle = P.obj; ctx.lineWidth = 2; seg(ctx, PX, PY, x, y); ctx.restore(); ball(ctx, x, y, 10, P.obj);
+      label(ctx, '2 m', PX + 8, PY + L * K / 2, { weight: 700, size: 13 });
+      label(ctx, '1 m/s at the mean position', PX, PY + L * K + 30, { align: 'center', size: 13, color: P.vel, weight: 700 });
+      askedPanel(ctx, 630, 34, 300, ['The trajectory of the bob if the string is cut (a) at one of its extreme positions, (b) at its mean position.']);
+      return;
+    }
+    const k = t < D ? 0 : 1, u = t - k * D, cutAt = 2.2;
+    const thCut = k === 0 ? T0 : 0;
+    const [x0, y0] = bob(ctx, thCut);
+    if (u < cutAt) {
+      const th = k === 0 ? T0 * Math.cos(W * (u - cutAt)) : T0 * Math.sin(W * (u - cutAt));
+      const [x, y] = bob(ctx, th);
+      ctx.save(); ctx.strokeStyle = P.obj; ctx.lineWidth = 2; seg(ctx, PX, PY, x, y); ctx.restore(); ball(ctx, x, y, 10, P.obj);
+    } else {
+      const f = Math.min((u - cutAt) / SLOW, 0.75), vx = k === 0 ? 0 : V;
+      const pts = []; for (let s = 0; s <= f; s += 0.01) pts.push([x0 + vx * s * K, y0 + 5 * s * s * K]);
+      trail(ctx, pts, P.accent, 0.8);
+      const [x, y] = pts[pts.length - 1] || [x0, y0]; ball(ctx, x, y, 10, P.obj);
+      ctx.save(); ctx.strokeStyle = P.obj; ctx.lineWidth = 2; seg(ctx, PX, PY, PX + (x0 - PX) * 0.5, PY + (y0 - PY) * 0.5); ctx.restore();
+      label(ctx, 'string cut', PX + (x0 - PX) * 0.5 + 8, PY + (y0 - PY) * 0.5, { size: 13, color: P.force, weight: 700 });
+      vec(ctx, x - 20, y, 0, 40, 'mg', P.force, { side: -1, at: 0.6, align: 'right', ax: -4 });
+      if (vx) vec(ctx, x, y - 18, vx * 50, 0, '1 m/s', P.vel, { side: -1, at: 0.6, size: 12 });
+      label(ctx, k === 0 ? 'straight down' : 'parabola', x + 20, y + 30, { weight: 700, size: 15, color: P.accent });
+    }
+    partsPanel(ctx, 630, 34, 300, 'Trajectory after the cut', ['(a) cut at an extreme position', '(b) cut at the mean position'], k, true, ['vertically downward, in a straight line (v = 0 there)', 'a parabola (v = 1 m/s horizontal there)']);
+    note(ctx, 'the floor is not given; the fall is shown for 0.75 s, at half speed');
+  }
+  return { qStages, stages, draw };
+})();
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

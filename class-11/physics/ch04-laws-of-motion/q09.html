@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 4.9</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 4 Laws of Motion</a></p>
+      <h1>Exercise 4.9 · Rocket lift-off</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q08.html">‹ 4.8</a><a href="index.html">All questions</a><a href="q10.html">4.10 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 4.9">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A rocket lifts off its pad with an upward acceleration; the solution run shows the thrust and weight arrows to scale."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>4.9</b> A rocket with a lift-off mass 20,000 kg is blasted upwards with an initial acceleration of 5.0 m s<sup>−2</sup>. Calculate the initial thrust (force) of the blast. (Take <i>g</i> = 10 m s<sup>−2</sup>.)</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Lift-off mass = 20,000 kg; initial acceleration = 5.0 m s<sup>−2</sup>, upward; g = 10 m s<sup>−2</sup>.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The initial thrust of the blast.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>The rise is shown for 3.2 s at constant acceleration (the change of mass is ignored, as only the initial thrust is asked).</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>Thrust − mg = ma.</li>
+          <li>Thrust = m(g + a) = 20,000 × (10 + 5) = 3.0 × 10<sup>5</sup> N.</li>
+        </ol>
+        <p class="final">3.0 × 10⁵ N, upward.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 4 (Laws of Motion), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const M = 20000, A = 5, G = 10, K = 9, PY = 470, X = 260;   // 9 px per metre
+  const S1 = 3, S2 = S1 + 3.2, S3 = S2 + 4;
+  const qStages = [
+    { title: 'Lift-off', dur: S1, text: 'A rocket with a lift-off mass of 20,000 kg stands on its launch pad.' },
+    { title: 'Blasted upwards', dur: S2 - S1, text: 'It is blasted upwards with an initial acceleration of 5.0 m/s².' },
+    { title: 'What is asked', dur: S3 - S2, text: 'Calculate the initial thrust (force) of the blast.' },
+  ];
+  const stages = [
+    { title: 'Forces at lift-off', dur: S1, text: 'Two forces act: the thrust of the blast upward and the rocket’s weight downward.', ans: 'Weight = mg = 20,000 × 10 = 2.0 × 10⁵ N, downward.' },
+    { title: 'Accelerating upward', dur: S2 - S1, text: 'The thrust must hold up the weight and also give the upward acceleration.', ans: 'Thrust − mg = ma.' },
+    { title: 'The thrust', dur: S3 - S2, text: 'Thrust = m(g + a).', ans: 'Thrust = 20,000 × (10 + 5) = 3.0 × 10⁵ N, upward.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1); ground(ctx, 40, 600, PY);
+    ctx.fillStyle = P.objFill2; ctx.fillRect(X - 60, PY - 14, 120, 14);
+    const tm = clamp(t - S1, 0, 3.2), h = 0.5 * A * tm * tm * K, y = PY - 14 - h;
+    if (tm > 0) { const fl = 30 + 8 * Math.sin(t * 30); ctx.fillStyle = P.ke; ctx.beginPath(); ctx.moveTo(X - 14, y); ctx.lineTo(X, y + fl); ctx.lineTo(X + 14, y); ctx.closePath(); ctx.fill(); }
+    ctx.fillStyle = P.objFill; ctx.strokeStyle = P.obj; ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.moveTo(X - 18, y); ctx.lineTo(X - 18, y - 120); ctx.quadraticCurveTo(X, y - 170, X + 18, y - 120); ctx.lineTo(X + 18, y); ctx.closePath(); ctx.fill(); ctx.stroke();
+    label(ctx, '20,000 kg', X + 26, y - 20, { weight: 700, size: 13 });
+    if (tm > 0 || ans) vec(ctx, X + 95, y - 50, 0, -50, 'a = 5 m/s²', P.acc, { at: 1, ay: -12, side: 0 });
+    if (ans) { vec(ctx, X - 70, y - 60, 0, -90, 'thrust 3.0 × 10⁵ N', P.force, { side: 1, at: 0.6, align: 'right', ax: -8 }); vec(ctx, X - 70, y - 60, 0, 60, 'weight 2.0 × 10⁵ N', P.force, { side: 1, at: 0.8, align: 'right', ax: -8 }); }
+    if (ans) partsPanel(ctx, 630, 34, 300, 'Working', ['Weight = mg = 2.0 × 10⁵ N', 'Thrust − mg = ma', 'Thrust = m(g + a) = 20,000 × 15 = 3.0 × 10⁵ N'], t < S1 ? 0 : t < S2 ? 1 : 2, false);
+    else askedPanel(ctx, 630, 34, 300, ['The initial thrust (force) of the blast. (Take g = 10 m/s².)']);
+    note(ctx, 'force arrows to scale with each other');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

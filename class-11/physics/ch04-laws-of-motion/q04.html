@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 4.4</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 4 Laws of Motion</a></p>
+      <h1>Exercise 4.4 · Particle on a string</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q03.html">‹ 4.3</a><a href="index.html">All questions</a><a href="q05.html">4.5 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 4.4">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="Top view of a particle going round a peg on a string, with the tension pulling towards the peg, and the four answer choices."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>4.4</b> One end of a string of length <i>l</i> is connected to a particle of mass <i>m</i> and the other to a small peg on a smooth horizontal table. If the particle moves in a circle with speed <i>v</i> the net force on the particle (directed towards the centre) is: (i) <i>T</i>, (ii) <i>T</i> − <i>mv</i><sup>2</sup>/<i>l</i>, (iii) <i>T</i> + <i>mv</i><sup>2</sup>/<i>l</i>, (iv) 0. <i>T</i> is the tension in the string. [Choose the correct alternative].</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>String length <i>l</i>, particle mass <i>m</i>, speed <i>v</i>, tension <i>T</i>; smooth horizontal table.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The net force on the particle towards the centre.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Seen from above; the speed of rotation is illustrative.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>The only horizontal force is the tension, towards the peg; weight and normal force are vertical and cancel.</li>
+          <li>So the net (centripetal) force is <i>T</i>, and <i>T</i> = <i>mv</i><sup>2</sup>/<i>l</i>.</li>
+        </ol>
+        <p class="final">(i) T.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 4 (Laws of Motion), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const CX = 290, CY = 270, R = 160, W = 1.6;
+  const OPTS = ['(i) T', '(ii) T − mv²/l', '(iii) T + mv²/l', '(iv) 0'];
+  const qStages = [
+    { title: 'A particle on a string', dur: 8, text: 'A particle of mass m is tied by a string of length l to a peg on a smooth horizontal table. It moves in a circle with speed v. T is the tension in the string.' },
+    { title: 'Choose', dur: 4, text: 'What is the net force on the particle, directed towards the centre?' },
+  ];
+  const stages = [
+    { title: 'Forces on the particle', dur: 8, text: 'Seen from above, the only horizontal force on the particle is the string’s pull, the tension T, towards the peg. Its weight and the table’s normal force are vertical and cancel.', ans: 'Net force towards the centre = T.' },
+    { title: 'The answer', dur: 4, text: 'This tension is what keeps the particle on its circle: T = mv²/l. Options (ii) and (iii) wrongly count the centripetal force as an extra force.', ans: 'Correct alternative: (i) T.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    ctx.fillStyle = P.objFill; ctx.globalAlpha = 0.5; ctx.fillRect(60, 60, 460, 420); ctx.globalAlpha = 1;
+    label(ctx, 'smooth table, seen from above', 290, 46, { align: 'center', size: 13, color: P.ink2 });
+    ctx.save(); ctx.strokeStyle = P.ink2; ctx.setLineDash([4, 4]); ctx.beginPath(); ctx.arc(CX, CY, R, 0, Math.PI * 2); ctx.stroke(); ctx.restore();
+    const a = t * W, x = CX + R * Math.cos(a), y = CY + R * Math.sin(a);
+    ctx.save(); ctx.strokeStyle = P.obj; ctx.lineWidth = 2; seg(ctx, CX, CY, x, y); ctx.restore();
+    ball(ctx, CX, CY, 6, P.obj); label(ctx, 'peg', CX + 10, CY + 14, { size: 12, color: P.ink2 });
+    ball(ctx, x, y, 11, P.obj); label(ctx, 'l', (CX + x) / 2 + 8, (CY + y) / 2, { italic: true, weight: 700, size: 15 });
+    vec(ctx, x, y, -Math.sin(a) * 50, Math.cos(a) * 50, 'v', P.vel, { italic: true });
+    if (ans) vec(ctx, x, y, (CX - x) / R * 70, (CY - y) / R * 70, 'T', P.force, { italic: true, at: 0.6 });
+    label(ctx, 'Net force towards the centre =', 630, 50, { weight: 700, size: 16 });
+    OPTS.forEach((o, i) => {
+      const yy = 100 + i * 48;
+      ctx.save(); ctx.strokeStyle = P.ink2; ctx.lineWidth = 1.5; ctx.strokeRect(632, yy - 11, 22, 22); ctx.restore();
+      label(ctx, o, 666, yy, { size: 17 });
+      if (ans && t >= stages[0].dur) { ctx.save(); ctx.strokeStyle = i === 0 ? P.accent : P.force; ctx.lineWidth = 3; if (i === 0) poly(ctx, [[637, yy], [642, yy + 6], [651, yy - 7]]); else { seg(ctx, 637, yy - 6, 649, yy + 6); seg(ctx, 649, yy - 6, 637, yy + 6); } ctx.restore(); }
+    });
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

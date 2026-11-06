@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 4.20</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 4 Laws of Motion</a></p>
+      <h1>Exercise 4.20 · Ball deflected by a bat</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q19.html">‹ 4.19</a><a href="index.html">All questions</a><a href="q21.html">4.21 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 4.20">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A ball comes in at 54 km/h, hits the bat and leaves at the same speed, its new path at 45° to the old one; the solution run shows the impulse perpendicular to the bat."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>4.20</b> A batsman deflects a ball by an angle of 45° without changing its initial speed which is equal to 54 km/h. What is the impulse imparted to the ball? (Mass of the ball is 0.15 kg.)</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Speed 54 km/h, unchanged; deflection 45°; mass 0.15 kg.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The impulse imparted to the ball.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Following the NCERT solution, the incoming and outgoing paths make 45°, each at 22.5° to the bat’s normal.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>54 km/h = 15 m s<sup>−1</sup>; momentum = 0.15 × 15 = 2.25 kg m s<sup>−1</sup>.</li>
+          <li>Along the bat the momentum is unchanged; perpendicular to it, 2.25 cos 22.5° reverses.</li>
+          <li>Impulse = 2 × 2.25 × cos 22.5° ≈ 4.16 kg m s<sup>−1</sup>, perpendicular to the bat.</li>
+          <li>If “deflects by 45°” is read as a 45° change of direction instead, the impulse is 2 × 2.25 × sin 22.5° ≈ 1.72 kg m s<sup>−1</sup>.</li>
+        </ol>
+        <p class="final">About 4.16 kg m s⁻¹ (the NCERT answer).</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 4 (Laws of Motion), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const M = 0.15, V = 15, HALF = 22.5 * Math.PI / 180, BX = 420, BY = 270, S1 = 3, SH = S1 + 2, S2 = SH + 2.5, S3 = S2 + 5;
+  const din = [Math.cos(HALF), Math.sin(HALF)], dout = [-Math.cos(HALF), Math.sin(HALF)];  // in: towards the bat; out: back, 45° from the incoming path
+  const qStages = [
+    { title: 'The ball comes in', dur: SH, text: 'A cricket ball of mass 0.15 kg comes at 54 km/h.' },
+    { title: 'Deflected', dur: S2 - SH, text: 'The batsman deflects the ball by 45° without changing its speed.' },
+    { title: 'What is asked', dur: S3 - S2, text: 'What is the impulse imparted to the ball?' },
+  ];
+  const stages = [
+    { title: 'Incoming', dur: SH, text: '54 km/h = 15 m/s. The ball’s path and the bounced path make an angle of 45°, as in the NCERT solution: each makes 22.5° with the line perpendicular to the bat.', ans: 'Initial momentum = 0.15 × 15 = 2.25 kg m/s.' },
+    { title: 'Deflected', dur: S2 - SH, text: 'The speed is unchanged. Along the bat, the momentum does not change; perpendicular to the bat, it reverses.', ans: 'Change in momentum is perpendicular to the bat.' },
+    { title: 'Impulse', dur: S3 - S2, text: 'Impulse = change in momentum.', ans: 'Impulse = 2 × 0.15 × 15 × cos 22.5° ≈ 4.16 kg m/s, along the bat’s normal, away from the bat.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    ctx.fillStyle = P.wood; ctx.strokeStyle = P.obj; ctx.lineWidth = 2; ctx.fillRect(BX + 8, BY - 110, 18, 220); ctx.strokeRect(BX + 8, BY - 110, 18, 220);
+    label(ctx, 'bat', BX + 34, BY - 100, { size: 13, color: P.ink2 });
+    const L = 300, inStart = [BX - din[0] * L, BY - din[1] * L];
+    trail(ctx, [inStart, [BX, BY]], P.ink2, 0.5); trail(ctx, [[BX, BY], [BX + dout[0] * L, BY + dout[1] * L]], P.ink2, 0.5);
+    let x, y;
+    if (t < SH) { const f = Math.min(1, Math.max(0, (t - 1) / (SH - 1))); x = inStart[0] + din[0] * L * f; y = inStart[1] + din[1] * L * f; }
+    else { const f = Math.min(1, (t - SH) / 2); x = BX + dout[0] * L * f; y = BY + dout[1] * L * f; }
+    ball(ctx, x, y, 9, P.force);
+    label(ctx, '45°', BX - 70, BY + 10, { weight: 700, size: 14 });
+    vec(ctx, x, y, (t < SH ? din : dout)[0] * 60, (t < SH ? din : dout)[1] * 60, '15 m/s', P.vel, { side: -1, at: 0.6, size: 12 });
+    if (ans && t >= S2) {
+      const ox = 300, oy = 392, k = 40, p = 2.25 * k;                   // 40 px per kg m/s
+      vec(ctx, ox, oy, din[0] * p, din[1] * p, 'p₁', P.vel, { side: -1, at: 0.6 });
+      vec(ctx, ox, oy, dout[0] * p, dout[1] * p, 'p₂', P.vel, { side: 1, at: 0.6 });
+      vec(ctx, ox + din[0] * p, oy + din[1] * p, -2 * din[0] * p, 0, 'Δp', P.force, { side: -1, at: 0.5 });
+      label(ctx, 'Δp = p₂ − p₁ ≈ 4.16 kg m/s', 300, 482, { align: 'center', weight: 800, size: 16, color: P.accent });
+      vec(ctx, BX - 10, BY - 62, -80, 0, 'impulse', P.force, { side: 1, at: 0.5 });
+    }
+    if (ans) partsPanel(ctx, 630, 34, 300, 'Working', ['54 km/h = 15 m/s, p = 2.25 kg m/s', 'Along the bat: no change. Perpendicular: +2.25 cos 22.5° → −2.25 cos 22.5°', 'Impulse = 2 × 2.25 × cos 22.5° ≈ 4.16 kg m/s'], t < SH ? 0 : t < S2 ? 1 : 2, false);
+    else askedPanel(ctx, 630, 34, 300, ['The impulse imparted to the ball. (Mass 0.15 kg, speed 54 km/h.)']);
+    note(ctx, 'NCERT reading: the incoming and outgoing paths make 45°. If instead the direction changed by only 45°, the impulse would be 1.72 kg m/s.');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>
