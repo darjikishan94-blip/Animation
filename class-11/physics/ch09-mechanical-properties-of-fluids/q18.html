@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 9.18</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 9 Mechanical Properties of Fluids</a></p>
+      <h1>Exercise 9.18 · Three films, the same slider (Fig. 9.21)</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q17.html">‹ 9.17</a><a href="index.html">All questions</a><a href="q19.html">9.19 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 9.18">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="Three films of different shapes and sizes all end on the same 40 cm slider; the force on the slider depends only on its length, so each holds 4.5 × 10⁻² N."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>9.18</b> Figure 9.21 (a) shows a thin liquid film supporting a small weight = 4.5 × 10<sup>–2</sup> N. What is the weight supported by a film of the same liquid at the same temperature in Fig. (b) and (c) ? Explain your answer physically.</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Fig. 9.21: three film shapes, each ending on a 40 cm slider; (a) supports 4.5 × 10<sup>−2</sup> N.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The weights supported in (b) and (c).</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Shapes follow Fig. 9.21.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>The upward pull on the slider is 2SL: it depends only on the length L of the slider (40 cm in all three), not on the area or shape of the film.</li>
+          <li>So (b) and (c) also support 4.5 × 10<sup>−2</sup> N.</li>
+        </ol>
+        <p class="final">4.5 × 10<sup>−2</sup> N in both.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 9 (Mechanical Properties of Fluids), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const W = 120, BY = 380;
+  const shapes = [[[0, -110], [W, -110], [W, 0], [0, 0]], [[0, -160], [W, -160], [W, 0], [0, 0]], [[0, -70], [W / 2, -120], [W, -70], [W, 0], [0, 0]]];
+  const qStages = [
+    { title: 'Fig. 9.21', dur: 5, text: 'Three films of the same liquid, at the same temperature, with different shapes. Each ends on a 40 cm slider. Film (a) supports 4.5 × 10⁻² N.' },
+    { title: 'What is asked', dur: 4, text: 'What weight is supported in (b) and (c)? Explain physically.' },
+  ];
+  const stages = [
+    { title: 'Force on the slider', dur: 5, text: 'Surface tension acts along the line where the film meets the slider: force = 2 × S × (slider length).', ans: 'The area or shape of the film does not matter.' },
+    { title: 'The answer', dur: 4, text: 'All three sliders are 40 cm long.', ans: '(b) and (c) also support 4.5 × 10⁻² N.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    shapes.forEach((s, i) => {
+      const x0 = 50 + i * 185;
+      ctx.fillStyle = P.water; ctx.globalAlpha = 0.5; ctx.beginPath(); s.forEach(([x, y], k) => k ? ctx.lineTo(x0 + x, BY + y) : ctx.moveTo(x0 + x, BY + y)); ctx.closePath(); ctx.fill(); ctx.globalAlpha = 1;
+      ctx.strokeStyle = P.obj; ctx.lineWidth = 2; ctx.stroke();
+      const top = Math.min(...s.map(p => p[1])); vline(ctx, x0 + W / 2, BY + top - 50, BY + top, P.ink, 1.5);
+      ctx.fillStyle = P.objFill2; ctx.fillRect(x0 - 4, BY, W + 8, 6);
+      vline(ctx, x0 + W / 2, BY + 6, BY + 26, P.ink, 1.5); block(ctx, x0 + W / 2 - 12, BY + 26, 24, 16, '', P.objFill2);
+      label(ctx, '40 cm', x0 + W / 2, BY + 62, { align: 'center', size: 12 }); label(ctx, ['(a)', '(b)', '(c)'][i], x0 + W / 2, BY + 84, { align: 'center', weight: 800, size: 15 });
+      const w = i === 0 || ans && t >= stages[1].t0 ? '4.5 × 10⁻² N' : '?';
+      label(ctx, w, x0 + W / 2, BY + 106, { align: 'center', weight: 800, size: 14, color: i === 0 ? P.ink : P.accent });
+    });
+    if (ans) partsPanel(ctx, 630, 34, 300, 'Answer', ['Pull on the slider = 2SL: depends only on L', 'Same L = 40 cm: (b) and (c) also hold 4.5 × 10⁻² N'], stageAt(stages, t), false);
+    else askedPanel(ctx, 630, 34, 300, ['The weight supported by the films in (b) and (c), with a physical explanation.']);
+    note(ctx, 'shapes follow Fig. 9.21');
+  }
+  return { qStages, stages, draw };
+})();
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

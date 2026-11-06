@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 9.15</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 9 Mechanical Properties of Fluids</a></p>
+      <h1>Exercise 9.15 · Which flow picture is wrong? (Fig. 9.20)</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q14.html">‹ 9.14</a><a href="index.html">All questions</a><a href="q16.html">9.16 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 9.15">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="Liquid flows through a pipe with a narrow section; vertical tubes show the pressure. In the narrow part the liquid moves faster, so its pressure, and its column, must be lower: figure (a), with a higher column there, is wrong."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>9.15</b> Figures 9.20(a) and (b) refer to the steady flow of a (non-viscous) liquid. Which of the two figures is incorrect ? Why ?</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Fig. 9.20: a pipe with a constriction and two pressure tubes; in (a) the column over the constriction is higher, in (b) lower.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>Which figure is incorrect, and why.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Flow speeds illustrative; columns follow Fig. 9.20.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>Continuity: the liquid moves faster through the constriction.</li>
+          <li>Bernoulli (horizontal pipe): where the speed is greater the pressure is lower, so the column above the constriction should be lower.</li>
+          <li>Figure (a) shows it higher: (a) is incorrect.</li>
+        </ol>
+        <p class="final">(a) is incorrect.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 9 (Mechanical Properties of Fluids), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const qStages = [
+    { title: 'Fig. 9.20', dur: 6, text: 'A non-viscous liquid flows steadily through a pipe with a narrow section. Vertical tubes over the wide and narrow parts show the pressure.' },
+    { title: 'What is asked', dur: 4, text: 'Which of the two figures, (a) or (b), is incorrect? Why?' },
+  ];
+  const stages = [
+    { title: 'Faster in the narrow part', dur: 5, text: 'Continuity: the same volume per second passes every section, so the liquid moves faster where the pipe is narrow.', ans: 'v(narrow) > v(wide).' },
+    { title: 'Lower pressure there', dur: 5, text: 'Bernoulli, horizontal pipe: P + ½ρv² is constant, so where v is larger P is smaller, and the liquid in the tube stands lower.', ans: 'The column over the narrow part must be lower: (a) is incorrect, (b) is correct.' },
+  ];
+  function pipe(ctx, x, y, hl, hr, t, tag) {
+    const W = 230;
+    ctx.fillStyle = P.water; ctx.globalAlpha = 0.5;
+    ctx.beginPath(); ctx.moveTo(x, y - 25); ctx.lineTo(x + 90, y - 25); ctx.lineTo(x + 115, y - 8); ctx.lineTo(x + 140, y - 25); ctx.lineTo(x + W, y - 25); ctx.lineTo(x + W, y + 25); ctx.lineTo(x + 140, y + 25); ctx.lineTo(x + 115, y + 8); ctx.lineTo(x + 90, y + 25); ctx.lineTo(x, y + 25); ctx.closePath(); ctx.fill(); ctx.globalAlpha = 1;
+    ctx.strokeStyle = P.obj; ctx.lineWidth = 2; ctx.stroke();
+    for (const [tx, h] of [[x + 55, hl], [x + 115, hr]]) { ctx.strokeRect(tx - 6, y - 160, 12, 160 - (tx === x + 115 ? 8 : 25)); ctx.fillStyle = P.water; ctx.fillRect(tx - 5, y - (tx === x + 115 ? 8 : 25) - h, 10, h); }
+    for (let k = 0; k < 5; k++) { const xx = x + ((k * 46 + t * 30) % W); const fast = xx > x + 95 && xx < x + 135; ctx.fillStyle = P.ink; ctx.fillRect(xx, y - 1, fast ? 16 : 8, 2); }
+    label(ctx, tag, x + W / 2, y + 50, { align: 'center', weight: 800, size: 16 });
+  }
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    pipe(ctx, 50, 300, 70, 110, t, '(a)'); pipe(ctx, 330, 300, 110, 50, t, '(b)');
+    if (ans && t >= stages[1].t0) { label(ctx, '✗ incorrect', 165, 400, { align: 'center', weight: 800, size: 16, color: P.force }); label(ctx, '✓ correct', 445, 400, { align: 'center', weight: 800, size: 16, color: P.accent }); }
+    if (ans) partsPanel(ctx, 630, 34, 300, 'Answer', ['Narrow part: faster flow (continuity)', 'Faster ⇒ lower pressure ⇒ lower column: (a) is wrong'], stageAt(stages, t), false);
+    else askedPanel(ctx, 630, 34, 300, ['Which of the two figures is incorrect, and why?']);
+    note(ctx, 'columns follow Fig. 9.20; flow speeds illustrative');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

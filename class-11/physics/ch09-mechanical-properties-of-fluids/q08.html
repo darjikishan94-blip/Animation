@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 9.8</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 9 Mechanical Properties of Fluids</a></p>
+      <h1>Exercise 9.8 · Hydraulic automobile lift</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q07.html">‹ 9.7</a><a href="index.html">All questions</a><a href="q09.html">9.9 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 9.8">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A hydraulic lift: a small piston pushes oil that raises a large piston carrying a 3000 kg car; the pressure is the same everywhere in the oil, 6.9 × 10⁵ Pa."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>9.8</b> A hydraulic automobile lift is designed to lift cars with a maximum mass of 3000 kg. The area of cross-section of the piston carrying the load is 425 cm<sup>2</sup>. What maximum pressure would the smaller piston have to bear ?</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Maximum load 3000 kg; large piston area 425 cm<sup>2</sup>.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The maximum pressure on the smaller piston.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Piston sizes illustrative (the small piston’s area is not given).</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>Pascal’s law: the pressure is the same throughout the liquid (at the same level).</li>
+          <li>P = F/A = 3000 × 9.8 / 425 × 10<sup>−4</sup> ≈ 6.92 × 10<sup>5</sup> Pa. The small piston bears this same pressure.</li>
+        </ol>
+        <p class="final">About 6.9 × 10<sup>5</sup> Pa.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 9 (Mechanical Properties of Fluids), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const P0 = 3000 * 9.8 / 425e-4, BY = 440, D = 8;
+  const qStages = [
+    { title: 'A hydraulic lift', dur: D, text: 'A hydraulic lift raises cars of up to 3000 kg. The piston carrying the load has a cross-section of 425 cm².' },
+    { title: 'What is asked', dur: 4, text: 'What maximum pressure must the smaller piston bear?' },
+  ];
+  const stages = [
+    { title: 'Pressure under the load', dur: D, text: 'The large piston holds the car’s weight spread over 425 cm².', ans: 'P = 3000 × 9.8 / 0.0425 ≈ 6.92 × 10⁵ Pa.' },
+    { title: 'Pascal’s law', dur: 4, text: 'Pressure applied to an enclosed liquid is passed on undiminished to every part of it.', ans: 'The small piston bears the same 6.9 × 10⁵ Pa.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    const u = smooth(clamp(t / (D - 1))), dSmall = 120 * u, dBig = 12 * u;
+    ctx.fillStyle = P.water; ctx.globalAlpha = 0.5; ctx.fillRect(80, BY - 40, 460, 40); ctx.fillRect(80, 200 + dSmall, 40, BY - 200 - dSmall); ctx.fillRect(320, 260 - dBig, 220, BY - 260 + dBig); ctx.globalAlpha = 1;
+    ctx.strokeStyle = P.obj; ctx.lineWidth = 2; ctx.strokeRect(80, BY - 40, 460, 40); ctx.strokeRect(80, 150, 40, BY - 190); ctx.strokeRect(320, 200, 220, BY - 240);
+    ctx.fillStyle = P.objFill2; ctx.fillRect(80, 190 + dSmall, 40, 12); ctx.fillRect(320, 248 - dBig, 220, 12);
+    vec(ctx, 100, 120 + dSmall, 0, 60, 'small force', P.force, { side: 1, at: 0.2, align: 'right', ax: -6, size: 12 });
+    ctx.fillStyle = P.ke; ctx.fillRect(360, 210 - dBig, 140, 30); ctx.beginPath(); ctx.moveTo(380, 210 - dBig); ctx.lineTo(400, 186 - dBig); ctx.lineTo(460, 186 - dBig); ctx.lineTo(480, 210 - dBig); ctx.fill();
+    for (const wx of [385, 475]) { ctx.fillStyle = P.obj; ctx.beginPath(); ctx.arc(wx, 242 - dBig, 8, 0, Math.PI * 2); ctx.fill(); }
+    label(ctx, 'car up to 3000 kg', 430, 170 - dBig, { align: 'center', weight: 700, size: 13 }); label(ctx, 'piston 425 cm²', 430, 290, { align: 'center', size: 13 });
+    if (ans) { label(ctx, `P ≈ 6.9 × 10⁵ Pa everywhere`, 300, BY + 30, { align: 'center', weight: 800, size: 16, color: P.accent }); partsPanel(ctx, 630, 34, 300, 'Working (g = 9.8 m/s²)', ['P = mg/A = 3000 × 9.8 / 0.0425 ≈ 6.92 × 10⁵ Pa', 'Same pressure on the small piston (Pascal’s law)'], stageAt(stages, t), false); }
+    else askedPanel(ctx, 630, 34, 300, ['The maximum pressure the smaller piston has to bear.']);
+    note(ctx, 'piston sizes illustrative; motion slowed');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

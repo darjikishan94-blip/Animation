@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 9.16</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 9 Mechanical Properties of Fluids</a></p>
+      <h1>Exercise 9.16 · Spray pump: speed through the holes</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q15.html">‹ 9.15</a><a href="index.html">All questions</a><a href="q17.html">9.17 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 9.16">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="Liquid moves slowly along a spray pump tube and squirts out of 40 tiny holes much faster: the flow through the holes equals the flow along the tube."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>9.16</b> The cylindrical tube of a spray pump has a cross-section of 8.0 cm<sup>2</sup> one end of which has 40 fine holes each of diameter 1.0 mm. If the liquid flow inside the tube is 1.5 m min<sup>–1</sup>, what is the speed of ejection of the liquid through the holes ?</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Tube area 8.0 cm<sup>2</sup>; 40 holes of diameter 1.0 mm; flow speed in the tube 1.5 m min<sup>−1</sup>.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The speed of ejection.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Holes enlarged; speeds illustrative.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>Continuity: A₁v₁ = A₂v₂. Total hole area = 40 × π(0.5 × 10<sup>−3</sup>)<sup>2</sup> ≈ 3.14 × 10<sup>−5</sup> m<sup>2</sup>.</li>
+          <li>v₁ = 1.5/60 = 0.025 m s<sup>−1</sup>. v₂ = 8.0 × 10<sup>−4</sup> × 0.025/3.14 × 10<sup>−5</sup> ≈ 0.64 m s<sup>−1</sup>.</li>
+        </ol>
+        <p class="final">About 0.64 m s<sup>−1</sup>.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 9 (Mechanical Properties of Fluids), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const A1 = 8e-4, V1 = 1.5 / 60, AH = 40 * Math.PI * 0.5e-3 ** 2, V2 = A1 * V1 / AH, TY = 260;
+  const qStages = [
+    { title: 'Spray pump', dur: 6, text: 'A spray pump tube of cross-section 8.0 cm² ends in 40 fine holes, each 1.0 mm across. The liquid moves along the tube at 1.5 m/min.' },
+    { title: 'What is asked', dur: 4, text: 'At what speed does the liquid come out of the holes?' },
+  ];
+  const stages = [
+    { title: 'Continuity', dur: 6, text: 'Every second, the volume leaving through the holes equals the volume moving along the tube: A₁v₁ = A₂v₂.', ans: 'A₂ = 40 × π(0.5 mm)² ≈ 3.14 × 10⁻⁵ m²; v₁ = 0.025 m/s.' },
+    { title: 'Speed of the jets', dur: 4, text: 'v₂ = A₁v₁ / A₂.', ans: 'v₂ = 8.0 × 10⁻⁴ × 0.025 / 3.14 × 10⁻⁵ ≈ 0.64 m/s.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    ctx.fillStyle = P.water; ctx.globalAlpha = 0.4; ctx.fillRect(60, TY - 50, 340, 100); ctx.globalAlpha = 1; ctx.strokeStyle = P.obj; ctx.lineWidth = 2; ctx.strokeRect(60, TY - 50, 340, 100);
+    ctx.fillStyle = P.objFill2; ctx.fillRect(400, TY - 56, 10, 112);
+    for (let k = 0; k < 6; k++) { const x = 70 + ((k * 60 + t * 12) % 320); ctx.fillStyle = P.ink; ctx.fillRect(x, TY - 1, 10, 2); }
+    for (let i = 0; i < 8; i++) { const y = TY - 42 + i * 12; for (let k = 0; k < 3; k++) { const x = 412 + ((k * 60 + t * 120) % 170); ctx.fillStyle = P.vel; ctx.globalAlpha = 0.8; ctx.fillRect(x, y, 14, 2); ctx.globalAlpha = 1; } }
+    label(ctx, 'tube: 8.0 cm², 1.5 m/min', 230, TY + 80, { align: 'center', weight: 700, size: 13 }); label(ctx, '40 holes, 1.0 mm', 470, TY + 80, { align: 'center', weight: 700, size: 13 });
+    if (ans && t >= stages[1].t0) label(ctx, 'jets ≈ 0.64 m/s', 490, TY - 80, { align: 'center', weight: 800, size: 16, color: P.accent });
+    if (ans) partsPanel(ctx, 630, 34, 300, 'Working', ['A₁v₁ = A₂v₂; A₂ ≈ 3.14 × 10⁻⁵ m², v₁ = 0.025 m/s', 'v₂ ≈ 0.64 m/s'], stageAt(stages, t), false);
+    else askedPanel(ctx, 630, 34, 300, ['The speed of ejection of the liquid through the holes.']);
+    note(ctx, 'holes enlarged; flow speeds illustrative (25 times faster through the holes)');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

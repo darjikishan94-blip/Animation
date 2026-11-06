@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 9.9</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 9 Mechanical Properties of Fluids</a></p>
+      <h1>Exercise 9.9 · U-tube: water and spirit</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q08.html">‹ 9.8</a><a href="index.html">All questions</a><a href="q10.html">9.10 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 9.9">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A U-tube with mercury at the bottom, 10.0 cm of water in one arm and 12.5 cm of spirit in the other, with the mercury levels equal: the two columns press equally."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>9.9</b> A U-tube contains water and methylated spirit separated by mercury. The mercury columns in the two arms are in level with 10.0 cm of water in one arm and 12.5 cm of spirit in the other. What is the specific gravity of spirit ?</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Mercury levels equal; 10.0 cm of water in one arm, 12.5 cm of spirit in the other.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The specific gravity of spirit.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>16 px per cm.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>Mercury levels equal ⇒ equal pressures on them: ρ<sub>w</sub> g × 10.0 = ρ<sub>s</sub> g × 12.5.</li>
+          <li>Specific gravity of spirit = ρ<sub>s</sub>/ρ<sub>w</sub> = 10.0/12.5 = 0.8.</li>
+        </ol>
+        <p class="final">0.8</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 9 (Mechanical Properties of Fluids), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const K = 16, LX = 170, RX = 400, HY = 400;                              // 1.6 px per mm (16 px per cm)
+  const qStages = [
+    { title: 'Water, mercury, spirit', dur: 5, text: 'A U-tube holds mercury, with 10.0 cm of water in one arm and 12.5 cm of methylated spirit in the other. The mercury levels are equal.' },
+    { title: 'What is asked', dur: 4, text: 'What is the specific gravity of the spirit?' },
+  ];
+  const stages = [
+    { title: 'Equal levels, equal pressures', dur: 5, text: 'The mercury surfaces are at the same level, so the pressures on them are equal.', ans: 'ρ_w g (10.0 cm) = ρ_s g (12.5 cm).' },
+    { title: 'Specific gravity', dur: 4, text: 'Specific gravity = ρ_s / ρ_w.', ans: '10.0 / 12.5 = 0.8.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    ctx.fillStyle = P.ink2; ctx.globalAlpha = 0.5; ctx.fillRect(LX - 20, HY, RX - LX + 40, 60); ctx.fillRect(LX - 20, HY - 20, 40, 20); ctx.fillRect(RX - 20, HY - 20, 40, 20); ctx.globalAlpha = 1;
+    ctx.fillStyle = P.water; ctx.globalAlpha = 0.6; ctx.fillRect(LX - 20, HY - 20 - 10 * K, 40, 10 * K); ctx.fillStyle = P.ke; ctx.fillRect(RX - 20, HY - 20 - 12.5 * K, 40, 12.5 * K); ctx.globalAlpha = 1;
+    ctx.strokeStyle = P.obj; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(LX - 20, 80); ctx.lineTo(LX - 20, HY + 60); ctx.lineTo(RX + 20, HY + 60); ctx.lineTo(RX + 20, 80); ctx.moveTo(LX + 20, 80); ctx.lineTo(LX + 20, HY); ctx.lineTo(RX - 20, HY); ctx.lineTo(RX - 20, 80); ctx.stroke();
+    hline(ctx, LX - 40, RX + 40, HY - 20, P.accent, 1, [5, 4]); label(ctx, 'mercury levels equal', RX + 30, HY - 34, { align: 'right', size: 12, color: P.accent });
+    vdim(ctx, LX - 40, HY - 20 - 10 * K, HY - 20, P.ink2); label(ctx, 'water 10.0 cm', LX - 48, HY - 20 - 5 * K, { align: 'right', weight: 700, size: 13 });
+    vdim(ctx, RX + 40, HY - 20 - 12.5 * K, HY - 20, P.ink2); label(ctx, 'spirit 12.5 cm', RX + 48, HY - 20 - 6.25 * K, { weight: 700, size: 13 });
+    label(ctx, 'mercury', (LX + RX) / 2, HY + 34, { align: 'center', weight: 700, size: 13 });
+    if (ans) { label(ctx, ans && t >= stages[1].t0 ? 'specific gravity = 10.0 / 12.5 = 0.8' : '10.0 ρ_w = 12.5 ρ_s', 300, 50, { align: 'center', weight: 800, size: 16, color: P.accent }); partsPanel(ctx, 630, 34, 300, 'Working', ['Equal pressures on the mercury surfaces: ρ_w × 10.0 = ρ_s × 12.5', 'Specific gravity of spirit = 0.8'], stageAt(stages, t), false); }
+    else askedPanel(ctx, 630, 34, 300, ['The specific gravity of the spirit.']);
+    note(ctx, '16 px per cm');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

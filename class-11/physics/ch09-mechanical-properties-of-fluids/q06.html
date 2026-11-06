@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 9.6</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 9 Mechanical Properties of Fluids</a></p>
+      <h1>Exercise 9.6 · Pascal’s wine barometer</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q05.html">‹ 9.5</a><a href="index.html">All questions</a><a href="q07.html">9.7 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 9.6">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A mercury barometer (76 cm column) beside a wine barometer whose column rises 10.5 m: atmospheric pressure balances a column whose height is inversely proportional to the liquid’s density."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>9.6</b> Toricelli’s barometer used mercury. Pascal duplicated it using French wine of density 984 kg m<sup>–3</sup>. Determine the height of the wine column for normal atmospheric pressure.</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Wine density 984 kg m<sup>−3</sup>; normal atmospheric pressure 1.013 × 10<sup>5</sup> Pa.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The height of the wine column.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Both tubes to the same scale (30 px per metre).</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>The atmosphere holds up a column with ρgh = P<sub>atm</sub>.</li>
+          <li>h = 1.013 × 10<sup>5</sup>/(984 × 9.8) ≈ 10.5 m.</li>
+        </ol>
+        <p class="final">About 10.5 m.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 9 (Mechanical Properties of Fluids), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const K = 30, BY = 470, PA = 1.013e5, G = 9.8, HW = PA / (984 * G), HM = 0.76;
+  const qStages = [
+    { title: 'Two barometers', dur: 5, text: 'Torricelli’s barometer used mercury (column 76 cm). Pascal repeated it with French wine of density 984 kg/m³.' },
+    { title: 'What is asked', dur: 4, text: 'How tall is the wine column at normal atmospheric pressure?' },
+  ];
+  const stages = [
+    { title: 'The atmosphere holds up the column', dur: 5, text: 'Above the column is a near vacuum; the atmosphere pushing on the dish balances the column’s pressure ρgh.', ans: 'ρgh = P_atm = 1.013 × 10⁵ Pa.' },
+    { title: 'Wine', dur: 5, text: 'Wine is about 14 times less dense than mercury, so its column is about 14 times taller.', ans: 'h = 1.013 × 10⁵ / (984 × 9.8) ≈ 10.5 m.' },
+  ];
+  function baro(ctx, x, h, full, col, name) {
+    ctx.fillStyle = col; ctx.globalAlpha = 0.25; ctx.fillRect(x - 50, BY - 10, 100, 24); ctx.globalAlpha = 1; ctx.strokeStyle = P.obj; ctx.lineWidth = 2; ctx.strokeRect(x - 50, BY - 20, 100, 34);
+    ctx.strokeRect(x - 8, BY - full * K - 20, 16, full * K + 26);
+    ctx.fillStyle = col; ctx.fillRect(x - 7, BY - h * K, 14, h * K + 6);
+    label(ctx, name, x, BY + 30, { align: 'center', weight: 700, size: 13 });
+  }
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    baro(ctx, 140, HM, 1.2, P.ink2, 'mercury'); vdim(ctx, 110, BY - HM * K, BY, P.ink2); label(ctx, '76 cm', 104, BY - HM * K / 2, { align: 'right', weight: 700, size: 12 });
+    const h = ans ? HW * smooth(clamp((t - 1) / 4)) : 0;
+    baro(ctx, 400, h, 11.5, P.force, 'wine');
+    if (ans && h > 0.2) { vdim(ctx, 440, BY - h * K, BY, P.accent); label(ctx, `${h.toFixed(1)} m`, 448, BY - h * K / 2, { weight: 800, size: 15, color: P.accent }); }
+    else if (!ans) label(ctx, 'h = ?', 430, BY - 150, { weight: 800, size: 16 });
+    label(ctx, 'vacuum', 400, BY - 11.5 * K + 4, { align: 'center', size: 11, color: P.ink2 });
+    if (ans) partsPanel(ctx, 630, 34, 300, 'Working', ['ρgh = P_atm', 'h = 1.013 × 10⁵ / (984 × 9.8) ≈ 10.5 m'], stageAt(stages, t), false);
+    else askedPanel(ctx, 630, 34, 300, ['The height of the wine column for normal atmospheric pressure.']);
+    note(ctx, 'both columns to the same scale: 30 px per metre');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

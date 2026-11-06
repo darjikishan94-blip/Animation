@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 9.7</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 9 Mechanical Properties of Fluids</a></p>
+      <h1>Exercise 9.7 · Off-shore structure at 3 km depth</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q06.html">‹ 9.6</a><a href="index.html">All questions</a><a href="q08.html">9.8 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 9.7">
+    <p class="qline"><b>9.7</b> A vertical off-shore structure is built to withstand a maximum stress of 10<sup>9</sup> Pa. Is the structure suitable for putting up on top of an oil well in the ocean ? Take the depth of the ocean to be roughly 3 km, and ignore ocean currents.</p>
+    <p><button type="button" class="btn reveal" id="show" aria-pressed="false" style="margin-left:0">Show answer</button></p>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Maximum stress 10<sup>9</sup> Pa; depth 3 km; sea water about 10<sup>3</sup> kg m<sup>−3</sup>.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>Whether the structure is suitable.</p>
+      </div>
+      <div>
+        <h3>Why there is no animation</h3>
+        <ul>
+          <li>This is a direct calculation with nothing moving to show; the page shows the question and a worked answer.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>Pressure at 3 km ≈ ρgh = 10<sup>3</sup> × 9.8 × 3000 ≈ 2.9 × 10<sup>7</sup> Pa (plus 10<sup>5</sup> Pa of atmosphere).</li>
+          <li>This is far less than 10<sup>9</sup> Pa, so the structure is suitable.</li>
+        </ol>
+        <p class="final">Yes: the pressure (≈ 3 × 10<sup>7</sup> Pa) is well below 10<sup>9</sup> Pa.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 9 (Mechanical Properties of Fluids), Exercises. </p>
+</div>
+<script>
+const b = document.getElementById('show'), a = document.querySelector('.answer');
+b.addEventListener('click', () => { a.hidden = !a.hidden; b.setAttribute('aria-pressed', String(!a.hidden)); b.textContent = a.hidden ? 'Show answer' : 'Hide answer'; });
+</script>
+</body>
+</html>

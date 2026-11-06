@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 9.2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 9 Mechanical Properties of Fluids</a></p>
+      <h1>Exercise 9.2 · Contact angles, wetting, drops</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q01.html">‹ 9.1</a><a href="index.html">All questions</a><a href="q03.html">9.3 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 9.2">
+    <p class="qline"><b>9.2</b> Explain why (a) The angle of contact of mercury with glass is obtuse, while that of water with glass is acute. (b) Water on a clean glass surface tends to spread out while mercury on the same surface tends to form drops. (Put differently, water wets glass while mercury does not.) (c) Surface tension of a liquid is independent of the area of the surface (d) Water with detergent disolved in it should have small angles of contact. (e) A drop of liquid under no external forces is always spherical in shape</p>
+    <p><button type="button" class="btn reveal" id="show" aria-pressed="false" style="margin-left:0">Show answer</button></p>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Five observations about surfaces of liquids.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>Explanations.</p>
+      </div>
+      <div>
+        <h3>Why there is no animation</h3>
+        <ul>
+          <li>This question asks for explanations rather than describing one physical situation to follow; the page shows the question and a worked answer.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>(a) For mercury the cohesive forces (Hg–Hg) are stronger than the adhesive forces (Hg–glass): obtuse angle. For water, adhesion to glass beats cohesion: acute angle.</li>
+          <li>(b) Same reason: water is attracted more to glass than to itself and spreads; mercury pulls itself together into drops.</li>
+          <li>(c) Surface tension is a force per unit length (or energy per unit area) of the surface: a property of the liquid and its surroundings, not of how much surface there is.</li>
+          <li>(d) Detergent lowers the surface tension of water against air (and against greasy surfaces), so the water spreads and wets: a small angle of contact. That is what lets it get into the fibres of cloth.</li>
+          <li>(e) With no other forces, surface tension makes the surface as small as possible; for a given volume the sphere has the least area.</li>
+        </ol>
+        <p class="final">Cohesion vs adhesion; surface tension is a per-length property; detergents reduce it; a sphere has the least area.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 9 (Mechanical Properties of Fluids), Exercises. </p>
+</div>
+<script>
+const b = document.getElementById('show'), a = document.querySelector('.answer');
+b.addEventListener('click', () => { a.hidden = !a.hidden; b.setAttribute('aria-pressed', String(!a.hidden)); b.textContent = a.hidden ? 'Show answer' : 'Hide answer'; });
+</script>
+</body>
+</html>

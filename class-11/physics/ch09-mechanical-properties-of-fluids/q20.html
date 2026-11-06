@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 9.20</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 9 Mechanical Properties of Fluids</a></p>
+      <h1>Exercise 9.20 · Soap bubble and air bubble</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q19.html">‹ 9.19</a><a href="index.html">All questions</a><span>›</span></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 9.20">
+    <p class="qline"><b>9.20</b> What is the excess pressure inside a bubble of soap solution of radius 5.00 mm, given that the surface tension of soap solution at the temperature (20 °C) is 2.50 × 10<sup>–2</sup> N m<sup>–1</sup> ? If an air bubble of the same dimension were formed at depth of 40.0 cm inside a container containing the soap solution (of relative density 1.20), what would be the pressure inside the bubble ? (1 atmospheric pressure is 1.01 × 10<sup>5</sup> Pa).</p>
+    <p><button type="button" class="btn reveal" id="show" aria-pressed="false" style="margin-left:0">Show answer</button></p>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>r = 5.00 mm; S = 2.50 × 10<sup>−2</sup> N m<sup>−1</sup>; depth 40.0 cm; relative density 1.20; P<sub>atm</sub> = 1.01 × 10<sup>5</sup> Pa.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>Excess pressure in the soap bubble; pressure inside the air bubble.</p>
+      </div>
+      <div>
+        <h3>Why there is no animation</h3>
+        <ul>
+          <li>This is a direct calculation with nothing moving to show; the page shows the question and a worked answer.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>Soap bubble (two surfaces): excess = 4S/r = 4 × 0.025/0.005 = 20.0 Pa.</li>
+          <li>Air bubble in liquid (one surface): excess = 2S/r = 10.0 Pa.</li>
+          <li>Pressure in the liquid at 40.0 cm: 1.01 × 10<sup>5</sup> + 1200 × 9.8 × 0.400 ≈ 1.057 × 10<sup>5</sup> Pa; inside the bubble ≈ 1.057 × 10<sup>5</sup> + 10 ≈ 1.06 × 10<sup>5</sup> Pa.</li>
+        </ol>
+        <p class="final">20.0 Pa; about 1.06 × 10<sup>5</sup> Pa.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 9 (Mechanical Properties of Fluids), Exercises. </p>
+</div>
+<script>
+const b = document.getElementById('show'), a = document.querySelector('.answer');
+b.addEventListener('click', () => { a.hidden = !a.hidden; b.setAttribute('aria-pressed', String(!a.hidden)); b.textContent = a.hidden ? 'Show answer' : 'Hide answer'; });
+</script>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 9.10</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 9 Mechanical Properties of Fluids</a></p>
+      <h1>Exercise 9.10 · U-tube: 15 cm more in each arm</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q09.html">‹ 9.9</a><a href="index.html">All questions</a><a href="q11.html">9.11 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 9.10">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="After 15 cm more water and spirit are added, the water arm (25 cm) presses harder than the spirit arm (27.5 cm of liquid of specific gravity 0.8), pushing the mercury down on the water side; the levels differ by 0.22 cm."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>9.10</b> In the previous problem, if 15.0 cm of water and spirit each are further poured into the respective arms of the tube, what is the difference in the levels of mercury in the two arms ? (Specific gravity of mercury = 13.6)</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Now 25.0 cm of water and 27.5 cm of spirit; spirit s.g. 0.8 (from 9.9); mercury s.g. 13.6.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The difference in the mercury levels.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>10 px per cm; the mercury level difference is exaggerated 10 times.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>Water column: 25.0 cm of water. Spirit column: 27.5 × 0.8 = 22.0 cm of water equivalent.</li>
+          <li>Extra pressure on the water side = 3.0 cm of water.</li>
+          <li>This holds up a mercury difference h: 13.6 h = 3.0 cm, so h ≈ 0.22 cm, mercury higher in the spirit arm.</li>
+        </ol>
+        <p class="final">About 0.22 cm (mercury higher on the spirit side).</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 9 (Mechanical Properties of Fluids), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const K = 10, LX = 170, RX = 400, HY = 420, DH = 0.22 * K * 10;          // 10 px per cm; mercury difference exaggerated 10×
+  const qStages = [
+    { title: 'Before', dur: 3, text: 'As in 9.9: 10.0 cm water and 12.5 cm spirit (specific gravity 0.8), mercury levels equal.' },
+    { title: 'More poured in', dur: 4, text: '15.0 cm more water and 15.0 cm more spirit are poured into the respective arms. Specific gravity of mercury = 13.6.' },
+    { title: 'What is asked', dur: 4, text: 'What is the difference in the levels of mercury in the two arms?' },
+  ];
+  const stages = [
+    { title: 'Before', dur: 3, text: 'The arms balance.', ans: '' },
+    { title: 'Compare the columns', dur: 4, text: 'Express each column as an equivalent height of water.', ans: 'Water: 25.0 cm. Spirit: 27.5 × 0.8 = 22.0 cm of water.' },
+    { title: 'Mercury difference', dur: 4, text: 'The water side presses harder by 3.0 cm of water; the mercury on that side is pushed down until the extra mercury on the other side balances it.', ans: '13.6 h = 3.0 cm → h ≈ 0.22 cm, mercury higher in the spirit arm.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    const f = smooth(clamp((t - 3) / 3)), hw = 10 + 15 * f, hs = 12.5 + 15 * f, d = DH * smooth(clamp((t - 5) / 2));
+    const yl = HY - 20 + d / 2, yr = HY - 20 - d / 2;
+    ctx.fillStyle = P.ink2; ctx.globalAlpha = 0.5; ctx.fillRect(LX - 20, HY, RX - LX + 40, 60); ctx.fillRect(LX - 20, yl, 40, HY - yl); ctx.fillRect(RX - 20, yr, 40, HY - yr); ctx.globalAlpha = 1;
+    ctx.fillStyle = P.water; ctx.globalAlpha = 0.6; ctx.fillRect(LX - 20, yl - hw * K, 40, hw * K); ctx.fillStyle = P.ke; ctx.fillRect(RX - 20, yr - hs * K, 40, hs * K); ctx.globalAlpha = 1;
+    ctx.strokeStyle = P.obj; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(LX - 20, 60); ctx.lineTo(LX - 20, HY + 60); ctx.lineTo(RX + 20, HY + 60); ctx.lineTo(RX + 20, 60); ctx.moveTo(LX + 20, 60); ctx.lineTo(LX + 20, HY); ctx.lineTo(RX - 20, HY); ctx.lineTo(RX - 20, 60); ctx.stroke();
+    label(ctx, `water ${hw.toFixed(1)} cm`, LX - 28, yl - hw * K / 2, { align: 'right', weight: 700, size: 13 }); label(ctx, `spirit ${hs.toFixed(1)} cm`, RX + 28, yr - hs * K / 2, { weight: 700, size: 13 });
+    if (d > 1) { hline(ctx, LX - 30, RX + 30, yl, P.ink2, 1, [3, 3]); hline(ctx, RX - 30, RX + 60, yr, P.ink2, 1, [3, 3]); vdim(ctx, RX + 50, yr, yl, P.accent); label(ctx, ans ? 'h ≈ 0.22 cm' : 'h = ?', RX + 58, (yl + yr) / 2 + 14, { weight: 800, size: 14, color: P.accent }); }
+    if (ans) partsPanel(ctx, 630, 34, 300, 'Working', ['Water 25.0 cm vs spirit 27.5 cm (= 22.0 cm of water)', 'Excess on the water side: 3.0 cm of water', '13.6 h = 3.0 cm → h ≈ 0.22 cm'], stageAt(stages, t), false);
+    else askedPanel(ctx, 630, 34, 300, ['The difference in the mercury levels after 15.0 cm of water and of spirit are added.']);
+    note(ctx, '10 px per cm; the mercury difference is exaggerated 10 times');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>
