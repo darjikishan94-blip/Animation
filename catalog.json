@@ -545,8 +545,99 @@
   "subject": "science",
   "chapter": 12,
   "chapter_title": "Magnetic Effects of Electric Current",
-  "status": "planned",
-  "ncert_pdf": "https://ncert.nic.in/textbook/pdf/jesc112.pdf"
+  "question": "12.1",
+  "title": "Field near a long straight wire",
+  "status": "animated",
+  "file": "class-10/science/ch12-magnetic-effects-of-electric-current/q01.html",
+  "text": "Which of the following correctly describes the magnetic field near a long straight wire? (a) The field consists of straight lines perpendicular to the wire. (b) The field consists of straight lines parallel to the wire. (c) The field consists of radial lines originating from the wire. (d) The field consists of concentric circles centred on the wire."
+ },
+ {
+  "class": 10,
+  "subject": "science",
+  "chapter": 12,
+  "chapter_title": "Magnetic Effects of Electric Current",
+  "question": "12.2",
+  "title": "Current at a short circuit",
+  "status": "worked answer",
+  "file": "class-10/science/ch12-magnetic-effects-of-electric-current/q02.html",
+  "text": "At the time of short circuit, the current in the circuit (a) reduces substantially. (b) does not change. (c) increases heavily. (d) vary continuously."
+ },
+ {
+  "class": 10,
+  "subject": "science",
+  "chapter": 12,
+  "chapter_title": "Magnetic Effects of Electric Current",
+  "question": "12.3",
+  "title": "True or false: coil field, green wire",
+  "status": "worked answer",
+  "file": "class-10/science/ch12-magnetic-effects-of-electric-current/q03.html",
+  "text": "State whether the following statements are true or false. (a) The field at the centre of a long circular coil carrying current will be parallel straight lines. (b) A wire with a green insulation is usually the live wire of an electric supply."
+ },
+ {
+  "class": 10,
+  "subject": "science",
+  "chapter": 12,
+  "chapter_title": "Magnetic Effects of Electric Current",
+  "question": "12.4",
+  "title": "Two ways to make a magnetic field",
+  "status": "worked answer",
+  "file": "class-10/science/ch12-magnetic-effects-of-electric-current/q04.html",
+  "text": "List two methods of producing magnetic fields."
+ },
+ {
+  "class": 10,
+  "subject": "science",
+  "chapter": 12,
+  "chapter_title": "Magnetic Effects of Electric Current",
+  "question": "12.5",
+  "title": "When is the force on a conductor largest?",
+  "status": "animated",
+  "file": "class-10/science/ch12-magnetic-effects-of-electric-current/q05.html",
+  "text": "When is the force experienced by a current–carrying conductor placed in a magnetic field largest?"
+ },
+ {
+  "class": 10,
+  "subject": "science",
+  "chapter": 12,
+  "chapter_title": "Magnetic Effects of Electric Current",
+  "question": "12.6",
+  "title": "Electron beam deflected to the right",
+  "status": "animated",
+  "file": "class-10/science/ch12-magnetic-effects-of-electric-current/q06.html",
+  "text": "Imagine that you are sitting in a chamber with your back to one wall. An electron beam, moving horizontally from back wall towards the front wall, is deflected by a strong magnetic field to your right side. What is the direction of magnetic field?"
+ },
+ {
+  "class": 10,
+  "subject": "science",
+  "chapter": 12,
+  "chapter_title": "Magnetic Effects of Electric Current",
+  "question": "12.7",
+  "title": "Three direction rules",
+  "status": "worked answer",
+  "file": "class-10/science/ch12-magnetic-effects-of-electric-current/q07.html",
+  "text": "State the rule to determine the direction of a (i) magnetic field produced around a straight conductor-carrying current, (ii) force experienced by a current-carrying straight conductor placed in a magnetic field which is perpendicular to it, and (iii) current induced in a coil due to its rotation in a magnetic field."
+ },
+ {
+  "class": 10,
+  "subject": "science",
+  "chapter": 12,
+  "chapter_title": "Magnetic Effects of Electric Current",
+  "question": "12.8",
+  "title": "When a short circuit happens",
+  "status": "worked answer",
+  "file": "class-10/science/ch12-magnetic-effects-of-electric-current/q08.html",
+  "text": "When does an electric short circuit occur?"
+ },
+ {
+  "class": 10,
+  "subject": "science",
+  "chapter": 12,
+  "chapter_title": "Magnetic Effects of Electric Current",
+  "question": "12.9",
+  "title": "Why appliances are earthed",
+  "status": "animated",
+  "file": "class-10/science/ch12-magnetic-effects-of-electric-current/q09.html",
+  "text": "What is the function of an earth wire? Why is it necessary to earth metallic appliances?"
  },
  {
   "class": 11,

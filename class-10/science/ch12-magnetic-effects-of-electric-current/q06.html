@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 10 Science · Exercise 12.6</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 10 Science</a> · <a href="index.html">Ch. 12 Magnetic Effects of Electric Current</a></p>
+      <h1>Exercise 12.6 · Electron beam deflected to the right</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q05.html">‹ 12.5</a><a href="index.html">All questions</a><a href="q07.html">12.7 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 12.6">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="Seen from above: electrons move from the back wall to the front wall and curve to the right. Their conventional current points backwards; Fleming’s left-hand rule then puts the field vertically downward."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>12.6</b> Imagine that you are sitting in a chamber with your back to one wall. An electron beam, moving horizontally from back wall towards the front wall, is deflected by a strong magnetic field to your right side. What is the direction of magnetic field?</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Electrons move from the back wall to the front wall (horizontal); force to the right.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>Direction of B.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>View from above; the field (vertically down) points into the page.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>Electrons are negative, so the conventional current points the opposite way: from the front wall towards the back wall.</li>
+          <li>Fleming’s left-hand rule: force (thumb) to the right, current (middle finger) towards the back wall; the forefinger (field) then points vertically downward.</li>
+        </ol>
+        <p class="final">Vertically downward.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Science (NCERT, Class 10), Chapter 12 (Magnetic Effects of Electric Current), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const X0 = 300, YB = 470, YF = 60, D = 8;   // top view: back wall at the bottom (YB), front wall at the top (YF)
+  const qStages = [
+    { title: 'An electron beam', dur: 6, text: 'You sit with your back to one wall. An electron beam moves from the back wall towards the front wall and is deflected to your right.' },
+    { title: 'What is asked', dur: 4, text: 'What is the direction of the magnetic field?' },
+  ];
+  const stages = [
+    { title: 'Current direction', dur: 5, text: 'Electrons are negative: the conventional current points from the front wall towards the back wall.', ans: '' },
+    { title: 'Left-hand rule', dur: D, text: 'Thumb (force) to the right, middle finger (current) towards the back wall: the forefinger (field) points vertically down.', ans: 'B is vertically downward (into the page in this view from above).' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    hline(ctx, 60, 540, YB + 10, P.ink, 4); hline(ctx, 60, 540, YF - 10, P.ink, 4); label(ctx, 'back wall', 550, YB + 10, { weight: 700, size: 12 }); label(ctx, 'front wall', 550, YF - 10, { weight: 700, size: 12 });
+    person(ctx, X0, YB + 4, 0.55); label(ctx, 'you (seen from above)', X0 + 30, YB - 20, { size: 12 });
+    const st = ans ? stageAt(stages, t) : 1;
+    if (ans && st >= 1) for (let x = 90; x <= 520; x += 60) for (let y = 110; y <= 420; y += 60) fieldSym(ctx, x, y, false, 7, P.accent);
+    const s = (t * 0.25) % 1, R = 520, pts = []; for (let i = 0; i <= 40; i++) { const u = i / 40 * 0.62; pts.push([X0 - 0 + R * (1 - Math.cos(u)), YB - 60 - R * Math.sin(u)]); }
+    ray(ctx, pts, P.vel, { lw: 2 });
+    const p = pts[Math.floor(s * 40)]; ball(ctx, p[0], p[1], 6, P.vel); label(ctx, 'e⁻', p[0] + 10, p[1], { weight: 800, size: 12, color: P.vel });
+    vec(ctx, X0 - 40, 300, 0, -60, 'electrons', P.vel, { side: 1, at: 0.5, lw: 3, align: 'right', off: 10 });
+    vec(ctx, X0 + 210, 250, 50, 0, 'force (to your right)', P.force, { side: -1, at: 0.5, lw: 3 });
+    if (ans) {
+      vec(ctx, X0 - 170, 240, 0, 60, 'current', P.force, { side: -1, at: 0.5, lw: 3, align: 'right', off: 10 });
+      if (st >= 1) label(ctx, 'B: vertically downward (⊗)', 300, 30, { align: 'center', weight: 800, size: 15, color: P.accent });
+      partsPanel(ctx, 630, 34, 300, 'Answer', ['Current: front wall → back wall', 'Left-hand rule: B vertically downward'], st, false);
+    } else askedPanel(ctx, 630, 34, 300, ['The direction of the magnetic field.']);
+    note(ctx, 'view from above; ⊗ = into the page = vertically downward');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

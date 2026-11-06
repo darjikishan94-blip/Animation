@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 10 Science · Exercise 12.5</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 10 Science</a> · <a href="index.html">Ch. 12 Magnetic Effects of Electric Current</a></p>
+      <h1>Exercise 12.5 · When is the force on a conductor largest?</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q04.html">‹ 12.4</a><a href="index.html">All questions</a><a href="q06.html">12.6 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 12.5">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A current-carrying wire turns in a uniform field; the force on it, F = BIL sin θ, is zero when the wire lies along the field and largest when it is at right angles to the field."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>12.5</b> When is the force experienced by a current–carrying conductor placed in a magnetic field largest?</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>A straight conductor carrying current in a uniform field.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>When the force is largest.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>The graph is F/F<sub>max</sub> = sin θ.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>F = BIL sin θ, where θ is the angle between the conductor (current) and the field.</li>
+          <li>It is largest when θ = 90°: the current is perpendicular to the magnetic field.</li>
+        </ol>
+        <p class="final">When the current is perpendicular to the field.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Science (NCERT, Class 10), Chapter 12 (Magnetic Effects of Electric Current), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const CX = 180, CY = 270, L = 120, G = { x: 360, y: 120, w: 200, h: 220, x0: 0, x1: 180, y0: 0, y1: 1.15, xt: [90, 180], yt: [1], xl: 'θ (°)', yl: 'F/F_max' }, D = 10;
+  const qStages = [
+    { title: 'A wire in a magnetic field', dur: 5, text: 'A straight wire carrying a current lies in a uniform magnetic field.' },
+    { title: 'What is asked', dur: 4, text: 'When is the force on it largest?' },
+  ];
+  const stages = [
+    { title: 'Turn the wire', dur: D, text: 'F = BIL sin θ, with θ the angle between the current and the field. Here the force points into the page.', ans: 'Zero along the field; largest at 90°.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    for (let y = 100; y <= 440; y += 48) arrow(ctx, 30, y, 330, y, P.grid, { lw: 1.5, head: 9 }); label(ctx, 'B', 330, 84, { weight: 800, size: 14, color: P.ink2, italic: true });
+    const th = ans ? 180 * clamp(t / (D - 1)) : 30, a = -th * Math.PI / 180;
+    ctx.save(); ctx.strokeStyle = P.obj; ctx.lineWidth = 6; seg(ctx, CX - L * Math.cos(a), CY - L * Math.sin(a), CX + L * Math.cos(a), CY + L * Math.sin(a)); ctx.restore();
+    vec(ctx, CX + 0.4 * L * Math.cos(a), CY + 0.4 * L * Math.sin(a), 0.5 * L * Math.cos(a), 0.5 * L * Math.sin(a), 'I', P.force, { side: -1, at: 1, italic: true, lw: 3 });
+    label(ctx, `θ = ${th.toFixed(0)}°`, CX, 470, { align: 'center', weight: 800, size: 15 });
+    if (ans) {
+      const f = Math.sin(th * Math.PI / 180); if (f > 0.02) fieldSym(ctx, CX - 60, CY + 70, false, 4 + 14 * f, P.accent); label(ctx, 'F (into page)', CX - 34, CY + 70, { weight: 700, size: 12, color: P.accent, alpha: f > 0.02 ? 1 : 0 });
+      const g = axes(ctx, G); plot(ctx, g, x => Math.sin(x * Math.PI / 180), 0, th, P.accent); ball(ctx, g.X(th), g.Y(f), 5, P.accent);
+      if (th >= 90) label(ctx, 'largest at 90°', g.X(90), g.Y(1) - 16, { align: 'center', weight: 800, size: 13, color: P.accent });
+      partsPanel(ctx, 630, 34, 300, 'Answer', ['F = BIL sin θ: largest when the current is perpendicular to the field'], 0, false);
+    } else askedPanel(ctx, 630, 34, 300, ['When the force on the conductor is largest.']);
+    note(ctx, ans ? 'graph F/F_max = sin θ; symbol size shows the force' : 'schematic');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

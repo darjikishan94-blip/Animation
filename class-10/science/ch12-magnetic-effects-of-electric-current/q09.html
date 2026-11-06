@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 10 Science · Exercise 12.9</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 10 Science</a> · <a href="index.html">Ch. 12 Magnetic Effects of Electric Current</a></p>
+      <h1>Exercise 12.9 · Why appliances are earthed</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q08.html">‹ 12.8</a><a href="index.html">All questions</a><span>›</span></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 12.9">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A fault connects the live wire to an appliance’s metal body. Unearthed, the leak current would pass through a person touching it; earthed, it flows down the low-resistance earth wire instead, the fuse blows and the person stays safe."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>12.9</b> What is the function of an earth wire? Why is it necessary to earth metallic appliances?</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>A metal-bodied appliance with a fault.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The function of the earth wire; why earthing is needed.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Schematic.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>The earth wire connects the metal body of an appliance to the earth through a low-resistance path.</li>
+          <li>If the live wire touches the metal body by a fault, the leakage current flows to earth through this path instead of through a person, and the large current blows the fuse. The body stays at earth potential, so the user does not get a severe shock.</li>
+        </ol>
+        <p class="final">A low-resistance path to earth for leakage current; it protects the user from shocks.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Science (NCERT, Class 10), Chapter 12 (Magnetic Effects of Electric Current), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const BX = 300, BY = 150, D = 8;
+  const qStages = [
+    { title: 'A metal appliance', dur: 5, text: 'An appliance with a metal body is plugged in. Through a fault, the live wire touches its metal body.' },
+    { title: 'What is asked', dur: 4, text: 'What is the function of an earth wire? Why must metal appliances be earthed?' },
+  ];
+  const stages = [
+    { title: 'Without earthing', dur: D, text: 'The metal body is now at a high voltage. Touch it and the leakage current flows through you to the ground.', ans: 'A dangerous shock.' },
+    { title: 'With earthing', dur: D, text: 'The earth wire gives the leak a low-resistance path to the ground. A large current flows, the fuse blows, and the body stays at earth potential.', ans: 'The person is safe.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    hatchRect(ctx, 20, 470, 570, 30, P.ink2, P.sand); label(ctx, 'ground', 40, 460, { weight: 700, size: 12 });
+    ctx.save(); ctx.fillStyle = P.objFill2; ctx.strokeStyle = P.ink; ctx.lineWidth = 2; ctx.fillRect(BX - 80, BY, 160, 110); ctx.strokeRect(BX - 80, BY, 160, 110); ctx.restore(); label(ctx, 'metal body', BX, BY + 55, { align: 'center', weight: 800, size: 13 });
+    wire(ctx, [[30, 80], [BX - 40, 80], [BX - 40, BY]], P.force, 3); label(ctx, 'live', 40, 66, { weight: 700, size: 12, color: P.force });
+    wire(ctx, [[30, 110], [BX, 110], [BX, BY]], P.ink, 3); label(ctx, 'neutral', 40, 100, { weight: 700, size: 12 });
+    ctx.save(); ctx.strokeStyle = P.force; ctx.lineWidth = 2; ctx.setLineDash([3, 3]); seg(ctx, BX - 40, BY + 4, BX - 70, BY + 30); ctx.restore(); label(ctx, 'fault', BX - 96, BY + 30, { align: 'right', size: 12, color: P.force });
+    person(ctx, 470, 470, 1.1); wire(ctx, [[BX + 80, BY + 60], [455, BY + 120]], P.obj, 6);
+    const st = ans ? stageAt(stages, t) : 0, earthed = st === 1;
+    ctx.fillStyle = earthed && t > stages[1].t0 + 3 ? P.loss : P.ke; ctx.fillRect(100, 72, 30, 16); label(ctx, earthed && t > stages[1].t0 + 3 ? 'fuse blown' : 'fuse', 115, 62, { align: 'center', size: 11 });
+    if (earthed) { wire(ctx, [[BX + 40, BY + 110], [BX + 40, 470]], P.leaf, 3); label(ctx, 'earth wire', BX + 48, 400, { weight: 700, size: 12, color: P.leaf }); }
+    if (ans) {
+      if (!earthed) { flow(ctx, [[BX - 40, BY], [BX + 80, BY + 60], [455, BY + 120], [470, 400], [470, 470]], t * 40, P.force, 20, 3.5); label(ctx, 'shock!', 520, 260, { weight: 800, size: 16, color: P.force }); }
+      else if (t < stages[1].t0 + 3) flow(ctx, [[BX - 40, BY], [BX + 40, BY + 110], [BX + 40, 470]], t * 80, P.force, 16, 3.5);
+      if (earthed) label(ctx, 'safe', 520, 260, { weight: 800, size: 16, color: P.leaf });
+      partsPanel(ctx, 630, 34, 300, 'Answer', ['Unearthed: the leak passes through the person', 'Earthed: a low-resistance path to ground; fuse blows; user safe'], st, false);
+    } else askedPanel(ctx, 630, 34, 300, ['The function of an earth wire.', 'Why metallic appliances must be earthed.']);
+    note(ctx, 'schematic');
+  }
+  return { qStages, stages, draw };
+})();
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>
