@@ -3150,8 +3150,99 @@
   "subject": "physics",
   "chapter": 3,
   "chapter_title": "Current Electricity",
-  "status": "planned",
-  "ncert_pdf": "https://ncert.nic.in/textbook/pdf/leph103.pdf"
+  "question": "3.1",
+  "title": "Maximum current from a car battery",
+  "status": "worked answer",
+  "file": "class-12/physics/ch03-current-electricity/q01.html",
+  "text": "The storage battery of a car has an emf of 12 V. If the internal resistance of the battery is 0.4 Ω, what is the maximum current that can be drawn from the battery?"
+ },
+ {
+  "class": 12,
+  "subject": "physics",
+  "chapter": 3,
+  "chapter_title": "Current Electricity",
+  "question": "3.2",
+  "title": "External resistance and terminal voltage",
+  "status": "animated",
+  "file": "class-12/physics/ch03-current-electricity/q02.html",
+  "text": "A battery of emf 10 V and internal resistance 3 Ω is connected to a resistor. If the current in the circuit is 0.5 A, what is the resistance of the resistor? What is the terminal voltage of the battery when the circuit is closed?"
+ },
+ {
+  "class": 12,
+  "subject": "physics",
+  "chapter": 3,
+  "chapter_title": "Current Electricity",
+  "question": "3.3",
+  "title": "Temperature from resistance",
+  "status": "worked answer",
+  "file": "class-12/physics/ch03-current-electricity/q03.html",
+  "text": "At room temperature (27.0 °C) the resistance of a heating element is 100 Ω. What is the temperature of the element if the resistance is found to be 117 Ω, given that the temperature coefficient of the material of the resistor is 1.70 × 10–4 °C–1."
+ },
+ {
+  "class": 12,
+  "subject": "physics",
+  "chapter": 3,
+  "chapter_title": "Current Electricity",
+  "question": "3.4",
+  "title": "Resistivity of a wire",
+  "status": "worked answer",
+  "file": "class-12/physics/ch03-current-electricity/q04.html",
+  "text": "A negligibly small current is passed through a wire of length 15 m and uniform cross-section 6.0 × 10–7 m2, and its resistance is measured to be 5.0 Ω. What is the resistivity of the material at the temperature of the experiment?"
+ },
+ {
+  "class": 12,
+  "subject": "physics",
+  "chapter": 3,
+  "chapter_title": "Current Electricity",
+  "question": "3.5",
+  "title": "Temperature coefficient of silver",
+  "status": "worked answer",
+  "file": "class-12/physics/ch03-current-electricity/q05.html",
+  "text": "A silver wire has a resistance of 2.1 Ω at 27.5 °C, and a resistance of 2.7 Ω at 100 °C. Determine the temperature coefficient of resistivity of silver."
+ },
+ {
+  "class": 12,
+  "subject": "physics",
+  "chapter": 3,
+  "chapter_title": "Current Electricity",
+  "question": "3.6",
+  "title": "A nichrome heater warming up",
+  "status": "animated",
+  "file": "class-12/physics/ch03-current-electricity/q06.html",
+  "text": "A heating element using nichrome connected to a 230 V supply draws an initial current of 3.2 A which settles after a few seconds to a steady value of 2.8 A. What is the steady temperature of the heating element if the room temperature is 27.0 °C? Temperature coefficient of resistance of nichrome averaged over the temperature range involved is 1.70 × 10–4 °C–1."
+ },
+ {
+  "class": 12,
+  "subject": "physics",
+  "chapter": 3,
+  "chapter_title": "Current Electricity",
+  "question": "3.7",
+  "title": "Currents in a network (Fig. 3.20)",
+  "status": "animated",
+  "file": "class-12/physics/ch03-current-electricity/q07.html",
+  "text": "Determine the current in each branch of the network shown in Fig. 3.20."
+ },
+ {
+  "class": 12,
+  "subject": "physics",
+  "chapter": 3,
+  "chapter_title": "Current Electricity",
+  "question": "3.8",
+  "title": "Charging a storage battery",
+  "status": "animated",
+  "file": "class-12/physics/ch03-current-electricity/q08.html",
+  "text": "A storage battery of emf 8.0 V and internal resistance 0.5 Ω is being charged by a 120 V dc supply using a series resistor of 15.5 Ω. What is the terminal voltage of the battery during charging? What is the purpose of having a series resistor in the charging circuit?"
+ },
+ {
+  "class": 12,
+  "subject": "physics",
+  "chapter": 3,
+  "chapter_title": "Current Electricity",
+  "question": "3.9",
+  "title": "How slowly electrons drift",
+  "status": "animated",
+  "file": "class-12/physics/ch03-current-electricity/q09.html",
+  "text": "The number density of free electrons in a copper conductor estimated in Example 3.1 is 8.5 × 1028 m–3. How long does an electron take to drift from one end of a wire 3.0 m long to its other end? The area of cross-section of the wire is 2.0 × 10–6 m2 and it is carrying a current of 3.0 A."
  },
  {
   "class": 12,

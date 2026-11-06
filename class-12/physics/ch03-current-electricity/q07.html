@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 12 Physics · Exercise 3.7</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 12 Physics</a> · <a href="index.html">Ch. 3 Current Electricity</a></p>
+      <h1>Exercise 3.7 · Currents in a network (Fig. 3.20)</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q06.html">‹ 3.6</a><a href="index.html">All questions</a><a href="q08.html">3.8 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 3.7">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="Current flows round the network of Fig. 3.20; dots move faster in branches with more current: 10/17 A through the cell, 4/17 A in AB, 6/17 A in AD, 6/17 A in BC, 4/17 A in DC and 2/17 A from D up to B."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>3.7</b> Determine the current in each branch of the network shown in Fig. 3.20.</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Fig. 3.20: AB = 10 Ω, BC = 5 Ω, AD = 5 Ω, DC = 10 Ω, BD = 5 Ω; a 10 V cell (negligible internal resistance) in series with 10 Ω between C and A.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The current in each branch.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Circuit as in Fig. 3.20; dot speeds are in proportion to the currents.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>Take C as 0 V; the + side of the cell is then at 10 V. Call the unknown potentials V<sub>A</sub>, V<sub>B</sub>, V<sub>D</sub>.</li>
+          <li>Junction rule (current = ΔV/R) at A: (10 − V<sub>A</sub>)/10 = (V<sub>A</sub> − V<sub>B</sub>)/10 + (V<sub>A</sub> − V<sub>D</sub>)/5.</li>
+          <li>At B: (V<sub>A</sub> − V<sub>B</sub>)/10 = V<sub>B</sub>/5 + (V<sub>B</sub> − V<sub>D</sub>)/5. At D: (V<sub>A</sub> − V<sub>D</sub>)/5 + (V<sub>B</sub> − V<sub>D</sub>)/5 = V<sub>D</sub>/10.</li>
+          <li>Solving: V<sub>A</sub> = 70/17 V, V<sub>B</sub> = 30/17 V, V<sub>D</sub> = 40/17 V.</li>
+          <li>Currents: AB = 4/17 A, AD = 6/17 A, BC = 6/17 A, DC = 4/17 A, BD = 2/17 A flowing from D to B (opposite to the arrow in the figure), and 10/17 A through the cell and the 10 Ω resistor.</li>
+        </ol>
+        <p class="final">AB 4/17 A, BC 6/17 A, AD 6/17 A, DC 4/17 A, D→B 2/17 A; total 10/17 A.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 12), Chapter 3 (Current Electricity), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const A = [120, 250], B = [300, 90], C = [480, 250], Dn = [300, 390], YB = 470;
+  const BR = [   // [from, to, R, current in 1/17 A, label position]
+    ['A', 'B', 10, 4, [178, 150]], ['B', 'C', 5, 6, [422, 150]], ['A', 'D', 5, 6, [178, 350]], ['D', 'C', 10, 4, [422, 350]], ['D', 'B', 5, 2, [334, 240]]];
+  const N = { A, B, C, D: Dn };
+  const qStages = [
+    { title: 'Fig. 3.20', dur: 6, text: 'A network ABCD: AB 10 Ω, BC 5 Ω, AD 5 Ω, DC 10 Ω and BD 5 Ω, fed by a 10 V cell in series with 10 Ω between C and A.' },
+    { title: 'What is asked', dur: 4, text: 'Determine the current in each branch.' },
+  ];
+  const stages = [
+    { title: 'Kirchhoff’s rules', dur: 7, text: 'Take C as 0 V (the cell’s + side is then at 10 V). Apply the junction rule at A, B and D with I = ΔV/R.', ans: 'V_A = 70/17 V, V_B = 30/17 V, V_D = 40/17 V.' },
+    { title: 'Branch currents', dur: 10, text: 'Each current = (potential difference)/R. Dots move in proportion to the current.', ans: 'AB 4/17 A, BC 6/17 A, AD 6/17 A, DC 4/17 A, D→B 2/17 A; cell 10/17 A.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    BR.forEach(([f, to, R, , lp]) => { resistor(ctx, ...N[f], ...N[to]); label(ctx, `${R} Ω`, lp[0], lp[1], { align: 'center', weight: 700, size: 13 }); });
+    wire(ctx, [A, [A[0], YB], [200, YB]]); resistor(ctx, 200, YB, 300, YB); wire(ctx, [[300, YB], [340, YB]]); cell(ctx, 340, YB, 370, YB); wire(ctx, [[370, YB], [C[0], YB], C]);
+    label(ctx, '10 Ω', 250, YB + 24, { align: 'center', weight: 700, size: 13 }); label(ctx, '10 V', 356, YB + 28, { align: 'center', weight: 700, size: 13 }); label(ctx, '+', 334, YB - 24, { align: 'center', weight: 800, size: 14, color: P.force });
+    Object.entries(N).forEach(([n, p]) => { ball(ctx, ...p, 5, P.ink); label(ctx, n, p[0] + (n === 'A' ? -16 : n === 'C' ? 16 : 0), p[1] + (n === 'B' ? -18 : n === 'D' ? 22 : 0), { align: 'center', weight: 800, size: 15 }); });
+    if (ans) {
+      const st = stageAt(stages, t);
+      if (st >= 0) { [['A', '70/17 V'], ['B', '30/17 V'], ['C', '0 V'], ['D', '40/17 V']].forEach(([n, v]) => { const p = N[n]; label(ctx, v, p[0] + (n === 'A' ? -18 : n === 'C' ? 18 : 40), p[1] + (n === 'B' ? -2 : n === 'D' ? 4 : 22), { align: n === 'A' ? 'right' : 'left', weight: 700, size: 12, color: P.accent }); }); }
+      if (st >= 1) {
+        const s = (t - stages[1].t0) * 12;
+        BR.forEach(([f, to, , i, lp]) => { flow(ctx, [N[f], N[to]], s * i, P.force, 22, 3); label(ctx, `${i}/17 A`, lp[0], lp[1] + 16, { align: 'center', weight: 800, size: 12, color: P.force }); });
+        flow(ctx, [C, [C[0], YB], [A[0], YB], A], s * 10, P.force, 22, 3); label(ctx, '10/17 A', 120 - 14, 380, { align: 'right', weight: 800, size: 12, color: P.force });
+      }
+      partsPanel(ctx, 630, 34, 300, 'Working', ['Junction rule at A, B, D (C = 0 V): V_A = 70/17, V_B = 30/17, V_D = 40/17 V', 'AB 4/17, BC 6/17, AD 6/17, DC 4/17, D→B 2/17 A; total 10/17 A'], st, false);
+    } else askedPanel(ctx, 630, 34, 300, ['The current in each branch of the network.']);
+    note(ctx, ans ? 'dots move at speeds in proportion to the currents (conventional direction)' : 'cell internal resistance taken as negligible');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

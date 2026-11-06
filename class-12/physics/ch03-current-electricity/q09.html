@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 12 Physics · Exercise 3.9</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 12 Physics</a> · <a href="index.html">Ch. 3 Current Electricity</a></p>
+      <h1>Exercise 3.9 · How slowly electrons drift</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q08.html">‹ 3.8</a><a href="index.html">All questions</a><span>›</span></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 3.9">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="Free electrons jostle randomly inside a copper wire while drifting slowly against the current at 0.11 mm/s; one marked electron takes about 2.7 × 10⁴ s, roughly 7.5 hours, to travel 3 m."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>3.9</b> The number density of free electrons in a copper conductor estimated in Example 3.1 is 8.5 × 10<sup>28</sup> m<sup>–3</sup>. How long does an electron take to drift from one end of a wire 3.0 m long to its other end? The area of cross-section of the wire is 2.0 × 10<sup>–6</sup> m<sup>2</sup> and it is carrying a current of 3.0 A.</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>n = 8.5 × 10<sup>28</sup> m<sup>−3</sup>; l = 3.0 m; A = 2.0 × 10<sup>−6</sup> m<sup>2</sup>; I = 3.0 A; e = 1.6 × 10<sup>−19</sup> C.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The time to drift 3.0 m.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Random motion and time are not to scale; the wire is shortened.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>I = neAv<sub>d</sub>, so v<sub>d</sub> = 3.0/(8.5 × 10<sup>28</sup> × 1.6 × 10<sup>−19</sup> × 2.0 × 10<sup>−6</sup>) ≈ 1.1 × 10<sup>−4</sup> m/s.</li>
+          <li>t = l/v<sub>d</sub> = 3.0/1.1 × 10<sup>−4</sup> ≈ 2.7 × 10<sup>4</sup> s (about 7.5 h).</li>
+        </ol>
+        <p class="final">About 2.7 × 10<sup>4</sup> s (≈ 7.5 h).</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 12), Chapter 3 (Current Electricity), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const X0 = 50, X1 = 560, Y0 = 150, Y1 = 290, D = 12, NE = 46;
+  const E = Array.from({ length: NE }, (_, i) => [X0 + ((i * 97) % 500), Y0 + 12 + ((i * 53) % 116), i * 1.7]);
+  const qStages = [
+    { title: 'A copper wire', dur: 5, text: 'A copper wire 3.0 m long, cross-section 2.0 × 10⁻⁶ m², carries 3.0 A. Free electrons: n = 8.5 × 10²⁸ m⁻³.' },
+    { title: 'What is asked', dur: 4, text: 'How long does an electron take to drift from one end to the other?' },
+  ];
+  const stages = [
+    { title: 'Drift speed', dur: 5, text: 'I = neAv_d.', ans: 'v_d = 3.0/(8.5 × 10²⁸ × 1.6 × 10⁻¹⁹ × 2.0 × 10⁻⁶) ≈ 1.1 × 10⁻⁴ m/s.' },
+    { title: 'Time to cross', dur: D, text: 'Random thermal motion is fast, but the net drift is very slow.', ans: 't = 3.0/1.1 × 10⁻⁴ ≈ 2.7 × 10⁴ s ≈ 7.5 h.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    ctx.save(); ctx.fillStyle = P.wood; ctx.globalAlpha = 0.45; ctx.fillRect(X0 - 10, Y0, X1 - X0 + 20, Y1 - Y0); ctx.restore();
+    hline(ctx, X0 - 10, X1 + 10, Y0, P.obj, 2); hline(ctx, X0 - 10, X1 + 10, Y1, P.obj, 2);
+    vec(ctx, 220, Y0 - 34, 160, 0, 'I = 3.0 A', P.force, { side: -1, at: 0.5, size: 13 });
+    const drift = ans ? clamp((t - stages[0].t0) / (stages[1].t1 - 1)) : 0;
+    E.forEach(([x, y, p], i) => { const jx = 9 * Math.sin(3.1 * t + p) + 6 * Math.sin(5.3 * t + 2 * p), jy = 8 * Math.cos(2.7 * t + 1.3 * p); let xx = x + jx - 60 * drift; if (xx < X0 - 5) xx += X1 - X0; ball(ctx, xx, clamp(y + jy, Y0 + 6, Y1 - 6), 4, P.vel); });
+    if (ans) {
+      const xm = X1 - 10 - (X1 - X0 - 20) * drift, ym = (Y0 + Y1) / 2 + 10 * Math.sin(4 * t);
+      ball(ctx, xm, ym, 8, P.accent); label(ctx, 'tracked electron', xm, Y1 + 24, { align: 'center', weight: 700, size: 12, color: P.accent });
+      vec(ctx, 380, Y1 + 60, -120, 0, 'electron drift  v_d ≈ 1.1 × 10⁻⁴ m/s', P.vel, { side: 1, at: 0.5, size: 13 });
+      clock(ctx, 120, 440, drift * 7.5 * 60, '');   // the hand turns once per hour
+      label(ctx, `${(drift * 7.5).toFixed(1)} h`, 145, 440, { weight: 800, size: 16 });
+      partsPanel(ctx, 630, 34, 300, 'Working', ['v_d = I/neA ≈ 1.1 × 10⁻⁴ m/s', 't = l/v_d ≈ 2.7 × 10⁴ s ≈ 7.5 h'], stageAt(stages, t), false);
+    } else askedPanel(ctx, 630, 34, 300, ['The time an electron takes to drift from one end of the 3.0 m wire to the other.']);
+    dim(ctx, X0, X1, Y1 + 120, P.ink2); label(ctx, '3.0 m (shortened)', (X0 + X1) / 2, Y1 + 136, { align: 'center', weight: 700, size: 12 });
+    note(ctx, 'random motion and time are not to scale');
+  }
+  return { qStages, stages, draw };
+})();
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

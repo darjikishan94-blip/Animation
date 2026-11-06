@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 12 Physics · Exercise 3.2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 12 Physics</a> · <a href="index.html">Ch. 3 Current Electricity</a></p>
+      <h1>Exercise 3.2 · External resistance and terminal voltage</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q01.html">‹ 3.1</a><a href="index.html">All questions</a><a href="q03.html">3.3 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 3.2">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A 10 V battery with 3 Ω internal resistance drives 0.5 A through a resistor; 1.5 V is lost inside the battery, so the terminals show 8.5 V and the resistor is 17 Ω."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>3.2</b> A battery of emf 10 V and internal resistance 3 Ω is connected to a resistor. If the current in the circuit is 0.5 A, what is the resistance of the resistor? What is the terminal voltage of the battery when the circuit is closed?</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>ε = 10 V; r = 3 Ω; I = 0.5 A.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>R; the terminal voltage.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Circuit schematic; the dashed box is the battery, with its internal resistance inside.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>I = ε/(R + r): 0.5 = 10/(R + 3), so R + 3 = 20 and R = 17 Ω.</li>
+          <li>Terminal voltage V = ε − Ir = 10 − 0.5 × 3 = 8.5 V (= IR = 0.5 × 17).</li>
+        </ol>
+        <p class="final">R = 17 Ω; terminal voltage 8.5 V.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 12), Chapter 3 (Current Electricity), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const XL = 120, XR = 480, YT = 140, YB = 380;
+  const qStages = [
+    { title: 'A battery and a resistor', dur: 5, text: 'A battery of emf 10 V and internal resistance 3 Ω drives a current of 0.5 A through a resistor R.' },
+    { title: 'What is asked', dur: 4, text: 'What is R? What is the terminal voltage of the battery?' },
+  ];
+  const stages = [
+    { title: 'Total resistance', dur: 5, text: 'I = ε/(R + r), so R + r = ε/I = 10/0.5 = 20 Ω.', ans: 'R = 20 − 3 = 17 Ω.' },
+    { title: 'Lost inside the battery', dur: 5, text: 'The internal resistance uses up Ir = 0.5 × 3 = 1.5 V.', ans: 'Terminal voltage V = ε − Ir = 10 − 1.5 = 8.5 V (= IR = 0.5 × 17).' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    const path = [[XL, YB], [XL, YT], [XR, YT], [XR, YB], [XL, YB]];
+    wire(ctx, [[XL, YT], [240, YT]]); resistor(ctx, 240, YT, 360, YT); wire(ctx, [[360, YT], [XR, YT], [XR, YB], [360, YB]]);
+    cell(ctx, 200, YB, 240, YB); resistor(ctx, 260, YB, 340, YB); wire(ctx, [[340, YB], [360, YB]]); wire(ctx, [[240, YB], [260, YB]]); wire(ctx, [[200, YB], [XL, YB], [XL, YT]]);
+    ctx.save(); ctx.strokeStyle = P.ink2; ctx.setLineDash([5, 4]); ctx.lineWidth = 1.2; ctx.strokeRect(180, YB - 40, 180, 80); ctx.restore();
+    label(ctx, 'battery', 270, YB + 56, { align: 'center', weight: 700, size: 13 }); label(ctx, 'ε = 10 V', 205, YB - 54, { align: 'center', weight: 700, size: 13 }); label(ctx, 'r = 3 Ω', 300, YB - 54, { align: 'center', weight: 700, size: 13 });
+    label(ctx, '+', 196, YB - 24, { align: 'center', weight: 800, size: 14, color: P.force });
+    label(ctx, ans && t >= stages[0].t1 - 2 ? 'R = 17 Ω' : 'R = ?', 300, YT - 34, { align: 'center', weight: 800, size: 15, color: ans ? P.accent : P.ink });
+    flow(ctx, path, t * 30, P.force, 30, 3);   // out of the + plate (left), round the outside, back in at −
+    label(ctx, 'I = 0.5 A', XR + 12, (YT + YB) / 2, { weight: 700, size: 14, color: P.force });
+    if (ans) {
+      const st = stageAt(stages, t);
+      if (st >= 1) { ball(ctx, 180, YB, 5, P.accent); ball(ctx, 360, YB, 5, P.accent); label(ctx, 'terminals: V = 8.5 V', 270, YB + 80, { align: 'center', weight: 800, size: 15, color: P.accent }); label(ctx, 'Ir = 1.5 V', 300, YB + 24, { align: 'center', weight: 700, size: 12, color: P.loss }); }
+      partsPanel(ctx, 630, 34, 300, 'Working', ['R + r = ε/I = 20 Ω → R = 17 Ω', 'V = ε − Ir = 8.5 V'], st, false);
+    } else askedPanel(ctx, 630, 34, 300, ['The resistance R of the resistor.', 'The terminal voltage of the battery with the circuit closed.']);
+    note(ctx, 'dashed box: the battery; dots show the current direction (conventional)');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

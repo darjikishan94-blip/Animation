@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 12 Physics · Exercise 3.4</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 12 Physics</a> · <a href="index.html">Ch. 3 Current Electricity</a></p>
+      <h1>Exercise 3.4 · Resistivity of a wire</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q03.html">‹ 3.3</a><a href="index.html">All questions</a><a href="q05.html">3.5 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 3.4">
+    <p class="qline"><b>3.4</b> A negligibly small current is passed through a wire of length 15 m and uniform cross-section 6.0 × 10<sup>–7</sup> m<sup>2</sup>, and its resistance is measured to be 5.0 Ω. What is the resistivity of the material at the temperature of the experiment?</p>
+    <p><button type="button" class="btn reveal" id="show" aria-pressed="false" style="margin-left:0">Show answer</button></p>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>l = 15 m; A = 6.0 × 10<sup>−7</sup> m<sup>2</sup>; R = 5.0 Ω.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The resistivity ρ.</p>
+      </div>
+      <div>
+        <h3>Why there is no animation</h3>
+        <ul>
+          <li>This is a direct calculation with nothing moving to show; the page shows the question and a worked answer.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>R = ρl/A, so ρ = RA/l = 5.0 × 6.0 × 10<sup>−7</sup>/15 = 2.0 × 10<sup>−7</sup> Ω m.</li>
+        </ol>
+        <p class="final">2.0 × 10<sup>−7</sup> Ω m.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 12), Chapter 3 (Current Electricity), Exercises. </p>
+</div>
+<script>
+const b = document.getElementById('show'), a = document.querySelector('.answer');
+b.addEventListener('click', () => { a.hidden = !a.hidden; b.setAttribute('aria-pressed', String(!a.hidden)); b.textContent = a.hidden ? 'Show answer' : 'Hide answer'; });
+</script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 12 Physics · Exercise 3.8</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 12 Physics</a> · <a href="index.html">Ch. 3 Current Electricity</a></p>
+      <h1>Exercise 3.8 · Charging a storage battery</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q07.html">‹ 3.7</a><a href="index.html">All questions</a><a href="q09.html">3.9 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 3.8">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A 120 V supply pushes 7 A backwards through an 8 V battery via a 15.5 Ω resistor; the battery terminals then read 8 + 7 × 0.5 = 11.5 V."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>3.8</b> A storage battery of emf 8.0 V and internal resistance 0.5 Ω is being charged by a 120 V dc supply using a series resistor of 15.5 Ω. What is the terminal voltage of the battery during charging? What is the purpose of having a series resistor in the charging circuit?</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Battery: ε = 8.0 V, r = 0.5 Ω. Supply 120 V dc; series resistor 15.5 Ω.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The terminal voltage while charging; the purpose of the resistor.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Circuit schematic; the battery is connected + to +, so the current goes into it at its + terminal.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>The net emf is 120 − 8 = 112 V; the total resistance is 15.5 + 0.5 = 16 Ω: I = 112/16 = 7 A.</li>
+          <li>While charging, the current enters the + terminal: V = ε + Ir = 8 + 7 × 0.5 = 11.5 V.</li>
+          <li>The series resistor limits the charging current; without it the current would be (120 − 8)/0.5 = 224 A.</li>
+        </ol>
+        <p class="final">11.5 V; the resistor limits the charging current.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 12), Chapter 3 (Current Electricity), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const XL = 110, XR = 490, YT = 150, YB = 370;
+  const qStages = [
+    { title: 'Charging a battery', dur: 5, text: 'A storage battery (emf 8.0 V, internal resistance 0.5 Ω) is charged from a 120 V dc supply through a 15.5 Ω series resistor.' },
+    { title: 'What is asked', dur: 4, text: 'What is the terminal voltage of the battery during charging? Why the series resistor?' },
+  ];
+  const stages = [
+    { title: 'Charging current', dur: 5, text: 'The two emfs oppose: net emf = 120 − 8 = 112 V; total resistance 15.5 + 0.5 = 16 Ω.', ans: 'I = 112/16 = 7 A.' },
+    { title: 'Terminal voltage', dur: 5, text: 'The current is pushed into the battery’s + terminal, so V = ε + Ir.', ans: 'V = 8 + 7 × 0.5 = 11.5 V.' },
+    { title: 'Why the resistor', dur: 5, text: 'Without it, only r = 0.5 Ω would limit the current.', ans: 'It limits the current: otherwise (120 − 8)/0.5 = 224 A.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    // supply on the left (vertical), + at top; battery on the right (vertical), + at top
+    wire(ctx, [[XL, 230], [XL, YT], [240, YT]]); resistor(ctx, 240, YT, 360, YT); wire(ctx, [[360, YT], [XR, YT], [XR, 220]]);
+    cell(ctx, XL, 230, XL, 290); wire(ctx, [[XL, 290], [XL, YB], [XR, YB], [XR, 330]]);
+    cell(ctx, XR, 220, XR, 250); resistor(ctx, XR, 260, XR, 330); wire(ctx, [[XR, 250], [XR, 260]]);
+    ctx.save(); ctx.strokeStyle = P.ink2; ctx.setLineDash([5, 4]); ctx.lineWidth = 1.2; ctx.strokeRect(XR - 40, 200, 80, 140); ctx.restore();
+    label(ctx, '120 V', XL - 26, 260, { align: 'right', weight: 700, size: 14 }); label(ctx, '+', XL + 26, 226, { weight: 800, size: 14, color: P.force });
+    label(ctx, '15.5 Ω', 300, YT - 30, { align: 'center', weight: 700, size: 14 });
+    label(ctx, '+', XR + 26, 216, { weight: 800, size: 14, color: P.force }); label(ctx, '8.0 V', XR - 50, 236, { align: 'right', weight: 700, size: 13 }); label(ctx, '0.5 Ω', XR - 50, 296, { align: 'right', weight: 700, size: 13 }); label(ctx, 'battery', XR, 356, { align: 'center', weight: 700, size: 12 });
+    if (ans) {
+      const st = stageAt(stages, t);
+      flow(ctx, [[XL, 230], [XL, YT], [XR, YT], [XR, YB], [XL, YB], [XL, 290]], t * 40, P.force, 26, 3);
+      label(ctx, 'I = 7 A', 300, YT + 28, { align: 'center', weight: 800, size: 15, color: P.force });
+      if (st >= 1) label(ctx, 'terminal V = 11.5 V', XR - 40, 420, { align: 'center', weight: 800, size: 15, color: P.accent });
+      if (st >= 2) label(ctx, 'without 15.5 Ω: 224 A', 300, 460, { align: 'center', weight: 700, size: 14, color: P.loss });
+      partsPanel(ctx, 630, 34, 300, 'Working', ['I = (120 − 8)/(15.5 + 0.5) = 7 A', 'V = ε + Ir = 11.5 V', 'The resistor limits the current'], st, false);
+    } else askedPanel(ctx, 630, 34, 300, ['The terminal voltage of the battery during charging.', 'The purpose of the series resistor.']);
+    note(ctx, 'dashed box: the battery being charged; dots show the conventional current');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

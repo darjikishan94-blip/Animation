@@ -265,6 +265,19 @@ function capacitor(ctx, x1, y1, x2, y2, color, gap = 10, ph = 20) {
 function cell(ctx, x1, y1, x2, y2, color) {
   circEl(ctx, x1, y1, x2, y2, 4, () => { ctx.lineWidth = 2; seg(ctx, -4, -16, -4, 16); ctx.lineWidth = 5; seg(ctx, 4, -8, 4, 8); }, color);
 }
+// dots `gap` px apart moving along the polyline pts; s = distance moved so far (px); use it to show current or charge flow
+function flow(ctx, pts, s, color, gap = 26, r = 3) {
+  const L = []; let tot = 0;
+  for (let i = 1; i < pts.length; i++) { const d = Math.hypot(pts[i][0] - pts[i - 1][0], pts[i][1] - pts[i - 1][1]); L.push(d); tot += d; }
+  if (tot <= 0) return;
+  ctx.save(); ctx.fillStyle = color || P.vel;
+  for (let d = ((s % gap) + gap) % gap; d < tot; d += gap) {
+    let k = 0, e = d; while (k < L.length - 1 && e > L[k]) { e -= L[k]; k++; }
+    const f = L[k] ? e / L[k] : 0, x = pts[k][0] + (pts[k + 1][0] - pts[k][0]) * f, y = pts[k][1] + (pts[k + 1][1] - pts[k][1]) * f;
+    ctx.beginPath(); ctx.arc(x, y, r, 0, 2 * Math.PI); ctx.fill();
+  }
+  ctx.restore();
+}
 function stageAt(stages, t) { const i = stages.findIndex(s => t < s.t1); return i < 0 ? stages.length - 1 : i; }
 // a stopwatch-style time readout
 function clock(ctx, x, y, t, text) {

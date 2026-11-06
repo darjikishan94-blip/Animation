@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 12 Physics · Exercise 3.6</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 12 Physics</a> · <a href="index.html">Ch. 3 Current Electricity</a></p>
+      <h1>Exercise 3.6 · A nichrome heater warming up</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q05.html">‹ 3.5</a><a href="index.html">All questions</a><a href="q07.html">3.7 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 3.6">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A nichrome heater on 230 V glows as it warms; its current falls from 3.2 A to a steady 2.8 A because its resistance rises from 71.9 Ω to 82.1 Ω, which puts its temperature at about 867 °C."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>3.6</b> A heating element using nichrome connected to a 230 V supply draws an initial current of 3.2 A which settles after a few seconds to a steady value of 2.8 A. What is the steady temperature of the heating element if the room temperature is 27.0 °C? Temperature coefficient of resistance of nichrome averaged over the temperature range involved is 1.70 × 10<sup>–4</sup> °C<sup>–1</sup>.</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>V = 230 V; I = 3.2 A at first (27.0 °C), 2.8 A when steady; α = 1.70 × 10<sup>−4</sup> °C<sup>−1</sup>.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The steady temperature.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>The shape of the current curve in time is illustrative; only the start and end values are given.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>At room temperature R₁ = 230/3.2 = 71.9 Ω; when steady R₂ = 230/2.8 = 82.1 Ω.</li>
+          <li>T₂ − T₁ = (R₂ − R₁)/(R₁α) = 10.27/(71.9 × 1.70 × 10<sup>−4</sup>) ≈ 840 °C.</li>
+          <li>T₂ ≈ 27 + 840 = 867 °C.</li>
+        </ol>
+        <p class="final">About 867 °C.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 12), Chapter 3 (Current Electricity), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const G = { x: 300, y: 80, w: 250, h: 220, x0: 0, x1: 10, y0: 2.4, y1: 3.4, xt: [], yt: [2.8, 3.2], xl: 't', yl: 'I (A)' }, D = 9;
+  const I = s => 2.8 + 0.4 * Math.exp(-s / 1.6);   // illustrative shape: 3.2 A falling to 2.8 A
+  const qStages = [
+    { title: 'Switch on', dur: D, text: 'A nichrome heater on 230 V draws 3.2 A at first (27.0 °C); the current settles to 2.8 A as it heats.' },
+    { title: 'What is asked', dur: 4, text: 'What is the steady temperature? α = 1.70 × 10⁻⁴ °C⁻¹.' },
+  ];
+  const stages = [
+    { title: 'Resistance cold and hot', dur: D, text: 'R = V/I.', ans: 'R₁ = 230/3.2 = 71.9 Ω (27 °C); R₂ = 230/2.8 = 82.1 Ω (steady).' },
+    { title: 'Temperature', dur: 5, text: 'R₂ = R₁[1 + α(T₂ − T₁)].', ans: 'T₂ − T₁ = 10.27/(71.9 × 1.70 × 10⁻⁴) ≈ 840 °C, so T₂ ≈ 867 °C.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    const s = clamp(t / (D - 1)) * 10, glow = 1 - Math.exp(-s / 1.6);
+    // heater coil
+    ctx.save(); ctx.strokeStyle = P.obj; ctx.lineWidth = 6; ctx.beginPath(); for (let i = 0; i <= 120; i++) { const x = 60 + i * 1.6, y = 200 + 26 * Math.sin(i / 120 * 10 * Math.PI); i ? ctx.lineTo(x, y) : ctx.moveTo(x, y); } ctx.stroke();
+    ctx.globalAlpha = 0.9 * glow; ctx.strokeStyle = P.force; ctx.lineWidth = 5; ctx.stroke(); ctx.restore();
+    wire(ctx, [[60, 200], [40, 200], [40, 360], [120, 360]]); wire(ctx, [[252, 200], [272, 200], [272, 360], [190, 360]]);
+    ctx.save(); ctx.strokeStyle = P.ink; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(155, 360, 34, 0, 2 * Math.PI); ctx.stroke(); ctx.restore(); label(ctx, '230 V', 155, 360, { align: 'center', weight: 800, size: 14 });
+    hline(ctx, 121, 120, 360, P.ink, 2); wire(ctx, [[120, 360], [121, 360]]);
+    label(ctx, 'nichrome', 156, 150, { align: 'center', weight: 700, size: 13 });
+    const g = axes(ctx, G); plot(ctx, g, I, 0, s, P.force);
+    hline(ctx, g.X(0), g.X(10), g.Y(2.8), P.ink2, 1, [3, 3]);
+    label(ctx, `I = ${I(s).toFixed(2)} A`, 420, 330, { align: 'center', weight: 800, size: 15, color: P.force });
+    if (ans) {
+      const st = stageAt(stages, t);
+      label(ctx, `R = ${(230 / I(s)).toFixed(1)} Ω`, 420, 360, { align: 'center', weight: 800, size: 15, color: P.accent });
+      if (st >= 1) label(ctx, 'T ≈ 867 °C', 156, 260, { align: 'center', weight: 800, size: 18, color: P.force });
+      partsPanel(ctx, 630, 34, 300, 'Working', ['R₁ = 71.9 Ω, R₂ = 82.1 Ω', 'ΔT ≈ 840 °C → T ≈ 867 °C'], st, false);
+    } else askedPanel(ctx, 630, 34, 300, ['The steady temperature of the heating element (room temperature 27.0 °C).']);
+    note(ctx, 'current curve shape illustrative: only 3.2 A and 2.8 A are given');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>
