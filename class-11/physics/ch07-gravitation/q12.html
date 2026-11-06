@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 7.12</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 7 Gravitation</a></p>
+      <h1>Exercise 7.12 · Where the pulls of Earth and Sun cancel</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q11.html">‹ 7.11</a><a href="index.html">All questions</a><a href="q13.html">7.13 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 7.12">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A rocket travels from the Earth towards the Sun; the two pulls on it are shown as arrows, the Earth’s shrinking and the Sun’s growing; they balance about 2.6 × 10⁸ m from the Earth’s centre."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>7.12</b> A rocket is fired from the earth towards the sun. At what distance from the earth’s centre is the gravitational force on the rocket zero ? Mass of the sun = 2×10<sup>30</sup> kg, mass of the earth = 6×10<sup>24</sup> kg. Neglect the effect of other planets etc. (orbital radius = 1.5 × 10<sup>11</sup> m).</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>M<sub>S</sub> = 2 × 10<sup>30</sup> kg, M<sub>E</sub> = 6 × 10<sup>24</sup> kg; Earth–Sun distance r = 1.5 × 10<sup>11</sup> m.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The distance x from the Earth where the net force is zero.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>A logarithmic distance scale (the point is very close to the Earth on the Sun–Earth scale).</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>GM<sub>E</sub>m/x<sup>2</sup> = GM<sub>S</sub>m/(r − x)<sup>2</sup>, so (r − x)/x = √(M<sub>S</sub>/M<sub>E</sub>) = √(3.33 × 10<sup>5</sup>) ≈ 577.</li>
+          <li>x = r/578 ≈ 1.5 × 10<sup>11</sup>/578 ≈ 2.6 × 10<sup>8</sup> m.</li>
+        </ol>
+        <p class="final">About 2.6 × 10<sup>8</sup> m from the Earth’s centre.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 7 (Gravitation), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const MS = 2e30, ME = 6e24, R = 1.5e11, L0 = 6.8, L1 = Math.log10(R) - 0.02, X0 = 80, X1 = 520, Y = 260, XN = R / (1 + Math.sqrt(MS / ME)), D = 12;
+  const X = x => X0 + (Math.log10(x) - L0) / (L1 - L0) * (X1 - X0);
+  const qStages = [
+    { title: 'Towards the Sun', dur: D, text: 'A rocket is fired from the Earth towards the Sun. M_Sun = 2 × 10³⁰ kg, M_Earth = 6 × 10²⁴ kg, Earth–Sun distance 1.5 × 10¹¹ m.' },
+    { title: 'What is asked', dur: 4, text: 'At what distance from the Earth’s centre is the gravitational force on the rocket zero?' },
+  ];
+  const stages = [
+    { title: 'Two opposite pulls', dur: D, text: 'The Earth pulls the rocket back, the Sun pulls it forward. The Earth’s pull weakens fast as the rocket leaves; the Sun’s barely changes.', ans: 'They balance where GM_E/x² = GM_S/(r − x)².' },
+    { title: 'Solve', dur: 5, text: '(r − x)/x = √(M_S/M_E) = √(3.33 × 10⁵) ≈ 577.', ans: 'x = r/578 ≈ 2.6 × 10⁸ m from the Earth’s centre.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    ball(ctx, X0, Y, 16, P.water); label(ctx, 'Earth', X0, Y + 30, { align: 'center', weight: 700, size: 13 });
+    ctx.fillStyle = P.ke; ctx.beginPath(); ctx.arc(X1 + 50, Y, 30, 0, Math.PI * 2); ctx.fill(); label(ctx, 'Sun', X1 + 50, Y + 46, { align: 'center', weight: 700, size: 13 });
+    hline(ctx, X0, X1, Y + 80, P.ink2, 1.5);
+    for (let e = 7; e <= 11; e++) { vline(ctx, X(10 ** e), Y + 74, Y + 86, P.ink2, 1.2); label(ctx, `10${['⁷', '⁸', '⁹', '¹⁰', '¹¹'][e - 7]} m`, X(10 ** e), Y + 100, { align: 'center', size: 12 }); }
+    label(ctx, 'distance from the Earth’s centre (logarithmic)', (X0 + X1) / 2, Y + 124, { align: 'center', size: 12, color: P.ink2 });
+    const lx = L0 + 0.15 + (L1 - L0 - 0.4) * clamp(t / (D - 1)), x = 10 ** lx, px = X(x);
+    ctx.save(); ctx.translate(px, Y); ctx.fillStyle = P.obj; ctx.beginPath(); ctx.moveTo(14, 0); ctx.lineTo(-8, -7); ctx.lineTo(-8, 7); ctx.closePath(); ctx.fill(); ctx.restore();
+    if (ans) {
+      const fe = ME / x ** 2, fs = MS / (R - x) ** 2, s = fe + fs;
+      vec(ctx, px - 12, Y - 30, -Math.min(90 * fe / s, px - 40), 0, 'Earth’s pull', P.water, { side: 1, at: 0.5, size: 12 });
+      vec(ctx, px + 12, Y - 60, 90 * fs / s, 0, 'Sun’s pull', P.ke, { side: -1, at: 0.5, size: 12 });
+      vline(ctx, X(XN), Y - 120, Y + 86, P.accent, 2, [5, 4]); label(ctx, 'net force 0', X(XN), Y - 132, { align: 'center', weight: 800, size: 14, color: P.accent });
+      if (t >= stages[1].t0) label(ctx, 'x ≈ 2.6 × 10⁸ m', X(XN) + 8, Y + 60, { weight: 800, size: 14, color: P.accent });
+      partsPanel(ctx, 630, 34, 300, 'Working', ['GM_E/x² = GM_S/(r − x)²', '(r − x)/x = √(M_S/M_E) ≈ 577 → x ≈ 2.6 × 10⁸ m'], stageAt(stages, t), false);
+    } else askedPanel(ctx, 630, 34, 300, ['The distance from the Earth’s centre at which the gravitational force on the rocket is zero.']);
+    note(ctx, 'pull arrows show only the share of each pull, not its size; distances logarithmic');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

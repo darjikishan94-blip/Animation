@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 7.21</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 7 Gravitation</a></p>
+      <h1>Exercise 7.21 · Midway between two heavy spheres</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q20.html">‹ 7.20</a><a href="index.html">All questions</a><span>›</span></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 7.21">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="Two 100 kg spheres 1 m apart; at the midpoint their pulls cancel. Displaced towards either sphere, a small mass is pulled further that way: unstable equilibrium."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>7.21</b> Two heavy spheres each of mass 100 kg and radius 0.10 m are placed 1.0 m apart on a horizontal table. What is the gravitational force and potential at the mid point of the line joining the centres of the spheres ? Is an object placed at that point in equilibrium? If so, is the equilibrium stable or unstable ?</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Two spheres, 100 kg each, radius 0.10 m, centres 1.0 m apart.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>Force and potential at the midpoint; equilibrium and its kind.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Force arrows exaggerated (the real forces are tiny).</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>Force: the two pulls are equal and opposite: net force zero.</li>
+          <li>Potential: V = −GM/0.5 − GM/0.5 = −4 × 6.67 × 10<sup>−11</sup> × 100 ≈ −2.7 × 10<sup>−8</sup> J/kg.</li>
+          <li>An object there is in equilibrium. Moved slightly towards one sphere, that sphere pulls harder: it moves further away from the midpoint, so the equilibrium is unstable.</li>
+        </ol>
+        <p class="final">Force 0; potential ≈ −2.7 × 10<sup>−8</sup> J/kg; equilibrium, unstable.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 7 (Gravitation), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const K = 360, X1 = 120, X2 = X1 + K, Y = 200, RS = 0.1 * K, MX = (X1 + X2) / 2;
+  const qStages = [
+    { title: 'Two heavy spheres', dur: 5, text: 'Two spheres, 100 kg each and radius 0.10 m, lie 1.0 m apart on a table.' },
+    { title: 'What is asked', dur: 4, text: 'Find the gravitational force and potential at the midpoint. Is an object there in equilibrium? Stable or unstable?' },
+  ];
+  const stages = [
+    { title: 'At the midpoint', dur: 4, text: 'Equal masses at equal distances pull equally in opposite directions.', ans: 'Net force = 0.' },
+    { title: 'Potential', dur: 4, text: 'Potentials (scalars) add: each sphere gives −GM/0.5.', ans: 'V = −4GM = −4 × 6.67 × 10⁻¹¹ × 100 ≈ −2.7 × 10⁻⁸ J/kg.' },
+    { title: 'Nudged sideways', dur: 6, text: 'Move the object slightly towards one sphere: that sphere now pulls harder.', ans: 'It moves further away from the midpoint: unstable equilibrium (the potential has a maximum there).' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    for (const x of [X1, X2]) { ball(ctx, x, Y, RS, P.objFill2); label(ctx, '100 kg', x, Y + RS + 16, { align: 'center', size: 13, weight: 700 }); }
+    dim(ctx, X1, X2, Y - 60, P.ink2); label(ctx, '1.0 m', MX, Y - 76, { align: 'center', weight: 700, size: 13 });
+    let x = MX;
+    if (ans && t >= stages[2].t0) { const s = t - stages[2].t0; x = Math.min(MX + 4 + 0.5 * 10 * s * s, MX + 110); }
+    ball(ctx, x, Y, 6, P.force);
+    if (ans) {
+      const f1 = 1 / ((x - X1) / K) ** 2, f2 = 1 / ((X2 - x) / K) ** 2, S = 12;
+      vec(ctx, x - 8, Y, -Math.min(S * f1, 110), 0, '', P.vel, { lw: 3 }); vec(ctx, x + 8, Y, Math.min(S * f2, 110), 0, '', P.vel, { lw: 3 });
+      const g = axes(ctx, { x: 80, y: 300, w: 480, h: 180, x0: 0, x1: 1, y0: -12, y1: -3, xl: 'position (m)', yl: 'V (in units of GM per metre)' });
+      plot(ctx, g, p => -1 / Math.max(0.1, p) - 1 / Math.max(0.1, 1 - p), 0.1, 0.9, P.accent);
+      const p = (x - X1) / K; ball(ctx, g.X(p), g.Y(-1 / p - 1 / (1 - p)), 6, P.force);
+      label(ctx, 'maximum at the midpoint: unstable', g.X(0.5), g.Y(-4) + 18, { align: 'center', size: 13, weight: 700, color: P.accent });
+      partsPanel(ctx, 630, 34, 300, 'Answers', ['Force at the midpoint: 0', 'V = −4GM ≈ −2.7 × 10⁻⁸ J/kg', 'Equilibrium, but unstable'], stageAt(stages, t), false);
+    } else askedPanel(ctx, 630, 34, 300, ['The gravitational force and potential at the midpoint.', 'Is an object there in equilibrium? If so, stable or unstable?']);
+    note(ctx, 'force arrows greatly exaggerated; motion after the nudge illustrative');
+  }
+  return { qStages, stages, draw };
+})();
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

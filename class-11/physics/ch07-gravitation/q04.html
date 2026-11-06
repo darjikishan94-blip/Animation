@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 7.4</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 7 Gravitation</a></p>
+      <h1>Exercise 7.4 · Mass of Jupiter from Io</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q03.html">‹ 7.3</a><a href="index.html">All questions</a><a href="q05.html">7.5 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 7.4">
+    <p class="qline"><b>7.4</b> Io, one of the satellites of Jupiter, has an orbital period of 1.769 days and the radius of the orbit is 4.22 × 10<sup>8</sup> m. Show that the mass of Jupiter is about one-thousandth that of the sun.</p>
+    <p><button type="button" class="btn reveal" id="show" aria-pressed="false" style="margin-left:0">Show answer</button></p>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Io: T = 1.769 days, r = 4.22 × 10<sup>8</sup> m. Earth: T = 365.25 days, r = 1.496 × 10<sup>11</sup> m (known values).</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>Show M<sub>J</sub> ≈ M<sub>S</sub>/1000.</p>
+      </div>
+      <div>
+        <h3>Why there is no animation</h3>
+        <ul>
+          <li>This is a calculation with no motion worth animating; the page shows the question and a worked answer.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>For any orbit, M = 4π<sup>2</sup>r<sup>3</sup>/(GT<sup>2</sup>), so M<sub>J</sub>/M<sub>S</sub> = (r<sub>Io</sub>/r<sub>E</sub>)<sup>3</sup> × (T<sub>E</sub>/T<sub>Io</sub>)<sup>2</sup>.</li>
+          <li>= (4.22 × 10<sup>8</sup> / 1.496 × 10<sup>11</sup>)<sup>3</sup> × (365.25/1.769)<sup>2</sup> ≈ 2.24 × 10<sup>−8</sup> × 4.26 × 10<sup>4</sup> ≈ 9.6 × 10<sup>−4</sup>.</li>
+          <li>That is about 1/1000.</li>
+        </ol>
+        <p class="final">M<sub>J</sub>/M<sub>S</sub> ≈ 10<sup>−3</sup>.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 7 (Gravitation), Exercises. </p>
+</div>
+<script>
+const b = document.getElementById('show'), a = document.querySelector('.answer');
+b.addEventListener('click', () => { a.hidden = !a.hidden; b.setAttribute('aria-pressed', String(!a.hidden)); b.textContent = a.hidden ? 'Show answer' : 'Hide answer'; });
+</script>
+</body>
+</html>

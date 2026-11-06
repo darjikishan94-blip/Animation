@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 7.10</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 7 Gravitation</a></p>
+      <h1>Exercise 7.10 · Field at the centre of a hemispherical shell (Fig. 7.11)</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q09.html">‹ 7.9</a><a href="index.html">All questions</a><a href="q11.html">7.11 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 7.10">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A bowl-shaped hemispherical shell; small patches of the shell each pull on the centre C. Their sideways pulls cancel in pairs, leaving a net pull straight down into the bowl, arrow c."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>7.10</b> In the following two exercises, choose the correct answer from among the given ones: The gravitational intensity at the centre of a hemispherical shell of uniform mass density has the direction indicated by the arrow (see Fig 7.11) (i) a, (ii) b, (iii) c, (iv) 0.</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Fig. 7.11: a uniform hemispherical shell opening upward, its centre C on the rim plane; arrows a, b, c at C.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The direction of the field at C.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>A side section of the bowl; pulls from pairs of patches shown as arrows.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>Each patch of the shell pulls towards itself. Patches symmetric about the vertical axis cancel each other’s sideways pulls.</li>
+          <li>All the shell is below the rim plane, so every pull has a downward part, and these add up.</li>
+          <li>The field at C points straight down: arrow c.</li>
+        </ol>
+        <p class="final">(iii) c</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 7 (Gravitation), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const CX = 300, CY = 170, R = 220, PAIRS = [0.25, 0.6, 0.95, 1.3];          // angles from the downward vertical (rad)
+  const qStages = [
+    { title: 'Fig. 7.11', dur: 5, text: 'A uniform hemispherical shell (a bowl). C is the centre of its flat face. Arrows a, b and c point right, up and down from C.' },
+    { title: 'What is asked', dur: 4, text: 'Which arrow shows the direction of the gravitational intensity at C: a, b, c, or is it 0?' },
+  ];
+  const stages = [
+    { title: 'Patches in pairs', dur: 8, text: 'Each small patch of the shell pulls C towards itself. Take patches in pairs placed symmetrically about the vertical axis.', ans: 'Their sideways pulls cancel; their downward pulls add.' },
+    { title: 'The resultant', dur: 4, text: 'All of the shell lies below the flat face, so every pull has a downward part.', ans: 'The field at C points straight down: arrow c.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    ctx.save(); ctx.fillStyle = P.water; ctx.globalAlpha = 0.25; ctx.beginPath(); ctx.arc(CX, CY, R, 0, Math.PI); ctx.closePath(); ctx.fill(); ctx.restore();
+    ctx.save(); ctx.strokeStyle = P.obj; ctx.lineWidth = 6; ctx.beginPath(); ctx.arc(CX, CY, R, 0, Math.PI); ctx.stroke(); ctx.restore();
+    hline(ctx, CX - R, CX + R, CY, P.ink2, 1, [5, 4]);
+    ball(ctx, CX, CY, 5, P.ink); label(ctx, 'C', CX - 12, CY - 14, { weight: 800, size: 15 });
+    if (!ans || t < stages[0].t1) { vec(ctx, CX + 6, CY, 50, 0, 'a', P.ink2, { side: -1, at: 1, ax: 8, lw: 2, head: 9 }); vec(ctx, CX, CY - 6, 0, -50, 'b', P.ink2, { side: 1, at: 1, ay: -8, lw: 2, head: 9 }); vec(ctx, CX, CY + 6, 0, 50, 'c', P.ink2, { side: 1, at: 1, ay: 10, lw: 2, head: 9 }); }
+    if (ans) {
+      const n = Math.min(PAIRS.length, Math.floor(t / 2) + 1);
+      for (let i = 0; i < n; i++) for (const s of [-1, 1]) {
+        const a = PAIRS[i], px = CX + s * R * Math.sin(a), py = CY + R * Math.cos(a), L = 80;
+        ball(ctx, px, py, 7, P.force);
+        vec(ctx, CX, CY, s * L * Math.sin(a), L * Math.cos(a), '', P.force, { lw: 2, head: 8, alpha: 0.7 });
+      }
+      if (t >= stages[1].t0) { vec(ctx, CX, CY, 0, 150, 'field: c', P.accent, { side: -1, at: 1, align: 'left', ax: 8, lw: 5 }); }
+      partsPanel(ctx, 630, 34, 300, 'Answer', ['Symmetric patches: sideways pulls cancel', 'Downward pulls add: the field is along c'], stageAt(stages, t), false);
+    } else askedPanel(ctx, 630, 34, 300, ['The direction of the gravitational intensity at the centre C of the hemispherical shell: (i) a, (ii) b, (iii) c, (iv) 0.']);
+    note(ctx, 'side section of the bowl; pull arrows show directions only');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

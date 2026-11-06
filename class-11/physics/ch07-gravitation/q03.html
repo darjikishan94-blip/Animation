@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 7.3</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 7 Gravitation</a></p>
+      <h1>Exercise 7.3 · A planet going round twice as fast</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q02.html">‹ 7.2</a><a href="index.html">All questions</a><a href="q04.html">7.4 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 7.3">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="The Earth and an imaginary planet orbit the Sun; the planet completes two orbits for each of the Earth’s, on an orbit 0.63 times the size."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>7.3</b> Suppose there existed a planet that went around the Sun twice as fast as the earth. What would be its orbital size as compared to that of the earth ?</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>The planet’s period is half the Earth’s: T<sub>p</sub> = T<sub>e</sub>/2.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The planet’s orbital radius compared with the Earth’s.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Circular orbits; 1 year shown in 8 s.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>Kepler’s third law: T<sup>2</sup> ∝ r<sup>3</sup>, so r<sub>p</sub>/r<sub>e</sub> = (T<sub>p</sub>/T<sub>e</sub>)<sup>2/3</sup> = (1/2)<sup>2/3</sup> ≈ 0.63.</li>
+        </ol>
+        <p class="final">About 0.63 times the Earth’s orbital radius.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 7 (Gravitation), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const CX = 290, CY = 270, RE = 200, RP = RE * Math.pow(0.5, 2 / 3), TY = 8, D = 17;     // one Earth year in 8 s
+  const qStages = [
+    { title: 'The Earth’s orbit', dur: D, text: 'The Earth goes round the Sun once a year. Imagine a planet that goes round twice as fast: its year is half the Earth’s.' },
+    { title: 'What is asked', dur: 4, text: 'How big is its orbit compared with the Earth’s?' },
+  ];
+  const stages = [
+    { title: 'Kepler’s third law', dur: D, text: 'For orbits round the same Sun, T² ∝ r³. Half the period needs a smaller orbit.', ans: '(r_p / r_e)³ = (T_p / T_e)² = (1/2)².' },
+    { title: 'The ratio', dur: 4, text: 'Take the cube root.', ans: 'r_p / r_e = (1/4)^(1/3) = (1/2)^(2/3) ≈ 0.63.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    ctx.fillStyle = P.ke; ctx.beginPath(); ctx.arc(CX, CY, 26, 0, Math.PI * 2); ctx.fill(); label(ctx, 'Sun', CX, CY + 40, { align: 'center', weight: 700, size: 13 });
+    ctx.save(); ctx.strokeStyle = P.ink2; ctx.setLineDash([4, 4]); ctx.beginPath(); ctx.arc(CX, CY, RE, 0, Math.PI * 2); ctx.stroke(); ctx.restore();
+    const ae = -2 * Math.PI * t / TY; ball(ctx, CX + RE * Math.cos(ae), CY + RE * Math.sin(ae), 9, P.water); label(ctx, 'Earth', CX + RE * Math.cos(ae) + 14, CY + RE * Math.sin(ae), { weight: 700, size: 13 });
+    label(ctx, `Earth: ${(t / TY).toFixed(2)} orbits`, 30, 470, { weight: 700, size: 14, color: P.water });
+    if (ans) {
+      ctx.save(); ctx.strokeStyle = P.force; ctx.setLineDash([4, 4]); ctx.beginPath(); ctx.arc(CX, CY, RP, 0, Math.PI * 2); ctx.stroke(); ctx.restore();
+      const ap = -2 * Math.PI * t / (TY / 2); ball(ctx, CX + RP * Math.cos(ap), CY + RP * Math.sin(ap), 7, P.force); label(ctx, 'planet', CX + RP * Math.cos(ap) + 12, CY + RP * Math.sin(ap), { weight: 700, size: 13, color: P.force });
+      label(ctx, `planet: ${(2 * t / TY).toFixed(2)} orbits`, 30, 494, { weight: 700, size: 14, color: P.force });
+      if (t >= stages[1].t0) { dim(ctx, CX, CX + RP, CY - 60, P.force); label(ctx, '0.63 r', CX + RP / 2, CY - 76, { align: 'center', weight: 800, size: 14, color: P.force }); }
+      partsPanel(ctx, 630, 34, 300, 'Working', ['T² ∝ r³ (Kepler’s third law)', 'r_p / r_e = (1/2)^(2/3) ≈ 0.63'], stageAt(stages, t), false);
+    } else askedPanel(ctx, 630, 34, 300, ['The orbital size of a planet going round the Sun twice as fast as the Earth, compared with the Earth’s orbit.']);
+    note(ctx, 'circular orbits; one Earth year shown in 8 s');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

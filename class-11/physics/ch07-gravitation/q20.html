@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 7.20</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 7 Gravitation</a></p>
+      <h1>Exercise 7.20 · Two stars collide head-on</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q19.html">‹ 7.19</a><a href="index.html">All questions</a><a href="q21.html">7.21 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 7.20">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="Two equal stars start almost at rest 10⁹ km apart and fall towards each other, speeding up enormously at the end; they meet at about 2.6 × 10⁶ m/s each."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>7.20</b> Two stars each of one solar mass (= 2×10<sup>30</sup> kg) are approaching each other for a head on collision. When they are a distance 10<sup>9</sup> km, their speeds are negligible. What is the speed with which they collide ? The radius of each star is 10<sup>4</sup> km. Assume the stars to remain undistorted until they collide. (Use the known value of G).</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Each star 2 × 10<sup>30</sup> kg, radius 10<sup>4</sup> km; start 10<sup>9</sup> km apart at rest; G = 6.67 × 10<sup>−11</sup> N m<sup>2</sup> kg<sup>−2</sup>.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The speed of each star at collision.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Not to scale: the stars are drawn much larger than they are; the fall is shown with time compressed.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>At collision the centres are 2 × 10<sup>4</sup> km = 2 × 10<sup>7</sup> m apart.</li>
+          <li>Energy: −GM<sup>2</sup>/d₀ = 2 × ½Mv<sup>2</sup> − GM<sup>2</sup>/d, so v<sup>2</sup> = GM(1/d − 1/d₀).</li>
+          <li>v<sup>2</sup> = 6.67 × 10<sup>−11</sup> × 2 × 10<sup>30</sup> × (1/(2 × 10<sup>7</sup>) − 1/10<sup>12</sup>) ≈ 6.67 × 10<sup>12</sup>, v ≈ 2.6 × 10<sup>6</sup> m s<sup>−1</sup>.</li>
+        </ol>
+        <p class="final">About 2.6 × 10<sup>6</sup> m s<sup>−1</sup> each.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 7 (Gravitation), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const G = 6.67e-11, M = 2e30, D0 = 1e12, DC = 2e7, CX = 300, Y = 230, D = 12;
+  const vOf = d => Math.sqrt(G * M * (1 / d - 1 / D0));
+  const dOf = u => D0 * Math.pow(DC / D0, u);                                // separation shrinks on a log scale (time compressed)
+  const half = d => 30 + 230 * (Math.log10(d) - Math.log10(DC)) / (Math.log10(D0) - Math.log10(DC));
+  const qStages = [
+    { title: 'Falling together', dur: D + 1, text: 'Two stars of one solar mass each (2 × 10³⁰ kg) start 10⁹ km apart with negligible speeds and fall towards each other. Each has radius 10⁴ km.' },
+    { title: 'What is asked', dur: 4, text: 'With what speed do they collide? (Use the known value of G.)' },
+  ];
+  const stages = [
+    { title: 'Energy', dur: D + 1, text: 'Total energy is conserved: −GM²/d₀ = 2 × ½Mv² − GM²/d. They touch when the centres are 2 × 10⁴ km = 2 × 10⁷ m apart.', ans: 'v² = GM(1/d − 1/d₀).' },
+    { title: 'At contact', dur: 5, text: 'Put d = 2 × 10⁷ m and d₀ = 10¹² m.', ans: 'v² ≈ 6.67 × 10¹² m²/s²: v ≈ 2.6 × 10⁶ m/s each.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    const d = dOf(clamp(t / D)), h = half(d), v = vOf(d);
+    for (const s of [-1, 1]) { ctx.fillStyle = P.ke; ctx.beginPath(); ctx.arc(CX + s * h, Y, 28, 0, Math.PI * 2); ctx.fill(); }
+    label(ctx, `separation ${d.toExponential(1).replace(/e\+(\d+)/, (m, e) => ' × 10' + [...e].map(c => '⁰¹²³⁴⁵⁶⁷⁸⁹'[c]).join(''))} m`, CX, Y + 70, { align: 'center', weight: 700, size: 14 });
+    label(ctx, 'positions on a logarithmic scale', CX, Y + 94, { align: 'center', size: 12, color: P.ink2 });
+    if (ans) {
+      const g = axes(ctx, { x: 80, y: 360, w: 440, h: 120, x0: 7.3, x1: 12, y0: 0, y1: 2.8, xt: [8, 9, 10, 11, 12], yt: [1, 2], xl: 'log₁₀(d / m)', yl: 'v (10⁶ m/s)' });
+      plot(ctx, g, L => vOf(10 ** L) / 1e6, Math.log10(d), 12, P.vel);
+      label(ctx, `v = ${v < 1e4 ? v.toFixed(0) + ' m/s' : (v / 1e6).toFixed(2) + ' × 10⁶ m/s'}`, CX, 60, { align: 'center', weight: 800, size: 16, color: P.vel });
+      partsPanel(ctx, 630, 34, 300, 'Working', ['v² = GM(1/d − 1/d₀)', 'd = 2 × 10⁷ m: v ≈ 2.6 × 10⁶ m/s'], stageAt(stages, t), false);
+    } else askedPanel(ctx, 630, 34, 300, ['The speed with which the two stars collide.']);
+    note(ctx, 'not to scale: stars drawn huge; separation on a log scale; time compressed');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 7.16</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 7 Gravitation</a></p>
+      <h1>Exercise 7.16 · Weight half way to the centre</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q15.html">‹ 7.15</a><a href="index.html">All questions</a><a href="q17.html">7.17 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 7.16">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A body is taken down a shaft to half the Earth’s radius; only the inner sphere of radius R/2 attracts it, and the weight falls linearly to 125 N."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>7.16</b> Assuming the earth to be a sphere of uniform mass density, how much would a body weigh half way down to the centre of the earth if it weighed 250 N on the surface ?</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Weight at the surface 250 N; depth d = R/2; uniform density.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The weight at d = R/2.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Earth drawn with R = 170 px; weight arrow to scale.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>Inside a uniform Earth, g = g₀(1 − d/R): only the mass inside radius (R − d) attracts the body.</li>
+          <li>At d = R/2: weight = 250 × (1 − 1/2) = 125 N.</li>
+        </ol>
+        <p class="final">125 N.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 7 (Gravitation), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const CX = 260, CY = 290, R = 170, KF = 0.4;                              // 0.4 px per newton
+  const qStages = [
+    { title: 'On the surface', dur: 4, text: 'A body weighs 250 N on the surface of a uniform Earth.' },
+    { title: 'Half way down', dur: 4, text: 'It is taken half way down to the centre.' },
+    { title: 'What is asked', dur: 4, text: 'How much does it weigh there?' },
+  ];
+  const stages = [
+    { title: 'Only the inner sphere pulls', dur: 4, text: 'Inside a uniform Earth, the shell outside the body pulls equally in all directions (net zero); only the sphere inside its radius attracts it.', ans: 'g at depth d: g₀(1 − d/R).' },
+    { title: 'At d = R/2', dur: 4, text: 'The inner sphere has radius R/2.', ans: 'Weight = 250 × (1 − 1/2).' },
+    { title: 'The weight', dur: 4, text: 'Half its surface weight.', ans: '125 N.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    ctx.save(); ctx.fillStyle = P.water; ctx.globalAlpha = 0.25; ctx.beginPath(); ctx.arc(CX, CY, R, 0, Math.PI * 2); ctx.fill(); ctx.restore(); ctx.save(); ctx.strokeStyle = P.obj; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(CX, CY, R, 0, Math.PI * 2); ctx.stroke(); ctx.restore();
+    ctx.fillStyle = P.sheet; ctx.fillRect(CX - 10, CY - R - 4, 20, R + 4); ctx.strokeStyle = P.ink2; ctx.lineWidth = 1; ctx.strokeRect(CX - 10, CY - R - 4, 20, R + 4);
+    ball(ctx, CX, CY, 4, P.ink); label(ctx, 'centre', CX + 10, CY + 14, { size: 12 });
+    const d = t < 4 ? 0 : smooth(clamp((t - 4) / 2.5)) * R / 2, y = CY - R + d, W = 250 * (1 - d / R);
+    if (ans && d > 1) { ctx.save(); ctx.fillStyle = P.vel; ctx.globalAlpha = 0.2; ctx.beginPath(); ctx.arc(CX, CY, R - d, 0, Math.PI * 2); ctx.fill(); ctx.restore(); label(ctx, 'only this sphere attracts', CX + 30, CY + R / 3, { size: 13, weight: 700, color: P.vel }); }
+    block(ctx, CX - 9, y - 18, 18, 18, '', P.objFill2);
+    vec(ctx, CX + 30, y - 10, 0, W * KF, ans || t < 4 ? `${W.toFixed(0)} N` : (d >= R / 2 - 0.5 ? 'W = ?' : ''), P.force, { side: -1, at: 0.6, align: 'left', ax: 4, size: 14 });
+    if (d > 1) { vdim(ctx, CX - 40, CY - R, CY - R + d, P.ink2); label(ctx, 'R/2', CX - 48, CY - R + d / 2, { align: 'right', weight: 700, size: 13 }); }
+    if (ans) partsPanel(ctx, 630, 34, 300, 'Working', ['g = g₀(1 − d/R) inside a uniform Earth', 'd = R/2: W = 250 × 1/2', 'W = 125 N'], stageAt(stages, t), false);
+    else askedPanel(ctx, 630, 34, 300, ['The weight of the body half way down to the centre of the Earth.']);
+    note(ctx, 'force arrows to scale: 0.4 px per newton; shaft drawn for illustration');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

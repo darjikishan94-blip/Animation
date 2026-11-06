@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 7.19</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 7 Gravitation</a></p>
+      <h1>Exercise 7.19 · Freeing a satellite from Earth</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q18.html">‹ 7.18</a><a href="index.html">All questions</a><a href="q20.html">7.20 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 7.19">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A 200 kg satellite circles 400 km above the Earth; an energy ladder shows its total energy, −5.9 × 10⁹ J, and the 5.9 × 10⁹ J needed to raise it to zero."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>7.19</b> A satellite orbits the earth at a height of 400 km above the surface. How much energy must be expended to rocket the satellite out of the earth’s gravitational influence? Mass of the satellite = 200 kg; mass of the earth = 6.0×10<sup>24</sup> kg; radius of the earth = 6.4 × 10<sup>6</sup> m; G = 6.67 × 10<sup>−11</sup> N m<sup>2</sup> kg<sup>−2</sup>.</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>h = 400 km, so r = 6.8 × 10<sup>6</sup> m; m = 200 kg; M = 6.0 × 10<sup>24</sup> kg; G = 6.67 × 10<sup>−11</sup> N m<sup>2</sup> kg<sup>−2</sup>.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The energy needed to free it from the Earth’s gravity.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Orbit height exaggerated for visibility.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>In orbit, E = −GMm/2r = −6.67 × 10<sup>−11</sup> × 6.0 × 10<sup>24</sup> × 200 / (2 × 6.8 × 10<sup>6</sup>) ≈ −5.9 × 10<sup>9</sup> J.</li>
+          <li>To escape, its total energy must be raised to 0: energy needed ≈ 5.9 × 10<sup>9</sup> J.</li>
+        </ol>
+        <p class="final">About 5.9 × 10<sup>9</sup> J.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 7 (Gravitation), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const G = 6.67e-11, M = 6e24, m = 200, RE = 6.4e6, R = RE + 4e5, KE = G * M * m / (2 * R), PE = -2 * KE, E = -KE, CX = 200, CY = 280, ER = 110, OR = 150;
+  const qStages = [
+    { title: 'In orbit', dur: 6, text: 'A 200 kg satellite orbits 400 km above the Earth. M = 6.0 × 10²⁴ kg, R = 6.4 × 10⁶ m, G = 6.67 × 10⁻¹¹ N m² kg⁻².' },
+    { title: 'What is asked', dur: 4, text: 'How much energy must be spent to send it out of the Earth’s gravitational influence?' },
+  ];
+  const stages = [
+    { title: 'Energy in orbit', dur: 6, text: 'In a circular orbit, KE = GMm/2r and PE = −GMm/r, with r = 6.8 × 10⁶ m.', ans: 'E = KE + PE = −GMm/2r ≈ −5.9 × 10⁹ J.' },
+    { title: 'Escape', dur: 5, text: 'To escape, the total energy must be raised to zero.', ans: 'Energy needed = +5.9 × 10⁹ J.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    ctx.save(); ctx.fillStyle = P.water; ctx.globalAlpha = 0.4; ctx.beginPath(); ctx.arc(CX, CY, ER, 0, Math.PI * 2); ctx.fill(); ctx.restore(); label(ctx, 'Earth', CX, CY, { align: 'center', weight: 700, size: 14 });
+    ctx.save(); ctx.strokeStyle = P.ink2; ctx.setLineDash([4, 4]); ctx.beginPath(); ctx.arc(CX, CY, OR, 0, Math.PI * 2); ctx.stroke(); ctx.restore();
+    const a = -t * 0.8; ball(ctx, CX + OR * Math.cos(a), CY + OR * Math.sin(a), 7, P.force); label(ctx, '200 kg', CX + OR * Math.cos(a) + 12, CY + OR * Math.sin(a), { size: 12, weight: 700 });
+    label(ctx, 'h = 400 km', CX, CY - OR - 14, { align: 'center', size: 13, weight: 700 });
+    if (ans) {
+      const BX = 420, ZY = 120, KB = 1.6e-8;                                    // 1 px = 6.25 × 10⁷ J
+      hline(ctx, BX - 20, BX + 170, ZY, P.ink, 1.5); label(ctx, '0', BX - 26, ZY, { align: 'right', size: 12 });
+      [['KE', KE, P.ke], ['PE', PE, P.pe], ['E', E, P.accent]].forEach(([n, v, c], i) => { ctx.fillStyle = c; ctx.fillRect(BX + i * 50, v > 0 ? ZY - v * KB : ZY, 34, Math.abs(v) * KB); label(ctx, n, BX + 17 + i * 50, v > 0 ? ZY - v * KB - 12 : ZY + Math.abs(v) * KB + 14, { align: 'center', size: 12, weight: 700 }); });
+      label(ctx, '+5.9 × 10⁹ J', BX + 17, ZY - KE * KB - 30, { align: 'center', size: 12, weight: 700, color: P.ke }); label(ctx, '−11.8 × 10⁹ J', BX + 67, ZY - PE * KB + 30, { align: 'center', size: 12, weight: 700, color: P.pe }); label(ctx, '−5.9 × 10⁹ J', BX + 117, ZY - E * KB + 30, { align: 'center', size: 12, weight: 700, color: P.accent });
+      if (t >= stages[1].t0) { vec(ctx, BX + 160, ZY - E * KB, 0, E * KB, '', P.force); label(ctx, 'needed: +5.9 × 10⁹ J', BX + 100, ZY - E * KB + 56, { align: 'center', weight: 800, size: 13, color: P.force }); }
+      partsPanel(ctx, 630, 34, 300, 'Working', ['E = −GMm/2r ≈ −5.9 × 10⁹ J', 'Energy needed to reach E = 0: 5.9 × 10⁹ J'], stageAt(stages, t), false);
+    } else askedPanel(ctx, 630, 34, 300, ['The energy that must be expended to send the satellite out of the Earth’s gravitational influence.']);
+    note(ctx, 'orbit height exaggerated for visibility');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 7.14</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 7 Gravitation</a></p>
+      <h1>Exercise 7.14 · How far is Saturn?</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q13.html">‹ 7.13</a><a href="index.html">All questions</a><a href="q15.html">7.15 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 7.14">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="The Earth races round a small orbit while Saturn creeps round a much larger one, 9.55 times the size; Saturn completes one orbit in 29.5 of the Earth’s."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>7.14</b> A saturn year is 29.5 times the earth year. How far is the saturn from the sun if the earth is 1.50 × 10<sup>8</sup> km away from the sun ?</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>T<sub>Saturn</sub> = 29.5 T<sub>Earth</sub>; r<sub>Earth</sub> = 1.50 × 10<sup>8</sup> km.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>Saturn’s distance from the Sun.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Circular orbits to scale with each other; Earth’s year shown in 1.5 s.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>T<sup>2</sup> ∝ r<sup>3</sup>: r<sub>S</sub> = r<sub>E</sub> × (29.5)<sup>2/3</sup> = 1.50 × 10<sup>8</sup> × 9.55 ≈ 1.43 × 10<sup>9</sup> km.</li>
+        </ol>
+        <p class="final">About 1.43 × 10<sup>9</sup> km.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 7 (Gravitation), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const CX = 290, CY = 270, RS = 240, F = Math.pow(29.5, 2 / 3), RE = RS / F, TE = 1.5, D = 14;    // r_S / r_E = 9.55
+  const qStages = [
+    { title: 'Two planets', dur: D, text: 'A Saturn year is 29.5 Earth years. The Earth is 1.50 × 10⁸ km from the Sun.' },
+    { title: 'What is asked', dur: 4, text: 'How far is Saturn from the Sun?' },
+  ];
+  const stages = [
+    { title: 'Kepler’s third law', dur: D, text: 'T² ∝ r³ for all planets of the Sun.', ans: '(r_S / r_E)³ = (29.5)².' },
+    { title: 'Saturn’s distance', dur: 4, text: 'r_S = r_E × 29.5^(2/3).', ans: '29.5^(2/3) ≈ 9.55, so r_S ≈ 1.43 × 10⁹ km.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    ctx.fillStyle = P.ke; ctx.beginPath(); ctx.arc(CX, CY, 8, 0, Math.PI * 2); ctx.fill();
+    ctx.save(); ctx.strokeStyle = P.ink2; ctx.setLineDash([3, 4]); ctx.beginPath(); ctx.arc(CX, CY, RE, 0, Math.PI * 2); ctx.stroke(); ctx.restore();
+    const ae = -2 * Math.PI * t / TE; ball(ctx, CX + RE * Math.cos(ae), CY + RE * Math.sin(ae), 4, P.water);
+    label(ctx, 'Earth', CX + RE + 6, CY - 12, { size: 12, weight: 700, color: P.water });
+    const as = -2 * Math.PI * t / (TE * 29.5);
+    if (ans) { ctx.save(); ctx.strokeStyle = P.ink2; ctx.setLineDash([3, 4]); ctx.beginPath(); ctx.arc(CX, CY, RS, 0, Math.PI * 2); ctx.stroke(); ctx.restore(); }
+    ball(ctx, CX + (ans ? RS : RS) * Math.cos(as), CY + RS * Math.sin(as), 9, P.sand); if (ans) label(ctx, 'Saturn', CX + RS * Math.cos(as) + 14, CY + RS * Math.sin(as), { size: 13, weight: 700 });
+    label(ctx, `Earth years: ${(t / TE).toFixed(1)}`, 30, 40, { weight: 700, size: 14 });
+    if (ans) {
+      label(ctx, `Saturn: ${(t / TE / 29.5).toFixed(2)} of an orbit`, 30, 64, { weight: 700, size: 14 });
+      if (t >= stages[1].t0) { dim(ctx, CX, CX + RS, CY + 30, P.accent); label(ctx, '9.55 × 1.50 × 10⁸ km ≈ 1.43 × 10⁹ km', CX + RS / 2, CY + 46, { align: 'center', weight: 800, size: 13, color: P.accent }); }
+      partsPanel(ctx, 630, 34, 300, 'Working', ['T² ∝ r³: (r_S/r_E)³ = 29.5²', 'r_S = 1.50 × 10⁸ × 9.55 ≈ 1.43 × 10⁹ km'], stageAt(stages, t), false);
+    } else askedPanel(ctx, 630, 34, 300, ['The distance of Saturn from the Sun.']);
+    note(ctx, ans ? 'orbits to scale with each other; one Earth year in 1.5 s' : 'one Earth year in 1.5 s; Saturn’s orbit is what is asked');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

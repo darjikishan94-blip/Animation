@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 7.17</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 7 Gravitation</a></p>
+      <h1>Exercise 7.17 · Rocket fired up at 5 km/s</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q16.html">‹ 7.16</a><a href="index.html">All questions</a><a href="q18.html">7.18 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 7.17">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A rocket launched straight up at 5 km/s slows as it climbs, stops 1.6 × 10⁶ m above the surface and falls back; an energy bar compares its kinetic energy with the rise in potential energy."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>7.17</b> A rocket is fired vertically with a speed of 5 km s<sup>-1</sup> from the earth’s surface. How far from the earth does the rocket go before returning to the earth ? Mass of the earth = 6.0 × 10<sup>24</sup> kg; mean radius of the earth = 6.4 × 10<sup>6</sup> m; G = 6.67 × 10<sup>−11</sup> N m<sup>2</sup> kg<sup>−2</sup>.</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Launch speed 5 km s<sup>−1</sup>, vertical; M = 6.0 × 10<sup>24</sup> kg; R = 6.4 × 10<sup>6</sup> m; G = 6.67 × 10<sup>−11</sup> N m<sup>2</sup> kg<sup>−2</sup>.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The greatest height above the surface.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Earth and height to scale (1 px = 32 km); flight much faster than real.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>Energy conservation: ½v<sup>2</sup> − GM/R = −GM/(R + h).</li>
+          <li>GM/R = 6.67 × 10<sup>−11</sup> × 6.0 × 10<sup>24</sup>/6.4 × 10<sup>6</sup> ≈ 6.25 × 10<sup>7</sup> J/kg; ½v<sup>2</sup> = 1.25 × 10<sup>7</sup> J/kg.</li>
+          <li>GM/(R + h) = 5.0 × 10<sup>7</sup>, so R + h = 8.0 × 10<sup>6</sup> m and h ≈ 1.6 × 10<sup>6</sup> m.</li>
+        </ol>
+        <p class="final">About 1.6 × 10<sup>6</sup> m above the surface.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 7 (Gravitation), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const G = 6.67e-11, M = 6e24, RE = 6.4e6, V0 = 5000, GMR = G * M / RE, H = G * M / (GMR - V0 * V0 / 2) - RE, K = 1e-4, SY = 450, CX = 300, D = 8;   // 1 px = 10 km
+  const hOf = t => H * Math.sin(Math.PI * clamp(t / D));                   // illustrative timing; heights and speeds from energy
+  const vOf = h => Math.sqrt(Math.max(0, V0 * V0 - 2 * (GMR - G * M / (RE + h))));
+  const qStages = [
+    { title: 'Fired vertically', dur: D + 1, text: 'A rocket is fired vertically from the Earth’s surface at 5 km/s. M = 6.0 × 10²⁴ kg, R = 6.4 × 10⁶ m, G = 6.67 × 10⁻¹¹ N m² kg⁻².' },
+    { title: 'What is asked', dur: 4, text: 'How far from the Earth does it go before returning?' },
+  ];
+  const stages = [
+    { title: 'Energy is conserved', dur: D / 2, text: 'Kinetic energy turns into gravitational potential energy as it climbs. Use −GMm/r, not mgh: g changes with height.', ans: '½v² − GM/R = −GM/(R + h).' },
+    { title: 'At the top', dur: D / 2 + 1, text: 'GM/R = 6.25 × 10⁷ J/kg; ½v² = 1.25 × 10⁷ J/kg.', ans: 'GM/(R + h) = 5.0 × 10⁷ → R + h = 8.0 × 10⁶ m → h ≈ 1.6 × 10⁶ m.' },
+    { title: 'Back down', dur: 4, text: 'It falls back, reaching the ground again at 5 km/s (no air resistance).', ans: 'Maximum height ≈ 1.6 × 10⁶ m (1600 km).' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    const ER = RE * K; ctx.save(); ctx.fillStyle = P.water; ctx.globalAlpha = 0.3; ctx.beginPath(); ctx.arc(CX, SY + ER, ER, 0, Math.PI * 2); ctx.fill(); ctx.restore();
+    ctx.save(); ctx.strokeStyle = P.obj; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(CX, SY + ER, ER, Math.PI * 1.2, Math.PI * 1.8); ctx.stroke(); ctx.restore();
+    const h = hOf(Math.min(t, D)), y = SY - h * K, v = vOf(h), up = t < D / 2;
+    ctx.save(); ctx.translate(CX, y); ctx.fillStyle = P.objFill2; ctx.strokeStyle = P.obj; ctx.beginPath(); ctx.moveTo(0, -18); ctx.lineTo(6, -6); ctx.lineTo(6, 10); ctx.lineTo(-6, 10); ctx.lineTo(-6, -6); ctx.closePath(); ctx.fill(); ctx.stroke(); ctx.restore();
+    if (v > 50) vec(ctx, CX + 20, y, 0, (up ? -1 : 1) * v / 100, ans ? `${(v / 1000).toFixed(2)} km/s` : (t < 0.4 ? '5 km/s' : ''), P.vel, { side: -1, at: 0.6, align: 'left', ax: 4, size: 13 });
+    if (!ans) { askedPanel(ctx, 630, 34, 300, ['How far from the Earth the rocket goes before returning.']); note(ctx, 'Earth and height to scale: 1 px = 10 km; flight much faster than real'); return; }
+    vdim(ctx, CX - 60, SY - H * K, SY, P.accent); label(ctx, 'h ≈ 1.6 × 10⁶ m', CX - 68, SY - H * K / 2, { align: 'right', weight: 800, size: 14, color: P.accent });
+    hline(ctx, CX - 80, CX + 80, SY - H * K, P.accent, 1, [4, 4]);
+    const ke = v * v / 2, dpe = GMR - G * M / (RE + h), KB = 1 / 1.25e5, BX = 470, BY = 400;
+    [['½v²', ke, P.ke], ['ΔPE', dpe, P.pe]].forEach(([n, val, c], i) => { ctx.fillStyle = c; ctx.fillRect(BX + i * 50, BY - val * KB, 34, val * KB); label(ctx, n, BX + 17 + i * 50, BY + 14, { align: 'center', size: 12, weight: 700 }); });
+    hline(ctx, BX - 6, BX + 90, BY, P.ink2, 1); label(ctx, 'per kg', BX + 42, BY - 1.3e7 * KB - 14, { align: 'center', size: 12, color: P.ink2 });
+    partsPanel(ctx, 630, 34, 300, 'Working', ['½v² − GM/R = −GM/(R + h)', 'R + h = 8.0 × 10⁶ m: h ≈ 1.6 × 10⁶ m', 'Returns at 5 km/s'], stageAt(stages, t), false);
+    note(ctx, 'Earth and height to scale: 1 px = 10 km; flight timing illustrative');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 7.11</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 7 Gravitation</a></p>
+      <h1>Exercise 7.11 · Field at a point P on the rim plane (Fig. 7.11)</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q10.html">‹ 7.10</a><a href="index.html">All questions</a><a href="q12.html">7.12 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 7.11">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="Completing the hemisphere into a full sphere, where the field inside is zero, shows that the field of the bowl at any point P of the rim plane must point straight down: arrow e."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>7.11</b> For the above problem, the direction of the gravitational intensity at an arbitrary point P is indicated by the arrow (i) d, (ii) e, (iii) f, (iv) g.</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>P is any point of the flat face (rim plane) of the hemispherical shell; arrows d, e, f, g.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The direction of the field at P.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>A side section; the missing upper half is shown dashed.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>Inside a complete uniform spherical shell the field is zero everywhere.</li>
+          <li>Fields of the lower and upper halves at P must therefore be equal and opposite.</li>
+          <li>By symmetry (mirror image in the rim plane) their horizontal parts are equal and their vertical parts opposite; equal and opposite overall means the horizontal parts are zero.</li>
+          <li>So the lower half’s field at P is vertical, pointing down: arrow e.</li>
+        </ol>
+        <p class="final">(ii) e</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 7 (Gravitation), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const CX = 300, CY = 260, R = 200, PX = CX - 90, PY = CY;
+  const qStages = [
+    { title: 'A point P on the flat face', dur: 5, text: 'P is any point on the flat face of the same hemispherical shell. Arrows d, e, f, g are drawn at P.' },
+    { title: 'What is asked', dur: 4, text: 'Which arrow shows the direction of the gravitational intensity at P: d, e, f or g?' },
+  ];
+  const stages = [
+    { title: 'Complete the sphere', dur: 5, text: 'Add the missing upper half. Inside a complete uniform spherical shell the field is zero, so the two halves’ fields at P are equal and opposite.', ans: 'E(lower) + E(upper) = 0.' },
+    { title: 'Mirror symmetry', dur: 5, text: 'The upper half is the mirror image of the lower half in the flat face: its field has the same horizontal part and the opposite vertical part.', ans: 'Equal and opposite is only possible if the horizontal part is zero.' },
+    { title: 'The answer', dur: 4, text: 'So the lower (actual) half pulls P straight down, into the bowl.', ans: 'Arrow e.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    ctx.save(); ctx.fillStyle = P.water; ctx.globalAlpha = 0.25; ctx.beginPath(); ctx.arc(CX, CY, R, 0, Math.PI); ctx.closePath(); ctx.fill(); ctx.restore();
+    ctx.save(); ctx.strokeStyle = P.obj; ctx.lineWidth = 6; ctx.beginPath(); ctx.arc(CX, CY, R, 0, Math.PI); ctx.stroke(); ctx.restore();
+    hline(ctx, CX - R, CX + R, CY, P.ink2, 1, [5, 4]);
+    ball(ctx, PX, PY, 5, P.ink); label(ctx, 'P', PX - 10, PY - 16, { weight: 800, size: 15 });
+    const show = !ans || t < stages[2].t0;
+    if (show) { const L = 46; [['d', -0.7, 0.7], ['e', 0, 1], ['f', 1, 0], ['g', 0.7, -0.7]].forEach(([n, dx, dy]) => vec(ctx, PX, PY, dx * L, dy * L, n, P.ink2, { side: 1, at: 1, ax: dx * 10, ay: dy * 10, lw: 2, head: 9 })); }
+    if (ans) {
+      ctx.save(); ctx.strokeStyle = P.obj; ctx.lineWidth = 3; ctx.setLineDash([6, 6]); ctx.beginPath(); ctx.arc(CX, CY, R, Math.PI, 2 * Math.PI); ctx.stroke(); ctx.restore();
+      label(ctx, 'imagined upper half', CX, CY - R - 14, { align: 'center', size: 13, color: P.ink2 });
+      if (t >= stages[1].t0) { vec(ctx, PX, PY, 40, 70, 'if the lower half pulled this way…', P.force, { side: -1, at: 1, align: 'left', ax: 6, size: 12, alpha: t < stages[2].t0 ? 1 : 0.3 }); vec(ctx, PX, PY, 40, -70, '…the upper half would pull this way', P.vel, { side: 1, at: 1, align: 'left', ax: 6, size: 12, alpha: t < stages[2].t0 ? 1 : 0.3 }); }
+      if (t >= stages[2].t0) vec(ctx, PX, PY, 0, 100, 'field: e', P.accent, { side: -1, at: 1, align: 'left', ax: 8, lw: 5 });
+      partsPanel(ctx, 630, 34, 300, 'Answer', ['Full shell: field inside = 0', 'Mirror halves: horizontal parts would add, so they must be zero', 'The field at P is straight down: e'], stageAt(stages, t), false);
+    } else askedPanel(ctx, 630, 34, 300, ['The direction of the gravitational intensity at an arbitrary point P on the flat face: (i) d, (ii) e, (iii) f, (iv) g.']);
+    note(ctx, 'side section; arrows show directions only');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>
