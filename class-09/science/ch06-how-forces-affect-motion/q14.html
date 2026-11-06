@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 9 Science · Exercise 6.14</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 9 Science</a> · <a href="index.html">Ch. 6 How Forces Affect Motion</a></p>
+      <h1>Exercise 6.14 · Stopping on a rough patch</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q13.html">‹ 6.13</a><a href="index.html">All questions</a><a href="q15.html">6.15 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 6.14">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A 2 kg block at 10 m/s meets 7 N of friction and an extra 3 N against its motion: 10 N in all gives a deceleration of 5 m/s², and it stops after 10 m."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>6.14</b> An object of mass 2 kg moving with a constant velocity of 10 m s<sup>–1</sup> encounters a rough patch where the force of friction on the object is 7 N. At the same time, an additional constant force of 3 N opposing the motion is applied on the object. After entering the rough patch, how much distance does the object travel before coming to rest?</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>m = 2 kg; u = 10 m/s; friction 7 N and extra 3 N, both opposing.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>Distance to stop.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Road to scale (40 px per m); real time.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>Net opposing force = 7 + 3 = 10 N, so a = −10/2 = −5 m s<sup>−2</sup>.</li>
+          <li>s = u<sup>2</sup>/2|a| = 100/10 = 10 m (in 2 s).</li>
+        </ol>
+        <p class="final">10 m.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Science: Exploration (NCERT, Class 9), Chapter 6 (How Forces Affect Motion), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const X0 = 150, Y = 300, S = 40, D = 7;   // rough patch starts at X0; 40 px per m
+  const qStages = [
+    { title: 'A rough patch', dur: 5, text: 'A 2 kg object at 10 m/s enters a rough patch: friction 7 N, and an extra 3 N also opposes the motion.' },
+    { title: 'What is asked', dur: 4, text: 'How far does it go before stopping?' },
+  ];
+  const stages = [
+    { title: 'Deceleration', dur: 4, text: 'Net opposing force 7 + 3 = 10 N.', ans: 'a = −10/2 = −5 m/s².' },
+    { title: 'Stopping distance', dur: 5, text: 's = u²/2|a|.', ans: 's = 100/10 = 10 m (in 2 s).' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    ctx.fillStyle = P.road; ctx.fillRect(20, Y, X0 - 20, 14); hatchRect(ctx, X0, Y, 440, 14, P.ink2, P.sand); label(ctx, 'rough patch', X0 + 10, Y + 34, { weight: 700, size: 12 });
+    const tt = ans ? Math.min(2, t * 0.6) : 0, s = 10 * tt - 2.5 * tt * tt, x = X0 + S * s, v = 10 - 5 * tt;
+    block(ctx, x - 30, Y - 50, 60, 50, '2 kg', P.objFill2);
+    if (ans) { const st = stageAt(stages, t); if (v > 0.05) { vec(ctx, x - 32, Y - 14, -70, 0, '7 N', P.force, { side: 1, at: 0.6, size: 12 }); vec(ctx, x - 32, Y - 38, -30, 0, '3 N', P.vel, { side: -1, at: 0.6, size: 12 }); }
+      label(ctx, `v = ${v.toFixed(1)} m/s   s = ${s.toFixed(1)} m`, 40, 120, { weight: 800, size: 15 });
+      if (st >= 1 && tt >= 2) { dim(ctx, X0, X0 + S * 10, Y + 60, P.ink2); label(ctx, '10 m', X0 + S * 5, Y + 76, { align: 'center', weight: 800, size: 14, color: P.accent }); }
+      partsPanel(ctx, 630, 34, 300, 'Working', ['a = −(7 + 3)/2 = −5 m/s²', 's = 10²/(2 × 5) = 10 m'], st, false); }
+    else { vec(ctx, X0 - 40, Y - 70, 40, 0, '10 m/s', P.ink2, { side: -1, at: 0.5, lw: 2, head: 9 }); askedPanel(ctx, 630, 34, 300, ['The distance travelled before coming to rest.']); }
+    note(ctx, 'road 40 px per m; time slowed (×0.6); force arrows 10 px per N');
+  }
+  return { qStages, stages, draw };
+})();
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

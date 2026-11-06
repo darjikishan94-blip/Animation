@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 9 Science · Exercise 6.9</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 9 Science</a> · <a href="index.html">Ch. 6 How Forces Affect Motion</a></p>
+      <h1>Exercise 6.9 · Loaded cart hits an empty cart</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q08.html">‹ 6.8</a><a href="index.html">All questions</a><a href="q10.html">6.10 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 6.9">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="During the collision the two carts push on each other with equal and opposite forces, even though the empty one is lighter and so changes its velocity more."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>6.9</b> A hand cart loaded with vegetables collides with an identical but empty hand cart. During the collision: (i) the loaded cart exerts a force of larger magnitude on the empty cart. (ii) the empty cart exerts a force of larger magnitude on the loaded cart. (iii) neither cart exerts a force on the other. (iv) the loaded cart and the empty cart, both exert an equal magnitude of force on each other.</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>A loaded cart collides with an identical empty cart.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The correct statement about the forces.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Force arrows equal; motion illustrative.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>By Newton’s third law the forces the two carts exert on each other are always equal in magnitude and opposite in direction, whatever their masses.</li>
+          <li>(The lighter empty cart gets the larger acceleration.)</li>
+        </ol>
+        <p class="final">(iv)</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Science: Exploration (NCERT, Class 9), Chapter 6 (How Forces Affect Motion), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const Y = 300, D = 8;
+  function cart(ctx, x, loaded) { block(ctx, x - 50, Y - 50, 100, 40, loaded ? 'loaded' : 'empty', loaded ? P.leaf : P.objFill2); if (loaded) for (let i = 0; i < 6; i++) ball(ctx, x - 38 + i * 15, Y - 56, 8, i % 2 ? P.force : P.ke); ball(ctx, x - 30, Y - 4, 9, P.ink); ball(ctx, x + 30, Y - 4, 9, P.ink); }
+  const qStages = [
+    { title: 'Two carts collide', dur: D, text: 'A cart loaded with vegetables runs into an identical empty cart.' },
+    { title: 'What is asked', dur: 4, text: 'Compare the forces they exert on each other during the collision.' },
+  ];
+  const stages = [
+    { title: 'During the collision', dur: D, text: 'Newton’s third law: the forces are equal and opposite, whatever the masses.', ans: '(iv) Equal in magnitude. (The lighter empty cart changes velocity more.)' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    hatchRect(ctx, 20, Y + 6, 570, 18, P.ink2, P.sand);
+    const tc = 3, tt = ans ? t : t % D, xl = tt < tc ? 100 + 50 * tt : 250 + 25 * (tt - tc), xe = tt < tc ? 360 : 360 + 70 * (tt - tc);   // illustrative after-collision speeds
+    cart(ctx, Math.min(xl, 470), true); cart(ctx, Math.min(xe, 560), false);
+    if (ans && Math.abs(tt - tc) < 0.8) { vec(ctx, 310, Y - 90, 50, 0, 'F', P.force, { side: -1, at: 0.6, italic: true }); vec(ctx, 300, Y - 90, -50, 0, 'F', P.vel, { side: -1, at: 0.6, italic: true }); label(ctx, 'equal and opposite', 305, Y - 130, { align: 'center', weight: 800, size: 14, color: P.accent }); }
+    if (ans) partsPanel(ctx, 630, 34, 300, 'Answer', ['(iv) The forces are equal in magnitude'], 0, false);
+    else askedPanel(ctx, 630, 34, 300, ['Which statement about the forces during the collision is correct.']);
+    note(ctx, 'speeds illustrative');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 9 Science · Exercise 6.7</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 9 Science</a> · <a href="index.html">Ch. 6 How Forces Affect Motion</a></p>
+      <h1>Exercise 6.7 · A sailor jumps from a boat</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q06.html">‹ 6.6</a><a href="index.html">All questions</a><a href="q08.html">6.8 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 6.7">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="As the sailor pushes off towards the shore, he pushes the boat backwards; by Newton’s third law the boat pushes him forward and he pushes it back, so the boat moves away from the shore."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>6.7</b> A sailor jumps out from a small boat to the shore (Fig. 6.38). As the sailor jumps forward, will the boat move? If yes, in which direction and why.</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>A sailor jumps from a small boat towards the shore.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>Does the boat move? Which way, and why?</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Masses and speeds illustrative.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>Yes. To jump forward the sailor pushes the boat backwards (action); the boat pushes him forward (reaction, equal and opposite).</li>
+          <li>So the boat moves backwards, away from the shore. (Equivalently, total momentum stays zero: the light boat gets a backward momentum equal to the sailor’s forward momentum.)</li>
+        </ol>
+        <p class="final">Yes — backwards, away from the shore (Newton’s third law).</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Science: Exploration (NCERT, Class 9), Chapter 6 (How Forces Affect Motion), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const W = 300, D = 8;
+  const qStages = [
+    { title: 'Fig. 6.38', dur: 5, text: 'A sailor jumps from a small boat to the shore.' },
+    { title: 'What is asked', dur: 4, text: 'Does the boat move? Which way, and why?' },
+  ];
+  const stages = [
+    { title: 'Action and reaction', dur: D, text: 'To jump forward, the sailor pushes the boat backward; the boat pushes him forward with an equal force.', ans: 'The boat moves backward, away from the shore.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    ctx.fillStyle = P.water; ctx.fillRect(160, W + 20, 430, 200); ctx.fillStyle = P.sand; ctx.fillRect(20, W - 20, 150, 240); label(ctx, 'shore', 40, W - 34, { weight: 700, size: 13 });
+    const k = ans ? smooth(clamp((t - 1) / 3)) : 0, bx = 330 + 120 * k;
+    ctx.save(); ctx.fillStyle = P.wood; ctx.beginPath(); ctx.moveTo(bx - 90, W); ctx.lineTo(bx + 90, W); ctx.lineTo(bx + 60, W + 34); ctx.lineTo(bx - 60, W + 34); ctx.closePath(); ctx.fill(); ctx.restore();
+    const px = 300 - 190 * k, py = W - 120 * Math.sin(Math.PI * k) * 0.6 + (k >= 1 ? -20 : 0); person(ctx, px, k >= 1 ? W - 20 : py, 0.9, P.vel);
+    if (ans && t > 1 && t < 4) { vec(ctx, px - 10, py - 40, -60, 0, 'on sailor', P.vel, { side: -1, at: 0.5, size: 12 }); vec(ctx, bx - 40, W + 10, 60, 0, 'on boat', P.force, { side: 1, at: 0.5, size: 12 }); }
+    if (ans && k >= 1) { vec(ctx, bx - 30, W - 40, 60, 0, 'boat moves back', P.force, { side: -1, at: 0.5, size: 13 }); partsPanel(ctx, 630, 34, 300, 'Answer', ['Yes: the boat moves backward (Newton’s third law)'], 0, false); }
+    else if (ans) partsPanel(ctx, 630, 34, 300, 'Answer', ['Equal and opposite forces between sailor and boat'], 0, false);
+    else askedPanel(ctx, 630, 34, 300, ['Whether the boat moves, in which direction, and why.']);
+    note(ctx, 'masses and speeds illustrative');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 9 Science · Exercise 6.12</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 9 Science</a> · <a href="index.html">Ch. 6 How Forces Affect Motion</a></p>
+      <h1>Exercise 6.12 · A bullet stopping in wood</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q11.html">‹ 6.11</a><a href="index.html">All questions</a><a href="q13.html">6.13 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 6.12">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A 50 g bullet at 100 m/s stops within 50 cm of wood: its deceleration is 10 000 m/s², which needs a stopping force of 500 N."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>6.12</b> A bullet of mass 50 g moving with a speed of 100 m s<sup>–1</sup> enters a heavy stationary wooden block and stops after penetrating a distance of 50 cm. Estimate the stopping force acting on the bullet (assume that the bullet undergoes constant acceleration within the block).</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>m = 0.050 kg; u = 100 m/s; v = 0; s = 0.50 m.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The stopping force.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Penetration to scale (500 px per m); time slowed enormously.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>v<sup>2</sup> = u<sup>2</sup> + 2as: 0 = 100<sup>2</sup> + 2a(0.50), so a = −10 000 m s<sup>−2</sup>.</li>
+          <li>F = ma = 0.050 × 10 000 = 500 N, opposite to the motion.</li>
+        </ol>
+        <p class="final">500 N.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Science: Exploration (NCERT, Class 9), Chapter 6 (How Forces Affect Motion), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const BX = 300, Y = 260, S = 500, D = 8;   // block face at BX; 500 px per m inside the block
+  const qStages = [
+    { title: 'A bullet into wood', dur: 5, text: 'A 50 g bullet at 100 m/s enters a heavy wooden block and stops after 50 cm.' },
+    { title: 'What is asked', dur: 4, text: 'Estimate the stopping force (constant acceleration).' },
+  ];
+  const stages = [
+    { title: 'Deceleration', dur: D, text: 'v² = u² + 2as with v = 0, s = 0.50 m.', ans: 'a = −100²/(2 × 0.50) = −10 000 m/s².' },
+    { title: 'Force', dur: 5, text: 'F = ma.', ans: 'F = 0.050 × 10 000 = 500 N (against the motion).' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    ctx.fillStyle = P.wood; ctx.fillRect(BX, Y - 90, 280, 180); label(ctx, 'wooden block', BX + 140, Y - 104, { align: 'center', weight: 700, size: 13 });
+    const k = ans ? clamp(t / 4) : clamp((t % 5) / 4), pre = Math.min(1, k * 2), inn = clamp(k * 2 - 1), d = 0.5 * (1 - (1 - inn) ** 2);   // inside: uniform deceleration
+    const x = k < 0.5 ? 40 + (BX - 40) * pre : BX + S * d;
+    ctx.fillStyle = P.ink; ctx.fillRect(x - 28, Y - 5, 28, 10); ctx.beginPath(); ctx.arc(x, Y, 5, -Math.PI / 2, Math.PI / 2); ctx.fill();
+    dim(ctx, BX, BX + S * 0.5, Y + 60, P.ink2); label(ctx, '50 cm', BX + S * 0.25, Y + 76, { align: 'center', weight: 700, size: 13 });
+    if (ans) { const st = stageAt(stages, t); if (k >= 0.5) vec(ctx, x + 10, Y - 30, -60, 0, 'F', P.force, { side: -1, at: 0.6, italic: true }); label(ctx, 'a = −10 000 m/s²', 40, 420, { weight: 800, size: 16, color: P.accent }); if (st >= 1) label(ctx, 'F = 500 N', 40, 452, { weight: 800, size: 18, color: P.force }); partsPanel(ctx, 630, 34, 300, 'Working', ['a = −u²/2s = −10 000 m/s²', 'F = ma = 500 N'], st, false); }
+    else askedPanel(ctx, 630, 34, 300, ['The stopping force on the bullet.']);
+    note(ctx, 'penetration to scale (500 px per m); time slowed enormously');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

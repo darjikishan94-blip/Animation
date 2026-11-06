@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 9 Science · Exercise 6.8</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 9 Science</a> · <a href="index.html">Ch. 6 How Forces Affect Motion</a></p>
+      <h1>Exercise 6.8 · Why a landing mat?</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q07.html">‹ 6.7</a><a href="index.html">All questions</a><a href="q09.html">6.9 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 6.8">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="An athlete landing with the same speed is stopped either quickly on hard ground or slowly on a mat; the change in momentum is the same, but the mat spreads it over a longer time, so the force is much smaller."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>6.8</b> During a high jump event, a landing mat or sand bed is placed for the athlete to fall upon (Fig. 6.39). Explain the reason behind it.</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>An athlete landing after a jump.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>Why a mat or sand bed.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Force–time shapes illustrative; the two areas (momentum change) are equal.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>The athlete must lose the same momentum whatever the surface.</li>
+          <li>Force = change in momentum/time. The soft mat or sand increases the stopping time, so the force on the body is much smaller and injury is avoided.</li>
+        </ol>
+        <p class="final">It lengthens the stopping time, reducing the force.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Science: Exploration (NCERT, Class 9), Chapter 6 (How Forces Affect Motion), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const G = { x: 330, y: 110, w: 240, h: 300, x0: 0, x1: 0.6, y0: 0, y1: 10, xt: [0.1, 0.5], yt: [], xl: 't', yl: 'force' }, D = 9;
+  const hard = s => s < 0.1 ? 9 * Math.sin(Math.PI * s / 0.1) : 0, soft = s => s < 0.5 ? 1.8 * Math.sin(Math.PI * s / 0.5) : 0;   // equal areas
+  const qStages = [
+    { title: 'Fig. 6.39', dur: 5, text: 'After a high jump the athlete falls onto a landing mat (or sand bed).' },
+    { title: 'What is asked', dur: 4, text: 'Explain why the mat is used.' },
+  ];
+  const stages = [
+    { title: 'Same momentum to lose', dur: 5, text: 'Whatever the surface, the athlete arrives with the same momentum and must be brought to rest.', ans: '' },
+    { title: 'Longer stop, smaller force', dur: D, text: 'Force = change in momentum ÷ time. The mat makes the stopping time much longer.', ans: 'The force on the body is much smaller: no injury.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    hatchRect(ctx, 20, 440, 130, 30, P.ink2, P.sand); label(ctx, 'hard ground', 85, 488, { align: 'center', size: 12 });
+    ctx.fillStyle = P.leaf; ctx.globalAlpha = 0.5; ctx.fillRect(170, 400, 130, 70); ctx.globalAlpha = 1; label(ctx, 'mat', 235, 488, { align: 'center', size: 12 });
+    const k = ans ? clamp(t / 3) : clamp((t % 5) / 3), y1 = 120 + 300 * Math.min(1, k * 1.0), y2 = 120 + 280 * Math.min(1, k) + (k >= 1 ? 20 * clamp((t - 3) / 2) : 0);
+    ball(ctx, 85, Math.min(y1, 425), 14, P.vel); ball(ctx, 235, Math.min(y2, 410), 14, P.vel);
+    if (ans) {
+      const st = stageAt(stages, t), g = axes(ctx, G);
+      if (st >= 1) { const u = 0.6 * clamp((t - stages[1].t0) / 4); plot(ctx, g, hard, 0, u, P.force); plot(ctx, g, soft, 0, u, P.leaf); label(ctx, 'ground: short, big force', g.X(0.12), g.Y(8.5), { weight: 700, size: 12, color: P.force }); label(ctx, 'mat: long, small force', g.X(0.25), g.Y(2.6), { weight: 700, size: 12, color: P.leaf }); label(ctx, 'equal areas = equal momentum change', 450, 450, { align: 'center', size: 12 }); }
+      partsPanel(ctx, 630, 34, 300, 'Answer', ['Same change in momentum', 'Longer time → smaller force'], st, false);
+    } else askedPanel(ctx, 630, 34, 300, ['Why a landing mat or sand bed is used.']);
+    note(ctx, 'force–time shapes illustrative; the two areas are equal');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

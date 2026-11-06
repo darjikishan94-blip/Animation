@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 9 Science · Exercise 6.11</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 9 Science</a> · <a href="index.html">Ch. 6 How Forces Affect Motion</a></p>
+      <h1>Exercise 6.11 · Force from a v–t graph (Fig. 6.41)</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q10.html">‹ 6.10</a><a href="index.html">All questions</a><a href="q12.html">6.12 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 6.11">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="The velocity rises in a straight line from 10 m/s to 30 m/s in 8 s; its slope, 2.5 m/s², times the 10 kg mass gives a force of 25 N."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>6.11</b> The velocity-time graph of an object of mass 10 kg moving along a straight line is shown in Fig. 6.41. Calculate the force acting on the object by using the graph.</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>m = 10 kg; Fig. 6.41: v = 10 m/s at 0 s, 20 m/s at 4 s, 30 m/s at 8 s.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The force.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Graph drawn from Fig. 6.41.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>a = slope = (30 − 10)/8 = 2.5 m s<sup>−2</sup>.</li>
+          <li>F = ma = 10 × 2.5 = 25 N.</li>
+        </ol>
+        <p class="final">25 N.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Science: Exploration (NCERT, Class 9), Chapter 6 (How Forces Affect Motion), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const G = { x: 70, y: 80, w: 460, h: 380, x0: 0, x1: 9, y0: 0, y1: 34, xt: [4, 8], yt: [10, 20, 30], xl: 't (s)', yl: 'v (m/s)' };
+  const qStages = [
+    { title: 'Fig. 6.41', dur: 5, text: 'Velocity–time graph of a 10 kg object: 10 m/s at 0 s, rising in a straight line to 30 m/s at 8 s.' },
+    { title: 'What is asked', dur: 4, text: 'The force on the object.' },
+  ];
+  const stages = [
+    { title: 'Acceleration = slope', dur: 6, text: 'Rise 30 − 10 = 20 m/s over 8 s.', ans: 'a = 20/8 = 2.5 m/s².' },
+    { title: 'Force', dur: 5, text: 'F = ma.', ans: 'F = 10 × 2.5 = 25 N.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    const g = axes(ctx, G); plot(ctx, g, x => 10 + 2.5 * x, 0, 8, P.vel);
+    if (ans) { const st = stageAt(stages, t); hline(ctx, g.X(0), g.X(8), g.Y(10), P.accent, 1.5, [4, 3]); vline(ctx, g.X(8), g.Y(10), g.Y(30), P.accent, 1.5, [4, 3]); label(ctx, 'Δt = 8 s', g.X(4), g.Y(10) + 16, { align: 'center', weight: 700, size: 13, color: P.accent }); label(ctx, 'Δv = 20 m/s', g.X(8) + 8, g.Y(20), { weight: 700, size: 13, color: P.accent });
+      label(ctx, 'a = 2.5 m/s²', g.X(1), g.Y(28), { weight: 800, size: 16, color: P.accent }); if (st >= 1) label(ctx, 'F = 10 × 2.5 = 25 N', g.X(1), g.Y(24), { weight: 800, size: 16, color: P.force });
+      partsPanel(ctx, 630, 34, 300, 'Working', ['a = slope = 2.5 m/s²', 'F = ma = 25 N'], st, false); }
+    else askedPanel(ctx, 630, 34, 300, ['The force acting on the object.']);
+    note(ctx, 'graph drawn from Fig. 6.41');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

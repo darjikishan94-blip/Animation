@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 9 Science · Exercise 6.4</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 9 Science</a> · <a href="index.html">Ch. 6 How Forces Affect Motion</a></p>
+      <h1>Exercise 6.4 · Snake boat: 95 against 5</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q03.html">‹ 6.3</a><a href="index.html">All questions</a><a href="q05.html">6.5 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 6.4">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="95 oarsmen push the boat forward with 200 N each and 5 push it backward: the net force is 90 × 200 N = 18 000 N forward."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>6.4</b> While practising for the snake boat race (Vallum kalli in Kerala), 100 oarsmen are rowing a boat together. Out of these, 95 row backwards to propel the boat forward. But by mistake, 5 oarsmen row in the opposite direction. If each oarsman applies a horizontal force of 200 N, what is the net force on the snake boat? (Ignore drag forces, air friction, etc.)</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>95 oarsmen forward, 5 backward; 200 N each.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The net force.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Arrows to scale (forward total and backward total).</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>Forward: 95 × 200 = 19 000 N. Backward: 5 × 200 = 1000 N.</li>
+          <li>Net = 19 000 − 1000 = 18 000 N, forward.</li>
+        </ol>
+        <p class="final">18 000 N forward.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Science: Exploration (NCERT, Class 9), Chapter 6 (How Forces Affect Motion), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const Y = 260, D = 8;
+  const qStages = [
+    { title: 'A snake boat', dur: 5, text: '100 oarsmen, 200 N each: 95 push the boat forward, 5 by mistake push it backward.' },
+    { title: 'What is asked', dur: 4, text: 'The net force on the boat.' },
+  ];
+  const stages = [
+    { title: 'Add the forces', dur: D, text: 'Forward 95 × 200 = 19 000 N; backward 5 × 200 = 1000 N.', ans: 'Net = 18 000 N forward.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    ctx.fillStyle = P.water; ctx.fillRect(20, Y + 20, 570, 160);
+    ctx.save(); ctx.fillStyle = P.wood; ctx.beginPath(); ctx.moveTo(40, Y); ctx.lineTo(560, Y - 30); ctx.lineTo(520, Y + 24); ctx.lineTo(70, Y + 24); ctx.closePath(); ctx.fill(); ctx.restore();
+    for (let i = 0; i < 20; i++) { const x = 90 + i * 22, wrong = i === 6 || i === 13, sw = Math.sin(2 * t + (wrong ? Math.PI : 0)); ball(ctx, x, Y - 8, 5, wrong ? P.force : P.vel); ctx.save(); ctx.strokeStyle = wrong ? P.force : P.vel; ctx.lineWidth = 2; seg(ctx, x, Y - 4, x - 12 * sw, Y + 40); ctx.restore(); }
+    label(ctx, 'each figure = 5 oarsmen; red: rowing the wrong way', 40, Y + 200, { size: 12 });
+    vec(ctx, 300, 120, 190, 0, '19 000 N (95 oarsmen)', P.vel, { side: -1, at: 0.5 }); vec(ctx, 300, 160, -10, 0, '', P.force, { lw: 4 }); label(ctx, '1000 N (5)', 284, 160, { align: 'right', weight: 700, size: 13, color: P.force });
+    if (ans) { vec(ctx, 300, 70, 180, 0, 'net 18 000 N', P.accent, { side: -1, at: 0.5, lw: 5 }); partsPanel(ctx, 630, 34, 300, 'Answer', ['19 000 − 1000 = 18 000 N forward'], 0, false); }
+    else askedPanel(ctx, 630, 34, 300, ['The net force on the snake boat.']);
+    note(ctx, 'force arrows to scale (1 px per 100 N)');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

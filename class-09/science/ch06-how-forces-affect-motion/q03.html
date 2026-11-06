@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 9 Science · Exercise 6.3</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 9 Science</a> · <a href="index.html">Ch. 6 How Forces Affect Motion</a></p>
+      <h1>Exercise 6.3 · Which block feels a net force? (Fig. 6.36)</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q02.html">‹ 6.2</a><a href="index.html">All questions</a><a href="q04.html">6.4 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 6.3">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="Block P is pulled by 5 N one way and 4 N the other: a net 1 N, so it speeds up towards the 5 N side. Block Q glides at constant velocity: no net force."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>6.3</b> Two blocks P and Q on a smooth horizontal surface are shown in Fig. 6.36a and Fig. 6.36b. Two forces of magnitudes 4 N and 5 N are acting in opposite directions on block P, while block Q is moving with a constant velocity. Which of the following statement is correct? (i) P experiences a net force and Q does not experience a net force. (ii) P does not experience a net force and Q experiences a net force. (iii) Both P and Q experience a net force. (iv) Neither P nor Q experiences a net force.</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>P: 5 N and 4 N in opposite directions. Q: constant velocity. Smooth surface.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The correct statement.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Force arrows to scale; P’s motion illustrative (its mass is not given).</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>P: net force = 5 − 4 = 1 N towards the 5 N side, so P accelerates.</li>
+          <li>Q: constant velocity, so its net force is zero.</li>
+        </ol>
+        <p class="final">(i)</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Science: Exploration (NCERT, Class 9), Chapter 6 (How Forces Affect Motion), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const D = 8;
+  const qStages = [
+    { title: 'Fig. 6.36', dur: D, text: '(a) Block P: 5 N one way and 4 N the other. (b) Block Q moves with constant velocity. Smooth surface.' },
+    { title: 'What is asked', dur: 4, text: 'Which block experiences a net force?' },
+  ];
+  const stages = [
+    { title: 'Block P', dur: D, text: 'Net force = 5 − 4 = 1 N towards the 5 N side: P speeds up that way.', ans: 'P has a net force.' },
+    { title: 'Block Q', dur: 5, text: 'Constant velocity: no acceleration.', ans: 'Q has no net force. Answer (i).' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    hatchRect(ctx, 20, 220, 570, 18, P.ink2, P.sand); hatchRect(ctx, 20, 440, 570, 18, P.ink2, P.sand);
+    const tp = ans ? t : 0, xp = Math.max(170, 300 - 3 * tp * tp), xq = 120 + 25 * (ans ? t : t % 10);
+    block(ctx, xp - 35, 160, 70, 60, 'P', P.objFill2); vec(ctx, xp - 35, 190, -100, 0, '5 N', P.force, { side: -1, at: 0.6 }); vec(ctx, xp + 35, 190, 80, 0, '4 N', P.vel, { side: -1, at: 0.6 });
+    block(ctx, xq - 35, 380, 70, 60, 'Q', P.objFill2); vec(ctx, xq + 50, 400, 50, 0, 'v constant', P.ink2, { side: -1, at: 0.5, lw: 2, head: 9 });
+    label(ctx, '(a)', 30, 120, { weight: 800, size: 15 }); label(ctx, '(b)', 30, 340, { weight: 800, size: 15 });
+    if (ans) { const st = stageAt(stages, t); label(ctx, 'net 1 N ←', xp, 260, { align: 'center', weight: 800, size: 14, color: P.force }); if (st >= 1) label(ctx, 'net force 0', xq, 480, { align: 'center', weight: 800, size: 14, color: P.accent }); partsPanel(ctx, 630, 34, 300, 'Answer', ['P: net 1 N → accelerates', 'Q: none → (i)'], st, false); }
+    else askedPanel(ctx, 630, 34, 300, ['Which statement about net forces on P and Q is correct.']);
+    note(ctx, 'force arrows to scale (20 px per N); P’s mass not given, motion illustrative');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

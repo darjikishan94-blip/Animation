@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 9 Science · Exercise 6.1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 9 Science</a> · <a href="index.html">Ch. 6 How Forces Affect Motion</a></p>
+      <h1>Exercise 6.1 · Pushing a table at constant velocity</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><span>‹</span><a href="index.html">All questions</a><a href="q02.html">6.2 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 6.1">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A table slides across the floor at constant velocity under a push F; since its velocity does not change, the net force is zero and friction must be exactly F, backwards."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>6.1</b> Using a horizontal force F, a table is moved across the floor at a constant velocity. How much is the frictional force exerted by the floor on the table?</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Horizontal push F; constant velocity.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The friction force.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Force arrows equal in length.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>Constant velocity means zero acceleration, so the net force on the table is zero (Newton’s first law).</li>
+          <li>Friction must balance the push: it equals F in magnitude and acts opposite to the motion.</li>
+        </ol>
+        <p class="final">F, opposite to the motion.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Science: Exploration (NCERT, Class 9), Chapter 6 (How Forces Affect Motion), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const Y = 330, D = 8;
+  function table(ctx, x) { ctx.fillStyle = P.wood; ctx.fillRect(x - 70, Y - 70, 140, 14); ctx.fillRect(x - 64, Y - 56, 10, 56); ctx.fillRect(x + 54, Y - 56, 10, 56); }
+  const qStages = [
+    { title: 'Pushing a table', dur: D, text: 'A horizontal force F moves a table across the floor at constant velocity.' },
+    { title: 'What is asked', dur: 4, text: 'How much is the frictional force from the floor?' },
+  ];
+  const stages = [
+    { title: 'Constant velocity', dur: D, text: 'Velocity not changing → acceleration zero → net force zero.', ans: 'Friction = F, opposite to the motion.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    hatchRect(ctx, 20, Y, 570, 24, P.ink2, P.sand);
+    const x = 220 + (30 * t) % 300; table(ctx, x);
+    vec(ctx, x - 150, Y - 60, 80, 0, 'F', P.force, { side: -1, at: 0.5, italic: true });
+    if (ans) { vec(ctx, x + 20, Y + 4, -100, 0, 'friction = F', P.vel, { side: 1, at: 0.5 }); label(ctx, 'v constant → net force = 0', 300, 140, { align: 'center', weight: 800, size: 16, color: P.accent }); partsPanel(ctx, 630, 34, 300, 'Answer', ['Friction = F, opposite to the motion'], 0, false); }
+    else askedPanel(ctx, 630, 34, 300, ['The frictional force exerted by the floor on the table.']);
+    vec(ctx, 40, 90, 60, 0, 'v (constant)', P.ink2, { side: -1, at: 0.5, lw: 2, head: 9 });
+    note(ctx, 'force arrows equal in length');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

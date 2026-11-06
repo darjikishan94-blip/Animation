@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 9 Science · Exercise 6.6</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 9 Science</a> · <a href="index.html">Ch. 6 How Forces Affect Motion</a></p>
+      <h1>Exercise 6.6 · Which object has a net force? (Fig. 6.37)</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q05.html">‹ 6.5</a><a href="index.html">All questions</a><a href="q07.html">6.7 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 6.6">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="Four objects move as their graphs say: A at steady speed, B standing still, C speeding up, D at steady speed backwards. Only C’s velocity changes, so only C has a net force."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>6.6</b> The position-time graph for four objects A, B, C and D moving along a straight line are given in Fig. 6.37. A net force acts on: (i) Object A (ii) Object B (iii) Object C (iv) Object D</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Fig. 6.37: A — straight rising line; B — horizontal line; C — curve getting steeper; D — straight falling line.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>Which object has a net force.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Graphs follow the shapes in Fig. 6.37.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>The slope of a position–time graph is the velocity. A and D: straight lines, constant velocity. B: constant position, at rest. Zero acceleration, so no net force.</li>
+          <li>C: the slope keeps increasing — it accelerates, so a net force acts on it.</li>
+        </ol>
+        <p class="final">(iii) Object C</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Science: Exploration (NCERT, Class 9), Chapter 6 (How Forces Affect Motion), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const OBJ = [['A', s => 0.8 * s, 'steady'], ['B', s => 0.6, 'at rest'], ['C', s => 0.9 * s * s, 'speeding up'], ['D', s => 0.9 - 0.8 * s, 'steady, backwards']], D = 8;
+  const qStages = [
+    { title: 'Fig. 6.37', dur: D, text: 'Position–time graphs of four objects A, B, C and D moving along a straight line.' },
+    { title: 'What is asked', dur: 4, text: 'On which object does a net force act?' },
+  ];
+  const stages = [
+    { title: 'Read the slopes', dur: D, text: 'Slope = velocity. A, D: straight lines (constant velocity). B: flat (at rest). C: getting steeper (accelerating).', ans: 'Only C accelerates: (iii) Object C.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    const s = clamp(t / (D - 1));
+    OBJ.forEach(([n, f, d], i) => {
+      const gx = 30 + i * 145, g = axes(ctx, { x: gx + 10, y: 70, w: 105, h: 150, x0: 0, x1: 1, y0: 0, y1: 1, xt: [], yt: [], xl: '', yl: '' });
+      plot(ctx, g, f, 0, 1, P.vel, 2.5); ball(ctx, g.X(s), g.Y(f(s)), 5, P.force); label(ctx, n, gx + 60, 250, { align: 'center', weight: 800, size: 15 });
+      hline(ctx, gx + 10, gx + 125, 330, P.ink2, 1); ball(ctx, gx + 10 + 115 * f(s), 330, 8, n === 'C' && ans ? P.force : P.vel);
+      if (ans) label(ctx, d, gx + 60, 360, { align: 'center', size: 12, color: n === 'C' ? P.force : P.ink2, weight: n === 'C' ? 800 : 400 });
+    });
+    label(ctx, 'position', 20, 50, { size: 12, color: P.ink2 }); label(ctx, 'each object on its track', 30, 300, { size: 12, color: P.ink2 });
+    if (ans) { label(ctx, 'net force only on C', 300, 430, { align: 'center', weight: 800, size: 17, color: P.force }); partsPanel(ctx, 630, 34, 300, 'Answer', ['(iii) Object C: its velocity changes'], 0, false); }
+    else askedPanel(ctx, 630, 34, 300, ['Which object has a net force acting on it.']);
+    note(ctx, 'graphs follow the shapes in Fig. 6.37; time axes left to right');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

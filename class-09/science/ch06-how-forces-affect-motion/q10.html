@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 9 Science · Exercise 6.10</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 9 Science</a> · <a href="index.html">Ch. 6 How Forces Affect Motion</a></p>
+      <h1>Exercise 6.10 · From an a–m graph to an F–m graph (Fig. 6.40)</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q09.html">‹ 6.9</a><a href="index.html">All questions</a><a href="q11.html">6.11 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 6.10">
+    <p class="qline"><b>6.10</b> The acceleration-mass graph for the acceleration produced by a force on objects of different masses is plotted in Fig. 6.40. Plot the force-mass graph for this case.</p>
+    <p><button type="button" class="btn reveal" id="show" aria-pressed="false" style="margin-left:0">Show answer</button></p>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Fig. 6.40: a = 10 m s<sup>−2</sup> at 1 kg, falling smoothly to about 2 m s<sup>−2</sup> at 5 kg (a × m stays 10).</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The F–m graph.</p>
+      </div>
+      <div>
+        <h3>Why there is no animation</h3>
+        <ul>
+          <li>This is a direct calculation with nothing moving to show; the page shows the question and a worked answer.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>F = ma: 1 × 10 = 10 N, 2 × 5 = 10 N, 4 × 2.5 = 10 N, 5 × 2 = 10 N.</li>
+          <li>The same 10 N acts on every mass: the F–m graph is a horizontal straight line at F = 10 N.</li>
+        </ol>
+        <p class="final">A horizontal line at F = 10 N.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Science: Exploration (NCERT, Class 9), Chapter 6 (How Forces Affect Motion), Exercises. </p>
+</div>
+<script>
+const b = document.getElementById('show'), a = document.querySelector('.answer');
+b.addEventListener('click', () => { a.hidden = !a.hidden; b.setAttribute('aria-pressed', String(!a.hidden)); b.textContent = a.hidden ? 'Show answer' : 'Hide answer'; });
+</script>
+</body>
+</html>
