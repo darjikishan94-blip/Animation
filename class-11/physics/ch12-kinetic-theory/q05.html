@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 12.5</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 12 Kinetic Theory</a></p>
+      <h1>Exercise 12.5 · A bubble rising in a lake</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q04.html">‹ 12.4</a><a href="index.html">All questions</a><a href="q06.html">12.6 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 12.5">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A 1.0 cm³ air bubble rises from the bottom of a 40 m deep lake at 12 °C; as the pressure falls and the water warms, it swells to about 5.3 cm³ at the surface."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>12.5</b> An air bubble of volume 1.0 cm<sup>3</sup> rises from the bottom of a lake 40 m deep at a temperature of 12 °C. To what volume does it grow when it reaches the surface, which is at a temperature of 35 °C ?</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>V₁ = 1.0 cm<sup>3</sup> at 40 m depth, 12 °C; surface at 35 °C; P<sub>atm</sub> = 1.013 × 10<sup>5</sup> Pa; water 10<sup>3</sup> kg m<sup>−3</sup>.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The volume at the surface.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Bubble size grows in proportion to its volume; depth to scale (8 px per metre).</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>P₁ = 1.013 × 10<sup>5</sup> + 10<sup>3</sup> × 9.8 × 40 ≈ 4.93 × 10<sup>5</sup> Pa; T₁ = 285 K. P₂ = 1.013 × 10<sup>5</sup> Pa; T₂ = 308 K.</li>
+          <li>P₁V₁/T₁ = P₂V₂/T₂: V₂ = 1.0 × (4.93/1.013) × (308/285) ≈ 5.3 cm<sup>3</sup>.</li>
+        </ol>
+        <p class="final">About 5.3 cm<sup>3</sup>.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 12 (Kinetic Theory), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const P0 = 1.013e5, RHO = 1000, G = 9.8, H = 40, K = 8, SY = 110, BX = 300, D = 9, T1 = 285, T2 = 308;
+  const vol = d => (P0 + RHO * G * H) / (P0 + RHO * G * d) * ((T2 - (T2 - T1) * d / H) / T1);
+  const qStages = [
+    { title: 'Bubble at the bottom', dur: 3, text: 'An air bubble of 1.0 cm³ is released at the bottom of a lake 40 m deep, where the water is at 12 °C.' },
+    { title: 'Rising', dur: D - 3, text: 'It rises to the surface, where the water is at 35 °C.' },
+    { title: 'What is asked', dur: 4, text: 'What is its volume at the surface?' },
+  ];
+  const stages = [
+    { title: 'At the bottom', dur: 3, text: 'Pressure at 40 m = atmospheric + ρgh.', ans: 'P₁ = 1.013 × 10⁵ + 10³ × 9.8 × 40 ≈ 4.93 × 10⁵ Pa; T₁ = 285 K.' },
+    { title: 'Rising and growing', dur: D - 3, text: 'As it rises, the pressure falls and the water warms: the bubble grows.', ans: 'At the top: P₂ = 1.013 × 10⁵ Pa, T₂ = 308 K.' },
+    { title: 'Gas law', dur: 4, text: 'P₁V₁/T₁ = P₂V₂/T₂.', ans: 'V₂ = 1.0 × (4.93/1.013) × (308/285) ≈ 5.3 cm³.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    ctx.fillStyle = P.water; ctx.globalAlpha = 0.3; ctx.fillRect(60, SY, 480, H * K); ctx.globalAlpha = 1; hline(ctx, 40, 560, SY, P.vel, 2); ground(ctx, 60, 540, SY + H * K);
+    vdim(ctx, 80, SY, SY + H * K, P.ink2); label(ctx, '40 m', 88, SY + H * K / 2, { weight: 700, size: 13 });
+    label(ctx, 'surface, 35 °C', 540, SY - 14, { align: 'right', size: 13 }); label(ctx, 'bottom, 12 °C', 540, SY + H * K - 14, { align: 'right', size: 13 });
+    const d = H * (1 - smooth(clamp((t - 3) / (D - 3.5)))), v = vol(d), r = 9 * Math.cbrt(v);
+    ctx.save(); ctx.strokeStyle = P.vel; ctx.lineWidth = 2; ctx.fillStyle = P.sheet; ctx.beginPath(); ctx.arc(BX, SY + d * K - r - 2, r, 0, Math.PI * 2); ctx.fill(); ctx.stroke(); ctx.restore();
+    label(ctx, ans ? `${v.toFixed(2)} cm³` : (d > 39 ? '1.0 cm³' : ''), BX + r + 8, SY + d * K - r, { weight: 800, size: 14 });
+    if (ans) partsPanel(ctx, 630, 34, 300, 'Working', ['P₁ ≈ 4.93 × 10⁵ Pa, T₁ = 285 K', 'P₂ = 1.013 × 10⁵ Pa, T₂ = 308 K', 'V₂ ≈ 5.3 cm³'], stageAt(stages, t), false);
+    else askedPanel(ctx, 630, 34, 300, ['The volume of the bubble when it reaches the surface.']);
+    note(ctx, '8 px per metre of depth; bubble radius ∝ ∛volume; temperature assumed to change steadily with depth while it rises');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

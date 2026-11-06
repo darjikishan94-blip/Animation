@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 11.6</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 11 Thermodynamics</a></p>
+      <h1>Exercise 11.6 · Free expansion into a vacuum</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q05.html">‹ 11.5</a><a href="index.html">All questions</a><a href="q07.html">11.7 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 11.6">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="Gas in cylinder A rushes through an opened stopcock into the empty cylinder B and spreads evenly; no heat flows and no work is done, so the internal energy and temperature stay the same while the pressure halves."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>11.6</b> Two cylinders A and B of equal capacity are connected to each other via a stopcock. A contains a gas at standard temperature and pressure. B is completely evacuated. The entire system is thermally insulated. The stopcock is suddenly opened. Answer the following : (a) What is the final pressure of the gas in A and B ? (b) What is the change in internal energy of the gas ? (c) What is the change in the temperature of the gas ? (d) Do the intermediate states of the system (before settling to the final equilibrium state) lie on its P-V-T surface ?</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Equal volumes; A at STP, B evacuated; everything insulated; the stopcock is opened suddenly.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>(a) Final pressure (b) ΔU (c) ΔT (d) whether the intermediate states are on the P–V–T surface.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Molecules illustrative.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>(a) The volume doubles at the same temperature: P = 1 atm/2 = 0.5 atm (in both).</li>
+          <li>(b) No heat (insulated) and no work (the gas pushes against vacuum): ΔU = 0.</li>
+          <li>(c) For an ideal gas U depends only on T, so ΔT = 0.</li>
+          <li>(d) No: the sudden (free) expansion is not quasi-static; while it rushes over, the gas has no single pressure and temperature, so those states are not equilibrium states on the P–V–T surface.</li>
+        </ol>
+        <p class="final">(a) 0.5 atm (b) 0 (c) 0 (d) No.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 11 (Thermodynamics), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const N = 40, AX = 60, BX = 330, Y0 = 150, W = 220, H = 200, D = 8;
+  const rnd = i => { const s = Math.sin(i * 91.17 + 3.3) * 43758.5; return s - Math.floor(s); };
+  const qStages = [
+    { title: 'Gas in A, vacuum in B', dur: 3, text: 'Two equal insulated cylinders are joined by a stopcock. A holds a gas at STP; B is evacuated.' },
+    { title: 'Stopcock opened', dur: D - 3, text: 'The stopcock is opened suddenly; the gas rushes into B.' },
+    { title: 'What is asked', dur: 5, text: '(a) Final pressure? (b) Change in internal energy? (c) Change in temperature? (d) Are the intermediate states on the P–V–T surface?' },
+  ];
+  const stages = [
+    { title: 'Before', dur: 3, text: 'All of the gas is in A at 1 atm.', ans: '' },
+    { title: 'Free expansion', dur: D - 3, text: 'The gas pushes against nothing (no work) and the walls are insulated (no heat): Q = 0, W = 0.', ans: '(b) ΔU = 0; (c) for an ideal gas U depends only on T, so ΔT = 0.' },
+    { title: 'Final state', dur: 5, text: 'The same amount of gas at the same temperature fills twice the volume.', ans: '(a) P = 0.5 atm in both. (d) No: the sudden expansion is not quasi-static, so the in-between states are not equilibrium states.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    for (const x of [AX, BX]) { ctx.strokeStyle = P.obj; ctx.lineWidth = 4; ctx.strokeRect(x, Y0, W, H); }
+    ctx.fillStyle = P.objFill2; ctx.fillRect(AX + W, Y0 + H / 2 - 10, BX - AX - W, 20);
+    const open = t >= 3, u = clamp((t - 3) / 3);
+    ctx.fillStyle = open ? P.accent : P.force; ctx.fillRect(AX + W + 12, Y0 + H / 2 - (open ? 2 : 14), BX - AX - W - 24, open ? 4 : 28);
+    label(ctx, open ? 'open' : 'closed', (AX + W + BX) / 2, Y0 + H / 2 - 26, { align: 'center', size: 12, weight: 700 });
+    for (let i = 0; i < N; i++) {
+      const goesB = i % 2 === 1 && open, f = goesB ? smooth(u) : 0;
+      const box = (goesB && f > 0.5) ? BX : AX, ph = t * (0.6 + rnd(i)) + i;
+      let x = AX + 10 + (W - 20) * (0.5 + 0.5 * Math.sin(ph * 1.3 + rnd(i + 7) * 6)), y = Y0 + 10 + (H - 20) * (0.5 + 0.5 * Math.sin(ph * 1.7 + rnd(i + 3) * 6));
+      if (goesB) { const xb = BX + 10 + (W - 20) * (0.5 + 0.5 * Math.sin(ph * 1.3 + rnd(i + 11) * 6)); x = x + (xb - x) * f; }
+      ball(ctx, x, y, 4, P.vel);
+    }
+    label(ctx, 'A', AX + W / 2, Y0 - 16, { align: 'center', weight: 800, size: 16 }); label(ctx, 'B', BX + W / 2, Y0 - 16, { align: 'center', weight: 800, size: 16 });
+    label(ctx, 'everything thermally insulated', 300, Y0 + H + 30, { align: 'center', size: 13, color: P.ink2 });
+    if (ans) {
+      const pa = open ? 1 - 0.5 * smooth(u) : 1;
+      label(ctx, `A: ${pa.toFixed(2)} atm`, AX, 90, { weight: 700, size: 14 }); label(ctx, `B: ${open && u >= 1 ? '0.50' : open ? '…' : '0'} atm`, BX, 90, { weight: 700, size: 14 });
+      label(ctx, 'T unchanged, ΔU = 0', 300, 460, { align: 'center', weight: 800, size: 16, color: P.accent });
+      partsPanel(ctx, 630, 34, 300, 'Answers', ['(a) 0.5 atm in each', '(b) ΔU = 0 (Q = 0, W = 0)', '(c) ΔT = 0', '(d) No: not quasi-static'], [-1, 1, 3][stageAt(stages, t)], false);
+    } else askedPanel(ctx, 630, 34, 300, ['(a) The final pressure in A and B.', '(b) The change in internal energy.', '(c) The change in temperature.', '(d) Whether the intermediate states lie on the P–V–T surface.']);
+    note(ctx, 'molecules illustrative');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

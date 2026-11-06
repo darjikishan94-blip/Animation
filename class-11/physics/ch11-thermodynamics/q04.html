@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 11.4</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 11 Thermodynamics</a></p>
+      <h1>Exercise 11.4 · Adiabatic compression of hydrogen</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q03.html">‹ 11.3</a><a href="index.html">All questions</a><a href="q05.html">11.5 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 11.4">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="An insulated cylinder of hydrogen is squeezed to half its volume with no heat exchange; on the P–V graph the adiabatic curve rises above the isothermal one, ending at 2.64 times the starting pressure."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>11.4</b> A cylinder with a movable piston contains 3 moles of hydrogen at standard temperature and pressure. The walls of the cylinder are made of a heat insulator, and the piston is insulated by having a pile of sand on it. By what factor does the pressure of the gas increase if the gas is compressed to half its original volume ?</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>3 mol of H<sub>2</sub> at STP; insulated (adiabatic); volume halved; H<sub>2</sub> diatomic, γ = 1.4.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The factor by which the pressure increases.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>P–V graph to scale in units of the starting pressure and volume.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>No heat can enter or leave: the compression is adiabatic, PV<sup>γ</sup> = constant, with γ = 7/5 = 1.4 for a diatomic gas.</li>
+          <li>P₂/P₁ = (V₁/V₂)<sup>γ</sup> = 2<sup>1.4</sup> ≈ 2.64.</li>
+        </ol>
+        <p class="final">About 2.64 times.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 11 (Thermodynamics), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const GAM = 1.4, D = 7, CX = 150, CB = 440, H0 = 280;
+  const qStages = [
+    { title: 'An insulated cylinder', dur: 3, text: 'A cylinder with insulating walls and an insulated piston (a pile of sand on it) holds 3 mol of hydrogen at STP.' },
+    { title: 'Compressed to half', dur: D - 3, text: 'The gas is compressed to half its original volume.' },
+    { title: 'What is asked', dur: 4, text: 'By what factor does the pressure increase?' },
+  ];
+  const stages = [
+    { title: 'No heat exchange', dur: 3, text: 'With insulated walls and piston, no heat enters or leaves: the process is adiabatic, PV^γ = constant.', ans: 'Hydrogen is diatomic: γ = 7/5 = 1.4.' },
+    { title: 'Compression', dur: D - 3, text: 'On the P–V graph the adiabatic curve rises more steeply than the isothermal one (dashed): the gas also heats up.', ans: 'P₂/P₁ = (V₁/V₂)^γ = 2^1.4.' },
+    { title: 'The factor', dur: 4, text: 'Work it out.', ans: 'P₂/P₁ ≈ 2.64.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    const v = 1 - 0.5 * smooth(clamp((t - 3) / (D - 3.5))), h = H0 * v, p = Math.pow(1 / v, GAM);
+    ctx.fillStyle = P.objFill; ctx.fillRect(CX - 80, CB - H0 - 40, 12, H0 + 52); ctx.fillRect(CX + 68, CB - H0 - 40, 12, H0 + 52); ctx.fillRect(CX - 80, CB, 160, 12);
+    ctx.fillStyle = P.vel; ctx.globalAlpha = 0.15 + 0.1 * (p - 1) / 1.64; ctx.fillRect(CX - 68, CB - h, 136, h); ctx.globalAlpha = 1;
+    ctx.fillStyle = P.objFill2; ctx.fillRect(CX - 68, CB - h - 14, 136, 14); ctx.fillStyle = P.sand; ctx.beginPath(); ctx.moveTo(CX - 60, CB - h - 14); ctx.lineTo(CX, CB - h - 54); ctx.lineTo(CX + 60, CB - h - 14); ctx.fill();
+    label(ctx, 'sand', CX, CB - h - 30, { align: 'center', size: 12 }); label(ctx, '3 mol H₂', CX, CB - h / 2, { align: 'center', weight: 700, size: 13 }); label(ctx, 'insulated', CX, CB + 30, { align: 'center', size: 12, color: P.ink2 });
+    if (ans) {
+      const g = axes(ctx, { x: 300, y: 70, w: 270, h: 330, x0: 0, x1: 1.2, y0: 0, y1: 3, xt: [0.5, 1], yt: [1, 2, 2.64], xl: 'V / V₁', yl: 'P / P₁' });
+      ctx.save(); ctx.setLineDash([5, 4]); plot(ctx, g, x => 1 / x, 0.45, 1.15, P.ink2, 1.5); ctx.restore();
+      plot(ctx, g, x => Math.pow(1 / x, GAM), v, 1, P.force);
+      ball(ctx, g.X(v), g.Y(p), 6, P.force); label(ctx, `P = ${p.toFixed(2)} P₁`, g.X(v) + 10, g.Y(p) - 12, { weight: 800, size: 14, color: P.force });
+      label(ctx, 'isothermal', g.X(0.5) + 8, g.Y(2) + 14, { size: 12, color: P.ink2 }); label(ctx, 'adiabatic', g.X(0.62) + 6, g.Y(Math.pow(1 / 0.62, GAM)) - 6, { size: 12, color: P.force });
+      partsPanel(ctx, 630, 34, 300, 'Working', ['Adiabatic: PV^γ constant; γ = 1.4 for H₂', 'P₂/P₁ = 2^1.4', '≈ 2.64'], stageAt(stages, t), false);
+    } else askedPanel(ctx, 630, 34, 300, ['The factor by which the pressure increases when the gas is compressed to half its volume.']);
+    note(ctx, 'P–V graph in units of the starting pressure and volume');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

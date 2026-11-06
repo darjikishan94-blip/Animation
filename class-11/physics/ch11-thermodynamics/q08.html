@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 11.8</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 11 Thermodynamics</a></p>
+      <h1>Exercise 11.8 · Work done round D → E → F (Fig. 11.11)</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q07.html">‹ 11.7</a><a href="index.html">All questions</a><span>›</span></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 11.8">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="On a P–V graph the system goes along a straight line from D (2.0 m³, 600 N/m²) to E (5.0 m³, 300 N/m²), then back at constant pressure to F (2.0 m³, 300 N/m²); the work done is the area of triangle DEF, 450 J."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>11.8</b> A thermodynamic system is taken from an original state to an intermediate state by the linear process shown in Fig. (11.13) Its volume is then reduced to the original value from E to F by an isobaric process. Calculate the total work done by the gas from D to E to F</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Fig. 11.11: D (2.0 m<sup>3</sup>, 600 N m<sup>−2</sup>) → E (5.0 m<sup>3</sup>, 300 N m<sup>−2</sup>) in a straight line; E → F at 300 N m<sup>−2</sup> back to 2.0 m<sup>3</sup>.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The total work done by the gas from D to E to F.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Graph to scale.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>D → E: expansion; work = area under DE = ½(600 + 300) × 3.0 = 1350 J (done by the gas).</li>
+          <li>E → F: compression at 300 N m<sup>−2</sup>; work = −300 × 3.0 = −900 J.</li>
+          <li>Total = 1350 − 900 = 450 J (the area of triangle DEF).</li>
+        </ol>
+        <p class="final">450 J.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 11 (Thermodynamics), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const D = 9;
+  const qStages = [
+    { title: 'Fig. 11.11', dur: D, text: 'A system goes from D (2.0 m³, 600 N/m²) to E (5.0 m³, 300 N/m²) along a straight line, then at constant pressure from E back to F (2.0 m³).' },
+    { title: 'What is asked', dur: 4, text: 'Calculate the total work done by the gas from D to E to F.' },
+  ];
+  const stages = [
+    { title: 'D to E: expansion', dur: 4, text: 'Work done by the gas = area under the path; the volume grows, so it is positive.', ans: 'Area of the trapezium = ½(600 + 300) × 3.0 = 1350 J.' },
+    { title: 'E to F: compression', dur: 4, text: 'At constant 300 N/m² the volume shrinks by 3.0 m³: the gas does negative work.', ans: 'W = −300 × 3.0 = −900 J.' },
+    { title: 'Total', dur: 5, text: 'Add them: the net work is the area of triangle DEF.', ans: '1350 − 900 = 450 J.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    const g = axes(ctx, { x: 80, y: 60, w: 470, h: 380, x0: 0, x1: 6, y0: 0, y1: 700, xt: [2, 5], yt: [300, 600], xl: 'V (m³)', yl: 'P (N/m²)' });
+    const Dp = [2, 600], Ep = [5, 300], Fp = [2, 300];
+    const st = ans ? stageAt(stages, t) : -1;
+    if (st === 0 || st === 2) { ctx.fillStyle = P.vel; ctx.globalAlpha = st === 2 ? 0.12 : 0.25; ctx.beginPath(); ctx.moveTo(g.X(2), g.Y(0)); ctx.lineTo(g.X(2), g.Y(600)); ctx.lineTo(g.X(5), g.Y(300)); ctx.lineTo(g.X(5), g.Y(0)); ctx.closePath(); ctx.fill(); ctx.globalAlpha = 1; }
+    if (st === 1) { ctx.fillStyle = P.force; ctx.globalAlpha = 0.25; ctx.fillRect(g.X(2), g.Y(300), g.X(5) - g.X(2), g.Y(0) - g.Y(300)); ctx.globalAlpha = 1; }
+    if (st === 2) { ctx.fillStyle = P.accent; ctx.globalAlpha = 0.45; ctx.beginPath(); ctx.moveTo(g.X(2), g.Y(600)); ctx.lineTo(g.X(5), g.Y(300)); ctx.lineTo(g.X(2), g.Y(300)); ctx.closePath(); ctx.fill(); ctx.globalAlpha = 1; label(ctx, '450 J', g.X(2.8), g.Y(390), { weight: 800, size: 18, color: P.accent }); }
+    const u = ans ? (st === 0 ? clamp((t - stages[0].t0) / 3) : 1) : clamp(t / (D * 0.45)), u2 = ans ? (st >= 1 ? clamp((t - stages[1].t0) / 3) : 0) : clamp((t - D * 0.5) / (D * 0.45));
+    ctx.save(); ctx.strokeStyle = P.ink; ctx.lineWidth = 3; seg(ctx, g.X(2), g.Y(600), g.X(2 + 3 * u), g.Y(600 - 300 * u)); if (u2 > 0) seg(ctx, g.X(5), g.Y(300), g.X(5 - 3 * u2), g.Y(300)); ctx.restore();
+    for (const [p, n] of [[Dp, 'D'], [Ep, 'E'], [Fp, 'F']]) { ball(ctx, g.X(p[0]), g.Y(p[1]), 5, P.ink); label(ctx, n, g.X(p[0]) + 8, g.Y(p[1]) - 14, { weight: 800, size: 15 }); }
+    if (st === 0) label(ctx, '+1350 J', g.X(3.5), g.Y(150), { align: 'center', weight: 800, size: 17, color: P.vel });
+    if (st === 1) label(ctx, '−900 J', g.X(3.5), g.Y(150), { align: 'center', weight: 800, size: 17, color: P.force });
+    if (ans) partsPanel(ctx, 630, 34, 300, 'Working', ['D → E: +1350 J (area under DE)', 'E → F: −900 J', 'Total = 450 J (area of DEF)'], st, false);
+    else askedPanel(ctx, 630, 34, 300, ['The total work done by the gas from D to E to F.']);
+    note(ctx, 'graph to scale');
+  }
+  return { qStages, stages, draw };
+})();
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

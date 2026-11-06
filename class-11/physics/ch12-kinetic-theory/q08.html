@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 12.8</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 12 Kinetic Theory</a></p>
+      <h1>Exercise 12.8 · Neon, chlorine and UF₆</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q07.html">‹ 12.7</a><a href="index.html">All questions</a><a href="q09.html">12.9 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 12.8">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="Three equal boxes at the same temperature and pressure hold the same number of molecules: light neon atoms dart fastest, chlorine molecules slower, heavy UF₆ molecules slowest."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>12.8</b> Three vessels of equal capacity have gases at the same temperature and pressure. The first vessel contains neon (monatomic), the second contains chlorine (diatomic), and the third contains uranium hexafluoride (polyatomic). Do the vessels contain equal number of respective molecules ? Is the root mean square speed of molecules the same in the three cases? If not, in which case is v<sub>rms</sub> the largest ?</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Equal volumes, same T and P; neon (M ≈ 20), chlorine (M ≈ 71), UF<sub>6</sub> (M ≈ 352).</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>Equal numbers of molecules? Same v<sub>rms</sub>? Which largest?</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Molecule speeds in the ratio of v<sub>rms</sub> (slowed down enormously); molecule sizes illustrative.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>Yes: equal volumes at the same T and P hold equal numbers of molecules (Avogadro’s law, N = PV/kT).</li>
+          <li>No: v<sub>rms</sub> = √(3kT/m) depends on the molecular mass; the lighter the molecule, the faster.</li>
+          <li>Neon, the lightest, has the largest v<sub>rms</sub>.</li>
+        </ol>
+        <p class="final">Equal numbers; v<sub>rms</sub> differs, largest for neon.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 12 (Kinetic Theory), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const GASES = [['neon', 20.2, 4, P => P.vel], ['chlorine', 70.9, 6, P => P.leaf], ['UF₆', 352, 9, P => P.force]], N = 10, D = 10;
+  const rnd = i => { const s = Math.sin(i * 57.31 + 1.7) * 24634.6; return s - Math.floor(s); };
+  const qStages = [
+    { title: 'Three vessels', dur: D, text: 'Three equal vessels at the same temperature and pressure contain neon (monatomic), chlorine (diatomic) and uranium hexafluoride (polyatomic).' },
+    { title: 'What is asked', dur: 4, text: 'Do they contain equal numbers of molecules? Is v_rms the same? If not, where is it largest?' },
+  ];
+  const stages = [
+    { title: 'Equal numbers', dur: 5, text: 'Equal V, P and T give equal numbers of molecules: N = PV/kT (Avogadro’s law).', ans: 'Yes, the same number of molecules in each.' },
+    { title: 'Speeds', dur: 5, text: 'Same T means the same average kinetic energy ½mv²; heavier molecules move slower: v_rms = √(3kT/m).', ans: 'v_rms differs; neon, the lightest, is fastest.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    GASES.forEach(([n, m, r, col], j) => {
+      const x0 = 30 + j * 190, y0 = 110, W = 170, H = 250, sp = 60 * Math.sqrt(20.2 / m);
+      ctx.strokeStyle = P.obj; ctx.lineWidth = 2; ctx.strokeRect(x0, y0, W, H);
+      for (let i = 0; i < N; i++) {
+        const ax = rnd(i + j * 31), ay = rnd(i + j * 31 + 9), dx = rnd(i + j * 31 + 17) - 0.5, dy = rnd(i + j * 31 + 23) - 0.5, L = Math.hypot(dx, dy) || 1;
+        const tri = s => { s = ((s % 2) + 2) % 2; return s < 1 ? s : 2 - s; };
+        const x = x0 + r + (W - 2 * r) * tri(ax * 2 + dx / L * sp * t / (W - 2 * r)), y = y0 + r + (H - 2 * r) * tri(ay * 2 + dy / L * sp * t / (H - 2 * r));
+        ball(ctx, x, y, r, col(P));
+      }
+      label(ctx, n, x0 + W / 2, y0 + H + 22, { align: 'center', weight: 800, size: 15 });
+      label(ctx, `M ≈ ${m} u`, x0 + W / 2, y0 + H + 42, { align: 'center', size: 13 });
+      if (ans && t >= stages[1].t0) label(ctx, `v_rms ∝ 1/√M: ${(Math.sqrt(20.2 / m)).toFixed(2)}`, x0 + W / 2, y0 + H + 62, { align: 'center', weight: 700, size: 13, color: P.accent });
+      if (ans && t < stages[1].t0) label(ctx, `${N} molecules`, x0 + W / 2, y0 - 14, { align: 'center', weight: 700, size: 13, color: P.accent });
+    });
+    label(ctx, 'same V, same P, same T', 300, 60, { align: 'center', weight: 700, size: 15 });
+    if (ans) partsPanel(ctx, 630, 34, 300, 'Answers', ['Equal numbers of molecules', 'v_rms not the same: largest for neon'], stageAt(stages, t), false);
+    else askedPanel(ctx, 630, 34, 300, ['Do the vessels contain equal numbers of molecules?', 'Is v_rms the same in the three cases? If not, where is it largest?']);
+    note(ctx, 'a few molecules shown; speeds in the ratio of v_rms, enormously slowed; sizes illustrative');
+  }
+  return { qStages, stages, draw };
+})();
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

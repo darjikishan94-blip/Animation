@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 12.10</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 12 Kinetic Theory</a></p>
+      <h1>Exercise 12.10 · Mean free path of nitrogen</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q09.html">‹ 12.9</a><a href="index.html">All questions</a><span>›</span></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 12.10">
+    <p class="qline"><b>12.10</b> Estimate the mean free path and collision frequency of a nitrogen molecule in a cylinder containing nitrogen at 2.0 atm and temperature 17 °C. Take the radius of a nitrogen molecule to be roughly 1.0 Å. Compare the collision time with the time the molecule moves freely between two successive collisions (Molecular mass of N<sub>2</sub> = 28.0 u).</p>
+    <p><button type="button" class="btn reveal" id="show" aria-pressed="false" style="margin-left:0">Show answer</button></p>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>P = 2.0 atm; T = 290 K; molecular radius 1.0 Å (diameter d = 2.0 Å); M = 28.0 u.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>Mean free path, collision frequency; collision time vs free time.</p>
+      </div>
+      <div>
+        <h3>Why there is no animation</h3>
+        <ul>
+          <li>This is a direct calculation with nothing moving to show; the page shows the question and a worked answer.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>Number density n = P/kT = 2.0 × 1.013 × 10<sup>5</sup>/(1.38 × 10<sup>−23</sup> × 290) ≈ 5.1 × 10<sup>25</sup> m<sup>−3</sup>.</li>
+          <li>Mean free path λ = 1/(√2 πd<sup>2</sup>n) ≈ 1.1 × 10<sup>−7</sup> m.</li>
+          <li>v<sub>rms</sub> = √(3RT/M) ≈ 5.1 × 10<sup>2</sup> m s<sup>−1</sup>; collision frequency ≈ v/λ ≈ 4.6 × 10<sup>9</sup> s<sup>−1</sup>.</li>
+          <li>Collision time ≈ d/v ≈ 4 × 10<sup>−13</sup> s; free time between collisions ≈ 1/(4.6 × 10<sup>9</sup>) ≈ 2 × 10<sup>−10</sup> s: about 500 times longer.</li>
+        </ol>
+        <p class="final">λ ≈ 1 × 10<sup>−7</sup> m; ≈ 5 × 10<sup>9</sup> collisions per second; free time ≈ 500 × collision time.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 12 (Kinetic Theory), Exercises. </p>
+</div>
+<script>
+const b = document.getElementById('show'), a = document.querySelector('.answer');
+b.addEventListener('click', () => { a.hidden = !a.hidden; b.setAttribute('aria-pressed', String(!a.hidden)); b.textContent = a.hidden ? 'Show answer' : 'Hide answer'; });
+</script>
+</body>
+</html>

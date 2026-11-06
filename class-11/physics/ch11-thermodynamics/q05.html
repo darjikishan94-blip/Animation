@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 11.5</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 11 Thermodynamics</a></p>
+      <h1>Exercise 11.5 · Two paths from A to B</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q04.html">‹ 11.4</a><a href="index.html">All questions</a><a href="q06.html">11.6 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 11.5">
+    <p class="qline"><b>11.5</b> In changing the state of a gas adiabatically from an equilibrium state A to another equilibrium state B, an amount of work equal to 22.3 J is done on the system. If the gas is taken from state A to B via a process in which the net heat absorbed by the system is 9.35 cal, how much is the net work done by the system in the latter case ? (Take 1 cal = 4.19 J)</p>
+    <p><button type="button" class="btn reveal" id="show" aria-pressed="false" style="margin-left:0">Show answer</button></p>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Adiabatic A → B: 22.3 J of work done on the gas. Other path: 9.35 cal of heat absorbed; 1 cal = 4.19 J.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The net work done by the gas on the second path.</p>
+      </div>
+      <div>
+        <h3>Why there is no animation</h3>
+        <ul>
+          <li>This is a direct calculation with nothing moving to show; the page shows the question and a worked answer.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>Adiabatic: Q = 0, so ΔU = +22.3 J (work done on the gas).</li>
+          <li>ΔU depends only on A and B, so it is 22.3 J on the other path too.</li>
+          <li>Q = 9.35 × 4.19 ≈ 39.2 J; W<sub>by gas</sub> = Q − ΔU ≈ 39.2 − 22.3 ≈ 16.9 J.</li>
+        </ol>
+        <p class="final">About 16.9 J done by the gas.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 11 (Thermodynamics), Exercises. </p>
+</div>
+<script>
+const b = document.getElementById('show'), a = document.querySelector('.answer');
+b.addEventListener('click', () => { a.hidden = !a.hidden; b.setAttribute('aria-pressed', String(!a.hidden)); b.textContent = a.hidden ? 'Show answer' : 'Hide answer'; });
+</script>
+</body>
+</html>

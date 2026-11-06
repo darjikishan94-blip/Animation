@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 12.3</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 12 Kinetic Theory</a></p>
+      <h1>Exercise 12.3 · PV/T against P for oxygen (Fig. 12.8)</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q02.html">‹ 12.2</a><a href="index.html">All questions</a><a href="q04.html">12.4 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 12.3">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="Two curves of PV/T against P for 1 g of oxygen, at T₁ and T₂, start together at 0.26 J/K on the axis and drift away from the dotted horizontal line of ideal-gas behaviour; the T₁ curve stays closer to it."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>12.3</b> Figure 12.8 shows plot of PV/T versus P for 1.00× 10<sup>–3</sup> kg of oxygen gas at two different temperatures. (a) What does the dotted plot signify? (b) Which is true: T<sub>1</sub> &gt; T<sub>2</sub> or T<sub>1</sub> &lt; T<sub>2</sub>? (c) What is the value of PV/T where the curves meet on the y-axis? (d) If we obtained similar plots for 1.00× 10<sup>–3</sup> kg of hydrogen, would we get the same value of PV/T at the point where the curves meet on the y-axis? If not, what mass of hydrogen yields the same value of PV/T (for low pressure high temperature region of the plot) ? (Molecular mass of H<sub>2</sub> = 2.02 u, of O<sub>2</sub> = 32.0 u, R = 8.31 J mol<sup>–1</sup> K<sup>–1</sup>.)</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Fig. 12.8: PV/T against P for 1.00 g of O<sub>2</sub> at T<sub>1</sub> and T<sub>2</sub>, and a dotted horizontal line.</li>
+          <li>M(O<sub>2</sub>) = 32.0 u, M(H<sub>2</sub>) = 2.02 u, R = 8.31 J mol<sup>−1</sup> K<sup>−1</sup>.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>(a)–(d) as in the question.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Curve shapes follow Fig. 12.8.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>(a) The dotted line is ideal-gas behaviour: PV/T = nR, the same at every pressure.</li>
+          <li>(b) T<sub>1</sub> &gt; T<sub>2</sub>: real gases behave more ideally at higher temperature, and the T<sub>1</sub> curve is closer to the dotted line.</li>
+          <li>(c) At P → 0 every gas is ideal: PV/T = nR = (1.00 × 10<sup>−3</sup>/32.0 × 10<sup>−3</sup>) × 8.31 ≈ 0.26 J K<sup>−1</sup>.</li>
+          <li>(d) No: 1.00 g of hydrogen is more moles (1/2.02). For the same nR we need the same number of moles, 1/32 mol: m = 2.02/32.0 g ≈ 6.3 × 10<sup>−5</sup> kg.</li>
+        </ol>
+        <p class="final">(a) ideal gas (b) T<sub>1</sub> &gt; T<sub>2</sub> (c) ≈ 0.26 J K<sup>−1</sup> (d) No; 6.3 × 10<sup>−5</sup> kg of H<sub>2</sub>.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 12 (Kinetic Theory), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const NR = 1e-3 / 32e-3 * 8.31, D = 8;
+  const f1 = p => NR + 0.012 * p - 0.004 * p * p, f2 = p => NR - 0.05 * p + 0.012 * p * p;
+  const qStages = [
+    { title: 'Fig. 12.8', dur: D, text: 'PV/T against P for 1.00 × 10⁻³ kg of oxygen at two temperatures, T₁ and T₂, with a dotted horizontal line.' },
+    { title: 'What is asked', dur: 5, text: '(a) What does the dotted line mean? (b) T₁ > T₂ or T₁ < T₂? (c) PV/T where the curves meet the axis? (d) For 1.00 g of hydrogen? What mass of hydrogen gives the same value?' },
+  ];
+  const stages = [
+    { title: 'The dotted line', dur: 4, text: 'For an ideal gas PV/T = nR at every pressure: a horizontal line.', ans: '(a) Ideal-gas behaviour.' },
+    { title: 'Which is hotter?', dur: 4, text: 'Real gases behave more nearly ideally at high temperature and low pressure.', ans: '(b) T₁ > T₂: the T₁ curve stays closer to the dotted line.' },
+    { title: 'On the axis', dur: 4, text: 'As P → 0 every gas is ideal: PV/T → nR.', ans: '(c) nR = (1.00/32.0) × 8.31 ≈ 0.26 J/K.' },
+    { title: 'Hydrogen', dur: 5, text: '1.00 g of hydrogen is 1/2.02 mol, many more moles than 1.00 g of oxygen.', ans: '(d) Not the same. Same nR needs 1/32 mol: m = 2.02/32.0 g ≈ 6.3 × 10⁻⁵ kg.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    const g = axes(ctx, { x: 90, y: 70, w: 450, h: 340, x0: 0, x1: 2.2, y0: 0.15, y1: 0.33, yt: [0.26], xl: 'P', yl: 'PV/T (J/K)' });
+    hline(ctx, g.X(0), g.X(2.2), g.Y(NR), P.ink2, 1.5, [5, 4]);
+    const u = clamp(t / (D - 1)) * 2.1;
+    plot(ctx, g, f1, 0, u, P.force); plot(ctx, g, f2, 0, u, P.vel);
+    if (u > 2) { label(ctx, 'T₁', g.X(2.1) + 6, g.Y(f1(2.1)), { weight: 800, size: 15, color: P.force }); label(ctx, 'T₂', g.X(2.1) + 6, g.Y(f2(2.1)), { weight: 800, size: 15, color: P.vel }); }
+    if (ans) { const st = stageAt(stages, t); if (st >= 2) { ball(ctx, g.X(0), g.Y(NR), 6, P.accent); label(ctx, '≈ 0.26 J/K', g.X(0) + 10, g.Y(NR) - 16, { weight: 800, size: 14, color: P.accent }); } if (st === 0) label(ctx, 'ideal gas', g.X(1.6), g.Y(NR) - 12, { weight: 700, size: 13, color: P.ink2 }); }
+    if (ans) partsPanel(ctx, 630, 34, 300, 'Answers', ['(a) ideal-gas behaviour', '(b) T₁ > T₂', '(c) ≈ 0.26 J/K', '(d) no; 6.3 × 10⁻⁵ kg of H₂'], stageAt(stages, t), false);
+    else askedPanel(ctx, 630, 34, 300, ['(a) The meaning of the dotted plot. (b) T₁ > T₂ or T₁ < T₂? (c) PV/T where the curves meet on the y-axis. (d) The same for 1.00 g of hydrogen? If not, what mass of hydrogen gives that value?']);
+    note(ctx, 'curve shapes follow Fig. 12.8; deviations from ideal exaggerated');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

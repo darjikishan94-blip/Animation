@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 12.4</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 12 Kinetic Theory</a></p>
+      <h1>Exercise 12.4 · Oxygen taken out of a cylinder</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q03.html">‹ 12.3</a><a href="index.html">All questions</a><a href="q05.html">12.5 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 12.4">
+    <p class="qline"><b>12.4</b> An oxygen cylinder of volume 30 litre has an initial gauge pressure of 15 atm and a temperature of 27 °C. After some oxygen is withdrawn from the cylinder, the gauge pressure drops to 11 atm and its temperature drops to 17 °C. Estimate the mass of oxygen taken out of the cylinder (R = 8.31 J mol<sup>–1</sup> K<sup>–1</sup>, molecular mass of O<sub>2</sub> = 32 u).</p>
+    <p><button type="button" class="btn reveal" id="show" aria-pressed="false" style="margin-left:0">Show answer</button></p>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>V = 30 L; gauge 15 atm at 27 °C, then 11 atm at 17 °C; R = 8.31; M = 32 g/mol.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The mass of oxygen withdrawn.</p>
+      </div>
+      <div>
+        <h3>Why there is no animation</h3>
+        <ul>
+          <li>This is a direct calculation with nothing moving to show; the page shows the question and a worked answer.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>Absolute pressures: 16 atm and 12 atm (add 1 atm).</li>
+          <li>n₁ = PV/RT = 16 × 1.013 × 10<sup>5</sup> × 0.030/(8.31 × 300) ≈ 19.5 mol; n₂ = 12 × 1.013 × 10<sup>5</sup> × 0.030/(8.31 × 290) ≈ 15.1 mol.</li>
+          <li>Removed ≈ 4.4 mol × 32 g ≈ 0.14 kg.</li>
+        </ol>
+        <p class="final">About 0.14 kg.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 12 (Kinetic Theory), Exercises. </p>
+</div>
+<script>
+const b = document.getElementById('show'), a = document.querySelector('.answer');
+b.addEventListener('click', () => { a.hidden = !a.hidden; b.setAttribute('aria-pressed', String(!a.hidden)); b.textContent = a.hidden ? 'Show answer' : 'Hide answer'; });
+</script>
+</body>
+</html>
