@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 12 Physics · Exercise 11.4</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 12 Physics</a> · <a href="index.html">Ch. 11 Dual Nature of Radiation and Matter</a></p>
+      <h1>Exercise 11.4 · Photons from a He–Ne laser</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q03.html">‹ 11.3</a><a href="index.html">All questions</a><a href="q05.html">11.5 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 11.4">
+    <p class="qline"><b>11.4</b> Monochromatic light of wavelength 632.8 nm is produced by a helium-neon laser. The power emitted is 9.42 mW. (a) Find the energy and momentum of each photon in the light beam, (b) How many photons per second, on the average, arrive at a target irradiated by this beam? (Assume the beam to have uniform cross-section which is less than the target area), and (c) How fast does a hydrogen atom have to travel in order to have the same momentum as that of the photon?</p>
+    <p><button type="button" class="btn reveal" id="show" aria-pressed="false" style="margin-left:0">Show answer</button></p>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>λ = 632.8 nm; P = 9.42 × 10<sup>−3</sup> W; m<sub>H</sub> = 1.67 × 10<sup>−27</sup> kg. h = 6.63 × 10<sup>−34</sup> J s; c = 3 × 10<sup>8</sup> m/s; e = 1.6 × 10<sup>−19</sup> C; m<sub>e</sub> = 9.1 × 10<sup>−31</sup> kg; hc ≈ 1240 eV nm.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>(a) E and p of a photon (b) photons per second (c) speed of an H atom with the same momentum.</p>
+      </div>
+      <div>
+        <h3>Why there is no animation</h3>
+        <ul>
+          <li>This is a direct calculation with nothing moving to show; the page shows the question and a worked answer.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>(a) E = hc/λ = 6.63 × 10<sup>−34</sup> × 3 × 10<sup>8</sup>/632.8 × 10<sup>−9</sup> ≈ 3.14 × 10<sup>−19</sup> J (1.96 eV); p = h/λ ≈ 1.05 × 10<sup>−27</sup> kg m/s.</li>
+          <li>(b) N = P/E = 9.42 × 10<sup>−3</sup>/3.14 × 10<sup>−19</sup> ≈ 3.0 × 10<sup>16</sup> photons per second.</li>
+          <li>(c) v = p/m<sub>H</sub> = 1.05 × 10<sup>−27</sup>/1.67 × 10<sup>−27</sup> ≈ 0.63 m/s.</li>
+        </ol>
+        <p class="final">(a) 3.14 × 10<sup>−19</sup> J; 1.05 × 10<sup>−27</sup> kg m/s (b) 3.0 × 10<sup>16</sup> s<sup>−1</sup> (c) 0.63 m/s.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 12), Chapter 11 (Dual Nature of Radiation and Matter), Exercises. </p>
+</div>
+<script>
+const b = document.getElementById('show'), a = document.querySelector('.answer');
+b.addEventListener('click', () => { a.hidden = !a.hidden; b.setAttribute('aria-pressed', String(!a.hidden)); b.textContent = a.hidden ? 'Show answer' : 'Hide answer'; });
+</script>
+</body>
+</html>

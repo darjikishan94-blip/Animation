@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 12 Physics · Exercise 11.2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 12 Physics</a> · <a href="index.html">Ch. 11 Dual Nature of Radiation and Matter</a></p>
+      <h1>Exercise 11.2 · Photoelectrons from caesium</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q01.html">‹ 11.1</a><a href="index.html">All questions</a><a href="q03.html">11.3 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 11.2">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A photon of 2.49 eV strikes caesium; 2.14 eV frees an electron and the remaining 0.35 eV is its kinetic energy; a retarding potential of 0.35 V just stops it; its top speed is 3.5 × 10⁵ m/s."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>11.2</b> The work function of caesium metal is 2.14 eV. When light of frequency 6 × 10<sup>14</sup> Hz is incident on the metal surface, photoemission of electrons occurs. What is the (a) maximum kinetic energy of the emitted electrons, (b) Stopping potential, and (c) maximum speed of the emitted photoelectrons?</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>φ₀ = 2.14 eV; ν = 6 × 10<sup>14</sup> Hz. h = 6.63 × 10<sup>−34</sup> J s; c = 3 × 10<sup>8</sup> m/s; e = 1.6 × 10<sup>−19</sup> C; m<sub>e</sub> = 9.1 × 10<sup>−31</sup> kg; hc ≈ 1240 eV nm.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>(a) K<sub>max</sub> (b) V<sub>0</sub> (c) v<sub>max</sub>.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Energy bars to scale.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>Photon energy hν = 6.63 × 10<sup>−34</sup> × 6 × 10<sup>14</sup> ≈ 3.98 × 10<sup>−19</sup> J ≈ 2.49 eV.</li>
+          <li>(a) K<sub>max</sub> = hν − φ₀ ≈ 2.49 − 2.14 ≈ 0.35 eV (0.345 eV).</li>
+          <li>(b) eV<sub>0</sub> = K<sub>max</sub>: V<sub>0</sub> ≈ 0.35 V.</li>
+          <li>(c) ½mv<sup>2</sup> = 0.345 × 1.6 × 10<sup>−19</sup> J, so v = √(2 × 5.52 × 10<sup>−20</sup>/9.1 × 10<sup>−31</sup>) ≈ 3.5 × 10<sup>5</sup> m/s.</li>
+        </ol>
+        <p class="final">(a) ≈ 0.35 eV (b) ≈ 0.35 V (c) ≈ 3.5 × 10<sup>5</sup> m/s.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 12), Chapter 11 (Dual Nature of Radiation and Matter), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const MY = 380, D = 6, EV = 120;   // 120 px per eV
+  const qStages = [
+    { title: 'Light on caesium', dur: D, text: 'Light of frequency 6 × 10¹⁴ Hz falls on caesium, whose work function is 2.14 eV. Electrons come out.' },
+    { title: 'What is asked', dur: 4, text: '(a) The maximum kinetic energy. (b) The stopping potential. (c) The maximum speed.' },
+  ];
+  const stages = [
+    { title: 'Photon energy', dur: 5, text: 'hν = 6.63 × 10⁻³⁴ × 6 × 10¹⁴ ≈ 3.98 × 10⁻¹⁹ J ≈ 2.49 eV.', ans: '' },
+    { title: 'Kinetic energy', dur: D, text: '2.14 eV is used to free the electron; the rest is kinetic energy.', ans: '(a) K_max ≈ 2.49 − 2.14 ≈ 0.35 eV.' },
+    { title: 'Stopping potential', dur: 5, text: 'A retarding potential V₀ stops the fastest electrons when eV₀ = K_max.', ans: '(b) V₀ ≈ 0.35 V.' },
+    { title: 'Speed', dur: 5, text: '½mv² = K_max.', ans: '(c) v ≈ 3.5 × 10⁵ m/s.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    ctx.fillStyle = P.objFill2; ctx.fillRect(30, MY, 300, 60); label(ctx, 'caesium', 180, MY + 30, { align: 'center', weight: 800, size: 14 });
+    const st = ans ? stageAt(stages, t) : -1, s = ans ? clamp(t / 3) : clamp((t % D) / 3);
+    const px = 60 + 110 * s, py = 120 + (MY - 120) * s;
+    if (s < 1) { ctx.save(); ctx.strokeStyle = P.ke; ctx.lineWidth = 2.5; ctx.beginPath(); for (let k = 0; k <= 40; k++) { const u = k / 40, x = px - 60 * u * 0.6, y = py - 60 * u * 0.85 + 7 * Math.sin(u * 12 * Math.PI) * 0.6, xx = x + 7 * Math.sin(u * 12 * Math.PI) * 0.8; k ? ctx.lineTo(xx, y) : ctx.moveTo(xx, y); } ctx.stroke(); ctx.restore(); label(ctx, 'photon', px + 14, py - 40, { weight: 700, size: 12, color: P.ke }); }
+    else { const e = Math.min(1, (ans ? t - 3 : (t % D) - 3) / 3), ex = 170 + 80 * e, ey = MY - 6 - 200 * e; ball(ctx, ex, ey, 7, P.vel); label(ctx, 'e⁻', ex + 12, ey, { weight: 800, size: 13, color: P.vel }); if (e > 0.2) vec(ctx, ex, ey, 20, -50, '', P.vel, { lw: 2.5, head: 9 }); }
+    if (ans) {
+      const BX = 400, BY = 470;   // energy bars (base at BY)
+      const bar = (x, v, col, txt) => { ctx.fillStyle = col; ctx.fillRect(x, BY - v * EV, 40, v * EV); label(ctx, txt, x + 20, BY - v * EV - 12, { align: 'center', weight: 800, size: 12, color: col }); };
+      bar(BX, 2.49, P.ke, 'hν 2.49 eV');
+      if (st >= 1) { ctx.fillStyle = P.ink2; ctx.fillRect(BX + 60, BY - 2.14 * EV, 40, 2.14 * EV); label(ctx, 'φ₀ 2.14', BX + 108, BY - 2.14 * EV / 2, { weight: 800, size: 12 }); ctx.fillStyle = P.vel; ctx.fillRect(BX + 60, BY - 2.49 * EV, 40, 0.35 * EV); label(ctx, 'K 0.35', BX + 118, BY - 2.32 * EV, { weight: 800, size: 12, color: P.vel }); }
+      hline(ctx, BX - 10, BX + 120, BY, P.ink2, 1);
+      if (st >= 2) label(ctx, 'V₀ ≈ 0.35 V', 180, 80, { align: 'center', weight: 800, size: 15, color: P.accent });
+      if (st >= 3) label(ctx, 'v ≈ 3.5 × 10⁵ m/s', 180, 104, { align: 'center', weight: 800, size: 15, color: P.vel });
+      partsPanel(ctx, 630, 34, 300, 'Working', ['hν ≈ 2.49 eV', '(a) K_max ≈ 0.35 eV', '(b) V₀ ≈ 0.35 V', '(c) v ≈ 3.5 × 10⁵ m/s'], st, false);
+    } else askedPanel(ctx, 630, 34, 300, ['(a) The maximum kinetic energy of the photoelectrons.', '(b) The stopping potential.', '(c) The maximum speed of the photoelectrons.']);
+    note(ctx, ans ? 'energy bars 120 px per eV' : 'not to scale');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

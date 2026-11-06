@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 12 Physics · Exercise 11.7</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 12 Physics</a> · <a href="index.html">Ch. 11 Dual Nature of Radiation and Matter</a></p>
+      <h1>Exercise 11.7 · Will 330 nm light free electrons?</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q06.html">‹ 11.6</a><a href="index.html">All questions</a><a href="q08.html">11.8 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 11.7">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="Photons of 330 nm carry only 3.76 eV, less than the 4.2 eV needed to free an electron from this metal, so no matter how bright the light, no electrons come out."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>11.7</b> The work function for a certain metal is 4.2 eV. Will this metal give photoelectric emission for incident radiation of wavelength 330 nm?</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>φ₀ = 4.2 eV; λ = 330 nm; hc ≈ 1240 eV nm.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>Is there photoemission?</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Energy bars to scale.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>Photon energy E = hc/λ ≈ 1240/330 ≈ 3.76 eV.</li>
+          <li>3.76 eV < 4.2 eV: a single photon cannot free an electron, so there is no photoemission, however intense the light. (Emission needs λ < 1240/4.2 ≈ 295 nm.)</li>
+        </ol>
+        <p class="final">No (3.76 eV < 4.2 eV).</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 12), Chapter 11 (Dual Nature of Radiation and Matter), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const MY = 380, EV = 80, D = 6;   // 80 px per eV
+  const qStages = [
+    { title: '330 nm light on a metal', dur: D, text: 'Radiation of wavelength 330 nm falls on a metal of work function 4.2 eV.' },
+    { title: 'What is asked', dur: 4, text: 'Will it give photoelectric emission?' },
+  ];
+  const stages = [
+    { title: 'Photon energy', dur: 5, text: 'E = hc/λ ≈ 1240 eV nm/330 nm.', ans: 'E ≈ 3.76 eV.' },
+    { title: 'Compare', dur: D, text: 'One photon gives its energy to one electron. 3.76 eV is less than the 4.2 eV needed.', ans: 'No emission, however bright the light. (Needs λ < 295 nm.)' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    ctx.fillStyle = P.objFill2; ctx.fillRect(30, MY, 280, 60); label(ctx, 'metal, φ₀ = 4.2 eV', 170, MY + 30, { align: 'center', weight: 800, size: 14 });
+    for (let k = 0; k < 4; k++) { const s = ((t * 0.5 + k / 4) % 1), px = 60 + 110 * s, py = 120 + (MY - 120) * s; ctx.save(); ctx.strokeStyle = P.acc; ctx.lineWidth = 2; ctx.globalAlpha = 0.85; ctx.beginPath(); for (let j = 0; j <= 30; j++) { const u = j / 30, y = py - 50 * u * 0.85, x = px - 50 * u * 0.6 + 6 * Math.sin(u * 10 * Math.PI); j ? ctx.lineTo(x, y) : ctx.moveTo(x, y); } ctx.stroke(); ctx.restore(); }
+    for (let k = 0; k < 5; k++) ball(ctx, 70 + k * 50, MY + 10, 5, P.vel);
+    if (ans) {
+      const st = stageAt(stages, t), BX = 400, BY = 470;
+      ctx.fillStyle = P.acc; ctx.fillRect(BX, BY - 3.76 * EV, 50, 3.76 * EV); label(ctx, 'photon 3.76 eV', BX + 25, BY - 3.76 * EV - 12, { align: 'center', weight: 800, size: 12, color: P.acc });
+      ctx.fillStyle = P.ink2; ctx.fillRect(BX + 80, BY - 4.2 * EV, 50, 4.2 * EV); label(ctx, 'needed 4.2 eV', BX + 105, BY - 4.2 * EV - 12, { align: 'center', weight: 800, size: 12 });
+      hline(ctx, BX - 10, BX + 140, BY, P.ink2, 1);
+      if (st >= 1) label(ctx, 'no photoelectrons', 170, 90, { align: 'center', weight: 800, size: 18, color: P.loss });
+      partsPanel(ctx, 630, 34, 300, 'Working', ['E = 1240/330 ≈ 3.76 eV', '3.76 < 4.2 eV: no emission'], st, false);
+    } else askedPanel(ctx, 630, 34, 300, ['Whether the metal gives photoelectric emission for 330 nm radiation.']);
+    note(ctx, ans ? 'energy bars 80 px per eV' : 'not to scale');
+  }
+  return { qStages, stages, draw };
+})();
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

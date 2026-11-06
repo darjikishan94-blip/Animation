@@ -4162,8 +4162,121 @@
   "subject": "physics",
   "chapter": 11,
   "chapter_title": "Dual Nature of Radiation and Matter",
-  "status": "planned",
-  "ncert_pdf": "https://ncert.nic.in/textbook/pdf/leph203.pdf"
+  "question": "11.1",
+  "title": "X-rays from 30 kV electrons",
+  "status": "worked answer",
+  "file": "class-12/physics/ch11-dual-nature-of-radiation-and-matter/q01.html",
+  "text": "Find the (a) maximum frequency, and (b) minimum wavelength of X-rays produced by 30 kV electrons."
+ },
+ {
+  "class": 12,
+  "subject": "physics",
+  "chapter": 11,
+  "chapter_title": "Dual Nature of Radiation and Matter",
+  "question": "11.2",
+  "title": "Photoelectrons from caesium",
+  "status": "animated",
+  "file": "class-12/physics/ch11-dual-nature-of-radiation-and-matter/q02.html",
+  "text": "The work function of caesium metal is 2.14 eV. When light of frequency 6 × 1014 Hz is incident on the metal surface, photoemission of electrons occurs. What is the (a) maximum kinetic energy of the emitted electrons, (b) Stopping potential, and (c) maximum speed of the emitted photoelectrons?"
+ },
+ {
+  "class": 12,
+  "subject": "physics",
+  "chapter": 11,
+  "chapter_title": "Dual Nature of Radiation and Matter",
+  "question": "11.3",
+  "title": "K_max from the cut-off voltage",
+  "status": "worked answer",
+  "file": "class-12/physics/ch11-dual-nature-of-radiation-and-matter/q03.html",
+  "text": "The photoelectric cut-off voltage in a certain experiment is 1.5 V. What is the maximum kinetic energy of photoelectrons emitted?"
+ },
+ {
+  "class": 12,
+  "subject": "physics",
+  "chapter": 11,
+  "chapter_title": "Dual Nature of Radiation and Matter",
+  "question": "11.4",
+  "title": "Photons from a He–Ne laser",
+  "status": "worked answer",
+  "file": "class-12/physics/ch11-dual-nature-of-radiation-and-matter/q04.html",
+  "text": "Monochromatic light of wavelength 632.8 nm is produced by a helium-neon laser. The power emitted is 9.42 mW. (a) Find the energy and momentum of each photon in the light beam, (b) How many photons per second, on the average, arrive at a target irradiated by this beam? (Assume the beam to have uniform cross-section which is less than the target area), and (c) How fast does a hydrogen atom have to travel in order to have the same momentum as that of the photon?"
+ },
+ {
+  "class": 12,
+  "subject": "physics",
+  "chapter": 11,
+  "chapter_title": "Dual Nature of Radiation and Matter",
+  "question": "11.5",
+  "title": "Planck’s constant from a graph",
+  "status": "animated",
+  "file": "class-12/physics/ch11-dual-nature-of-radiation-and-matter/q05.html",
+  "text": "In an experiment on photoelectric effect, the slope of the cut-off voltage versus frequency of incident light is found to be 4.12 × 10–15 V s. Calculate the value of Planck’s constant."
+ },
+ {
+  "class": 12,
+  "subject": "physics",
+  "chapter": 11,
+  "chapter_title": "Dual Nature of Radiation and Matter",
+  "question": "11.6",
+  "title": "Cut-off voltage from the threshold",
+  "status": "worked answer",
+  "file": "class-12/physics/ch11-dual-nature-of-radiation-and-matter/q06.html",
+  "text": "The threshold frequency for a certain metal is 3.3 × 1014 Hz. If light of frequency 8.2 × 1014 Hz is incident on the metal, predict the cut-off voltage for the photoelectric emission."
+ },
+ {
+  "class": 12,
+  "subject": "physics",
+  "chapter": 11,
+  "chapter_title": "Dual Nature of Radiation and Matter",
+  "question": "11.7",
+  "title": "Will 330 nm light free electrons?",
+  "status": "animated",
+  "file": "class-12/physics/ch11-dual-nature-of-radiation-and-matter/q07.html",
+  "text": "The work function for a certain metal is 4.2 eV. Will this metal give photoelectric emission for incident radiation of wavelength 330 nm?"
+ },
+ {
+  "class": 12,
+  "subject": "physics",
+  "chapter": 11,
+  "chapter_title": "Dual Nature of Radiation and Matter",
+  "question": "11.8",
+  "title": "Threshold frequency from electron speed",
+  "status": "worked answer",
+  "file": "class-12/physics/ch11-dual-nature-of-radiation-and-matter/q08.html",
+  "text": "Light of frequency 7.21 × 1014 Hz is incident on a metal surface. Electrons with a maximum speed of 6.0 × 105 m/s are ejected from the surface. What is the threshold frequency for photoemission of electrons?"
+ },
+ {
+  "class": 12,
+  "subject": "physics",
+  "chapter": 11,
+  "chapter_title": "Dual Nature of Radiation and Matter",
+  "question": "11.9",
+  "title": "Work function from an argon laser",
+  "status": "worked answer",
+  "file": "class-12/physics/ch11-dual-nature-of-radiation-and-matter/q09.html",
+  "text": "Light of wavelength 488 nm is produced by an argon laser which is used in the photoelectric effect. When light from this spectral line is incident on the emitter, the stopping (cut-off) potential of photoelectrons is 0.38 V. Find the work function of the material from which the emitter is made."
+ },
+ {
+  "class": 12,
+  "subject": "physics",
+  "chapter": 11,
+  "chapter_title": "Dual Nature of Radiation and Matter",
+  "question": "11.10",
+  "title": "de Broglie wavelengths of everyday objects",
+  "status": "worked answer",
+  "file": "class-12/physics/ch11-dual-nature-of-radiation-and-matter/q10.html",
+  "text": "What is the de Broglie wavelength of (a) a bullet of mass 0.040 kg travelling at the speed of 1.0 km/s, (b) a ball of mass 0.060 kg moving at a speed of 1.0 m/s, and (c) a dust particle of mass 1.0 × 10–9 kg drifting with a speed of 2.2 m/s?"
+ },
+ {
+  "class": 12,
+  "subject": "physics",
+  "chapter": 11,
+  "chapter_title": "Dual Nature of Radiation and Matter",
+  "question": "11.11",
+  "title": "A photon’s de Broglie wavelength",
+  "status": "worked answer",
+  "file": "class-12/physics/ch11-dual-nature-of-radiation-and-matter/q11.html",
+  "text": "Show that the wavelength of electromagnetic radiation is equal to the de Broglie wavelength of its quantum (photon)."
  },
  {
   "class": 12,

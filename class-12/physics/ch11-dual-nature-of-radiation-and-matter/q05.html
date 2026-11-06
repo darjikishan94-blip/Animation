@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 12 Physics · Exercise 11.5</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 12 Physics</a> · <a href="index.html">Ch. 11 Dual Nature of Radiation and Matter</a></p>
+      <h1>Exercise 11.5 · Planck’s constant from a graph</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q04.html">‹ 11.4</a><a href="index.html">All questions</a><a href="q06.html">11.6 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 11.5">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="On a straight-line graph of cut-off voltage against frequency, the voltage rises 4.12 × 10⁻¹⁵ V for every hertz; since eV₀ = hν − φ₀, the slope is h/e and h = 6.59 × 10⁻³⁴ J s."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>11.5</b> In an experiment on photoelectric effect, the slope of the cut-off voltage versus frequency of incident light is found to be 4.12 × 10<sup>–15</sup> V s. Calculate the value of Planck’s constant.</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Slope of V<sub>0</sub> against ν = 4.12 × 10<sup>−15</sup> V s; e = 1.6 × 10<sup>−19</sup> C.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>h.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>The threshold frequency (where the line meets the axis) is not given; it is illustrative.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>Einstein’s equation: eV<sub>0</sub> = hν − φ₀, so V<sub>0</sub> = (h/e)ν − φ₀/e: a straight line of slope h/e.</li>
+          <li>h = e × slope = 1.6 × 10<sup>−19</sup> × 4.12 × 10<sup>−15</sup> ≈ 6.59 × 10<sup>−34</sup> J s.</li>
+        </ol>
+        <p class="final">≈ 6.59 × 10<sup>−34</sup> J s.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 12), Chapter 11 (Dual Nature of Radiation and Matter), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const G = { x: 60, y: 90, w: 450, h: 340, x0: 0, x1: 12, y0: 0, y1: 2.5, xt: [4, 6, 10], yt: [0.82, 2.47], xl: 'ν (10¹⁴ Hz)', yl: 'V₀ (V)' }, NU0 = 4, SL = 0.412;   // 0.412 V per 10¹⁴ Hz
+  const V = n => Math.max(0, SL * (n - NU0));
+  const qStages = [
+    { title: 'Cut-off voltage against frequency', dur: 5, text: 'The graph of cut-off voltage against frequency is a straight line of slope 4.12 × 10⁻¹⁵ V s.' },
+    { title: 'What is asked', dur: 4, text: 'Calculate Planck’s constant.' },
+  ];
+  const stages = [
+    { title: 'Why a straight line', dur: 6, text: 'eV₀ = hν − φ₀, so V₀ = (h/e)ν − φ₀/e: the slope is h/e.', ans: '' },
+    { title: 'Read the slope', dur: 6, text: 'Every extra 10¹⁴ Hz raises V₀ by 0.412 V.', ans: 'h = e × slope = 1.6 × 10⁻¹⁹ × 4.12 × 10⁻¹⁵ ≈ 6.59 × 10⁻³⁴ J s.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    const g = axes(ctx, G), u = ans ? 1 : clamp(t / 4);
+    plot(ctx, g, V, 0, 10 * u, P.force);   // stop at the top of the axes
+    label(ctx, 'slope 4.12 × 10⁻¹⁵ V s', g.X(7) - 20, g.Y(V(7)) - 30, { align: 'center', weight: 700, size: 13, color: P.force });
+    if (ans) {
+      const st = stageAt(stages, t);
+      if (st >= 1) { const a = 6, b = 10; hline(ctx, g.X(a), g.X(b), g.Y(V(a)), P.accent, 2, [4, 3]); vline(ctx, g.X(b), g.Y(V(a)), g.Y(V(b)), P.accent, 2, [4, 3]); label(ctx, 'Δν = 4 × 10¹⁴ Hz', g.X(8), g.Y(V(a)) + 18, { align: 'center', weight: 800, size: 13, color: P.accent }); label(ctx, 'ΔV₀ = 1.65 V', g.X(b) + 10, g.Y((V(a) + V(b)) / 2), { weight: 800, size: 13, color: P.accent });
+        label(ctx, 'h = e × slope ≈ 6.59 × 10⁻³⁴ J s', 300, 490, { align: 'center', weight: 800, size: 17, color: P.accent }); }
+      label(ctx, 'ν₀ (not given)', g.X(NU0), g.Y(0) + 34, { align: 'center', size: 12, color: P.ink2 });
+      partsPanel(ctx, 630, 34, 300, 'Working', ['V₀ = (h/e)ν − φ₀/e: slope h/e', 'h = 1.6 × 10⁻¹⁹ × 4.12 × 10⁻¹⁵ ≈ 6.59 × 10⁻³⁴ J s'], st, false);
+    } else askedPanel(ctx, 630, 34, 300, ['Planck’s constant from the slope.']);
+    note(ctx, 'slope to scale; the threshold frequency (intercept) is illustrative');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

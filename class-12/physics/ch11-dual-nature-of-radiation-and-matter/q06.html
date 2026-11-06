@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 12 Physics · Exercise 11.6</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 12 Physics</a> · <a href="index.html">Ch. 11 Dual Nature of Radiation and Matter</a></p>
+      <h1>Exercise 11.6 · Cut-off voltage from the threshold</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q05.html">‹ 11.5</a><a href="index.html">All questions</a><a href="q07.html">11.7 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 11.6">
+    <p class="qline"><b>11.6</b> The threshold frequency for a certain metal is 3.3 × 10<sup>14</sup> Hz. If light of frequency 8.2 × 10<sup>14</sup> Hz is incident on the metal, predict the cut-off voltage for the photoelectric emission.</p>
+    <p><button type="button" class="btn reveal" id="show" aria-pressed="false" style="margin-left:0">Show answer</button></p>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>ν₀ = 3.3 × 10<sup>14</sup> Hz; ν = 8.2 × 10<sup>14</sup> Hz. h = 6.63 × 10<sup>−34</sup> J s; c = 3 × 10<sup>8</sup> m/s; e = 1.6 × 10<sup>−19</sup> C; m<sub>e</sub> = 9.1 × 10<sup>−31</sup> kg; hc ≈ 1240 eV nm.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>V<sub>0</sub>.</p>
+      </div>
+      <div>
+        <h3>Why there is no animation</h3>
+        <ul>
+          <li>This is a direct calculation with nothing moving to show; the page shows the question and a worked answer.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>eV<sub>0</sub> = h(ν − ν₀), so V<sub>0</sub> = 6.63 × 10<sup>−34</sup> × 4.9 × 10<sup>14</sup>/1.6 × 10<sup>−19</sup> ≈ 2.0 V.</li>
+        </ol>
+        <p class="final">≈ 2.0 V.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 12), Chapter 11 (Dual Nature of Radiation and Matter), Exercises. </p>
+</div>
+<script>
+const b = document.getElementById('show'), a = document.querySelector('.answer');
+b.addEventListener('click', () => { a.hidden = !a.hidden; b.setAttribute('aria-pressed', String(!a.hidden)); b.textContent = a.hidden ? 'Show answer' : 'Hide answer'; });
+</script>
+</body>
+</html>
