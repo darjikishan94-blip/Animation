@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 10 Science · Exercise 11.7</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 10 Science</a> · <a href="index.html">Ch. 11 Electricity</a></p>
+      <h1>Exercise 11.7 · Resistance from a V–I graph</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q06.html">‹ 11.6</a><a href="index.html">All questions</a><a href="q08.html">11.8 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 11.7">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="The five readings plotted as V against I fall close to a straight line through the origin; its slope, about 3.3 Ω, is the resistance."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>11.7</b> The values of current I flowing in a given resistor for the corresponding values of potential difference V across the resistor are given below – I (amperes): 0.5, 1.0, 2.0, 3.0, 4.0; V (volts): 1.6, 3.4, 6.7, 10.2, 13.2. Plot a graph between V and I and calculate the resistance of that resistor.</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>I = 0.5, 1.0, 2.0, 3.0, 4.0 A; V = 1.6, 3.4, 6.7, 10.2, 13.2 V.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The V–I graph; R.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Points plotted to scale; the line is the best straight line through the origin.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>The points lie close to a straight line through the origin (Ohm’s law).</li>
+          <li>R = slope = V/I: 3.2, 3.4, 3.35, 3.4, 3.3 Ω from the readings; the best line through the origin gives ≈ 3.3 Ω (the NCERT answer quotes 3.4 Ω).</li>
+        </ol>
+        <p class="final">R ≈ 3.3–3.4 Ω.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Science (NCERT, Class 10), Chapter 11 (Electricity), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const I = [0.5, 1.0, 2.0, 3.0, 4.0], V = [1.6, 3.4, 6.7, 10.2, 13.2], G = { x: 70, y: 70, w: 450, h: 380, x0: 0, x1: 4.5, y0: 0, y1: 15, xt: [1, 2, 3, 4], yt: [5, 10, 15], xl: 'I (A)', yl: 'V (V)' };
+  const R = V.reduce((s, v, i) => s + v * I[i], 0) / I.reduce((s, x) => s + x * x, 0);   // best line through the origin ≈ 3.34 Ω
+  const qStages = [
+    { title: 'Readings', dur: 6, text: 'I (A): 0.5, 1.0, 2.0, 3.0, 4.0.  V (V): 1.6, 3.4, 6.7, 10.2, 13.2.' },
+    { title: 'What is asked', dur: 4, text: 'Plot V against I and find the resistance.' },
+  ];
+  const stages = [
+    { title: 'Plot the points', dur: 6, text: 'Each reading is one point (I, V).', ans: 'They lie close to a straight line through the origin.' },
+    { title: 'Slope', dur: 6, text: 'R = V/I is the slope of the line.', ans: `R ≈ ${R.toFixed(1)} Ω (NCERT quotes 3.4 Ω).` },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    const g = axes(ctx, G), n = ans ? Math.min(5, Math.floor(t / 1) + 1) : 5;
+    if (!ans) { I.forEach((x, i) => label(ctx, `(${x}, ${V[i]})`, 120 + i * 80, 40, { align: 'center', weight: 700, size: 12 })); askedPanel(ctx, 630, 34, 300, ['The V–I graph.', 'The resistance of the resistor.']); note(ctx, 'points to scale'); return; }
+    for (let i = 0; i < n; i++) ball(ctx, g.X(I[i]), g.Y(V[i]), 6, P.force);
+    const st = stageAt(stages, t);
+    if (st >= 1) { plot(ctx, g, x => R * x, 0, 4.4, P.accent, 2); const a = 1, b = 4; hline(ctx, g.X(a), g.X(b), g.Y(R * a), P.ink2, 1.5, [4, 3]); vline(ctx, g.X(b), g.Y(R * a), g.Y(R * b), P.ink2, 1.5, [4, 3]); label(ctx, 'ΔI = 3 A', g.X(2.5), g.Y(R * a) + 16, { align: 'center', weight: 700, size: 12 }); label(ctx, `ΔV = ${(3 * R).toFixed(1)} V`, g.X(b) + 8, g.Y(R * 2.5), { weight: 700, size: 12 }); label(ctx, `R = slope ≈ ${R.toFixed(1)} Ω`, g.X(1.2), g.Y(13), { weight: 800, size: 16, color: P.accent }); }
+    partsPanel(ctx, 630, 34, 300, 'Answer', ['Points lie on a straight line (Ohm’s law)', `R ≈ ${R.toFixed(1)} Ω`], st, false);
+    note(ctx, 'points to scale; line: best fit through the origin');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

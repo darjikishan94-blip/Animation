@@ -65,7 +65,7 @@ def facts(q):
       <div>
         <h3>{'How the animation is drawn' if q.get('scene') else 'Why there is no animation'}</h3>
         <ul>
-{li(q['drawn'] if q.get('scene') else [q.get('note', 'This question is a calculation with no physical situation to show.')])}
+{li(q.get('drawn', ['Schematic; sizes illustrative.']) if q.get('scene') else [q.get('note', 'This question is a calculation with no physical situation to show.')])}
         </ul>
       </div>
       <div class="answer" hidden>

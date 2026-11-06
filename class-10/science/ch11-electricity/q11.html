@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 10 Science · Exercise 11.11</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 10 Science</a> · <a href="index.html">Ch. 11 Electricity</a></p>
+      <h1>Exercise 11.11 · Three 6 Ω resistors: 9 Ω and 4 Ω</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q10.html">‹ 11.10</a><a href="index.html">All questions</a><a href="q12.html">11.12 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 11.11">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="Three 6 Ω resistors: two in parallel (3 Ω) in series with the third give 9 Ω; two in series (12 Ω) in parallel with the third give 4 Ω."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>11.11</b> Show how you would connect three resistors, each of resistance 6 Ω, so that the combination has a resistance of (i) 9 Ω, (ii) 4 Ω.</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Three resistors of 6 Ω.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>Arrangements giving 9 Ω and 4 Ω.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Schematic; sizes illustrative.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>(i) Two in parallel: 6 × 6/(6 + 6) = 3 Ω; in series with the third: 3 + 6 = 9 Ω.</li>
+          <li>(ii) Two in series: 12 Ω; in parallel with the third: 12 × 6/(12 + 6) = 4 Ω.</li>
+        </ol>
+        <p class="final">(i) (6 ∥ 6) + 6 (ii) (6 + 6) ∥ 6</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Science (NCERT, Class 10), Chapter 11 (Electricity), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const qStages = [
+    { title: 'Three 6 Ω resistors', dur: 5, text: 'You have three resistors of 6 Ω each.' },
+    { title: 'What is asked', dur: 4, text: 'Show how to connect them to get (i) 9 Ω, (ii) 4 Ω.' },
+  ];
+  const stages = [
+    { title: '(i) 9 Ω', dur: 6, text: 'Two in parallel give 6 × 6/12 = 3 Ω; add the third in series.', ans: '3 + 6 = 9 Ω.' },
+    { title: '(ii) 4 Ω', dur: 6, text: 'Two in series give 12 Ω; put the third in parallel with them.', ans: '12 × 6/(12 + 6) = 4 Ω.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    if (!ans) { [150, 300, 450].forEach(x => { resistor(ctx, x - 50, 260, x + 50, 260); label(ctx, '6 Ω', x, 236, { align: 'center', weight: 700, size: 14 }); }); askedPanel(ctx, 630, 34, 300, ['Connections giving (i) 9 Ω, (ii) 4 Ω.']); return; }
+    const st = stageAt(stages, t);
+    { const y = 140; label(ctx, '(i)', 30, y - 50, { weight: 800, size: 15 });
+      wire(ctx, [[50, y], [110, y]]); wire(ctx, [[110, y - 35], [110, y + 35]]); resistor(ctx, 110, y - 35, 250, y - 35); resistor(ctx, 110, y + 35, 250, y + 35); wire(ctx, [[250, y - 35], [250, y + 35]]); wire(ctx, [[250, y], [330, y]]); resistor(ctx, 330, y, 450, y); wire(ctx, [[450, y], [550, y]]);
+      ['6 Ω', '6 Ω'].forEach((n, i) => label(ctx, n, 180, y - 57 + i * 114, { align: 'center', weight: 700, size: 12 })); label(ctx, '6 Ω', 390, y - 22, { align: 'center', weight: 700, size: 12 });
+      label(ctx, '3 Ω', 180, y, { align: 'center', weight: 800, size: 13, color: P.accent }); label(ctx, '= 9 Ω', 560, y + 30, { align: 'right', weight: 800, size: 18, color: P.accent }); }
+    if (st >= 1) { const y = 380; label(ctx, '(ii)', 30, y - 70, { weight: 800, size: 15 });
+      wire(ctx, [[50, y], [110, y]]); wire(ctx, [[110, y - 45], [110, y + 45]]); resistor(ctx, 110, y - 45, 250, y - 45); resistor(ctx, 250, y - 45, 390, y - 45); resistor(ctx, 110, y + 45, 390, y + 45); wire(ctx, [[390, y - 45], [390, y + 45]]); wire(ctx, [[390, y], [550, y]]);
+      label(ctx, '6 Ω', 180, y - 68, { align: 'center', weight: 700, size: 12 }); label(ctx, '6 Ω', 320, y - 68, { align: 'center', weight: 700, size: 12 }); label(ctx, '6 Ω', 250, y + 68, { align: 'center', weight: 700, size: 12 });
+      label(ctx, '12 Ω', 250, y - 20, { align: 'center', weight: 800, size: 13, color: P.accent }); label(ctx, '= 4 Ω', 560, y + 30, { align: 'right', weight: 800, size: 18, color: P.accent }); }
+    partsPanel(ctx, 630, 34, 300, 'Answers', ['(i) (6 ∥ 6) in series with 6: 9 Ω', '(ii) (6 + 6) in parallel with 6: 4 Ω'], st, false);
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

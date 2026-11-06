@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 10 Science · Exercise 11.14</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 10 Science</a> · <a href="index.html">Ch. 11 Electricity</a></p>
+      <h1>Exercise 11.14 · Power in the 2 Ω resistor, two circuits</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q13.html">‹ 11.13</a><a href="index.html">All questions</a><a href="q15.html">11.15 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 11.14">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="In the first circuit 2 A flows through 1 Ω and 2 Ω in series from 6 V; in the second, the 2 Ω resistor sits directly across 4 V. Either way the 2 Ω resistor uses 8 W."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>11.14</b> Compare the power used in the 2 Ω resistor in each of the following circuits: (i) a 6 V battery in series with 1 Ω and 2 Ω resistors, and (ii) a 4 V battery in parallel with 12 Ω and 2 Ω resistors.</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>(i) 6 V; 1 Ω and 2 Ω in series. (ii) 4 V; 12 Ω and 2 Ω in parallel.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>Power in the 2 Ω resistor in each.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Circuit schematics.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>(i) I = 6/(1 + 2) = 2 A; P = I<sup>2</sup>R = 4 × 2 = 8 W.</li>
+          <li>(ii) The 2 Ω resistor has the full 4 V across it: P = V<sup>2</sup>/R = 16/2 = 8 W.</li>
+          <li>The power is the same, 8 W, in both.</li>
+        </ol>
+        <p class="final">8 W in both: equal.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Science (NCERT, Class 10), Chapter 11 (Electricity), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const qStages = [
+    { title: 'Two circuits', dur: 5, text: '(i) 6 V with 1 Ω and 2 Ω in series. (ii) 4 V with 12 Ω and 2 Ω in parallel.' },
+    { title: 'What is asked', dur: 4, text: 'Compare the power used in the 2 Ω resistor in each.' },
+  ];
+  const stages = [
+    { title: '(i) Series', dur: 5, text: 'I = 6/(1 + 2) = 2 A; P = I²R.', ans: 'P = 2² × 2 = 8 W.' },
+    { title: '(ii) Parallel', dur: 5, text: 'The 2 Ω resistor has the full 4 V across it: P = V²/R.', ans: 'P = 4²/2 = 8 W. Equal.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1); hline(ctx, 30, 590, 270, P.rule, 1);
+    const st = ans ? stageAt(stages, t) : -1;
+    { const y = 80; label(ctx, '(i)', 30, y - 30, { weight: 800, size: 15 }); wire(ctx, [[100, y], [180, y]]); resistor(ctx, 180, y, 280, y); wire(ctx, [[280, y], [330, y]]); resistor(ctx, 330, y, 430, y); wire(ctx, [[430, y], [500, y], [500, y + 120], [320, y + 120]]); cell(ctx, 280, y + 120, 320, y + 120); wire(ctx, [[280, y + 120], [100, y + 120], [100, y]]);
+      label(ctx, '1 Ω', 230, y - 24, { align: 'center', weight: 700, size: 12 }); label(ctx, '2 Ω', 380, y - 24, { align: 'center', weight: 800, size: 13, color: P.accent }); label(ctx, '6 V', 300, y + 148, { align: 'center', weight: 700, size: 12 });
+      if (ans) { flow(ctx, [[280, y + 120], [100, y + 120], [100, y], [500, y], [500, y + 120], [320, y + 120]], t * 40, P.force, 26, 3); if (st >= 0) label(ctx, 'I = 2 A,  P = 8 W', 380, y + 40, { align: 'center', weight: 800, size: 14, color: P.accent }); } }
+    { const y = 330; label(ctx, '(ii)', 30, y - 30, { weight: 800, size: 15 }); wire(ctx, [[100, y + 120], [100, y], [500, y], [500, y + 120], [320, y + 120]]); cell(ctx, 280, y + 120, 320, y + 120); wire(ctx, [[280, y + 120], [100, y + 120]]);
+      wire(ctx, [[220, y], [220, y + 20]]); resistor(ctx, 220, y + 20, 220, y + 100); wire(ctx, [[220, y + 100], [220, y + 120]]); wire(ctx, [[400, y], [400, y + 20]]); resistor(ctx, 400, y + 20, 400, y + 100); wire(ctx, [[400, y + 100], [400, y + 120]]);
+      label(ctx, '12 Ω', 236, y + 60, { weight: 700, size: 12 }); label(ctx, '2 Ω', 416, y + 60, { weight: 800, size: 13, color: P.accent }); label(ctx, '4 V', 300, y + 148, { align: 'center', weight: 700, size: 12 });
+      if (ans && st >= 1) label(ctx, 'V = 4 V,  P = 8 W', 460, y + 160, { align: 'center', weight: 800, size: 14, color: P.accent }); }
+    if (ans) partsPanel(ctx, 630, 34, 300, 'Answers', ['(i) I = 2 A: P = 8 W', '(ii) V = 4 V: P = 8 W — equal'], st, false);
+    else askedPanel(ctx, 630, 34, 300, ['The power used in the 2 Ω resistor in each circuit.']);
+    note(ctx, 'circuit schematics');
+  }
+  return { qStages, stages, draw };
+})();
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

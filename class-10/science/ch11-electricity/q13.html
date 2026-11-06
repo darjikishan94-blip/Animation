@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 10 Science · Exercise 11.13</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 10 Science</a> · <a href="index.html">Ch. 11 Electricity</a></p>
+      <h1>Exercise 11.13 · Hot plate coils: alone, series, parallel</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q12.html">‹ 11.12</a><a href="index.html">All questions</a><a href="q14.html">11.14 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 11.13">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="Each 24 Ω coil on 220 V: one alone takes 9.2 A, both in series 4.6 A, both in parallel 18.3 A; moving dots show the currents to scale."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>11.13</b> A hot plate of an electric oven connected to a 220 V line has two resistance coils A and B, each of 24 Ω resistance, which may be used separately, in series, or in parallel. What are the currents in the three cases?</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Coils A and B, 24 Ω each; 220 V.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>Current used separately, in series, in parallel.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Dot speeds in proportion to the currents.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>Separately: I = 220/24 ≈ 9.2 A.</li>
+          <li>In series (48 Ω): I = 220/48 ≈ 4.6 A.</li>
+          <li>In parallel (12 Ω): I = 220/12 ≈ 18.3 A.</li>
+        </ol>
+        <p class="final">9.2 A; 4.6 A; 18.3 A.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Science (NCERT, Class 10), Chapter 11 (Electricity), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const CASES = [['A alone', 220 / 24, 'single'], ['A and B in series', 220 / 48, 'series'], ['A and B in parallel', 220 / 12, 'parallel']];
+  const qStages = [
+    { title: 'A hot plate', dur: 5, text: 'Two coils A and B, 24 Ω each, on a 220 V line: used separately, in series, or in parallel.' },
+    { title: 'What is asked', dur: 4, text: 'The current in each of the three cases.' },
+  ];
+  const stages = [
+    { title: 'Separately', dur: 5, text: 'I = V/R = 220/24.', ans: '≈ 9.2 A.' },
+    { title: 'In series', dur: 5, text: 'R = 48 Ω.', ans: '220/48 ≈ 4.6 A.' },
+    { title: 'In parallel', dur: 5, text: 'R = 12 Ω.', ans: '220/12 ≈ 18.3 A.' },
+  ];
+  function row(ctx, y, kind, I, t, show) {
+    const XL = 60, XR = 520;
+    acSource(ctx, XL, y + 40, 16); label(ctx, '220 V', XL, y + 72, { align: 'center', weight: 700, size: 11 });
+    let path;
+    if (kind === 'single') { wire(ctx, [[XL, y + 24], [XL, y], [220, y]]); resistor(ctx, 220, y, 340, y); wire(ctx, [[340, y], [XR, y], [XR, y + 80], [XL, y + 80], [XL, y + 56]]); label(ctx, 'A', 280, y - 22, { align: 'center', weight: 700, size: 12 }); path = [[XL, y + 24], [XL, y], [XR, y], [XR, y + 80], [XL, y + 80], [XL, y + 56]]; }
+    if (kind === 'series') { wire(ctx, [[XL, y + 24], [XL, y], [150, y]]); resistor(ctx, 150, y, 260, y); resistor(ctx, 300, y, 410, y); wire(ctx, [[260, y], [300, y]]); wire(ctx, [[410, y], [XR, y], [XR, y + 80], [XL, y + 80], [XL, y + 56]]); label(ctx, 'A', 205, y - 22, { align: 'center', weight: 700, size: 12 }); label(ctx, 'B', 355, y - 22, { align: 'center', weight: 700, size: 12 }); path = [[XL, y + 24], [XL, y], [XR, y], [XR, y + 80], [XL, y + 80], [XL, y + 56]]; }
+    if (kind === 'parallel') { wire(ctx, [[XL, y + 24], [XL, y], [200, y]]); wire(ctx, [[200, y - 22], [200, y + 22]]); resistor(ctx, 200, y - 22, 360, y - 22); resistor(ctx, 200, y + 22, 360, y + 22); wire(ctx, [[360, y - 22], [360, y + 22]]); wire(ctx, [[360, y], [XR, y], [XR, y + 80], [XL, y + 80], [XL, y + 56]]); label(ctx, 'A', 280, y - 44, { align: 'center', weight: 700, size: 12 }); label(ctx, 'B', 280, y + 44, { align: 'center', weight: 700, size: 12 }); path = [[XL, y + 24], [XL, y], [200, y]]; }
+    if (show) {
+      if (kind === 'parallel') { flow(ctx, [[XL, y + 24], [XL, y], [200, y]], 6 * I * t, P.force, 24, 3); flow(ctx, [[200, y - 22], [360, y - 22]], 3 * I * t, P.force, 24, 3); flow(ctx, [[200, y + 22], [360, y + 22]], 3 * I * t, P.force, 24, 3); flow(ctx, [[360, y], [XR, y], [XR, y + 80], [XL, y + 80], [XL, y + 56]], 6 * I * t, P.force, 24, 3); }
+      else flow(ctx, path, 6 * I * t, P.force, 24, 3);
+      label(ctx, `${I.toFixed(1)} A`, XR + 12, y + 40, { weight: 800, size: 15, color: P.force });
+    }
+  }
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    const st = ans ? stageAt(stages, t) : -1;
+    CASES.forEach(([name, I, kind], i) => { const y = 70 + i * 160; label(ctx, name, 120, y - 40, { weight: 800, size: 13 }); row(ctx, y, kind, I, t, ans && st >= i); });
+    if (ans) partsPanel(ctx, 630, 34, 300, 'Answers', ['Separately: ≈ 9.2 A', 'Series: ≈ 4.6 A', 'Parallel: ≈ 18.3 A'], st, false);
+    else askedPanel(ctx, 630, 34, 300, ['The current when the coils are used separately, in series, and in parallel.']);
+    note(ctx, ans ? 'dot speeds in proportion to the currents' : 'circuit schematics');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

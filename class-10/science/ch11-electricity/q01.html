@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 10 Science · Exercise 11.1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 10 Science</a> · <a href="index.html">Ch. 11 Electricity</a></p>
+      <h1>Exercise 11.1 · A wire cut into five, joined in parallel</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><span>‹</span><a href="index.html">All questions</a><a href="q02.html">11.2 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 11.1">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A wire of resistance R is cut into five pieces of R/5 each; placed side by side in parallel they give R/25, so R/R′ = 25."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>11.1</b> A piece of wire of resistance R is cut into five equal parts. These parts are then connected in parallel. If the equivalent resistance of this combination is R′, then the ratio R/R′ is – (a) 1/25 (b) 1/5 (c) 5 (d) 25</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Wire of resistance R cut into 5 equal parts, joined in parallel.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>R/R′.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Schematic.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>Each piece is one-fifth as long, so its resistance is R/5.</li>
+          <li>Five equal resistors in parallel: R′ = (R/5)/5 = R/25.</li>
+          <li>R/R′ = 25.</li>
+        </ol>
+        <p class="final">(d) 25</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Science (NCERT, Class 10), Chapter 11 (Electricity), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const D = 7;
+  const qStages = [
+    { title: 'Cut a wire into five', dur: D, text: 'A wire of resistance R is cut into five equal parts, which are then connected in parallel.' },
+    { title: 'What is asked', dur: 4, text: 'If the combination has resistance R′, what is R/R′?' },
+  ];
+  const stages = [
+    { title: 'Each piece', dur: 5, text: 'Resistance is proportional to length: each piece is R/5.', ans: '' },
+    { title: 'In parallel', dur: 6, text: 'Five equal resistors in parallel: R′ = (R/5)/5.', ans: 'R′ = R/25, so R/R′ = 25.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    const s = ans ? 1 : smooth(clamp((t - 1) / (D - 2)));
+    const X0 = 60, W = 480, w = W / 5, YL = 330, X1 = 230, X2 = X1 + w;
+    if (s < 0.05 && !ans) { ctx.fillStyle = P.wood; ctx.fillRect(X0, 120, W, 14); label(ctx, 'wire: R', X0 + W / 2, 100, { align: 'center', weight: 800, size: 15 }); }
+    for (let i = 0; i < 5; i++) {
+      const xa = X0 + i * w + 6, ya = 120, xb = X1, yb = 220 + i * 50, x = xa + (xb - xa) * s, y = ya + (yb - ya) * s;
+      ctx.fillStyle = P.wood; ctx.fillRect(x, y, w - 12, 14); label(ctx, 'R/5', x + (w - 12) / 2, y - 10, { align: 'center', weight: 700, size: 12, alpha: s > 0.05 ? 1 : 0 });
+    }
+    if (s >= 1) { wire(ctx, [[X1 - 30, 227], [X1 - 30, 427]], P.ink, 3); wire(ctx, [[X2 + 18, 227], [X2 + 18, 427]], P.ink, 3); for (let i = 0; i < 5; i++) { wire(ctx, [[X1 - 30, 227 + i * 50], [X1, 227 + i * 50]]); wire(ctx, [[X1 + w - 12, 227 + i * 50], [X2 + 18, 227 + i * 50]]); } wire(ctx, [[X1 - 30, 327], [X1 - 80, 327]], P.ink, 3); wire(ctx, [[X2 + 18, 327], [X2 + 68, 327]], P.ink, 3); }
+    if (ans) {
+      const st = stageAt(stages, t);
+      if (st >= 1) label(ctx, 'R′ = (R/5)/5 = R/25   →   R/R′ = 25', 300, 490, { align: 'center', weight: 800, size: 17, color: P.accent });
+      partsPanel(ctx, 630, 34, 300, 'Answer', ['Each piece: R/5', 'R′ = R/25: R/R′ = 25 (d)'], st, false);
+    } else askedPanel(ctx, 630, 34, 300, ['The ratio R/R′.']);
+    note(ctx, 'schematic');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

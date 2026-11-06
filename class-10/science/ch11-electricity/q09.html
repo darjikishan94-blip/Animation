@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 10 Science · Exercise 11.9</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 10 Science</a> · <a href="index.html">Ch. 11 Electricity</a></p>
+      <h1>Exercise 11.9 · Current in a series circuit</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q08.html">‹ 11.8</a><a href="index.html">All questions</a><a href="q10.html">11.10 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 11.9">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A 9 V battery drives one current round five resistors in series totalling 13.4 Ω: 0.67 A flows through every resistor, including the 12 Ω one."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>11.9</b> A battery of 9 V is connected in series with resistors of 0.2 Ω, 0.3 Ω, 0.4 Ω, 0.5 Ω and 12 Ω, respectively. How much current would flow through the 12 Ω resistor?</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>9 V; 0.2, 0.3, 0.4, 0.5 and 12 Ω in series.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>Current through the 12 Ω resistor.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Circuit schematic.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>Total resistance = 0.2 + 0.3 + 0.4 + 0.5 + 12 = 13.4 Ω.</li>
+          <li>I = 9/13.4 ≈ 0.67 A, the same through every resistor in series.</li>
+        </ol>
+        <p class="final">≈ 0.67 A.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Science (NCERT, Class 10), Chapter 11 (Electricity), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const XL = 70, XR = 540, YT = 160, YB = 400;
+  const RS = [['0.2 Ω', 130], ['0.3 Ω', 230], ['0.4 Ω', 330], ['0.5 Ω', 430]];
+  const qStages = [
+    { title: 'Five resistors in series', dur: 5, text: 'A 9 V battery in series with 0.2 Ω, 0.3 Ω, 0.4 Ω, 0.5 Ω and 12 Ω.' },
+    { title: 'What is asked', dur: 4, text: 'The current through the 12 Ω resistor.' },
+  ];
+  const stages = [
+    { title: 'Total resistance', dur: 5, text: 'In series the resistances add.', ans: 'R = 13.4 Ω.' },
+    { title: 'Current', dur: 6, text: 'One current flows through every resistor in series.', ans: 'I = 9/13.4 ≈ 0.67 A, through the 12 Ω resistor too.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    let x = XL; RS.forEach(([n, c]) => { wire(ctx, [[x, YT], [c - 40, YT]]); resistor(ctx, c - 40, YT, c + 40, YT); label(ctx, n, c, YT - 28, { align: 'center', weight: 700, size: 13 }); x = c + 40; }); wire(ctx, [[x, YT], [XR, YT]]);
+    wire(ctx, [[XR, YT], [XR, 230]]); resistor(ctx, XR, 230, XR, 330); wire(ctx, [[XR, 330], [XR, YB], [330, YB]]); label(ctx, '12 Ω', XR + 16, 280, { weight: 800, size: 14 });
+    cell(ctx, 290, YB, 330, YB); wire(ctx, [[290, YB], [XL, YB], [XL, YT]]); label(ctx, '9 V', 310, YB + 30, { align: 'center', weight: 700, size: 14 }); label(ctx, '+', 286, YB - 26, { align: 'center', weight: 800, size: 14, color: P.force });
+    if (ans) {
+      const st = stageAt(stages, t);
+      flow(ctx, [[290, YB], [XL, YB], [XL, YT], [XR, YT], [XR, YB], [330, YB]], t * 30, P.force, 28, 3);
+      label(ctx, 'R = 13.4 Ω', 300, 280, { align: 'center', weight: 800, size: 16, color: P.accent });
+      if (st >= 1) label(ctx, 'I ≈ 0.67 A everywhere', 300, 310, { align: 'center', weight: 800, size: 16, color: P.force });
+      partsPanel(ctx, 630, 34, 300, 'Working', ['R = 0.2 + 0.3 + 0.4 + 0.5 + 12 = 13.4 Ω', 'I = 9/13.4 ≈ 0.67 A'], st, false);
+    } else askedPanel(ctx, 630, 34, 300, ['The current through the 12 Ω resistor.']);
+    note(ctx, 'dots show the (conventional) current');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>
