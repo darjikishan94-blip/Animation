@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 12 Physics · Exercise 9.28</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 12 Physics</a> · <a href="index.html">Ch. 9 Ray Optics and Optical Instruments</a></p>
+      <h1>Exercise 9.28 · Telescope views a tower</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q27.html">‹ 9.27</a><a href="index.html">All questions</a><a href="q29.html">9.29 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 9.28">
+    <p class="qline"><b>9.28</b> (a) For the telescope described in Exercise 9.27 (a), what is the separation between the objective lens and the eyepiece? (b) If this telescope is used to view a 100 m tall tower 3 km away, what is the height of the image of the tower formed by the objective lens? (c) What is the height of the final image of the tower if it is formed at 25 cm?</p>
+    <p><button type="button" class="btn reveal" id="show" aria-pressed="false" style="margin-left:0">Show answer</button></p>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>f<sub>o</sub> = 140 cm; f<sub>e</sub> = 5.0 cm; tower 100 m tall, 3000 m away.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>(a) Separation (b) objective image height (c) final image height at 25 cm.</p>
+      </div>
+      <div>
+        <h3>Why there is no animation</h3>
+        <ul>
+          <li>This is a direct calculation with nothing moving to show; the page shows the question and a worked answer.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>(a) f<sub>o</sub> + f<sub>e</sub> = 145 cm.</li>
+          <li>(b) The tower subtends 100/3000 = 1/30 rad; the objective’s image is f<sub>o</sub>/30 = 140/30 ≈ 4.7 cm tall.</li>
+          <li>(c) The eyepiece magnifies by 1 + D/f<sub>e</sub> = 6: final image ≈ 4.7 × 6 = 28 cm.</li>
+        </ol>
+        <p class="final">(a) 145 cm (b) ≈ 4.7 cm (c) 28 cm</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 12), Chapter 9 (Ray Optics and Optical Instruments), Exercises. </p>
+</div>
+<script>
+const b = document.getElementById('show'), a = document.querySelector('.answer');
+b.addEventListener('click', () => { a.hidden = !a.hidden; b.setAttribute('aria-pressed', String(!a.hidden)); b.textContent = a.hidden ? 'Show answer' : 'Hide answer'; });
+</script>
+</body>
+</html>

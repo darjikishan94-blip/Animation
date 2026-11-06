@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 12 Physics · Exercise 9.12</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 12 Physics</a> · <a href="index.html">Ch. 9 Ray Optics and Optical Instruments</a></p>
+      <h1>Exercise 9.12 · Microscope with an 8 mm objective</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q11.html">‹ 9.11</a><a href="index.html">All questions</a><a href="q13.html">9.13 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 9.12">
+    <p class="qline"><b>9.12</b> A person with a normal near point (25 cm) using a compound microscope with objective of focal length 8.0 mm and an eyepiece of focal length 2.5 cm can bring an object placed at 9.0 mm from the objective in sharp focus. What is the separation between the two lenses? Calculate the magnifying power of the microscope.</p>
+    <p><button type="button" class="btn reveal" id="show" aria-pressed="false" style="margin-left:0">Show answer</button></p>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>f<sub>o</sub> = 0.80 cm; f<sub>e</sub> = 2.5 cm; u<sub>o</sub> = −0.90 cm; final image at 25 cm.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>Separation; magnifying power.</p>
+      </div>
+      <div>
+        <h3>Why there is no animation</h3>
+        <ul>
+          <li>This is a direct calculation with nothing moving to show; the page shows the question and a worked answer.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>Objective: 1/v<sub>o</sub> = 1/0.80 − 1/0.90 = 0.139, v<sub>o</sub> = 7.2 cm.</li>
+          <li>Eyepiece: 1/u<sub>e</sub> = −1/25 − 1/2.5 = −0.44, u<sub>e</sub> ≈ −2.27 cm.</li>
+          <li>Separation = 7.2 + 2.27 ≈ 9.5 cm.</li>
+          <li>M = (v<sub>o</sub>/|u<sub>o</sub>|)(1 + D/f<sub>e</sub>) = (7.2/0.9)(1 + 10) = 8 × 11 = 88.</li>
+        </ol>
+        <p class="final">≈ 9.5 cm; M = 88.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 12), Chapter 9 (Ray Optics and Optical Instruments), Exercises. </p>
+</div>
+<script>
+const b = document.getElementById('show'), a = document.querySelector('.answer');
+b.addEventListener('click', () => { a.hidden = !a.hidden; b.setAttribute('aria-pressed', String(!a.hidden)); b.textContent = a.hidden ? 'Show answer' : 'Hide answer'; });
+</script>
+</body>
+</html>

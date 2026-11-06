@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 12 Physics · Exercise 9.31</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 12 Physics</a> · <a href="index.html">Ch. 9 Ray Optics and Optical Instruments</a></p>
+      <h1>Exercise 9.31 · Refractive index of a liquid layer (Fig. 9.30)</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q30.html">‹ 9.30</a><a href="index.html">All questions</a><span>›</span></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 9.31">
+    <p class="qline"><b>9.31</b> Figure 9.30 shows an equiconvex lens (of refractive index 1.50) in contact with a liquid layer on top of a plane mirror. A small needle with its tip on the principal axis is moved along the axis until its inverted image is found at the position of the needle. The distance of the needle from the lens is measured to be 45.0 cm. The liquid is removed and the experiment is repeated. The new distance is measured to be 30.0 cm. What is the refractive index of the liquid?</p>
+    <p><button type="button" class="btn reveal" id="show" aria-pressed="false" style="margin-left:0">Show answer</button></p>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Lens n = 1.50, equiconvex. Needle coincides with its image at 45.0 cm (with liquid) and 30.0 cm (without).</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The refractive index of the liquid.</p>
+      </div>
+      <div>
+        <h3>Why there is no animation</h3>
+        <ul>
+          <li>This is a direct calculation with nothing moving to show; the page shows the question and a worked answer.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>The image coincides with the needle when light returns along its path, i.e. the needle is at the focal point of the lens system. So f<sub>lens</sub> = 30.0 cm and the lens + liquid has F = 45.0 cm.</li>
+          <li>Equiconvex: 1/30 = (1.5 − 1)(2/R), so R = 30 cm.</li>
+          <li>The liquid forms a plano-concave lens: 1/45 = 1/30 + 1/f<sub>liq</sub>, so f<sub>liq</sub> = −90 cm.</li>
+          <li>1/f<sub>liq</sub> = (n − 1)(−1/R): −1/90 = −(n − 1)/30, so n − 1 = 1/3 and n ≈ 1.33.</li>
+        </ol>
+        <p class="final">≈ 1.33.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 12), Chapter 9 (Ray Optics and Optical Instruments), Exercises. </p>
+</div>
+<script>
+const b = document.getElementById('show'), a = document.querySelector('.answer');
+b.addEventListener('click', () => { a.hidden = !a.hidden; b.setAttribute('aria-pressed', String(!a.hidden)); b.textContent = a.hidden ? 'Show answer' : 'Hide answer'; });
+</script>
+</body>
+</html>

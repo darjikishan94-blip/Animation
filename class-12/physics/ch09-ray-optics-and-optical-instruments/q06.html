@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 12 Physics · Exercise 9.6</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 12 Physics</a> · <a href="index.html">Ch. 9 Ray Optics and Optical Instruments</a></p>
+      <h1>Exercise 9.6 · Prism at minimum deviation, in air and water</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q05.html">‹ 9.5</a><a href="index.html">All questions</a><a href="q07.html">9.7 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 9.6">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A ray passes symmetrically through a 60° prism with a deviation of 40° in air, giving n = 1.53; in water the glass is only 1.15 times denser optically and the minimum deviation falls to about 10°."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>9.6</b> A prism is made of glass of unknown refractive index. A parallel beam of light is incident on a face of the prism. The angle of minimum deviation is measured to be 40°. What is the refractive index of the material of the prism? The refracting angle of the prism is 60°. If the prism is placed in water (refractive index 1.33), predict the new angle of minimum deviation of a parallel beam of light.</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>A = 60°; D<sub>m</sub> = 40° in air; water n = 1.33.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>n of the glass; D<sub>m</sub> in water.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Ray paths computed for minimum deviation (symmetric passage).</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>n = sin[(A + D<sub>m</sub>)/2]/sin(A/2) = sin 50°/sin 30° = 0.766/0.5 ≈ 1.53.</li>
+          <li>In water the relative index is 1.53/1.33 ≈ 1.15: sin[(60° + D<sub>m</sub>)/2] = 1.15 × 0.5 = 0.576, so (60° + D<sub>m</sub>)/2 ≈ 35.2° and D<sub>m</sub> ≈ 10°.</li>
+        </ol>
+        <p class="final">n ≈ 1.53; in water D<sub>m</sub> ≈ 10°.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 12), Chapter 9 (Ray Optics and Optical Instruments), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const AP = [300, 110], BL = [180, 318], BR = [420, 318], YR = 240, D = 7;
+  const deg = Math.PI / 180;
+  const qStages = [
+    { title: 'A glass prism', dur: 5, text: 'A prism of refracting angle 60°. A parallel beam at minimum deviation is deviated by 40°.' },
+    { title: 'What is asked', dur: 4, text: 'The refractive index of the glass. The new minimum deviation if the prism is placed in water (n = 1.33).' },
+  ];
+  const stages = [
+    { title: 'In air', dur: D, text: 'At minimum deviation the ray passes symmetrically, parallel to the base: i = (A + D)/2 = 50°.', ans: 'n = sin 50°/sin 30° ≈ 1.53.' },
+    { title: 'In water', dur: D, text: 'Relative index 1.53/1.33 ≈ 1.15: sin[(60° + D)/2] = 1.15 × 0.5.', ans: 'D ≈ 10°.' },
+  ];
+  function path(ctx, dev) {
+    const s = (YR - AP[1]) / (BL[1] - AP[1]), p1 = [AP[0] + (BL[0] - AP[0]) * s, YR], p2 = [AP[0] + (BR[0] - AP[0]) * s, YR];
+    const ai = (30 - (60 + dev) / 2) * deg, ae = -ai;   // incident direction is the inward normal (at 30°) turned by −i
+    ray(ctx, [[p1[0] - 200 * Math.cos(ai), p1[1] - 200 * Math.sin(ai)], p1, p2, [p2[0] + 190 * Math.cos(ae), p2[1] + 190 * Math.sin(ae)]], P.force);
+    ray(ctx, [p1, [p1[0] + 300 * Math.cos(ai), p1[1] + 300 * Math.sin(ai)]], P.force, { dash: [4, 4], heads: false, lw: 1.2, alpha: 0.7 });
+    label(ctx, `deviation ${dev.toFixed(0)}°`, 520, 330, { align: 'center', weight: 800, size: 15, color: P.force });
+  }
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    const st = ans ? stageAt(stages, t) : -1;
+    if (st === 1) { ctx.save(); ctx.fillStyle = P.water; ctx.globalAlpha = 0.45; ctx.fillRect(20, 40, 580, 460); ctx.restore(); label(ctx, 'water, n = 1.33', 40, 60, { weight: 700, size: 13 }); }
+    ctx.save(); ctx.fillStyle = P.objFill; ctx.strokeStyle = P.ink; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(...AP); ctx.lineTo(...BL); ctx.lineTo(...BR); ctx.closePath(); ctx.globalAlpha = 0.8; ctx.fill(); ctx.globalAlpha = 1; ctx.stroke(); ctx.restore();
+    label(ctx, '60°', AP[0], AP[1] + 34, { align: 'center', weight: 700, size: 13 });
+    if (!ans) { path(ctx, 40); askedPanel(ctx, 630, 34, 300, ['The refractive index of the prism material.', 'The angle of minimum deviation when the prism is in water.']); }
+    else { path(ctx, st === 0 ? 40 : 10.3); label(ctx, st === 0 ? 'n = 1.53' : 'D ≈ 10°', 300, 400, { align: 'center', weight: 800, size: 17, color: P.accent }); partsPanel(ctx, 630, 34, 300, 'Answers', ['n = sin 50°/sin 30° ≈ 1.53', 'In water: D ≈ 10°'], st, false); }
+    note(ctx, 'ray paths computed for minimum deviation; dashed: undeviated direction');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

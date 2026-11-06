@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 12 Physics · Exercise 9.2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 12 Physics</a> · <a href="index.html">Ch. 9 Ray Optics and Optical Instruments</a></p>
+      <h1>Exercise 9.2 · Needle before a convex mirror</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q01.html">‹ 9.1</a><a href="index.html">All questions</a><a href="q03.html">9.3 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 9.2">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A convex mirror forms an upright, smaller, virtual image 6.7 cm behind it of a needle 12 cm in front; as the needle moves away, the image shrinks and creeps towards the focus 15 cm behind the mirror."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>9.2</b> A 4.5 cm needle is placed 12 cm away from a convex mirror of focal length 15 cm. Give the location of the image and the magnification. Describe what happens as the needle is moved farther from the mirror.</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>h = 4.5 cm; u = −12 cm; f = +15 cm (convex). Cartesian sign convention: distances measured from the pole/optical centre, positive in the direction of the incident light.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>Image position and magnification; what happens as the needle moves away.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>10 px per cm in both directions.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>1/v = 1/f − 1/u = 1/15 + 1/12 = 9/60, so v = 6.7 cm (behind the mirror).</li>
+          <li>m = −v/u = −6.7/(−12) = 0.56: the image is virtual, erect, 2.5 cm tall.</li>
+          <li>As the needle moves farther away, the image moves towards the focus (but never past it) and becomes smaller.</li>
+        </ol>
+        <p class="final">6.7 cm behind the mirror; m = 0.56 (2.5 cm, virtual, erect); it shrinks and approaches F.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 12), Chapter 9 (Ray Optics and Optical Instruments), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const MX = 380, A = 300, S = 10, VS = 20, F = 15, D = 9;   // heights × 2
+  const qStages = [
+    { title: 'A needle and a convex mirror', dur: 5, text: 'A 4.5 cm needle stands 12 cm in front of a convex mirror of focal length 15 cm.' },
+    { title: 'What is asked', dur: 4, text: 'Where is the image, and what is the magnification? What happens as the needle moves away?' },
+  ];
+  const stages = [
+    { title: 'Rays from the tip', dur: 6, text: 'A ray parallel to the axis reflects as if from F behind the mirror; a ray to the pole reflects symmetrically.', ans: '1/v = 1/15 + 1/12, v = 6.7 cm behind the mirror.' },
+    { title: 'Magnification', dur: 4, text: 'm = v/u (both magnitudes here).', ans: 'm = 6.7/12 = 0.56: virtual, erect, 2.5 cm.' },
+    { title: 'Needle moved away', dur: D, text: 'Move the needle out from 12 cm to 28 cm.', ans: 'The image shrinks and creeps towards F, never passing it.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    hline(ctx, 20, 590, A, P.ink2, 1);
+    mirror(ctx, MX, A, 150, 700, false);
+    vline(ctx, MX + S * F, A - 5, A + 5, P.ink, 2); label(ctx, 'F', MX + S * F, A + 18, { align: 'center', weight: 800, size: 13 });
+    const st = ans ? stageAt(stages, t) : -1, u = st === 2 ? 12 + 16 * smooth(clamp((t - stages[2].t0) / (D - 2))) : 12;
+    const v = 1 / (1 / F + 1 / u), m = v / u, ox = MX - S * u, oy = A - 4.5 * VS, ix = MX + S * v, iy = A - m * 4.5 * VS;
+    objArrow(ctx, ox, A, 4.5 * VS, P.force); label(ctx, 'needle 4.5 cm', ox, oy - 14, { align: 'center', weight: 700, size: 12 });
+    if (ans) {
+      const k = clamp(t / 3);
+      const dx = MX - (MX + S * F), dy = oy - A, L = Math.hypot(dx, dy);
+      ray(ctx, [[ox, oy], [MX, oy], [MX + dx / L * 260 * k, oy + dy / L * 260 * k]], P.accent); ray(ctx, [[MX, oy], [MX + S * F, A]], P.accent, { dash: [5, 4], heads: false });
+      const ex = -(MX - ox), ey = A - oy, L2 = Math.hypot(ex, ey);
+      ray(ctx, [[ox, oy], [MX, A], [MX + ex / L2 * 220 * k, A + ey / L2 * 220 * k]], P.leaf); ray(ctx, [[MX, A], [ix, iy]], P.leaf, { dash: [5, 4], heads: false });
+      if (k >= 1) { objArrow(ctx, ix, A, m * 4.5 * VS, P.force, true); label(ctx, `${v.toFixed(1)} cm, ${(m * 4.5).toFixed(1)} cm tall`, ix + 6, A + 40, { weight: 800, size: 12, color: P.force }); }
+      partsPanel(ctx, 630, 34, 300, 'Answers', ['v = 6.7 cm behind the mirror', 'm = 0.56 (virtual, erect, 2.5 cm)', 'Moving away: image shrinks, nears F'], st, false);
+    } else askedPanel(ctx, 630, 34, 300, ['The location of the image and the magnification.', 'What happens as the needle is moved farther away.']);
+    note(ctx, '10 px per cm across; heights × 2; mirror curvature drawn flatter');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

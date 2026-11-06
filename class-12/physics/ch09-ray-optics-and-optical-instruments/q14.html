@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 12 Physics · Exercise 9.14</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 12 Physics</a> · <a href="index.html">Ch. 9 Ray Optics and Optical Instruments</a></p>
+      <h1>Exercise 9.14 · A giant telescope views the moon</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q13.html">‹ 9.13</a><a href="index.html">All questions</a><a href="q15.html">9.15 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 9.14">
+    <p class="qline"><b>9.14</b> (a) A giant refracting telescope at an observatory has an objective lens of focal length 15 m. If an eyepiece of focal length 1.0 cm is used, what is the angular magnification of the telescope? (b) If this telescope is used to view the moon, what is the diameter of the image of the moon formed by the objective lens? The diameter of the moon is 3.48 × 10<sup>6</sup> m, and the radius of lunar orbit is 3.8 × 10<sup>8</sup> m.</p>
+    <p><button type="button" class="btn reveal" id="show" aria-pressed="false" style="margin-left:0">Show answer</button></p>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>f<sub>o</sub> = 15 m; f<sub>e</sub> = 0.010 m; moon diameter 3.48 × 10<sup>6</sup> m at 3.8 × 10<sup>8</sup> m.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>(a) M (b) the diameter of the moon’s image.</p>
+      </div>
+      <div>
+        <h3>Why there is no animation</h3>
+        <ul>
+          <li>This is a direct calculation with nothing moving to show; the page shows the question and a worked answer.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>(a) M = f<sub>o</sub>/f<sub>e</sub> = 15/0.010 = 1500.</li>
+          <li>(b) The moon subtends α = 3.48 × 10<sup>6</sup>/3.8 × 10<sup>8</sup> ≈ 9.16 × 10<sup>−3</sup> rad. The image (in the focal plane) has diameter f<sub>o</sub>α = 15 × 9.16 × 10<sup>−3</sup> ≈ 0.137 m = 13.7 cm.</li>
+        </ol>
+        <p class="final">(a) 1500 (b) ≈ 13.7 cm.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 12), Chapter 9 (Ray Optics and Optical Instruments), Exercises. </p>
+</div>
+<script>
+const b = document.getElementById('show'), a = document.querySelector('.answer');
+b.addEventListener('click', () => { a.hidden = !a.hidden; b.setAttribute('aria-pressed', String(!a.hidden)); b.textContent = a.hidden ? 'Show answer' : 'Hide answer'; });
+</script>
+</body>
+</html>

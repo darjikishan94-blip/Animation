@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 12 Physics · Exercise 9.30</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 12 Physics</a> · <a href="index.html">Ch. 9 Ray Optics and Optical Instruments</a></p>
+      <h1>Exercise 9.30 · Spot of light from a galvanometer mirror</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q29.html">‹ 9.29</a><a href="index.html">All questions</a><a href="q31.html">9.31 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 9.30">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="When the galvanometer mirror turns by 3.5°, the reflected ray turns by twice that, 7°, and the spot on a screen 1.5 m away moves 18.4 cm."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>9.30</b> Light incident normally on a plane mirror attached to a galvanometer coil retraces backwards as shown in Fig. 9.29. A current in the coil produces a deflection of 3.5° of the mirror. What is the displacement of the reflected spot of light on a screen placed 1.5 m away?</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Mirror turns θ = 3.5°; screen 1.5 m away.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The displacement of the spot.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>200 px per m; angles shown to scale.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>Turning a mirror by θ turns the reflected ray by 2θ = 7°.</li>
+          <li>d = 1.5 tan 7° ≈ 1.5 × 0.123 ≈ 0.18 m.</li>
+        </ol>
+        <p class="final">≈ 18.4 cm.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 12), Chapter 9 (Ray Optics and Optical Instruments), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const SX = 160, MX = 460, A = 300, D = 7, deg = Math.PI / 180;   // 1.5 m = 300 px
+  const qStages = [
+    { title: 'A galvanometer mirror', dur: 5, text: 'Light falls normally on a small plane mirror on a galvanometer coil and retraces its path to a screen 1.5 m away.' },
+    { title: 'What is asked', dur: 4, text: 'The mirror turns through 3.5°. How far does the spot of light move on the screen?' },
+  ];
+  const stages = [
+    { title: 'Mirror turns 3.5°', dur: D, text: 'Turning a mirror by θ turns the reflected ray by 2θ.', ans: 'The reflected ray turns through 7°.' },
+    { title: 'Spot displacement', dur: 5, text: 'd = 1.5 m × tan 7°.', ans: 'd ≈ 0.184 m = 18.4 cm.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    vline(ctx, SX, 120, 480, P.ink, 4); label(ctx, 'screen', SX, 104, { align: 'center', weight: 700, size: 13 });
+    const th = ans ? 3.5 * smooth(clamp(t / (D - 2))) : 0, a = th * deg;
+    ctx.save(); ctx.translate(MX, A); ctx.rotate(-a); ctx.fillStyle = P.ink; ctx.fillRect(-3, -40, 6, 80); ctx.strokeStyle = P.ink2; for (let k = -36; k <= 36; k += 9) seg(ctx, 3, k, 10, k - 6); ctx.restore();
+    label(ctx, 'mirror', MX, A + 58, { align: 'center', weight: 700, size: 13 });
+    ray(ctx, [[SX + 4, A], [MX - 3, A]], P.force, { lw: 2 });
+    const ry = A - (MX - SX) * Math.tan(2 * a);
+    if (ans) { ray(ctx, [[MX - 3, A], [SX + 4, ry]], P.accent, { lw: 2 }); ball(ctx, SX, ry, 6, P.accent); if (th > 0.1) { vdim(ctx, SX - 30, ry, A, P.ink2); label(ctx, `${(1.5 * Math.tan(2 * a) * 100).toFixed(1)} cm`, SX - 38, (ry + A) / 2, { align: 'right', weight: 800, size: 14, color: P.accent }); } label(ctx, `mirror turned ${th.toFixed(1)}°, ray turned ${(2 * th).toFixed(1)}°`, 310, 440, { align: 'center', weight: 700, size: 13 }); partsPanel(ctx, 630, 34, 300, 'Working', ['Ray turns 2 × 3.5° = 7°', 'd = 1.5 tan 7° ≈ 18.4 cm'], stageAt(stages, t), false); }
+    else askedPanel(ctx, 630, 34, 300, ['The displacement of the reflected spot on the screen 1.5 m away.']);
+    dim(ctx, SX, MX, 500, P.ink2); label(ctx, '1.5 m', (SX + MX) / 2, 486, { align: 'center', weight: 700, size: 13 });
+    note(ctx, '200 px per m; angles to scale');
+  }
+  return { qStages, stages, draw };
+})();
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 12 Physics · Exercise 9.15</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 12 Physics</a> · <a href="index.html">Ch. 9 Ray Optics and Optical Instruments</a></p>
+      <h1>Exercise 9.15 · Mirror equation: four deductions</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q14.html">‹ 9.14</a><a href="index.html">All questions</a><a href="q16.html">9.16 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 9.15">
+    <p class="qline"><b>9.15</b> Use the mirror equation to deduce that: (a) an object placed between f and 2f of a concave mirror produces a real image beyond 2f. (b) a convex mirror always produces a virtual image independent of the location of the object. (c) the virtual image produced by a convex mirror is always diminished in size and is located between the focus and the pole. (d) an object placed between the pole and focus of a concave mirror produces a virtual and enlarged image.</p>
+    <p><button type="button" class="btn reveal" id="show" aria-pressed="false" style="margin-left:0">Show answer</button></p>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>1/v + 1/u = 1/f, with the Cartesian sign convention.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The four deductions.</p>
+      </div>
+      <div>
+        <h3>Why there is no animation</h3>
+        <ul>
+          <li>This question asks for explanations or algebraic deductions rather than describing one situation to follow; the page shows the question and a worked answer.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>(a) Concave: f < 0, and 2f < u < f (both negative). Then 1/v = 1/f − 1/u lies between 1/(2f) and 0 with the sign of f, so v is negative with |v| > 2|f|: a real image beyond 2f.</li>
+          <li>(b) Convex: f > 0, u < 0. 1/v = 1/f − 1/u = 1/f + 1/|u| > 0, so v > 0 always: the image is behind the mirror, virtual.</li>
+          <li>(c) From (b), 1/v > 1/f, so v < f: the image lies between the pole and F. m = −v/u = v/|u| and v < |u| (since 1/v > 1/|u|), so m < 1: diminished.</li>
+          <li>(d) Concave, f < u < 0 (object inside F): 1/v = 1/f − 1/u = 1/|u| − 1/|f| > 0, so v > 0: virtual (behind the mirror). Also 1/v < 1/|u|, so v > |u| and m = v/|u| > 1: enlarged.</li>
+        </ol>
+        <p class="final">Each follows from the signs in 1/v + 1/u = 1/f.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 12), Chapter 9 (Ray Optics and Optical Instruments), Exercises. </p>
+</div>
+<script>
+const b = document.getElementById('show'), a = document.querySelector('.answer');
+b.addEventListener('click', () => { a.hidden = !a.hidden; b.setAttribute('aria-pressed', String(!a.hidden)); b.textContent = a.hidden ? 'Show answer' : 'Hide answer'; });
+</script>
+</body>
+</html>

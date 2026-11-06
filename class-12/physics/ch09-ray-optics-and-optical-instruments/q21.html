@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 12 Physics · Exercise 9.21</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 12 Physics</a> · <a href="index.html">Ch. 9 Ray Optics and Optical Instruments</a></p>
+      <h1>Exercise 9.21 · Just grazing out of a prism</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q20.html">‹ 9.20</a><a href="index.html">All questions</a><a href="q22.html">9.22 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 9.21">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A ray enters a 60° prism at 29.75°; inside it meets the second face at exactly the critical angle of 41°, so it just grazes along the surface; any smaller angle of incidence and it would be totally reflected."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>9.21</b> At what angle should a ray of light be incident on the face of a prism of refracting angle 60° so that it just suffers total internal reflection at the other face? The refractive index of the material of the prism is 1.524.</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>A = 60°; n = 1.524.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The angle of incidence.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Ray path computed with Snell’s law.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>Critical angle: sin C = 1/1.524, C ≈ 41.0°. At the second face r₂ = C.</li>
+          <li>r₁ + r₂ = A, so r₁ = 60° − 41.0° = 19.0°.</li>
+          <li>sin i = 1.524 sin 19.0° ≈ 0.496, so i ≈ 29.75°.</li>
+        </ol>
+        <p class="final">≈ 29.75°.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 12), Chapter 9 (Ray Optics and Optical Instruments), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const AP = [300, 110], BL = [180, 318], BR = [420, 318], N = 1.524, deg = Math.PI / 180;
+  const C = Math.asin(1 / N), R1 = 60 * deg - C, I = Math.asin(N * Math.sin(R1));
+  const qStages = [
+    { title: 'A 60° prism', dur: 5, text: 'A prism of refracting angle 60°, n = 1.524.' },
+    { title: 'What is asked', dur: 4, text: 'At what angle of incidence does the ray just suffer total internal reflection at the second face?' },
+  ];
+  const stages = [
+    { title: 'At the second face', dur: 6, text: 'Just total reflection: the ray meets the second face at the critical angle, sin C = 1/1.524.', ans: 'C ≈ 41.0°, so r₂ = 41.0° and r₁ = 60° − 41.0° = 19.0°.' },
+    { title: 'At the first face', dur: 5, text: 'sin i = n sin r₁.', ans: 'sin i = 1.524 × sin 19.0° ≈ 0.496: i ≈ 29.75°.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    ctx.save(); ctx.fillStyle = P.objFill; ctx.strokeStyle = P.ink; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(...AP); ctx.lineTo(...BL); ctx.lineTo(...BR); ctx.closePath(); ctx.globalAlpha = 0.8; ctx.fill(); ctx.globalAlpha = 1; ctx.stroke(); ctx.restore();
+    label(ctx, '60°', AP[0], AP[1] + 34, { align: 'center', weight: 700, size: 13 });
+    const s = 0.45, p1 = [AP[0] + (BL[0] - AP[0]) * s, AP[1] + (BL[1] - AP[1]) * s];
+    const nIn = 30 * deg, ain = nIn - I, ar = nIn - R1;   // canvas angles: inward normal of the first face at 30°
+    const dx = Math.cos(ar), dy = Math.sin(ar), fx = (BR[0] - AP[0]) / 240, fy = (BR[1] - AP[1]) / 240;
+    const det = dx * (-fy) - dy * (-fx), tt = ((AP[0] - p1[0]) * (-fy) - (AP[1] - p1[1]) * (-fx)) / det, p2 = [p1[0] + dx * tt, p1[1] + dy * tt];
+    const pin = [p1[0] - 220 * Math.cos(ain), p1[1] - 220 * Math.sin(ain)];
+    if (!ans) { ray(ctx, [pin, p1], P.force); label(ctx, 'i = ?', p1[0] - 90, p1[1] - 18, { weight: 800, size: 15 }); askedPanel(ctx, 630, 34, 300, ['The angle of incidence for which the ray just suffers total internal reflection at the other face.']); note(ctx, 'ray path computed with Snell’s law'); return; }
+    const st = stageAt(stages, t), k = clamp(t / 3);
+    ray(ctx, [pin, p1, [p1[0] + (p2[0] - p1[0]) * k, p1[1] + (p2[1] - p1[1]) * k]], P.force);
+    if (k >= 1) ray(ctx, [p2, [p2[0] + fx * 150, p2[1] + fy * 150]], P.force);
+    const nx = 0.8667, ny = -0.5;   // outward normal of the second face
+    ctx.save(); ctx.strokeStyle = P.ink2; ctx.setLineDash([4, 4]); seg(ctx, p2[0] - nx * 60, p2[1] - ny * 60, p2[0] + nx * 60, p2[1] + ny * 60); seg(ctx, p1[0] - 0.8667 * 60, p1[1] - 0.5 * 60, p1[0] + 0.8667 * 60, p1[1] + 0.5 * 60); ctx.restore();
+    label(ctx, 'grazes along the face', p2[0] + fx * 150 + 10, p2[1] + fy * 150, { weight: 700, size: 12, color: P.force });
+    label(ctx, `C ≈ ${(C / deg).toFixed(1)}°`, p2[0] + 18, p2[1] - 26, { weight: 800, size: 13 });
+    if (st >= 1) label(ctx, 'i ≈ 29.75°', p1[0] - 90, p1[1] - 18, { weight: 800, size: 16, color: P.accent });
+    partsPanel(ctx, 630, 34, 300, 'Working', ['r₂ = C ≈ 41.0°, r₁ = 19.0°', 'sin i = 1.524 sin 19.0°: i ≈ 29.75°'], st, false);
+    note(ctx, 'ray path computed with Snell’s law; dashed: normals');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

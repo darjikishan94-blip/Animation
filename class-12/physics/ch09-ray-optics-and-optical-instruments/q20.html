@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 12 Physics · Exercise 9.20</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 12 Physics</a> · <a href="index.html">Ch. 9 Ray Optics and Optical Instruments</a></p>
+      <h1>Exercise 9.20 · Two lenses 8 cm apart</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q19.html">‹ 9.19</a><a href="index.html">All questions</a><a href="q21.html">9.21 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 9.20">
+    <p class="qline"><b>9.20</b> (a) Determine the ‘effective focal length’ of the combination of the two lenses in Exercise 9.10, if they are placed 8.0cm apart with their principal axes coincident. Does the answer depend on which side of the combination a beam of parallel light is incident? Is the notion of effective focal length of this system useful at all? (b) An object 1.5 cm in size is placed on the side of the convex lens in the arrangement (a) above. The distance between the object and the convex lens is 40 cm. Determine the magnification produced by the two-lens system, and the size of the image.</p>
+    <p><button type="button" class="btn reveal" id="show" aria-pressed="false" style="margin-left:0">Show answer</button></p>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>f₁ = +30 cm (convex), f₂ = −20 cm (concave), 8.0 cm apart. (b) object 1.5 cm, 40 cm before the convex lens.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>(a) Effective focal length; dependence on side; usefulness (b) magnification and image size.</p>
+      </div>
+      <div>
+        <h3>Why there is no animation</h3>
+        <ul>
+          <li>This is a direct calculation with nothing moving to show; the page shows the question and a worked answer.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>(a) Light from the convex side: lens 1 focuses at 30 cm, i.e. 22 cm beyond lens 2 (u₂ = +22 cm): 1/v = −1/20 + 1/22, v = −220 cm. The beam seems to diverge from 220 cm before the concave lens (216 cm from the centre of the system).</li>
+          <li>Light from the concave side: lens 2 gives a virtual image 20 cm before it, i.e. 28 cm before the convex lens: 1/v = 1/30 − 1/28, v = −420 cm (416 cm from the centre).</li>
+          <li>The answer depends on the side, so an “effective focal length” is not a useful idea for this system.</li>
+          <li>(b) Lens 1: 1/v₁ = 1/30 − 1/40, v₁ = 120 cm, m₁ = −3. Lens 2: u₂ = 120 − 8 = +112 cm, 1/v₂ = −1/20 + 1/112, v₂ ≈ −24.3 cm, m₂ = v₂/u₂ ≈ −0.217.</li>
+          <li>m = m₁m₂ ≈ 0.652; image size ≈ 0.652 × 1.5 ≈ 0.98 cm.</li>
+        </ol>
+        <p class="final">(a) Beam appears to diverge from 216 cm (from one side) or 416 cm (from the other): not useful (b) m ≈ 0.652; ≈ 0.98 cm.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 12), Chapter 9 (Ray Optics and Optical Instruments), Exercises. </p>
+</div>
+<script>
+const b = document.getElementById('show'), a = document.querySelector('.answer');
+b.addEventListener('click', () => { a.hidden = !a.hidden; b.setAttribute('aria-pressed', String(!a.hidden)); b.textContent = a.hidden ? 'Show answer' : 'Hide answer'; });
+</script>
+</body>
+</html>

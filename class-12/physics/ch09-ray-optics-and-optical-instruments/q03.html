@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 12 Physics · Exercise 9.3</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 12 Physics</a> · <a href="index.html">Ch. 9 Ray Optics and Optical Instruments</a></p>
+      <h1>Exercise 9.3 · Apparent depth of a needle in water</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q02.html">‹ 9.2</a><a href="index.html">All questions</a><a href="q04.html">9.4 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 9.3">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="Rays from a needle at the bottom of 12.5 cm of water bend away from the normal as they leave, so the needle seems to be 9.4 cm deep; in a liquid of index 1.63 it seems only 7.67 cm deep, so the microscope must move up 1.73 cm."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>9.3</b> A tank is filled with water to a height of 12.5 cm. The apparent depth of a needle lying at the bottom of the tank is measured by a microscope to be 9.4 cm. What is the refractive index of water? If water is replaced by a liquid of refractive index 1.63 up to the same height, by what distance would the microscope have to be moved to focus on the needle again?</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Real depth 12.5 cm; apparent depth 9.4 cm; new liquid n = 1.63.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>n of water; how far the microscope moves.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>16 px per cm; viewed nearly straight down (rays drawn wider for clarity).</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>n = real depth/apparent depth = 12.5/9.4 ≈ 1.33.</li>
+          <li>New apparent depth = 12.5/1.63 ≈ 7.67 cm.</li>
+          <li>The needle now seems 9.4 − 7.67 ≈ 1.7 cm higher: the microscope must be moved up by about 1.7 cm.</li>
+        </ol>
+        <p class="final">n ≈ 1.33; move the microscope up by ≈ 1.7 cm.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 12), Chapter 9 (Ray Optics and Optical Instruments), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const CX = 260, YS = 130, S = 16, H = 12.5, XO = 40;   // 16 px per cm
+  const qStages = [
+    { title: 'A needle under water', dur: 5, text: 'Water 12.5 cm deep. A microscope focused on a needle at the bottom sees it at an apparent depth of 9.4 cm.' },
+    { title: 'What is asked', dur: 5, text: 'The refractive index of water. If a liquid of n = 1.63 replaces it (same height), how far must the microscope move?' },
+  ];
+  const stages = [
+    { title: 'Refractive index', dur: 6, text: 'Rays leaving the water bend away from the normal and seem to come from a higher point.', ans: 'n = 12.5/9.4 ≈ 1.33.' },
+    { title: 'Denser liquid', dur: 7, text: 'With n = 1.63 the needle seems 12.5/1.63 ≈ 7.67 cm deep.', ans: 'It seems 1.7 cm higher: move the microscope up ≈ 1.7 cm.' },
+  ];
+  function rays(ctx, n, col) {
+    const yb = YS + S * H, app = H / n;
+    [-1, 1].forEach(sg => { const xs = CX + sg * XO, tw = Math.atan(XO / (S * H)), ta = Math.asin(Math.min(1, n * Math.sin(tw)));
+      ray(ctx, [[CX, yb], [xs, YS], [xs + sg * 110 * Math.sin(ta), YS - 110 * Math.cos(ta)]], col, { lw: 1.8 });
+      ray(ctx, [[xs, YS], [CX, YS + XO / Math.tan(ta)]], col, { dash: [4, 4], heads: false, lw: 1.2 }); });
+    ball(ctx, CX, YS + S * app, 5, col);
+  }
+  function scope(ctx, y) { ctx.save(); ctx.fillStyle = P.objFill2; ctx.strokeStyle = P.ink; ctx.lineWidth = 1.5; ctx.fillRect(CX - 16, y - 90, 32, 70); ctx.strokeRect(CX - 16, y - 90, 32, 70); ctx.fillRect(CX - 10, y - 20, 20, 20); ctx.strokeRect(CX - 10, y - 20, 20, 20); ctx.restore(); label(ctx, 'microscope', CX + 24, y - 60, { weight: 700, size: 12 }); }
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    const st = ans ? stageAt(stages, t) : -1, liq = st >= 1, n = liq ? 1.63 : 12.5 / 9.4;
+    ctx.save(); ctx.fillStyle = liq ? P.accentSoft : P.water; ctx.globalAlpha = 0.6; ctx.fillRect(80, YS, 360, S * H); ctx.restore();
+    wire(ctx, [[80, YS - 40], [80, YS + S * H], [440, YS + S * H], [440, YS - 40]], P.ink, 3);
+    hline(ctx, CX - 30, CX + 30, YS + S * H - 3, P.ink, 3); label(ctx, 'needle', CX + 36, YS + S * H - 12, { weight: 700, size: 12 });
+    vdim(ctx, 470, YS, YS + S * H, P.ink2); label(ctx, '12.5 cm', 480, YS + S * H / 2, { weight: 700, size: 12 });
+    label(ctx, liq ? 'liquid, n = 1.63' : 'water', 100, YS + 20, { weight: 700, size: 13 });
+    const app = H / n, yImg = YS + S * app, yScope = ans ? (st === 0 ? yImg : YS + S * 9.4 - S * (9.4 - app) * smooth(clamp((t - stages[1].t0 - 1) / 3))) : YS + S * 9.4;
+    scope(ctx, yScope - 60);
+    if (ans) {
+      rays(ctx, n, P.accent);
+      label(ctx, `apparent depth ${app.toFixed(2)} cm`, CX + 46, yImg, { weight: 800, size: 13, color: P.accent });
+      if (st >= 1) { hline(ctx, 450, 560, YS + S * 9.4 - 60, P.ink2, 1, [3, 3]); hline(ctx, 450, 560, yScope - 60, P.ink2, 1, [3, 3]); label(ctx, '≈ 1.7 cm up', 560, (YS + S * 9.4 - 60 + yScope - 60) / 2, { align: 'right', weight: 800, size: 13, color: P.force }); }
+      partsPanel(ctx, 630, 34, 300, 'Answers', ['n = 12.5/9.4 ≈ 1.33', 'New apparent depth 7.67 cm: move up ≈ 1.7 cm'], st, false);
+    } else askedPanel(ctx, 630, 34, 300, ['The refractive index of water.', 'How far the microscope must move with a liquid of n = 1.63.']);
+    note(ctx, '16 px per cm; rays drawn wide of the vertical for clarity');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

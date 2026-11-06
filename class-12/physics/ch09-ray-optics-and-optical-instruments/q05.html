@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 12 Physics · Exercise 9.5</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 12 Physics</a> · <a href="index.html">Ch. 9 Ray Optics and Optical Instruments</a></p>
+      <h1>Exercise 9.5 · Light escaping from a bulb under water</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q04.html">‹ 9.4</a><a href="index.html">All questions</a><a href="q06.html">9.6 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 9.5">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="Rays from a bulb 80 cm under water escape only if they hit the surface at less than the critical angle of 48.8°; they leave through a circle of radius 0.91 m and area 2.6 m²; steeper rays are totally reflected."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>9.5</b> A small bulb is placed at the bottom of a tank containing water to a depth of 80cm. What is the area of the surface of water through which light from the bulb can emerge out? Refractive index of water is 1.33. (Consider the bulb to be a point source.)</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Depth h = 0.80 m; n = 1.33.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The area through which light emerges.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>2.5 px per cm.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>Critical angle: sin C = 1/1.33, so C ≈ 48.8°. Rays meeting the surface at more than C are totally reflected.</li>
+          <li>Radius of the circle: r = h tan C = 0.80 × 1.14 ≈ 0.91 m.</li>
+          <li>Area = πr<sup>2</sup> ≈ 3.14 × 0.83 ≈ 2.6 m<sup>2</sup>.</li>
+        </ol>
+        <p class="final">≈ 2.6 m<sup>2</sup>.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 12), Chapter 9 (Ray Optics and Optical Instruments), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const CX = 300, YS = 110, S = 2.5, H = 80, n = 1.33, C = Math.asin(1 / n);   // 2.5 px per cm
+  const qStages = [
+    { title: 'A bulb under water', dur: 5, text: 'A small bulb lies at the bottom of a tank of water 80 cm deep. n = 1.33.' },
+    { title: 'What is asked', dur: 4, text: 'The area of the water surface through which light from the bulb can emerge.' },
+  ];
+  const stages = [
+    { title: 'Critical angle', dur: 8, text: 'Rays reaching the surface at more than the critical angle are totally reflected.', ans: 'sin C = 1/1.33, C ≈ 48.8°.' },
+    { title: 'Circle of light', dur: 5, text: 'Light escapes only through a circle of radius r = h tan C.', ans: 'r = 0.80 × 1.14 ≈ 0.91 m; area = πr² ≈ 2.6 m².' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    const yb = YS + S * H;
+    ctx.save(); ctx.fillStyle = P.water; ctx.globalAlpha = 0.6; ctx.fillRect(20, YS, 570, S * H); ctx.restore();
+    wire(ctx, [[20, YS - 30], [20, yb], [590, yb], [590, YS - 30]], P.ink, 3);
+    ball(ctx, CX, yb - 6, 8, P.ke); label(ctx, 'bulb', CX + 14, yb + 18, { weight: 700, size: 12 });
+    vdim(ctx, 50, YS, yb, P.ink2); label(ctx, '80 cm', 58, (YS + yb) / 2, { weight: 700, size: 12 });
+    if (ans) {
+      const st = stageAt(stages, t), k = clamp(t / 5);
+      [-54, -C * 180 / Math.PI, -32, -12, 12, 32, C * 180 / Math.PI, 54].forEach(dg => {
+        const th = dg * Math.PI / 180, xs = CX + (yb - 6 - YS) * Math.tan(th), crit = Math.abs(Math.abs(dg) - C * 180 / Math.PI) < 0.01;
+        if (Math.abs(th) < C - 1e-6) { const ph = Math.asin(n * Math.sin(th)); ray(ctx, [[CX, yb - 6], [xs, YS], [xs + 80 * Math.sin(ph) * k, YS - 80 * Math.cos(ph) * k]], P.ke, { lw: 1.6 }); }
+        else if (crit) ray(ctx, [[CX, yb - 6], [xs, YS], [xs + Math.sign(th) * 70 * k, YS]], P.force, { lw: 2 });
+        else { const xw = th > 0 ? 585 : 25, f = Math.min(k, (xw - xs) / (xs - CX)); ray(ctx, [[CX, yb - 6], [xs, YS], [xs + (xs - CX) * f, YS + (yb - 6 - YS) * f]], P.ink2, { lw: 1.4, alpha: 0.8 }); }
+      });
+      const r = (yb - 6 - YS) * Math.tan(C);
+      ctx.save(); ctx.strokeStyle = P.ke; ctx.lineWidth = 6; ctx.globalAlpha = 0.7; seg(ctx, CX - r, YS, CX + r, YS); ctx.restore();
+      ctx.save(); ctx.strokeStyle = P.ink; ctx.lineWidth = 1.2; ctx.setLineDash([3, 3]); seg(ctx, CX, yb - 6, CX, YS); ctx.restore();
+      label(ctx, 'C = 48.8°', CX + 40, yb - 70, { weight: 800, size: 13, color: P.force });
+      if (st >= 1) { dim(ctx, CX, CX + r, YS - 40, P.ink2); label(ctx, 'r ≈ 0.91 m', CX + r / 2, YS - 56, { align: 'center', weight: 800, size: 14, color: P.accent }); label(ctx, 'area = πr² ≈ 2.6 m²', CX, 440, { align: 'center', weight: 800, size: 17, color: P.accent }); }
+      label(ctx, 'totally reflected', 470, yb - 30, { align: 'center', weight: 700, size: 12, color: P.ink2 });
+      partsPanel(ctx, 630, 34, 300, 'Working', ['C ≈ 48.8°', 'r = h tan C ≈ 0.91 m; area ≈ 2.6 m²'], st, false);
+    } else askedPanel(ctx, 630, 34, 300, ['The area of the water surface through which light from the bulb can emerge.']);
+    note(ctx, ans ? '2.5 px per cm; ray angles computed (red: at the critical angle)' : '2.5 px per cm');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 12 Physics · Exercise 9.8</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 12 Physics</a> · <a href="index.html">Ch. 9 Ray Optics and Optical Instruments</a></p>
+      <h1>Exercise 9.8 · A lens in a converging beam</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q07.html">‹ 9.7</a><a href="index.html">All questions</a><a href="q09.html">9.9 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 9.8">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A beam heading for P 12 cm beyond a lens: a convex lens of 20 cm pulls the meeting point in to 7.5 cm; a concave lens of 16 cm pushes it out to 48 cm."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>9.8</b> A beam of light converges at a point P. Now a lens is placed in the path of the convergent beam 12 cm from P. At what point does the beam converge if the lens is (a) a convex lens of focal length 20 cm, and (b) a concave lens of focal length 16 cm?</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>P is 12 cm beyond the lens: a virtual object, u = +12 cm. (a) f = +20 cm (b) f = −16 cm. Cartesian sign convention: distances measured from the pole/optical centre, positive in the direction of the incident light.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>Where the beam now converges.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>8 px per cm; dashed: where the beam would have gone.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>1/v − 1/u = 1/f with u = +12 cm.</li>
+          <li>(a) 1/v = 1/20 + 1/12 = 8/60, so v = 7.5 cm: the beam converges 7.5 cm beyond the lens.</li>
+          <li>(b) 1/v = −1/16 + 1/12 = 1/48, so v = 48 cm: it converges 48 cm beyond the lens.</li>
+        </ol>
+        <p class="final">(a) 7.5 cm from the lens (b) 48 cm from the lens.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 12), Chapter 9 (Ray Optics and Optical Instruments), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const LX = 150, A = 270, S = 8, D = 7, HS = [-80, -40, 40, 80];
+  const PX = LX + 12 * S;
+  const qStages = [
+    { title: 'A converging beam', dur: 5, text: 'A beam of light converges towards a point P. A lens is to be placed in its path 12 cm before P.' },
+    { title: 'What is asked', dur: 5, text: 'Where does the beam now converge if the lens is (a) convex, f = 20 cm, (b) concave, f = 16 cm?' },
+  ];
+  const stages = [
+    { title: '(a) Convex lens, f = 20 cm', dur: D, text: 'P acts as a virtual object at u = +12 cm: 1/v = 1/20 + 1/12.', ans: 'v = 7.5 cm: the beam converges sooner, 7.5 cm from the lens.' },
+    { title: '(b) Concave lens, f = 16 cm', dur: D, text: '1/v = −1/16 + 1/12 = 1/48.', ans: 'v = 48 cm: the beam converges farther away, 48 cm from the lens.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    hline(ctx, 20, 590, A, P.ink2, 1);
+    const st = ans ? stageAt(stages, t) : -1;
+    if (st >= 0) lens(ctx, LX, A, 110, st === 0); else vline(ctx, LX, A - 110, A + 110, P.ink2, 1, [4, 4]);
+    ball(ctx, PX, A, 4, P.ink); label(ctx, 'P', PX, A + 18, { align: 'center', weight: 800, size: 14 });
+    dim(ctx, LX, PX, A + 130, P.ink2); label(ctx, '12 cm', (LX + PX) / 2, A + 146, { align: 'center', weight: 700, size: 12 });
+    const v = st === 0 ? 7.5 : 48, QX = LX + v * S, k = ans ? clamp((t - (st === 0 ? 0 : stages[1].t0)) / 3) : 1;
+    HS.forEach(h => {
+      const x0 = 30, y0 = A + h * (PX - x0) / (PX - LX);
+      if (!ans) { ray(ctx, [[x0, y0], [PX, A], [PX + 60, A - h * 60 / (PX - LX)]], P.accent, { lw: 1.8 }); return; }
+      ray(ctx, [[x0, y0], [LX, A + h]], P.accent, { lw: 1.8 });
+      ray(ctx, [[LX, A + h], [PX, A]], P.ink2, { dash: [4, 4], heads: false, lw: 1.2 });
+      const xe = Math.min(590, QX + 50), ye = A + h - h * (xe - LX) / (QX - LX);
+      ray(ctx, [[LX, A + h], [LX + (xe - LX) * k, A + h + (ye - A - h) * k]], P.force, { lw: 2 });
+    });
+    if (ans) {
+      if (k >= 1) { ball(ctx, QX, A, 5, P.force); label(ctx, `${v} cm`, QX, A - 22, { align: 'center', weight: 800, size: 14, color: P.force }); }
+      label(ctx, st === 0 ? '(a) convex, f = 20 cm' : '(b) concave, f = 16 cm', LX, A - 130, { align: 'center', weight: 800, size: 14 });
+      partsPanel(ctx, 630, 34, 300, 'Answers', ['(a) 7.5 cm from the lens', '(b) 48 cm from the lens'], st, false);
+    } else askedPanel(ctx, 630, 34, 300, ['Where the beam converges with (a) a convex lens of 20 cm, (b) a concave lens of 16 cm, placed 12 cm before P.']);
+    note(ctx, '8 px per cm along the axis; dashed: the path to P without the lens');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 12 Physics · Exercise 9.17</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 12 Physics</a> · <a href="index.html">Ch. 9 Ray Optics and Optical Instruments</a></p>
+      <h1>Exercise 9.17 · A light pipe (Fig. 9.28)</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q16.html">‹ 9.16</a><a href="index.html">All questions</a><a href="q18.html">9.18 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 9.17">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="Rays entering the end of a glass fibre at increasing angles: up to 60° to the axis they meet the core–cladding wall beyond the critical angle of 59° and are trapped by total reflection; beyond 60° they leak out."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>9.17</b> (a) Figure 9.28 shows a cross-section of a ‘light pipe’ made of a glass fibre of refractive index 1.68. The outer covering of the pipe is made of a material of refractive index 1.44. What is the range of the angles of the incident rays with the axis of the pipe for which total reflections inside the pipe take place, as shown in the figure. (b) What is the answer if there is no outer covering of the pipe?</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Core n = 1.68; cladding n = 1.44; (b) no cladding (air outside).</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The range of incidence angles for total internal reflection.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Ray paths computed with Snell’s law; the fibre is shortened.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>(a) Critical angle at the core–cladding wall: sin C = 1.44/1.68 = 0.857, C ≈ 59°.</li>
+          <li>Inside, a ray at angle r to the axis meets the wall at 90° − r, so total reflection needs r ≤ 31°.</li>
+          <li>At the end face sin i = 1.68 sin r ≤ 1.68 sin 31° ≈ 0.865, so i ≤ 60°: rays with 0 < i < 60° are trapped.</li>
+          <li>(b) Without cladding, sin C = 1/1.68, C ≈ 36.5°; then r ≤ 53.5°, which needs sin i ≤ 1.68 sin 53.5° ≈ 1.35 — always true. All rays (0 < i < 90°) are totally reflected.</li>
+        </ol>
+        <p class="final">(a) 0 < i < 60° (b) all angles of incidence.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 12), Chapter 9 (Ray Optics and Optical Instruments), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const X0 = 150, X1 = 590, YT = 200, YB = 340, CL = 30, A = 270, D = 12, N1 = 1.68, N2 = 1.44;
+  const deg = Math.PI / 180;
+  const qStages = [
+    { title: 'A light pipe (Fig. 9.28)', dur: 5, text: 'A glass fibre (n = 1.68) with an outer covering (n = 1.44). Rays enter the end face at an angle i to the axis.' },
+    { title: 'What is asked', dur: 4, text: 'The range of i for total internal reflection inside. (b) The range with no covering.' },
+  ];
+  const stages = [
+    { title: 'Sweep the angle', dur: D, text: 'Critical angle at the wall: sin C = 1.44/1.68, C ≈ 59°. The ray meets the wall at 90° − r, where sin i = 1.68 sin r.', ans: 'Trapped while 90° − r ≥ 59°, i.e. r ≤ 31°, i.e. i ≤ 60°.' },
+    { title: 'No covering', dur: 5, text: 'With air outside, C ≈ 36.5°; r can be at most 36.5° (for i = 90°), so the wall angle is at least 53.5°.', ans: '(b) Every ray (0 < i < 90°) is totally reflected.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    const st = ans ? stageAt(stages, t) : -1, clad = st !== 1;
+    if (clad) { ctx.save(); ctx.fillStyle = P.objFill2; ctx.globalAlpha = 0.6; ctx.fillRect(X0, YT - CL, X1 - X0, CL); ctx.fillRect(X0, YB, X1 - X0, CL); ctx.restore(); label(ctx, 'covering n = 1.44', X1 - 10, YT - CL - 12, { align: 'right', weight: 700, size: 12 }); }
+    ctx.save(); ctx.fillStyle = P.water; ctx.globalAlpha = 0.6; ctx.fillRect(X0, YT, X1 - X0, YB - YT); ctx.restore(); label(ctx, 'glass n = 1.68', X1 - 10, A - 52, { align: 'right', weight: 700, size: 12 });
+    hline(ctx, X0 - 120, X1, A, P.ink2, 1, [4, 4]);
+    const iDeg = ans ? (st === 0 ? 75 * clamp(t / (D - 2)) : 85) : 40, i = iDeg * deg, r = Math.asin(Math.sin(i) / N1), C = Math.asin((clad ? N2 : 1) / N1);
+    ray(ctx, [[X0 - 140 * Math.cos(i), A - 140 * Math.sin(i)], [X0, A]], P.force, { lw: 2 });
+    const pts = [[X0, A]]; let x = X0, y = A, dir = 1, ok = (Math.PI / 2 - r) >= C - 1e-9, leak = null;
+    for (let k = 0; k < 40 && x < X1; k++) { const yw = dir > 0 ? YB : YT, dx = Math.abs(yw - y) / Math.tan(Math.max(r, 1e-3)); if (x + dx > X1) { pts.push([X1, y + dir * (X1 - x) * Math.tan(r)]); x = X1; break; } x += dx; y = yw; pts.push([x, y]); if (!ok) { leak = [x, y]; break; } dir = -dir; }
+    ray(ctx, pts, P.force, { lw: 2 });
+    if (leak) { const ph = Math.asin(Math.min(1, N1 * Math.cos(r) / (clad ? N2 : 1))); ray(ctx, [leak, [leak[0] + 60 * Math.sin(ph), leak[1] + 60 * Math.cos(ph)]], P.force, { lw: 2, alpha: 0.6 }); }
+    label(ctx, `i = ${iDeg.toFixed(0)}°`, 60, 120, { weight: 800, size: 16 });
+    if (ans) {
+      label(ctx, ok ? 'trapped (total reflection)' : 'escapes through the wall', 60, 146, { weight: 800, size: 14, color: ok ? P.accent : P.loss });
+      label(ctx, st === 0 ? 'C ≈ 59° at the glass–covering wall' : 'no covering: C ≈ 36.5°', 330, 440, { align: 'center', weight: 700, size: 13 });
+      partsPanel(ctx, 630, 34, 300, 'Answers', ['(a) 0 < i < 60°', '(b) all angles 0 < i < 90°'], st, false);
+    } else askedPanel(ctx, 630, 34, 300, ['(a) The range of angles of incidence (with the axis) for total internal reflection inside the pipe.', '(b) The range if there is no outer covering.']);
+    note(ctx, 'ray paths computed with Snell’s law; fibre shortened');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

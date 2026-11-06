@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 12 Physics · Exercise 9.4</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 12 Physics</a> · <a href="index.html">Ch. 9 Ray Optics and Optical Instruments</a></p>
+      <h1>Exercise 9.4 · From two refractions to a third (Fig. 9.27)</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q03.html">‹ 9.3</a><a href="index.html">All questions</a><a href="q05.html">9.5 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 9.4">
+    <p class="qline"><b>9.4</b> Figures 9.27(a) and (b) show refraction of a ray in air incident at 60° with the normal to a glass-air and water-air interface, respectively. Predict the angle of refraction in glass when the angle of incidence in water is 45° with the normal to a water-glass interface [Fig. 9.27(c)].</p>
+    <p><button type="button" class="btn reveal" id="show" aria-pressed="false" style="margin-left:0">Show answer</button></p>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Fig. 9.27(a): 60° in air, 35° in glass. (b): 60° in air, 47° in water. (c): 45° in water, into glass.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The angle of refraction in glass in (c).</p>
+      </div>
+      <div>
+        <h3>Why there is no animation</h3>
+        <ul>
+          <li>This is a direct calculation with nothing moving to show; the page shows the question and a worked answer.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>n<sub>glass</sub> = sin 60°/sin 35° = 0.866/0.574 ≈ 1.51; n<sub>water</sub> = sin 60°/sin 47° = 0.866/0.731 ≈ 1.18 (values from the figure).</li>
+          <li>Water to glass: n<sub>water</sub> sin 45° = n<sub>glass</sub> sin r, so sin r = 1.18 × 0.707/1.51 ≈ 0.555 and r ≈ 33.7°.</li>
+          <li>(Some printings of the answer give 38.68°; the figure’s values give 33.7°.)</li>
+        </ol>
+        <p class="final">≈ 33.7°.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 12), Chapter 9 (Ray Optics and Optical Instruments), Exercises. </p>
+</div>
+<script>
+const b = document.getElementById('show'), a = document.querySelector('.answer');
+b.addEventListener('click', () => { a.hidden = !a.hidden; b.setAttribute('aria-pressed', String(!a.hidden)); b.textContent = a.hidden ? 'Show answer' : 'Hide answer'; });
+</script>
+</body>
+</html>

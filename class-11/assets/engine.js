@@ -303,6 +303,40 @@ function barMagnet(ctx, x, y, len, w, ang = 0) {
   const c = Math.cos(ang), s = Math.sin(ang), o = { align: 'center', weight: 800, size: Math.min(15, w * 0.7), color: P.sheet, halo: false };
   label(ctx, 'N', x + c * len * 0.3, y + s * len * 0.3, o); label(ctx, 'S', x - c * len * 0.3, y - s * len * 0.3, o);
 }
+/* ---------- optics ---------- */
+// a light ray through a list of points, with small arrowheads mid-way along each long segment
+function ray(ctx, pts, color, o = {}) {
+  const c = color || P.accent, a = o.alpha ?? 1;
+  ctx.save(); ctx.strokeStyle = c; ctx.lineWidth = o.lw ?? 2; ctx.globalAlpha *= a; if (o.dash) ctx.setLineDash(o.dash); poly(ctx, pts); ctx.restore();
+  if (o.heads === false) return;
+  for (let i = 1; i < pts.length; i++) {
+    const [x1, y1] = pts[i - 1], [x2, y2] = pts[i], L = Math.hypot(x2 - x1, y2 - y1); if (L < 36) continue;
+    const ux = (x2 - x1) / L, uy = (y2 - y1) / L, mx = (x1 + x2) / 2, my = (y1 + y2) / 2;
+    arrow(ctx, mx - ux * 5, my - uy * 5, mx + ux * 5, my + uy * 5, c, { lw: 0.5, head: 9, alpha: a });
+  }
+}
+// a thin lens (converging or diverging) centred on (x, y), half-height h
+function lens(ctx, x, y, h, conv = true) {
+  ctx.save(); ctx.fillStyle = P.water; ctx.strokeStyle = P.vel; ctx.lineWidth = 1.5; ctx.beginPath();
+  if (conv) { ctx.moveTo(x, y - h); ctx.quadraticCurveTo(x + 16, y, x, y + h); ctx.quadraticCurveTo(x - 16, y, x, y - h); }
+  else { ctx.moveTo(x - 9, y - h); ctx.lineTo(x + 9, y - h); ctx.quadraticCurveTo(x + 1, y, x + 9, y + h); ctx.lineTo(x - 9, y + h); ctx.quadraticCurveTo(x - 1, y, x - 9, y - h); }
+  ctx.closePath(); ctx.globalAlpha = 0.6; ctx.fill(); ctx.globalAlpha = 1; ctx.stroke(); ctx.restore();
+}
+// a spherical mirror facing left (light comes from the left), pole at (x, y), half-height h, radius R px; hatched behind
+function mirror(ctx, x, y, h, R, concave = true) {
+  const th = Math.asin(Math.min(1, h / R));
+  ctx.save(); ctx.strokeStyle = P.ink; ctx.lineWidth = 3; ctx.beginPath();
+  if (concave) ctx.arc(x - R, y, R, -th, th); else ctx.arc(x + R, y, R, Math.PI - th, Math.PI + th, false);
+  ctx.stroke(); ctx.lineWidth = 1.2; ctx.strokeStyle = P.ink2;
+  for (let k = -h + 6; k <= h; k += 10) { const sx = concave ? x - R + Math.sqrt(R * R - k * k) : x + R - Math.sqrt(R * R - k * k); seg(ctx, sx + 1, y + k, sx + 9, y + k - 7); }
+  ctx.restore();
+}
+// an object or image arrow standing on the axis at (x, y), height h px (negative = inverted); dashed if virtual
+function objArrow(ctx, x, y, h, color, virt = false) {
+  if (Math.abs(h) < 1) return;
+  ctx.save(); if (virt) ctx.setLineDash([5, 4]); ctx.strokeStyle = color; ctx.lineWidth = 3; seg(ctx, x, y, x, y - h * 0.8); ctx.restore();
+  arrow(ctx, x, y - h * 0.75, x, y - h, color, { lw: 3, head: Math.min(12, Math.abs(h) * 0.4) });
+}
 function stageAt(stages, t) { const i = stages.findIndex(s => t < s.t1); return i < 0 ? stages.length - 1 : i; }
 // a stopwatch-style time readout
 function clock(ctx, x, y, t, text) {

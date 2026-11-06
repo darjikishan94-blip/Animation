@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 12 Physics · Exercise 9.11</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 12 Physics</a> · <a href="index.html">Ch. 9 Ray Optics and Optical Instruments</a></p>
+      <h1>Exercise 9.11 · Setting up a compound microscope</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q10.html">‹ 9.10</a><a href="index.html">All questions</a><a href="q12.html">9.12 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 9.11">
+    <p class="qline"><b>9.11</b> A compound microscope consists of an objective lens of focal length 2.0 cm and an eyepiece of focal length 6.25 cm separated by a distance of 15 cm. How far from the objective should an object be placed in order to obtain the final image at (a) the least distance of distinct vision (25 cm), and (b) at infinity? What is the magnifying power of the microscope in each case?</p>
+    <p><button type="button" class="btn reveal" id="show" aria-pressed="false" style="margin-left:0">Show answer</button></p>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>f<sub>o</sub> = 2.0 cm; f<sub>e</sub> = 6.25 cm; separation 15 cm; D = 25 cm.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>Object distance and magnifying power for (a) final image at 25 cm (b) at infinity.</p>
+      </div>
+      <div>
+        <h3>Why there is no animation</h3>
+        <ul>
+          <li>This is a direct calculation with nothing moving to show; the page shows the question and a worked answer.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>(a) Eyepiece: v<sub>e</sub> = −25 cm, so 1/u<sub>e</sub> = −1/25 − 1/6.25 = −0.2, u<sub>e</sub> = −5 cm. The objective’s image is 15 − 5 = 10 cm from it: 1/u<sub>o</sub> = 1/10 − 1/2 = −0.4, u<sub>o</sub> = −2.5 cm.</li>
+          <li>M = (v<sub>o</sub>/|u<sub>o</sub>|)(1 + D/f<sub>e</sub>) = (10/2.5)(1 + 4) = 20.</li>
+          <li>(b) u<sub>e</sub> = −6.25 cm, so v<sub>o</sub> = 15 − 6.25 = 8.75 cm; 1/u<sub>o</sub> = 1/8.75 − 1/2, u<sub>o</sub> ≈ −2.59 cm.</li>
+          <li>M = (8.75/2.59)(25/6.25) ≈ 3.375 × 4 = 13.5.</li>
+        </ol>
+        <p class="final">(a) 2.5 cm; M = 20 (b) ≈ 2.59 cm; M = 13.5.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 12), Chapter 9 (Ray Optics and Optical Instruments), Exercises. </p>
+</div>
+<script>
+const b = document.getElementById('show'), a = document.querySelector('.answer');
+b.addEventListener('click', () => { a.hidden = !a.hidden; b.setAttribute('aria-pressed', String(!a.hidden)); b.textContent = a.hidden ? 'Show answer' : 'Hide answer'; });
+</script>
+</body>
+</html>

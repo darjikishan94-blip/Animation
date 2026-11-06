@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 12 Physics · Exercise 9.22</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 12 Physics</a> · <a href="index.html">Ch. 9 Ray Optics and Optical Instruments</a></p>
+      <h1>Exercise 9.22 · Magnifying glass: card at the focus</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q21.html">‹ 9.21</a><a href="index.html">All questions</a><a href="q23.html">9.23 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 9.22">
+    <p class="qline"><b>9.22</b> A card sheet divided into squares each of size 1 mm<sup>2</sup> is being viewed at a distance of 9 cm through a magnifying glass (a converging lens of focal length 9 cm) held close to the eye. (a) What is the magnification produced by the lens? How much is the area of each square in the virtual image? (b) What is the angular magnification (magnifying power) of the lens? (c) Is the magnification in (a) equal to the magnifying power in (b)? Explain.</p>
+    <p><button type="button" class="btn reveal" id="show" aria-pressed="false" style="margin-left:0">Show answer</button></p>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>u = −9 cm; f = +9 cm; D = 25 cm. (This reprint uses f = 9 cm; older editions had 10 cm.)</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>(a) m and image area (b) magnifying power (c) are they equal?</p>
+      </div>
+      <div>
+        <h3>Why there is no animation</h3>
+        <ul>
+          <li>This is a direct calculation with nothing moving to show; the page shows the question and a worked answer.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>(a) The card is at the focus: 1/v = 1/9 − 1/9 = 0, so the image is at infinity. The linear magnification v/u grows without limit, so the image “area” is not a finite number; only the angle the image subtends is meaningful.</li>
+          <li>(b) Each square (1 mm) subtends 1/90 rad through the lens, against 1/250 rad seen directly at 25 cm: magnifying power = 25/9 ≈ 2.8.</li>
+          <li>(c) No. Linear magnification compares sizes (here unbounded, the image being at infinity); magnifying power compares the angles subtended at the eye, which is what the eye perceives. (With the older f = 10 cm: v = −90 cm, m = 10, image area 100 mm<sup>2</sup>, magnifying power still 25/9 ≈ 2.8.)</li>
+        </ol>
+        <p class="final">(a) Image at infinity; linear magnification unbounded (b) ≈ 2.8 (c) No.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 12), Chapter 9 (Ray Optics and Optical Instruments), Exercises. </p>
+</div>
+<script>
+const b = document.getElementById('show'), a = document.querySelector('.answer');
+b.addEventListener('click', () => { a.hidden = !a.hidden; b.setAttribute('aria-pressed', String(!a.hidden)); b.textContent = a.hidden ? 'Show answer' : 'Hide answer'; });
+</script>
+</body>
+</html>

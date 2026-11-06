@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 12 Physics · Exercise 9.24</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 12 Physics</a> · <a href="index.html">Ch. 9 Ray Optics and Optical Instruments</a></p>
+      <h1>Exercise 9.24 · Making each square 6.25 mm²</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q23.html">‹ 9.23</a><a href="index.html">All questions</a><a href="q25.html">9.25 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 9.24">
+    <p class="qline"><b>9.24</b> What should be the distance between the object in Exercise 9.23 and the magnifying glass if the virtual image of each square in the figure is to have an area of 6.25 mm<sup>2</sup>. Would you be able to see the squares distinctly with your eyes very close to the magnifier?</p>
+    <p><button type="button" class="btn reveal" id="show" aria-pressed="false" style="margin-left:0">Show answer</button></p>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Image area 6.25 mm<sup>2</sup> for 1 mm<sup>2</sup> squares, so m = 2.5; f = 9 cm.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>u; can the image be seen distinctly?</p>
+      </div>
+      <div>
+        <h3>Why there is no animation</h3>
+        <ul>
+          <li>This is a direct calculation with nothing moving to show; the page shows the question and a worked answer.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>v = 2.5u (virtual, same side). 1/v − 1/u = 1/f: 1/(2.5u) − 1/u = 1/9, so u = −5.4 cm and v = −13.5 cm.</li>
+          <li>The image is only 13.5 cm from the eye, closer than the near point (25 cm): it cannot be seen distinctly. (With the older f = 10 cm: u = −6 cm, v = −15 cm, same conclusion.)</li>
+        </ol>
+        <p class="final">5.4 cm; no — the image (13.5 cm) is inside the near point.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 12), Chapter 9 (Ray Optics and Optical Instruments), Exercises. </p>
+</div>
+<script>
+const b = document.getElementById('show'), a = document.querySelector('.answer');
+b.addEventListener('click', () => { a.hidden = !a.hidden; b.setAttribute('aria-pressed', String(!a.hidden)); b.textContent = a.hidden ? 'Show answer' : 'Hide answer'; });
+</script>
+</body>
+</html>
