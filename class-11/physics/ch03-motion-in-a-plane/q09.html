@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 3.9</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 3 Motion in a Plane</a></p>
+      <h1>Exercise 3.9 · Cyclist round a circular park (Fig. 3.20)</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q08.html">‹ 3.8</a><a href="index.html">All questions</a><a href="q10.html">3.10 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 3.9">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A cyclist rides from the centre O to P on the edge, a quarter of the way round the circle to Q, and back to O; the solution adds up the path and shows the zero displacement."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>3.9</b> A cyclist starts from the centre O of a circular park of radius 1 km, reaches the edge P of the park, then cycles along the circumference, and returns to the centre along QO as shown in Fig. 3.20. If the round trip takes 10 min, what is the (a) net displacement, (b) average velocity, and (c) average speed of the cyclist ?</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Radius = 1 km; route O → P → (quarter circle) → Q → O (Fig. 3.20); round trip 10 min.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>(a) Net displacement (b) average velocity (c) average speed.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>10 minutes shown in 12 s.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>(a) He ends where he started: net displacement = 0.</li>
+          <li>(b) Average velocity = displacement / time = 0.</li>
+          <li>(c) Path = OP + arc PQ + QO = 1 + (π/2)(1) + 1 ≈ 3.57 km. Time = 10 min = 1/6 h. Average speed = 3.57 × 6 ≈ 21.4 km h<sup>−1</sup>.</li>
+        </ol>
+        <p class="final">(a) 0 (b) 0 (c) ≈ 21.4 km h<sup>−1</sup></p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 3 (Motion in a Plane), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const OX = 300, OY = 300, R = 180, D = 12, L = 2 + Math.PI / 2;            // 1 km = 180 px; path 3.57 km
+  const at = d => d <= 1 ? [OX + R * d, OY] : d <= 1 + Math.PI / 2 ? ((a) => [OX + R * Math.cos(a), OY - R * Math.sin(a)])(d - 1) : [OX, OY - R * (L - d)];
+  const qStages = [
+    { title: 'Round the park', dur: D + 1, text: 'A cyclist starts at the centre O of a circular park of radius 1 km, rides to P on the edge, along the circumference to Q, and back to O (Fig. 3.20). The round trip takes 10 min.' },
+    { title: 'What is asked', dur: 4, text: 'Find (a) the net displacement, (b) the average velocity, (c) the average speed.' },
+  ];
+  const stages = [
+    { title: 'The round trip', dur: D + 1, text: 'Follow the displacement arrow from O to the cyclist, and the distance ridden.', ans: 'O → P: 1 km; arc P → Q: a quarter circle, π/2 km; Q → O: 1 km.' },
+    { title: 'Displacement and velocity', dur: 4, text: 'He ends where he started.', ans: '(a) Net displacement = 0. (b) Average velocity = 0 / 10 min = 0.' },
+    { title: 'Average speed', dur: 4, text: 'Average speed = total path length / time.', ans: '(c) (2 + π/2) km / (1/6 h) ≈ 3.57 × 6 ≈ 21.4 km/h.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    ctx.save(); ctx.fillStyle = P.leaf; ctx.globalAlpha = 0.15; ctx.beginPath(); ctx.arc(OX, OY, R, 0, Math.PI * 2); ctx.fill(); ctx.restore();
+    ctx.save(); ctx.strokeStyle = P.ink; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(OX, OY, R, 0, Math.PI * 2); ctx.stroke(); ctx.restore();
+    ball(ctx, OX, OY, 4, P.ink); label(ctx, 'O', OX - 14, OY + 14, { weight: 700, size: 15 }); label(ctx, 'P', OX + R + 10, OY, { weight: 700, size: 15 }); label(ctx, 'Q', OX, OY - R - 14, { align: 'center', weight: 700, size: 15 });
+    label(ctx, '1 km', OX + R / 2, OY + 16, { align: 'center', size: 13 });
+    const d = clamp(t / D) * L, [x, y] = at(d);
+    const pts = []; for (let k = 0; k <= 200; k++) { const dd = k / 200 * d; pts.push(at(dd)); }
+    ctx.save(); ctx.strokeStyle = P.vel; ctx.lineWidth = 3; poly(ctx, pts); ctx.restore();
+    ball(ctx, x, y, 8, P.force);
+    if (ans) {
+      if (Math.hypot(x - OX, y - OY) > 4) vec(ctx, OX, OY, x - OX, y - OY, '', P.disp, { lw: 3 });
+      label(ctx, `path ridden: ${d.toFixed(2)} km`, 40, 70, { weight: 700, size: 15, color: P.vel });
+      label(ctx, `displacement: ${(Math.hypot(x - OX, y - OY) / R).toFixed(2)} km`, 40, 96, { weight: 700, size: 15, color: P.disp });
+      clock(ctx, 60, 480, d / L * 10 * 60, `t = ${(d / L * 10).toFixed(1)} min`);
+      partsPanel(ctx, 630, 34, 300, 'Answers', ['Path: 1 + π/2 + 1 ≈ 3.57 km', '(a) displacement 0; (b) average velocity 0', '(c) average speed ≈ 21.4 km/h'], stageAt(stages, t), false);
+    } else askedPanel(ctx, 630, 34, 300, ['(a) The net displacement, (b) the average velocity, (c) the average speed of the cyclist.']);
+    note(ctx, 'uniform speed assumed for the animation; 10 min shown in 12 s');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

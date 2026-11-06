@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 3.15</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 3 Motion in a Plane</a></p>
+      <h1>Exercise 3.15 · Aircraft loop: compare with g</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q14.html">‹ 3.14</a><a href="index.html">All questions</a><a href="q16.html">3.16 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 3.15">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="Seen from above, an aircraft flies a horizontal circle of radius 1 km at 900 km/h; the solution compares its 62.5 m/s² centripetal acceleration with g."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>3.15</b> An aircraft executes a horizontal loop of radius 1.00 km with a steady speed of 900 km/h. Compare its centripetal acceleration with the acceleration due to gravity.</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Radius 1.00 km; speed 900 km/h, steady.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The ratio of centripetal acceleration to g.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Seen from above; the loop takes about 25 s in reality and is shown in 10 s.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>v = 900 km/h = 250 m s<sup>−1</sup>.</li>
+          <li>a = v<sup>2</sup>/r = 250<sup>2</sup>/1000 = 62.5 m s<sup>−2</sup>.</li>
+          <li>a/g = 62.5/9.8 ≈ 6.4.</li>
+        </ol>
+        <p class="final">The centripetal acceleration is about 6.4 g.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 3 (Motion in a Plane), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const V = 250, R = 1000, G = 9.8, A = V * V / R, CX = 280, CY = 260, KR = 0.18, TP = 2 * Math.PI * R / V, SHOW = 10;   // a = 62.5 m/s²
+  const qStages = [
+    { title: 'A horizontal loop', dur: SHOW, text: 'An aircraft flies a horizontal loop of radius 1.00 km at a steady 900 km/h.' },
+    { title: 'What is asked', dur: 4, text: 'Compare its centripetal acceleration with the acceleration due to gravity.' },
+  ];
+  const stages = [
+    { title: 'Speed in m/s', dur: SHOW, text: 'Steady speed round a circle: the acceleration points to the centre.', ans: 'v = 900 km/h = 250 m/s.' },
+    { title: 'Compare with g', dur: 6, text: 'a = v² / r.', ans: 'a = 250² / 1000 = 62.5 m/s²; a/g = 62.5/9.8 ≈ 6.4.' },
+  ];
+  function plane(ctx, x, y, ang) { ctx.save(); ctx.translate(x, y); ctx.rotate(ang); ctx.fillStyle = P.obj; ctx.beginPath(); ctx.moveTo(16, 0); ctx.lineTo(-12, -10); ctx.lineTo(-6, 0); ctx.lineTo(-12, 10); ctx.closePath(); ctx.fill(); ctx.restore(); }
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    label(ctx, 'seen from above', CX, 40, { align: 'center', size: 13, color: P.ink2 });
+    ctx.save(); ctx.strokeStyle = P.ink2; ctx.setLineDash([4, 4]); ctx.beginPath(); ctx.arc(CX, CY, R * KR, 0, Math.PI * 2); ctx.stroke(); ctx.restore();
+    ball(ctx, CX, CY, 4, P.ink); label(ctx, 'r = 1.00 km', CX + 8, CY + 16, { size: 13, weight: 700 });
+    const a = -(t / SHOW) * Math.PI * 2, x = CX + R * KR * Math.cos(a), y = CY + R * KR * Math.sin(a);
+    plane(ctx, x, y, a - Math.PI / 2);
+    vec(ctx, x + Math.sin(a) * 18, y - Math.cos(a) * 18, Math.sin(a) * 50, -Math.cos(a) * 50, ans ? '250 m/s' : '900 km/h', P.vel, { size: 12 });
+    if (ans) {
+      vec(ctx, x, y, (CX - x) / (R * KR) * 70, (CY - y) / (R * KR) * 70, 'a', P.acc, { at: 0.6, italic: true });
+      if (t >= stages[1].t0) {
+        const BX = 500, BY = 470, KB = 5;
+        ctx.fillStyle = P.acc; ctx.fillRect(BX, BY - A * KB, 30, A * KB); ctx.fillStyle = P.ink2; ctx.fillRect(BX + 44, BY - G * KB, 30, G * KB);
+        label(ctx, '62.5', BX + 15, BY - A * KB - 12, { align: 'center', weight: 700, size: 13, color: P.acc }); label(ctx, 'g = 9.8', BX + 59, BY - G * KB - 12, { align: 'center', weight: 700, size: 13 });
+        label(ctx, 'a ≈ 6.4 g', BX + 36, BY + 18, { align: 'center', weight: 800, size: 16, color: P.accent });
+      }
+      partsPanel(ctx, 630, 34, 300, 'Working', ['v = 900 km/h = 250 m/s', 'a = v²/r = 62.5 m/s² ≈ 6.4 g'], stageAt(stages, t), false);
+    } else askedPanel(ctx, 630, 34, 300, ['The centripetal acceleration of the aircraft compared with g.']);
+    note(ctx, `one loop takes ${TP.toFixed(0)} s; shown in 10 s`);
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

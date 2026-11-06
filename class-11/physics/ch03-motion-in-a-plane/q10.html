@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 3.10</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 3 Motion in a Plane</a></p>
+      <h1>Exercise 3.10 · Motorist turning 60° every 500 m</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q09.html">‹ 3.9</a><a href="index.html">All questions</a><a href="q11.html">3.11 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 3.10">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A motorist drives round a regular hexagon of 500 m sides, turning left 60° at each corner; the solution shows the displacement arrow at the third, sixth and eighth turns."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>3.10</b> On an open ground, a motorist follows a track that turns to his left by an angle of 60° after every 500 m. Starting from a given turn, specify the displacement of the motorist at the third, sixth and eighth turn. Compare the magnitude of the displacement with the total path length covered by the motorist in each case.</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Turns left by 60° after every 500 m; start at a turn.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The displacement at the 3rd, 6th and 8th turns, compared with the path length.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Seen from above; 1 px = 2.5 m.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>The track is a regular hexagon of side 500 m.</li>
+          <li>3rd turn: displacement = 1000 m at 60° to the starting direction; path 1500 m; ratio 1000/1500 ≈ 0.67.</li>
+          <li>6th turn: back at the start: displacement 0; path 3000 m; ratio 0.</li>
+          <li>8th turn: displacement = 2 × 500 cos 30° ≈ 866 m at 30° to the starting direction; path 4000 m; ratio ≈ 0.22.</li>
+        </ol>
+        <p class="final">3rd: 1 km (60°), 1.5 km path; 6th: 0, 3 km; 8th: 866 m (30°), 4 km.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 3 (Motion in a Plane), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const S = 200, X0 = 170, Y0 = 440, TS = 1.2;                               // side 500 m = 200 px; 1.2 s per side
+  const V = [[X0, Y0]]; for (let i = 0; i < 8; i++) { const a = i * Math.PI / 3, [x, y] = V[i]; V.push([x + S * Math.cos(a), y - S * Math.sin(a)]); }
+  const posAt = n => { n = clamp(n, 0, 8); const i = Math.min(7, Math.floor(n)), f = n - i; return [V[i][0] + (V[i + 1][0] - V[i][0]) * f, V[i][1] + (V[i + 1][1] - V[i][1]) * f]; };
+  const qStages = [
+    { title: 'Turning left every 500 m', dur: 8 * TS + 1, text: 'On open ground a motorist turns left by 60° after every 500 m, starting from a turn.' },
+    { title: 'What is asked', dur: 4, text: 'Give the displacement at the third, sixth and eighth turns, and compare it with the path length.' },
+  ];
+  const stages = [
+    { title: 'To the 3rd turn', dur: 3 * TS, text: 'The track is a regular hexagon of side 500 m.', ans: '' },
+    { title: 'At the 3rd turn', dur: 4, text: 'He is at the opposite corner of the hexagon.', ans: 'Displacement 1000 m at 60° to the start direction; path 1500 m; ratio ≈ 0.67.' },
+    { title: 'To the 6th turn', dur: 3 * TS, text: 'Three more sides bring him back round.', ans: '' },
+    { title: 'At the 6th turn', dur: 4, text: 'He is back at the start.', ans: 'Displacement 0; path 3000 m; ratio 0.' },
+    { title: 'To the 8th turn', dur: 2 * TS, text: 'Two more sides.', ans: '' },
+    { title: 'At the 8th turn', dur: 4, text: 'He is two sides past the start.', ans: 'Displacement 2 × 500 cos 30° ≈ 866 m at 30° to the start direction; path 4000 m; ratio ≈ 0.22.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    let n;
+    if (!ans) n = clamp(t / TS, 0, 8);
+    else { const st = stageAt(stages, t), u = t - stages[st].t0; n = [u / TS, 3, 3 + u / TS, 6, 6 + u / TS, 8][st]; n = clamp(n, 0, 8); }
+    ctx.save(); ctx.strokeStyle = P.grid; ctx.lineWidth = 1; ctx.setLineDash([4, 4]); poly(ctx, V.slice(0, 7)); ctx.restore();
+    const pts = []; for (let k = 0; k <= Math.floor(n); k++) pts.push(V[k]); pts.push(posAt(n));
+    ctx.save(); ctx.strokeStyle = P.vel; ctx.lineWidth = 3; poly(ctx, pts); ctx.restore();
+    ball(ctx, X0, Y0, 5, P.ink); label(ctx, 'start', X0 - 10, Y0 + 14, { align: 'right', size: 13, weight: 700 });
+    const [x, y] = posAt(n); ball(ctx, x, y, 8, P.force);
+    for (let k = 1; k <= Math.floor(n); k++) if (k < 7 || k === 8) label(ctx, String(k), V[k][0] + (V[k][0] > 300 ? 12 : -12), V[k][1], { align: V[k][0] > 300 ? 'left' : 'right', size: 12, color: P.ink2 });
+    label(ctx, '500 m', (V[0][0] + V[1][0]) / 2, Y0 + 16, { align: 'center', size: 12 });
+    if (ans) {
+      const dx = x - X0, dy = y - Y0, dm = Math.hypot(dx, dy) * 2.5;
+      if (dm > 5) vec(ctx, X0, Y0, dx, dy, `${dm.toFixed(0)} m`, P.accent, { side: -1, at: 0.5, lw: 3 });
+      label(ctx, `path ${(n * 500).toFixed(0)} m`, 40, 60, { weight: 700, size: 15, color: P.vel });
+      label(ctx, `|displacement| ${dm.toFixed(0)} m`, 40, 86, { weight: 700, size: 15, color: P.accent });
+      partsPanel(ctx, 630, 34, 300, 'Displacement vs path', ['3rd turn', '6th turn', '8th turn'], [-1, 0, 0, 1, 1, 2][stageAt(stages, t)], true, ['1000 m at 60° to the start direction; path 1500 m (ratio 0.67)', '0; path 3000 m (ratio 0)', '866 m at 30°; path 4000 m (ratio 0.22)']);
+    } else askedPanel(ctx, 630, 34, 300, ['The displacement at the third, sixth and eighth turns.', 'Its magnitude compared with the total path length in each case.']);
+    note(ctx, 'seen from above; 1 px = 2.5 m');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

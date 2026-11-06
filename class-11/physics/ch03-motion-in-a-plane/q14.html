@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 3.14</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 3 Motion in a Plane</a></p>
+      <h1>Exercise 3.14 · Stone whirled: 14 revolutions in 25 s</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q13.html">‹ 3.13</a><a href="index.html">All questions</a><a href="q15.html">3.15 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 3.14">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="Seen from above, a stone on an 80 cm string goes round 14 times in 25 s; the solution adds its velocity and the acceleration arrow pointing to the centre."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>3.14</b> A stone tied to the end of a string 80 cm long is whirled in a horizontal circle with a constant speed. If the stone makes 14 revolutions in 25 s, what is the magnitude and direction of acceleration of the stone ?</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Radius r = 80 cm = 0.80 m; 14 revolutions in 25 s; constant speed.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The magnitude and direction of the acceleration.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Real time, seen from above.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>ω = 2π × 14/25 ≈ 3.52 rad s<sup>−1</sup>.</li>
+          <li>a = ω<sup>2</sup>r = 3.52<sup>2</sup> × 0.80 ≈ 9.9 m s<sup>−2</sup>.</li>
+          <li>Direction: along the string, towards the centre, at every instant (centripetal).</li>
+        </ol>
+        <p class="final">≈ 9.9 m s<sup>−2</sup>, towards the centre.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 3 (Motion in a Plane), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const N = 14, TT = 25, W = 2 * Math.PI * N / TT, R = 0.8, KR = 200, CX = 300, CY = 270, SP = 2.5, A = W * W * R;   // a ≈ 9.9 m/s²
+  const qStages = [
+    { title: 'Whirled in a circle', dur: TT / SP + 1, text: 'A stone on a string 80 cm long is whirled in a horizontal circle at constant speed: 14 revolutions in 25 s.' },
+    { title: 'What is asked', dur: 4, text: 'What are the magnitude and direction of the stone’s acceleration?' },
+  ];
+  const stages = [
+    { title: '14 revolutions in 25 s', dur: TT / SP + 1, text: 'Uniform circular motion: the speed is constant but the direction of the velocity keeps turning.', ans: 'ω = 2π × 14 / 25 ≈ 3.52 rad/s; v = ωr ≈ 2.81 m/s.' },
+    { title: 'The acceleration', dur: 5, text: 'Centripetal acceleration a = ω²r, directed towards the centre.', ans: 'a = 3.52² × 0.80 ≈ 9.9 m/s², along the string towards the centre.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    label(ctx, 'seen from above', CX, 40, { align: 'center', size: 13, color: P.ink2 });
+    ctx.save(); ctx.strokeStyle = P.ink2; ctx.setLineDash([4, 4]); ctx.beginPath(); ctx.arc(CX, CY, R * KR, 0, Math.PI * 2); ctx.stroke(); ctx.restore();
+    const tr = Math.min(t * SP, TT + (ans ? 100 : 0) * 0), tt = ans && t > stages[0].t1 ? TT + (t - stages[0].t1) : tr, a = -W * tt, x = CX + R * KR * Math.cos(a), y = CY + R * KR * Math.sin(a);
+    ctx.save(); ctx.strokeStyle = P.obj; ctx.lineWidth = 2; seg(ctx, CX, CY, x, y); ctx.restore(); ball(ctx, CX, CY, 5, P.obj); ball(ctx, x, y, 10, P.objFill2);
+    label(ctx, '80 cm', CX - 70, CY + 20, { size: 13, weight: 700 });
+    label(ctx, `revolutions: ${Math.min(N, Math.floor(W * tr / (2 * Math.PI)))}`, 40, 470, { weight: 700, size: 15 });
+    clock(ctx, 60, 60, tr, `t = ${tr.toFixed(1)} s`);
+    if (ans) {
+      vec(ctx, x, y, Math.sin(a) * 60, -Math.cos(a) * 60, 'v', P.vel, { italic: true });
+      vec(ctx, x, y, (CX - x) / (R * KR) * 70, (CY - y) / (R * KR) * 70, 'a ≈ 9.9 m/s²', P.acc, { at: 0.55, size: 13 });
+      partsPanel(ctx, 630, 34, 300, 'Working', ['ω = 2π × 14/25 ≈ 3.52 rad/s', 'a = ω²r = 3.52² × 0.80 ≈ 9.9 m/s², towards the centre'], stageAt(stages, t), false);
+    } else askedPanel(ctx, 630, 34, 300, ['The magnitude and direction of the acceleration of the stone.']);
+    note(ctx, 'shown 2.5 times faster than real');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

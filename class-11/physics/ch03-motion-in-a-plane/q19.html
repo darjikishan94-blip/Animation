@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 3.19</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 3 Motion in a Plane</a></p>
+      <h1>Exercise 3.19 · î + ĵ, î − ĵ and components of A</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q18.html">‹ 3.18</a><a href="index.html">All questions</a><a href="q20.html">3.20 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 3.19">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="On a grid, î + ĵ and î − ĵ are drawn at +45° and −45°, each √2 long; A = 2î + 3ĵ is projected onto those two directions, giving 5/√2 and −1/√2."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>3.19</b> <b>î</b> and <b>ĵ</b> are unit vectors along x- and y- axis respectively. What is the magnitude and direction of the vectors <b>î</b> + <b>ĵ</b> , and <b>î</b> − <b>ĵ</b> ? What are the components of a vector <b>A</b> = 2 <b>î</b> + 3<b>ĵ</b> along the directions of <b>î</b> + <b>ĵ</b> and <b>î</b> − <b>ĵ</b> ? [You may use graphical method]</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li><b>A</b> = 2<b>î</b> + 3<b>ĵ</b>.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>Magnitude and direction of î + ĵ and î − ĵ; components of A along them.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Grid of unit squares, 70 px per unit.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>|î + ĵ| = √(1 + 1) = √2, at 45° above the x-axis. |î − ĵ| = √2, at 45° below the x-axis.</li>
+          <li>Component of A along î + ĵ: A · (î + ĵ)/√2 = (2 + 3)/√2 = 5/√2 ≈ 3.54.</li>
+          <li>Component of A along î − ĵ: A · (î − ĵ)/√2 = (2 − 3)/√2 = −1/√2 ≈ −0.71.</li>
+        </ol>
+        <p class="final">√2 at ±45°; components 5/√2 and −1/√2.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 3 (Motion in a Plane), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const OX = 190, OY = 330, K = 70, X = x => OX + x * K, Y = y => OY - y * K;
+  const qStages = [
+    { title: 'Unit vectors and A', dur: 5, text: 'î and ĵ are unit vectors along x and y. A = 2î + 3ĵ.' },
+    { title: 'What is asked', dur: 4, text: 'Give the magnitude and direction of î + ĵ and î − ĵ, and the components of A along them.' },
+  ];
+  const stages = [
+    { title: 'î + ĵ and î − ĵ', dur: 5, text: 'Each is the diagonal of a unit square.', ans: '|î + ĵ| = |î − ĵ| = √2; î + ĵ at 45° above +x, î − ĵ at 45° below +x.' },
+    { title: 'Along î + ĵ', dur: 5, text: 'Component = A · (unit vector along î + ĵ) = A · (î + ĵ)/√2.', ans: '(2 + 3)/√2 = 5/√2 ≈ 3.54.' },
+    { title: 'Along î − ĵ', dur: 5, text: 'Component = A · (î − ĵ)/√2.', ans: '(2 − 3)/√2 = −1/√2 ≈ −0.71 (it points opposite to î − ĵ).' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    for (let i = -2; i <= 4; i++) { vline(ctx, X(i), Y(4.4), Y(-2.4), P.grid, 1); hline(ctx, X(-2.4), X(4.4), Y(i), P.grid, 1); }
+    arrow(ctx, X(-2.4), OY, X(4.5), OY, P.ink2, { lw: 1.5, head: 8 }); arrow(ctx, OX, Y(-2.4), OX, Y(4.5), P.ink2, { lw: 1.5, head: 8 });
+    vec(ctx, OX, OY, K, 0, 'î', P.ink, { side: 1, at: 0.5, size: 15 }); vec(ctx, OX, OY, 0, -K, 'ĵ', P.ink, { side: 1, at: 0.5, size: 15 });
+    vec(ctx, OX, OY, 2 * K, -3 * K, 'A = 2î + 3ĵ', P.force, { side: -1, at: 1, align: 'left', ax: 6, size: 14 });
+    if (!ans) { askedPanel(ctx, 630, 34, 300, ['The magnitude and direction of î + ĵ and of î − ĵ.', 'The components of A = 2î + 3ĵ along î + ĵ and along î − ĵ.']); note(ctx, 'grid of unit squares; 70 px per unit'); return; }
+    const st = stageAt(stages, t);
+    ctx.save(); ctx.strokeStyle = P.ink2; ctx.setLineDash([2, 5]); seg(ctx, X(-2.3), Y(-2.3), X(4.3), Y(4.3)); seg(ctx, X(-2.3), Y(2.3), X(2.3), Y(-2.3)); ctx.restore();
+    vec(ctx, OX, OY, K, -K, 'î + ĵ', P.vel, { side: 1, at: 0.6, size: 14 }); vec(ctx, OX, OY, K, K, 'î − ĵ', P.acc, { side: -1, at: 0.6, size: 14 });
+    if (st === 0) { label(ctx, '√2 at +45°', X(1) + 8, Y(1) - 18, { weight: 700, size: 13, color: P.vel }); label(ctx, '√2 at −45°', X(1) + 8, Y(-1) + 18, { weight: 700, size: 13, color: P.acc }); }
+    if (st >= 1) { ctx.save(); ctx.strokeStyle = P.force; ctx.setLineDash([4, 4]); seg(ctx, X(2), Y(3), X(2.5), Y(2.5)); ctx.restore(); vec(ctx, OX, OY, 2.5 * K, -2.5 * K, '', P.accent, { lw: 5 }); label(ctx, '5/√2 ≈ 3.54', X(2.5) + 12, Y(2.5) + 10, { weight: 800, size: 14, color: P.accent }); }
+    if (st >= 2) { ctx.save(); ctx.strokeStyle = P.force; ctx.setLineDash([4, 4]); seg(ctx, X(2), Y(3), X(-0.5), Y(0.5)); ctx.restore(); vec(ctx, OX, OY, -0.5 * K, -0.5 * K, '', P.accent, { lw: 5, head: 10 }); label(ctx, '−1/√2 ≈ −0.71', X(-0.5) - 8, Y(0.5) - 14, { align: 'right', weight: 800, size: 14, color: P.accent }); }
+    partsPanel(ctx, 630, 34, 300, 'Answers', ['|î ± ĵ| = √2, at ±45° to the x-axis', 'Along î + ĵ: 5/√2 ≈ 3.54', 'Along î − ĵ: −1/√2 ≈ −0.71'], st, false);
+    note(ctx, 'grid of unit squares; 70 px per unit');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

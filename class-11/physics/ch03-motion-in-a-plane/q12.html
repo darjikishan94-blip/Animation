@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 3.12</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 3 Motion in a Plane</a></p>
+      <h1>Exercise 3.12 · Ball under a 25 m ceiling</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q11.html">‹ 3.11</a><a href="index.html">All questions</a><a href="q13.html">3.13 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 3.12">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="Balls thrown at 40 m/s at different angles in a hall with a 25 m ceiling: steep throws hit the ceiling; the best allowed throw just grazes it and lands about 150 m away."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>3.12</b> The ceiling of a long hall is 25 m high. What is the maximum horizontal distance that a ball thrown with a speed of 40 m s<sup>-1</sup> can go without hitting the ceiling of the hall ?</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Ceiling height 25 m; launch speed 40 m s<sup>−1</sup>. (g = 9.8 m s<sup>−2</sup>.)</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The greatest horizontal range without touching the ceiling.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Thrown from floor level; 3.4 px per metre; flight shown at 2 × speed.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>Range grows with angle up to 45°, but so does height. The best throw just reaches 25 m.</li>
+          <li>H = u<sup>2</sup> sin<sup>2</sup>θ / 2g = 25: sin<sup>2</sup>θ = 25 × 2 × 9.8 / 40<sup>2</sup> ≈ 0.306, so θ ≈ 33.6°.</li>
+          <li>R = u<sup>2</sup> sin 2θ / g = 1600 × sin 67.2° / 9.8 ≈ 150.5 m.</li>
+        </ol>
+        <p class="final">About 150.5 m (at θ ≈ 33.6°).</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 3 (Motion in a Plane), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const U = 40, G = 9.8, HC = 25, K = 3.4, X0 = 45, FY = 440, TH = Math.asin(Math.sqrt(2 * G * HC) / U), SP = 2;   // θ ≈ 33.6°
+  const traj = (th, s) => [X0 + U * Math.cos(th) * s * K, FY - (U * Math.sin(th) * s - 0.5 * G * s * s) * K];
+  const qStages = [
+    { title: 'A long hall', dur: 6, text: 'The ceiling of a long hall is 25 m high. A ball is thrown with a speed of 40 m/s.' },
+    { title: 'What is asked', dur: 4, text: 'What is the greatest horizontal distance the ball can go without hitting the ceiling?' },
+  ];
+  const T45 = (() => { let s = 0; while (traj(Math.PI / 4, s)[1] > FY - HC * K) s += 0.005; return s; })(), TF = 2 * U * Math.sin(TH) / G;
+  const stages = [
+    { title: 'Try 45°', dur: T45 / SP + 1.5, text: '45° gives the greatest range on open ground, but it rises to u²/4g ≈ 40.8 m.', ans: 'At 45° the ball hits the 25 m ceiling.' },
+    { title: 'Just touch the ceiling', dur: TF / SP + 1.5, text: 'The best throw is the one whose top just reaches 25 m: H = u² sin²θ / 2g = 25.', ans: 'sin²θ = 25 × 2 × 9.8 / 1600 ≈ 0.306, θ ≈ 33.6°.' },
+    { title: 'The range', dur: 4, text: 'Range R = u² sin 2θ / g.', ans: 'R = 1600 × sin 67.2° / 9.8 ≈ 150.5 m.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    const CY = FY - HC * K;
+    ctx.fillStyle = P.objFill; ctx.fillRect(20, CY - 14, 580, 14); hline(ctx, 20, 600, CY, P.obj, 2); ground(ctx, 20, 600, FY);
+    vdim(ctx, 590, CY, FY, P.ink2); label(ctx, '25 m', 584, (CY + FY) / 2, { align: 'right', weight: 700, size: 13 });
+    person(ctx, X0 - 20, FY, 0.7);
+    if (!ans) {
+      const th = (35 + 15 * Math.sin(t * 1.2)) * Math.PI / 180;
+      vec(ctx, X0, FY - 4, 70 * Math.cos(th), -70 * Math.sin(th), '40 m/s at θ = ?', P.vel, { side: -1, at: 1, align: 'left', ax: 6, size: 13 });
+      askedPanel(ctx, 630, 34, 300, ['The maximum horizontal distance the ball (thrown at 40 m/s) can go without hitting the 25 m ceiling.']);
+      note(ctx, 'thrown from floor level; 3.4 px per metre'); return;
+    }
+    const st = stageAt(stages, t);
+    { const s = Math.min((st === 0 ? t : stages[0].dur) * SP, T45), pts = []; for (let k = 0; k <= s; k += 0.02) pts.push(traj(Math.PI / 4, k)); const p = traj(Math.PI / 4, s); pts.push(p);
+      trail(ctx, pts, P.force, st === 0 ? 0.9 : 0.4); ball(ctx, p[0], p[1], 6, P.force); if (s >= T45) label(ctx, '45°: hits the ceiling', p[0] + 10, CY + 18, { weight: 700, size: 13, color: P.force }); }
+    if (st >= 1) {
+      const s = Math.min((t - stages[1].t0) * SP, TF), pts = []; for (let k = 0; k <= s; k += 0.02) pts.push(traj(TH, k)); const p = traj(TH, s); pts.push(p);
+      trail(ctx, pts, P.accent, 0.95); ball(ctx, p[0], p[1], 6, P.accent);
+      vec(ctx, X0, FY - 4, 70 * Math.cos(TH), -70 * Math.sin(TH), '33.6°', P.vel, { side: -1, at: 1, align: 'left', ax: 6, size: 13 });
+      if (s >= TF) { dim(ctx, X0, X0 + 150.5 * K, FY + 24, P.accent); label(ctx, 'R ≈ 150.5 m', X0 + 75 * K, FY + 40, { align: 'center', weight: 800, size: 15, color: P.accent }); }
+    }
+    partsPanel(ctx, 630, 34, 300, 'Working (g = 9.8 m/s²)', ['45° would rise to 40.8 m: too high', 'Top just at 25 m: sin²θ = 2gH/u² ≈ 0.306, θ ≈ 33.6°', 'R = u² sin 2θ / g ≈ 150.5 m'], st, false);
+    note(ctx, 'thrown from floor level; 3.4 px per metre; flights shown at 2 × speed');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

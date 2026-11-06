@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 3.8</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 3 Motion in a Plane</a></p>
+      <h1>Exercise 3.8 · Three girls skating (Fig. 3.19)</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q07.html">‹ 3.7</a><a href="index.html">All questions</a><a href="q09.html">3.9 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 3.8">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="Three skaters go from P to Q across a circular rink: A along a curve, B straight across the diameter, C along a wavy path. The solution draws the same displacement arrow PQ for all three."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>3.8</b> Three girls skating on a circular ice ground of radius 200 m start from a point P on the edge of the ground and reach a point Q diametrically opposite to P following different paths as shown in Fig. 3.19. What is the magnitude of the displacement vector for each ? For which girl is this equal to the actual length of path skate ?</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Radius of the ground = 200 m; P and Q diametrically opposite.</li>
+          <li>Paths as in Fig. 3.19 (B goes straight along the diameter).</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The magnitude of each girl’s displacement; for whom it equals the path length.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>The curved paths are drawn to match Fig. 3.19; their lengths are not given.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>Displacement depends only on the start P and end Q: |PQ| = diameter = 2 × 200 = 400 m for all three.</li>
+          <li>Only B skates along the straight line PQ, so only for B is the path length equal to 400 m.</li>
+        </ol>
+        <p class="final">400 m for each; equal to the path length only for girl B.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 3 (Motion in a Plane), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const CX = 300, CY = 270, R = 200, D = 8;                                // 1 px = 1 m
+  const path = [s => [CX - 120 * Math.sin(Math.PI * s), CY + R - 2 * R * s], s => [CX, CY + R - 2 * R * s], s => [CX + 80 * Math.sin(Math.PI * s) + 40 * Math.sin(5 * Math.PI * s) * Math.sin(Math.PI * s), CY + R - 2 * R * s + 25 * Math.sin(3 * Math.PI * s)]];
+  const COL = ['vel', 'accent', 'force'], NAME = ['A', 'B', 'C'];
+  const qStages = [
+    { title: 'Three skaters', dur: D + 1, text: 'Three girls skate from P to Q, diametrically opposite, on a circular ice ground of radius 200 m, by different paths (Fig. 3.19).' },
+    { title: 'What is asked', dur: 4, text: 'What is the magnitude of each girl’s displacement? For whom does it equal the path length?' },
+  ];
+  const stages = [
+    { title: 'Different paths', dur: D + 1, text: 'Each girl’s path is different, but all start at P and end at Q.', ans: 'Displacement depends only on the start and end points.' },
+    { title: 'Displacement', dur: 4, text: 'The displacement is the straight arrow from P to Q: a diameter.', ans: '|PQ| = 2 × 200 = 400 m for each girl.' },
+    { title: 'Path length', dur: 4, text: 'Only one girl skates along the straight line PQ.', ans: 'Only for B is the path length equal to 400 m.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    ctx.save(); ctx.fillStyle = P.water; ctx.globalAlpha = 0.15; ctx.beginPath(); ctx.arc(CX, CY, R, 0, Math.PI * 2); ctx.fill(); ctx.restore();
+    ctx.save(); ctx.strokeStyle = P.ink; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(CX, CY, R, 0, Math.PI * 2); ctx.stroke(); ctx.restore();
+    label(ctx, 'P', CX, CY + R + 16, { align: 'center', weight: 700, size: 15 }); label(ctx, 'Q', CX, CY - R - 14, { align: 'center', weight: 700, size: 15 });
+    const s = clamp(t / D);
+    path.forEach((f, i) => {
+      const pts = []; for (let k = 0; k <= 100 * s; k++) pts.push(f(k / 100));
+      ctx.save(); ctx.strokeStyle = P[COL[i]]; ctx.lineWidth = 2.5; if (pts.length > 1) poly(ctx, pts); ctx.restore();
+      const [x, y] = f(s); ball(ctx, x, y, 7, P[COL[i]]); label(ctx, NAME[i], x + (i === 2 ? 12 : -12), y, { align: i === 2 ? 'left' : 'right', weight: 700, size: 14, color: P[COL[i]] });
+    });
+    if (ans && t >= stages[1].t0) { vec(ctx, CX + 6, CY + R, 0, -2 * R + 4, '', P.ink, { lw: 3 }); label(ctx, 'displacement 400 m', CX + 14, CY + 40, { weight: 800, size: 15, color: P.ink, halo: true }); }
+    if (ans && t >= stages[2].t0) label(ctx, 'B: path = 400 m', CX - 150, CY + R + 40, { weight: 800, size: 15, color: P.accent });
+    if (ans) partsPanel(ctx, 630, 34, 300, 'Answer', ['All start at P and end at Q', '|displacement| = diameter = 400 m for each', 'Equal to the path length only for B'], stageAt(stages, t), false);
+    else askedPanel(ctx, 630, 34, 300, ['The magnitude of the displacement for each girl.', 'For which girl is it equal to the actual length of the path skated?']);
+    note(ctx, 'paths A and C drawn to match Fig. 3.19; 1 px = 1 m');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>
