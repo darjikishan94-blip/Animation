@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 5.15</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 5 Work, Energy and Power</a></p>
+      <h1>Exercise 5.15 · Pump filling a tank 40 m up</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q14.html">‹ 5.14</a><a href="index.html">All questions</a><a href="q16.html">5.16 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 5.15">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A pump at the foot of a building lifts water into a tank 40 m up, filling 30 cubic metres in 15 minutes; the solution works out the useful power and divides by the 30% efficiency."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>5.15</b> A pump on the ground floor of a building can pump up water to fill a tank of volume 30 m<sup>3</sup> in 15 min. If the tank is 40 m above the ground, and the efficiency of the pump is 30%, how much electric power is consumed by the pump ?</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Tank volume 30 m<sup>3</sup>, filled in 15 min; height 40 m; efficiency 30%. (Density of water 10<sup>3</sup> kg m<sup>−3</sup>; g = 9.8 m s<sup>−2</sup>.)</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The electric power consumed.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>15 minutes shown in 10 s; the building is not to scale.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>Mass of water = 30 × 10<sup>3</sup> = 3 × 10<sup>4</sup> kg.</li>
+          <li>Useful work = mgh = 3 × 10<sup>4</sup> × 9.8 × 40 = 1.176 × 10<sup>7</sup> J; useful power = 1.176 × 10<sup>7</sup>/900 ≈ 1.31 × 10<sup>4</sup> W.</li>
+          <li>Electric power = useful power / 0.30 ≈ 4.36 × 10<sup>4</sup> W.</li>
+        </ol>
+        <p class="final">About 43.6 kW.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 5 (Work, Energy and Power), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const V = 30, H = 40, TT = 900, ETA = 0.3, G = 9.8, PU = V * 1000 * G * H / TT, PE = PU / ETA, D = 10, BX = 220, GY = 470, TY = 90;
+  const qStages = [
+    { title: 'Filling the tank', dur: D + 1, text: 'A pump on the ground floor fills a 30 m³ tank, 40 m above the ground, in 15 min. The pump’s efficiency is 30%.' },
+    { title: 'What is asked', dur: 4, text: 'How much electric power does the pump consume?' },
+  ];
+  const stages = [
+    { title: 'Work on the water', dur: D + 1, text: 'The pump must lift 30 m³ of water (3 × 10⁴ kg) through 40 m.', ans: 'mgh = 3 × 10⁴ × 9.8 × 40 = 1.176 × 10⁷ J in 900 s: useful power ≈ 1.31 × 10⁴ W.' },
+    { title: 'Electric power', dur: 5, text: 'Only 30% of the electric power ends up lifting water.', ans: 'P = 1.31 × 10⁴ / 0.30 ≈ 4.36 × 10⁴ W ≈ 43.6 kW.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1); ground(ctx, 30, 590, GY);
+    ctx.fillStyle = P.objFill; ctx.strokeStyle = P.obj; ctx.lineWidth = 2; ctx.fillRect(BX, TY + 60, 160, GY - TY - 60); ctx.strokeRect(BX, TY + 60, 160, GY - TY - 60);
+    for (let r = 0; r < 6; r++) for (let c = 0; c < 3; c++) { ctx.fillStyle = P.sheet; ctx.fillRect(BX + 18 + c * 48, TY + 80 + r * 52, 28, 28); }
+    const f = clamp(t / D);
+    ctx.strokeRect(BX + 20, TY, 120, 60); ctx.fillStyle = P.water; ctx.fillRect(BX + 21, TY + 59 - 58 * f, 118, 58 * f); label(ctx, 'tank 30 m³', BX + 80, TY - 14, { align: 'center', weight: 700, size: 13 });
+    block(ctx, BX - 90, GY - 40, 60, 40, 'pump', P.objFill2);
+    ctx.save(); ctx.strokeStyle = P.obj; ctx.lineWidth = 6; poly(ctx, [[BX - 60, GY - 40], [BX - 60, TY + 10], [BX + 30, TY + 10]]); ctx.strokeStyle = P.water; ctx.lineWidth = 3; ctx.setLineDash([8, 8]); ctx.lineDashOffset = -t * 40; if (f < 1) poly(ctx, [[BX - 60, GY - 40], [BX - 60, TY + 10], [BX + 30, TY + 10]]); ctx.restore();
+    vdim(ctx, BX + 190, TY + 30, GY, P.ink2); label(ctx, '40 m', BX + 198, (TY + GY) / 2, { weight: 700, size: 13 });
+    clock(ctx, 460, 60, f * 15 * 4, `${(f * 15).toFixed(1)} min`);
+    if (!ans) { askedPanel(ctx, 630, 34, 300, ['The electric power consumed by the pump (efficiency 30%).']); note(ctx, '15 minutes shown in 10 s; building not to scale'); return; }
+    label(ctx, `water lifted: ${(f * 3e4).toFixed(0)} kg`, 40, 60, { weight: 700, size: 14 });
+    if (t >= stages[1].t0) { const KB = 0.006; ctx.fillStyle = P.ink2; ctx.fillRect(470, 300 - PE * KB * 0.5, 40, PE * KB * 0.5); ctx.fillStyle = P.accent; ctx.fillRect(530, 300 - PU * KB * 0.5, 40, PU * KB * 0.5); label(ctx, '43.6 kW in', 490, 300 - PE * KB * 0.5 - 12, { align: 'center', size: 12, weight: 700 }); label(ctx, '13.1 kW', 550, 300 - PU * KB * 0.5 - 26, { align: 'center', size: 12, weight: 700, color: P.accent }); label(ctx, 'useful', 550, 300 - PU * KB * 0.5 - 12, { align: 'center', size: 12, weight: 700, color: P.accent }); }
+    partsPanel(ctx, 630, 34, 300, 'Working (g = 9.8 m/s²)', ['mgh = 1.176 × 10⁷ J in 900 s: 1.31 × 10⁴ W useful', 'Electric power = useful / 0.30 ≈ 43.6 kW'], stageAt(stages, t), false);
+    note(ctx, '15 minutes shown in 10 s; building not to scale');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

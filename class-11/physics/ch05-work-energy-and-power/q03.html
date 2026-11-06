@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 5.3</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 5 Work, Energy and Power</a></p>
+      <h1>Exercise 5.3 · Where can the particle be? (Fig. 5.11)</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q02.html">‹ 5.2</a><a href="index.html">All questions</a><a href="q04.html">5.4 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 5.3">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="For each of the four potential-energy graphs of Fig. 5.11, the energy level E is drawn across; regions where V(x) is above E are shaded as forbidden, and a particle moves back and forth only where V(x) ≤ E."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>5.3</b> Given in Fig. 5.11 are examples of some potential energy functions in one dimension. The total energy of the particle is indicated by a cross on the ordinate axis. In each case, specify the regions, if any, in which the particle cannot be found for the given energy. Also, indicate the minimum total energy the particle must have in each case. Think of simple physical contexts for which these potential energy shapes are relevant.</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Fig. 5.11: four V(x) graphs with the total energy E marked.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The forbidden regions; the minimum total energy needed; physical contexts.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>The four graphs follow the shapes in Fig. 5.11; no values are given.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>K = E − V(x) can never be negative, so the particle cannot be where V(x) &gt; E.</li>
+          <li>(a) Cannot be in x &gt; a. Minimum total energy: 0. (e.g. a ball on a floor facing a ledge of height set by V<sub>0</sub>.)</li>
+          <li>(b) V(x) &gt; E everywhere: it cannot be found anywhere. Minimum total energy: V<sub>1</sub>, the lowest level of the graph.</li>
+          <li>(c) Cannot be in x &lt; a or x &gt; b. Minimum total energy: −V<sub>1</sub>. (A particle in a potential well, e.g. a ball in a pit.)</li>
+          <li>(d) Cannot be in −b/2 &lt; x &lt; −a/2 or a/2 &lt; x &lt; b/2. Minimum total energy: −V<sub>1</sub>. (A particle trapped in a well with walls, as in a nucleus.)</li>
+        </ol>
+        <p class="final">(a) x &gt; a; 0 (b) everywhere; V<sub>1</sub> (c) x &lt; a and x &gt; b; −V<sub>1</sub> (d) −b/2 &lt; x &lt; −a/2 and a/2 &lt; x &lt; b/2; −V<sub>1</sub></p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 5 (Work, Energy and Power), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const D = 8;
+  const CASES = [
+    { V: x => x < 0.5 ? 0 : 1.6, E: 1.0, bad: [[0.5, 3]], ok: [-3, 0.5], one: true, min: '0', y0: -0.6, y1: 2.2, lab: [['V₀', 1.6]], xl: [['a', 0.5]] },
+    { V: x => x < -0.5 ? 0.9 : x < 0.6 ? 1.3 : x < 1.3 ? 1.55 : x < 2.0 ? 1.8 : x < 2.4 ? 2.0 : 1.2, E: 0.7, bad: [[-3, 3]], ok: null, min: 'V₁', y0: -0.4, y1: 2.3, lab: [['V₀', 1.3], ['V₃', 2.0]], xl: [['a', 0.6], ['c', 1.3], ['b', 2.0], ['d', 2.4]] },
+    { V: x => x < -0.8 ? 1.5 : x < 1.2 ? -0.8 : 1.5, E: 0.8, bad: [[-3, -0.8], [1.2, 3]], ok: [-0.8, 1.2], min: '−V₁', y0: -1.2, y1: 2.0, lab: [['V₀', 1.5], ['−V₁', -0.8]], xl: [['a', -0.8], ['b', 1.2]] },
+    { V: x => Math.abs(x) < 0.6 ? -1.0 : 2.0 * Math.exp(-(Math.abs(x) - 0.6) * 1.2), E: 0.8, bad: [[-1.36, -0.6], [0.6, 1.36]], ok: [-0.6, 0.6], min: '−V₁', y0: -1.4, y1: 2.4, lab: [['V₀', 2.0], ['−V₁', -1.0]], xl: [['−b/2', -1.36], ['−a/2', -0.6], ['a/2', 0.6], ['b/2', 1.36]] },
+  ];
+  const PARTS = ['(a) a step at x = a', '(b) steps, all above E', '(c) a well between a and b', '(d) a well with sloping walls'];
+  const ANS = ['cannot be in x > a; minimum energy 0', 'cannot be anywhere; minimum energy V₁', 'cannot be in x < a or x > b; minimum −V₁', 'cannot be in −b/2 < x < −a/2 or a/2 < x < b/2; minimum −V₁'];
+  const qStages = partStages(['Graph (a)', 'Graph (b)', 'Graph (c)', 'Graph (d)'], ['Fig. 5.11 (a): the total energy E is marked by the cross on the V axis.', 'Fig. 5.11 (b).', 'Fig. 5.11 (c).', 'Fig. 5.11 (d). In each case: where can the particle not be found, and what is the minimum total energy?'], D);
+  const stages = partStages(qStages.map(s => s.title), ['K = E − V(x) cannot be negative: wherever V(x) is above the E line the particle cannot be. Here V jumps above E at x = a.', 'The whole graph lies above E: there is nowhere the particle can be with this energy.', 'Only the well between a and b lies below E: the particle bounces between the walls.', 'Below E: the flat bottom, and the outer slopes beyond b/2. Between a/2 and b/2 the walls are above E.'], D, ANS);
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    const k = Math.min(3, Math.floor(t / D)), u = t - k * D, c = CASES[k];
+    const g = axes(ctx, { x: 60, y: 70, w: 480, h: 360, x0: -3, x1: 3, y0: c.y0, y1: c.y1, xl: 'x', yl: 'V(x)' });
+    if (ans) c.bad.forEach(([a, b]) => { ctx.save(); ctx.fillStyle = P.force; ctx.globalAlpha = 0.12; ctx.fillRect(g.X(a), g.Y(c.y1), g.X(b) - g.X(a), g.Y(c.y0) - g.Y(c.y1)); ctx.restore(); });
+    plot(ctx, g, c.V, -3, 3, P.vel, 3, 1200);
+    c.lab.forEach(([n, v]) => { hline(ctx, g.X(0) - 5, g.X(0) + 5, g.Y(v), P.ink2, 1.2); label(ctx, n, g.X(0) - 8, g.Y(v), { align: 'right', size: 13, weight: 700 }); });
+    c.xl.forEach(([n, x]) => label(ctx, n, g.X(x), g.Y(0) + 16, { align: 'center', size: 13 }));
+    label(ctx, '×', g.X(0), g.Y(c.E), { align: 'center', weight: 800, size: 18 }); label(ctx, 'E', g.X(0) + 10, g.Y(c.E) - 12, { weight: 700, size: 14 });
+    if (ans) {
+      hline(ctx, g.X(-3), g.X(3), g.Y(c.E), P.accent, 1.5, [6, 4]);
+      if (c.ok) { const [a, b] = c.ok, w = b - a, ph = (u * 0.35) % 2, f = ph < 1 ? ph : 2 - ph; const x = c.one ? Math.max(-2.9, b - Math.abs(1.2 - u * 0.5) * 1.6) : a + 0.05 + (w - 0.1) * f; ball(ctx, g.X(x), g.Y(c.E), 8, P.force); }
+      else label(ctx, 'V(x) > E everywhere: nowhere to be', 300, 470, { align: 'center', weight: 800, size: 16, color: P.force });
+      label(ctx, `minimum total energy: ${c.min}`, 300, 496, { align: 'center', weight: 700, size: 15, color: P.accent });
+    }
+    partsPanel(ctx, 630, 34, 300, ans ? 'Forbidden regions (V > E)' : 'Where can it not be?', PARTS, k, ans, ANS);
+    note(ctx, 'shapes follow Fig. 5.11; no values given');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

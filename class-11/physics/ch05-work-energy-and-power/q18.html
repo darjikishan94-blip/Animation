@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 5.18</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 5 Work, Energy and Power</a></p>
+      <h1>Exercise 5.18 · Pendulum released from horizontal, 5% loss</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q17.html">‹ 5.17</a><a href="index.html">All questions</a><a href="q19.html">5.19 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 5.18">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A pendulum bob released with its string horizontal swings down 1.5 m; an energy bar shows 95% of the potential energy becoming kinetic energy at the bottom, where it moves at 5.3 m/s."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>5.18</b> The bob of a pendulum is released from a horizontal position. If the length of the pendulum is 1.5 m, what is the speed with which the bob arrives at the lowermost point, given that it dissipated 5% of its initial energy against air resistance ?</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Length 1.5 m; released from horizontal; 5% of the initial energy lost.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The speed at the lowest point.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Real time (approximately); 160 px per metre.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>Drop in height = L = 1.5 m; initial energy (relative to the bottom) = mgL.</li>
+          <li>½mv<sup>2</sup> = 0.95 mgL, so v = √(2 × 0.95 × 9.8 × 1.5) = √27.9 ≈ 5.3 m s<sup>−1</sup>.</li>
+        </ol>
+        <p class="final">About 5.3 m s<sup>−1</sup>.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 5 (Work, Energy and Power), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const L = 1.5, G = 9.8, K = 160, PX = 270, PY = 110, V = Math.sqrt(2 * 0.95 * G * L), TS = 2.4;   // v ≈ 5.3 m/s; swing shown slowed
+  const qStages = [
+    { title: 'Released from horizontal', dur: TS + 1, text: 'A pendulum 1.5 m long is released with its string horizontal. On the way down it loses 5% of its initial energy to air resistance.' },
+    { title: 'What is asked', dur: 4, text: 'With what speed does the bob reach the lowest point?' },
+  ];
+  const stages = [
+    { title: 'Energy on the way down', dur: TS + 1, text: 'Measured from the lowest point, the initial energy is mgL. 5% is lost; 95% becomes kinetic energy.', ans: '½ mv² = 0.95 mgL.' },
+    { title: 'The speed', dur: 4, text: 'The mass cancels.', ans: 'v = √(2 × 0.95 × 9.8 × 1.5) ≈ 5.3 m/s.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    hatchRect(ctx, PX - 60, PY - 14, 120, 14, P.obj, P.objFill); hline(ctx, PX - 60, PX + 60, PY, P.obj, 2);
+    ctx.save(); ctx.strokeStyle = P.grid; ctx.setLineDash([4, 4]); ctx.beginPath(); ctx.arc(PX, PY, L * K, 0, Math.PI / 2); ctx.stroke(); ctx.restore();
+    const f = clamp(t / TS), th = Math.PI / 2 * (1 - Math.sin(f * Math.PI / 2)), x = PX + L * K * Math.sin(th), y = PY + L * K * Math.cos(th);
+    ctx.save(); ctx.strokeStyle = P.obj; ctx.lineWidth = 2; seg(ctx, PX, PY, x, y); ctx.restore(); ball(ctx, x, y, 12, P.force);
+    vdim(ctx, PX - 40, PY, PY + L * K, P.ink2); label(ctx, '1.5 m', PX - 48, PY + L * K / 2, { align: 'right', weight: 700, size: 13 });
+    if (!ans) { askedPanel(ctx, 630, 34, 300, ['The speed of the bob at the lowest point, given it loses 5% of its initial energy.']); note(ctx, 'swing shown slowed; 160 px per metre'); return; }
+    const h = (y - PY) / K, pe = 1 - h / L, lost = 0.05 * (1 - pe), ke = 1 - pe - lost, BX = 450, BY = 420, KB = 200;
+    [['PE', pe, P.pe], ['KE', ke, P.ke], ['lost', lost, P.loss]].forEach(([n, v, c], i) => { ctx.fillStyle = c; ctx.fillRect(BX + i * 46, BY - v * KB, 34, v * KB); label(ctx, n, BX + 17 + i * 46, BY + 14, { align: 'center', size: 12, weight: 700 }); label(ctx, `${Math.round(v * 100)}%`, BX + 17 + i * 46, BY - v * KB - 12, { align: 'center', size: 12, weight: 700, color: c }); });
+    hline(ctx, BX - 6, BX + 134, BY, P.ink2, 1);
+    if (f >= 1) { vec(ctx, x, y + 26, V * 14, 0, 'v ≈ 5.3 m/s', P.vel, { side: 1, at: 0.6, size: 13 }); }
+    partsPanel(ctx, 630, 34, 300, 'Working (g = 9.8 m/s²)', ['½ mv² = 0.95 mgL', 'v = √(2 × 0.95 × 9.8 × 1.5) ≈ 5.3 m/s'], stageAt(stages, t), false);
+    note(ctx, 'swing shown slowed; 160 px per metre');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

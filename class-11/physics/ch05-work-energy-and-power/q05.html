@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 5.5</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 5 Work, Energy and Power</a></p>
+      <h1>Exercise 5.5 · Rocket, comet, satellite, carrying a load</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q04.html">‹ 5.4</a><a href="index.html">All questions</a><a href="q06.html">5.6 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 5.5">
+    <p class="qline"><b>5.5</b> Answer the following : (a) The casing of a rocket in flight burns up due to friction. At whose expense is the heat energy required for burning obtained? The rocket or the atmosphere? (b) Comets move around the sun in highly elliptical orbits. The gravitational force on the comet due to the sun is not normal to the comet’s velocity in general. Yet the work done by the gravitational force over every complete orbit of the comet is zero. Why ? (c) An artificial satellite orbiting the earth in very thin atmosphere loses its energy gradually due to dissipation against atmospheric resistance, however small. Why then does its speed increase progressively as it comes closer and closer to the earth ? (d) In Fig. 5.13(i) the man walks 2 m carrying a mass of 15 kg on his hands. In Fig. 5.13(ii), he walks the same distance pulling the rope behind him. The rope goes over a pulley, and a mass of 15 kg hangs at its other end. In which case is the work done greater ?</p>
+    <p><button type="button" class="btn reveal" id="show" aria-pressed="false" style="margin-left:0">Show answer</button></p>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Four situations; in (d), 15 kg moved 2 m by carrying it, and by pulling it up over a pulley.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>Explanations for (a)–(c); which case in (d) needs more work.</p>
+      </div>
+      <div>
+        <h3>Why there is no animation</h3>
+        <ul>
+          <li>This question asks for reasoning, signs or a choice rather than describing one physical situation to follow; the page shows the question and a worked answer.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>(a) The rocket: its own energy (kinetic and chemical) supplies the heat, since the friction slows the rocket.</li>
+          <li>(b) Gravity is a conservative force: the work it does depends only on the start and end points, which coincide after a full orbit.</li>
+          <li>(c) As it loses total energy it drops to a lower orbit. There the potential energy falls by more than the total energy, so the kinetic energy (and speed) increases (for a circular orbit K = −E).</li>
+          <li>(d) (i) Carrying: the force on the mass is vertical and the motion horizontal, so no work is done against gravity. (ii) Pulling: the mass rises 2 m; work = mgh = 15 × 9.8 × 2 = 294 J. More work in (ii).</li>
+        </ol>
+        <p class="final">(a) the rocket (b) gravity is conservative (c) it falls to a lower orbit where K is larger (d) case (ii), 294 J</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 5 (Work, Energy and Power), Exercises. </p>
+</div>
+<script>
+const b = document.getElementById('show'), a = document.querySelector('.answer');
+b.addEventListener('click', () => { a.hidden = !a.hidden; b.setAttribute('aria-pressed', String(!a.hidden)); b.textContent = a.hidden ? 'Show answer' : 'Hide answer'; });
+</script>
+</body>
+</html>

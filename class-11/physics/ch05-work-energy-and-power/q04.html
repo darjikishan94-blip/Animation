@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 5.4</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 5 Work, Energy and Power</a></p>
+      <h1>Exercise 5.4 · Turning back at x = ±2 m (Fig. 5.12)</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q03.html">‹ 5.3</a><a href="index.html">All questions</a><a href="q05.html">5.5 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 5.4">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A particle oscillates in the parabolic potential V = ½kx² with total energy 1 J; its kinetic energy (the gap between the 1 J line and the curve) shrinks to zero at x = ±2 m, where it turns back."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>5.4</b> The potential energy function for a particle executing linear simple harmonic motion is given by V(x) = kx<sup>2</sup>/2, where k is the force constant of the oscillator. For k = 0.5 N m<sup>-1</sup>, the graph of V(x) versus x is shown in Fig. 5.12. Show that a particle of total energy 1 J moving under this potential must ‘turn back’ when it reaches x = ± 2 m.</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>V(x) = kx<sup>2</sup>/2, k = 0.5 N m<sup>−1</sup>; total energy E = 1 J.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>Show the particle turns back at x = ±2 m.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>The mass is not given; the timing of the oscillation is illustrative.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>E = K + V and K ≥ 0, so the particle can only be where V(x) ≤ 1 J.</li>
+          <li>V(x) = 1 J gives ½ × 0.5 × x<sup>2</sup> = 1, x<sup>2</sup> = 4, x = ±2 m.</li>
+          <li>At x = ±2 m, K = 0: the particle stops for an instant, and the restoring force −kx sends it back.</li>
+        </ol>
+        <p class="final">K = 0 at x = ±2 m, so it turns back there.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 5 (Work, Energy and Power), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const KS = 0.5, E = 1, W = 1.6, D = 12;
+  const qStages = [
+    { title: 'V(x) = kx²/2', dur: D, text: 'A particle in linear SHM has V(x) = kx²/2 with k = 0.5 N/m (Fig. 5.12). Its total energy is 1 J.' },
+    { title: 'What is asked', dur: 4, text: 'Show that it must turn back when it reaches x = ±2 m.' },
+  ];
+  const stages = [
+    { title: 'Energy at each point', dur: D, text: 'Total energy E = K + V stays 1 J. The kinetic energy is the gap between the E line and the curve.', ans: 'K = E − V(x) ≥ 0, so the particle stays where V(x) ≤ 1 J.' },
+    { title: 'Turning points', dur: 5, text: 'Set V(x) = E: ½ × 0.5 × x² = 1.', ans: 'x² = 4, x = ±2 m: there K = 0 and the force −kx pushes it back.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    const g = axes(ctx, { x: 60, y: 70, w: 480, h: 280, x0: -3, x1: 3, y0: 0, y1: 2.3, xt: [-2, -1, 1, 2], yt: [1], xl: 'x (m)', yl: 'V(x) (J)' });
+    plot(ctx, g, x => 0.5 * KS * x * x, -3, 3, P.vel);
+    hline(ctx, g.X(-3), g.X(3), g.Y(E), P.accent, 1.5, [6, 4]); label(ctx, 'E = 1 J', g.X(3) - 4, g.Y(E) - 12, { align: 'right', weight: 700, size: 13, color: P.accent });
+    const x = 2 * Math.cos(W * t), V = 0.5 * KS * x * x;
+    ball(ctx, g.X(x), g.Y(V), 8, P.force);
+    if (ans) {
+      ctx.fillStyle = P.ke; ctx.globalAlpha = 0.6; ctx.fillRect(g.X(x) - 5, g.Y(E), 10, g.Y(V) - g.Y(E)); ctx.globalAlpha = 1; label(ctx, 'K', g.X(x) + 10, (g.Y(E) + g.Y(V)) / 2, { weight: 700, size: 13, color: P.ke });
+      if (t >= stages[1].t0) for (const s of [-2, 2]) { ball(ctx, g.X(s), g.Y(E), 6, P.accent); label(ctx, `x = ${s} m`, g.X(s), g.Y(E) - 18, { align: 'center', weight: 800, size: 14, color: P.accent }); }
+    }
+    const LY = 440, px = v => 300 + v * 80;
+    hline(ctx, px(-2.5), px(2.5), LY, P.ink2, 1.5); for (const s of [-2, 0, 2]) { vline(ctx, px(s), LY - 6, LY + 6, P.ink, 1.5); label(ctx, `${s}`, px(s), LY + 18, { align: 'center', size: 12 }); }
+    ball(ctx, px(x), LY - 12, 10, P.objFill2);
+    if (ans) partsPanel(ctx, 630, 34, 300, 'Working', ['K = E − V(x) must not be negative', '½ × 0.5 × x² = 1 → x = ±2 m: K = 0, turns back'], stageAt(stages, t), false);
+    else askedPanel(ctx, 630, 34, 300, ['Show that a particle of total energy 1 J in this potential must turn back at x = ±2 m.']);
+    note(ctx, 'mass not given: the oscillation timing is illustrative');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

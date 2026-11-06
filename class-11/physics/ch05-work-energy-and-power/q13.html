@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 5.13</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 5 Work, Energy and Power</a></p>
+      <h1>Exercise 5.13 · A raindrop falling 500 m</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q12.html">‹ 5.12</a><a href="index.html">All questions</a><a href="q14.html">5.14 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 5.13">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A raindrop falls 500 m: it speeds up with decreasing acceleration through the first 250 m and then falls at a steady 10 m/s; an energy tally shows gravity’s work in each half and the large negative work of air resistance."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>5.13</b> A rain drop of radius 2 mm falls from a height of 500 m above the ground. It falls with decreasing acceleration (due to viscous resistance of the air) until at half its original height, it attains its maximum (terminal) speed, and moves with uniform speed thereafter. What is the work done by the gravitational force on the drop in the first and second half of its journey ? What is the work done by the resistive force in the entire journey if its speed on reaching the ground is 10 m s<sup>–1</sup> ?</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Radius 2 mm (water, density 10<sup>3</sup> kg m<sup>−3</sup>); height 500 m; terminal speed reached at 250 m; speed at the ground 10 m s<sup>−1</sup>.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>Gravity’s work in each half; the work of the resistive force over the whole fall.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>The speed-up in the first half is illustrative; the fall is shown much faster than real.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>Mass = (4/3)π(2 × 10<sup>−3</sup>)<sup>3</sup> × 10<sup>3</sup> ≈ 3.35 × 10<sup>−5</sup> kg.</li>
+          <li>Gravity in each half: mgh = 3.35 × 10<sup>−5</sup> × 9.8 × 250 ≈ 0.082 J (the same for both halves).</li>
+          <li>Kinetic energy at the ground = ½ × 3.35 × 10<sup>−5</sup> × 10<sup>2</sup> ≈ 1.68 × 10<sup>−3</sup> J.</li>
+          <li>Work–energy: W<sub>gravity</sub> + W<sub>resistive</sub> = ΔK, so W<sub>resistive</sub> = 0.00168 − 0.164 ≈ −0.162 J.</li>
+        </ol>
+        <p class="final">0.082 J in each half; resistive work ≈ −0.162 J.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 5 (Work, Energy and Power), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const R = 2e-3, RHO = 1000, M = 4 / 3 * Math.PI * R ** 3 * RHO, G = 9.8, H = 500, VT = 10, K = 0.8, TOPY = 60, D = 10;
+  const sOf = u => u < 0.5 ? 250 * Math.pow(u / 0.5, 1.6) : 250 + 250 * (u - 0.5) / 0.5;   // distance fallen (illustrative timing)
+  const vOf = s => s < 250 ? VT * Math.sqrt(1 - (1 - s / 250) ** 2) : VT;                // speed rises with decreasing acceleration, then steady
+  const qStages = [
+    { title: 'Falling from 500 m', dur: D + 1, text: 'A raindrop of radius 2 mm falls from 500 m. Air resistance makes its acceleration decrease until, at half the height, it reaches its terminal speed; then it falls uniformly.' },
+    { title: 'What is asked', dur: 4, text: 'Work done by gravity in each half; work done by the resistive force over the whole fall, if it reaches the ground at 10 m/s.' },
+  ];
+  const stages = [
+    { title: 'The fall', dur: D + 1, text: 'Gravity does work mgh in each half; air resistance takes energy away all the way down.', ans: 'm = (4/3)π(2 × 10⁻³)³ × 10³ ≈ 3.35 × 10⁻⁵ kg; mg × 250 m ≈ 0.082 J in each half.' },
+    { title: 'Resistive work', dur: 5, text: 'Work–energy theorem: W(gravity) + W(resistance) = K at the ground.', ans: 'K = ½ × 3.35 × 10⁻⁵ × 10² ≈ 0.0017 J; W(resistance) ≈ 0.0017 − 0.164 ≈ −0.162 J.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    const GY = TOPY + H * K; ground(ctx, 40, 300, GY);
+    vline(ctx, 60, TOPY, GY, P.ink2, 1.5); for (const m of [0, 250, 500]) { hline(ctx, 56, 64, TOPY + (H - m) * K, P.ink2, 1.2); label(ctx, `${m} m`, 70, TOPY + (H - m) * K, { size: 12, color: P.ink2 }); }
+    hline(ctx, 60, 300, TOPY + 250 * K, P.ink2, 1, [4, 4]); label(ctx, 'half way: terminal speed', 300, TOPY + 250 * K - 12, { align: 'right', size: 12, color: P.ink2 });
+    const s = sOf(clamp(t / D)), v = vOf(s), y = TOPY + s * K;
+    ctx.fillStyle = P.water; ctx.beginPath(); ctx.moveTo(180, y - 12); ctx.quadraticCurveTo(190, y + 2, 180, y + 8); ctx.quadraticCurveTo(170, y + 2, 180, y - 12); ctx.fill();
+    if (v > 0.3) vec(ctx, 200, y - 4, 0, v * 4, ans ? `${v.toFixed(1)} m/s` : '', P.vel, { side: -1, at: 0.6, align: 'left', ax: 4, size: 12 });
+    if (!ans) { askedPanel(ctx, 630, 34, 300, ['The work done by gravity in the first half and in the second half of the fall.', 'The work done by the resistive force over the whole journey (speed at the ground 10 m/s).']); note(ctx, 'timing illustrative; much faster than real'); return; }
+    const wg = M * G * s, kin = 0.5 * M * v * v, wr = kin - wg, KB = 1500, BX = 420, BY = 470;
+    const bar = (x, val, c, n) => { ctx.fillStyle = c; ctx.fillRect(x, val >= 0 ? BY - val * KB : BY, 34, Math.abs(val) * KB); label(ctx, n, x + 17, BY + 14 + (val < 0 ? Math.abs(val) * KB : 0), { align: 'center', size: 12, weight: 700 }); label(ctx, `${val.toFixed(3)} J`, x + 17, val >= 0 ? BY - val * KB - 12 : BY + Math.abs(val) * KB + 28, { align: 'center', size: 12, weight: 700, color: c }); };
+    hline(ctx, BX - 10, BX + 150, BY, P.ink2, 1);
+    bar(BX, Math.min(wg, M * G * 250), P.force, 'W₁'); bar(BX + 50, Math.max(0, wg - M * G * 250), P.force, 'W₂'); bar(BX + 100, kin, P.ke, 'K');
+    label(ctx, 'gravity: first half, second half', BX + 75, 60, { align: 'center', size: 12, color: P.ink2 });
+    label(ctx, `resistive work so far: ${wr.toFixed(3)} J`, 340, 100, { weight: 700, size: 14, color: P.drag });
+    partsPanel(ctx, 630, 34, 300, 'Working', ['m ≈ 3.35 × 10⁻⁵ kg; W(gravity) = mgh ≈ 0.082 J in each half', 'K at ground ≈ 0.0017 J; W(resistance) = K − W(gravity) ≈ −0.162 J'], stageAt(stages, t), false);
+    note(ctx, 'speed-up in the first half illustrative; fall much faster than real; 0.8 px per metre');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

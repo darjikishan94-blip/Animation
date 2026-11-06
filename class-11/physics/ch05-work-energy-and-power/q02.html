@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 5.2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 5 Work, Energy and Power</a></p>
+      <h1>Exercise 5.2 · Pushed along a rough table for 10 s</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q01.html">‹ 5.1</a><a href="index.html">All questions</a><a href="q03.html">5.3 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 5.2">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A 2 kg block starts from rest and is pushed by 7 N against 1.96 N of friction for 10 s; the solution tallies the work of each force and the kinetic energy gained."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>5.2</b> A body of mass 2 kg initially at rest moves under the action of an applied horizontal force of 7 N on a table with coefficient of kinetic friction = 0.1. Compute the (a) work done by the applied force in 10 s, (b) work done by friction in 10 s, (c) work done by the net force on the body in 10 s, (d) change in kinetic energy of the body in 10 s, and interpret your results.</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>m = 2 kg, starting from rest; applied force 7 N, horizontal; μ<sub>k</sub> = 0.1; time 10 s. (g = 9.8 m s<sup>−2</sup>.)</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>Work by the applied force, by friction and by the net force in 10 s; the change in kinetic energy.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Real time; 3.2 px per metre.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>Friction = μmg = 0.1 × 2 × 9.8 = 1.96 N. Net force = 7 − 1.96 = 5.04 N; a = 5.04/2 = 2.52 m s<sup>−2</sup>.</li>
+          <li>Distance in 10 s: s = ½ × 2.52 × 10<sup>2</sup> = 126 m.</li>
+          <li>(a) W<sub>applied</sub> = 7 × 126 = 882 J. (b) W<sub>friction</sub> = −1.96 × 126 ≈ −247 J. (c) W<sub>net</sub> = 5.04 × 126 ≈ 635 J.</li>
+          <li>(d) v = 2.52 × 10 = 25.2 m s<sup>−1</sup>; ΔK = ½ × 2 × 25.2<sup>2</sup> ≈ 635 J.</li>
+          <li>Interpretation: the work done by the net force equals the change in kinetic energy (work–energy theorem).</li>
+        </ol>
+        <p class="final">(a) 882 J (b) −247 J (c) 635 J (d) 635 J</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 5 (Work, Energy and Power), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const M = 2, F = 7, MU = 0.1, G = 9.8, FR = MU * M * G, A = (F - FR) / M, TT = 10, K = 3.2, X0 = 110, RY = 200;
+  const qStages = [
+    { title: 'Pushed from rest', dur: TT + 1, text: 'A 2 kg body starts from rest on a table and is pushed by a horizontal force of 7 N for 10 s. The coefficient of kinetic friction is 0.1.' },
+    { title: 'What is asked', dur: 4, text: 'Find the work done in 10 s by the applied force, by friction and by the net force, and the change in kinetic energy. Interpret.' },
+  ];
+  const stages = [
+    { title: 'Forces and motion', dur: TT + 1, text: 'Friction = μmg = 0.1 × 2 × 9.8 = 1.96 N. Net force 5.04 N gives a = 2.52 m/s²; in 10 s the body covers ½ × 2.52 × 10² = 126 m.', ans: 'Distance in 10 s = 126 m; speed at 10 s = 25.2 m/s.' },
+    { title: 'Work done', dur: 5, text: 'Work = force × displacement (with sign).', ans: 'Applied: 7 × 126 = 882 J. Friction: −1.96 × 126 ≈ −247 J. Net: 5.04 × 126 ≈ 635 J.' },
+    { title: 'Kinetic energy', dur: 5, text: 'Compare the work of the net force with the kinetic energy gained.', ans: 'ΔK = ½ × 2 × 25.2² ≈ 635 J = work of the net force (work–energy theorem).' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    ctx.fillStyle = P.wood; ctx.fillRect(20, RY, 580, 16); hline(ctx, 20, 600, RY, P.obj, 2);
+    const tm = clamp(t, 0, TT), s = 0.5 * A * tm * tm, v = A * tm, bx = X0 + s * K;
+    block(ctx, bx - 24, RY - 44, 48, 44, '2 kg');
+    vec(ctx, bx + 24, RY - 22, 45, 0, 'F = 7 N', P.force, { side: -1, at: 0.6, size: 13 });
+    if (ans) vec(ctx, bx - 24, RY - 6, -26, 0, 'f = 1.96 N', P.drag, { side: -1, at: 0.5, ay: 22, size: 12 });
+    label(ctx, 'μk = 0.1', 40, RY + 34, { size: 13, color: P.ink2 });
+    clock(ctx, 60, 60, tm, `t = ${tm.toFixed(1)} s`);
+    if (!ans) { askedPanel(ctx, 630, 34, 300, ['Work done in 10 s by (a) the applied force, (b) friction, (c) the net force; (d) the change in kinetic energy. Interpret the results.']); note(ctx, 'real time; 3.2 px per metre; g = 9.8 m/s²'); return; }
+    label(ctx, `distance ${s.toFixed(1)} m   speed ${v.toFixed(2)} m/s`, 320, 70, { weight: 700, size: 15 });
+    const rows = [['applied force', F * s, P.force], ['friction', -FR * s, P.drag], ['net force', (F - FR) * s, P.accent], ['kinetic energy', 0.5 * M * v * v, P.ke]], KB = 0.32, BX = 200;
+    rows.forEach(([n, w, c], i) => { const y = 280 + i * 50; label(ctx, n, BX - 12, y + 10, { align: 'right', size: 14, weight: 700 }); ctx.fillStyle = c; ctx.fillRect(w >= 0 ? BX : BX + w * KB, y, Math.abs(w) * KB, 20); label(ctx, `${w.toFixed(0)} J`, w >= 0 ? BX + w * KB + 8 : BX - 8 + w * KB, y + 10, { align: w >= 0 ? 'left' : 'right', size: 13, weight: 700, color: c }); });
+    vline(ctx, BX, 270, 480, P.ink2, 1);
+    partsPanel(ctx, 630, 34, 300, 'Working (g = 9.8 m/s²)', ['f = 1.96 N, a = 2.52 m/s², s = 126 m', 'W: applied 882 J, friction −247 J, net 635 J', 'ΔK = 635 J = W(net)'], stageAt(stages, t), false);
+    note(ctx, 'real time; 3.2 px per metre; g = 9.8 m/s²');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

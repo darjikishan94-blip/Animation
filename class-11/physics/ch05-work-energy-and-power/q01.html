@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 5.1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 5 Work, Energy and Power</a></p>
+      <h1>Exercise 5.1 · Signs of work done</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><span>‹</span><a href="index.html">All questions</a><a href="q02.html">5.2 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 5.1">
+    <p class="qline"><b>5.1</b> The sign of work done by a force on a body is important to understand. State carefully if the following quantities are positive or negative: (a) work done by a man in lifting a bucket out of a well by means of a rope tied to the bucket. (b) work done by gravitational force in the above case, (c) work done by friction on a body sliding down an inclined plane, (d) work done by an applied force on a body moving on a rough horizontal plane with uniform velocity, (e) work done by the resistive force of air on a vibrating pendulum in bringing it to rest.</p>
+    <p><button type="button" class="btn reveal" id="show" aria-pressed="false" style="margin-left:0">Show answer</button></p>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Five forces and the motions they act during.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>Whether each work done is positive or negative.</p>
+      </div>
+      <div>
+        <h3>Why there is no animation</h3>
+        <ul>
+          <li>This question asks for reasoning, signs or a choice rather than describing one physical situation to follow; the page shows the question and a worked answer.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>Work is positive when the force has a component along the displacement, negative when against it.</li>
+          <li>(a) Positive: the pull is upward, the bucket moves up.</li>
+          <li>(b) Negative: gravity acts down, the bucket moves up.</li>
+          <li>(c) Negative: friction acts up the slope, the body moves down it.</li>
+          <li>(d) Positive: the applied force is along the motion (it balances friction).</li>
+          <li>(e) Negative: air resistance always opposes the motion.</li>
+        </ol>
+        <p class="final">(a) + (b) − (c) − (d) + (e) −</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 5 (Work, Energy and Power), Exercises. </p>
+</div>
+<script>
+const b = document.getElementById('show'), a = document.querySelector('.answer');
+b.addEventListener('click', () => { a.hidden = !a.hidden; b.setAttribute('aria-pressed', String(!a.hidden)); b.textContent = a.hidden ? 'Show answer' : 'Hide answer'; });
+</script>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 5.21</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 5 Work, Energy and Power</a></p>
+      <h1>Exercise 5.21 · Power from a windmill</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q20.html">‹ 5.20</a><a href="index.html">All questions</a><a href="q22.html">5.22 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 5.21">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="Wind blows through a windmill’s swept circle; a column of air of length vt and cross-section A passes through in time t. The solution builds mass, kinetic energy and power from it."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>5.21</b> The blades of a windmill sweep out a circle of area A. (a) If the wind flows at a velocity v perpendicular to the circle, what is the mass of the air passing through it in time t ? (b) What is the kinetic energy of the air ? (c) Assume that the windmill converts 25% of the wind’s energy into electrical energy, and that A = 30 m<sup>2</sup>, v = 36 km/h and the density of air is 1.2 kg m<sup>–3</sup>. What is the electrical power produced ?</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Swept area A; wind speed v perpendicular to it; 25% conversion; A = 30 m<sup>2</sup>, v = 36 km/h, air density 1.2 kg m<sup>−3</sup>.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>(a) Mass of air through it in time t (b) its kinetic energy (c) the electrical power.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>The air column is drawn for a time t of 1 s; wind shown slowed.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>(a) In time t, a column of length vt passes: volume Avt, mass m = ρAvt.</li>
+          <li>(b) K = ½mv<sup>2</sup> = ½ρAv<sup>3</sup>t.</li>
+          <li>(c) v = 10 m s<sup>−1</sup>. Wind power = ½ × 1.2 × 30 × 10<sup>3</sup> = 1.8 × 10<sup>4</sup> W; electrical = 25% = 4.5 × 10<sup>3</sup> W.</li>
+        </ol>
+        <p class="final">(a) ρAvt (b) ½ρAv<sup>3</sup>t (c) 4.5 kW</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 5 (Work, Energy and Power), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const DX = 430, DY = 250, RD = 110, D = 10, VPX = 40;                     // the air column moves 40 px per (illustrative) second
+  const qStages = [
+    { title: 'Wind through the blades', dur: D, text: 'A windmill’s blades sweep a circle of area A. Wind blows at speed v perpendicular to it.' },
+    { title: 'What is asked', dur: 5, text: '(a) Mass of air through it in time t; (b) its kinetic energy; (c) the electrical power for 25% conversion, A = 30 m², v = 36 km/h, ρ = 1.2 kg/m³.' },
+  ];
+  const stages = [
+    { title: 'The air column', dur: D, text: 'In time t, all the air in a cylinder of cross-section A and length vt passes through the circle.', ans: '(a) Volume = Avt, mass m = ρAvt.' },
+    { title: 'Its kinetic energy', dur: 4, text: 'K = ½ mv².', ans: '(b) K = ½ ρAv³t.' },
+    { title: 'Electrical power', dur: 5, text: 'Power = energy per unit time; 25% is converted. v = 36 km/h = 10 m/s.', ans: '(c) ½ × 1.2 × 30 × 10³ = 1.8 × 10⁴ W of wind; 25% gives 4.5 kW.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1); ground(ctx, 30, 590, 480);
+    ctx.fillStyle = P.objFill2; ctx.fillRect(DX + 8, DY, 14, 480 - DY);
+    ctx.save(); ctx.strokeStyle = P.ink2; ctx.setLineDash([4, 4]); ctx.beginPath(); ctx.ellipse(DX, DY, 18, RD, 0, 0, Math.PI * 2); ctx.stroke(); ctx.restore();
+    for (let i = 0; i < 3; i++) { const a = t * 2 + i * 2 * Math.PI / 3; ctx.save(); ctx.strokeStyle = P.obj; ctx.lineWidth = 6; seg(ctx, DX, DY, DX + 10 * Math.cos(a), DY + RD * Math.sin(a)); ctx.restore(); }
+    ball(ctx, DX, DY, 6, P.obj);
+    for (let r = 0; r < 7; r++) for (let c = 0; c < 9; c++) { const x = ((c * 70 + t * VPX * 1.4) % 540) + 30, y = DY - RD + 12 + r * 33; if (x < DX - 20 || x > DX + 20) { ctx.fillStyle = P.vel; ctx.globalAlpha = 0.35; ctx.fillRect(x, y, 14, 2); ctx.globalAlpha = 1; } }
+    vec(ctx, 40, DY - RD - 30, 60, 0, 'wind, v', P.vel, { side: -1, at: 0.5, size: 13 });
+    label(ctx, 'area A', DX + 26, DY - RD + 6, { weight: 700, size: 13 });
+    if (ans) {
+      const L = 4 * VPX, p = clamp(t / (D - 1)), x1 = DX - L + p * L;
+      ctx.save(); ctx.fillStyle = P.accent; ctx.globalAlpha = 0.25; ctx.fillRect(Math.min(x1, DX) - L + (x1 > DX ? 0 : 0), DY - RD, Math.max(0, DX - (x1 - L)), 2 * RD); ctx.restore();
+      ctx.save(); ctx.strokeStyle = P.accent; ctx.lineWidth = 2; ctx.strokeRect(x1 - L, DY - RD, L, 2 * RD); ctx.restore();
+      dim(ctx, x1 - L, x1, DY + RD + 20, P.accent); label(ctx, 'vt', x1 - L / 2, DY + RD + 36, { align: 'center', weight: 800, size: 15, color: P.accent, italic: true });
+      partsPanel(ctx, 630, 34, 300, 'Working', ['(a) m = ρAvt', '(b) K = ½ ρAv³t', '(c) P = 0.25 × ½ × 1.2 × 30 × 10³ = 4.5 kW'], stageAt(stages, t), false);
+    } else askedPanel(ctx, 630, 34, 300, ['(a) The mass of air passing through the circle in time t.', '(b) Its kinetic energy.', '(c) The electrical power produced (25% conversion; A = 30 m², v = 36 km/h, ρ = 1.2 kg/m³).']);
+    note(ctx, 'side view; wind speed and blade turning illustrative');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

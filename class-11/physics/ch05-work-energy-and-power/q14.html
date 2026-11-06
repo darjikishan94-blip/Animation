@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 5.14</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 5 Work, Energy and Power</a></p>
+      <h1>Exercise 5.14 · A molecule hits the wall</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q13.html">‹ 5.13</a><a href="index.html">All questions</a><a href="q15.html">5.15 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 5.14">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A molecule strikes a horizontal wall at 200 m/s, 30° from the normal, and bounces off at the same speed and angle; its velocity component along the wall is unchanged and the normal component reverses."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>5.14</b> A molecule in a gas container hits a horizontal wall with speed 200 m s<sup>–1</sup> and angle 30° with the normal, and rebounds with the same speed. Is momentum conserved in the collision ? Is the collision elastic or inelastic ?</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Speed 200 m s<sup>−1</sup> before and after; angle 30° with the normal.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>Is momentum conserved? Elastic or inelastic?</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Slowed down enormously.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>The molecule’s own momentum is not conserved: its normal component reverses, from the wall’s push. The momentum of molecule + wall (+ container) together is conserved.</li>
+          <li>The speed (so the kinetic energy) is the same before and after: the collision is elastic.</li>
+        </ol>
+        <p class="final">Total momentum (molecule + wall) is conserved; the collision is elastic.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 5 (Work, Energy and Power), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const WY = 400, CX = 300, TH = 30 * Math.PI / 180, L = 300, D = 8;
+  const qStages = [
+    { title: 'The molecule strikes', dur: D, text: 'A gas molecule hits a horizontal wall at 200 m/s, at 30° to the normal, and rebounds with the same speed.' },
+    { title: 'What is asked', dur: 4, text: 'Is momentum conserved in the collision? Is it elastic or inelastic?' },
+  ];
+  const stages = [
+    { title: 'Components', dur: D, text: 'Split the velocity along the wall and along the normal. Along the wall it is unchanged; along the normal it reverses.', ans: 'The molecule’s momentum changes by 2mv cos 30° upward: the wall pushes it.' },
+    { title: 'Momentum', dur: 4, text: 'The wall exerts a force on the molecule, and the molecule an equal and opposite force on the wall.', ans: 'The molecule’s momentum alone is not conserved; that of molecule + wall (+ container) is.' },
+    { title: 'Energy', dur: 4, text: 'Same speed before and after.', ans: 'Kinetic energy unchanged: the collision is elastic.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    hatchRect(ctx, 40, WY, 540, 26, P.obj, P.objFill); hline(ctx, 40, 580, WY, P.obj, 2); label(ctx, 'wall', 50, WY + 44, { size: 13, color: P.ink2 });
+    vline(ctx, CX, WY - 260, WY, P.ink2, 1, [4, 4]); label(ctx, 'normal', CX + 6, WY - 262, { size: 12, color: P.ink2 });
+    const u = clamp(t / (D - 1)), before = u < 0.5, f = before ? 1 - u / 0.5 : (u - 0.5) / 0.5;
+    const x = CX + (before ? -1 : 1) * L * f * Math.sin(TH), y = WY - 10 - L * f * Math.cos(TH);
+    trail(ctx, [[CX - L * Math.sin(TH), WY - 10 - L * Math.cos(TH)], [CX, WY - 10], [CX + L * Math.sin(TH), WY - 10 - L * Math.cos(TH)]], P.ink2, 0.3);
+    ball(ctx, x, y, 9, P.force);
+    const vx = 70 * Math.sin(TH), vy = 70 * Math.cos(TH) * (before ? 1 : -1);
+    vec(ctx, x, y, vx, vy, '200 m/s', P.vel, { side: before ? 1 : -1, at: 0.7, size: 12 });
+    label(ctx, '30°', CX - 30, WY - 70, { weight: 700, size: 13 }); label(ctx, '30°', CX + 14, WY - 70, { weight: 700, size: 13 });
+    if (ans) {
+      vec(ctx, x + 20, y + 30, vx, 0, 'along wall: unchanged', P.disp, { side: 1, at: 0.5, size: 12 });
+      vec(ctx, x - 20, y, 0, vy, before ? 'normal: in' : 'normal: out', P.acc, { side: -1, at: 0.5, align: 'right', ax: -4, size: 12 });
+      if (!before) vec(ctx, CX, WY - 10, 0, -110, 'Δp = 2mv cos 30°', P.force, { side: 1, at: 0.8, align: 'left', ax: 6, size: 13 });
+      partsPanel(ctx, 630, 34, 300, 'Answers', ['Along the wall: unchanged; normal: reversed', 'Momentum of molecule + wall is conserved (not of the molecule alone)', 'Same speed: elastic'], stageAt(stages, t), false);
+    } else askedPanel(ctx, 630, 34, 300, ['Is momentum conserved in the collision?', 'Is the collision elastic or inelastic?']);
+    note(ctx, 'enormously slowed down');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

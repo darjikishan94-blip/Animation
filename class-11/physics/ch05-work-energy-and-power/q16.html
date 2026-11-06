@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 5.16</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 5 Work, Energy and Power</a></p>
+      <h1>Exercise 5.16 · Three ball bearings (Fig. 5.14)</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q15.html">‹ 5.15</a><a href="index.html">All questions</a><a href="q17.html">5.17 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 5.16">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="Ball 1 moving at V hits balls 2 and 3 at rest. The three outcomes of Fig. 5.14 are checked for momentum and kinetic energy; only (ii), ball 1 stopping and ball 3 leaving at V, keeps both."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>5.16</b> Two identical ball bearings in contact with each other and resting on a frictionless table are hit head-on by another ball bearing of the same mass moving initially with a speed V. If the collision is elastic, which of the following (Fig. 5.14) is a possible result after collision ?</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Three identical balls; 1 moves at V into 2 and 3 at rest, in contact; elastic collision; frictionless table.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>Which outcome in Fig. 5.14 is possible.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Speeds to scale with V; the outcomes are shown one after another.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>Before: momentum mV, kinetic energy ½mV<sup>2</sup>.</li>
+          <li>(i) 1 at rest, 2 and 3 at V/2: momentum mV ✓, but K = 2 × ½m(V/2)<sup>2</sup> = ¼mV<sup>2</sup> ✗.</li>
+          <li>(ii) 1 and 2 at rest, 3 at V: momentum mV ✓, K = ½mV<sup>2</sup> ✓.</li>
+          <li>(iii) all three at V/3: momentum mV ✓, but K = 3 × ½m(V/3)<sup>2</sup> = (1/6)mV<sup>2</sup> ✗.</li>
+        </ol>
+        <p class="final">Case (ii).</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 5 (Work, Energy and Power), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const R = 14, Y0 = 110, KV = 90;
+  const OUT = [{ n: '(i)', v: [0, 0.5, 0.5], p: 'mV', k: '¼ mV²', ok: false }, { n: '(ii)', v: [0, 0, 1], p: 'mV', k: '½ mV²', ok: true }, { n: '(iii)', v: [1 / 3, 1 / 3, 1 / 3], p: 'mV', k: '⅙ mV²', ok: false }];
+  const qStages = [
+    { title: 'Head-on', dur: 4, text: 'Ball 1 moves at V towards balls 2 and 3, at rest and touching, on a frictionless table. The collision is elastic.' },
+    { title: 'Possible results', dur: 6, text: 'Fig. 5.14 offers three results. Which one is possible?' },
+  ];
+  const stages = [
+    { title: 'Before', dur: 4, text: 'Before: momentum mV, kinetic energy ½ mV².', ans: 'Both must be the same afterwards (elastic collision).' },
+    { title: 'Check each result', dur: 7, text: 'Every result keeps momentum mV. Check the kinetic energy.', ans: '(i) ¼ mV² ✗   (ii) ½ mV² ✓   (iii) ⅙ mV² ✗' },
+    { title: 'What happens', dur: 5, text: 'The impulse passes through ball 2 to ball 3.', ans: 'Case (ii): balls 1 and 2 stop, ball 3 moves off at V.' },
+  ];
+  function row(ctx, y, xs, vs, lab) {
+    xs.forEach((x, i) => { ball(ctx, x, y, R, [P.vel, P.ink, P.ke][i]); label(ctx, String(i + 1), x, y - 24, { align: 'center', size: 12, weight: 700 }); if (vs[i] > 0) vec(ctx, x + R + 2, y + 24, vs[i] * KV, 0, vs[i] === 1 ? 'V' : vs[i] === 0.5 ? 'V/2' : 'V/3', P.vel, { side: 1, at: 0.6, size: 12 }); });
+    if (lab) label(ctx, lab, 40, y, { weight: 700, size: 14 });
+  }
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1); hline(ctx, 30, 590, Y0 + R, P.ink2, 1);
+    const st = ans ? stageAt(stages, t) : (t < 4 ? 0 : 1);
+    if (st === 0) { const x1 = 120 + 160 * clamp(t / 3.5); row(ctx, Y0, [x1, 300 + 2 * R, 300 + 4 * R], [1, 0, 0], 'before'); }
+    else if (st < 2) row(ctx, Y0, [300, 300 + 2 * R, 300 + 4 * R], [0, 0, 0], 'contact');
+    else { const s = t - stages[2].t0; row(ctx, Y0, [300, 300 + 2 * R, Math.min(500, 300 + 4 * R + s * 40)], [0, 0, 1], 'after'); }
+    if (st >= 1 || !ans) if (t >= 4) OUT.forEach((o, i) => {
+      const y = 230 + i * 100; hline(ctx, 30, 590, y + R, P.grid, 1);
+      row(ctx, y, i === 2 ? [300, 300 + 2 * R, 300 + 4 * R] : i === 1 ? [240, 240 + 2 * R, 380] : [240, 360, 360 + 2 * R], o.v, o.n);
+      if (ans) { label(ctx, `p = ${o.p} ✓   K = ${o.k} ${o.ok ? '✓' : '✗'}`, 420, y + 40, { size: 13, weight: 700, color: o.ok ? P.accent : P.force }); }
+    });
+    if (ans) partsPanel(ctx, 630, 34, 300, 'Check p and K', ['Before: p = mV, K = ½ mV²', '(i) K = ¼ mV² ✗; (ii) K = ½ mV² ✓; (iii) K = ⅙ mV² ✗', 'Only (ii) is possible'], st, false);
+    else askedPanel(ctx, 630, 34, 300, ['Which result of Fig. 5.14, (i), (ii) or (iii), is possible after the elastic collision?']);
+    note(ctx, 'equal masses; speeds to scale with V');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

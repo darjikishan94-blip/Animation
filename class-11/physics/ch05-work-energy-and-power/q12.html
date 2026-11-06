@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 5.12</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 5 Work, Energy and Power</a></p>
+      <h1>Exercise 5.12 · Electron or proton: which is faster?</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q11.html">‹ 5.11</a><a href="index.html">All questions</a><a href="q13.html">5.13 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 5.12">
+    <p class="qline"><b>5.12</b> An electron and a proton are detected in a cosmic ray experiment, the first with kinetic energy 10 keV, and the second with 100 keV. Which is faster, the electron or the proton ? Obtain the ratio of their speeds. (electron mass = 9.11×10<sup>-31</sup> kg, proton mass = 1.67×10<sup>–27</sup> kg, 1 eV = 1.60 ×10<sup>–19</sup> J).</p>
+    <p><button type="button" class="btn reveal" id="show" aria-pressed="false" style="margin-left:0">Show answer</button></p>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Electron: K = 10 keV, m = 9.11 × 10<sup>−31</sup> kg. Proton: K = 100 keV, m = 1.67 × 10<sup>−27</sup> kg. 1 eV = 1.60 × 10<sup>−19</sup> J.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>Which is faster, and the ratio of speeds.</p>
+      </div>
+      <div>
+        <h3>Why there is no animation</h3>
+        <ul>
+          <li>This is a short calculation with no motion to show; the page shows the question and a worked answer.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>v = √(2K/m).</li>
+          <li>Electron: K = 1.6 × 10<sup>−15</sup> J, v<sub>e</sub> = √(3.2 × 10<sup>−15</sup> / 9.11 × 10<sup>−31</sup>) ≈ 5.9 × 10<sup>7</sup> m s<sup>−1</sup>.</li>
+          <li>Proton: K = 1.6 × 10<sup>−14</sup> J, v<sub>p</sub> = √(3.2 × 10<sup>−14</sup> / 1.67 × 10<sup>−27</sup>) ≈ 4.4 × 10<sup>6</sup> m s<sup>−1</sup>.</li>
+          <li>v<sub>e</sub>/v<sub>p</sub> ≈ 13.5.</li>
+        </ol>
+        <p class="final">The electron; v<sub>e</sub> : v<sub>p</sub> ≈ 13.5 : 1.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 5 (Work, Energy and Power), Exercises. </p>
+</div>
+<script>
+const b = document.getElementById('show'), a = document.querySelector('.answer');
+b.addEventListener('click', () => { a.hidden = !a.hidden; b.setAttribute('aria-pressed', String(!a.hidden)); b.textContent = a.hidden ? 'Show answer' : 'Hide answer'; });
+</script>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 5.19</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 5 Work, Energy and Power</a></p>
+      <h1>Exercise 5.19 · Trolley leaking sand</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q18.html">‹ 5.18</a><a href="index.html">All questions</a><a href="q20.html">5.20 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 5.19">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A trolley carrying a sandbag rolls at 27 km/h while sand trickles out of a hole; the falling sand keeps the trolley’s horizontal speed, so the trolley’s speed stays 27 km/h."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>5.19</b> A trolley of mass 300 kg carrying a sandbag of 25 kg is moving uniformly with a speed of 27 km/h on a frictionless track. After a while, sand starts leaking out of a hole on the floor of the trolley at the rate of 0.05 kg s<sup>–1</sup>. What is the speed of the trolley after the entire sand bag is empty ?</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Trolley 300 kg; sandbag 25 kg; 27 km/h; frictionless track; sand leaks at 0.05 kg s<sup>−1</sup>.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The trolley’s speed once the bag is empty.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>The 500 s of leaking is shown in 12 s.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>The sand falls straight down relative to the trolley, so as it leaves it still has the trolley’s horizontal velocity.</li>
+          <li>No horizontal force acts on the trolley (frictionless, and the leaking sand pushes nothing back).</li>
+          <li>So its speed does not change.</li>
+        </ol>
+        <p class="final">27 km/h (unchanged).</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 5 (Work, Energy and Power), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const RY = 330, X0 = 60, VPX = 28, D = 12, RATE = 0.05, MS = 25;           // drawn at 38 px/s (slowed)
+  const qStages = [
+    { title: 'Leaking sand', dur: D + 1, text: 'A 300 kg trolley carrying a 25 kg sandbag moves uniformly at 27 km/h on a frictionless track. Sand leaks out of a hole in the floor at 0.05 kg/s.' },
+    { title: 'What is asked', dur: 4, text: 'What is the trolley’s speed once the sandbag is empty?' },
+  ];
+  const stages = [
+    { title: 'Sand leaving', dur: D + 1, text: 'Each grain of sand leaves the trolley with the trolley’s own horizontal velocity: it simply drops through the hole.', ans: 'The leaking sand exerts no horizontal force on the trolley.' },
+    { title: 'The speed', dur: 4, text: 'No horizontal external force acts on the trolley (frictionless track).', ans: 'Its speed stays 27 km/h after the bag is empty.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    hline(ctx, 20, 600, RY + 8, P.ink2, 2); hline(ctx, 20, 600, RY + 16, P.ink2, 2);
+    const f = clamp(t / D), x = X0 + VPX * f * D, sand = MS * (1 - f);
+    for (let i = 0; i < 160 * f; i++) { const tf = i / 160 * D, lx = X0 + 60 + VPX * tf; ctx.fillStyle = P.sand; ctx.fillRect(lx - 1, RY + 2, 3, 3); }
+    for (let i = 0; i < 6 && f < 1; i++) { const age = ((t * 3 + i / 6) % 1) * 0.3, gx = x + 60 + VPX * age * 0, gy = RY - 16 + age * 60; if (gy < RY + 2) { ctx.fillStyle = P.sand; ctx.fillRect(gx - 1, gy, 3, 3); } }
+    block(ctx, x, RY - 40, 120, 36, '300 kg', P.objFill2); for (const wx of [x + 20, x + 100]) { ctx.fillStyle = P.obj; ctx.beginPath(); ctx.arc(wx, RY - 2, 8, 0, Math.PI * 2); ctx.fill(); }
+    const hb = 40 * sand / MS; if (hb > 1) { ctx.fillStyle = P.sand; ctx.fillRect(x + 36, RY - 40 - hb, 48, hb); }
+    label(ctx, `sand: ${sand.toFixed(1)} kg`, x + 60, RY - 96, { align: 'center', size: 13, weight: 700 });
+    vec(ctx, x + 126, RY - 22, 40, 0, '27 km/h', P.vel, { side: -1, at: 0.5, size: 13 });
+    clock(ctx, 60, 60, f * 500 / 10, `t = ${(f * 500).toFixed(0)} s`);
+    if (ans) { label(ctx, 'speedometer: 27 km/h, all the way', 300, 430, { align: 'center', weight: 800, size: 16, color: P.accent }); partsPanel(ctx, 630, 34, 300, 'Answer', ['Sand drops with the trolley’s velocity: no horizontal push', 'Speed unchanged: 27 km/h'], stageAt(stages, t), false); }
+    else askedPanel(ctx, 630, 34, 300, ['The speed of the trolley after the entire sandbag is empty.']);
+    note(ctx, '25 kg at 0.05 kg/s takes 500 s, shown in 12 s; trolley drawn much slower than 27 km/h');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

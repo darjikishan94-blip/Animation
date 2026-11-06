@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 5.20</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 5 Work, Energy and Power</a></p>
+      <h1>Exercise 5.20 · Work for v = a x^(3/2)</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q19.html">‹ 5.19</a><a href="index.html">All questions</a><a href="q21.html">5.21 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 5.20">
+    <p class="qline"><b>5.20</b> A body of mass 0.5 kg travels in a straight line with velocity v = a x<sup>3/2</sup> where a = 5 m<sup>–1/2</sup> s<sup>–1</sup>. What is the work done by the net force during its displacement from x = 0 to x = 2 m ?</p>
+    <p><button type="button" class="btn reveal" id="show" aria-pressed="false" style="margin-left:0">Show answer</button></p>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>m = 0.5 kg; v = a x<sup>3/2</sup>, a = 5 m<sup>−1/2</sup> s<sup>−1</sup>; from x = 0 to 2 m.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The work done by the net force.</p>
+      </div>
+      <div>
+        <h3>Why there is no animation</h3>
+        <ul>
+          <li>This is a short calculation with no motion to show; the page shows the question and a worked answer.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>At x = 0: v = 0. At x = 2 m: v = 5 × 2<sup>3/2</sup> ≈ 14.1 m s<sup>−1</sup>, v<sup>2</sup> = 25 × 8 = 200.</li>
+          <li>Work = ΔK = ½ × 0.5 × 200 − 0 = 50 J.</li>
+        </ol>
+        <p class="final">50 J</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 5 (Work, Energy and Power), Exercises. </p>
+</div>
+<script>
+const b = document.getElementById('show'), a = document.querySelector('.answer');
+b.addEventListener('click', () => { a.hidden = !a.hidden; b.setAttribute('aria-pressed', String(!a.hidden)); b.textContent = a.hidden ? 'Show answer' : 'Hide answer'; });
+</script>
+</body>
+</html>
