@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 9 Science · Exercise 10.14</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 9 Science</a> · <a href="index.html">Ch. 10 Sound Waves: Characteristics and Applications</a></p>
+      <h1>Exercise 10.14 · Two waves at 345 m/s (Fig. 10.33)</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q13.html">‹ 10.13</a><a href="index.html">All questions</a><a href="q15.html">10.15 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 10.14">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="Wave A repeats every 2.5 cm and wave B every 5.0 cm; at 345 m/s their frequencies are 13 800 Hz and 6900 Hz."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>10.14</b> The graphical representation of two sound waves A and B propagating at the same speed of 345 m s<sup>–1</sup> is shown in Fig. 10.33. What is the wavelength of each of them? Also, calculate their frequencies.</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Fig. 10.33: A repeats every 2.5 cm; B every 5.0 cm; v = 345 m/s for both.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>λ and ν of each.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Curves drawn from Fig. 10.33; 70 px per cm.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>λ<sub>A</sub> = 2.5 cm = 0.025 m: ν<sub>A</sub> = 345/0.025 = 13 800 Hz.</li>
+          <li>λ<sub>B</sub> = 5.0 cm = 0.050 m: ν<sub>B</sub> = 345/0.050 = 6900 Hz.</li>
+        </ol>
+        <p class="final">A: 2.5 cm, 13 800 Hz; B: 5.0 cm, 6900 Hz.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Science: Exploration (NCERT, Class 9), Chapter 10 (Sound Waves: Characteristics and Applications), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const G = { x: 60, y: 110, w: 525, h: 280, x0: 0, x1: 7.5, y0: -1.3, y1: 1.3, xt: [2.5, 5], yt: [], xl: 'distance (cm)', yl: 'density' };
+  const qStages = [
+    { title: 'Fig. 10.33', dur: 5, text: 'Density–distance graphs of two sound waves A and B, both travelling at 345 m/s.' },
+    { title: 'What is asked', dur: 4, text: 'The wavelength and frequency of each.' },
+  ];
+  const stages = [
+    { title: 'Wavelengths', dur: 6, text: 'Read where each curve starts repeating.', ans: 'λ_A = 2.5 cm; λ_B = 5.0 cm.' },
+    { title: 'Frequencies', dur: 5, text: 'ν = v/λ.', ans: 'ν_A = 345/0.025 = 13 800 Hz; ν_B = 345/0.050 = 6900 Hz.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    const g = axes(ctx, G);
+    plot(ctx, g, x => Math.sin(2 * Math.PI * x / 2.5), 0, 7.5, P.force); plot(ctx, g, x => 0.5 * Math.sin(2 * Math.PI * x / 5), 0, 7.5, P.vel);
+    label(ctx, 'A', g.X(0.6), g.Y(1) - 14, { align: 'center', weight: 800, size: 15, color: P.force }); label(ctx, 'B', g.X(6.8), g.Y(0.5) - 14, { align: 'center', weight: 800, size: 15, color: P.vel });
+    if (ans) {
+      const st = stageAt(stages, t);
+      dim(ctx, g.X(0), g.X(2.5), g.Y(-1) + 22, P.force); label(ctx, 'λ_A = 2.5 cm', g.X(1.25), g.Y(-1) + 38, { align: 'center', weight: 800, size: 13, color: P.force });
+      dim(ctx, g.X(0), g.X(5), g.Y(-1) + 60, P.vel); label(ctx, 'λ_B = 5.0 cm', g.X(2.5), g.Y(-1) + 76, { align: 'center', weight: 800, size: 13, color: P.vel });
+      if (st >= 1) { label(ctx, 'ν_A = 13 800 Hz', 380, 470, { weight: 800, size: 15, color: P.force }); label(ctx, 'ν_B = 6900 Hz', 380, 496, { weight: 800, size: 15, color: P.vel }); }
+      partsPanel(ctx, 630, 34, 300, 'Answers', ['λ_A = 2.5 cm, λ_B = 5.0 cm', 'ν_A = 13 800 Hz, ν_B = 6900 Hz'], st, false);
+    } else askedPanel(ctx, 630, 34, 300, ['The wavelength of each wave.', 'Their frequencies.']);
+    note(ctx, 'curves drawn from Fig. 10.33; 70 px per cm');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

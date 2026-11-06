@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 9 Science · Exercise 10.5</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 9 Science</a> · <a href="index.html">Ch. 10 Sound Waves: Characteristics and Applications</a></p>
+      <h1>Exercise 10.5 · Comparing two waves (Fig. 10.30)</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q04.html">‹ 10.4</a><a href="index.html">All questions</a><a href="q06.html">10.6 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 10.5">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="Wave (a) has fewer, wider waves and lower peaks than wave (b): it has the greater wavelength and the smaller amplitude."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>10.5</b> Graphs representing two sound waves are given in Fig. 10.30. If the scales on the X and Y axes of the two graphs are the same, which of the two sound waves has (i) greater wavelength, and (ii) smaller amplitude?</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Fig. 10.30: (a) about 3 waves across the graph with small peaks; (b) about 6 waves with taller peaks; same scales.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>(i) Greater wavelength (ii) smaller amplitude.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Curves follow Fig. 10.30.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>(i) Wavelength = distance between successive peaks: (a)’s peaks are farther apart, so (a) has the greater wavelength.</li>
+          <li>(ii) Amplitude = height of a peak from the mean line: (a)’s peaks are lower, so (a) has the smaller amplitude.</li>
+        </ol>
+        <p class="final">(i) (a) (ii) (a)</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Science: Exploration (NCERT, Class 9), Chapter 10 (Sound Waves: Characteristics and Applications), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const W = { a: { lam: 120, amp: 26 }, b: { lam: 60, amp: 40 } };   // follows Fig. 10.30 (same scales)
+  const qStages = [
+    { title: 'Fig. 10.30', dur: 5, text: 'Density–distance graphs of two sound waves (a) and (b), drawn on the same scales.' },
+    { title: 'What is asked', dur: 4, text: 'Which has (i) the greater wavelength, (ii) the smaller amplitude?' },
+  ];
+  const stages = [
+    { title: 'Wavelength', dur: 5, text: 'Distance between neighbouring peaks.', ans: '(i) (a): its peaks are farther apart.' },
+    { title: 'Amplitude', dur: 5, text: 'Height of a peak above the mean line.', ans: '(ii) (a): its peaks are lower.' },
+  ];
+  function graph(ctx, y, w, nm, st) {
+    label(ctx, `(${nm})`, 30, y - 50, { weight: 800, size: 15 }); hline(ctx, 60, 580, y, P.ink2, 1, [4, 4]); arrow(ctx, 60, y + 70, 590, y + 70, P.ink2, { lw: 1.5, head: 8 }); arrow(ctx, 60, y + 70, 60, y - 70, P.ink2, { lw: 1.5, head: 8 });
+    ctx.save(); ctx.strokeStyle = P.vel; ctx.lineWidth = 2.5; ctx.beginPath(); for (let x = 60; x <= 570; x += 2) { const yy = y - w.amp * Math.sin(2 * Math.PI * (x - 60) / w.lam); x === 60 ? ctx.moveTo(x, yy) : ctx.lineTo(x, yy); } ctx.stroke(); ctx.restore();
+    if (st >= 0) { const xp = 60 + w.lam / 4; dim(ctx, xp, xp + w.lam, y - w.amp - 16, P.force); label(ctx, 'λ', xp + w.lam / 2, y - w.amp - 30, { align: 'center', weight: 800, size: 14, color: P.force, italic: true }); }
+    if (st >= 1) { vdim(ctx, 60 + w.lam / 4 + w.lam * 2, y - w.amp, y, P.accent); label(ctx, 'amplitude', 60 + w.lam * 2.25 + 10, y - w.amp / 2, { weight: 700, size: 12, color: P.accent }); }
+  }
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    const st = ans ? stageAt(stages, t) : -1;
+    graph(ctx, 150, W.a, 'a', st); graph(ctx, 390, W.b, 'b', st);
+    if (ans) partsPanel(ctx, 630, 34, 300, 'Answers', ['(i) (a) has the greater wavelength', '(ii) (a) has the smaller amplitude'], st, false);
+    else askedPanel(ctx, 630, 34, 300, ['(i) Which wave has the greater wavelength.', '(ii) Which has the smaller amplitude.']);
+    note(ctx, 'curves follow Fig. 10.30 (same scales for both)');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

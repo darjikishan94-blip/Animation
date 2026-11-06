@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 9 Science · Exercise 10.4</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 9 Science</a> · <a href="index.html">Ch. 10 Sound Waves: Characteristics and Applications</a></p>
+      <h1>Exercise 10.4 · Echo or reverberation after 0.05 s?</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q03.html">‹ 10.3</a><a href="index.html">All questions</a><a href="q05.html">10.5 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 10.4">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A sound and its reflection on a timeline: the reflection arrives only 0.05 s later, before the 0.1 s the ear needs to hear two separate sounds, so it merges with the original and prolongs it — reverberation, not an echo."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>10.4</b> In a room, the reflected sound reaches the ear 0.05 s after its production. Will it produce an echo or reverberation? Justify your answer.</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Reflected sound arrives 0.05 s after the original.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>Echo or reverberation?</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Timeline to scale (2000 px per s).</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>The sensation of a sound lasts about 0.1 s in our ear. A distinct echo needs the reflection to arrive at least 0.1 s later.</li>
+          <li>0.05 s < 0.1 s, so the reflected sound overlaps the original and prolongs it: reverberation, not an echo.</li>
+        </ol>
+        <p class="final">Reverberation (0.05 s < 0.1 s).</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Science: Exploration (NCERT, Class 9), Chapter 10 (Sound Waves: Characteristics and Applications), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const X0 = 80, S = 2000, Y = 260, D = 7;   // 2000 px per s
+  const qStages = [
+    { title: 'Sound in a room', dur: 5, text: 'The reflected sound reaches the ear 0.05 s after the sound is produced.' },
+    { title: 'What is asked', dur: 4, text: 'Echo or reverberation? Justify.' },
+  ];
+  const stages = [
+    { title: 'Persistence of hearing', dur: D, text: 'A sound’s sensation lasts about 0.1 s in the ear. A separate echo needs the reflection to arrive at least 0.1 s later.', ans: '' },
+    { title: 'Compare', dur: 5, text: '0.05 s is less than 0.1 s: the reflection merges with the original.', ans: 'Reverberation, not an echo.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    hline(ctx, X0, X0 + S * 0.25, Y, P.ink2, 1.5); [0, 0.05, 0.1, 0.15, 0.2].forEach(v => { vline(ctx, X0 + S * v, Y - 5, Y + 5, P.ink2, 1.2); label(ctx, `${v} s`, X0 + S * v, Y + 20, { align: 'center', size: 12 }); });
+    const pulse = (x, col, txt, yy) => { ctx.save(); ctx.fillStyle = col; ctx.globalAlpha = 0.75; ctx.fillRect(x, yy, 30, 40); ctx.restore(); label(ctx, txt, x + 15, yy - 12, { align: 'center', weight: 700, size: 12, color: col }); };
+    pulse(X0, P.vel, 'original', Y - 100); pulse(X0 + S * 0.05, P.force, 'reflection', Y - 160);
+    if (ans) {
+      const st = stageAt(stages, t);
+      ctx.save(); ctx.fillStyle = P.accentSoft; ctx.globalAlpha = 0.6; ctx.fillRect(X0, Y - 50, S * 0.1, 30); ctx.restore(); label(ctx, 'sensation of the original lasts ~0.1 s', X0 + 4, Y - 66, { size: 12, weight: 700 });
+      if (st >= 1) label(ctx, 'reflection arrives inside 0.1 s → reverberation', 300, 400, { align: 'center', weight: 800, size: 16, color: P.force });
+      partsPanel(ctx, 630, 34, 300, 'Answer', ['Ear needs ≥ 0.1 s between sounds', '0.05 s < 0.1 s: reverberation'], st, false);
+    } else askedPanel(ctx, 630, 34, 300, ['Whether this is an echo or reverberation, with a reason.']);
+    note(ctx, 'timeline 2000 px per s');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

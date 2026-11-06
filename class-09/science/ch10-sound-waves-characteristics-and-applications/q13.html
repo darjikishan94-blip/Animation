@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 9 Science · Exercise 10.13</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 9 Science</a> · <a href="index.html">Ch. 10 Sound Waves: Characteristics and Applications</a></p>
+      <h1>Exercise 10.13 · Wavelength from compressions (Fig. 10.32)</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q12.html">‹ 10.12</a><a href="index.html">All questions</a><a href="q14.html">10.14 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 10.13">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="The 8 cm marked in Fig. 10.32 runs from the middle of one compression to the middle of the third: two wavelengths, so λ = 4 cm and ν = 340/0.04 = 8500 Hz."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>10.13</b> The variation of density of medium for a sound wave propagating with a speed of 340 m s<sup>–1</sup> is shown in Fig. 10.32. Calculate the wavelength and frequency of the sound wave.</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Fig. 10.32: 8 cm from the centre of the first compression to the centre of the third; v = 340 m/s.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>λ and ν.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>40 px per cm; particle pattern illustrative.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>The 8 cm spans two wavelengths (compression to compression twice): λ = 4 cm = 0.04 m.</li>
+          <li>ν = v/λ = 340/0.04 = 8500 Hz.</li>
+        </ol>
+        <p class="final">λ = 4 cm; ν = 8500 Hz.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Science: Exploration (NCERT, Class 9), Chapter 10 (Sound Waves: Characteristics and Applications), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const X0 = 70, S = 40, LAM = 4, Y0 = 120, Y1 = 230;   // 40 px per cm
+  const qStages = [
+    { title: 'Fig. 10.32', dur: 5, text: 'The density of the medium for a sound wave: 8 cm is marked from the middle of one compression to the middle of the third. Speed 340 m/s.' },
+    { title: 'What is asked', dur: 4, text: 'The wavelength and the frequency.' },
+  ];
+  const stages = [
+    { title: 'Wavelength', dur: 6, text: 'Compression to next compression is one wavelength; the 8 cm spans two.', ans: 'λ = 8/2 = 4 cm.' },
+    { title: 'Frequency', dur: 5, text: 'ν = v/λ.', ans: 'ν = 340/0.04 = 8500 Hz.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    for (let x = X0 - 40; x < X0 + 12 * S; x += 4.5) for (let j = 0; j < 9; j++) { const xx = x + 14 * Math.sin(2 * Math.PI * (x - X0) / (LAM * S)), y = Y0 + j * 12 + ((x * 7) % 9); if (xx > 20 && xx < 590) { ctx.fillStyle = P.vel; ctx.fillRect(xx, y, 2.4, 2.4); } }
+    const c1 = X0 + S * 2, c3 = c1 + S * 8; dim(ctx, c1, c3, Y0 - 24, P.ink); label(ctx, '8 cm', (c1 + c3) / 2, Y0 - 40, { align: 'center', weight: 800, size: 14 });
+    if (ans) {
+      const st = stageAt(stages, t);
+      [0, 1, 2].forEach(k => { const x = c1 + k * S * LAM; vline(ctx, x, Y0 - 6, Y1 + 10, P.force, 2); label(ctx, 'C', x, Y1 + 26, { align: 'center', weight: 800, size: 13, color: P.force }); });
+      dim(ctx, c1, c1 + S * LAM, Y1 + 50, P.accent); label(ctx, 'λ = 4 cm', c1 + S * LAM / 2, Y1 + 66, { align: 'center', weight: 800, size: 14, color: P.accent });
+      if (st >= 1) label(ctx, 'ν = 340/0.04 = 8500 Hz', 300, 420, { align: 'center', weight: 800, size: 18, color: P.accent });
+      partsPanel(ctx, 630, 34, 300, 'Answers', ['λ = 4 cm', 'ν = 8500 Hz'], st, false);
+    } else askedPanel(ctx, 630, 34, 300, ['The wavelength and frequency of the wave.']);
+    note(ctx, '40 px per cm; C = middle of a compression; particle pattern illustrative');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

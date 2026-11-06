@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 9 Science · Exercise 10.3</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 9 Science</a> · <a href="index.html">Ch. 10 Sound Waves: Characteristics and Applications</a></p>
+      <h1>Exercise 10.3 · 20 compressions in 4 seconds</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q02.html">‹ 10.2</a><a href="index.html">All questions</a><a href="q04.html">10.4 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 10.3">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="Compressions of a sound wave pass a marked point while a counter ticks: 20 of them in 4 seconds, which is 5 every second, 5 Hz."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>10.3</b> If 20 compressions pass a point in 4 seconds, the frequency is (i) 80 Hz (ii) 5 Hz (iii) 10 Hz (iv) 0.2 Hz</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>20 compressions in 4 s.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The frequency.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Shown in real time (5 Hz); particle motion exaggerated.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>Frequency = number of compressions per second = 20/4 = 5 Hz.</li>
+        </ol>
+        <p class="final">(ii) 5 Hz</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Science: Exploration (NCERT, Class 9), Chapter 10 (Sound Waves: Characteristics and Applications), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const LAM = 100, F = 5, X0 = 30, X1 = 590, PX = 400, Y0 = 120, Y1 = 260, D = 6;   // λ drawn 100 px; real time at 5 Hz
+  const qStages = [
+    { title: 'Compressions pass a point', dur: D, text: 'A sound wave moves to the right. Count the compressions passing the marked point.' },
+    { title: 'What is asked', dur: 4, text: 'If 20 compressions pass in 4 s, what is the frequency?' },
+  ];
+  const stages = [
+    { title: 'Count for 4 s', dur: 4.2, text: 'Frequency = compressions per second.', ans: '' },
+    { title: 'Frequency', dur: 4, text: '20 in 4 s.', ans: 'ν = 20/4 = 5 Hz.' },
+  ];
+  function particles(ctx, t) {
+    for (let x = X0; x < X1; x += 5) for (let j = 0; j < 7; j++) { const y = Y0 + 10 + j * 20 + ((x * 13) % 7), xx = x + 12 * Math.sin(2 * Math.PI * (x / LAM - F * t)); ctx.fillStyle = P.vel; ctx.fillRect(xx, y, 2.5, 2.5); }
+  }
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    particles(ctx, t);
+    vline(ctx, PX, Y0 - 10, Y1 + 10, P.force, 2.5); label(ctx, 'point', PX, Y0 - 22, { align: 'center', weight: 700, size: 12, color: P.force });
+    vec(ctx, 60, 320, 80, 0, 'wave travels', P.ink2, { side: -1, at: 0.5, lw: 2, head: 9 });
+    if (ans) {
+      const st = stageAt(stages, t), tt = Math.min(4, t), n = Math.floor(F * tt + 1e-9);
+      label(ctx, `time ${tt.toFixed(1)} s   compressions passed: ${n}`, 60, 400, { weight: 800, size: 17 });
+      if (st >= 1) label(ctx, 'ν = 20/4 = 5 Hz', 60, 440, { weight: 800, size: 18, color: P.accent });
+      partsPanel(ctx, 630, 34, 300, 'Answer', ['Count compressions per second', '(ii) 5 Hz'], st, false);
+    } else askedPanel(ctx, 630, 34, 300, ['The frequency, if 20 compressions pass in 4 s.']);
+    note(ctx, 'real time at 5 Hz; particle displacement exaggerated');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

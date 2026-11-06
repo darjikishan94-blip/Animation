@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 9 Science · Exercise 10.6</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 9 Science</a> · <a href="index.html">Ch. 10 Sound Waves: Characteristics and Applications</a></p>
+      <h1>Exercise 10.6 · Mark A, B and C (Fig. 10.31)</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q05.html">‹ 10.5</a><a href="index.html">All questions</a><a href="q07.html">10.7 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 10.6">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="Three waves in the same medium: the one with the most waves in the same distance (shortest wavelength) has the highest frequency — A; the longest wavelength is C; the middle one is B."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>10.6</b> The sound waves emitted by three sources A, B and C are represented in Fig. 10.31. If the frequency of A is maximum and C is minimum, identify the corresponding curves, and mark A, B and C on them.</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Fig. 10.31: three curves in the same medium (same speed) — green (shortest wavelength), red (middle), blue (longest).</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>Which curve is A, B, C.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Curves follow Fig. 10.31.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>In the same medium v = νλ is the same for all, so higher frequency means shorter wavelength.</li>
+          <li>A (maximum ν) is the curve with the shortest wavelength (green); C (minimum ν) has the longest (blue); B is the remaining one (red).</li>
+        </ol>
+        <p class="final">A: shortest wavelength (green); B: middle (red); C: longest (blue).</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Science: Exploration (NCERT, Class 9), Chapter 10 (Sound Waves: Characteristics and Applications), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const C = [['green', 'leaf', 75, 34, 'A'], ['red', 'force', 100, 26, 'B'], ['blue', 'vel', 200, 14, 'C']], Y = 270;   // palette keys: P is filled in only when drawing   // λ in px, following Fig. 10.31
+  const qStages = [
+    { title: 'Fig. 10.31', dur: 5, text: 'Sound waves from three sources A, B and C, in the same medium. A has the highest frequency, C the lowest.' },
+    { title: 'What is asked', dur: 4, text: 'Identify which curve is A, B and C.' },
+  ];
+  const stages = [
+    { title: 'Same speed', dur: 6, text: 'In one medium v = νλ is the same for all: higher frequency → shorter wavelength.', ans: 'Shortest wavelength = A; longest = C.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    hline(ctx, 60, 580, Y, P.ink2, 1, [4, 4]); arrow(ctx, 60, Y + 90, 590, Y + 90, P.ink2, { lw: 1.5, head: 8 }); arrow(ctx, 60, Y + 90, 60, Y - 90, P.ink2, { lw: 1.5, head: 8 }); label(ctx, 'density', 66, Y - 100, { size: 12 }); label(ctx, 'distance', 580, Y + 106, { align: 'right', size: 12 });
+    C.forEach(([n, key, lam, amp, tag], i) => { const col = P[key];
+      ctx.save(); ctx.strokeStyle = col; ctx.lineWidth = 2.5; ctx.beginPath(); for (let x = 60; x <= 560; x += 2) { const yy = Y - amp * Math.sin(2 * Math.PI * (x - 60) / lam); x === 60 ? ctx.moveTo(x, yy) : ctx.lineTo(x, yy); } ctx.stroke(); ctx.restore();
+      if (ans) { const xp = 60 + lam * 1.25; label(ctx, tag, xp, Y - amp - 16, { align: 'center', weight: 800, size: 18, color: col }); label(ctx, `${tag}: ${['highest ν (shortest λ)', 'middle', 'lowest ν (longest λ)'][i]}`, 80, 420 + i * 26, { weight: 700, size: 14, color: col }); }
+    });
+    if (ans) partsPanel(ctx, 630, 34, 300, 'Answer', ['A = shortest λ (green), B = middle (red), C = longest λ (blue)'], 0, false);
+    else askedPanel(ctx, 630, 34, 300, ['Which curve belongs to A, B and C.']);
+    note(ctx, 'curves follow Fig. 10.31');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

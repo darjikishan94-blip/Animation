@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 9 Science · Exercise 10.10</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 9 Science</a> · <a href="index.html">Ch. 10 Sound Waves: Characteristics and Applications</a></p>
+      <h1>Exercise 10.10 · Sonar finds a wreck</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q09.html">‹ 10.9</a><a href="index.html">All questions</a><a href="q11.html">10.11 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 10.10">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A sonar pulse goes down to the wreck and back in 5 s; at 1525 m/s it travels 7625 m in all, so the wreck is half of that, about 3.8 km down."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>10.10</b> A ship searching for a sunken ship sent a sonar signal and detected an echo after 5 s. If ultrasonic wave travels at 1525 m s<sup>–1</sup> in seawater, approximately how far down in the ocean is the wreckage of the sunken ship located?</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Echo after 5 s; v = 1525 m/s.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>Depth of the wreck.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Depth not to scale; real time (5 s).</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>The pulse travels down and back: 2d = vt.</li>
+          <li>d = 1525 × 5/2 ≈ 3812 m ≈ 3.8 km.</li>
+        </ol>
+        <p class="final">About 3.8 km.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Science: Exploration (NCERT, Class 9), Chapter 10 (Sound Waves: Characteristics and Applications), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const SX = 300, SY = 70, BY = 470, T = 5;   // depth not to scale
+  const qStages = [
+    { title: 'Sonar', dur: 6, text: 'A ship sends a sonar pulse down; the echo from the wreck returns after 5 s. Speed in seawater 1525 m/s.' },
+    { title: 'What is asked', dur: 4, text: 'How deep is the wreck?' },
+  ];
+  const stages = [
+    { title: 'Down and back', dur: T + 1, text: 'In 5 s the pulse goes to the wreck and back: 1525 × 5 = 7625 m in all.', ans: '' },
+    { title: 'Depth', dur: 4, text: 'Half the total path.', ans: 'd = 7625/2 ≈ 3812 m ≈ 3.8 km.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    ctx.fillStyle = P.water; ctx.fillRect(20, SY + 10, 570, BY - SY); hatchRect(ctx, 20, BY + 10, 570, 30, P.ink2, P.sand);
+    ctx.save(); ctx.fillStyle = P.obj; ctx.beginPath(); ctx.moveTo(SX - 70, SY - 10); ctx.lineTo(SX + 70, SY - 10); ctx.lineTo(SX + 50, SY + 14); ctx.lineTo(SX - 50, SY + 14); ctx.closePath(); ctx.fill(); ctx.restore();
+    ctx.save(); ctx.fillStyle = P.ink2; ctx.translate(SX + 20, BY - 6); ctx.rotate(0.25); ctx.fillRect(-60, -16, 120, 26); ctx.restore(); label(ctx, 'wreck', SX + 110, BY - 20, { weight: 700, size: 12 });
+    const tt = ans ? Math.min(T, t) : (t % 6) * (T / 5), f = tt / T, y = f <= 0.5 ? SY + 14 + (BY - 30 - SY - 14) * (f / 0.5) : BY - 30 - (BY - 30 - SY - 14) * ((f - 0.5) / 0.5);
+    ctx.save(); ctx.strokeStyle = f <= 0.5 ? P.force : P.accent; ctx.lineWidth = 3; ctx.beginPath(); ctx.arc(SX, y, 18, f <= 0.5 ? 0.2 * Math.PI : 1.2 * Math.PI, f <= 0.5 ? 0.8 * Math.PI : 1.8 * Math.PI); ctx.stroke(); ctx.restore();
+    clock(ctx, 60, 140, tt);
+    if (ans) { const st = stageAt(stages, t); vdim(ctx, 520, SY + 14, BY - 20, P.ink2); if (st >= 1) label(ctx, 'd ≈ 3.8 km', 510, (SY + BY) / 2, { align: 'right', weight: 800, size: 16, color: P.accent }); partsPanel(ctx, 630, 34, 300, 'Working', ['Path = 1525 × 5 = 7625 m (down and up)', 'd ≈ 3812 m ≈ 3.8 km'], st, false); }
+    else askedPanel(ctx, 630, 34, 300, ['The depth of the wreck.']);
+    note(ctx, 'depth not to scale; real time');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

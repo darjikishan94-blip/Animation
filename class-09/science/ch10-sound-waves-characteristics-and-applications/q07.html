@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 9 Science · Exercise 10.7</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 9 Science</a> · <a href="index.html">Ch. 10 Sound Waves: Characteristics and Applications</a></p>
+      <h1>Exercise 10.7 · Draw a wave: amplitude 3, wavelength 4 cm</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q06.html">‹ 10.6</a><a href="index.html">All questions</a><a href="q08.html">10.8 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 10.7">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A density–distance graph is drawn: a smooth wave rising 3 units above and falling 3 units below the mean density, repeating every 4 cm."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>10.7</b> Draw a graph to represent a sound wave for which the density amplitude is 3 units and wavelength is 4 cm.</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Density amplitude 3 units; λ = 4 cm.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The graph.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Distance axis to scale (40 px per cm).</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>Plot density (relative to the mean) against distance: a sine curve between +3 and −3 units.</li>
+          <li>Successive peaks (compressions) are 4 cm apart; troughs (rarefactions) lie midway between them.</li>
+        </ol>
+        <p class="final">A sine curve of amplitude 3 units repeating every 4 cm.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Science: Exploration (NCERT, Class 9), Chapter 10 (Sound Waves: Characteristics and Applications), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const G = { x: 60, y: 120, w: 480, h: 280, x0: 0, x1: 12, y0: -4, y1: 4, xt: [4, 8, 12], yt: [-3, 3], xl: 'distance (cm)', yl: 'density − mean' }, D = 8;
+  const qStages = [
+    { title: 'Draw a sound wave', dur: 5, text: 'Density amplitude 3 units; wavelength 4 cm.' },
+    { title: 'What is asked', dur: 4, text: 'Draw the density–distance graph.' },
+  ];
+  const stages = [
+    { title: 'The graph', dur: D, text: 'A smooth wave between +3 and −3 units about the mean density, repeating every 4 cm.', ans: 'Peaks (compressions) every 4 cm; troughs (rarefactions) midway.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    const g = axes(ctx, G);
+    if (ans) { const u = 12 * clamp(t / (D - 2)); plot(ctx, g, x => 3 * Math.sin(2 * Math.PI * x / 4), 0, u, P.vel);
+      if (u >= 12) { dim(ctx, g.X(1), g.X(5), g.Y(3) - 18, P.force); label(ctx, 'λ = 4 cm', g.X(3), g.Y(3) - 34, { align: 'center', weight: 800, size: 14, color: P.force }); vdim(ctx, g.X(9) + 20, g.Y(3), g.Y(0), P.accent); label(ctx, '3 units', g.X(9) + 28, g.Y(1.5), { weight: 800, size: 13, color: P.accent }); }
+      partsPanel(ctx, 630, 34, 300, 'Answer', ['Sine curve, amplitude 3 units, repeating every 4 cm'], 0, false); }
+    else askedPanel(ctx, 630, 34, 300, ['A graph of the sound wave with density amplitude 3 units and wavelength 4 cm.']);
+    note(ctx, '40 px per cm along the distance axis');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>
