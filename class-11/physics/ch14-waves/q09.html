@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 14.9</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 14 Waves</a></p>
+      <h1>Exercise 14.9 · y–t graphs at x = 0, 2, 4 cm</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q08.html">‹ 14.8</a><a href="index.html">All questions</a><a href="q10.html">14.10 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 14.9">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="The y–t graphs at x = 0, 2 and 4 cm are three sine curves with the same amplitude (3 cm) and period (0.17 s), shifted slightly in phase."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>14.9</b> For the wave described in Exercise 14.8, plot the displacement (y) versus (t) graphs for x = 0, 2 and 4 cm. What are the shapes of these graphs? In which aspects does the oscillatory motion in travelling wave differ from one point to another: amplitude, frequency or phase ?</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>y = 3.0 sin(36t + 0.018x + π/4).</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>y–t graphs at x = 0, 2, 4 cm; how the motions differ.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Graphs to scale; the phase shifts (0.036 and 0.072 rad) are tiny, so the curves nearly overlap.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>At a fixed x, y = 3.0 sin(36t + φ) with φ = π/4 + 0.018x: a sine curve of amplitude 3 cm and period 2π/36 ≈ 0.17 s.</li>
+          <li>x = 0: φ = π/4; x = 2 cm: φ = π/4 + 0.036; x = 4 cm: φ = π/4 + 0.072.</li>
+          <li>The points differ only in phase.</li>
+        </ol>
+        <p class="final">Sinusoids with the same amplitude and frequency; only the phase differs.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 14 (Waves), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const W = 36, KW = 0.018, PH = Math.PI / 4, TP = 2 * Math.PI / W, D = 8;
+  const XS = [[0, P => P.vel], [2, P => P.force], [4, P => P.leaf]];
+  const qStages = [
+    { title: 'Three points', dur: 5, text: 'For the wave of 14.8, y = 3.0 sin(36t + 0.018x + π/4), look at the points x = 0, 2 and 4 cm.' },
+    { title: 'What is asked', dur: 4, text: 'Plot y against t at each point. What shape? How do the motions differ: amplitude, frequency or phase?' },
+  ];
+  const stages = [
+    { title: 'y–t at each point', dur: D, text: 'At a fixed x the point does SHM: y = 3.0 sin(36t + φ), φ = π/4 + 0.018x.', ans: 'Sine curves of amplitude 3 cm and period 2π/36 ≈ 0.17 s.' },
+    { title: 'Phases', dur: 5, text: 'φ = π/4 at x = 0, π/4 + 0.036 at 2 cm, π/4 + 0.072 at 4 cm: the curves are shifted very slightly.', ans: 'Same amplitude and frequency; only the phase differs.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    XS.forEach(([x, col], i) => {
+      const g = axes(ctx, { x: 80, y: 60 + i * 150, w: 470, h: 100, x0: 0, x1: 0.36, y0: -3.6, y1: 3.6, xt: i === 2 ? [0.1, 0.2, 0.3] : [], yt: [3], xl: 't (s)', yl: '' });
+      label(ctx, `x = ${x} cm`, 20, 110 + i * 150, { weight: 800, size: 14, color: col(P) });
+      if (ans) plot(ctx, g, s => 3 * Math.sin(W * s + KW * x + PH), 0, Math.min(0.36, 0.36 * clamp(t / (D - 1))), col(P), 2.5);
+      if (ans && t >= stages[1].t0) label(ctx, `φ = π/4 + ${(KW * x).toFixed(3)}`, 420, 70 + i * 150, { weight: 700, size: 13, color: col(P) });
+    });
+    if (ans) partsPanel(ctx, 630, 34, 300, 'Answers', ['Sinusoids: amplitude 3 cm, period ≈ 0.17 s', 'They differ only in phase'], stageAt(stages, t), false);
+    else askedPanel(ctx, 630, 34, 300, ['The y–t graphs for x = 0, 2 and 4 cm, and their shape.', 'Whether the motions differ in amplitude, frequency or phase.']);
+    note(ctx, 'graphs to scale; the phase shifts are small, so the curves look almost alike');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

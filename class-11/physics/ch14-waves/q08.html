@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 14.8</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 14 Waves</a></p>
+      <h1>Exercise 14.8 · Reading y = 3.0 sin(36t + 0.018x + π/4)</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q07.html">‹ 14.7</a><a href="index.html">All questions</a><a href="q09.html">14.9 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 14.8">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="The wave y = 3.0 sin(36t + 0.018x + π/4) drawn along x: its crests move to the left at 20 m/s; crests are 3.49 m apart and the amplitude is 3.0 cm."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>14.8</b> A transverse harmonic wave on a string is described by y(x, t) = 3.0 sin (36 t + 0.018 x + π/4) where x and y are in cm and t in s. The positive direction of x is from left to right. (a) Is this a travelling wave or a stationary wave ? If it is travelling, what are the speed and direction of its propagation ? (b) What are its amplitude and frequency ? (c) What is the initial phase at the origin ? (d) What is the least distance between two successive crests in the wave ?</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>y = 3.0 sin(36t + 0.018x + π/4), x and y in cm, t in s.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>(a) type, speed and direction (b) amplitude, frequency (c) initial phase at x = 0 (d) distance between crests.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>x axis to scale over 8 m; time slowed 20 times; displacement exaggerated.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>(a) A travelling wave (of the form x + vt), moving in the −x direction (right to left), at v = ω/k = 36/0.018 = 2000 cm s<sup>−1</sup> = 20 m s<sup>−1</sup>.</li>
+          <li>(b) Amplitude 3.0 cm; frequency ν = 36/2π ≈ 5.7 Hz.</li>
+          <li>(c) π/4.</li>
+          <li>(d) λ = 2π/k = 2π/0.018 ≈ 349 cm ≈ 3.5 m.</li>
+        </ol>
+        <p class="final">(a) travelling, right to left, 20 m s<sup>−1</sup> (b) 3.0 cm, 5.7 Hz (c) π/4 (d) ≈ 3.5 m</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 14 (Waves), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const A = 3.0, W = 36, KW = 0.018, PH = Math.PI / 4, X0 = 50, KX = 0.6, Y = 260, KY = 15, SLOW = 20, LAM = 2 * Math.PI / KW;
+  const yf = (x, t) => A * Math.sin(W * t + KW * x + PH);
+  const qStages = [
+    { title: 'The wave', dur: 8, text: 'y(x, t) = 3.0 sin(36t + 0.018x + π/4), with x and y in cm and t in s; +x is to the right.' },
+    { title: 'What is asked', dur: 5, text: '(a) Travelling or stationary? Speed and direction? (b) Amplitude and frequency? (c) Initial phase at the origin? (d) Distance between successive crests?' },
+  ];
+  const stages = [
+    { title: 'Travelling, right to left', dur: 6, text: 'It has the form f(x + vt): a travelling wave moving towards −x. Follow a crest.', ans: '(a) v = ω/k = 36/0.018 = 2000 cm/s = 20 m/s, right to left.' },
+    { title: 'Amplitude and frequency', dur: 4, text: 'Amplitude = coefficient; ν = ω/2π.', ans: '(b) 3.0 cm; ν = 36/2π ≈ 5.7 Hz.' },
+    { title: 'Phase and wavelength', dur: 5, text: 'At x = 0, t = 0 the phase is π/4. Crests repeat every wavelength λ = 2π/k.', ans: '(c) π/4. (d) λ ≈ 349 cm ≈ 3.5 m.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    const tr = t / SLOW;
+    hline(ctx, X0, X0 + 800 * KX, Y, P.ink2, 1);
+    for (let c = 0; c <= 800; c += 100) { vline(ctx, X0 + c * KX, Y - 4, Y + 4, P.ink2, 1); label(ctx, `${c / 100} m`, X0 + c * KX, Y + 64, { align: 'center', size: 11, color: P.ink2 }); }
+    ctx.save(); ctx.strokeStyle = P.vel; ctx.lineWidth = 2.5; ctx.beginPath(); for (let i = 0; i <= 400; i++) { const x = 800 * i / 400, y = yf(x, tr); if (i) ctx.lineTo(X0 + x * KX, Y - y * KY); else ctx.moveTo(X0 + x * KX, Y - y * KY); } ctx.stroke(); ctx.restore();
+    // a crest near the middle: 36t + 0.018x + π/4 = π/2 + 2πn
+    let xc = (Math.PI / 2 - PH - W * tr) / KW; while (xc < 150) xc += LAM; while (xc > 550) xc -= LAM;
+    ball(ctx, X0 + xc * KX, Y - A * KY, 6, P.force);
+    if (ans) {
+      const st = stageAt(stages, t);
+      vec(ctx, X0 + xc * KX, Y - A * KY - 20, -50, 0, '20 m/s', P.force, { side: -1, at: 0.5, size: 12 });
+      if (st >= 1) { vdim(ctx, X0 + 800 * KX + 20, Y - A * KY, Y, P.accent); label(ctx, '3.0 cm', X0 + 800 * KX + 26, Y - A * KY / 2, { weight: 700, size: 12, color: P.accent }); }
+      if (st >= 2) { const x2 = xc + LAM <= 800 ? xc + LAM : xc - LAM; dim(ctx, X0 + Math.min(xc, x2) * KX, X0 + Math.max(xc, x2) * KX, Y - A * KY - 50, P.accent); label(ctx, 'λ ≈ 3.5 m', X0 + (xc + x2) / 2 * KX, Y - A * KY - 66, { align: 'center', weight: 800, size: 14, color: P.accent }); }
+      partsPanel(ctx, 630, 34, 300, 'Answers', ['(a) travelling, −x, 20 m/s', '(b) 3.0 cm, ≈ 5.7 Hz', '(c) π/4; (d) ≈ 3.5 m'], st, false);
+    } else askedPanel(ctx, 630, 34, 300, ['(a) Travelling or stationary? If travelling, its speed and direction.', '(b) Amplitude and frequency.', '(c) Initial phase at the origin.', '(d) The least distance between two successive crests.']);
+    note(ctx, 'time slowed 20 times; displacement exaggerated (15 px per cm); x from 0 to 8 m');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

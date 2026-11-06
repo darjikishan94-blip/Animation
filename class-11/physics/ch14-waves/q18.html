@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 14.18</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 14 Waves</a></p>
+      <h1>Exercise 14.18 · Beats between two sitar strings</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q17.html">‹ 14.17</a><a href="index.html">All questions</a><a href="q19.html">14.19 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 14.18">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="Two notes 6 Hz apart produce a loudness that swells 6 times a second; lowering A’s frequency brings it closer to B and the beats slow to 3 per second, so B is 318 Hz."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>14.18</b> Two sitar strings A and B playing the note ‘Ga’ are slightly out of tune and produce beats of frequency 6 Hz. The tension in the string A is slightly reduced and the beat frequency is found to reduce to 3 Hz. If the original frequency of A is 324 Hz, what is the frequency of B?</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Beats 6 Hz; f<sub>A</sub> = 324 Hz; reducing A’s tension makes the beats 3 Hz.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The frequency of B.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Beat envelopes slowed 4 times; the waves inside are not to scale.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>f<sub>B</sub> = 324 ± 6 = 318 Hz or 330 Hz.</li>
+          <li>Less tension lowers f<sub>A</sub>. If f<sub>B</sub> were 330 Hz, the beats would increase; they decrease, so f<sub>B</sub> is below f<sub>A</sub>.</li>
+          <li>f<sub>B</sub> = 318 Hz (A drops to 321 Hz).</li>
+        </ol>
+        <p class="final">318 Hz.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 14 (Waves), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const SLOW = 4, D = 8;
+  const qStages = [
+    { title: 'Beats', dur: D, text: 'Two sitar strings A and B, slightly out of tune, give 6 beats per second. f_A = 324 Hz.' },
+    { title: 'A slackened', dur: 4, text: 'The tension in A is reduced slightly; the beats drop to 3 per second. What is the frequency of B?' },
+  ];
+  const stages = [
+    { title: '6 beats per second', dur: D, text: 'The beat frequency is the difference of the two frequencies: f_B = 324 ± 6 = 318 or 330 Hz.', ans: 'Two possibilities: 318 Hz or 330 Hz.' },
+    { title: 'Lowering A', dur: 4, text: 'Less tension lowers A’s frequency. If B were 330 Hz the beats would rise; they fall to 3, so B is below A.', ans: 'f_B = 318 Hz (A drops to 321 Hz).' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    const st = ans ? stageAt(stages, t) : (t < D ? 0 : 1), fb = st === 0 ? 6 : 3;
+    const g = axes(ctx, { x: 50, y: 70, w: 520, h: 200, x0: 0, x1: 1, y0: -2.2, y1: 2.2, xt: [0.5, 1], xl: 't (s)', yl: 'loudness pattern' });
+    const tr = t / SLOW;
+    plot(ctx, g, s => 2 * Math.cos(Math.PI * fb * (s + tr)) * Math.sin(2 * Math.PI * 40 * s), 0, 1, P.vel, 1.5, 900);
+    ctx.save(); ctx.setLineDash([4, 3]); plot(ctx, g, s => 2 * Math.abs(Math.cos(Math.PI * fb * (s + tr))), 0, 1, P.force, 1.5, 300); ctx.restore();
+    label(ctx, `${fb} beats per second`, 300, 300, { align: 'center', weight: 800, size: 16, color: P.force });
+    const FX = f => 70 + (f - 312) / 24 * 460, FY = 420;
+    hline(ctx, FX(312), FX(336), FY, P.ink2, 1.5); for (let f = 312; f <= 336; f += 3) { vline(ctx, FX(f), FY - 4, FY + 4, P.ink2, 1); label(ctx, String(f), FX(f), FY + 16, { align: 'center', size: 11, color: P.ink2 }); }
+    const fa = st === 0 ? 324 : 321; ball(ctx, FX(fa), FY, 7, P.vel); label(ctx, `A ${fa} Hz`, FX(fa), FY - 18, { align: 'center', weight: 700, size: 13, color: P.vel });
+    if (ans) { for (const f of [318, 330]) { ctx.save(); ctx.globalAlpha = st === 1 && f === 330 ? 0.25 : 1; ball(ctx, FX(f), FY, 6, P.force); label(ctx, `B? ${f}`, FX(f), FY + 38, { align: 'center', weight: 700, size: 13, color: P.force }); ctx.restore(); } }
+    if (ans) partsPanel(ctx, 630, 34, 300, 'Working', ['f_B = 324 ± 6 = 318 or 330 Hz', 'Lowering A reduces the beats ⇒ f_B = 318 Hz'], st, false);
+    else askedPanel(ctx, 630, 34, 300, ['The frequency of string B.']);
+    note(ctx, 'beat pattern slowed 4 times; the fast oscillation inside is not to scale');
+  }
+  return { qStages, stages, draw };
+})();
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 14.17</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 14 Waves</a></p>
+      <h1>Exercise 14.17 · Which harmonic does 430 Hz excite?</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q16.html">‹ 14.16</a><a href="index.html">All questions</a><a href="q18.html">14.18 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 14.17">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A 20 cm pipe closed at one end has its fundamental at 425 Hz, which a 430 Hz source excites; with both ends open the lowest mode is 850 Hz, so 430 Hz does not resonate."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>14.17</b> A pipe 20 cm long is closed at one end. Which harmonic mode of the pipe is resonantly excited by a 430 Hz source ? Will the same source be in resonance with the pipe if both ends are open? (speed of sound in air is 340 m s<sup>–1</sup>).</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>L = 20 cm; closed at one end; source 430 Hz; v = 340 m s<sup>−1</sup>.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The harmonic excited; resonance if both ends are open?</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Standing-wave patterns shown as displacement amplitude.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>Closed at one end: ν<sub>n</sub> = n v/4L, n odd. Fundamental = 340/(4 × 0.20) = 425 Hz ≈ 430 Hz: the fundamental (first harmonic) is excited.</li>
+          <li>Both ends open: ν<sub>n</sub> = n v/2L = 850 Hz, 1700 Hz, …: none near 430 Hz, so no resonance.</li>
+        </ol>
+        <p class="final">The fundamental (≈ 425 Hz); no resonance with both ends open.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 14 (Waves), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const L = 20, V = 340, K = 12, X0 = 80;
+  const qStages = [
+    { title: 'A 20 cm pipe', dur: 5, text: 'A pipe 20 cm long is closed at one end. A 430 Hz source sounds near it. Speed of sound 340 m/s.' },
+    { title: 'What is asked', dur: 4, text: 'Which harmonic does it excite? Would it resonate if both ends were open?' },
+  ];
+  const stages = [
+    { title: 'Closed at one end', dur: 5, text: 'Node at the closed end, antinode at the open end: L = λ/4 for the fundamental; only odd harmonics.', ans: 'ν₁ = v/4L = 340/0.80 = 425 Hz ≈ 430 Hz: the fundamental is excited.' },
+    { title: 'Both ends open', dur: 5, text: 'Antinodes at both ends: L = λ/2 for the fundamental.', ans: 'ν₁ = v/2L = 850 Hz, then 1700 Hz…: nothing near 430 Hz, so no resonance.' },
+  ];
+  function pipe(ctx, y, closed, lamQ, t, label_) {
+    ctx.strokeStyle = P.obj; ctx.lineWidth = 2; seg(ctx, X0, y - 30, X0 + L * K, y - 30); seg(ctx, X0, y + 30, X0 + L * K, y + 30); if (closed) { ctx.lineWidth = 6; seg(ctx, X0, y - 30, X0, y + 30); }
+    ctx.save(); ctx.strokeStyle = P.vel; ctx.lineWidth = 2; const a = 26 * Math.cos(t * 4);
+    for (const s of [1, -1]) { ctx.beginPath(); for (let i = 0; i <= 100; i++) { const x = L * i / 100, env = closed ? Math.sin(Math.PI / 2 * x / L) : Math.cos(Math.PI * x / L); const yy = s * a * env; if (i) ctx.lineTo(X0 + x * K, y - yy); else ctx.moveTo(X0 + x * K, y - yy); } ctx.stroke(); } ctx.restore();
+    label(ctx, label_, X0, y - 50, { weight: 700, size: 14 });
+  }
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    pipe(ctx, 140, true, 1, ans ? t : 0, 'closed at one end: fundamental (L = λ/4)');
+    if (ans && t >= stages[1].t0) pipe(ctx, 300, false, 2, t, 'open at both ends: fundamental (L = λ/2)');
+    dim(ctx, X0, X0 + L * K, 190, P.ink2); label(ctx, '20 cm', X0 + L * K / 2, 206, { align: 'center', weight: 700, size: 13 });
+    const FX = f => 60 + f / 2000 * 500, FY = 450;
+    hline(ctx, FX(0), FX(2000), FY, P.ink2, 1.5); for (const f of [0, 500, 1000, 1500, 2000]) { vline(ctx, FX(f), FY - 4, FY + 4, P.ink2, 1); label(ctx, `${f}`, FX(f), FY + 16, { align: 'center', size: 11, color: P.ink2 }); } label(ctx, 'frequency (Hz)', FX(1000), FY + 34, { align: 'center', size: 12, color: P.ink2 });
+    vline(ctx, FX(430), FY - 40, FY, P.force, 3); label(ctx, '430 Hz source', FX(430), FY - 48, { align: 'center', weight: 700, size: 12, color: P.force });
+    if (ans) { for (const f of [425, 1275]) { vline(ctx, FX(f), FY - 22, FY, P.vel, 2); } label(ctx, 'closed: 425, 1275…', FX(1275) + 6, FY - 26, { size: 12, color: P.vel }); if (t >= stages[1].t0) { for (const f of [850, 1700]) vline(ctx, FX(f), FY - 14, FY, P.leaf, 2); label(ctx, 'open: 850, 1700…', FX(1700) - 10, FY - 74, { align: 'right', size: 12, color: P.leaf }); } }
+    if (ans) partsPanel(ctx, 630, 34, 300, 'Answers', ['Closed: ν₁ = v/4L = 425 Hz: the fundamental', 'Open: ν₁ = v/2L = 850 Hz: no resonance at 430 Hz'], stageAt(stages, t), false);
+    else askedPanel(ctx, 630, 34, 300, ['Which harmonic of the pipe is excited by the 430 Hz source?', 'Would it resonate with both ends open?']);
+    note(ctx, 'blue lines: displacement-amplitude envelope; pipe 12 px per cm');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

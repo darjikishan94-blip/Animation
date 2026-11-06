@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 14.15</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 14 Waves</a></p>
+      <h1>Exercise 14.15 · Resonance tube: speed of sound</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q14.html">‹ 14.14</a><a href="index.html">All questions</a><a href="q16.html">14.16 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 14.15">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A tuning fork sounds over a tube whose air column is set by a piston; resonance happens at 25.5 cm (λ/4) and 79.3 cm (3λ/4). The difference, 53.8 cm, is half a wavelength, giving v ≈ 366 m/s."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>14.15</b> A metre-long tube open at one end, with a movable piston at the other end, shows resonance with a fixed frequency source (a tuning fork of frequency 340 Hz) when the tube length is 25.5 cm or 79.3 cm. Estimate the speed of sound in air at the temperature of the experiment. The edge effects may be neglected.</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>f = 340 Hz; resonance at 25.5 cm and 79.3 cm; edge effects neglected.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The speed of sound.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Standing-wave pattern shown as displacement amplitude; 4 px per cm.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>A tube closed at one end resonates at L = λ/4, 3λ/4, …: successive lengths differ by λ/2.</li>
+          <li>λ/2 = 79.3 − 25.5 = 53.8 cm, so λ = 107.6 cm.</li>
+          <li>v = fλ = 340 × 1.076 ≈ 366 m s<sup>−1</sup>.</li>
+        </ol>
+        <p class="final">About 366 m s<sup>−1</sup>.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 14 (Waves), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const F = 340, L1 = 25.5, L2 = 79.3, LAM = 2 * (L2 - L1), K = 4.4, X0 = 110, Y = 260, D = 12;
+  const lenAt = t => 10 + 85 * clamp(t / (D - 1));
+  const qStages = [
+    { title: 'Moving the piston', dur: D, text: 'A 1 m tube, open at one end, has a movable piston at the other. A 340 Hz tuning fork sounds at the open end; resonance is heard at air-column lengths 25.5 cm and 79.3 cm.' },
+    { title: 'What is asked', dur: 4, text: 'Estimate the speed of sound in air. (Neglect edge effects.)' },
+  ];
+  const stages = [
+    { title: 'Resonances', dur: D, text: 'A column closed by the piston resonates when its length is λ/4, 3λ/4, …: a node at the piston, an antinode at the open end.', ans: 'Successive resonance lengths differ by λ/2.' },
+    { title: 'Speed of sound', dur: 5, text: 'λ/2 = 79.3 − 25.5 = 53.8 cm.', ans: 'λ = 107.6 cm; v = 340 × 1.076 ≈ 366 m/s.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    const l = ans && t >= stages[1].t0 ? L2 : lenAt(t);
+    ctx.strokeStyle = P.obj; ctx.lineWidth = 2; seg(ctx, X0, Y - 40, X0 + 100 * K, Y - 40); seg(ctx, X0, Y + 40, X0 + 100 * K, Y + 40);
+    ctx.fillStyle = P.objFill2; ctx.fillRect(X0 + l * K, Y - 40, 14, 80); ctx.fillRect(X0 + l * K + 14, Y - 6, 100 * K - l * K, 12);
+    ctx.fillStyle = P.ink2; ctx.fillRect(X0 - 40, Y - 34, 6, 30); ctx.fillRect(X0 - 28, Y - 34, 6, 30); ctx.fillRect(X0 - 40, Y - 6, 18, 6); ctx.fillRect(X0 - 33, Y, 4, 22); label(ctx, '340 Hz', X0 - 31, Y + 40, { align: 'center', size: 12, weight: 700 });
+    const near = Math.min(Math.abs(l - L1), Math.abs(l - L2)), res = near < 1.2;
+    if (ans || res) { const amp = res ? 30 : 30 * Math.max(0, 1 - near / 6); ctx.save(); ctx.strokeStyle = P.vel; ctx.lineWidth = 2; for (const s of [1, -1]) { ctx.beginPath(); for (let i = 0; i <= 120; i++) { const x = l * i / 120, y = s * amp * Math.cos(2 * Math.PI * x / LAM); if (i) ctx.lineTo(X0 + x * K, Y - y); else ctx.moveTo(X0 + x * K, Y - y); } ctx.stroke(); } ctx.restore(); }
+    if (res) label(ctx, 'resonance!', X0 + l * K / 2, Y - 60, { align: 'center', weight: 800, size: 15, color: P.accent });
+    label(ctx, `air column ${l.toFixed(1)} cm`, X0, Y + 70, { weight: 700, size: 14 });
+    for (const r of [L1, L2]) { vline(ctx, X0 + r * K, Y + 44, Y + 54, P.ink2, 1.5); label(ctx, `${r} cm`, X0 + r * K, Y + 90, { align: 'center', size: 12, color: P.ink2 }); }
+    if (ans && t >= stages[1].t0) { dim(ctx, X0 + L1 * K, X0 + L2 * K, Y - 90, P.accent); label(ctx, 'λ/2 = 53.8 cm', X0 + (L1 + L2) / 2 * K, Y - 106, { align: 'center', weight: 800, size: 14, color: P.accent }); }
+    if (ans) partsPanel(ctx, 630, 34, 300, 'Working', ['Resonances at λ/4, 3λ/4: they differ by λ/2', 'λ = 107.6 cm; v = fλ ≈ 366 m/s'], stageAt(stages, t), false);
+    else askedPanel(ctx, 630, 34, 300, ['The speed of sound in air at the temperature of the experiment.']);
+    note(ctx, 'tube 4.4 px per cm; blue lines: displacement-amplitude envelope of the standing wave');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

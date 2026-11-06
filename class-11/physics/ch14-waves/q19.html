@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 14.19</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 14 Waves</a></p>
+      <h1>Exercise 14.19 · Nodes, bats, timbre, waves in gases, dispersion</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q18.html">‹ 14.18</a><a href="index.html">All questions</a><span>›</span></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 14.19">
+    <p class="qline"><b>14.19</b> Explain why (or how): (a) in a sound wave, a displacement node is a pressure antinode and vice versa, (b) bats can ascertain distances, directions, nature, and sizes of the obstacles without any “eyes”, (c) a violin note and sitar note may have the same frequency, yet we can distinguish between the two notes, (d) solids can support both longitudinal and transverse waves, but only longitudinal waves can propagate in gases, and (e) the shape of a pulse gets distorted during propagation in a dispersive medium.</p>
+    <p><button type="button" class="btn reveal" id="show" aria-pressed="false" style="margin-left:0">Show answer</button></p>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Five observations about waves.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>Explanations.</p>
+      </div>
+      <div>
+        <h3>Why there is no animation</h3>
+        <ul>
+          <li>This question asks for explanations or a classification rather than describing one situation to follow; the page shows the question and a worked answer.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>(a) Where the air does not move (displacement node), layers on either side push towards it and away from it alternately: the pressure change is greatest there. Where the air moves most, the pressure hardly changes.</li>
+          <li>(b) Bats emit ultrasound and listen to the echoes: the delay gives distance, the difference between the two ears gives direction, and the strength and frequency content of the echo tell about size and nature.</li>
+          <li>(c) The notes have the same fundamental but different overtones (harmonics) in different strengths: a different quality (timbre).</li>
+          <li>(d) Solids resist shear (they have a shear modulus) as well as compression; gases resist only compression, so they carry only longitudinal waves.</li>
+          <li>(e) A pulse is a mix of many wavelengths; in a dispersive medium they travel at different speeds, so they get out of step and the shape changes.</li>
+        </ol>
+        <p class="final">Pressure–displacement phase; echo-location; overtones; shear modulus; dispersion.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 14 (Waves), Exercises. </p>
+</div>
+<script>
+const b = document.getElementById('show'), a = document.querySelector('.answer');
+b.addEventListener('click', () => { a.hidden = !a.hidden; b.setAttribute('aria-pressed', String(!a.hidden)); b.textContent = a.hidden ? 'Show answer' : 'Hide answer'; });
+</script>
+</body>
+</html>

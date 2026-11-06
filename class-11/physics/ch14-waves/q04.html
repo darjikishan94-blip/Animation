@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 14.4</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 14 Waves</a></p>
+      <h1>Exercise 14.4 · Speed of sound: pressure, temperature, humidity</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q03.html">‹ 14.3</a><a href="index.html">All questions</a><a href="q05.html">14.5 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 14.4">
+    <p class="qline"><b>14.4</b> Use the formula v = √(γP/ρ) to explain why the speed of sound in air (a) is independent of pressure, (b) increases with temperature, (c) increases with humidity.</p>
+    <p><button type="button" class="btn reveal" id="show" aria-pressed="false" style="margin-left:0">Show answer</button></p>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>v = √(γP/ρ); for an ideal gas P/ρ = RT/M.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>Explanations.</p>
+      </div>
+      <div>
+        <h3>Why there is no animation</h3>
+        <ul>
+          <li>This question asks for explanations or a classification rather than describing one situation to follow; the page shows the question and a worked answer.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>(a) At constant temperature, P/ρ = RT/M is constant: raising P raises ρ in proportion, so v is unchanged.</li>
+          <li>(b) v = √(γRT/M) ∝ √T.</li>
+          <li>(c) Water vapour (M = 18) is lighter than air (M ≈ 29); moist air has a smaller average molar mass, so a smaller density at the same P and T, and v increases.</li>
+        </ol>
+        <p class="final">v = √(γRT/M): independent of P, grows with T, grows as M falls.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 14 (Waves), Exercises. </p>
+</div>
+<script>
+const b = document.getElementById('show'), a = document.querySelector('.answer');
+b.addEventListener('click', () => { a.hidden = !a.hidden; b.setAttribute('aria-pressed', String(!a.hidden)); b.textContent = a.hidden ? 'Show answer' : 'Hide answer'; });
+</script>
+</body>
+</html>

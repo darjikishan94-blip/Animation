@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 14.11</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 14 Waves</a></p>
+      <h1>Exercise 14.11 · A stationary wave on a 1.5 m string</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q10.html">‹ 14.10</a><a href="index.html">All questions</a><a href="q12.html">14.12 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 14.11">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A 1.5 m string clamped at both ends vibrates as one loop; two faint waves travelling in opposite directions add up to it. Each has wavelength 3 m, frequency 60 Hz and speed 180 m/s; the tension is 648 N."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>14.11</b> The transverse displacement of a string (clamped at its both ends) is given by y(x, t) = 0.06 sin (2π x/3) cos (120 πt) where x and y are in m and t in s. The length of the string is 1.5 m and its mass is 3.0 ×10<sup>–2</sup> kg. Answer the following : (a) Does the function represent a travelling wave or a stationary wave? (b) Interpret the wave as a superposition of two waves travelling in opposite directions. What is the wavelength, frequency, and speed of each wave ? (c) Determine the tension in the string.</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>y = 0.06 sin(2πx/3) cos(120πt); L = 1.5 m; m = 3.0 × 10<sup>−2</sup> kg.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>(a) type (b) the two component waves (c) the tension.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Time slowed 100 times; displacement exaggerated.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>(a) Stationary: a product of a function of x and a function of t.</li>
+          <li>(b) y = 0.03 sin(2πx/3 − 120πt) + 0.03 sin(2πx/3 + 120πt). Each: λ = 2π/(2π/3) = 3 m, ν = 120π/2π = 60 Hz, v = νλ = 180 m s<sup>−1</sup>.</li>
+          <li>(c) μ = 3.0 × 10<sup>−2</sup>/1.5 = 0.020 kg m<sup>−1</sup>; T = μv<sup>2</sup> = 0.020 × 180<sup>2</sup> = 648 N.</li>
+        </ol>
+        <p class="final">(a) stationary (b) 3 m, 60 Hz, 180 m s<sup>−1</sup> each (c) 648 N</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 14 (Waves), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const L = 1.5, K = 300, X0 = 75, Y = 240, KY = 1300, SLOW = 100, D = 8;
+  const qStages = [
+    { title: 'A clamped string', dur: D, text: 'y(x, t) = 0.06 sin(2πx/3) cos(120πt) (x, y in m, t in s) on a 1.5 m string of mass 3.0 × 10⁻² kg, clamped at both ends.' },
+    { title: 'What is asked', dur: 5, text: '(a) Travelling or stationary? (b) As two opposite travelling waves: wavelength, frequency, speed of each? (c) The tension?' },
+  ];
+  const stages = [
+    { title: 'Stationary wave', dur: D, text: 'A function of x times a function of t: every point oscillates in place. Two travelling waves (faint) add up to it.', ans: '(a) Stationary. y = 0.03 sin(2πx/3 − 120πt) + 0.03 sin(2πx/3 + 120πt).' },
+    { title: 'Each travelling wave', dur: 5, text: 'k = 2π/3 m⁻¹, ω = 120π rad/s.', ans: '(b) λ = 3 m, ν = 60 Hz, v = νλ = 180 m/s.' },
+    { title: 'Tension', dur: 4, text: 'v = √(T/μ), μ = 0.03/1.5 = 0.020 kg/m.', ans: '(c) T = μv² = 0.020 × 180² = 648 N.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    for (const x of [X0 - 16, X0 + L * K]) hatchRect(ctx, x, Y - 80, 16, 160, P.obj, P.objFill);
+    const tr = t / SLOW, w = 120 * Math.PI, k = 2 * Math.PI / 3;
+    const line = (f, col, lw, a = 1) => { ctx.save(); ctx.globalAlpha = a; ctx.strokeStyle = col; ctx.lineWidth = lw; ctx.beginPath(); for (let i = 0; i <= 300; i++) { const x = L * i / 300, y = f(x); if (i) ctx.lineTo(X0 + x * K, Y - y * KY); else ctx.moveTo(X0 + x * K, Y - y * KY); } ctx.stroke(); ctx.restore(); };
+    if (ans) { line(x => 0.03 * Math.sin(k * x - w * tr), P.force, 1.5, 0.45); line(x => 0.03 * Math.sin(k * x + w * tr), P.leaf, 1.5, 0.45); }
+    line(x => 0.06 * Math.sin(k * x) * Math.cos(w * tr), P.vel, 3);
+    ctx.save(); ctx.strokeStyle = P.ink2; ctx.setLineDash([3, 4]); line(x => 0.06 * Math.sin(k * x), P.ink2, 1, 0.5); line(x => -0.06 * Math.sin(k * x), P.ink2, 1, 0.5); ctx.restore();
+    dim(ctx, X0, X0 + L * K, Y + 110, P.ink2); label(ctx, '1.5 m (= λ/2)', X0 + L * K / 2, Y + 126, { align: 'center', weight: 700, size: 13 });
+    if (ans) partsPanel(ctx, 630, 34, 300, 'Answers', ['(a) stationary', '(b) λ = 3 m, ν = 60 Hz, v = 180 m/s', '(c) T = 648 N'], stageAt(stages, t), false);
+    else askedPanel(ctx, 630, 34, 300, ['(a) Travelling or stationary?', '(b) The two travelling waves: wavelength, frequency, speed.', '(c) The tension in the string.']);
+    note(ctx, 'time slowed 100 times; displacement exaggerated');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

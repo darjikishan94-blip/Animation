@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 14.13</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 14 Waves</a></p>
+      <h1>Exercise 14.13 · Travelling, stationary or neither?</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q12.html">‹ 14.12</a><a href="index.html">All questions</a><a href="q14.html">14.14 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 14.13">
+    <p class="qline"><b>14.13</b> Given below are some functions of x and t to represent the displacement (transverse or longitudinal) of an elastic wave. State which of these represent (i) a travelling wave, (ii) a stationary wave or (iii) none at all: (a) y = 2 cos (3x) sin (10t) (b) y = 2√(x − vt) (c) y = 3 sin (5x – 0.5t) + 4 cos (5x – 0.5t) (d) y = cos x sin t + cos 2x sin 2t</p>
+    <p><button type="button" class="btn reveal" id="show" aria-pressed="false" style="margin-left:0">Show answer</button></p>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Four functions.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>Classify each.</p>
+      </div>
+      <div>
+        <h3>Why there is no animation</h3>
+        <ul>
+          <li>This question asks for explanations or a classification rather than describing one situation to follow; the page shows the question and a worked answer.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>(a) Stationary: a product of a function of x and a function of t.</li>
+          <li>(b) None: although a function of x − vt, it is not real or finite for all x and t.</li>
+          <li>(c) Travelling: a harmonic function of 5x − 0.5t (speed 0.1, along +x).</li>
+          <li>(d) Stationary: a superposition of two stationary waves.</li>
+        </ol>
+        <p class="final">(a) stationary (b) none (c) travelling (d) stationary</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 14 (Waves), Exercises. </p>
+</div>
+<script>
+const b = document.getElementById('show'), a = document.querySelector('.answer');
+b.addEventListener('click', () => { a.hidden = !a.hidden; b.setAttribute('aria-pressed', String(!a.hidden)); b.textContent = a.hidden ? 'Show answer' : 'Hide answer'; });
+</script>
+</body>
+</html>

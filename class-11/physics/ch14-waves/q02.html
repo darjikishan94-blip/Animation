@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 14.2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 14 Waves</a></p>
+      <h1>Exercise 14.2 · Hearing the splash from a 300 m tower</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q01.html">‹ 14.1</a><a href="index.html">All questions</a><a href="q03.html">14.3 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 14.2">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A stone falls 300 m in 7.82 s and splashes; the sound climbs back up at 340 m/s in 0.88 s, so the splash is heard 8.7 s after the drop."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>14.2</b> A stone dropped from the top of a tower of height 300 m splashes into the water of a pond near the base of the tower. When is the splash heard at the top given that the speed of sound in air is 340 m s<sup>–1</sup> ? (g = 9.8 m s<sup>–2</sup>)</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Height 300 m; v<sub>sound</sub> = 340 m s<sup>−1</sup>; g = 9.8 m s<sup>−2</sup>.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>When the splash is heard at the top.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Real time; 1.2 px per metre.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>Fall: t₁ = √(2h/g) = √(2 × 300/9.8) ≈ 7.82 s.</li>
+          <li>Sound coming up: t₂ = 300/340 ≈ 0.88 s.</li>
+          <li>Total ≈ 8.7 s after the stone is dropped.</li>
+        </ol>
+        <p class="final">About 8.7 s.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 14 (Waves), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const H = 300, G = 9.8, VS = 340, K = 1.2, TOP = 80, BX = 300, TF = Math.sqrt(2 * H / G), TS = H / VS, D = TF + TS + 1;
+  const qStages = [
+    { title: 'Dropped from 300 m', dur: D, text: 'A stone is dropped from the top of a 300 m tower and splashes into a pond at its base. Speed of sound 340 m/s; g = 9.8 m/s².' },
+    { title: 'What is asked', dur: 4, text: 'When is the splash heard at the top?' },
+  ];
+  const stages = [
+    { title: 'The fall', dur: TF, text: 'h = ½gt₁².', ans: 't₁ = √(2 × 300/9.8) ≈ 7.82 s.' },
+    { title: 'The sound', dur: TS + 1, text: 'The sound of the splash travels back up 300 m at 340 m/s.', ans: 't₂ = 300/340 ≈ 0.88 s.' },
+    { title: 'Total', dur: 4, text: 'Add the two times.', ans: 't = 7.82 + 0.88 ≈ 8.7 s.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    const BY = TOP + H * K; ctx.fillStyle = P.objFill; ctx.fillRect(BX - 120, TOP, 60, H * K); ctx.strokeStyle = P.obj; ctx.strokeRect(BX - 120, TOP, 60, H * K);
+    ctx.fillStyle = P.water; ctx.globalAlpha = 0.5; ctx.fillRect(BX - 40, BY - 6, 160, 16); ctx.globalAlpha = 1; ground(ctx, 60, 560, BY + 10);
+    vdim(ctx, BX - 140, TOP, BY, P.ink2); label(ctx, '300 m', BX - 148, (TOP + BY) / 2, { align: 'right', weight: 700, size: 13 });
+    person(ctx, BX - 90, TOP, 0.6);
+    const tt = Math.min(t, TF + TS + 0.6);
+    if (tt < TF) { const y = TOP + 0.5 * G * tt * tt * K; ball(ctx, BX, y, 6, P.ink); }
+    else { const s = tt - TF, r = VS * s * K; ctx.save(); ctx.beginPath(); ctx.rect(4, 0, 600, 540); ctx.clip(); ctx.strokeStyle = P.force; ctx.lineWidth = 2; ctx.globalAlpha = Math.max(0.2, 1 - s / (TS + 0.6)); ctx.beginPath(); ctx.arc(BX, BY, Math.min(r, H * K + 20), Math.PI, 2 * Math.PI); ctx.stroke(); ctx.restore(); label(ctx, 'splash!', BX + 20, BY - 16, { weight: 800, size: 14, color: P.force }); if (s >= TS) label(ctx, 'heard!', BX - 90, TOP - 70, { align: 'center', weight: 800, size: 15, color: P.accent }); }
+    if (ans) { clock(ctx, 420, 80, tt, `t = ${tt.toFixed(2)} s`); partsPanel(ctx, 630, 34, 300, 'Working (g = 9.8 m/s²)', ['Fall: t₁ ≈ 7.82 s', 'Sound up: t₂ ≈ 0.88 s', 'Heard after ≈ 8.7 s'], stageAt(stages, t), false); }
+    else askedPanel(ctx, 630, 34, 300, ['When the splash is heard at the top of the tower.']);
+    note(ctx, 'real time; 1.2 px per metre');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>
