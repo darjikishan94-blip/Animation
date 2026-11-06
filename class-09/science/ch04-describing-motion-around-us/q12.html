@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 9 Science · Exercise 4.12</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 9 Science</a> · <a href="index.html">Ch. 4 Describing Motion Around Us</a></p>
+      <h1>Exercise 4.12 · A cyclist’s velocity–time graph (Fig. 4.30)</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q11.html">‹ 4.11</a><a href="index.html">All questions</a><a href="q13.html">4.13 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 4.12">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="The cyclist’s graph rises to 3 m/s in 20 s, stays level to 100 s, then falls to 2 m/s at 120 s. The level part encloses 240 m, the falling part 50 m, and the rise 30 m: 320 m in all, with average acceleration 1/60 m/s²."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>4.12</b> The velocity-time graph from 0 s to 120 s for a cyclist is shown in Fig. 4.30. Shade the areas (in different colours) representing the displacement of the cyclist (i) while cyclist is moving with constant velocity. (ii) when the velocity of cyclist is decreasing. Also, calculate the displacement and average acceleration in the 120 s time interval.</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Fig. 4.30: v rises from 0 to 3 m/s (0–20 s), stays 3 m/s (20–100 s), falls to 2 m/s (100–120 s).</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>Shaded areas; displacement and average acceleration over 120 s.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Graph drawn from the points of Fig. 4.30.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>(i) Constant velocity (20–100 s): area = 80 × 3 = 240 m.</li>
+          <li>(ii) Decreasing velocity (100–120 s): area = ½(3 + 2) × 20 = 50 m.</li>
+          <li>Plus 0–20 s: ½ × 20 × 3 = 30 m. Total displacement = 320 m.</li>
+          <li>Average acceleration = (2 − 0)/120 = 1/60 ≈ 0.017 m s<sup>−2</sup>.</li>
+        </ol>
+        <p class="final">240 m and 50 m shaded; 320 m; ≈ 0.017 m s<sup>−2</sup>.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Science: Exploration (NCERT, Class 9), Chapter 4 (Describing Motion Around Us), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const G = { x: 70, y: 90, w: 470, h: 360, x0: 0, x1: 130, y0: 0, y1: 4, xt: [20, 60, 100, 120], yt: [2, 3], xl: 't (s)', yl: 'v (m/s)' };
+  const v = t => t < 20 ? 3 * t / 20 : t < 100 ? 3 : 3 - (t - 100) / 20;
+  const qStages = [
+    { title: 'Fig. 4.30', dur: 6, text: 'A cyclist: 0 to 3 m/s in 20 s, 3 m/s until 100 s, then down to 2 m/s at 120 s.' },
+    { title: 'What is asked', dur: 5, text: 'Shade the displacement (i) at constant velocity, (ii) while slowing. Find the displacement and average acceleration over 120 s.' },
+  ];
+  const stages = [
+    { title: '(i) Constant velocity', dur: 5, text: '20 s to 100 s at 3 m/s.', ans: 'Area = 80 × 3 = 240 m.' },
+    { title: '(ii) Slowing down', dur: 5, text: '100 s to 120 s, from 3 to 2 m/s.', ans: 'Area = ½(3 + 2) × 20 = 50 m.' },
+    { title: 'Totals', dur: 6, text: 'Add the first 20 s (½ × 20 × 3 = 30 m). Average acceleration = change in velocity/time.', ans: 'Displacement = 320 m; a = 2/120 ≈ 0.017 m/s².' },
+  ];
+  function fill(ctx, g, pts, col) { ctx.save(); ctx.fillStyle = col; ctx.globalAlpha = 0.5; ctx.beginPath(); pts.forEach(([a, b], i) => i ? ctx.lineTo(g.X(a), g.Y(b)) : ctx.moveTo(g.X(a), g.Y(b))); ctx.closePath(); ctx.fill(); ctx.restore(); }
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    const g = axes(ctx, G);
+    if (ans) { const st = stageAt(stages, t);
+      if (st >= 0) { fill(ctx, g, [[20, 0], [20, 3], [100, 3], [100, 0]], P.accentSoft); label(ctx, '(i) 240 m', g.X(60), g.Y(1.5), { align: 'center', weight: 800, size: 15, color: P.accent }); }
+      if (st >= 1) { fill(ctx, g, [[100, 0], [100, 3], [120, 2], [120, 0]], P.ke); label(ctx, '(ii) 50 m', g.X(110), g.Y(1), { align: 'center', weight: 800, size: 13 }); }
+      if (st >= 2) { fill(ctx, g, [[0, 0], [20, 3], [20, 0]], P.grid); label(ctx, '30 m', g.X(13), g.Y(0.6), { align: 'center', weight: 700, size: 12 }); label(ctx, 'displacement 320 m;  a(avg) = 2/120 ≈ 0.017 m/s²', 300, 490, { align: 'center', weight: 800, size: 15, color: P.accent }); }
+      partsPanel(ctx, 630, 34, 300, 'Answers', ['(i) 240 m', '(ii) 50 m', '320 m; ≈ 0.017 m/s²'], st, false);
+    } else askedPanel(ctx, 630, 34, 300, ['Shade the displacement (i) at constant velocity, (ii) while the velocity decreases.', 'The displacement and average acceleration over 120 s.']);
+    plot(ctx, g, v, 0, 120, P.vel);
+    note(ctx, 'graph drawn from the points of Fig. 4.30');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

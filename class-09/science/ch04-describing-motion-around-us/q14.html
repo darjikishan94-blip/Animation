@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 9 Science · Exercise 4.14</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 9 Science</a> · <a href="index.html">Ch. 4 Describing Motion Around Us</a></p>
+      <h1>Exercise 4.14 · Cruise 2 min, then accelerate 6 s</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q13.html">‹ 4.13</a><a href="index.html">All questions</a><a href="q15.html">4.15 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 4.14">
+    <p class="qline"><b>4.14</b> On entering a state highway, a car continues to move with a constant velocity of 6 m s<sup>–1</sup> for 2 minutes and then accelerates with a constant acceleration 1 m s<sup>–2</sup> for 6 seconds. Find the displacement of the car on the state highway in the 2 min 6 s time interval by drawing a velocity-time graph for its motion.</p>
+    <p><button type="button" class="btn reveal" id="show" aria-pressed="false" style="margin-left:0">Show answer</button></p>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>6 m/s for 120 s; then a = 1 m s<sup>−2</sup> for 6 s.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>Displacement in 126 s.</p>
+      </div>
+      <div>
+        <h3>Why there is no animation</h3>
+        <ul>
+          <li>This is a direct calculation with nothing moving to show; the page shows the question and a worked answer.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>v–t graph: a horizontal line at 6 m/s from 0 to 120 s, then a straight line rising to 12 m/s at 126 s.</li>
+          <li>Area: 6 × 120 = 720 m; then trapezium ½(6 + 12) × 6 = 54 m.</li>
+          <li>Displacement = 774 m.</li>
+        </ol>
+        <p class="final">774 m.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Science: Exploration (NCERT, Class 9), Chapter 4 (Describing Motion Around Us), Exercises. </p>
+</div>
+<script>
+const b = document.getElementById('show'), a = document.querySelector('.answer');
+b.addEventListener('click', () => { a.hidden = !a.hidden; b.setAttribute('aria-pressed', String(!a.hidden)); b.textContent = a.hidden ? 'Show answer' : 'Hide answer'; });
+</script>
+</body>
+</html>

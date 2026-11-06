@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 9 Science · Exercise 4.1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 9 Science</a> · <a href="index.html">Ch. 4 Describing Motion Around Us</a></p>
+      <h1>Exercise 4.1 · To the shop and back, twice</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><span>‹</span><a href="index.html">All questions</a><a href="q02.html">4.2 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 4.1">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A walker goes 250 m to a shop, back home, to the shop again and home again: the distance counter climbs to 1000 m while his displacement ends at zero."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>4.1</b> My father went to a shop from home which is located at a distance of 250 m on a straight road. On reaching there, he discovered that he forgot to carry a cloth bag. He came home to take it, went to the shop again, bought provisions and came back home. How much was the total distance travelled by him? What was his displacement from home?</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Shop 250 m from home on a straight road; home → shop → home → shop → home.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>Total distance; displacement.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Road to scale (1.6 px per m).</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>Distance = 4 × 250 m = 1000 m.</li>
+          <li>He ends where he started: displacement = 0.</li>
+        </ol>
+        <p class="final">1000 m; zero.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Science: Exploration (NCERT, Class 9), Chapter 4 (Describing Motion Around Us), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const H = 100, SH = 500, Y = 260, D = 16;   // home at x = 100, shop at 500 (250 m: 1.6 px per m)
+  const pos = s => { const leg = Math.min(3, Math.floor(s)), f = s - leg; return leg % 2 === 0 ? f : 1 - f; };   // 0 = home, 1 = shop; s in legs (0..4)
+  const qStages = [
+    { title: 'To the shop and back', dur: D, text: 'Home → shop (250 m) → home (forgot the bag) → shop → home.' },
+    { title: 'What is asked', dur: 4, text: 'The total distance travelled, and the displacement from home.' },
+  ];
+  const stages = [
+    { title: 'Four trips of 250 m', dur: D, text: 'Distance adds up every metre walked, whatever the direction.', ans: 'Distance = 4 × 250 = 1000 m.' },
+    { title: 'Displacement', dur: 4, text: 'Displacement is the change of position: he ends where he started.', ans: 'Displacement = 0.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    ctx.fillStyle = P.road; ctx.fillRect(60, Y + 10, 480, 16);
+    block(ctx, H - 40, Y - 70, 60, 70, 'home', P.objFill2); block(ctx, SH, Y - 70, 70, 70, 'shop', P.objFill2);
+    dim(ctx, H, SH, Y + 50, P.ink2); label(ctx, '250 m', (H + SH) / 2, Y + 66, { align: 'center', weight: 700, size: 13 });
+    const s = Math.min(4, 4 * clamp(t / (D - 1))), x = H + (SH - H) * pos(s);
+    person(ctx, x, Y + 10, 0.8, P.vel);
+    if (ans) {
+      const st = stageAt(stages, t);
+      label(ctx, `distance: ${Math.round(250 * s)} m`, 60, 400, { weight: 800, size: 18, color: P.force });
+      label(ctx, `displacement: ${Math.round(250 * pos(s))} m`, 60, 436, { weight: 800, size: 18, color: P.accent });
+      if (pos(s) > 0.01) vec(ctx, H, Y - 100, (SH - H) * pos(s), 0, '', P.accent, { lw: 3 });
+      partsPanel(ctx, 630, 34, 300, 'Answers', ['Distance = 1000 m', 'Displacement = 0'], st, false);
+    } else askedPanel(ctx, 630, 34, 300, ['The total distance travelled.', 'His displacement from home.']);
+    note(ctx, 'road to scale (1.6 px per m); time sped up');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

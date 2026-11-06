@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 9 Science · Exercise 4.4</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 9 Science</a> · <a href="index.html">Ch. 4 Describing Motion Around Us</a></p>
+      <h1>Exercise 4.4 · A car reaches 24 m/s in 6 s</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q03.html">‹ 4.3</a><a href="index.html">All questions</a><a href="q05.html">4.5 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 4.4">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A car speeds up steadily from rest to 24 m/s in 6 s; its velocity–time graph is a straight line of slope 4 m/s², and the area under it, 72 m, is the distance covered."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>4.4</b> A car starts from rest and its velocity reaches 24 m s<sup>–1</sup> in 6 s. Find the average acceleration and the distance travelled in these 6 s.</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>u = 0; v = 24 m/s; t = 6 s.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>Average acceleration; distance.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Car motion to scale (5 px per m); graph computed. Uniform acceleration assumed for the distance.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>a = (v − u)/t = 24/6 = 4 m s<sup>−2</sup>.</li>
+          <li>s = ut + ½at<sup>2</sup> = ½ × 4 × 36 = 72 m (the area of the triangle under the v–t graph, ½ × 6 × 24).</li>
+        </ol>
+        <p class="final">4 m s<sup>−2</sup>; 72 m.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Science: Exploration (NCERT, Class 9), Chapter 4 (Describing Motion Around Us), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const X0 = 40, Y = 140, S = 5, A = 4, T = 6;   // 5 px per m
+  const G = { x: 70, y: 260, w: 460, h: 200, x0: 0, x1: 7, y0: 0, y1: 28, xt: [2, 4, 6], yt: [12, 24], xl: 't (s)', yl: 'v (m/s)' };
+  function car(ctx, x, y) { block(ctx, x - 40, y - 26, 40, 22, '', P.force); ball(ctx, x - 32, y - 2, 5, P.ink); ball(ctx, x - 8, y - 2, 5, P.ink); }
+  const qStages = [
+    { title: 'A car from rest', dur: T + 1, text: 'A car starts from rest and reaches 24 m/s in 6 s.' },
+    { title: 'What is asked', dur: 4, text: 'The average acceleration, and the distance travelled in the 6 s.' },
+  ];
+  const stages = [
+    { title: 'Acceleration', dur: T + 1, text: 'a = (v − u)/t: the slope of the v–t graph.', ans: 'a = 24/6 = 4 m/s².' },
+    { title: 'Distance', dur: 5, text: 'Area under the v–t graph (uniform acceleration).', ans: 's = ½ × 6 × 24 = 72 m.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    ctx.fillStyle = P.road; ctx.fillRect(20, Y, 580, 10);
+    const tt = Math.min(T, t), s = 0.5 * A * tt * tt; car(ctx, X0 + 40 + S * s, Y);
+    label(ctx, `t = ${tt.toFixed(1)} s   v = ${(A * tt).toFixed(1)} m/s`, 40, 80, { weight: 800, size: 14 });
+    if (ans) {
+      const st = stageAt(stages, t), g = axes(ctx, G); plot(ctx, g, x => A * x, 0, tt, P.vel);
+      label(ctx, `s = ${s.toFixed(0)} m`, 400, 80, { weight: 800, size: 14, color: P.accent });
+      if (st >= 1) { ctx.save(); ctx.fillStyle = P.accentSoft; ctx.globalAlpha = 0.7; ctx.beginPath(); ctx.moveTo(g.X(0), g.Y(0)); ctx.lineTo(g.X(6), g.Y(24)); ctx.lineTo(g.X(6), g.Y(0)); ctx.closePath(); ctx.fill(); ctx.restore(); label(ctx, 'area = 72 m', g.X(4.5), g.Y(6), { align: 'center', weight: 800, size: 14, color: P.accent }); }
+      partsPanel(ctx, 630, 34, 300, 'Answers', ['a = 4 m/s²', 's = 72 m'], st, false);
+    } else askedPanel(ctx, 630, 34, 300, ['The average acceleration.', 'The distance travelled in the 6 s.']);
+    note(ctx, 'road 5 px per m; real time; uniform acceleration assumed');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

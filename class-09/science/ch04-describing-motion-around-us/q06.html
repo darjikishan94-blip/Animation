@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 9 Science · Exercise 4.6</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 9 Science</a> · <a href="index.html">Ch. 4 Describing Motion Around Us</a></p>
+      <h1>Exercise 4.6 · Do A and B ever have equal velocity? (Fig. 4.27)</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q05.html">‹ 4.5</a><a href="index.html">All questions</a><a href="q07.html">4.7 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 4.6">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="Two runners on parallel tracks: B starts ahead, A catches up and passes it at 5 s. Both graphs are straight lines, A’s steeper all the time, so they never have the same velocity — at 5 s they only share the same position."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>4.6</b> Fig. 4.27 shows a position-time graph of two objects A and B that are moving along the parallel tracks in the same direction. Do objects A and B ever have equal velocity? Justify your answer.</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Fig. 4.27: two straight position–time lines; B starts ahead, A has the steeper line; they cross at t = 5 s.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>Do they ever have equal velocity?</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Lines drawn to match Fig. 4.27 (positions not labelled in the figure).</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>Velocity = slope of the position–time graph.</li>
+          <li>Both lines are straight, so each velocity is constant; A’s line is steeper, so A is always faster.</li>
+          <li>They never have equal velocity. At t = 5 s they are at the same position (the lines cross), not moving at the same velocity.</li>
+        </ol>
+        <p class="final">No: A’s slope (velocity) is always greater; they only meet at 5 s.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Science: Exploration (NCERT, Class 9), Chapter 4 (Describing Motion Around Us), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const G = { x: 70, y: 240, w: 300, h: 230, x0: 0, x1: 6.5, y0: 0, y1: 10, xt: [5], yt: [], xl: 't (s)', yl: 'position' }, D = 8;
+  const xA = t => 1.2 * t, xB = t => 3 + 0.6 * t;   // shapes following Fig. 4.27 (they cross at 5 s)
+  const qStages = [
+    { title: 'Fig. 4.27', dur: D, text: 'Position–time graphs of A and B, moving along parallel tracks in the same direction. B starts ahead.' },
+    { title: 'What is asked', dur: 4, text: 'Do A and B ever have equal velocity? Justify.' },
+  ];
+  const stages = [
+    { title: 'Velocity = slope', dur: D, text: 'Both lines are straight: each velocity is constant. A’s line is steeper.', ans: 'A is always faster than B.' },
+    { title: 'At 5 s', dur: 5, text: 'The lines cross at 5 s: A and B are at the same place, A overtaking.', ans: 'No — they never have equal velocity; at 5 s only their positions are equal.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    const tt = 6.5 * clamp(t / (D - 1)), g = axes(ctx, G);
+    plot(ctx, g, xA, 0, tt, P.vel); plot(ctx, g, xB, 0, tt, P.force);
+    label(ctx, 'A', g.X(tt) + 8, g.Y(xA(tt)), { weight: 800, size: 14, color: P.vel }); label(ctx, 'B', g.X(tt) + 8, g.Y(xB(tt)) + 10, { weight: 800, size: 14, color: P.force });
+    const TX = 70, s = 40;
+    hline(ctx, TX, 590, 90, P.ink2, 1); hline(ctx, TX, 590, 140, P.ink2, 1);
+    ball(ctx, TX + s * xA(tt), 90, 9, P.vel); ball(ctx, TX + s * xB(tt), 140, 9, P.force); label(ctx, 'A', TX - 16, 90, { weight: 800, size: 13, color: P.vel }); label(ctx, 'B', TX - 16, 140, { weight: 800, size: 13, color: P.force });
+    if (ans) {
+      const st = stageAt(stages, t);
+      if (st >= 1) { vline(ctx, g.X(5), g.Y(0), g.Y(xA(5)), P.ink2, 1.5, [4, 3]); ball(ctx, g.X(5), g.Y(xA(5)), 5, P.ink); label(ctx, 'same position, not same velocity', g.X(5) + 8, g.Y(xA(5)) - 30, { weight: 700, size: 12 }); }
+      partsPanel(ctx, 630, 34, 300, 'Answer', ['Slopes constant; A’s steeper: A always faster', 'No; they only meet at 5 s'], st, false);
+    } else askedPanel(ctx, 630, 34, 300, ['Whether A and B ever have equal velocity, with a reason.']);
+    note(ctx, 'lines follow Fig. 4.27 (its position values are not given)');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

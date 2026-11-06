@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 9 Science · Exercise 4.8</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 9 Science</a> · <a href="index.html">Ch. 4 Describing Motion Around Us</a></p>
+      <h1>Exercise 4.8 · Truck slowing from 54 to 36 km/h</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q07.html">‹ 4.7</a><a href="index.html">All questions</a><a href="q09.html">4.9 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 4.8">
+    <p class="qline"><b>4.8</b> A truck driver driving at the speed of 54 km h<sup>–1</sup> notices a road sign with a speed limit of 40 km h<sup>–1</sup> (Fig. 4.29) for trucks. He slows down to 36 km h<sup>–1</sup> in 36 s. What was the distance travelled by him during this time? Assume the acceleration to be constant while slowing down.</p>
+    <p><button type="button" class="btn reveal" id="show" aria-pressed="false" style="margin-left:0">Show answer</button></p>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>u = 54 km/h = 15 m/s; v = 36 km/h = 10 m/s; t = 36 s; constant acceleration.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>Distance in the 36 s.</p>
+      </div>
+      <div>
+        <h3>Why there is no animation</h3>
+        <ul>
+          <li>This is a direct calculation with nothing moving to show; the page shows the question and a worked answer.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>With constant acceleration, s = average velocity × time = (15 + 10)/2 × 36 = 450 m.</li>
+          <li>(a = (10 − 15)/36 ≈ −0.14 m s<sup>−2</sup>.)</li>
+        </ol>
+        <p class="final">450 m.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Science: Exploration (NCERT, Class 9), Chapter 4 (Describing Motion Around Us), Exercises. </p>
+</div>
+<script>
+const b = document.getElementById('show'), a = document.querySelector('.answer');
+b.addEventListener('click', () => { a.hidden = !a.hidden; b.setAttribute('aria-pressed', String(!a.hidden)); b.textContent = a.hidden ? 'Show answer' : 'Hide answer'; });
+</script>
+</body>
+</html>

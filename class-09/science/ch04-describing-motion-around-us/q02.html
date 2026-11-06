@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 9 Science · Exercise 4.2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 9 Science</a> · <a href="index.html">Ch. 4 Describing Motion Around Us</a></p>
+      <h1>Exercise 4.2 · Up to the 4th floor, down to the 2nd</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q01.html">‹ 4.1</a><a href="index.html">All questions</a><a href="q03.html">4.3 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 4.2">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A student climbs 12 m from the ground floor to the fourth floor, then comes down 6 m to the second floor: 18 m of vertical distance, but a displacement of only 6 m upward."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>4.2</b> A student runs from the ground floor to the fourth floor of a school building to collect a book and then comes down to their classroom on the second floor. If the height of each floor is 3 m, find: (i) the total vertical distance travelled, and (ii) their displacement from the starting point.</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Each floor 3 m; ground → 4th floor → 2nd floor.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>(i) Total vertical distance (ii) displacement.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Floors to scale.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>Up: 4 floors × 3 m = 12 m. Down: 2 floors × 3 m = 6 m.</li>
+          <li>(i) Distance = 12 + 6 = 18 m.</li>
+          <li>(ii) Displacement = 2 floors × 3 m = 6 m, vertically upward.</li>
+        </ol>
+        <p class="final">(i) 18 m (ii) 6 m upward.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Science: Exploration (NCERT, Class 9), Chapter 4 (Describing Motion Around Us), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const X = 200, Y0 = 470, FH = 80, D = 12;   // 3 m floor = 80 px
+  const qStages = [
+    { title: 'Up and down the stairs', dur: D, text: 'Ground floor → fourth floor (to collect a book) → second floor. Each floor is 3 m high.' },
+    { title: 'What is asked', dur: 4, text: '(i) The total vertical distance. (ii) The displacement.' },
+  ];
+  const stages = [
+    { title: 'Up 4 floors, down 2', dur: D, text: 'Up 4 × 3 = 12 m, then down 2 × 3 = 6 m.', ans: '(i) Distance = 12 + 6 = 18 m.' },
+    { title: 'Displacement', dur: 4, text: 'From the ground floor to the second floor.', ans: '(ii) 2 × 3 = 6 m, vertically upward.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    for (let f = 0; f <= 4; f++) { hline(ctx, 120, 420, Y0 - f * FH, P.ink, 2); label(ctx, f === 0 ? 'ground' : `floor ${f}`, 430, Y0 - f * FH - 8, { weight: 700, size: 12 }); }
+    vdim(ctx, 100, Y0 - FH, Y0, P.ink2); label(ctx, '3 m', 92, Y0 - FH / 2, { align: 'right', weight: 700, size: 12 });
+    const u = clamp(t / (D - 1)), fl = u < 2 / 3 ? 4 * (u * 1.5) : 4 - 2 * ((u - 2 / 3) * 3);   // floor level (continuous)
+    person(ctx, X + 60 * (fl % 1), Y0 - fl * FH, 0.7, P.vel);
+    if (ans) {
+      const st = stageAt(stages, t), dist = u < 2 / 3 ? 3 * fl : 12 + 3 * (4 - fl);
+      label(ctx, `distance: ${dist.toFixed(1)} m`, 470, 120, { weight: 800, size: 15, color: P.force });
+      label(ctx, `displacement: ${(3 * fl).toFixed(1)} m up`, 470, 150, { weight: 800, size: 15, color: P.accent });
+      if (fl > 0.05) vec(ctx, 160, Y0, 0, -fl * FH, '', P.accent, { lw: 3 });
+      partsPanel(ctx, 630, 34, 300, 'Answers', ['(i) 18 m', '(ii) 6 m upward'], st, false);
+    } else askedPanel(ctx, 630, 34, 300, ['(i) The total vertical distance travelled.', '(ii) The displacement from the starting point.']);
+    note(ctx, 'floors to scale; time sped up');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

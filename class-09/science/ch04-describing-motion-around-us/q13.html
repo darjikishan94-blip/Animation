@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 9 Science · Exercise 4.13</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 9 Science</a> · <a href="index.html">Ch. 4 Describing Motion Around Us</a></p>
+      <h1>Exercise 4.13 · A marathon trainee’s distance (Fig. 4.31)</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q12.html">‹ 4.12</a><a href="index.html">All questions</a><a href="q14.html">4.14 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 4.13">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="The area under the runner’s velocity–time graph is split into strips and added: about 47 km in 6.6 hours."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>4.13</b> A girl is preparing for her first marathon by running on a straight road. She uses a smartwatch to calculate her running speed at different intervals. The graph (Fig. 4.31) depicts her velocity versus time. Estimate the distance she ran based on the graph.</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Fig. 4.31, read as points (h, km/h): (0, 7.0), (0.6, 7.0), (1.6, 7.5), (3.0, 7.5), (4.6, 7.0), (5.6, 6.5), (6.6, 6.5).</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The distance.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Graph drawn through the points read from Fig. 4.31.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>Distance = area under the v–t graph (km/h × h = km).</li>
+          <li>Strips: 7.0 × 0.6 = 4.2; 7.25 × 1.0 = 7.25; 7.5 × 1.4 = 10.5; 7.25 × 1.6 = 11.6; 6.75 × 1.0 = 6.75; 6.5 × 1.0 = 6.5.</li>
+          <li>Total ≈ 46.8 km — about 47 km (the estimate depends a little on how the graph is read).</li>
+        </ol>
+        <p class="final">About 47 km.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Science: Exploration (NCERT, Class 9), Chapter 4 (Describing Motion Around Us), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const PTS = [[0, 7.0], [0.6, 7.0], [1.6, 7.5], [3.0, 7.5], [4.6, 7.0], [5.6, 6.5], [6.6, 6.5]];
+  const G = { x: 70, y: 90, w: 470, h: 360, x0: 0, x1: 7, y0: 0, y1: 8.5, xt: [2, 4, 6], yt: [2.5, 5, 7.5], xl: 't (h)', yl: 'v (km/h)' }, D = 10;
+  const qStages = [
+    { title: 'Fig. 4.31', dur: 6, text: 'A runner’s velocity (km/h) against time (h), from her smartwatch.' },
+    { title: 'What is asked', dur: 4, text: 'Estimate the distance she ran.' },
+  ];
+  const stages = [
+    { title: 'Area under the graph', dur: D, text: 'km/h × h = km. Split the area into strips and add.', ans: '4.2 + 7.25 + 10.5 + 11.6 + 6.75 + 6.5 ≈ 46.8 km.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    const g = axes(ctx, G);
+    if (ans) { const n = Math.min(6, Math.floor(clamp(t / (D - 2)) * 6.999)); let tot = 0;
+      for (let i = 0; i <= n && i < 6; i++) { const [a, va] = PTS[i], [b, vb] = PTS[i + 1], ar = (va + vb) / 2 * (b - a); tot += ar; ctx.save(); ctx.fillStyle = i % 2 ? P.accentSoft : P.ke; ctx.globalAlpha = 0.5; ctx.beginPath(); ctx.moveTo(g.X(a), g.Y(0)); ctx.lineTo(g.X(a), g.Y(va)); ctx.lineTo(g.X(b), g.Y(vb)); ctx.lineTo(g.X(b), g.Y(0)); ctx.closePath(); ctx.fill(); ctx.restore(); label(ctx, ar.toFixed(2), g.X((a + b) / 2), g.Y(2 + (i % 2) * 1.2), { align: 'center', weight: 700, size: 11 }); }
+      label(ctx, `distance ≈ ${tot.toFixed(1)} km`, 300, 490, { align: 'center', weight: 800, size: 17, color: P.accent });
+      partsPanel(ctx, 630, 34, 300, 'Answer', ['Area under v–t: about 47 km'], 0, false);
+    } else askedPanel(ctx, 630, 34, 300, ['An estimate of the distance she ran.']);
+    ctx.save(); ctx.strokeStyle = P.vel; ctx.lineWidth = 3; ctx.beginPath(); PTS.forEach(([a, b], i) => i ? ctx.lineTo(g.X(a), g.Y(b)) : ctx.moveTo(g.X(a), g.Y(b))); ctx.stroke(); ctx.restore(); PTS.forEach(([a, b]) => ball(ctx, g.X(a), g.Y(b), 4, P.ink));
+    note(ctx, 'points read from Fig. 4.31 (to about ±0.1 h); strip areas in km');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

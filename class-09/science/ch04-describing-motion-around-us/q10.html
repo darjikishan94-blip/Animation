@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 9 Science · Exercise 4.10</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 9 Science</a> · <a href="index.html">Ch. 4 Describing Motion Around Us</a></p>
+      <h1>Exercise 4.10 · Will the bus stop in time?</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q09.html">‹ 4.9</a><a href="index.html">All questions</a><a href="q11.html">4.11 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 4.10">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A bus at 10 m/s covers 5 m during the driver’s 0.5 s reaction, then brakes at 2.5 m/s² for another 20 m; it stops after 25 m, 5 m short of the obstacle."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>4.10</b> A bus is travelling at 36 km h<sup>–1</sup> when the driver sees an obstacle 30 m ahead. The driver takes 0.5 seconds to react before pressing the brake. Once the brake is applied, the velocity of the bus reduces with constant acceleration of 2.5 m s<sup>–2</sup>. Will the bus be able to stop before reaching the obstacle?</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>v = 36 km/h = 10 m/s; obstacle 30 m ahead; reaction time 0.5 s; deceleration 2.5 m s<sup>−2</sup>.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>Does it stop in time?</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Road to scale (14 px per m); real time.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>During the reaction time: 10 × 0.5 = 5 m.</li>
+          <li>Braking distance: v<sup>2</sup>/2a = 100/5 = 20 m (taking 4 s).</li>
+          <li>Total 25 m < 30 m: yes, it stops 5 m before the obstacle.</li>
+        </ol>
+        <p class="final">Yes — after 25 m, 5 m short of the obstacle.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Science: Exploration (NCERT, Class 9), Chapter 4 (Describing Motion Around Us), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const X0 = 90, Y = 250, S = 14, V = 10, TR = 0.5, A = 2.5, T = 4.5;   // 14 px per m
+  const x = t => t < TR ? V * t : V * TR + V * (t - TR) - 0.5 * A * (t - TR) ** 2;
+  function bus(ctx, px, y) { block(ctx, px - 70, y - 40, 70, 36, 'bus', P.ke); ball(ctx, px - 56, y - 4, 7, P.ink); ball(ctx, px - 14, y - 4, 7, P.ink); }
+  const qStages = [
+    { title: 'An obstacle ahead', dur: 5, text: 'A bus at 36 km/h (10 m/s) sees an obstacle 30 m ahead. Reaction time 0.5 s; then it brakes at 2.5 m/s².' },
+    { title: 'What is asked', dur: 4, text: 'Will it stop before reaching the obstacle?' },
+  ];
+  const stages = [
+    { title: 'Reaction', dur: 3, text: 'For 0.5 s the bus keeps going at 10 m/s.', ans: '5 m.' },
+    { title: 'Braking', dur: 6, text: 'Braking distance v²/2a = 100/5.', ans: '20 m (in 4 s). Total 25 m < 30 m: yes, it stops 5 m short.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    ctx.fillStyle = P.road; ctx.fillRect(20, Y, 580, 12);
+    const OX = X0 + S * 30; block(ctx, OX, Y - 50, 22, 50, '', P.loss); label(ctx, 'obstacle', OX + 11, Y - 62, { align: 'center', weight: 700, size: 12 });
+    dim(ctx, X0, OX, Y + 50, P.ink2); label(ctx, '30 m', (X0 + OX) / 2, Y + 66, { align: 'center', weight: 700, size: 13 });
+    const tt = ans ? Math.min(T, t * 0.8) : 0, s = x(tt); bus(ctx, X0 + S * s, Y);
+    if (ans) {
+      const st = stageAt(stages, t), v = tt < TR ? V : Math.max(0, V - A * (tt - TR));
+      label(ctx, `t = ${tt.toFixed(1)} s   v = ${v.toFixed(1)} m/s   s = ${s.toFixed(1)} m`, 40, 100, { weight: 800, size: 14 });
+      ctx.save(); ctx.fillStyle = P.ke; ctx.globalAlpha = 0.4; ctx.fillRect(X0, Y + 14, S * Math.min(s, 5), 8); ctx.fillStyle = P.force; ctx.fillRect(X0 + S * 5, Y + 14, S * Math.max(0, s - 5), 8); ctx.restore();
+      label(ctx, 'reaction 5 m', X0 + S * 2.5, Y + 100, { align: 'center', size: 12 }); if (s > 5) label(ctx, 'braking 20 m', X0 + S * 15, Y + 100, { align: 'center', size: 12 });
+      if (tt >= T) label(ctx, 'stops 5 m short', OX - 30, Y - 100, { align: 'center', weight: 800, size: 15, color: P.accent });
+      partsPanel(ctx, 630, 34, 300, 'Working', ['Reaction: 10 × 0.5 = 5 m', 'Braking: 100/(2 × 2.5) = 20 m; 25 m < 30 m: stops'], st, false);
+    } else askedPanel(ctx, 630, 34, 300, ['Whether the bus can stop before the obstacle.']);
+    note(ctx, 'road 14 px per m; time slowed slightly (×0.8)');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

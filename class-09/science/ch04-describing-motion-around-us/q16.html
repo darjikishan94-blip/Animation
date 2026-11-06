@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 9 Science · Exercise 4.16</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 9 Science</a> · <a href="index.html">Ch. 4 Describing Motion Around Us</a></p>
+      <h1>Exercise 4.16 · The tip of a minute hand, 6 to 7:30</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q15.html">‹ 4.15</a><a href="index.html">All questions</a><span>›</span></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 4.16">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="From 6:00 to 7:30 the tip of a 7 cm minute hand goes round one and a half times, 66 cm, but ends up just 14 cm from where it started, straight below."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>4.16</b> Rohan studies science from 6 PM to 7:30 PM at home. Consider the tip of the minute’s hand of the wall clock. During the given time interval, what is its: (i) distance travelled, (ii) displacement, (iii) speed, and (iv) velocity. The length of the minute’s hand is 7 cm (Fig. 4.32).</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Minute hand 7 cm; 6:00 PM to 7:30 PM (90 min = 5400 s).</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>(i) distance (ii) displacement (iii) average speed (iv) average velocity.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Clock to scale (14 px per cm); time sped up.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>In 90 min the minute hand makes 1½ turns: the tip goes from the 12 round to the 6.</li>
+          <li>(i) Distance = 1.5 × 2π × 7 ≈ 66 cm.</li>
+          <li>(ii) Displacement = a diameter = 14 cm, from the 12 towards the 6 (vertically downward).</li>
+          <li>(iii) Average speed = 66 cm/5400 s ≈ 0.012 cm/s (≈ 1.2 × 10<sup>−4</sup> m/s).</li>
+          <li>(iv) Average velocity = 14 cm/5400 s ≈ 0.0026 cm/s (≈ 2.6 × 10<sup>−5</sup> m/s), downward.</li>
+        </ol>
+        <p class="final">(i) ≈ 66 cm (ii) 14 cm, downward (iii) ≈ 0.012 cm/s (iv) ≈ 0.0026 cm/s, downward.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Science: Exploration (NCERT, Class 9), Chapter 4 (Describing Motion Around Us), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const CX = 220, CY = 270, R = 98, D = 9;   // 7 cm = 98 px (14 px per cm)
+  const qStages = [
+    { title: 'A wall clock', dur: 5, text: 'Rohan studies from 6:00 PM to 7:30 PM. The minute hand is 7 cm long.' },
+    { title: 'What is asked', dur: 5, text: 'For the tip of the minute hand: (i) distance, (ii) displacement, (iii) speed, (iv) velocity.' },
+  ];
+  const stages = [
+    { title: '1½ turns', dur: D, text: 'In 90 minutes the minute hand turns 1½ times: its tip goes from the 12, all the way round, and on to the 6.', ans: '(i) Distance = 1.5 × 2π × 7 ≈ 66 cm.' },
+    { title: 'Displacement', dur: 4, text: 'From the 12 to the 6: a diameter.', ans: '(ii) 14 cm, vertically downward.' },
+    { title: 'Speed and velocity', dur: 6, text: 'Divide by 90 min = 5400 s.', ans: '(iii) 66/5400 ≈ 0.012 cm/s; (iv) 14/5400 ≈ 0.0026 cm/s, downward.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    ctx.save(); ctx.strokeStyle = P.force; ctx.lineWidth = 6; ctx.beginPath(); ctx.arc(CX, CY, R + 24, 0, 2 * Math.PI); ctx.stroke(); ctx.restore();
+    for (let h = 1; h <= 12; h++) { const a = h / 12 * 2 * Math.PI - Math.PI / 2; label(ctx, String(h), CX + (R + 6) * Math.cos(a), CY + (R + 6) * Math.sin(a), { align: 'center', weight: 700, size: 13 }); }
+    const f = ans ? clamp(t / (D - 1)) : 0, turns = 1.5 * f, a = turns * 2 * Math.PI - Math.PI / 2, hr = (6 + 1.5 * f) / 12 * 2 * Math.PI - Math.PI / 2;
+    ctx.save(); ctx.strokeStyle = P.ink; ctx.lineWidth = 6; seg(ctx, CX, CY, CX + 0.55 * R * Math.cos(hr), CY + 0.55 * R * Math.sin(hr)); ctx.lineWidth = 3; seg(ctx, CX, CY, CX + R * 0.92 * Math.cos(a), CY + R * 0.92 * Math.sin(a)); ctx.restore(); ball(ctx, CX, CY, 5, P.ink);
+    label(ctx, `${Math.floor(6 + 1.5 * f)}:${String(Math.round((90 * f) % 60)).padStart(2, '0')} PM`, CX, CY + R + 52, { align: 'center', weight: 800, size: 15 });
+    if (ans) {
+      const st = stageAt(stages, t), tip = [CX + R * 0.92 * Math.cos(a), CY + R * 0.92 * Math.sin(a)];
+      ctx.save(); ctx.strokeStyle = P.accent; ctx.lineWidth = 3; ctx.beginPath(); ctx.arc(CX, CY, R * 0.92, -Math.PI / 2, a); ctx.stroke(); ctx.restore(); ball(ctx, ...tip, 5, P.accent);
+      label(ctx, `distance ${(turns * 2 * Math.PI * 7).toFixed(0)} cm`, 400, 120, { weight: 800, size: 15, color: P.accent });
+      if (st >= 1) { vec(ctx, CX, CY - R * 0.92, 0, 2 * R * 0.92, '14 cm', P.force, { side: -1, at: 0.25, lw: 3, align: 'left', off: 10 }); label(ctx, 'displacement 14 cm, down', 400, 150, { weight: 800, size: 15, color: P.force }); }
+      if (st >= 2) { label(ctx, 'speed ≈ 0.012 cm/s', 400, 190, { weight: 700, size: 14 }); label(ctx, 'velocity ≈ 0.0026 cm/s, down', 400, 214, { weight: 700, size: 14 }); }
+      partsPanel(ctx, 630, 34, 300, 'Answers', ['(i) ≈ 66 cm', '(ii) 14 cm downward', '(iii) ≈ 0.012 cm/s; (iv) ≈ 0.0026 cm/s down'], st, false);
+    } else askedPanel(ctx, 630, 34, 300, ['For the tip of the minute hand: (i) distance, (ii) displacement, (iii) speed, (iv) velocity, from 6:00 to 7:30 PM.']);
+    note(ctx, 'clock to scale (14 px per cm); time sped up');
+  }
+  return { qStages, stages, draw };
+})();
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

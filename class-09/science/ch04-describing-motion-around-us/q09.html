@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 9 Science · Exercise 4.9</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 9 Science</a> · <a href="index.html">Ch. 4 Describing Motion Around Us</a></p>
+      <h1>Exercise 4.9 · Speed up, cruise, brake</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q08.html">‹ 4.8</a><a href="index.html">All questions</a><a href="q10.html">4.10 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 4.9">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="The car’s velocity–time graph is a trapezium: up to 20 m/s in 5 s, level for 10 s, down to zero in 6 s; the three areas are 50 m, 200 m and 60 m, 310 m in all."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>4.9</b> A car starts from rest and accelerates uniformly to 20 m s<sup>–1</sup> in 5 seconds. It then travels at 20 m s<sup>–1</sup> for 10 seconds and finally applies the brake (with uniform acceleration) to stop in 6 seconds. Find the total distance travelled.</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>0 → 20 m/s in 5 s; 20 m/s for 10 s; 20 → 0 in 6 s (uniform).</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>Total distance.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Graph to scale; the car moves in real time (1.5 px per m).</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>Area under the v–t graph: ½ × 5 × 20 = 50 m; 10 × 20 = 200 m; ½ × 6 × 20 = 60 m.</li>
+          <li>Total = 310 m.</li>
+        </ol>
+        <p class="final">310 m.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Science: Exploration (NCERT, Class 9), Chapter 4 (Describing Motion Around Us), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const G = { x: 70, y: 250, w: 460, h: 220, x0: 0, x1: 22, y0: 0, y1: 24, xt: [5, 15, 21], yt: [20], xl: 't (s)', yl: 'v (m/s)' }, T = 21, X0 = 40, S = 1.5;
+  const v = t => t < 5 ? 4 * t : t < 15 ? 20 : Math.max(0, 20 - (20 / 6) * (t - 15));
+  const x = t => t < 5 ? 2 * t * t : t < 15 ? 50 + 20 * (t - 5) : 250 + 20 * (t - 15) - (10 / 6) * (t - 15) ** 2;
+  function car(ctx, px, y) { block(ctx, px - 40, y - 26, 40, 22, '', P.force); ball(ctx, px - 32, y - 2, 5, P.ink); ball(ctx, px - 8, y - 2, 5, P.ink); }
+  const qStages = [
+    { title: 'Speed up, cruise, brake', dur: 6, text: 'From rest to 20 m/s in 5 s; then 20 m/s for 10 s; then braking uniformly to rest in 6 s.' },
+    { title: 'What is asked', dur: 4, text: 'The total distance travelled.' },
+  ];
+  const stages = [
+    { title: 'The journey', dur: T + 1, text: 'The v–t graph is a trapezium; distance = area under it.', ans: '' },
+    { title: 'Add the areas', dur: 6, text: '½ × 5 × 20 + 10 × 20 + ½ × 6 × 20.', ans: '50 + 200 + 60 = 310 m.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    ctx.fillStyle = P.road; ctx.fillRect(20, 150, 580, 10);
+    if (!ans) { car(ctx, X0 + 40, 150); askedPanel(ctx, 630, 34, 300, ['The total distance travelled.']); note(ctx, 'graph to scale'); return; }
+    const st = stageAt(stages, t), tt = Math.min(T, t), g = axes(ctx, G);
+    car(ctx, X0 + 40 + S * x(tt), 150); label(ctx, `t = ${tt.toFixed(1)} s   distance = ${x(tt).toFixed(0)} m`, 40, 90, { weight: 800, size: 14 });
+    plot(ctx, g, v, 0, tt, P.vel);
+    if (st >= 1) { [[[0, 0], [5, 20], [5, 0]], [[5, 0], [5, 20], [15, 20], [15, 0]], [[15, 0], [15, 20], [21, 0]]].forEach((poly_, i) => { ctx.save(); ctx.fillStyle = [P.accentSoft, P.ke, P.pe][i]; ctx.globalAlpha = 0.45; ctx.beginPath(); poly_.forEach(([a, b], j) => j ? ctx.lineTo(g.X(a), g.Y(b)) : ctx.moveTo(g.X(a), g.Y(b))); ctx.closePath(); ctx.fill(); ctx.restore(); });
+      label(ctx, '50 m', g.X(3.3), g.Y(5), { align: 'center', weight: 800, size: 13 }); label(ctx, '200 m', g.X(10), g.Y(10), { align: 'center', weight: 800, size: 14 }); label(ctx, '60 m', g.X(17), g.Y(5), { align: 'center', weight: 800, size: 13 });
+      label(ctx, 'total 310 m', 470, 90, { weight: 800, size: 16, color: P.accent }); }
+    partsPanel(ctx, 630, 34, 300, 'Working', ['Distance = area under the v–t graph', '50 + 200 + 60 = 310 m'], st, false);
+    note(ctx, 'graph to scale; car 1.5 px per m, real time');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

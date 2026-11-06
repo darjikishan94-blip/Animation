@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 9 Science · Exercise 4.5</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 9 Science</a> · <a href="index.html">Ch. 4 Describing Motion Around Us</a></p>
+      <h1>Exercise 4.5 · A motorbike stops in 98 m</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q04.html">‹ 4.4</a><a href="index.html">All questions</a><a href="q06.html">4.6 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 4.5">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A motorbike at 28 m/s brakes uniformly and stops in 98 m: its acceleration is −4 m/s² and it takes 7 s."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>4.5</b> A motorbike moving with initial velocity 28 m s<sup>–1</sup> and constant acceleration stops after travelling 98 m. Find the acceleration of the motorbike and the time taken to come to a stop.</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>u = 28 m/s; v = 0; s = 98 m; constant acceleration.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>a; t.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Road to scale (4.5 px per m); real time.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>v<sup>2</sup> = u<sup>2</sup> + 2as: 0 = 784 + 196a, so a = −4 m s<sup>−2</sup>.</li>
+          <li>t = (v − u)/a = (0 − 28)/(−4) = 7 s.</li>
+        </ol>
+        <p class="final">−4 m s<sup>−2</sup> (retardation 4 m s<sup>−2</sup>); 7 s.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Science: Exploration (NCERT, Class 9), Chapter 4 (Describing Motion Around Us), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const X0 = 80, Y = 200, S = 4.5, U = 28, A = 4, T = 7;   // 4.5 px per m
+  function bike(ctx, x, y) { ball(ctx, x - 30, y - 8, 8, P.ink); ball(ctx, x, y - 8, 8, P.ink); ctx.save(); ctx.strokeStyle = P.vel; ctx.lineWidth = 5; seg(ctx, x - 30, y - 10, x - 12, y - 26); seg(ctx, x - 12, y - 26, x, y - 10); ctx.restore(); }
+  const qStages = [
+    { title: 'A motorbike brakes', dur: T + 1, text: 'A motorbike at 28 m/s slows with constant acceleration and stops after 98 m.' },
+    { title: 'What is asked', dur: 4, text: 'Its acceleration, and the time it takes to stop.' },
+  ];
+  const stages = [
+    { title: 'Acceleration', dur: T + 1, text: 'v² = u² + 2as with v = 0.', ans: '0 = 28² + 2a × 98: a = −4 m/s².' },
+    { title: 'Time', dur: 4, text: 'v = u + at.', ans: 't = 28/4 = 7 s.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    ctx.fillStyle = P.road; ctx.fillRect(20, Y, 580, 10);
+    const tt = Math.min(T, t), s = U * tt - 0.5 * A * tt * tt; bike(ctx, X0 + S * s, Y);
+    dim(ctx, X0, X0 + S * 98, Y + 40, P.ink2); label(ctx, '98 m', X0 + S * 49, Y + 56, { align: 'center', weight: 700, size: 13 });
+    label(ctx, `v = ${(U - A * tt).toFixed(1)} m/s`, 40, 90, { weight: 800, size: 15 });
+    if (ans) {
+      const st = stageAt(stages, t);
+      label(ctx, 'a = −4 m/s²', 40, 330, { weight: 800, size: 18, color: P.accent });
+      if (st >= 1 || tt >= T) clock(ctx, 60, 380, tt);
+      if (st >= 1) label(ctx, 't = 7 s', 40, 430, { weight: 800, size: 18, color: P.accent });
+      partsPanel(ctx, 630, 34, 300, 'Answers', ['a = −4 m/s²', 't = 7 s'], st, false);
+    } else askedPanel(ctx, 630, 34, 300, ['The acceleration of the motorbike.', 'The time taken to stop.']);
+    note(ctx, 'road 4.5 px per m; real time');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>
