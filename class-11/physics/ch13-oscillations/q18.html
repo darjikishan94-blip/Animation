@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 13.18</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 13 Oscillations</a></p>
+      <h1>Exercise 13.18 · Mercury oscillating in a U-tube</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q17.html">‹ 13.17</a><a href="index.html">All questions</a><span>›</span></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 13.18">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="Mercury held unevenly in a U-tube by a suction pump is released; the level difference 2y produces a restoring pressure, and the column swings up and down in SHM."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>13.18</b> One end of a U-tube containing mercury is connected to a suction pump and the other end to atmosphere. A small pressure difference is maintained between the two columns. Show that, when the suction pump is removed, the column of mercury in the U-tube executes simple harmonic motion.</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>A mercury column of total length L and cross-section A in a U-tube; one side displaced by y.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>Show that the motion is SHM.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Column length and amplitude illustrative; no damping.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>If one surface is up by y, the other is down by y: an unbalanced column of height 2y.</li>
+          <li>Restoring force = (pressure of 2y of mercury) × A = −2ρgAy, proportional to y.</li>
+          <li>The whole column, mass ρAL, moves together: ρAL a = −2ρgA y, so a = −(2g/L) y: SHM with T = 2π√(L/2g).</li>
+        </ol>
+        <p class="final">a = −(2g/L)y: SHM with T = 2π√(L/2g).</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 13 (Oscillations), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const LX = 200, RX = 400, BY = 420, H0 = 200, W = 2.0, D = 10;
+  const qStages = [
+    { title: 'Held by suction', dur: 4, text: 'One end of a mercury U-tube is connected to a suction pump, the other is open; a small pressure difference keeps the levels unequal.' },
+    { title: 'Pump removed', dur: D - 4, text: 'The suction pump is removed.' },
+    { title: 'What is asked', dur: 4, text: 'Show that the mercury column executes simple harmonic motion.' },
+  ];
+  const stages = [
+    { title: 'Unequal levels', dur: 4, text: 'One surface is y above the equilibrium level, the other y below: an unbalanced column of height 2y.', ans: '' },
+    { title: 'Restoring force', dur: D - 4, text: 'The extra column pushes back with pressure 2ρgy over the area A: F = −2ρgA y. The whole column (length L, mass ρAL) moves together.', ans: 'ρAL a = −2ρgA y ⇒ a = −(2g/L) y: SHM.' },
+    { title: 'Period', dur: 4, text: 'ω² = 2g/L.', ans: 'T = 2π√(L/2g).' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    const y = t < 4 ? 40 : 40 * Math.cos(W * (t - 4)), hl = H0 + y, hr = H0 - y;
+    ctx.fillStyle = P.ink2; ctx.globalAlpha = 0.55; ctx.fillRect(LX - 20, BY - hl, 40, hl); ctx.fillRect(RX - 20, BY - hr, 40, hr); ctx.fillRect(LX - 20, BY, RX - LX + 40, 40); ctx.globalAlpha = 1;
+    ctx.strokeStyle = P.obj; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(LX - 20, 70); ctx.lineTo(LX - 20, BY + 40); ctx.lineTo(RX + 20, BY + 40); ctx.lineTo(RX + 20, 70); ctx.moveTo(LX + 20, 70); ctx.lineTo(LX + 20, BY); ctx.lineTo(RX - 20, BY); ctx.lineTo(RX - 20, 70); ctx.stroke();
+    hline(ctx, LX - 40, RX + 40, BY - H0, P.ink2, 1, [4, 4]); label(ctx, 'equilibrium level', RX + 44, BY - H0, { size: 12, color: P.ink2 });
+    if (t < 4) { block(ctx, RX - 30, 30, 60, 30, 'pump', P.objFill2); vline(ctx, RX, 60, 70, P.obj, 3); }
+    if (ans && Math.abs(y) > 3) { vdim(ctx, LX - 50, BY - hl, BY - hr, P.accent); label(ctx, '2y', LX - 58, BY - H0, { align: 'right', weight: 800, size: 15, color: P.accent }); }
+    label(ctx, 'mercury', (LX + RX) / 2, BY + 22, { align: 'center', weight: 700, size: 13 });
+    if (ans) partsPanel(ctx, 630, 34, 300, 'Proof', ['Level difference 2y', 'F = −2ρgA y on mass ρAL ⇒ a = −(2g/L)y', 'SHM with T = 2π√(L/2g)'], stageAt(stages, t), false);
+    else askedPanel(ctx, 630, 34, 300, ['Show that the mercury column executes simple harmonic motion after the pump is removed.']);
+    note(ctx, 'column length and amplitude illustrative; no damping');
+  }
+  return { qStages, stages, draw };
+})();
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

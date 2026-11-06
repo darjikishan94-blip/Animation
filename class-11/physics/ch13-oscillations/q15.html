@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 13.15</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 13 Oscillations</a></p>
+      <h1>Exercise 13.15 · A pendulum on the Moon</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q14.html">‹ 13.14</a><a href="index.html">All questions</a><a href="q16.html">13.16 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 13.15">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="Two identical pendulums swing side by side, one under Earth’s gravity (period 3.5 s) and one under the Moon’s (period 8.4 s)."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>13.15</b> The acceleration due to gravity on the surface of moon is 1.7 m s<sup>–2</sup>. What is the time period of a simple pendulum on the surface of moon if its time period on the surface of earth is 3.5 s ? (g on the surface of earth is 9.8 m s<sup>–2</sup>)</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>g<sub>moon</sub> = 1.7 m s<sup>−2</sup>; g<sub>earth</sub> = 9.8 m s<sup>−2</sup>; T<sub>earth</sub> = 3.5 s.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The period on the Moon.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Real time; amplitude illustrative.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>T = 2π√(l/g): for the same length, T ∝ 1/√g.</li>
+          <li>T<sub>moon</sub> = 3.5 × √(9.8/1.7) ≈ 8.4 s.</li>
+        </ol>
+        <p class="final">About 8.4 s.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 13 (Oscillations), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const TE = 3.5, TM = TE * Math.sqrt(9.8 / 1.7), L = 300, A0 = 0.25, D = 18;
+  const qStages = [
+    { title: 'Earth and Moon', dur: D, text: 'A simple pendulum has a period of 3.5 s on the Earth (g = 9.8 m/s²). The same pendulum is taken to the Moon (g = 1.7 m/s²).' },
+    { title: 'What is asked', dur: 4, text: 'What is its period on the Moon?' },
+  ];
+  const stages = [
+    { title: 'Same length', dur: D, text: 'T = 2π√(l/g): same length, so T ∝ 1/√g. Weaker gravity, slower swing.', ans: 'T_moon = T_earth × √(g_earth / g_moon).' },
+    { title: 'Period on the Moon', dur: 4, text: '√(9.8/1.7) ≈ 2.40.', ans: 'T_moon ≈ 3.5 × 2.40 ≈ 8.4 s.' },
+  ];
+  function pend(ctx, x, T, t, name) {
+    hatchRect(ctx, x - 50, 50, 100, 12, P.obj, P.objFill); hline(ctx, x - 50, x + 50, 62, P.obj, 2);
+    const a = A0 * Math.cos(2 * Math.PI * t / T), bx = x + L * Math.sin(a), by = 62 + L * Math.cos(a);
+    ctx.save(); ctx.strokeStyle = P.ink; ctx.lineWidth = 2; seg(ctx, x, 62, bx, by); ctx.restore(); ball(ctx, bx, by, 14, P.objFill2);
+    label(ctx, name, x, 420, { align: 'center', weight: 800, size: 15 });
+  }
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    pend(ctx, 160, TE, t, 'Earth'); pend(ctx, 440, TM, t, 'Moon');
+    label(ctx, 'T = 3.5 s', 160, 446, { align: 'center', size: 14 }); label(ctx, ans ? 'T ≈ 8.4 s' : 'T = ?', 440, 446, { align: 'center', weight: ans ? 800 : 400, size: 14, color: ans ? P.accent : P.ink });
+    clock(ctx, 260, 490, t, `t = ${t.toFixed(1)} s`);
+    if (ans) partsPanel(ctx, 630, 34, 300, 'Working', ['T ∝ 1/√g (same length)', 'T_moon = 3.5 × √(9.8/1.7) ≈ 8.4 s'], stageAt(stages, t), false);
+    else askedPanel(ctx, 630, 34, 300, ['The period of the same pendulum on the Moon.']);
+    note(ctx, 'real time; amplitude illustrative');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

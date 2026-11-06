@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 13.4</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 13 Oscillations</a></p>
+      <h1>Exercise 13.4 · Classifying functions of time</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q03.html">‹ 13.3</a><a href="index.html">All questions</a><a href="q05.html">13.5 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 13.4">
+    <p class="qline"><b>13.4</b> Which of the following functions of time represent (a) simple harmonic, (b) periodic but not simple harmonic, and (c) non-periodic motion? Give period for each case of periodic motion (ω is any positive constant): (a) sin ωt – cos ωt (b) sin<sup>3</sup> ωt (c) 3 cos (π/4 – 2ωt) (d) cos ωt + cos 3ωt + cos 5ωt (e) exp (–ω<sup>2</sup>t<sup>2</sup>) (f) 1 + ωt + ω<sup>2</sup>t<sup>2</sup></p>
+    <p><button type="button" class="btn reveal" id="show" aria-pressed="false" style="margin-left:0">Show answer</button></p>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Six functions of time.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>Classify each; give the periods.</p>
+      </div>
+      <div>
+        <h3>Why there is no animation</h3>
+        <ul>
+          <li>This question asks for a classification or a short derivation rather than describing one situation to follow; the page shows the question and a worked answer.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>(a) √2 sin(ωt − π/4): SHM, T = 2π/ω.</li>
+          <li>(b) sin<sup>3</sup>ωt = (3 sin ωt − sin 3ωt)/4: periodic, not SHM, T = 2π/ω.</li>
+          <li>(c) 3 cos(2ωt − π/4): SHM, T = π/ω.</li>
+          <li>(d) Sum of three SHMs: periodic, not SHM, T = 2π/ω (the period of the slowest term).</li>
+          <li>(e) exp(−ω<sup>2</sup>t<sup>2</sup>): non-periodic.</li>
+          <li>(f) 1 + ωt + ω<sup>2</sup>t<sup>2</sup>: non-periodic.</li>
+        </ol>
+        <p class="final">SHM: (a), (c). Periodic not SHM: (b), (d). Non-periodic: (e), (f).</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 13 (Oscillations), Exercises. </p>
+</div>
+<script>
+const b = document.getElementById('show'), a = document.querySelector('.answer');
+b.addEventListener('click', () => { a.hidden = !a.hidden; b.setAttribute('aria-pressed', String(!a.hidden)); b.textContent = a.hidden ? 'Show answer' : 'Hide answer'; });
+</script>
+</body>
+</html>

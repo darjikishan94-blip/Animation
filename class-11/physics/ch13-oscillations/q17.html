@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 13.17</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 13 Oscillations</a></p>
+      <h1>Exercise 13.17 · A floating cork bobbing</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q16.html">‹ 13.16</a><a href="index.html">All questions</a><a href="q18.html">13.18 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 13.17">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A floating cork pushed down by x feels an extra buoyant force ρ_l A g x upward; it bobs up and down in SHM with period 2π√(hρ/ρ_l g)."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>13.17</b> A cylindrical piece of cork of density of base area A and height h floats in a liquid of density ρ<sub>l</sub>. The cork is depressed slightly and then released. Show that the cork oscillates up and down simple harmonically with a period T = 2π √(hρ/(ρ<sub>l</sub>g)) where ρ is the density of cork. (Ignore damping due to viscosity of the liquid).</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Cork: base area A, height h, density ρ; liquid density ρ<sub>l</sub>.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>Show the motion is SHM with T = 2π√(hρ/ρ<sub>l</sub>g).</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Sizes and densities illustrative; no damping.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>Floating: the weight ρAhg is balanced by the buoyant force.</li>
+          <li>Pushed down a further x, the extra submerged volume Ax gives an extra upward force ρ<sub>l</sub>Agx: a restoring force F = −(ρ<sub>l</sub>Ag)x, proportional to x.</li>
+          <li>So the motion is SHM with k = ρ<sub>l</sub>Ag and mass m = ρAh: T = 2π√(m/k) = 2π√(hρ/(ρ<sub>l</sub>g)).</li>
+        </ol>
+        <p class="final">Restoring force −ρ<sub>l</sub>Agx ⇒ SHM, T = 2π√(hρ/ρ<sub>l</sub>g).</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 13 (Oscillations), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const LY = 260, CW = 120, CH = 140, SUB = 0.6, W = 2.2, D = 10;           // cork floats with 60% submerged (illustrative ρ/ρl)
+  const qStages = [
+    { title: 'A floating cork', dur: 3, text: 'A cylindrical cork (base area A, height h, density ρ) floats in a liquid of density ρ_l.' },
+    { title: 'Pushed and released', dur: D - 3, text: 'It is pushed down slightly and released.' },
+    { title: 'What is asked', dur: 4, text: 'Show it oscillates in SHM with period T = 2π√(hρ/ρ_l g).' },
+  ];
+  const stages = [
+    { title: 'Floating', dur: 3, text: 'At rest, the buoyant force balances the weight ρAhg.', ans: '' },
+    { title: 'Restoring force', dur: D - 3, text: 'Pushed a further x down, an extra volume Ax is under the liquid: an extra upward force ρ_l A g x.', ans: 'F = −(ρ_l A g) x: proportional to x and opposite to it ⇒ SHM.' },
+    { title: 'Period', dur: 4, text: 'k = ρ_l A g, m = ρAh.', ans: 'T = 2π√(m/k) = 2π√(hρ/(ρ_l g)).' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    ctx.fillStyle = P.water; ctx.globalAlpha = 0.4; ctx.fillRect(60, LY, 480, 220); ctx.globalAlpha = 1; hline(ctx, 60, 540, LY, P.vel, 2);
+    const x = t < 1 ? 0 : t < 3 ? 26 * smooth(clamp((t - 1) / 1.5)) : 26 * Math.cos(W * (t - 3)), top = LY - CH * (1 - SUB) + x;
+    ctx.fillStyle = P.wood; ctx.fillRect(300 - CW / 2, top, CW, CH); ctx.strokeStyle = P.obj; ctx.lineWidth = 2; ctx.strokeRect(300 - CW / 2, top, CW, CH);
+    label(ctx, 'cork', 300, top + 24, { align: 'center', weight: 700, size: 13 });
+    hline(ctx, 300 + CW / 2 + 10, 300 + CW / 2 + 60, LY - CH * (1 - SUB), P.ink2, 1, [3, 3]); label(ctx, 'floating level', 300 + CW / 2 + 64, LY - CH * (1 - SUB), { size: 12, color: P.ink2 });
+    if (ans && Math.abs(x) > 2) { vdim(ctx, 300 + CW / 2 + 30, Math.min(LY - CH * (1 - SUB), top), Math.max(LY - CH * (1 - SUB), top), P.accent); label(ctx, 'x', 300 + CW / 2 + 40, (top + LY - CH * (1 - SUB)) / 2, { italic: true, weight: 800, size: 15, color: P.accent }); vec(ctx, 300 - CW / 2 - 30, top + CH / 2, 0, -x * 2, 'extra force ρ_l A g x', P.force, { side: 1, at: 1, align: 'right', ax: -6, size: 12 }); }
+    if (ans) partsPanel(ctx, 630, 34, 300, 'Proof', ['Floating: weight = buoyant force', 'Extra push x: F = −ρ_l A g x ⇒ SHM', 'T = 2π√(ρAh/ρ_l A g) = 2π√(hρ/ρ_l g)'], stageAt(stages, t), false);
+    else askedPanel(ctx, 630, 34, 300, ['Show that the cork oscillates in SHM with period T = 2π√(hρ/ρ_l g).']);
+    note(ctx, 'sizes and densities illustrative; no damping');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

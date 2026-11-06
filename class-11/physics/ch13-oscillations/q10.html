@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 13.10</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 13 Oscillations</a></p>
+      <h1>Exercise 13.10 · x(t) for three starting positions</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q09.html">‹ 13.9</a><a href="index.html">All questions</a><a href="q11.html">13.11 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 13.10">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="Three copies of the spring and mass from 13.9 start at the mean position, the stretched end and the compressed end; their x–t graphs have the same amplitude and frequency but are shifted in phase."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>13.10</b> In Exercise 13.9, let us take the position of mass when the spring is unstreched as x = 0, and the direction from left to right as the positive direction of x-axis. Give x as a function of time t for the oscillating mass if at the moment we start the stopwatch (t = 0), the mass is (a) at the mean position, (b) at the maximum stretched position, and (c) at the maximum compressed position. In what way do these functions for SHM differ from each other, in frequency, in amplitude or the initial phase?</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>As in 13.9: A = 2 cm, ω = 20 rad s<sup>−1</sup>; x = 0 at the unstretched position; right is positive.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>x(t) in the three cases; how they differ.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Graphs to scale (time slowed 5 times in the animation).</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>(a) Starting at the mean position (moving right, as it would when released from the stretched side half a cycle earlier): x = 2 sin 20t cm.</li>
+          <li>(b) Starting at maximum stretch: x = 2 cos 20t cm.</li>
+          <li>(c) Starting at maximum compression: x = −2 cos 20t cm.</li>
+          <li>Same amplitude and frequency; only the initial phase differs.</li>
+        </ol>
+        <p class="final">(a) 2 sin 20t (b) 2 cos 20t (c) −2 cos 20t (cm): they differ only in initial phase.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 13 (Oscillations), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const W = 20, SLOW = 10, A = 2, CASES = [[t => A * Math.sin(W * t), '(a) mean position', 'x = 2 sin 20t'], [t => A * Math.cos(W * t), '(b) maximum stretch', 'x = 2 cos 20t'], [t => -A * Math.cos(W * t), '(c) maximum compression', 'x = −2 cos 20t']];
+  const qStages = [
+    { title: 'Three starts', dur: 8, text: 'The mass of 13.9 (A = 2 cm, ω = 20 rad/s) is timed from three different starting positions: the mean position, maximum stretch, maximum compression. x = 0 at the unstretched position, right positive.' },
+    { title: 'What is asked', dur: 4, text: 'Give x(t) in each case. How do they differ: frequency, amplitude or initial phase?' },
+  ];
+  const stages = [
+    { title: 'x(t) in each case', dur: 8, text: 'Read the starting value and direction: (a) x = 0 moving right; (b) x = +2 cm at rest; (c) x = −2 cm at rest.', ans: '(a) 2 sin 20t, (b) 2 cos 20t, (c) −2 cos 20t (cm).' },
+    { title: 'The difference', dur: 4, text: 'Compare the three graphs.', ans: 'Same amplitude (2 cm) and frequency (20 rad/s); only the initial phase differs.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    const tr = t / SLOW;
+    CASES.forEach(([f, n, eq], i) => {
+      const y = 100 + i * 150, bx = 170 + f(tr) * 18;
+      hatchRect(ctx, 30, y - 30, 12, 60, P.obj, P.objFill); spring(ctx, 42, y, bx - 22, y, 8, 8, P.ink); block(ctx, bx - 22, y - 22, 44, 44, '', P.vel);
+      vline(ctx, 170, y + 26, y + 36, P.ink, 1.5); label(ctx, n, 30, y - 46, { weight: 700, size: 13 });
+      if (ans) {
+        const g = axes(ctx, { x: 290, y: y - 45, w: 280, h: 90, x0: 0, x1: 0.8, y0: -2.5, y1: 2.5, xl: 't', yl: '' });
+        plot(ctx, g, f, 0, Math.min(tr, 0.8), P.vel, 2.5); label(ctx, eq, 300, y - 52, { weight: 800, size: 13, color: P.accent });
+      }
+    });
+    if (ans) partsPanel(ctx, 630, 34, 300, 'Answers', ['(a) 2 sin 20t; (b) 2 cos 20t; (c) −2 cos 20t (cm)', 'Only the initial phase differs'], stageAt(stages, t), false);
+    else askedPanel(ctx, 630, 34, 300, ['x as a function of t when timing starts at (a) the mean position, (b) maximum stretch, (c) maximum compression.', 'How do the three functions differ?']);
+    note(ctx, 'shown 10 times slower; in (a) the mass is taken to be moving to the right at t = 0');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

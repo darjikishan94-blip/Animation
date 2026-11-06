@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 13.7</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 13 Oscillations</a></p>
+      <h1>Exercise 13.7 · Amplitude and phase from initial conditions</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q06.html">‹ 13.6</a><a href="index.html">All questions</a><a href="q08.html">13.8 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 13.7">
+    <p class="qline"><b>13.7</b> The motion of a particle executing simple harmonic motion is described by the displacement function, x(t) = A cos (ωt + φ ). If the initial (t = 0) position of the particle is 1 cm and its initial velocity is ω cm/s, what are its amplitude and initial phase angle ? The angular frequency of the particle is π s<sup>–1</sup>. If instead of the cosine function, we choose the sine function to describe the SHM : x = B sin (ωt + α), what are the amplitude and initial phase of the particle with the above initial conditions.</p>
+    <p><button type="button" class="btn reveal" id="show" aria-pressed="false" style="margin-left:0">Show answer</button></p>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>x(0) = 1 cm; v(0) = ω cm/s; ω = π s<sup>−1</sup>.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>A, φ for the cosine form; B, α for the sine form.</p>
+      </div>
+      <div>
+        <h3>Why there is no animation</h3>
+        <ul>
+          <li>This is a direct calculation with nothing moving to show; the page shows the question and a worked answer.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>Cosine form: A cos φ = 1 and v(0) = −Aω sin φ = ω, so A sin φ = −1. Hence A = √2 cm and φ = −π/4.</li>
+          <li>Sine form: B sin α = 1 and Bω cos α = ω, so B cos α = 1. Hence B = √2 cm and α = π/4.</li>
+        </ol>
+        <p class="final">A = √2 cm, φ = −π/4; B = √2 cm, α = π/4.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 13 (Oscillations), Exercises. </p>
+</div>
+<script>
+const b = document.getElementById('show'), a = document.querySelector('.answer');
+b.addEventListener('click', () => { a.hidden = !a.hidden; b.setAttribute('aria-pressed', String(!a.hidden)); b.textContent = a.hidden ? 'Show answer' : 'Hide answer'; });
+</script>
+</body>
+</html>

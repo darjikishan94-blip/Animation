@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 13.13</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 13 Oscillations</a></p>
+      <h1>Exercise 13.13 · One spring, one or two masses (Fig. 13.21)</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q12.html">‹ 13.12</a><a href="index.html">All questions</a><a href="q14.html">13.14 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 13.13">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A spring fixed to a wall with one mass, and the same spring free with a mass at each end; both stretch by F/k, but the two-mass system oscillates faster, with period 2π√(m/2k)."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>13.13</b> Figure 13.21(a) shows a spring of force constant k clamped rigidly at one end and a mass m attached to its free end. A force F applied at the free end stretches the spring. Figure 13.21 (b) shows the same spring with both ends free and attached to a mass m at either end. Each end of the spring in Fig. 13.21(b) is stretched by the same force F. (a) What is the maximum extension of the spring in the two cases ? (b) If the mass in Fig. (a) and the two masses in Fig. (b) are released, what is the period of oscillation in each case ?</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Spring constant k; (a) one end fixed, mass m, pulled by F; (b) masses m at both ends, each pulled by F.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>(a) the extension in each case (b) the periods after release.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Extension and oscillation illustrative.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>(a) In both cases the tension in the spring is F, so the extension is F/k.</li>
+          <li>(b) Case (a): T = 2π√(m/k).</li>
+          <li>Case (b): the centre of the spring stays still; each mass is on half the spring, of stiffness 2k (equivalently, the reduced mass is m/2): T = 2π√(m/2k).</li>
+        </ol>
+        <p class="final">(a) F/k in both (b) 2π√(m/k) and 2π√(m/2k)</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 13 (Oscillations), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const W = 1.6, D = 10;
+  const qStages = [
+    { title: 'Fig. 13.21', dur: 5, text: '(a) A spring of constant k, fixed at one end, with a mass m pulled by a force F. (b) The same spring with a mass m at each end, each pulled outwards by F.' },
+    { title: 'Released', dur: 5, text: 'The masses are released.' },
+    { title: 'What is asked', dur: 4, text: '(a) The maximum extension in each case. (b) The period of oscillation in each case.' },
+  ];
+  const stages = [
+    { title: 'Extension', dur: 5, text: 'In both arrangements the tension all along the spring is F.', ans: '(a) Extension = F/k in both cases.' },
+    { title: 'Oscillation', dur: 5, text: 'In (b) the middle of the spring stays still (equal masses): each mass is on half the spring, of constant 2k.', ans: '(b) T_a = 2π√(m/k); T_b = 2π√(m/2k), faster.' },
+    { title: 'Summary', dur: 4, text: 'Same stretch, different periods.', ans: 'T_b = T_a / √2.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    const pulled = t < 5, e = pulled ? 40 * smooth(clamp(t / 2)) : 40 * Math.cos(W * (t - 5)), eb = pulled ? 40 * smooth(clamp(t / 2)) : 40 * Math.cos(W * Math.SQRT2 * (t - 5));
+    const Y1 = 160, Y2 = 380;
+    hatchRect(ctx, 40, Y1 - 50, 16, 80, P.obj, P.objFill); ground(ctx, 40, 560, Y1 + 30);
+    spring(ctx, 56, Y1, 260 + e, Y1, 10, 10, P.ink); block(ctx, 260 + e, Y1 - 28, 56, 56, 'm', P.vel);
+    if (pulled) vec(ctx, 320 + e, Y1, 60, 0, 'F', P.force, { side: -1, at: 0.6, italic: true });
+    label(ctx, '(a)', 40, Y1 - 70, { weight: 800, size: 15 });
+    ground(ctx, 40, 560, Y2 + 30);
+    const L0 = 150, c = 300; block(ctx, c - L0 / 2 - eb / 2 - 56, Y2 - 28, 56, 56, 'm', P.vel); block(ctx, c + L0 / 2 + eb / 2, Y2 - 28, 56, 56, 'm', P.vel);
+    spring(ctx, c - L0 / 2 - eb / 2, Y2, c + L0 / 2 + eb / 2, Y2, 10, 10, P.ink);
+    if (pulled) { vec(ctx, c - L0 / 2 - eb / 2 - 60, Y2, -50, 0, 'F', P.force, { side: 1, at: 0.6, italic: true }); vec(ctx, c + L0 / 2 + eb / 2 + 60, Y2, 50, 0, 'F', P.force, { side: -1, at: 0.6, italic: true }); }
+    label(ctx, '(b)', 40, Y2 - 70, { weight: 800, size: 15 }); vline(ctx, c, Y2 - 40, Y2 + 40, P.ink2, 1, [3, 3]); label(ctx, 'centre stays still', c, Y2 - 50, { align: 'center', size: 12, color: P.ink2 });
+    if (ans) partsPanel(ctx, 630, 34, 300, 'Answers', ['(a) Extension F/k in both', '(b) 2π√(m/k) and 2π√(m/2k)', 'T_b = T_a/√2'], stageAt(stages, t), false);
+    else askedPanel(ctx, 630, 34, 300, ['(a) The maximum extension of the spring in the two cases.', '(b) The period of oscillation in each case after release.']);
+    note(ctx, 'extension and timing illustrative; periods in the right ratio');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 13.9</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 13 Oscillations</a></p>
+      <h1>Exercise 13.9 · Spring and 3 kg mass on a table (Fig. 13.19)</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q08.html">‹ 13.8</a><a href="index.html">All questions</a><a href="q10.html">13.10 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 13.9">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A 3 kg block on a spring of 1200 N/m is pulled 2.0 cm and released; it oscillates at 3.2 Hz, with greatest acceleration 8 m/s² at the ends and greatest speed 0.4 m/s at the middle."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>13.9</b> A spring having with a spring constant 1200 N m<sup>–1</sup> is mounted on a horizontal table as shown in Fig. 13.19. A mass of 3 kg is attached to the free end of the spring. The mass is then pulled sideways to a distance of 2.0 cm and released. Determine (i) the frequency of oscillations, (ii) maximum acceleration of the mass, and (iii) the maximum speed of the mass.</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>k = 1200 N m<sup>−1</sup>; m = 3 kg; amplitude 2.0 cm; smooth table.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>(i) frequency (ii) maximum acceleration (iii) maximum speed.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Shown 5 times slower; displacement drawn 5 px per mm.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>ω = √(k/m) = √(1200/3) = 20 rad s<sup>−1</sup>; (i) ν = ω/2π ≈ 3.2 Hz.</li>
+          <li>(ii) a<sub>max</sub> = ω<sup>2</sup>A = 400 × 0.020 = 8.0 m s<sup>−2</sup> (at the extreme positions).</li>
+          <li>(iii) v<sub>max</sub> = ωA = 20 × 0.020 = 0.40 m s<sup>−1</sup> (at the mean position).</li>
+        </ol>
+        <p class="final">(i) ≈ 3.2 Hz (ii) 8.0 m s<sup>−2</sup> (iii) 0.40 m s<sup>−1</sup></p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 13 (Oscillations), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const KS = 1200, M = 3, A = 0.02, W = Math.sqrt(KS / M), SLOW = 5, X0 = 340, Y = 240, PXM = 5000;   // 5 px per mm
+  const qStages = [
+    { title: 'Fig. 13.19', dur: 8, text: 'A 3 kg mass on a spring of constant 1200 N/m on a horizontal table is pulled 2.0 cm and released.' },
+    { title: 'What is asked', dur: 4, text: 'Find (i) the frequency, (ii) the maximum acceleration, (iii) the maximum speed.' },
+  ];
+  const stages = [
+    { title: 'Frequency', dur: 5, text: 'ω = √(k/m).', ans: 'ω = √(1200/3) = 20 rad/s; ν = ω/2π ≈ 3.2 Hz.' },
+    { title: 'Greatest acceleration', dur: 5, text: 'a = −ω²x is greatest at the ends, x = ±A.', ans: 'a_max = ω²A = 400 × 0.020 = 8.0 m/s².' },
+    { title: 'Greatest speed', dur: 5, text: 'The speed is greatest passing through the middle.', ans: 'v_max = ωA = 20 × 0.020 = 0.40 m/s.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    hatchRect(ctx, 40, Y - 120, 20, 160, P.obj, P.objFill); ctx.fillStyle = P.objFill; ctx.fillRect(40, Y + 40, 540, 14);
+    const tr = t / SLOW, x = A * Math.cos(W * tr), v = -A * W * Math.sin(W * tr), a = -W * W * x, bx = X0 + x * PXM;
+    spring(ctx, 60, Y, bx - 40, Y, 12, 12, P.ink);
+    block(ctx, bx - 40, Y - 40, 80, 80, '3 kg', P.vel);
+    vline(ctx, X0, Y + 54, Y + 70, P.ink, 2); label(ctx, 'x = 0', X0, Y + 84, { align: 'center', size: 12 });
+    for (const s of [-1, 1]) { vline(ctx, X0 + s * A * PXM, Y + 54, Y + 66, P.ink2, 1.5); label(ctx, s < 0 ? '−2 cm' : '+2 cm', X0 + s * A * PXM, Y + 84, { align: 'center', size: 12, color: P.ink2 }); }
+    if (ans) {
+      if (Math.abs(v) > 0.02) vec(ctx, bx, Y - 70, Math.sign(v) * 30 * Math.abs(v) / 0.4 + Math.sign(v) * 10, 0, `${Math.abs(v).toFixed(2)} m/s`, P.vel, { side: -1, at: 0.6, size: 12 });
+      if (Math.abs(a) > 0.3) vec(ctx, bx, Y - 110, Math.sign(a) * (10 + 40 * Math.abs(a) / 8), 0, `${Math.abs(a).toFixed(1)} m/s²`, P.acc, { side: -1, at: 0.6, size: 12 });
+      label(ctx, `ω = 20 rad/s, ν ≈ 3.2 Hz`, 40, 60, { weight: 800, size: 16, color: P.accent });
+      partsPanel(ctx, 630, 34, 300, 'Working', ['(i) ω = 20 rad/s, ν ≈ 3.2 Hz', '(ii) a_max = ω²A = 8.0 m/s²', '(iii) v_max = ωA = 0.40 m/s'], stageAt(stages, t), false);
+    } else askedPanel(ctx, 630, 34, 300, ['(i) The frequency of oscillation.', '(ii) The maximum acceleration of the mass.', '(iii) The maximum speed of the mass.']);
+    note(ctx, 'shown 5 times slower; displacement 5 px per mm');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

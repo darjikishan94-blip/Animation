@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 13.2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 13 Oscillations</a></p>
+      <h1>Exercise 13.2 · SHM or just periodic?</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q01.html">‹ 13.1</a><a href="index.html">All questions</a><a href="q03.html">13.3 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 13.2">
+    <p class="qline"><b>13.2</b> Which of the following examples represent (nearly) simple harmonic motion and which represent periodic but not simple harmonic motion? (a) the rotation of earth about its axis. (b) motion of an oscillating mercury column in a U-tube. (c) motion of a ball bearing inside a smooth curved bowl, when released from a point slightly above the lower most point. (d) general vibrations of a polyatomic molecule about its equilibrium position.</p>
+    <p><button type="button" class="btn reveal" id="show" aria-pressed="false" style="margin-left:0">Show answer</button></p>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Four motions.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>Which are (nearly) SHM, and which only periodic.</p>
+      </div>
+      <div>
+        <h3>Why there is no animation</h3>
+        <ul>
+          <li>This question asks for a classification or a short derivation rather than describing one situation to follow; the page shows the question and a worked answer.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>(a) Periodic, not SHM: a rotation, not a to-and-fro motion about a mean position.</li>
+          <li>(b) SHM: the restoring force is proportional to the displacement of the column.</li>
+          <li>(c) (Nearly) SHM, for small displacements.</li>
+          <li>(d) Periodic but not SHM: a mixture of several SHMs of different frequencies.</li>
+        </ol>
+        <p class="final">SHM: (b), (c). Periodic only: (a), (d).</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 13 (Oscillations), Exercises. </p>
+</div>
+<script>
+const b = document.getElementById('show'), a = document.querySelector('.answer');
+b.addEventListener('click', () => { a.hidden = !a.hidden; b.setAttribute('aria-pressed', String(!a.hidden)); b.textContent = a.hidden ? 'Show answer' : 'Hide answer'; });
+</script>
+</body>
+</html>

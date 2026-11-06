@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 13.11</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 13 Oscillations</a></p>
+      <h1>Exercise 13.11 · From circular motion to SHM (Fig. 13.20)</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q10.html">‹ 13.10</a><a href="index.html">All questions</a><a href="q12.html">13.12 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 13.11">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="Two particles go round circles (3 cm, period 2 s, starting at the bottom, clockwise; 2 m, period 4 s, starting on the −x axis); the shadows of the particles on the x-axis move in SHM, x = −3 sin πt cm and x = −2 cos(πt/2) m."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>13.11</b> Figures 13.20 correspond to two circular motions. The radius of the circle, the period of revolution, the initial position, and the sense of revolution (i.e. clockwise or anti-clockwise) are indicated on each figure. Obtain the corresponding simple harmonic motions of the x-projection of the radius vector of the revolving particle P, in each case.</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>(a) r = 3 cm, T = 2 s, P starts on the −y axis, clockwise. (b) r = 2 m, T = 4 s, P starts on the −x axis.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The SHM of the x-projection in each case.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Shown at real speed; the two circles are not on the same scale.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>(a) ω = 2π/2 = π rad s<sup>−1</sup>. At t = 0, x = 0; going clockwise from the bottom, P moves to the left, so x becomes negative: x = −3 sin πt (cm).</li>
+          <li>(b) ω = 2π/4 = π/2 rad s<sup>−1</sup>. At t = 0, x = −2 m: x = −2 cos(πt/2) (m).</li>
+        </ol>
+        <p class="final">(a) x = −3 sin πt cm (b) x = −2 cos(πt/2) m</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 13 (Oscillations), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const C = [{ cx: 160, cy: 220, R: 90, T: 2, a0: Math.PI / 2, cw: true, lab: '(a) 3 cm, T = 2 s', eq: 'x = −3 sin πt cm' }, { cx: 440, cy: 220, R: 110, T: 4, a0: Math.PI, cw: false, lab: '(b) 2 m, T = 4 s', eq: 'x = −2 cos (πt/2) m' }];
+  const qStages = [
+    { title: 'Fig. 13.20', dur: 8, text: 'Two particles P go round circles: (a) radius 3 cm, period 2 s, starting at the bottom, clockwise; (b) radius 2 m, period 4 s, starting on the −x axis.' },
+    { title: 'What is asked', dur: 4, text: 'Find the SHM of the x-projection of P in each case.' },
+  ];
+  const stages = [
+    { title: 'Projections', dur: 8, text: 'The foot of the perpendicular from P to the x-axis moves in SHM with the circle’s radius as amplitude and its angular speed ω = 2π/T.', ans: '(a) ω = π rad/s; (b) ω = π/2 rad/s.' },
+    { title: 'Starting values', dur: 4, text: '(a) starts at x = 0 and moves to −x; (b) starts at x = −2 m.', ans: '(a) x = −3 sin πt cm; (b) x = −2 cos(πt/2) m.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    C.forEach(c => {
+      ctx.save(); ctx.strokeStyle = P.ink2; ctx.lineWidth = 1.5; ctx.beginPath(); ctx.arc(c.cx, c.cy, c.R, 0, Math.PI * 2); ctx.stroke(); ctx.restore();
+      arrow(ctx, c.cx - c.R - 20, c.cy, c.cx + c.R + 24, c.cy, P.ink2, { lw: 1.2, head: 7 }); label(ctx, 'x', c.cx + c.R + 28, c.cy, { size: 12 });
+      arrow(ctx, c.cx, c.cy + c.R + 20, c.cx, c.cy - c.R - 20, P.ink2, { lw: 1.2, head: 7 });
+      const w = 2 * Math.PI / c.T, ang = c.a0 + (c.cw ? -1 : 1) * w * t;          // math angle (y up)
+      const px = c.cx + c.R * Math.cos(ang), py = c.cy - c.R * Math.sin(ang);
+      ctx.save(); ctx.strokeStyle = P.ink2; ctx.setLineDash([3, 4]); seg(ctx, px, py, px, c.cy); ctx.restore();
+      ball(ctx, px, py, 7, P.force); ball(ctx, px, c.cy, 6, P.vel); label(ctx, 'P', px + 10, py - 10, { weight: 800, size: 13 });
+      rotArrow(ctx, c.cx, c.cy, c.R + 12, c.cw, P.ink2);
+      label(ctx, c.lab, c.cx, c.cy + c.R + 44, { align: 'center', weight: 700, size: 14 });
+      if (ans && t >= stages[1].t0) label(ctx, c.eq, c.cx, c.cy + c.R + 70, { align: 'center', weight: 800, size: 15, color: P.accent });
+    });
+    if (ans) partsPanel(ctx, 630, 34, 300, 'Answers', ['ω = 2π/T: (a) π rad/s, (b) π/2 rad/s', '(a) x = −3 sin πt cm; (b) x = −2 cos(πt/2) m'], stageAt(stages, t), false);
+    else askedPanel(ctx, 630, 34, 300, ['The simple harmonic motion of the x-projection of P in each case.']);
+    note(ctx, 'real time; the two circles are drawn to different scales');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>
