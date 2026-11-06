@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 10.7</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 10 Thermal Properties of Matter</a></p>
+      <h1>Exercise 10.7 · Fitting a wheel on a cooled shaft</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q06.html">‹ 10.6</a><a href="index.html">All questions</a><a href="q08.html">10.8 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 10.7">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A steel shaft 8.70 cm across is cooled with dry ice; it shrinks until it is 8.69 cm across, at about −69 °C, and the wheel slides on."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>10.7</b> A large steel wheel is to be fitted on to a shaft of the same material. At 27 °C, the outer diameter of the shaft is 8.70 cm and the diameter of the central hole in the wheel is 8.69 cm. The shaft is cooled using ‘dry ice’. At what temperature of the shaft does the wheel slip on the shaft? Assume coefficient of linear expansion of the steel to be constant over the required temperature range : α<sub>steel</sub> = 1.20 × 10<sup>–5</sup> K<sup>–1</sup>.</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Shaft 8.70 cm, hole 8.69 cm at 27 °C; α = 1.20 × 10<sup>−5</sup> K<sup>−1</sup>.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The temperature at which the shaft fits.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>The shrinkage is exaggerated.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>The shaft must shrink by 0.01 cm: Δd = dαΔT, so ΔT = −0.01/(8.70 × 1.20 × 10<sup>−5</sup>) ≈ −96 K.</li>
+          <li>T = 27 − 96 ≈ −69 °C.</li>
+        </ol>
+        <p class="final">About −69 °C.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 10 (Thermal Properties of Matter), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const A = 1.2e-5, DS = 8.70, DH = 8.69, CX = 280, CY = 270, TF = 27 - 0.01 / (DS * A), D = 8;
+  const px = d => 100 + (d - 8.69) * 2000;                                 // exaggerated radius in px
+  const qStages = [
+    { title: 'Too tight at 27 °C', dur: 3, text: 'At 27 °C the steel shaft is 8.70 cm across; the hole in the steel wheel is 8.69 cm.' },
+    { title: 'Cooled with dry ice', dur: D - 3, text: 'The shaft is cooled with dry ice. α_steel = 1.20 × 10⁻⁵ K⁻¹.' },
+    { title: 'What is asked', dur: 4, text: 'At what temperature of the shaft does the wheel slip on?' },
+  ];
+  const stages = [
+    { title: 'Needed shrinkage', dur: 3, text: 'The shaft must shrink by 8.70 − 8.69 = 0.01 cm.', ans: 'Δd = −0.01 cm.' },
+    { title: 'Cooling', dur: D - 3, text: 'Δd = d α ΔT.', ans: 'ΔT = −0.01 / (8.70 × 1.20 × 10⁻⁵) ≈ −96 K.' },
+    { title: 'Temperature', dur: 4, text: 'Subtract from 27 °C.', ans: 'T ≈ 27 − 96 ≈ −69 °C.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    const T = 27 + (TF - 27) * smooth(clamp((t - 3) / (D - 3.5))), d = DS * (1 + A * (T - 27));
+    ctx.save(); ctx.fillStyle = P.objFill2; ctx.beginPath(); ctx.arc(CX, CY, 200, 0, Math.PI * 2); ctx.arc(CX, CY, px(DH), 0, Math.PI * 2, true); ctx.fill('evenodd'); ctx.strokeStyle = P.obj; ctx.lineWidth = 2; ctx.stroke(); ctx.restore();
+    ctx.save(); ctx.fillStyle = P.vel; ctx.globalAlpha = 0.45; ctx.beginPath(); ctx.arc(CX, CY, px(d), 0, Math.PI * 2); ctx.fill(); ctx.restore();
+    ctx.save(); ctx.strokeStyle = P.vel; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(CX, CY, px(d), 0, Math.PI * 2); ctx.stroke(); ctx.restore();
+    label(ctx, 'wheel', CX, CY - 160, { align: 'center', weight: 700, size: 14 }); label(ctx, `shaft ${d.toFixed(4)} cm`, CX, CY, { align: 'center', weight: 800, size: 14, halo: true });
+    label(ctx, 'hole 8.69 cm', CX, CY + px(DH) + 20, { align: 'center', size: 13 });
+    label(ctx, `${T.toFixed(0)} °C`, 40, 60, { weight: 800, size: 20, color: T < 0 ? P.vel : P.ink });
+    if (d <= DH + 1e-6) label(ctx, 'it fits!', CX, CY + 30, { align: 'center', weight: 800, size: 15, color: P.accent, halo: true });
+    if (ans) partsPanel(ctx, 630, 34, 300, 'Working', ['Shrink by 0.01 cm', 'ΔT = −0.01/(8.70 × 1.20 × 10⁻⁵) ≈ −96 K', 'T ≈ −69 °C'], stageAt(stages, t), false);
+    else askedPanel(ctx, 630, 34, 300, ['The temperature of the shaft at which the wheel slips on.']);
+    note(ctx, 'end view; the 0.01 cm difference is enormously exaggerated');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

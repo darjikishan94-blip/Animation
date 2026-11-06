@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 10.17</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 10 Thermal Properties of Matter</a></p>
+      <h1>Exercise 10.17 · Ice in a thermacole box</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q16.html">‹ 10.16</a><a href="index.html">All questions</a><a href="q18.html">10.18 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 10.17">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="Heat leaks through the six thermacole walls of an icebox at 4.9 W; over 6 hours it melts about 0.31 kg of the 4.0 kg of ice, leaving about 3.7 kg."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>10.17</b> A ‘thermacole’ icebox is a cheap and an efficient method for storing small quantities of cooked food in summer in particular. A cubical icebox of side 30 cm has a thickness of 5.0 cm. If 4.0 kg of ice is put in the box, estimate the amount of ice remaining after 6 h. The outside temperature is 45 °C, and co-efficient of thermal conductivity of thermacole is 0.01 J s<sup>–1</sup> m<sup>–1</sup> K<sup>–1</sup>. [Heat of fusion of water = 335 × 10<sup>3</sup> J kg<sup>–1</sup>]</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Cube of side 30 cm, walls 5.0 cm thick; 4.0 kg of ice; 6 h; outside 45 °C; k = 0.01 W m<sup>−1</sup> K<sup>−1</sup>; L<sub>f</sub> = 335 × 10<sup>3</sup> J kg<sup>−1</sup>.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The ice remaining after 6 h.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>6 hours shown in 10 s.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>Heat flow through all six faces: H = kAΔT/d = 0.01 × (6 × 0.30<sup>2</sup>) × 45/0.050 ≈ 4.86 W (ice at 0 °C inside).</li>
+          <li>In 6 h: 4.86 × 21 600 ≈ 1.05 × 10<sup>5</sup> J, melting 1.05 × 10<sup>5</sup>/335 × 10<sup>3</sup> ≈ 0.31 kg.</li>
+          <li>Remaining ≈ 4.0 − 0.31 ≈ 3.7 kg.</li>
+        </ol>
+        <p class="final">About 3.7 kg.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 10 (Thermal Properties of Matter), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const K = 0.01, A = 6 * 0.3 * 0.3, DT = 45, DX = 0.05, H = K * A * DT / DX, TT = 6 * 3600, LF = 335e3, MELT = H * TT / LF, D = 10, CX = 290, CY = 270;
+  const qStages = [
+    { title: 'Ice in a thermacole box', dur: D, text: 'A cubical thermacole icebox, side 30 cm, walls 5.0 cm thick, holds 4.0 kg of ice. Outside it is 45 °C. k = 0.01 W m⁻¹ K⁻¹.' },
+    { title: 'What is asked', dur: 4, text: 'Estimate the ice remaining after 6 h.' },
+  ];
+  const stages = [
+    { title: 'Heat leaking in', dur: D, text: 'Heat flows in through all six faces: H = kAΔT/d, with A = 6 × 0.30² m², ΔT = 45 K (ice at 0 °C), d = 0.050 m.', ans: 'H ≈ 4.86 W, all of it melting ice.' },
+    { title: 'After 6 hours', dur: 5, text: 'Heat in 6 h = H × 21 600 s; ice melted = heat / L.', ans: '≈ 1.05 × 10⁵ J melts ≈ 0.31 kg; about 3.7 kg remains.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    const f = clamp(t / (D - 0.5)), m = 4.0 - (ans ? MELT * f : 0), S = 300, W = 50;
+    ctx.fillStyle = P.sheet; ctx.fillRect(CX - S / 2, CY - S / 2, S, S); ctx.fillStyle = P.objFill; ctx.fillRect(CX - S / 2, CY - S / 2, S, W); ctx.fillRect(CX - S / 2, CY + S / 2 - W, S, W); ctx.fillRect(CX - S / 2, CY - S / 2, W, S); ctx.fillRect(CX + S / 2 - W, CY - S / 2, W, S);
+    ctx.strokeStyle = P.obj; ctx.lineWidth = 2; ctx.strokeRect(CX - S / 2, CY - S / 2, S, S); ctx.strokeRect(CX - S / 2 + W, CY - S / 2 + W, S - 2 * W, S - 2 * W);
+    const side = 150 * Math.cbrt(m / 4.0); ctx.fillStyle = P.water; ctx.globalAlpha = 0.6; ctx.fillRect(CX - side / 2, CY + S / 2 - W - side, side, side); ctx.globalAlpha = 1;
+    label(ctx, `ice ${m.toFixed(2)} kg`, CX, CY + S / 2 - W - side - 12, { align: 'center', weight: 800, size: 15 });
+    label(ctx, 'thermacole 5.0 cm', CX, CY - S / 2 + 26, { align: 'center', size: 12 }); label(ctx, 'outside 45 °C', 40, 40, { weight: 700, size: 15, color: P.force });
+    if (ans) { for (const [x, y, dx, dy] of [[CX - S / 2 - 50, CY, 40, 0], [CX + S / 2 + 50, CY, -40, 0], [CX, CY - S / 2 - 40, 0, 32]]) vec(ctx, x, y, dx, dy, '', P.force, { lw: 3 }); label(ctx, 'H ≈ 4.86 W', CX + S / 2 + 10, CY - 40, { weight: 700, size: 13, color: P.force }); clock(ctx, 60, 490, f * 360, `${(6 * f).toFixed(1)} h`); }
+    if (ans) partsPanel(ctx, 630, 34, 300, 'Working', ['H = kAΔT/d ≈ 4.86 W', 'In 6 h: ≈ 1.05 × 10⁵ J → 0.31 kg melts; ≈ 3.7 kg left'], stageAt(stages, t), false);
+    else askedPanel(ctx, 630, 34, 300, ['The amount of ice remaining after 6 h.']);
+    note(ctx, 'cross-section of the box; 6 hours shown in 10 s');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

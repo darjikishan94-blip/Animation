@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 10.4</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 10 Thermal Properties of Matter</a></p>
+      <h1>Exercise 10.4 · Fixed points of temperature scales</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q03.html">‹ 10.3</a><a href="index.html">All questions</a><a href="q05.html">10.5 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 10.4">
+    <p class="qline"><b>10.4</b> Answer the following : (a) The triple-point of water is a standard fixed point in modern thermometry. Why ? What is wrong in taking the melting point of ice and the boiling point of water as standard fixed points (as was originally done in the Celsius scale) ? (b) There were two fixed points in the original Celsius scale as mentioned above which were assigned the number 0 °C and 100 °C respectively. On the absolute scale, one of the fixed points is the triple-point of water, which on the Kelvin absolute scale is assigned the number 273.16 K. What is the other fixed point on this (Kelvin) scale ? (c) The absolute temperature (Kelvin scale) T is related to the temperature t<sub>c</sub> on the Celsius scale by t<sub>c</sub> = T – 273.15 Why do we have 273.15 in this relation, and not 273.16 ? (d) What is the temperature of the triple-point of water on an absolute scale whose unit interval size is equal to that of the Fahrenheit scale ?</p>
+    <p><button type="button" class="btn reveal" id="show" aria-pressed="false" style="margin-left:0">Show answer</button></p>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Facts about temperature scales.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>Four explanations.</p>
+      </div>
+      <div>
+        <h3>Why there is no animation</h3>
+        <ul>
+          <li>This question asks for explanations rather than describing one physical situation to follow; the page shows the question and a worked answer.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>(a) The triple point occurs at a unique temperature and pressure. The melting and boiling points change with pressure, so they are not fixed.</li>
+          <li>(b) Absolute zero, 0 K.</li>
+          <li>(c) 0 °C is the melting point of ice at 1 atm, which is 273.15 K; the triple point is 0.01 °C higher, at 273.16 K.</li>
+          <li>(d) Fahrenheit degrees are 5/9 of a kelvin, so the number is 273.16 × 9/5 ≈ 491.69.</li>
+        </ol>
+        <p class="final">(b) 0 K (d) ≈ 491.69</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 10 (Thermal Properties of Matter), Exercises. </p>
+</div>
+<script>
+const b = document.getElementById('show'), a = document.querySelector('.answer');
+b.addEventListener('click', () => { a.hidden = !a.hidden; b.setAttribute('aria-pressed', String(!a.hidden)); b.textContent = a.hidden ? 'Show answer' : 'Hide answer'; });
+</script>
+</body>
+</html>

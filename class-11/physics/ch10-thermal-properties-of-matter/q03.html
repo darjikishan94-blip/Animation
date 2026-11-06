@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 10.3</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 10 Thermal Properties of Matter</a></p>
+      <h1>Exercise 10.3 · Resistance thermometer</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q02.html">‹ 10.2</a><a href="index.html">All questions</a><a href="q04.html">10.4 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 10.3">
+    <p class="qline"><b>10.3</b> The electrical resistance in ohms of a certain thermometer varies with temperature according to the approximate law : R = R<sub>o</sub> [1 + α (T – T<sub>o</sub>)] The resistance is 101.6 Ω at the triple-point of water 273.16 K, and 165.5 Ω at the normal melting point of lead (600.5 K). What is the temperature when the resistance is 123.4 Ω ?</p>
+    <p><button type="button" class="btn reveal" id="show" aria-pressed="false" style="margin-left:0">Show answer</button></p>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>R = 101.6 Ω at 273.16 K; 165.5 Ω at 600.5 K.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>T when R = 123.4 Ω.</p>
+      </div>
+      <div>
+        <h3>Why there is no animation</h3>
+        <ul>
+          <li>This is a direct calculation with nothing moving to show; the page shows the question and a worked answer.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>165.5 = 101.6[1 + α(600.5 − 273.16)] gives α ≈ 1.92 × 10<sup>−3</sup> K<sup>−1</sup>.</li>
+          <li>123.4 = 101.6[1 + α(T − 273.16)] gives T − 273.16 = (123.4/101.6 − 1)/α ≈ 111.7 K.</li>
+          <li>T ≈ 384.8 K.</li>
+        </ol>
+        <p class="final">About 384.8 K.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 10 (Thermal Properties of Matter), Exercises. </p>
+</div>
+<script>
+const b = document.getElementById('show'), a = document.querySelector('.answer');
+b.addEventListener('click', () => { a.hidden = !a.hidden; b.setAttribute('aria-pressed', String(!a.hidden)); b.textContent = a.hidden ? 'Show answer' : 'Hide answer'; });
+</script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 10.10</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 10 Thermal Properties of Matter</a></p>
+      <h1>Exercise 10.10 · Brass and steel rods joined</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q09.html">‹ 10.9</a><a href="index.html">All questions</a><a href="q11.html">10.11 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 10.10">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A brass rod and a steel rod joined end to end are heated from 40 °C to 250 °C; brass grows 0.21 cm and steel 0.126 cm, 0.34 cm in all, with the ends free."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>10.10</b> A brass rod of length 50 cm and diameter 3.0 mm is joined to a steel rod of the same length and diameter. What is the change in length of the combined rod at 250 °C, if the original lengths are at 40.0 °C? Is there a ‘thermal stress’ developed at the junction ? The ends of the rod are free to expand (Co-efficient of linear expansion of brass = 2.0 × 10<sup>–5</sup> K<sup>–1</sup>, steel = 1.2 × 10<sup>–5</sup> K<sup>–1</sup> ).</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Each rod 50 cm, diameter 3.0 mm; 40.0 °C to 250 °C; α<sub>brass</sub> = 2.0 × 10<sup>−5</sup>, α<sub>steel</sub> = 1.2 × 10<sup>−5</sup> K<sup>−1</sup>; ends free.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The change in total length; thermal stress at the junction?</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Expansions exaggerated about 50 times.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>ΔT = 210 K. Brass: 50 × 2.0 × 10<sup>−5</sup> × 210 = 0.21 cm. Steel: 50 × 1.2 × 10<sup>−5</sup> × 210 = 0.126 cm.</li>
+          <li>Total ≈ 0.34 cm.</li>
+          <li>The ends are free, so no thermal stress builds up along the rod (each part expands freely).</li>
+        </ol>
+        <p class="final">≈ 0.34 cm; no thermal stress (ends free).</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 10 (Thermal Properties of Matter), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const K = 4.5, E = 50, X0 = 40, Y = 260, LB = 50, LS = 50, AB = 2.0e-5, AS = 1.2e-5, D = 7;
+  const qStages = [
+    { title: 'Joined rods at 40 °C', dur: 3, text: 'A brass rod and a steel rod, each 50 cm long and 3.0 mm across, are joined end to end at 40.0 °C. The ends are free.' },
+    { title: 'Heated to 250 °C', dur: D - 3, text: 'The combined rod is heated to 250 °C. α_brass = 2.0 × 10⁻⁵ K⁻¹, α_steel = 1.2 × 10⁻⁵ K⁻¹.' },
+    { title: 'What is asked', dur: 4, text: 'What is the change in length of the combined rod? Is there a thermal stress at the junction?' },
+  ];
+  const stages = [
+    { title: 'Each rod expands', dur: 3, text: 'ΔL = LαΔT for each, with ΔT = 210 K.', ans: '' },
+    { title: 'Heating', dur: D - 3, text: 'Brass expands more than steel.', ans: 'Brass: 50 × 2.0 × 10⁻⁵ × 210 = 0.21 cm. Steel: 50 × 1.2 × 10⁻⁵ × 210 = 0.126 cm.' },
+    { title: 'Total; stress?', dur: 4, text: 'The ends are free, so nothing resists the expansion.', ans: 'Total ≈ 0.34 cm. No thermal stress along the rod.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    const f = smooth(clamp((t - 3) / 3)), T = 40 + 210 * f, eb = LB * AB * 210 * f * E, es = LS * AS * 210 * f * E;
+    const xb = X0 + (LB + eb) * K, xs = xb + (LS + es) * K;
+    ctx.fillStyle = P.ke; ctx.fillRect(X0, Y, xb - X0, 26); ctx.fillStyle = P.objFill2; ctx.fillRect(xb, Y, xs - xb, 26); ctx.strokeStyle = P.obj; ctx.lineWidth = 1.5; ctx.strokeRect(X0, Y, xs - X0, 26); vline(ctx, xb, Y, Y + 26, P.obj, 2);
+    label(ctx, 'brass', (X0 + xb) / 2, Y + 13, { align: 'center', weight: 700, size: 13 }); label(ctx, 'steel', (xb + xs) / 2, Y + 13, { align: 'center', weight: 700, size: 13 });
+    for (const x of [X0 + LB * K, X0 + (LB + LS) * K]) vline(ctx, x, Y - 30, Y + 60, P.ink2, 1, [3, 3]);
+    label(ctx, `${T.toFixed(0)} °C`, 40, 60, { weight: 800, size: 20, color: T > 60 ? P.force : P.ink });
+    if (ans && f > 0.05) { label(ctx, `brass +${(LB * AB * 210 * f).toFixed(3)} cm`, (X0 + xb) / 2, Y + 50, { align: 'center', size: 13, weight: 700 }); label(ctx, `steel +${(LS * AS * 210 * f).toFixed(3)} cm`, (xb + xs) / 2, Y + 50, { align: 'center', size: 13, weight: 700 }); }
+    if (ans && t >= stages[2].t0) label(ctx, 'total ≈ 0.34 cm; ends free: no thermal stress', 300, 400, { align: 'center', weight: 800, size: 16, color: P.accent });
+    if (ans) partsPanel(ctx, 630, 34, 300, 'Working', ['ΔL = LαΔT, ΔT = 210 K', 'Brass 0.21 cm, steel 0.126 cm', 'Total ≈ 0.34 cm; no thermal stress'], stageAt(stages, t), false);
+    else askedPanel(ctx, 630, 34, 300, ['The change in length of the combined rod at 250 °C.', 'Is a thermal stress developed at the junction?']);
+    note(ctx, '4.5 px per cm; expansions exaggerated 50 times; dashed lines: original ends');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

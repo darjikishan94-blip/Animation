@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 10.9</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 10 Thermal Properties of Matter</a></p>
+      <h1>Exercise 10.9 · A brass wire cooled between supports</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q08.html">‹ 10.8</a><a href="index.html">All questions</a><a href="q10.html">10.10 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 10.9">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A brass wire fixed between two rigid supports is cooled from 27 °C to −39 °C; it would like to shrink but cannot, so a tension of about 380 N builds up."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>10.9</b> A brass wire 1.8 m long at 27 °C is held taut with little tension between two rigid supports. If the wire is cooled to a temperature of –39 °C, what is the tension developed in the wire, if its diameter is 2.0 mm ? Co-efficient of linear expansion of brass = 2.0 × 10<sup>–5</sup> K<sup>–1</sup>; Young’s modulus of brass = 0.91 × 10<sup>11</sup> Pa.</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>L = 1.8 m at 27 °C; cooled to −39 °C; d = 2.0 mm; α = 2.0 × 10<sup>−5</sup> K<sup>−1</sup>; Y = 0.91 × 10<sup>11</sup> Pa.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The tension developed.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>The shrinkage it would have is exaggerated.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>Free contraction would be ΔL = LαΔT; prevented, it produces a strain αΔT. (The length cancels.)</li>
+          <li>Tension = YAαΔT = 0.91 × 10<sup>11</sup> × π(1.0 × 10<sup>−3</sup>)<sup>2</sup> × 2.0 × 10<sup>−5</sup> × 66 ≈ 3.8 × 10<sup>2</sup> N.</li>
+        </ol>
+        <p class="final">About 3.8 × 10<sup>2</sup> N.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 10 (Thermal Properties of Matter), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const Y = 2.0e-5, YM = 0.91e11, AR = Math.PI * 1e-6, DT = 66, TMAX = YM * AR * Y * DT, X0 = 80, X1 = 520, WY = 250, D = 7;
+  const qStages = [
+    { title: 'Held taut at 27 °C', dur: 3, text: 'A brass wire 1.8 m long, diameter 2.0 mm, is held with little tension between two rigid supports at 27 °C.' },
+    { title: 'Cooled to −39 °C', dur: D - 3, text: 'The wire is cooled to −39 °C. α = 2.0 × 10⁻⁵ K⁻¹, Y = 0.91 × 10¹¹ Pa.' },
+    { title: 'What is asked', dur: 4, text: 'What tension develops in the wire?' },
+  ];
+  const stages = [
+    { title: 'It wants to shrink', dur: 3, text: 'Free, the wire would shorten by LαΔT. The supports stop it.', ans: '' },
+    { title: 'Tension builds up', dur: D - 3, text: 'The supports must stretch it back by LαΔT: a strain αΔT.', ans: 'Stress = YαΔT; tension = YAαΔT.' },
+    { title: 'Tension', dur: 4, text: 'ΔT = 66 K; A = π(1.0 × 10⁻³)² m².', ans: 'T = 0.91 × 10¹¹ × 3.14 × 10⁻⁶ × 2.0 × 10⁻⁵ × 66 ≈ 3.8 × 10² N.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    for (const x of [X0, X1]) hatchRect(ctx, x + (x < 300 ? -30 : 0), WY - 80, 30, 160, P.obj, P.objFill);
+    const f = smooth(clamp((t - 3) / 3)), T = 27 - 66 * f;
+    ctx.save(); ctx.strokeStyle = T < 0 ? P.vel : P.ke; ctx.lineWidth = 4; seg(ctx, X0, WY, X1, WY); ctx.restore();
+    if (f > 0.05) { const g = 40 * f; ctx.save(); ctx.strokeStyle = P.ink2; ctx.setLineDash([4, 4]); seg(ctx, X0, WY + 40, X1 - g, WY + 40); ctx.restore(); label(ctx, 'length it would shrink to (exaggerated)', X0, WY + 58, { size: 12, color: P.ink2 }); }
+    label(ctx, `${T.toFixed(0)} °C`, 40, 60, { weight: 800, size: 20, color: T < 0 ? P.vel : P.ink });
+    if (ans && f > 0.05) { const L = 80 * f; vec(ctx, X0 + 10, WY - 20, -0, 0, '', P.force); vec(ctx, X0 + 40 + L, WY - 20, -L, 0, '', P.force); vec(ctx, X1 - 40 - L, WY - 20, L, 0, '', P.force); label(ctx, `tension ≈ ${(TMAX * f).toFixed(0)} N`, 300, WY - 40, { align: 'center', weight: 800, size: 15, color: P.force }); }
+    if (ans) partsPanel(ctx, 630, 34, 300, 'Working', ['Prevented shrinkage: strain = αΔT', 'Tension = YAαΔT', '≈ 3.8 × 10² N'], stageAt(stages, t), false);
+    else askedPanel(ctx, 630, 34, 300, ['The tension developed in the wire when it is cooled to −39 °C.']);
+    note(ctx, 'the shrinkage the wire would have is exaggerated');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

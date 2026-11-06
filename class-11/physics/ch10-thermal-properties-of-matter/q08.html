@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 10.8</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 10 Thermal Properties of Matter</a></p>
+      <h1>Exercise 10.8 · A hole in a heated copper sheet</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q07.html">‹ 10.7</a><a href="index.html">All questions</a><a href="q09.html">10.9 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 10.8">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A copper sheet with a hole is heated from 27 °C to 227 °C; the whole sheet, hole included, expands like a photographic enlargement, so the hole grows by 0.0144 cm."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>10.8</b> A hole is drilled in a copper sheet. The diameter of the hole is 4.24 cm at 27.0 °C. What is the change in the diameter of the hole when the sheet is heated to 227 °C? Coefficient of linear expansion of copper = 1.70 × 10<sup>–5</sup> K<sup>–1</sup>.</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Hole 4.24 cm at 27.0 °C; heated to 227 °C; α<sub>Cu</sub> = 1.70 × 10<sup>−5</sup> K<sup>−1</sup>.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The change in the hole’s diameter.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Expansion exaggerated about 100 times.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>A hole expands exactly as a disc of the same material would: every length in the sheet grows by the factor (1 + αΔT).</li>
+          <li>Δd = 4.24 × 1.70 × 10<sup>−5</sup> × 200 ≈ 1.44 × 10<sup>−2</sup> cm (an increase).</li>
+        </ol>
+        <p class="final">It increases by about 0.0144 cm.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 10 (Thermal Properties of Matter), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const A = 1.7e-5, E = 30, CX = 280, CY = 270, D0 = 4.24, K = 30, D = 7;   // 30 px per cm; expansion ×30
+  const qStages = [
+    { title: 'A hole in copper', dur: 3, text: 'A hole 4.24 cm across is drilled in a copper sheet at 27.0 °C.' },
+    { title: 'Heated to 227 °C', dur: D - 3, text: 'The sheet is heated to 227 °C. α_copper = 1.70 × 10⁻⁵ K⁻¹.' },
+    { title: 'What is asked', dur: 4, text: 'What is the change in the diameter of the hole?' },
+  ];
+  const stages = [
+    { title: 'Like an enlargement', dur: 3, text: 'Heating scales every length in the sheet by (1 + αΔT): the hole grows just as a copper disc filling it would.', ans: 'The hole gets bigger, not smaller.' },
+    { title: 'Heating', dur: D - 3, text: 'ΔT = 200 K.', ans: 'Δd = 4.24 × 1.70 × 10⁻⁵ × 200 ≈ 0.0144 cm.' },
+    { title: 'Result', dur: 4, text: 'The new diameter is about 4.2544 cm.', ans: 'Increase ≈ 1.44 × 10⁻² cm.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    const T = 27 + 200 * smooth(clamp((t - 3) / 3)), s = 1 + E * A * (T - 27);
+    ctx.save(); ctx.translate(CX, CY); ctx.scale(s, s); ctx.fillStyle = P.ke; ctx.globalAlpha = 0.8; ctx.beginPath(); ctx.rect(-200, -170, 400, 340); ctx.arc(0, 0, D0 / 2 * K, 0, Math.PI * 2); ctx.fill('evenodd'); ctx.restore();
+    ctx.save(); ctx.strokeStyle = P.ink2; ctx.setLineDash([4, 4]); ctx.beginPath(); ctx.arc(CX, CY, D0 / 2 * K, 0, Math.PI * 2); ctx.stroke(); ctx.restore();
+    dim(ctx, CX - D0 / 2 * K * s, CX + D0 / 2 * K * s, CY, P.ink); label(ctx, `${(D0 * (1 + A * (T - 27))).toFixed(4)} cm`, CX, CY - 16, { align: 'center', weight: 800, size: 14, halo: true });
+    label(ctx, `${T.toFixed(0)} °C`, 40, 60, { weight: 800, size: 20, color: T > 50 ? P.force : P.ink });
+    label(ctx, 'dashed: the hole at 27 °C', 40, 500, { size: 12, color: P.ink2 });
+    if (ans) partsPanel(ctx, 630, 34, 300, 'Working', ['The hole scales like the copper', 'Δd = dαΔT = 4.24 × 1.70 × 10⁻⁵ × 200', '≈ 1.44 × 10⁻² cm increase'], stageAt(stages, t), false);
+    else askedPanel(ctx, 630, 34, 300, ['The change in the diameter of the hole when the sheet is heated to 227 °C.']);
+    note(ctx, '30 px per cm; expansion exaggerated 30 times');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

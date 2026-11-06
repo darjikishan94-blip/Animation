@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 10.13</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 10 Thermal Properties of Matter</a></p>
+      <h1>Exercise 10.13 · Hot copper block on ice</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q12.html">‹ 10.12</a><a href="index.html">All questions</a><a href="q14.html">10.14 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 10.13">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A 2.5 kg copper block at 500 °C sinks into a large block of ice; as it cools to 0 °C it melts about 1.5 kg of ice."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>10.13</b> A copper block of mass 2.5 kg is heated in a furnace to a temperature of 500 °C and then placed on a large ice block. What is the maximum amount of ice that can melt? (Specific heat of copper = 0.39 J g<sup>–1</sup> K<sup>–1</sup>; heat of fusion of water = 335 J g<sup>–1</sup> ).</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Copper 2.5 kg at 500 °C; c = 0.39 J g<sup>−1</sup> K<sup>−1</sup>; L<sub>f</sub> = 335 J g<sup>−1</sup>.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The greatest mass of ice that can melt.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Ice block not to scale.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>The copper can give out at most mcΔT, cooling to 0 °C: 2500 × 0.39 × 500 = 4.875 × 10<sup>5</sup> J.</li>
+          <li>Ice melted = 4.875 × 10<sup>5</sup>/335 ≈ 1.46 × 10<sup>3</sup> g ≈ 1.5 kg.</li>
+        </ol>
+        <p class="final">About 1.5 kg.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 10 (Thermal Properties of Matter), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const M = 2500, C = 0.39, LF = 335, QT = M * C * 500, MI = QT / LF, D = 9, IY = 300;
+  const qStages = [
+    { title: 'From the furnace', dur: 3, text: 'A 2.5 kg copper block is heated to 500 °C.' },
+    { title: 'Onto the ice', dur: D - 3, text: 'It is placed on a large block of ice. c(copper) = 0.39 J/g K; heat of fusion of water = 335 J/g.' },
+    { title: 'What is asked', dur: 4, text: 'What is the maximum amount of ice that can melt?' },
+  ];
+  const stages = [
+    { title: 'Heat given out', dur: 3, text: 'The block can cool at most to 0 °C, the temperature of melting ice.', ans: 'Q = mcΔT = 2500 × 0.39 × 500 ≈ 4.875 × 10⁵ J.' },
+    { title: 'Melting', dur: D - 3, text: 'All this heat goes into melting ice at 0 °C.', ans: 'm = Q / L = 4.875 × 10⁵ / 335 ≈ 1455 g.' },
+    { title: 'Answer', dur: 4, text: 'Round off.', ans: 'About 1.5 kg of ice.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    const f = clamp((t - 3) / (D - 3.5)), Tc = 500 * (1 - smooth(f)), melted = MI * smooth(f), sink = 50 * smooth(f);
+    ctx.fillStyle = P.water; ctx.globalAlpha = 0.35; ctx.fillRect(60, IY, 480, 180); ctx.globalAlpha = 1; ctx.strokeStyle = P.ink2; ctx.strokeRect(60, IY, 480, 180); label(ctx, 'large block of ice (0 °C)', 300, IY + 160, { align: 'center', size: 13 });
+    ctx.fillStyle = P.sheet; ctx.fillRect(230, IY, 140, sink); if (sink > 2) { ctx.fillStyle = P.water; ctx.globalAlpha = 0.7; ctx.fillRect(230, IY + sink - 8, 140, 8); ctx.globalAlpha = 1; }
+    const hot = Tc / 500; ctx.fillStyle = P.ke; ctx.fillRect(240, IY - 70 + sink, 120, 70); ctx.fillStyle = P.force; ctx.globalAlpha = 0.7 * hot; ctx.fillRect(240, IY - 70 + sink, 120, 70); ctx.globalAlpha = 1; ctx.strokeStyle = P.obj; ctx.lineWidth = 2; ctx.strokeRect(240, IY - 70 + sink, 120, 70);
+    label(ctx, '2.5 kg copper', 300, IY - 84 + sink, { align: 'center', weight: 700, size: 13 });
+    label(ctx, `${Tc.toFixed(0)} °C`, 40, 60, { weight: 800, size: 20, color: Tc > 50 ? P.force : P.ink });
+    if (ans) { label(ctx, `ice melted: ${(melted / 1000).toFixed(2)} kg`, 40, 92, { weight: 800, size: 16, color: P.accent }); partsPanel(ctx, 630, 34, 300, 'Working', ['Q = mcΔT ≈ 4.875 × 10⁵ J', 'Ice melted = Q/L ≈ 1455 g', '≈ 1.5 kg'], stageAt(stages, t), false); }
+    else askedPanel(ctx, 630, 34, 300, ['The maximum amount of ice that can melt.']);
+    note(ctx, 'ice block not to scale; colour of the copper suggests its temperature');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

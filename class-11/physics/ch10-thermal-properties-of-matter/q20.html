@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 10.20</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 10 Thermal Properties of Matter</a></p>
+      <h1>Exercise 10.20 · Newton’s law of cooling</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q19.html">‹ 10.19</a><a href="index.html">All questions</a><span>›</span></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 10.20">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="Two cooling runs on a temperature–time graph: 80 °C to 50 °C in 5 min, then 60 °C to 30 °C, which takes longer (9 min by NCERT’s average-rate method, 10 min exactly) because the body is closer to room temperature and cools more slowly."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>10.20</b> A body cools from 80 °C to 50 °C in 5 minutes. Calculate the time it takes to cool from 60 °C to 30 °C. The temperature of the surroundings is 20 °C.</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>80 °C → 50 °C in 5 min; surroundings 20 °C.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The time to cool from 60 °C to 30 °C.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Curves drawn with the exact exponential cooling law.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>Newton’s law (average form, as in NCERT): (rate of fall) = K × (average temperature − 20 °C).</li>
+          <li>First: 30/5 = K(65 − 20), so K = 2/15 per min.</li>
+          <li>Second: 30/t = (2/15)(45 − 20) = 10/3 per min, so t = 9 min.</li>
+          <li>(Solving the law exactly, T − 20 falls exponentially: 60 → 30 halves the excess, 40 → 10 quarters it, so it takes 2 × 5 = 10 min. The average form is an approximation.)</li>
+        </ol>
+        <p class="final">9 min by NCERT’s method (about 10 min by the exact exponential law).</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 10 (Thermal Properties of Matter), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const TS = 20, K1 = Math.log(2) / 5, D = 9;
+  const T1 = t => TS + 60 * Math.exp(-K1 * t), T2 = t => TS + 40 * Math.exp(-K1 * t);
+  const qStages = [
+    { title: 'Cooling', dur: D, text: 'A body cools from 80 °C to 50 °C in 5 minutes. The surroundings are at 20 °C.' },
+    { title: 'What is asked', dur: 4, text: 'How long does it take to cool from 60 °C to 30 °C?' },
+  ];
+  const stages = [
+    { title: 'Newton’s law of cooling', dur: D, text: 'The rate of cooling is proportional to the excess temperature over the surroundings. NCERT uses the average excess over each interval.', ans: 'First run: 30/5 = K × (65 − 20) → K = 2/15 per minute.' },
+    { title: 'Second run', dur: 5, text: 'Now the average excess is 45 − 20 = 25 °C: the body cools more slowly.', ans: '30/t = (2/15) × 25 → t = 9 min (the exact exponential law gives 10 min).' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    const g = axes(ctx, { x: 70, y: 60, w: 470, h: 360, x0: 0, x1: 14, y0: 0, y1: 90, xt: [5, 9, 10], yt: [20, 30, 50, 60, 80], xl: 't (min)', yl: 'T (°C)' });
+    hline(ctx, g.X(0), g.X(14), g.Y(20), P.ink2, 1, [5, 4]); label(ctx, 'surroundings 20 °C', g.X(14) - 4, g.Y(20) + 12, { align: 'right', size: 12, color: P.ink2 });
+    const u = Math.min(t, D) / (D - 1) * 5;
+    plot(ctx, g, T1, 0, Math.min(u, 5), P.force);
+    if (t >= D - 1 || !ans) { ball(ctx, g.X(5), g.Y(50), 5, P.force); label(ctx, '80 → 50 °C in 5 min', g.X(5) + 8, g.Y(50) - 14, { weight: 700, size: 13, color: P.force }); }
+    if (ans && t >= stages[1].t0) { const v = Math.min((t - stages[1].t0) / 4, 1) * 10; plot(ctx, g, T2, 0, v, P.vel); if (v >= 10) { ball(ctx, g.X(10), g.Y(30), 5, P.vel); label(ctx, '60 → 30 °C', g.X(10) + 8, g.Y(30) - 14, { weight: 700, size: 13, color: P.vel }); vline(ctx, g.X(9), g.Y(30) - 30, g.Y(0), P.accent, 1.5, [4, 3]); label(ctx, 'NCERT: 9 min', g.X(9) - 6, g.Y(30) - 40, { align: 'right', weight: 800, size: 13, color: P.accent }); } }
+    if (ans) partsPanel(ctx, 630, 34, 300, 'Working', ['30/5 = K(65 − 20) → K = 2/15 min⁻¹', '30/t = K(45 − 20) → t = 9 min (exact law: 10 min)'], stageAt(stages, t), false);
+    else askedPanel(ctx, 630, 34, 300, ['The time taken to cool from 60 °C to 30 °C.']);
+    note(ctx, 'curves follow the exact exponential law');
+  }
+  return { qStages, stages, draw };
+})();
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

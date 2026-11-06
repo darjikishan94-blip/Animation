@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 10.15</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 10 Thermal Properties of Matter</a></p>
+      <h1>Exercise 10.15 · Molar specific heats of gases</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q14.html">‹ 10.14</a><a href="index.html">All questions</a><a href="q16.html">10.16 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 10.15">
+    <p class="qline"><b>10.15</b> Given below are observations on molar specific heats at room temperature of some common gases. Hydrogen 4.87, Nitrogen 4.97, Oxygen 5.02, Nitric oxide 4.99, Carbon monoxide 5.01, Chlorine 6.17 (C<sub>v</sub>, cal mol<sup>–1</sup> K<sup>–1</sup>). The measured molar specific heats of these gases are markedly different from those for monatomic gases. Typically, molar specific heat of a monatomic gas is 2.92 cal/mol K. Explain this difference. What can you infer from the somewhat larger (than the rest) value for chlorine ?</p>
+    <p><button type="button" class="btn reveal" id="show" aria-pressed="false" style="margin-left:0">Show answer</button></p>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>C<sub>v</sub> of diatomic gases ≈ 5 cal mol<sup>−1</sup> K<sup>−1</sup>; monatomic ≈ 2.92; chlorine 6.17.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>Explain the difference; what chlorine’s value shows.</p>
+      </div>
+      <div>
+        <h3>Why there is no animation</h3>
+        <ul>
+          <li>This question asks for explanations rather than describing one physical situation to follow; the page shows the question and a worked answer.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>A monatomic gas stores energy only in 3 translational motions: C<sub>v</sub> = (3/2)R ≈ 2.98 cal mol<sup>−1</sup> K<sup>−1</sup>.</li>
+          <li>A diatomic molecule can also rotate about two axes: C<sub>v</sub> = (5/2)R ≈ 4.97 cal mol<sup>−1</sup> K<sup>−1</sup>, matching the table.</li>
+          <li>Chlorine’s larger value shows that its vibrational motion is also excited at room temperature (it is a heavier molecule with a weaker bond).</li>
+        </ol>
+        <p class="final">Rotation adds R for diatomic gases; chlorine also has vibration excited.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 10 (Thermal Properties of Matter), Exercises. </p>
+</div>
+<script>
+const b = document.getElementById('show'), a = document.querySelector('.answer');
+b.addEventListener('click', () => { a.hidden = !a.hidden; b.setAttribute('aria-pressed', String(!a.hidden)); b.textContent = a.hidden ? 'Show answer' : 'Hide answer'; });
+</script>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 10.6</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 10 Thermal Properties of Matter</a></p>
+      <h1>Exercise 10.6 · A steel tape on a hot day</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q05.html">‹ 10.5</a><a href="index.html">All questions</a><a href="q07.html">10.7 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 10.6">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A steel tape warms from 27 °C to 45 °C and its centimetre marks spread apart; a rod reading 63.0 cm on the hot tape is really 63.0136 cm long, and 63.0 cm at 27 °C."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>10.6</b> A steel tape 1m long is correctly calibrated for a temperature of 27.0 °C. The length of a steel rod measured by this tape is found to be 63.0 cm on a hot day when the temperature is 45.0 °C. What is the actual length of the steel rod on that day ? What is the length of the same steel rod on a day when the temperature is 27.0 °C ? Coefficient of linear expansion of steel = 1.20 × 10<sup>–5</sup> K<sup>–1</sup> .</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Tape correct at 27.0 °C; reading 63.0 cm at 45.0 °C; α<sub>steel</sub> = 1.20 × 10<sup>−5</sup> K<sup>−1</sup>.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The rod’s true length at 45.0 °C and at 27.0 °C.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>The expansion of the marks is exaggerated about 1000 times.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>At 45.0 °C each “1 cm” of the tape is really 1 × (1 + αΔT) cm, with ΔT = 18.0 K.</li>
+          <li>True length = 63.0 × (1 + 1.20 × 10<sup>−5</sup> × 18.0) ≈ 63.0136 cm.</li>
+          <li>At 27.0 °C the rod (also steel) is shorter by the same factor: about 63.0 cm (the tape is correct then).</li>
+        </ol>
+        <p class="final">≈ 63.0136 cm on the hot day; 63.0 cm at 27.0 °C.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 10 (Thermal Properties of Matter), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const A = 1.2e-5, E = 200, K = 7, X0 = 60, Y = 260, D = 7;              // expansion exaggerated 200×
+  const qStages = [
+    { title: 'Calibrated at 27 °C', dur: 3, text: 'A 1 m steel tape is correct at 27.0 °C.' },
+    { title: 'A hot day: 45 °C', dur: D - 3, text: 'On a 45.0 °C day a steel rod measures 63.0 cm on this tape. α_steel = 1.20 × 10⁻⁵ K⁻¹.' },
+    { title: 'What is asked', dur: 4, text: 'What is the actual length of the rod that day? What is its length at 27.0 °C?' },
+  ];
+  const stages = [
+    { title: 'The tape expands', dur: 3, text: 'At 27.0 °C the tape’s marks are exactly 1 cm apart.', ans: '' },
+    { title: 'Marks spread apart', dur: D - 3, text: 'At 45.0 °C each “centimetre” of the tape is (1 + αΔT) cm long, ΔT = 18.0 K. The rod expands by the same factor (also steel), so the reading stays 63.0.', ans: 'True length = 63.0 × (1 + 1.20 × 10⁻⁵ × 18.0) ≈ 63.0136 cm.' },
+    { title: 'Back at 27 °C', dur: 4, text: 'At 27.0 °C the tape is correct again and the rod has shrunk by the same factor.', ans: 'At 27.0 °C the rod is 63.0 cm long.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    const T = 27 + 18 * smooth(clamp((t - 3) / 3)), s = 1 + E * A * (T - 27);
+    ctx.fillStyle = P.sand; ctx.fillRect(X0, Y, 70 * K * s, 40); ctx.strokeStyle = P.obj; ctx.lineWidth = 1.5; ctx.strokeRect(X0, Y, 70 * K * s, 40);
+    for (let c = 0; c <= 70; c++) { const x = X0 + c * K * s; vline(ctx, x, Y, Y + (c % 10 ? (c % 5 ? 8 : 13) : 20), P.ink, 1); if (c % 10 === 0) label(ctx, String(c), x, Y + 30, { align: 'center', size: 11 }); }
+    ctx.fillStyle = P.objFill2; ctx.fillRect(X0, Y - 30, 63 * K * s, 26); ctx.strokeRect(X0, Y - 30, 63 * K * s, 26); label(ctx, 'steel rod', X0 + 20, Y - 17, { size: 13, weight: 700 });
+    vline(ctx, X0 + 63 * K * s, Y - 40, Y + 20, P.force, 2); label(ctx, 'reads 63.0', X0 + 63 * K * s, Y - 52, { align: 'center', weight: 800, size: 14, color: P.force });
+    label(ctx, `${T.toFixed(1)} °C`, 60, 80, { weight: 800, size: 20, color: T > 30 ? P.force : P.ink });
+    if (ans) {
+      if (t >= stages[1].t0 + 2) label(ctx, 'true length at 45 °C ≈ 63.0136 cm', 60, 400, { weight: 800, size: 16, color: P.accent });
+      if (t >= stages[2].t0) label(ctx, 'at 27 °C: 63.0 cm', 60, 430, { weight: 800, size: 16, color: P.accent });
+      partsPanel(ctx, 630, 34, 300, 'Working', ['At 27 °C the tape is correct', 'At 45 °C: 63.0 × (1 + αΔT) ≈ 63.0136 cm', 'At 27 °C the rod is 63.0 cm'], stageAt(stages, t), false);
+    } else askedPanel(ctx, 630, 34, 300, ['The actual length of the rod on the hot day (45.0 °C).', 'The length of the same rod at 27.0 °C.']);
+    note(ctx, 'expansion exaggerated 200 times; 7 px per cm');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>
