@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 12 Physics · Exercise 13.8</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 12 Physics</a> · <a href="index.html">Ch. 13 Nuclei</a></p>
+      <h1>Exercise 13.8 · A lamp powered by deuterium fusion</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q07.html">‹ 13.7</a><a href="index.html">All questions</a><a href="q09.html">13.9 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 13.8">
+    <p class="qline"><b>13.8</b> How long can an electric lamp of 100W be kept glowing by fusion of 2.0 kg of deuterium? Take the fusion reaction as <sup>2</sup><sub>1</sub>H + <sup>2</sup><sub>1</sub>H → <sup>3</sup><sub>2</sub>He + n + 3.27 MeV</p>
+    <p><button type="button" class="btn reveal" id="show" aria-pressed="false" style="margin-left:0">Show answer</button></p>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>2.0 kg of deuterium (molar mass ≈ 2.014 g); 3.27 MeV per reaction (two deuterons); P = 100 W; 1 year = 3.154 × 10<sup>7</sup> s.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>How long the lamp glows.</p>
+      </div>
+      <div>
+        <h3>Why there is no animation</h3>
+        <ul>
+          <li>This is a direct calculation with nothing moving to show; the page shows the question and a worked answer.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>Deuterons = 2000/2.014 × 6.023 × 10<sup>23</sup> ≈ 5.98 × 10<sup>26</sup>; reactions = half of that ≈ 2.99 × 10<sup>26</sup>.</li>
+          <li>Energy ≈ 2.99 × 10<sup>26</sup> × 3.27 MeV ≈ 9.78 × 10<sup>26</sup> MeV ≈ 1.56 × 10<sup>14</sup> J.</li>
+          <li>t = E/P ≈ 1.56 × 10<sup>12</sup> s ≈ 4.9 × 10<sup>4</sup> years.</li>
+        </ol>
+        <p class="final">≈ 4.9 × 10<sup>4</sup> years.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 12), Chapter 13 (Nuclei), Exercises. </p>
+</div>
+<script>
+const b = document.getElementById('show'), a = document.querySelector('.answer');
+b.addEventListener('click', () => { a.hidden = !a.hidden; b.setAttribute('aria-pressed', String(!a.hidden)); b.textContent = a.hidden ? 'Show answer' : 'Hide answer'; });
+</script>
+</body>
+</html>

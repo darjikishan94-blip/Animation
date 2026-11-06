@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 12 Physics · Exercise 13.9</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 12 Physics</a> · <a href="index.html">Ch. 13 Nuclei</a></p>
+      <h1>Exercise 13.9 · Coulomb barrier between two deuterons</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q08.html">‹ 13.8</a><a href="index.html">All questions</a><a href="q10.html">13.10 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 13.9">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="Two deuterons approach head on; their electric potential energy rises as 1/r and reaches 360 keV when the 2 fm spheres touch at a separation of 4 fm."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>13.9</b> Calculate the height of the potential barrier for a head on collision of two deuterons. (Hint: The height of the potential barrier is given by the Coulomb repulsion between the two deuterons when they just touch each other. Assume that they can be taken as hard spheres of radius 2.0 fm.)</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Deuteron radius 2.0 fm (touching at r = 4.0 fm); charge e each; 1/4πε<sub>0</sub> = 9 × 10<sup>9</sup> N m<sup>2</sup>/C<sup>2</sup>.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The barrier height.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>The energy curve is computed from U = ke<sup>2</sup>/r.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>U = ke<sup>2</sup>/r at r = 2R = 4.0 × 10<sup>−15</sup> m.</li>
+          <li>U = 9 × 10<sup>9</sup> × (1.6 × 10<sup>−19</sup>)<sup>2</sup>/4.0 × 10<sup>−15</sup> ≈ 5.76 × 10<sup>−14</sup> J ≈ 360 keV.</li>
+        </ol>
+        <p class="final">≈ 360 keV.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 12), Chapter 13 (Nuclei), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const G = { x: 330, y: 90, w: 240, h: 300, x0: 0, x1: 16, y0: 0, y1: 1500, xt: [4, 8, 12], yt: [360, 1000], xl: 'r (fm)', yl: 'U (keV)' }, R = 2, S = 14, D = 8;   // 14 px per fm
+  const U = r => 1440 / r;   // keV, r in fm (ke² = 1.44 MeV fm)
+  const qStages = [
+    { title: 'Two deuterons head on', dur: 6, text: 'Two deuterons, each a hard sphere of radius 2.0 fm with charge +e, move towards each other.' },
+    { title: 'What is asked', dur: 4, text: 'The height of the Coulomb barrier: their potential energy when they just touch.' },
+  ];
+  const stages = [
+    { title: 'Approach', dur: D, text: 'The electric potential energy U = ke²/r grows as they come closer.', ans: '' },
+    { title: 'Touching', dur: 5, text: 'They touch at r = 2 × 2.0 = 4.0 fm.', ans: 'U = 9 × 10⁹ × (1.6 × 10⁻¹⁹)²/4.0 × 10⁻¹⁵ ≈ 5.76 × 10⁻¹⁴ J ≈ 360 keV.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    const r = ans ? (t < stages[0].t1 ? 16 - 12 * smooth(clamp(t / (D - 1))) : 4) : 16;   // separation in fm
+    const cx = 165, y = 270, x1 = cx - S * r / 2, x2 = cx + S * r / 2;
+    [x1, x2].forEach(x => { ball(ctx, x, y, S * R, P.force); label(ctx, 'd', x, y, { align: 'center', weight: 800, size: 14, color: P.sheet, halo: false }); });
+    dim(ctx, x1, x2, y + 50, P.ink2); label(ctx, `r = ${r.toFixed(1)} fm`, cx, y + 66, { align: 'center', weight: 700, size: 13 });
+    label(ctx, 'radius 2.0 fm each', cx, y - 50, { align: 'center', weight: 700, size: 12 });
+    if (ans) {
+      const g = axes(ctx, G); plot(ctx, g, U, 1, 16, P.pe);
+      ball(ctx, g.X(r), g.Y(Math.min(U(r), 1500)), 6, P.pe);
+      if (t >= stages[1].t0) { hline(ctx, g.X(0), g.X(4), g.Y(360), P.accent, 1.5, [4, 3]); label(ctx, 'barrier ≈ 360 keV', g.X(4) + 10, g.Y(360) - 14, { weight: 800, size: 14, color: P.accent }); }
+      partsPanel(ctx, 630, 34, 300, 'Working', ['U = ke²/r', 'At r = 4.0 fm: U ≈ 5.76 × 10⁻¹⁴ J ≈ 360 keV'], stageAt(stages, t), false);
+    } else askedPanel(ctx, 630, 34, 300, ['The height of the potential barrier for a head-on collision of two deuterons.']);
+    note(ctx, ans ? '14 px per fm; U(r) computed (ke² = 1.44 MeV fm)' : '14 px per fm');
+  }
+  return { qStages, stages, draw };
+})();
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

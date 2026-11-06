@@ -4382,8 +4382,110 @@
   "subject": "physics",
   "chapter": 13,
   "chapter_title": "Nuclei",
-  "status": "planned",
-  "ncert_pdf": "https://ncert.nic.in/textbook/pdf/leph205.pdf"
+  "question": "13.1",
+  "title": "Binding energy of nitrogen-14",
+  "status": "worked answer",
+  "file": "class-12/physics/ch13-nuclei/q01.html",
+  "text": "Obtain the binding energy (in MeV) of a nitrogen nucleus (147N), given m(147N) = 14.00307 u."
+ },
+ {
+  "class": 12,
+  "subject": "physics",
+  "chapter": 13,
+  "chapter_title": "Nuclei",
+  "question": "13.2",
+  "title": "Binding energies of Fe-56 and Bi-209",
+  "status": "worked answer",
+  "file": "class-12/physics/ch13-nuclei/q02.html",
+  "text": "Obtain the binding energy of the nuclei 5626Fe and 20983Bi in units of MeV from the following data: m(5626Fe) = 55.934939 u, m(20983Bi) = 208.980388 u."
+ },
+ {
+  "class": 12,
+  "subject": "physics",
+  "chapter": 13,
+  "chapter_title": "Nuclei",
+  "question": "13.3",
+  "title": "Energy to break up a copper coin",
+  "status": "worked answer",
+  "file": "class-12/physics/ch13-nuclei/q03.html",
+  "text": "A given coin has a mass of 3.0 g. Calculate the nuclear energy that would be required to separate all the neutrons and protons from each other. For simplicity assume that the coin is entirely made of 6329Cu atoms (of mass 62.92960 u)."
+ },
+ {
+  "class": 12,
+  "subject": "physics",
+  "chapter": 13,
+  "chapter_title": "Nuclei",
+  "question": "13.4",
+  "title": "Radii of gold and silver nuclei",
+  "status": "worked answer",
+  "file": "class-12/physics/ch13-nuclei/q04.html",
+  "text": "Obtain approximately the ratio of the nuclear radii of the gold isotope 19779Au and the silver isotope 10747Ag."
+ },
+ {
+  "class": 12,
+  "subject": "physics",
+  "chapter": 13,
+  "chapter_title": "Nuclei",
+  "question": "13.5",
+  "title": "Q-values of two reactions",
+  "status": "worked answer",
+  "file": "class-12/physics/ch13-nuclei/q05.html",
+  "text": "The Q value of a nuclear reaction A + b → C + d is defined by Q = [mA + mb – mC – md]c2 where the masses refer to the respective nuclei. Determine from the given data the Q-value of the following reactions and state whether the reactions are exothermic or endothermic. (i) 11H + 31H → 21H + 21H (ii) 126C + 126C → 2010Ne + 42He. Atomic masses are given to be m(21H) = 2.014102 u, m(31H) = 3.016049 u, m(126C) = 12.000000 u, m(2010Ne) = 19.992439 u."
+ },
+ {
+  "class": 12,
+  "subject": "physics",
+  "chapter": 13,
+  "chapter_title": "Nuclei",
+  "question": "13.6",
+  "title": "Can Fe-56 split into two Al-28?",
+  "status": "animated",
+  "file": "class-12/physics/ch13-nuclei/q06.html",
+  "text": "Suppose, we think of fission of a 5626Fe nucleus into two equal fragments, 2813Al. Is the fission energetically possible? Argue by working out Q of the process. Given m(5626Fe) = 55.93494 u and m(2813Al) = 27.98191 u."
+ },
+ {
+  "class": 12,
+  "subject": "physics",
+  "chapter": 13,
+  "chapter_title": "Nuclei",
+  "question": "13.7",
+  "title": "Energy from fission of 1 kg of Pu-239",
+  "status": "worked answer",
+  "file": "class-12/physics/ch13-nuclei/q07.html",
+  "text": "The fission properties of 23994Pu are very similar to those of 23592U. The average energy released per fission is 180 MeV. How much energy, in MeV, is released if all the atoms in 1 kg of pure 23994Pu undergo fission?"
+ },
+ {
+  "class": 12,
+  "subject": "physics",
+  "chapter": 13,
+  "chapter_title": "Nuclei",
+  "question": "13.8",
+  "title": "A lamp powered by deuterium fusion",
+  "status": "worked answer",
+  "file": "class-12/physics/ch13-nuclei/q08.html",
+  "text": "How long can an electric lamp of 100W be kept glowing by fusion of 2.0 kg of deuterium? Take the fusion reaction as 21H + 21H → 32He + n + 3.27 MeV"
+ },
+ {
+  "class": 12,
+  "subject": "physics",
+  "chapter": 13,
+  "chapter_title": "Nuclei",
+  "question": "13.9",
+  "title": "Coulomb barrier between two deuterons",
+  "status": "animated",
+  "file": "class-12/physics/ch13-nuclei/q09.html",
+  "text": "Calculate the height of the potential barrier for a head on collision of two deuterons. (Hint: The height of the potential barrier is given by the Coulomb repulsion between the two deuterons when they just touch each other. Assume that they can be taken as hard spheres of radius 2.0 fm.)"
+ },
+ {
+  "class": 12,
+  "subject": "physics",
+  "chapter": 13,
+  "chapter_title": "Nuclei",
+  "question": "13.10",
+  "title": "Nuclear density is constant",
+  "status": "worked answer",
+  "file": "class-12/physics/ch13-nuclei/q10.html",
+  "text": "From the relation R = R0A1/3, where R0 is a constant and A is the mass number of a nucleus, show that the nuclear matter density is nearly constant (i.e. independent of A)."
  },
  {
   "class": 12,

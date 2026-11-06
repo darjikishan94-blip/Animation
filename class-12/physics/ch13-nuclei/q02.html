@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 12 Physics · Exercise 13.2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 12 Physics</a> · <a href="index.html">Ch. 13 Nuclei</a></p>
+      <h1>Exercise 13.2 · Binding energies of Fe-56 and Bi-209</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q01.html">‹ 13.1</a><a href="index.html">All questions</a><a href="q03.html">13.3 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 13.2">
+    <p class="qline"><b>13.2</b> Obtain the binding energy of the nuclei <sup>56</sup><sub>26</sub>Fe and <sup>209</sup><sub>83</sub>Bi in units of MeV from the following data: m(<sup>56</sup><sub>26</sub>Fe) = 55.934939 u, m(<sup>209</sup><sub>83</sub>Bi) = 208.980388 u.</p>
+    <p><button type="button" class="btn reveal" id="show" aria-pressed="false" style="margin-left:0">Show answer</button></p>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>m(Fe) = 55.934939 u; m(Bi) = 208.980388 u. m<sub>H</sub> = 1.007825 u; m<sub>n</sub> = 1.008665 u; 1 u = 931.5 MeV/c<sup>2</sup>; N = 6.023 × 10<sup>23</sup> per mole; 1 MeV = 1.6 × 10<sup>−13</sup> J.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>Binding energies of Fe-56 and Bi-209.</p>
+      </div>
+      <div>
+        <h3>Why there is no animation</h3>
+        <ul>
+          <li>This is a direct calculation with nothing moving to show; the page shows the question and a worked answer.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>Fe: Δm = 26 × 1.007825 + 30 × 1.008665 − 55.934939 = 0.528461 u; B ≈ 492.3 MeV (8.79 MeV per nucleon).</li>
+          <li>Bi: Δm = 83 × 1.007825 + 126 × 1.008665 − 208.980388 = 1.760877 u; B ≈ 1640.3 MeV (7.85 MeV per nucleon).</li>
+          <li>Fe-56 is more tightly bound per nucleon.</li>
+        </ol>
+        <p class="final">Fe: ≈ 492 MeV (8.79 MeV/nucleon); Bi: ≈ 1640 MeV (7.85 MeV/nucleon).</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 12), Chapter 13 (Nuclei), Exercises. </p>
+</div>
+<script>
+const b = document.getElementById('show'), a = document.querySelector('.answer');
+b.addEventListener('click', () => { a.hidden = !a.hidden; b.setAttribute('aria-pressed', String(!a.hidden)); b.textContent = a.hidden ? 'Show answer' : 'Hide answer'; });
+</script>
+</body>
+</html>

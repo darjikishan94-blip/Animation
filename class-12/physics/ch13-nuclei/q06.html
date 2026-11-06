@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 12 Physics · Exercise 13.6</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 12 Physics</a> · <a href="index.html">Ch. 13 Nuclei</a></p>
+      <h1>Exercise 13.6 · Can Fe-56 split into two Al-28?</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q05.html">‹ 13.5</a><a href="index.html">All questions</a><a href="q07.html">13.7 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 13.6">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="Weighing an iron-56 nucleus against two aluminium-28 nuclei: the two fragments are heavier by 0.0289 u, so splitting iron would need about 26.9 MeV of energy rather than release it."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>13.6</b> Suppose, we think of fission of a <sup>56</sup><sub>26</sub>Fe nucleus into two equal fragments, <sup>28</sup><sub>13</sub>Al. Is the fission energetically possible? Argue by working out Q of the process. Given m(<sup>56</sup><sub>26</sub>Fe) = 55.93494 u and m(<sup>28</sup><sub>13</sub>Al) = 27.98191 u.</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>m(Fe) = 55.93494 u; m(Al) = 27.98191 u; 1 u = 931.5 MeV/c<sup>2</sup>.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>Q; is the fission possible?</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>The mass difference is exaggerated on the balance; numbers exact.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>Q = [m(Fe) − 2m(Al)]c<sup>2</sup> = (55.93494 − 55.96382) × 931.5 = −0.02888 × 931.5 ≈ −26.9 MeV.</li>
+          <li>Q is negative: the products are heavier than iron. The fission cannot happen on its own; energy would have to be supplied.</li>
+        </ol>
+        <p class="final">Q ≈ −26.9 MeV: not energetically possible.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 12), Chapter 13 (Nuclei), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const CX = 300, PY = 200, D = 6;
+  const qStages = [
+    { title: 'Splitting iron?', dur: 5, text: 'Imagine an Fe-56 nucleus (55.93494 u) splitting into two Al-28 nuclei (27.98191 u each).' },
+    { title: 'What is asked', dur: 4, text: 'Work out Q. Is this fission energetically possible?' },
+  ];
+  const stages = [
+    { title: 'Weigh both sides', dur: D, text: 'Two Al-28: 2 × 27.98191 = 55.96382 u, more than 55.93494 u.', ans: 'The products are heavier by 0.02888 u.' },
+    { title: 'Q-value', dur: 5, text: 'Q = [m(Fe) − 2m(Al)] × 931.5 MeV/u.', ans: 'Q ≈ −26.9 MeV: energy would have to be put in. Not possible on its own.' },
+  ];
+  function nucleus(ctx, x, y, r, label_) { ctx.save(); for (let i = 0; i < 18; i++) { const a = i * 2.4, rr = r * Math.sqrt((i + 0.5) / 18); ball(ctx, x + rr * Math.cos(a), y + rr * Math.sin(a), r * 0.28, i % 2 ? P.force : P.objFill2); } ctx.restore(); label(ctx, label_, x, y + r + 18, { align: 'center', weight: 800, size: 13 }); }
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    const tilt = ans ? -0.12 * smooth(clamp(t / 3)) : 0;   // heavier side (right) goes down: canvas angle positive = clockwise
+    ctx.save(); ctx.translate(CX, PY); ctx.rotate(-tilt); ctx.strokeStyle = P.ink; ctx.lineWidth = 4; seg(ctx, -200, 0, 200, 0); ctx.restore();
+    ctx.save(); ctx.fillStyle = P.ink2; ctx.beginPath(); ctx.moveTo(CX, PY); ctx.lineTo(CX - 20, PY + 60); ctx.lineTo(CX + 20, PY + 60); ctx.closePath(); ctx.fill(); ctx.restore();
+    const ly = PY + 200 * Math.sin(tilt), ry = PY - 200 * Math.sin(tilt);
+    vline(ctx, CX - 200, ly, ly + 60, P.ink2, 1.5); vline(ctx, CX + 200, ry, ry + 60, P.ink2, 1.5);
+    nucleus(ctx, CX - 200, ly + 100, 40, 'Fe-56: 55.93494 u');
+    nucleus(ctx, CX + 170, ry + 100, 28, ''); nucleus(ctx, CX + 232, ry + 100, 28, ''); label(ctx, '2 × Al-28: 55.96382 u', CX + 200, ry + 150, { align: 'center', weight: 800, size: 13 });
+    if (ans) {
+      const st = stageAt(stages, t);
+      label(ctx, 'products heavier by 0.02888 u', CX, 420, { align: 'center', weight: 800, size: 15, color: P.force });
+      if (st >= 1) label(ctx, 'Q ≈ −26.9 MeV: not possible', CX, 456, { align: 'center', weight: 800, size: 17, color: P.loss });
+      partsPanel(ctx, 630, 34, 300, 'Working', ['2m(Al) − m(Fe) = 0.02888 u', 'Q ≈ −26.9 MeV < 0: not possible'], st, false);
+    } else askedPanel(ctx, 630, 34, 300, ['The Q-value of the fission; whether it is energetically possible.']);
+    note(ctx, 'the tilt exaggerates the 0.05% mass difference; nucleons illustrative');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

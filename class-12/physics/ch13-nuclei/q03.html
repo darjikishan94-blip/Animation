@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 12 Physics · Exercise 13.3</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 12 Physics</a> · <a href="index.html">Ch. 13 Nuclei</a></p>
+      <h1>Exercise 13.3 · Energy to break up a copper coin</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q02.html">‹ 13.2</a><a href="index.html">All questions</a><a href="q04.html">13.4 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 13.3">
+    <p class="qline"><b>13.3</b> A given coin has a mass of 3.0 g. Calculate the nuclear energy that would be required to separate all the neutrons and protons from each other. For simplicity assume that the coin is entirely made of <sup>63</sup><sub>29</sub>Cu atoms (of mass 62.92960 u).</p>
+    <p><button type="button" class="btn reveal" id="show" aria-pressed="false" style="margin-left:0">Show answer</button></p>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Coin 3.0 g of <sup>63</sup>Cu, atomic mass 62.92960 u. m<sub>H</sub> = 1.007825 u; m<sub>n</sub> = 1.008665 u; 1 u = 931.5 MeV/c<sup>2</sup>; N = 6.023 × 10<sup>23</sup> per mole; 1 MeV = 1.6 × 10<sup>−13</sup> J.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The total binding energy.</p>
+      </div>
+      <div>
+        <h3>Why there is no animation</h3>
+        <ul>
+          <li>This is a direct calculation with nothing moving to show; the page shows the question and a worked answer.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>Per atom: Δm = 29 × 1.007825 + 34 × 1.008665 − 62.92960 = 0.591935 u; B = 0.591935 × 931.5 ≈ 551.4 MeV.</li>
+          <li>Atoms in 3.0 g: 3.0/62.9296 × 6.023 × 10<sup>23</sup> ≈ 2.87 × 10<sup>22</sup>.</li>
+          <li>Total ≈ 2.87 × 10<sup>22</sup> × 551.4 ≈ 1.58 × 10<sup>25</sup> MeV ≈ 2.5 × 10<sup>12</sup> J.</li>
+        </ol>
+        <p class="final">≈ 1.58 × 10<sup>25</sup> MeV ≈ 2.5 × 10<sup>12</sup> J.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 12), Chapter 13 (Nuclei), Exercises. </p>
+</div>
+<script>
+const b = document.getElementById('show'), a = document.querySelector('.answer');
+b.addEventListener('click', () => { a.hidden = !a.hidden; b.setAttribute('aria-pressed', String(!a.hidden)); b.textContent = a.hidden ? 'Show answer' : 'Hide answer'; });
+</script>
+</body>
+</html>

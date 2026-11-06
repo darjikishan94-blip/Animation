@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 12 Physics · Exercise 13.5</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 12 Physics</a> · <a href="index.html">Ch. 13 Nuclei</a></p>
+      <h1>Exercise 13.5 · Q-values of two reactions</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q04.html">‹ 13.4</a><a href="index.html">All questions</a><a href="q06.html">13.6 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 13.5">
+    <p class="qline"><b>13.5</b> The Q value of a nuclear reaction A + b → C + d is defined by Q = [m<sub>A</sub> + m<sub>b</sub> – m<sub>C</sub> – m<sub>d</sub>]c<sup>2</sup> where the masses refer to the respective nuclei. Determine from the given data the Q-value of the following reactions and state whether the reactions are exothermic or endothermic. (i) <sup>1</sup><sub>1</sub>H + <sup>3</sup><sub>1</sub>H → <sup>2</sup><sub>1</sub>H + <sup>2</sup><sub>1</sub>H (ii) <sup>12</sup><sub>6</sub>C + <sup>12</sup><sub>6</sub>C → <sup>20</sup><sub>10</sub>Ne + <sup>4</sup><sub>2</sub>He. Atomic masses are given to be m(<sup>2</sup><sub>1</sub>H) = 2.014102 u, m(<sup>3</sup><sub>1</sub>H) = 3.016049 u, m(<sup>12</sup><sub>6</sub>C) = 12.000000 u, m(<sup>20</sup><sub>10</sub>Ne) = 19.992439 u.</p>
+    <p><button type="button" class="btn reveal" id="show" aria-pressed="false" style="margin-left:0">Show answer</button></p>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Atomic masses as listed; m(<sup>1</sup>H) = 1.007825 u, m(<sup>4</sup>He) = 4.002603 u; 1 u = 931.5 MeV/c<sup>2</sup>.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>Q for each; exothermic or endothermic.</p>
+      </div>
+      <div>
+        <h3>Why there is no animation</h3>
+        <ul>
+          <li>This is a direct calculation with nothing moving to show; the page shows the question and a worked answer.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>Electron masses cancel because the charges balance, so atomic masses can be used.</li>
+          <li>(i) Q = (1.007825 + 3.016049 − 2 × 2.014102) × 931.5 = −0.00433 × 931.5 ≈ −4.03 MeV: endothermic.</li>
+          <li>(ii) Q = (2 × 12.000000 − 19.992439 − 4.002603) × 931.5 = 0.004958 × 931.5 ≈ 4.62 MeV: exothermic.</li>
+        </ol>
+        <p class="final">(i) −4.03 MeV, endothermic (ii) +4.62 MeV, exothermic.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 12), Chapter 13 (Nuclei), Exercises. </p>
+</div>
+<script>
+const b = document.getElementById('show'), a = document.querySelector('.answer');
+b.addEventListener('click', () => { a.hidden = !a.hidden; b.setAttribute('aria-pressed', String(!a.hidden)); b.textContent = a.hidden ? 'Show answer' : 'Hide answer'; });
+</script>
+</body>
+</html>
