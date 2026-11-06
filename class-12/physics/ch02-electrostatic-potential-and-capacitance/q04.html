@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 12 Physics · Exercise 2.4</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 12 Physics</a> · <a href="index.html">Ch. 2 Electrostatic Potential and Capacitance</a></p>
+      <h1>Exercise 2.4 · Field of a charged spherical conductor</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q03.html">‹ 2.3</a><a href="index.html">All questions</a><a href="q05.html">2.5 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 2.4">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="Inside the charged sphere the field is zero; just outside it is 10⁵ N/C, falling as 1/r² to 4.4 × 10⁴ N/C at 18 cm."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>2.4</b> A spherical conductor of radius 12 cm has a charge of 1.6 × 10<sup>–7</sup>C distributed uniformly on its surface. What is the electric field (a) inside the sphere (b) just outside the sphere (c) at a point 18 cm from the centre of the sphere?</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>R = 0.12 m; Q = 1.6 × 10<sup>−7</sup> C on the surface. (k = 1/4πε<sub>0</sub> = 9 × 10<sup>9</sup> N m<sup>2</sup> C<sup>−2</sup>; ε<sub>0</sub> = 8.854 × 10<sup>−12</sup> C<sup>2</sup> N<sup>−1</sup> m<sup>−2</sup>.)</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>E (a) inside (b) just outside (c) at 18 cm.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Field arrows to scale with each other; the graph is E = kQ/r² outside.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>(a) Inside a conductor the electrostatic field is zero.</li>
+          <li>(b) Outside, the sphere acts like a point charge at its centre: E = kQ/R<sup>2</sup> = 9 × 10<sup>9</sup> × 1.6 × 10<sup>−7</sup>/0.12<sup>2</sup> = 10<sup>5</sup> N/C.</li>
+          <li>(c) E = 9 × 10<sup>9</sup> × 1.6 × 10<sup>−7</sup>/0.18<sup>2</sup> ≈ 4.4 × 10<sup>4</sup> N/C.</li>
+        </ol>
+        <p class="final">(a) 0 (b) 10<sup>5</sup> N/C (c) 4.4 × 10<sup>4</sup> N/C</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 12), Chapter 2 (Electrostatic Potential and Capacitance), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const SX = 150, SY = 230, S = 7, R = 12 * S, G = { x: 330, y: 70, w: 230, h: 300, x0: 0, x1: 30, y0: 0, y1: 1.2, xt: [12, 18, 30], yt: [0.44, 1], xl: 'r (cm)', yl: 'E (10⁵ N/C)' };
+  const Ef = r => r < 12 ? 0 : (12 / r) ** 2;   // in units of 10⁵ N/C
+  const qStages = [
+    { title: 'A charged sphere', dur: 5, text: 'A spherical conductor of radius 12 cm carries 1.6 × 10⁻⁷ C spread uniformly over its surface.' },
+    { title: 'What is asked', dur: 4, text: 'What is the field (a) inside, (b) just outside, (c) 18 cm from the centre?' },
+  ];
+  const stages = [
+    { title: 'Inside', dur: 4, text: 'Inside a conductor the electrostatic field is zero.', ans: '(a) E = 0.' },
+    { title: 'Just outside', dur: 5, text: 'Outside, the sphere acts as a point charge at its centre: E = kQ/r².', ans: '(b) E = 9 × 10⁹ × 1.6 × 10⁻⁷/0.12² = 10⁵ N/C.' },
+    { title: 'At 18 cm', dur: 5, text: 'E falls as 1/r².', ans: '(c) E = 9 × 10⁹ × 1.6 × 10⁻⁷/0.18² ≈ 4.4 × 10⁴ N/C.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    ctx.save(); ctx.fillStyle = P.objFill; ctx.beginPath(); ctx.arc(SX, SY, R, 0, 2 * Math.PI); ctx.fill(); ctx.strokeStyle = P.obj; ctx.lineWidth = 2; ctx.stroke(); ctx.restore();
+    for (let i = 0; i < 16; i++) { const a = i / 16 * 2 * Math.PI; label(ctx, '+', SX + (R - 9) * Math.cos(a), SY + (R - 9) * Math.sin(a), { align: 'center', weight: 800, size: 12, color: P.force, halo: false }); }
+    ctx.save(); ctx.strokeStyle = P.ink; ctx.lineWidth = 1.5; seg(ctx, SX, SY, SX - R * 0.71, SY + R * 0.71); ctx.restore(); label(ctx, '12 cm', SX - 50, SY + 32, { align: 'right', weight: 700, size: 12 });
+    const p18 = [SX + 18 * S, SY]; ball(ctx, ...p18, 5, P.ink); vline(ctx, SX, SY + R + 14, SY + R + 30, P.ink2, 1); dim(ctx, SX, p18[0], SY + R + 22, P.ink2); label(ctx, '18 cm', (SX + p18[0]) / 2, SY + R + 38, { align: 'center', weight: 700, size: 12 });
+    label(ctx, 'Q = 1.6 × 10⁻⁷ C', SX, SY - R - 22, { align: 'center', weight: 700, size: 13 });
+    if (ans) {
+      const st = stageAt(stages, t);
+      ball(ctx, SX + 30, SY - 30, 5, P.ink); label(ctx, 'E = 0', SX + 30, SY - 48, { align: 'center', weight: 800, size: 13, color: P.accent });
+      if (st >= 1) { const a = -Math.PI / 4, x = SX + (R + 4) * Math.cos(a), y = SY + (R + 4) * Math.sin(a); vec(ctx, x, y, 60 * Math.cos(a), 60 * Math.sin(a), '10⁵ N/C', P.force, { side: -1, at: 1, size: 12 }); }
+      if (st >= 2) vec(ctx, p18[0], p18[1], 0.44 * 60, 0, '4.4 × 10⁴', P.force, { side: -1, at: 1, size: 12, ax: 14 });
+      const g = axes(ctx, G), u = clamp((t - stages[0].t0) / (stages[2].t1 - 2));
+      plot(ctx, g, Ef, 0, Math.min(30 * u, 11.99), P.accent); if (30 * u > 12) { vline(ctx, g.X(12), g.Y(0), g.Y(1), P.accent, 1.5, [3, 3]); plot(ctx, g, Ef, 12, 30 * u, P.accent); }
+      if (st >= 2) { ball(ctx, g.X(18), g.Y(Ef(18)), 5, P.force); hline(ctx, g.X(0), g.X(18), g.Y(Ef(18)), P.force, 1, [3, 3]); }
+      partsPanel(ctx, 630, 34, 300, 'Answers', ['(a) Inside: E = 0', '(b) Just outside: 10⁵ N/C', '(c) At 18 cm: 4.4 × 10⁴ N/C'], st, false);
+    } else askedPanel(ctx, 630, 34, 300, ['The electric field (a) inside the sphere, (b) just outside it, (c) at a point 18 cm from the centre.']);
+    note(ctx, ans ? 'sphere 7 px per cm; field arrows to scale with each other' : 'sphere 7 px per cm');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

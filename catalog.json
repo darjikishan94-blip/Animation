@@ -3029,8 +3029,121 @@
   "subject": "physics",
   "chapter": 2,
   "chapter_title": "Electrostatic Potential and Capacitance",
-  "status": "planned",
-  "ncert_pdf": "https://ncert.nic.in/textbook/pdf/leph102.pdf"
+  "question": "2.1",
+  "title": "Where the potential is zero",
+  "status": "animated",
+  "file": "class-12/physics/ch02-electrostatic-potential-and-capacitance/q01.html",
+  "text": "Two charges 5 × 10–8 C and –3 × 10–8 C are located 16 cm apart. At what point(s) on the line joining the two charges is the electric potential zero? Take the potential at infinity to be zero."
+ },
+ {
+  "class": 12,
+  "subject": "physics",
+  "chapter": 2,
+  "chapter_title": "Electrostatic Potential and Capacitance",
+  "question": "2.2",
+  "title": "Potential at the centre of a hexagon",
+  "status": "worked answer",
+  "file": "class-12/physics/ch02-electrostatic-potential-and-capacitance/q02.html",
+  "text": "A regular hexagon of side 10 cm has a charge 5 μC at each of its vertices. Calculate the potential at the centre of the hexagon."
+ },
+ {
+  "class": 12,
+  "subject": "physics",
+  "chapter": 2,
+  "chapter_title": "Electrostatic Potential and Capacitance",
+  "question": "2.3",
+  "title": "An equipotential surface of a dipole",
+  "status": "animated",
+  "file": "class-12/physics/ch02-electrostatic-potential-and-capacitance/q03.html",
+  "text": "Two charges 2 μC and –2 μC are placed at points A and B 6 cm apart. (a) Identify an equipotential surface of the system. (b) What is the direction of the electric field at every point on this surface?"
+ },
+ {
+  "class": 12,
+  "subject": "physics",
+  "chapter": 2,
+  "chapter_title": "Electrostatic Potential and Capacitance",
+  "question": "2.4",
+  "title": "Field of a charged spherical conductor",
+  "status": "animated",
+  "file": "class-12/physics/ch02-electrostatic-potential-and-capacitance/q04.html",
+  "text": "A spherical conductor of radius 12 cm has a charge of 1.6 × 10–7C distributed uniformly on its surface. What is the electric field (a) inside the sphere (b) just outside the sphere (c) at a point 18 cm from the centre of the sphere?"
+ },
+ {
+  "class": 12,
+  "subject": "physics",
+  "chapter": 2,
+  "chapter_title": "Electrostatic Potential and Capacitance",
+  "question": "2.5",
+  "title": "Halve the gap, add a dielectric",
+  "status": "worked answer",
+  "file": "class-12/physics/ch02-electrostatic-potential-and-capacitance/q05.html",
+  "text": "A parallel plate capacitor with air between the plates has a capacitance of 8 pF (1pF = 10–12 F). What will be the capacitance if the distance between the plates is reduced by half, and the space between them is filled with a substance of dielectric constant 6?"
+ },
+ {
+  "class": 12,
+  "subject": "physics",
+  "chapter": 2,
+  "chapter_title": "Electrostatic Potential and Capacitance",
+  "question": "2.6",
+  "title": "Three 9 pF capacitors in series",
+  "status": "animated",
+  "file": "class-12/physics/ch02-electrostatic-potential-and-capacitance/q06.html",
+  "text": "Three capacitors each of capacitance 9 pF are connected in series. (a) What is the total capacitance of the combination? (b) What is the potential difference across each capacitor if the combination is connected to a 120 V supply?"
+ },
+ {
+  "class": 12,
+  "subject": "physics",
+  "chapter": 2,
+  "chapter_title": "Electrostatic Potential and Capacitance",
+  "question": "2.7",
+  "title": "2, 3 and 4 pF in parallel",
+  "status": "animated",
+  "file": "class-12/physics/ch02-electrostatic-potential-and-capacitance/q07.html",
+  "text": "Three capacitors of capacitances 2 pF, 3 pF and 4 pF are connected in parallel. (a) What is the total capacitance of the combination? (b) Determine the charge on each capacitor if the combination is connected to a 100 V supply."
+ },
+ {
+  "class": 12,
+  "subject": "physics",
+  "chapter": 2,
+  "chapter_title": "Electrostatic Potential and Capacitance",
+  "question": "2.8",
+  "title": "Capacitance of a parallel plate capacitor",
+  "status": "worked answer",
+  "file": "class-12/physics/ch02-electrostatic-potential-and-capacitance/q08.html",
+  "text": "In a parallel plate capacitor with air between the plates, each plate has an area of 6 × 10–3 m2 and the distance between the plates is 3 mm. Calculate the capacitance of the capacitor. If this capacitor is connected to a 100 V supply, what is the charge on each plate of the capacitor?"
+ },
+ {
+  "class": 12,
+  "subject": "physics",
+  "chapter": 2,
+  "chapter_title": "Electrostatic Potential and Capacitance",
+  "question": "2.9",
+  "title": "Inserting mica: battery on or off",
+  "status": "animated",
+  "file": "class-12/physics/ch02-electrostatic-potential-and-capacitance/q09.html",
+  "text": "Explain what would happen if in the capacitor given in Exercise 2.8, a 3 mm thick mica sheet (of dielectric constant = 6) were inserted between the plates, (a) while the voltage supply remained connected. (b) after the supply was disconnected."
+ },
+ {
+  "class": 12,
+  "subject": "physics",
+  "chapter": 2,
+  "chapter_title": "Electrostatic Potential and Capacitance",
+  "question": "2.10",
+  "title": "Energy in a 12 pF capacitor",
+  "status": "worked answer",
+  "file": "class-12/physics/ch02-electrostatic-potential-and-capacitance/q10.html",
+  "text": "A 12pF capacitor is connected to a 50V battery. How much electrostatic energy is stored in the capacitor?"
+ },
+ {
+  "class": 12,
+  "subject": "physics",
+  "chapter": 2,
+  "chapter_title": "Electrostatic Potential and Capacitance",
+  "question": "2.11",
+  "title": "Energy lost in sharing charge",
+  "status": "animated",
+  "file": "class-12/physics/ch02-electrostatic-potential-and-capacitance/q11.html",
+  "text": "A 600pF capacitor is charged by a 200V supply. It is then disconnected from the supply and is connected to another uncharged 600 pF capacitor. How much electrostatic energy is lost in the process?"
  },
  {
   "class": 12,

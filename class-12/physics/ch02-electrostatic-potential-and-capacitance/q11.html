@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 12 Physics · Exercise 2.11</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 12 Physics</a> · <a href="index.html">Ch. 2 Electrostatic Potential and Capacitance</a></p>
+      <h1>Exercise 2.11 · Energy lost in sharing charge</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q10.html">‹ 2.10</a><a href="index.html">All questions</a><span>›</span></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 2.11">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A charged 600 pF capacitor at 200 V is joined to an identical uncharged one; the charge spreads equally, both end at 100 V, and the stored energy drops from 1.2 × 10⁻⁵ J to 6 × 10⁻⁶ J."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>2.11</b> A 600pF capacitor is charged by a 200V supply. It is then disconnected from the supply and is connected to another uncharged 600 pF capacitor. How much electrostatic energy is lost in the process?</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>C₁ = C₂ = 600 pF; C₁ charged to 200 V; C₂ uncharged.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The energy lost.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>The number of + signs is in proportion to the charge; energy bars to scale.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>Q = C₁V = 600 × 10<sup>−12</sup> × 200 = 1.2 × 10<sup>−7</sup> C. Initial energy ½C₁V<sup>2</sup> = 1.2 × 10<sup>−5</sup> J.</li>
+          <li>Joined, the charge is shared: common V = Q/(C₁ + C₂) = 100 V.</li>
+          <li>Final energy ½(1200 × 10<sup>−12</sup>)(100)<sup>2</sup> = 6 × 10<sup>−6</sup> J.</li>
+          <li>Energy lost = 6 × 10<sup>−6</sup> J (as heat in the wires and as radiation).</li>
+        </ol>
+        <p class="final">6 × 10<sup>−6</sup> J.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 12), Chapter 2 (Electrostatic Potential and Capacitance), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const Y0 = 130, H = 140, P1 = 150, P2 = 410, GAP = 50, D = 6;
+  const qStages = [
+    { title: 'A charged capacitor', dur: 5, text: 'A 600 pF capacitor is charged by a 200 V supply, then disconnected.' },
+    { title: 'Join an empty one', dur: 5, text: 'It is connected to another uncharged 600 pF capacitor.' },
+    { title: 'What is asked', dur: 4, text: 'How much electrostatic energy is lost?' },
+  ];
+  const stages = [
+    { title: 'Before', dur: 5, text: 'Q = CV = 1.2 × 10⁻⁷ C.', ans: 'U₁ = ½CV² = ½ × 600 × 10⁻¹² × 200² = 1.2 × 10⁻⁵ J.' },
+    { title: 'Charge shared', dur: D, text: 'Charge flows until both are at the same voltage: V = Q/(C₁ + C₂).', ans: 'V = 1.2 × 10⁻⁷/1200 × 10⁻¹² = 100 V.' },
+    { title: 'After', dur: 5, text: 'U₂ = ½(C₁ + C₂)V².', ans: 'U₂ = ½ × 1200 × 10⁻¹² × 100² = 6 × 10⁻⁶ J. Lost: 6 × 10⁻⁶ J.' },
+  ];
+  function cap(ctx, x, n, name) {
+    ctx.fillStyle = P.obj; ctx.fillRect(x - 4, Y0, 8, H); ctx.fillRect(x + GAP - 4, Y0, 8, H);
+    for (let i = 0; i < n; i++) { const y = Y0 + 14 + i * (H - 28) / 5; label(ctx, '+', x - 14, y, { align: 'center', weight: 800, size: 13, color: P.force }); label(ctx, '−', x + GAP + 14, y, { align: 'center', weight: 800, size: 13, color: P.vel }); }
+    label(ctx, name, x + GAP / 2, Y0 + H + 20, { align: 'center', weight: 700, size: 13 });
+  }
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    const join = ans ? clamp((t - stages[1].t0) / 1.2) : clamp((t - qStages[0].dur) / 1.2), flow = ans ? clamp((t - stages[1].t0 - 1) / (D - 2)) : 0;
+    const n1 = Math.round(6 - 3 * flow), n2 = Math.round(3 * flow);
+    cap(ctx, P1, n1, '600 pF'); cap(ctx, P2, n2, '600 pF');
+    const yw1 = Y0 - 40, yw2 = Y0 + H + 40;
+    wire(ctx, [[P1 - 4, Y0], [P1 - 4, yw1], [P1 - 4 + (P2 - P1) * join, yw1]]); wire(ctx, [[P1 + GAP + 4, Y0 + H], [P1 + GAP + 4, yw2], [P1 + GAP + 4 + (P2 - P1) * join, yw2]]);
+    if (join >= 1) { wire(ctx, [[P2 - 4, yw1], [P2 - 4, Y0]]); wire(ctx, [[P2 + GAP + 4, yw2], [P2 + GAP + 4, Y0 + H]]); }
+    if (!ans && t < qStages[0].dur) label(ctx, '200 V', P1 + GAP / 2, Y0 + H / 2, { align: 'center', weight: 800, size: 14, color: P.accent });
+    if (ans) {
+      const st = stageAt(stages, t), V1 = 200 - 100 * flow, V2 = 100 * flow;   // V = q/C, linear in the charge moved
+      label(ctx, `${V1.toFixed(0)} V`, P1 + GAP / 2, Y0 + H / 2, { align: 'center', weight: 800, size: 14, color: P.accent }); label(ctx, `${V2.toFixed(0)} V`, P2 + GAP / 2, Y0 + H / 2, { align: 'center', weight: 800, size: 14, color: P.accent });
+      const BX = 120, BY = 400, f = flow / 2, U = 12 * ((1 - f) ** 2 + f * f);   // μJ: U = (Q − q)²/2C + q²/2C
+      label(ctx, 'stored energy', 24, BY - 20, { weight: 700, size: 13 });
+      ctx.fillStyle = P.pe; ctx.fillRect(BX, BY, 30 * U, 22); label(ctx, `${U.toFixed(1)} μJ`, BX + 368, BY + 11, { weight: 700, size: 13 });
+      if (st >= 2) { ctx.save(); ctx.fillStyle = P.loss; ctx.globalAlpha = 0.5; ctx.fillRect(BX + 180, BY, 180, 22); ctx.restore(); label(ctx, 'lost 6 μJ', BX + 270, BY + 40, { align: 'center', weight: 800, size: 14, color: P.loss }); }
+      partsPanel(ctx, 630, 34, 300, 'Working', ['U₁ = ½CV² = 1.2 × 10⁻⁵ J', 'Common V = 100 V', 'U₂ = 6 × 10⁻⁶ J; lost 6 × 10⁻⁶ J'], st, false);
+    } else askedPanel(ctx, 630, 34, 300, ['The electrostatic energy lost when the charged 600 pF capacitor is joined to the uncharged one.']);
+    if (ans) note(ctx, '+ signs in proportion to the charge; energy bar 30 px per μJ');
+  }
+  return { qStages, stages, draw };
+})();
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

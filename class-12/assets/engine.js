@@ -246,6 +246,25 @@ function hermite(pts) {
   };
 }
 // index of the stage that time t falls in (the last one after the end)
+/* ---------- circuit symbols ---------- */
+// a wire through a list of points
+function wire(ctx, pts, color, lw = 2) { ctx.save(); ctx.strokeStyle = color || P.ink; ctx.lineWidth = lw; ctx.lineJoin = 'round'; poly(ctx, pts); ctx.restore(); }
+// an element between (x1, y1) and (x2, y2): its symbol sits at the middle, wires fill the rest
+function circEl(ctx, x1, y1, x2, y2, half, body, color) {
+  const L = Math.hypot(x2 - x1, y2 - y1) || 1, ux = (x2 - x1) / L, uy = (y2 - y1) / L, mx = (x1 + x2) / 2, my = (y1 + y2) / 2;
+  wire(ctx, [[x1, y1], [mx - ux * half, my - uy * half]], color); wire(ctx, [[mx + ux * half, my + uy * half], [x2, y2]], color);
+  ctx.save(); ctx.translate(mx, my); ctx.rotate(Math.atan2(uy, ux)); ctx.strokeStyle = color || P.ink; ctx.fillStyle = color || P.ink; ctx.lineCap = 'butt'; body(); ctx.restore();
+}
+function resistor(ctx, x1, y1, x2, y2, color) {
+  circEl(ctx, x1, y1, x2, y2, 24, () => { ctx.lineWidth = 2; ctx.lineJoin = 'round'; ctx.beginPath(); ctx.moveTo(-24, 0); for (let i = 0; i < 6; i++) ctx.lineTo(-20 + i * 8, i % 2 ? 8 : -8); ctx.lineTo(24, 0); ctx.stroke(); }, color);
+}
+function capacitor(ctx, x1, y1, x2, y2, color, gap = 10, ph = 20) {
+  circEl(ctx, x1, y1, x2, y2, gap / 2, () => { ctx.lineWidth = 4; seg(ctx, -gap / 2, -ph, -gap / 2, ph); seg(ctx, gap / 2, -ph, gap / 2, ph); }, color);
+}
+// a cell: the long thin plate (+) is on the (x1, y1) side
+function cell(ctx, x1, y1, x2, y2, color) {
+  circEl(ctx, x1, y1, x2, y2, 4, () => { ctx.lineWidth = 2; seg(ctx, -4, -16, -4, 16); ctx.lineWidth = 5; seg(ctx, 4, -8, 4, 8); }, color);
+}
 function stageAt(stages, t) { const i = stages.findIndex(s => t < s.t1); return i < 0 ? stages.length - 1 : i; }
 // a stopwatch-style time readout
 function clock(ctx, x, y, t, text) {

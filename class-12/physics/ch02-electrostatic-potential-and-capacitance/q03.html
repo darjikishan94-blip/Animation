@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 12 Physics · Exercise 2.3</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 12 Physics</a> · <a href="index.html">Ch. 2 Electrostatic Potential and Capacitance</a></p>
+      <h1>Exercise 2.3 · An equipotential surface of a dipole</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q02.html">‹ 2.2</a><a href="index.html">All questions</a><a href="q04.html">2.4 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 2.3">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="Field lines run from +2 μC at A to −2 μC at B; the plane bisecting AB at right angles has zero potential everywhere, and the field crosses it at right angles, pointing from A towards B."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>2.3</b> Two charges 2 μC and –2 μC are placed at points A and B 6 cm apart. (a) Identify an equipotential surface of the system. (b) What is the direction of the electric field at every point on this surface?</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>+2 μC at A, −2 μC at B, AB = 6 cm.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>(a) An equipotential surface (b) the field direction on it.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Field lines computed from the two charges; field arrows on the plane to scale with each other.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>(a) Every point of the plane through the midpoint of AB, perpendicular to AB, is equally far from the two charges: V = kq/r − kq/r = 0. This plane is an equipotential surface.</li>
+          <li>(b) The field is perpendicular to an equipotential surface: on this plane it points parallel to AB, from A (positive) towards B (negative).</li>
+        </ol>
+        <p class="final">(a) The perpendicular bisector plane of AB (V = 0) (b) normal to the plane, in the direction A → B.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 12), Chapter 2 (Electrostatic Potential and Capacitance), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const CX = 300, CY = 270, A = 90, R0 = 14;
+  let lines = null;
+  function E(x, y) { const ax = x - (CX - A), ay = y - CY, bx = x - (CX + A), by = y - CY, ra = Math.hypot(ax, ay) ** 3, rb = Math.hypot(bx, by) ** 3; return [ax / ra - bx / rb, ay / ra - by / rb]; }
+  function build() {
+    lines = [];
+    for (let k = 0; k < 14; k++) {
+      const a = (k + 0.5) / 14 * 2 * Math.PI; let x = CX - A + R0 * Math.cos(a), y = CY + R0 * Math.sin(a); const pts = [[x, y]];
+      for (let i = 0; i < 900; i++) { const [ex, ey] = E(x, y), L = Math.hypot(ex, ey); x += 3 * ex / L; y += 3 * ey / L; pts.push([x, y]); if (Math.hypot(x - CX - A, y - CY) < R0 || x < 10 || x > 595 || y < 30 || y > 505) break; }
+      lines.push(pts);
+    }
+  }
+  const qStages = [
+    { title: 'Two charges', dur: 5, text: 'Charges 2 μC and −2 μC are placed at A and B, 6 cm apart.' },
+    { title: 'What is asked', dur: 4, text: '(a) Identify an equipotential surface. (b) What is the direction of the field at every point on it?' },
+  ];
+  const stages = [
+    { title: 'The field', dur: 6, text: 'Field lines leave the positive charge and end on the negative one.', ans: '' },
+    { title: 'Equipotential plane', dur: 5, text: 'Every point of the plane bisecting AB at right angles is equally far from +2 μC and −2 μC.', ans: '(a) On this plane V = kq/r − kq/r = 0: it is an equipotential surface.' },
+    { title: 'Field on the plane', dur: 5, text: 'The field is always normal to an equipotential surface.', ans: '(b) Normal to the plane, parallel to AB, pointing from A to B.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    if (!lines) build();
+    const st = ans ? stageAt(stages, t) : -1;
+    if (ans) { ctx.save(); ctx.strokeStyle = P.ink2; ctx.lineWidth = 1.3; ctx.globalAlpha = 0.7 * clamp(t / 3); lines.forEach(pts => poly(ctx, pts)); ctx.restore(); }
+    if (st >= 1) { ctx.save(); ctx.fillStyle = P.accentSoft; ctx.globalAlpha = 0.6; ctx.fillRect(CX - 10, 40, 20, 460); ctx.restore(); vline(ctx, CX, 40, 500, P.accent, 2, [6, 4]); label(ctx, 'V = 0', CX + 16, 56, { weight: 800, size: 15, color: P.accent }); }
+    if (st >= 2) [-150, -100, -50, 0, 50, 100, 150].forEach(y => { const L = 80 * (A * A / (A * A + y * y)) ** 1.5; vec(ctx, CX - L / 2, CY + y, L, 0, '', P.force, { lw: 3, head: 10 }); });
+    ball(ctx, CX - A, CY, 14, P.force); label(ctx, '+', CX - A, CY, { align: 'center', weight: 800, size: 15, color: P.sheet, halo: false }); label(ctx, 'A: 2 μC', CX - A, CY + 30, { align: 'center', weight: 700, size: 13 });
+    ball(ctx, CX + A, CY, 14, P.vel); label(ctx, '−', CX + A, CY, { align: 'center', weight: 800, size: 15, color: P.sheet, halo: false }); label(ctx, 'B: −2 μC', CX + A, CY + 30, { align: 'center', weight: 700, size: 13 });
+    if (!ans) { dim(ctx, CX - A, CX + A, CY + 60, P.ink2); label(ctx, '6 cm', CX, CY + 76, { align: 'center', weight: 700, size: 13 }); }
+    if (ans) partsPanel(ctx, 630, 34, 300, 'Answers', ['Field lines from A to B', '(a) The perpendicular bisector plane of AB: V = 0', '(b) E normal to the plane, from A towards B'], st, false);
+    else askedPanel(ctx, 630, 34, 300, ['(a) An equipotential surface of the system.', '(b) The direction of the electric field at every point on that surface.']);
+    note(ctx, ans ? 'field lines computed from the two charges; arrows on the plane to scale with each other' : '');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

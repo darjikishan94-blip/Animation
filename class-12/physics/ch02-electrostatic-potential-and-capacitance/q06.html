@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 12 Physics · Exercise 2.6</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 12 Physics</a> · <a href="index.html">Ch. 2 Electrostatic Potential and Capacitance</a></p>
+      <h1>Exercise 2.6 · Three 9 pF capacitors in series</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q05.html">‹ 2.5</a><a href="index.html">All questions</a><a href="q07.html">2.7 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 2.6">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="Three 9 pF capacitors in series across 120 V: each carries the same charge 360 pC, the combination is 3 pF, and the supply voltage splits equally, 40 V across each."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>2.6</b> Three capacitors each of capacitance 9 pF are connected in series. (a) What is the total capacitance of the combination? (b) What is the potential difference across each capacitor if the combination is connected to a 120 V supply?</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Three capacitors of 9 pF in series; supply 120 V.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>(a) The total capacitance (b) the p.d. across each.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Circuit schematic; the + plate of the cell is marked.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>(a) 1/C = 1/9 + 1/9 + 1/9 = 1/3, so C = 3 pF.</li>
+          <li>(b) Every capacitor in series carries the same charge Q = CV = 3 pF × 120 V = 360 pC.</li>
+          <li>V across each = Q/9 pF = 40 V.</li>
+        </ol>
+        <p class="final">(a) 3 pF (b) 40 V each.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 12), Chapter 2 (Electrostatic Potential and Capacitance), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const XL = 90, XR = 510, YT = 160, YB = 380, CXS = [190, 300, 410];
+  const qStages = [
+    { title: 'Three capacitors in series', dur: 5, text: 'Three 9 pF capacitors are connected in series.' },
+    { title: 'What is asked', dur: 4, text: '(a) The total capacitance. (b) The potential difference across each when connected to 120 V.' },
+  ];
+  const stages = [
+    { title: 'Series combination', dur: 5, text: '1/C = 1/C₁ + 1/C₂ + 1/C₃.', ans: '(a) 1/C = 3/9, so C = 3 pF.' },
+    { title: 'Same charge on each', dur: 5, text: 'In series every capacitor carries the same charge Q = CV.', ans: 'Q = 3 pF × 120 V = 360 pC on each.' },
+    { title: 'Voltage across each', dur: 5, text: 'V = Q/C for each one.', ans: '(b) 360 pC / 9 pF = 40 V across each (40 + 40 + 40 = 120 V).' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    const pts = [XL, ...CXS.flatMap(x => [x - 30, x + 30]), XR];
+    for (let i = 0; i < pts.length; i += 2) wire(ctx, [[pts[i], YT], [pts[i + 1], YT]]);
+    CXS.forEach(x => { capacitor(ctx, x - 30, YT, x + 30, YT, P.ink, 12, 26); label(ctx, '9 pF', x, YT - 44, { align: 'center', weight: 700, size: 14 }); });
+    wire(ctx, [[XL, YT], [XL, YB], [260, YB]]); wire(ctx, [[340, YB], [XR, YB], [XR, YT]]); cell(ctx, 260, YB, 340, YB);
+    label(ctx, '+', 290, YB - 26, { align: 'center', weight: 800, size: 15, color: P.force }); label(ctx, '120 V', 300, YB + 34, { align: 'center', weight: 700, size: 14 });
+    if (ans) {
+      const st = stageAt(stages, t);
+      if (st >= 0) label(ctx, 'C = 3 pF', 300, 260, { align: 'center', weight: 800, size: 18, color: P.accent });
+      if (st >= 1) CXS.forEach(x => { label(ctx, '+Q', x - 18, YT + 40, { align: 'center', weight: 800, size: 13, color: P.force }); label(ctx, '−Q', x + 18, YT + 40, { align: 'center', weight: 800, size: 13, color: P.vel }); });
+      if (st >= 1) label(ctx, 'Q = 360 pC on each', 300, 290, { align: 'center', weight: 700, size: 14 });
+      if (st >= 2) CXS.forEach(x => label(ctx, '40 V', x, YT - 70, { align: 'center', weight: 800, size: 15, color: P.accent }));
+      partsPanel(ctx, 630, 34, 300, 'Working', ['(a) 1/C = 3/9 → C = 3 pF', 'Q = 3 pF × 120 V = 360 pC', '(b) V = 360/9 = 40 V each'], st, false);
+    } else askedPanel(ctx, 630, 34, 300, ['(a) The total capacitance.', '(b) The potential difference across each capacitor on a 120 V supply.']);
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

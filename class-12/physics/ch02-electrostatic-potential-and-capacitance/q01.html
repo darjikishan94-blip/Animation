@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 12 Physics · Exercise 2.1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 12 Physics</a> · <a href="index.html">Ch. 2 Electrostatic Potential and Capacitance</a></p>
+      <h1>Exercise 2.1 · Where the potential is zero</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><span>‹</span><a href="index.html">All questions</a><a href="q02.html">2.2 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 2.1">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A graph of the potential along the line through +5 × 10⁻⁸ C and −3 × 10⁻⁸ C crosses zero twice: 10 cm from the positive charge between them, and 40 cm from it beyond the negative charge."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>2.1</b> Two charges 5 × 10<sup>–8</sup> C and –3 × 10<sup>–8</sup> C are located 16 cm apart. At what point(s) on the line joining the two charges is the electric potential zero? Take the potential at infinity to be zero.</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>q₁ = 5 × 10<sup>−8</sup> C, q₂ = −3 × 10<sup>−8</sup> C, 16 cm apart; V(∞) = 0. (k = 1/4πε<sub>0</sub> = 9 × 10<sup>9</sup> N m<sup>2</sup> C<sup>−2</sup>; ε<sub>0</sub> = 8.854 × 10<sup>−12</sup> C<sup>2</sup> N<sup>−1</sup> m<sup>−2</sup>.)</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>Points on the line where V = 0.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>The graph is computed from V = kq₁/r₁ + kq₂/r₂ and clipped at ±2 kV.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>Take q₁ at x = 0 and q₂ at x = 16 cm. V = 0 needs 5/r₁ = 3/r₂.</li>
+          <li>Between them: 5/x = 3/(16 − x), so 80 − 5x = 3x, x = 10 cm.</li>
+          <li>Beyond q₂: 5/x = 3/(x − 16), so 5x − 80 = 3x, x = 40 cm.</li>
+          <li>On the far side of q₁ the larger charge is always nearer, so V never reaches zero there.</li>
+        </ol>
+        <p class="final">10 cm and 40 cm from the positive charge, on the side of the negative charge.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 12), Chapter 2 (Electrostatic Potential and Capacitance), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const G = { x: 40, y: 200, w: 520, h: 290, x0: -4, x1: 56, y0: -2, y1: 2, xt: [10, 16, 40], yt: [-1, 1], xl: 'x (cm)', yl: 'V (kV)' }, YQ = 110, D = 8;
+  const V = x => clamp(45 / Math.abs(x) - 27 / Math.abs(x - 16), -2, 2);   // kV, x in cm from q₁
+  const qStages = [
+    { title: 'Two charges', dur: 5, text: '5 × 10⁻⁸ C and −3 × 10⁻⁸ C are 16 cm apart. The potential at infinity is zero.' },
+    { title: 'What is asked', dur: 4, text: 'At what point(s) on the line joining them is the potential zero?' },
+  ];
+  const stages = [
+    { title: 'Potential along the line', dur: D, text: 'V = kq₁/r₁ + kq₂/r₂. It is zero where 5/r₁ = 3/r₂.', ans: 'The graph crosses zero twice, both times on the side of the negative charge.' },
+    { title: 'Between the charges', dur: 5, text: '5/x = 3/(16 − x).', ans: 'x = 10 cm from the positive charge.' },
+    { title: 'Beyond the negative charge', dur: 5, text: '5/x = 3/(x − 16).', ans: 'x = 40 cm from the positive charge.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    const X = v => G.x + (v - G.x0) / (G.x1 - G.x0) * G.w;
+    hline(ctx, 30, 580, YQ, P.ink2, 1, [4, 4]);
+    ball(ctx, X(0), YQ, 14, P.force); label(ctx, '+', X(0), YQ, { align: 'center', weight: 800, size: 15, color: P.sheet, halo: false }); label(ctx, '5 × 10⁻⁸ C', X(0), YQ - 28, { align: 'center', weight: 700, size: 13 });
+    ball(ctx, X(16), YQ, 12, P.vel); label(ctx, '−', X(16), YQ, { align: 'center', weight: 800, size: 15, color: P.sheet, halo: false }); label(ctx, '−3 × 10⁻⁸ C', X(16), YQ - 28, { align: 'center', weight: 700, size: 13 });
+    dim(ctx, X(0), X(16), YQ + 30, P.ink2); label(ctx, '16 cm', X(8), YQ + 46, { align: 'center', weight: 700, size: 13 });
+    if (ans) {
+      const g = axes(ctx, G), u = clamp(t / (D - 1)), xe = G.x0 + (G.x1 - G.x0) * u;
+      plot(ctx, g, V, G.x0, Math.min(xe, -0.05), P.accent); plot(ctx, g, V, 0.05, Math.min(xe, 15.95), P.accent); plot(ctx, g, V, 16.05, xe, P.accent);
+      const st = stageAt(stages, t);
+      [[10, 1], [40, 2]].forEach(([x, k]) => { if (st >= k) { ball(ctx, g.X(x), g.Y(0), 6, P.force); vline(ctx, X(x), YQ + 8, g.Y(0), P.force, 1.5, [3, 3]); ball(ctx, X(x), YQ, 6, P.force); label(ctx, `V = 0 at ${x} cm`, X(x), YQ + 74, { align: 'center', weight: 800, size: 13, color: P.force }); } });
+      partsPanel(ctx, 630, 34, 300, 'Working', ['V = 0 where 5/r₁ = 3/r₂', 'Between: x = 10 cm', 'Beyond −q: x = 40 cm'], st, false);
+    } else askedPanel(ctx, 630, 34, 300, ['The point(s) on the line joining the charges where the potential is zero.']);
+    note(ctx, ans ? 'graph computed from V = kq₁/r₁ + kq₂/r₂, clipped at ±2 kV' : '');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

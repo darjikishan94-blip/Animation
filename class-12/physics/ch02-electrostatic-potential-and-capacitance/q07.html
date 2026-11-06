@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 12 Physics · Exercise 2.7</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 12 Physics</a> · <a href="index.html">Ch. 2 Electrostatic Potential and Capacitance</a></p>
+      <h1>Exercise 2.7 · 2, 3 and 4 pF in parallel</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q06.html">‹ 2.6</a><a href="index.html">All questions</a><a href="q08.html">2.8 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 2.7">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="Capacitors of 2, 3 and 4 pF in parallel across 100 V each have the full 100 V and take charges of 200, 300 and 400 pC; together they act as 9 pF."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>2.7</b> Three capacitors of capacitances 2 pF, 3 pF and 4 pF are connected in parallel. (a) What is the total capacitance of the combination? (b) Determine the charge on each capacitor if the combination is connected to a 100 V supply.</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>2 pF, 3 pF and 4 pF in parallel; supply 100 V.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>(a) The total capacitance (b) the charge on each.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>The number of + signs on each plate is in proportion to its charge.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>(a) In parallel the capacitances add: C = 2 + 3 + 4 = 9 pF.</li>
+          <li>(b) Each has the full 100 V across it: Q = CV gives 2 × 10<sup>−10</sup> C, 3 × 10<sup>−10</sup> C and 4 × 10<sup>−10</sup> C.</li>
+        </ol>
+        <p class="final">(a) 9 pF (b) 200 pC, 300 pC, 400 pC.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 12), Chapter 2 (Electrostatic Potential and Capacitance), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const XL = 100, YT = 120, YB = 360, CS = [[220, 2], [340, 3], [460, 4]];
+  const qStages = [
+    { title: 'Three capacitors in parallel', dur: 5, text: 'Capacitors of 2 pF, 3 pF and 4 pF are connected in parallel.' },
+    { title: 'What is asked', dur: 4, text: '(a) The total capacitance. (b) The charge on each when connected to 100 V.' },
+  ];
+  const stages = [
+    { title: 'Parallel combination', dur: 5, text: 'In parallel the capacitances add.', ans: '(a) C = 2 + 3 + 4 = 9 pF.' },
+    { title: 'Charge on each', dur: 6, text: 'Each capacitor has the full 100 V across it: Q = CV.', ans: '(b) 200 pC, 300 pC and 400 pC (2, 3 and 4 × 10⁻¹⁰ C).' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    wire(ctx, [[XL, 200], [XL, YT], [460, YT]]); wire(ctx, [[XL, 280], [XL, YB], [460, YB]]); cell(ctx, XL, 200, XL, 280);
+    label(ctx, '+', XL + 24, 214, { weight: 800, size: 15, color: P.force }); label(ctx, '100 V', XL - 20, 240, { align: 'right', weight: 700, size: 14 });
+    const st = ans ? stageAt(stages, t) : -1;
+    CS.forEach(([x, c]) => {
+      capacitor(ctx, x, YT, x, YB, P.ink, 14, 34); label(ctx, `${c} pF`, x + 44, (YT + YB) / 2, { weight: 700, size: 14 });
+      if (st >= 1) { const n = c, f = clamp((t - stages[1].t0) / 2); for (let i = 0; i < n; i++) { const xx = x - (n - 1) * 8 + i * 16; label(ctx, '+', xx, (YT + YB) / 2 - 22, { align: 'center', weight: 800, size: 14, color: P.force, alpha: f }); label(ctx, '−', xx, (YT + YB) / 2 + 24, { align: 'center', weight: 800, size: 14, color: P.vel, alpha: f }); }
+        label(ctx, `${c * 100} pC`, x, YB + 28, { align: 'center', weight: 800, size: 14, color: P.accent }); }
+    });
+    if (st >= 0) label(ctx, 'C = 9 pF', 340, 430, { align: 'center', weight: 800, size: 18, color: P.accent });
+    if (ans) partsPanel(ctx, 630, 34, 300, 'Answers', ['(a) C = 9 pF', '(b) Q = CV: 200, 300, 400 pC'], st, false);
+    else askedPanel(ctx, 630, 34, 300, ['(a) The total capacitance.', '(b) The charge on each capacitor on a 100 V supply.']);
+    if (ans) note(ctx, '+ signs in proportion to the charge');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

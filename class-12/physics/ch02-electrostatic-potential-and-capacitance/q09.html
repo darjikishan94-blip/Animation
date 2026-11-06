@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 12 Physics · Exercise 2.9</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 12 Physics</a> · <a href="index.html">Ch. 2 Electrostatic Potential and Capacitance</a></p>
+      <h1>Exercise 2.9 · Inserting mica: battery on or off</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q08.html">‹ 2.8</a><a href="index.html">All questions</a><a href="q10.html">2.10 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 2.9">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A mica sheet slides between the plates of the 17.7 pF capacitor. With the 100 V supply connected, the voltage stays 100 V and the charge rises six-fold to 1.06 × 10⁻⁸ C. With the supply disconnected, the charge stays 1.77 × 10⁻⁹ C and the voltage falls to 16.7 V."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>2.9</b> Explain what would happen if in the capacitor given in Exercise 2.8, a 3 mm thick mica sheet (of dielectric constant = 6) were inserted between the plates, (a) while the voltage supply remained connected. (b) after the supply was disconnected.</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>The capacitor of Exercise 2.8 (17.7 pF, 100 V); a mica sheet 3 mm thick, K = 6, filling the gap.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>What happens (a) with the supply connected (b) after it is disconnected.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Bars show the values in proportion within each panel.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>The sheet fills the gap, so C becomes KC₀ = 6 × 17.7 pF ≈ 106 pF in both cases.</li>
+          <li>(a) The supply holds V = 100 V. Q = CV = 1.06 × 10<sup>−10</sup> × 100 ≈ 1.06 × 10<sup>−8</sup> C: six times the charge flows on.</li>
+          <li>(b) No charge can flow: Q stays 1.77 × 10<sup>−9</sup> C. V = Q/C = 100/6 ≈ 16.7 V (the field between the plates also falls six-fold).</li>
+        </ol>
+        <p class="final">(a) V = 100 V, Q rises to 1.06 × 10<sup>−8</sup> C (b) Q = 1.77 × 10<sup>−9</sup> C, V falls to 16.7 V.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 12), Chapter 2 (Electrostatic Potential and Capacitance), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const D = 7;
+  const qStages = [
+    { title: 'The capacitor of Ex. 2.8', dur: 5, text: '17.7 pF (A = 6 × 10⁻³ m², d = 3 mm, air), charged on a 100 V supply.' },
+    { title: 'Insert mica', dur: D, text: 'A 3 mm mica sheet (K = 6) is slid in: (a) with the supply still connected, (b) after the supply is disconnected.' },
+    { title: 'What is asked', dur: 4, text: 'Explain what happens in each case.' },
+  ];
+  const stages = [
+    { title: 'Capacitance rises', dur: D, text: 'The sheet fills the gap: C = KC₀ = 6 × 17.7 pF ≈ 106 pF in both cases.', ans: 'C: 17.7 pF → 106 pF.' },
+    { title: '(a) Supply connected', dur: 5, text: 'The supply keeps V = 100 V, so more charge flows on.', ans: 'Q = 106 pF × 100 V ≈ 1.06 × 10⁻⁸ C (six times).' },
+    { title: '(b) Supply disconnected', dur: 5, text: 'The charge has nowhere to go: Q stays 1.77 × 10⁻⁹ C.', ans: 'V = Q/C = 100/6 ≈ 16.7 V; the field falls six times too.' },
+  ];
+  function panel(ctx, x0, which, ins, ans, st) {
+    const PX = x0 + 90, GAP = 70, Y0 = 110, H = 150, conn = which === 'a';
+    label(ctx, which === 'a' ? '(a) supply connected' : '(b) supply disconnected', x0 + 135, 54, { align: 'center', weight: 800, size: 14 });
+    ctx.save(); ctx.fillStyle = P.wood; ctx.globalAlpha = 0.8; ctx.fillRect(PX + 4, Y0 + H * (1 - ins), GAP - 8, H * ins); ctx.restore();
+    ctx.fillStyle = P.obj; ctx.fillRect(PX - 6, Y0, 6, H); ctx.fillRect(PX + GAP, Y0, 6, H);
+    if (ins > 0.3) label(ctx, 'mica', PX + GAP / 2, Y0 + H - 16, { align: 'center', weight: 700, size: 12 });
+    if (conn) { wire(ctx, [[PX - 6, Y0 + H / 2], [PX - 40, Y0 + H / 2], [PX - 40, Y0 + H + 50], [PX + GAP / 2 - 6, Y0 + H + 50]]); wire(ctx, [[PX + GAP / 2 + 6, Y0 + H + 50], [PX + GAP + 46, Y0 + H + 50], [PX + GAP + 46, Y0 + H / 2], [PX + GAP + 6, Y0 + H / 2]]); cell(ctx, PX + GAP / 2 - 6, Y0 + H + 50, PX + GAP / 2 + 6, Y0 + H + 50); label(ctx, '100 V', PX + GAP / 2, Y0 + H + 80, { align: 'center', weight: 700, size: 13 }); }
+    else { wire(ctx, [[PX - 6, Y0 + H / 2], [PX - 30, Y0 + H / 2]]); wire(ctx, [[PX + GAP + 6, Y0 + H / 2], [PX + GAP + 30, Y0 + H / 2]]); label(ctx, 'open', PX + GAP / 2, Y0 + H + 50, { align: 'center', size: 12, color: P.ink2 }); }
+    if (!ans) return;
+    const C = 17.7 * (1 + 5 * ins), Q = conn ? C * 100 : 1770, V = Q / C;   // pF, pC, V
+    const rows = [['C', C / 106.2, `${C.toFixed(1)} pF`, P.accent], ['Q', Q / 10620, Q >= 9999 ? `${(Q / 1000).toFixed(1)} nC` : `${(Q / 1000).toFixed(2)} nC`, P.force], ['V', V / 100, `${V.toFixed(1)} V`, P.vel]];
+    rows.forEach(([n, f, s, col], i) => { const y = 380 + i * 34; label(ctx, n, x0 + 20, y + 8, { weight: 800, size: 14, italic: true }); ctx.fillStyle = col; ctx.fillRect(x0 + 40, y, 150 * f, 16); label(ctx, s, x0 + 48 + 150 * f, y + 8, { weight: 700, size: 12 }); });
+  }
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1); vline(ctx, 305, 40, 500, P.rule, 1);
+    const ins = ans ? clamp(t / (D - 1)) : clamp((t - qStages[0].dur) / (D - 1));
+    const st = ans ? stageAt(stages, t) : -1;
+    panel(ctx, 10, 'a', ins, ans && st >= 0, st); panel(ctx, 310, 'b', ins, ans && st >= 0, st);
+    if (ans) partsPanel(ctx, 630, 34, 300, 'Answers', ['C rises 6 times: 106 pF', '(a) V = 100 V, Q → 1.06 × 10⁻⁸ C', '(b) Q = 1.77 × 10⁻⁹ C, V → 16.7 V'], st, false);
+    else askedPanel(ctx, 630, 34, 300, ['What happens when the mica sheet is inserted (a) with the supply connected, (b) after it is disconnected.']);
+    if (ans) note(ctx, 'bars in proportion within each quantity; each panel starts at 17.7 pF, 1.77 nC, 100 V');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

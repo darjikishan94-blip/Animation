@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 12 Physics · Exercise 2.8</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 12 Physics</a> · <a href="index.html">Ch. 2 Electrostatic Potential and Capacitance</a></p>
+      <h1>Exercise 2.8 · Capacitance of a parallel plate capacitor</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q07.html">‹ 2.7</a><a href="index.html">All questions</a><a href="q09.html">2.9 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 2.8">
+    <p class="qline"><b>2.8</b> In a parallel plate capacitor with air between the plates, each plate has an area of 6 × 10<sup>–3</sup> m<sup>2</sup> and the distance between the plates is 3 mm. Calculate the capacitance of the capacitor. If this capacitor is connected to a 100 V supply, what is the charge on each plate of the capacitor?</p>
+    <p><button type="button" class="btn reveal" id="show" aria-pressed="false" style="margin-left:0">Show answer</button></p>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>A = 6 × 10<sup>−3</sup> m<sup>2</sup>; d = 3 × 10<sup>−3</sup> m; air; V = 100 V. (k = 1/4πε<sub>0</sub> = 9 × 10<sup>9</sup> N m<sup>2</sup> C<sup>−2</sup>; ε<sub>0</sub> = 8.854 × 10<sup>−12</sup> C<sup>2</sup> N<sup>−1</sup> m<sup>−2</sup>.)</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>C; the charge on each plate.</p>
+      </div>
+      <div>
+        <h3>Why there is no animation</h3>
+        <ul>
+          <li>This is a direct calculation with nothing moving to show; the page shows the question and a worked answer.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>C = ε<sub>0</sub>A/d = 8.854 × 10<sup>−12</sup> × 6 × 10<sup>−3</sup>/3 × 10<sup>−3</sup> ≈ 1.77 × 10<sup>−11</sup> F = 17.7 pF.</li>
+          <li>Q = CV = 1.77 × 10<sup>−11</sup> × 100 ≈ 1.77 × 10<sup>−9</sup> C (+ on one plate, − on the other).</li>
+        </ol>
+        <p class="final">17.7 pF; 1.77 × 10<sup>−9</sup> C.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 12), Chapter 2 (Electrostatic Potential and Capacitance), Exercises. </p>
+</div>
+<script>
+const b = document.getElementById('show'), a = document.querySelector('.answer');
+b.addEventListener('click', () => { a.hidden = !a.hidden; b.setAttribute('aria-pressed', String(!a.hidden)); b.textContent = a.hidden ? 'Show answer' : 'Hide answer'; });
+</script>
+</body>
+</html>
