@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 10 Science · Exercise 10.7</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 10 Science</a> · <a href="index.html">Ch. 10 The Human Eye and the Colourful World</a></p>
+      <h1>Exercise 10.7 · Correcting a near point of 1 m</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q06.html">‹ 10.6</a><a href="index.html">All questions</a><a href="q08.html">10.8 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 10.7">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A long-sighted eye focuses rays from 25 cm behind its retina; a convex lens bends them so they seem to come from 1 m, the eye’s near point, and the eye then focuses them on the retina. The lens power is +3.0 D."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>10.7</b> Make a diagram to show how hypermetropia is corrected. The near point of a hypermetropic eye is 1 m. What is the power of the lens required to correct this defect? Assume that the near point of the normal eye is 25 cm.</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Near point of the defective eye 100 cm; normal near point 25 cm.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>Correction diagram; power of the lens.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Schematic: the eye is enlarged and distances are not to scale.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>An object at 25 cm must give a virtual image at the eye’s near point: u = −25 cm, v = −100 cm.</li>
+          <li>1/f = 1/v − 1/u = −1/100 + 1/25 = 3/100, so f = +33.3 cm: a convex lens.</li>
+          <li>P = 1/0.333 m = +3.0 D.</li>
+        </ol>
+        <p class="final">Convex lens, +3.0 D.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Science (NCERT, Class 10), Chapter 10 (The Human Eye and the Colourful World), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const A = 270, EX = 470, ER = 70, RET = EX + 2 * ER - 20, LX = 410, NX = 330, NPX = 60, D = 7;   // object at 25 cm (NX), near point 1 m (NPX): not to scale
+  const qStages = [
+    { title: 'A long-sighted eye', dur: 5, text: 'This person’s near point is 1 m. A normal near point is 25 cm.' },
+    { title: 'What is asked', dur: 4, text: 'A diagram of the correction, and the power of the lens.' },
+  ];
+  const stages = [
+    { title: 'The defect', dur: D, text: 'Rays from an object at 25 cm would meet behind the retina: the image is blurred.', ans: '' },
+    { title: 'The correction', dur: D, text: 'A convex lens bends the rays so they seem to come from 1 m, the eye’s near point; the eye focuses those on the retina.', ans: 'u = −25 cm, v = −100 cm: f = +33.3 cm, P = +3.0 D.' },
+  ];
+  function eye(ctx) {
+    ctx.save(); ctx.strokeStyle = P.ink; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(EX + ER - 10, A, ER, 0, 2 * Math.PI); ctx.stroke(); ctx.restore();
+    ctx.save(); ctx.fillStyle = P.water; ctx.strokeStyle = P.vel; ctx.beginPath(); ctx.ellipse(EX, A, 9, 34, 0, 0, 2 * Math.PI); ctx.globalAlpha = 0.7; ctx.fill(); ctx.globalAlpha = 1; ctx.stroke(); ctx.restore();
+    ctx.save(); ctx.strokeStyle = P.force; ctx.lineWidth = 4; ctx.beginPath(); ctx.arc(EX + ER - 10, A, ER, -0.5, 0.5); ctx.stroke(); ctx.restore(); label(ctx, 'retina', RET + 16, A - 50, { weight: 700, size: 12, color: P.force });
+  }
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1); hline(ctx, 20, 590, A, P.grid, 1);
+    eye(ctx); ball(ctx, NX, A, 5, P.vel); label(ctx, 'object at 25 cm', NX, A + 22, { align: 'center', weight: 700, size: 12 });
+    const st = ans ? stageAt(stages, t) : 0, k = ans ? clamp((t - (st ? stages[1].t0 : 0)) / 3) : 1, HS = [-26, -13, 13, 26];
+    if (st === 0) { HS.forEach(h => { const xb = RET + 40, yr = A + h - h * (RET - EX) / (xb - EX); ray(ctx, [[NX, A], [EX, A + h], [EX + (RET - EX) * k, A + h + (yr - A - h) * k]], P.accent, { lw: 1.6 }); }); if (k >= 1) label(ctx, 'would meet behind the retina', EX, A + 100, { align: 'center', weight: 700, size: 12, color: P.loss }); }
+    else {
+      lens(ctx, LX, A, 45, true); label(ctx, 'convex lens', LX, A - 60, { align: 'center', weight: 700, size: 12 });
+      vline(ctx, NPX, A - 6, A + 6, P.ink, 2); label(ctx, 'near point (1 m)', NPX, A + 22, { align: 'center', weight: 700, size: 12 });
+      HS.forEach(h => { const hl = h * (LX - NX) / (EX - NX) * 1.6, y2 = A + hl * (EX - NPX) / (LX - NPX); ray(ctx, [[NX, A], [LX, A + hl], [EX, y2], [EX + (RET - EX) * k, y2 + (A - y2) * k]], P.accent, { lw: 1.6 }); ray(ctx, [[NPX, A], [LX, A + hl]], P.accent, { dash: [4, 4], heads: false, lw: 1, alpha: 0.7 }); });
+      if (k >= 1) { ball(ctx, RET, A, 4, P.accent); label(ctx, 'P = +3.0 D', 240, 460, { align: 'center', weight: 800, size: 18, color: P.accent }); }
+    }
+    if (ans) partsPanel(ctx, 630, 34, 300, 'Answer', ['Hypermetropia: focus behind the retina', 'Convex lens, f = +33.3 cm, P = +3.0 D'], st, false);
+    else askedPanel(ctx, 630, 34, 300, ['A diagram showing the correction.', 'The power of the lens needed.']);
+    note(ctx, 'schematic: eye enlarged, distances not to scale');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

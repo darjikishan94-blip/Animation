@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 10 Science · Exercise 10.10</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 10 Science</a> · <a href="index.html">Ch. 10 The Human Eye and the Colourful World</a></p>
+      <h1>Exercise 10.10 · Why stars twinkle</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q09.html">‹ 10.9</a><a href="index.html">All questions</a><a href="q11.html">10.11 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 10.10">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="Starlight passes through layers of air whose refractive index keeps changing; its path bends by slightly different amounts from moment to moment, so the star’s apparent position and brightness flicker: it twinkles."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>10.10</b> Why do stars twinkle?</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Starlight passing through the atmosphere.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The reason for twinkling.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Bending greatly exaggerated.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>Starlight is refracted continuously as it passes through the atmosphere, whose refractive index varies from place to place and moment to moment (moving air, changing temperature and density).</li>
+          <li>A star is so far away that it is practically a point source; the slightly changing path makes its apparent position and the amount of light reaching the eye fluctuate. The star twinkles.</li>
+        </ol>
+        <p class="final">Changing atmospheric refraction of light from a point-like source.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Science (NCERT, Class 10), Chapter 10 (The Human Eye and the Colourful World), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const SX = 300, SY = 50, EYE = [300, 480], NL = 6, D = 12;
+  const qStages = [
+    { title: 'A star at night', dur: 6, text: 'Light from a distant star passes through the earth’s atmosphere to the eye.' },
+    { title: 'What is asked', dur: 4, text: 'Why do stars twinkle?' },
+  ];
+  const stages = [
+    { title: 'Changing refraction', dur: D, text: 'Layers of air keep changing their temperature and density, so their refractive index changes; the light path bends by slightly different amounts from moment to moment.', ans: 'The star’s apparent position shifts and the light reaching the eye varies: it twinkles.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    for (let i = 0; i < NL; i++) { const y = 140 + i * 50; ctx.save(); ctx.fillStyle = P.water; ctx.globalAlpha = 0.12 + 0.05 * i + 0.05 * Math.sin(1.7 * t + i * 1.3); ctx.fillRect(20, y, 570, 50); ctx.restore(); }
+    label(ctx, 'atmosphere (layers keep changing)', 30, 130, { weight: 700, size: 12, color: P.ink2 });
+    label(ctx, '★', SX, SY, { align: 'center', size: 26, color: P.ke });
+    const pts = [[SX, SY + 14]]; let x = SX;
+    for (let i = 0; i <= NL; i++) { x += (ans ? 10 : 4) * Math.sin(2.3 * t + i * 1.9) * (i ? 1 : 0); pts.push([x, 140 + i * 50]); }
+    pts.push(EYE);
+    ray(ctx, pts, P.ke, { lw: 2 });
+    ctx.save(); ctx.fillStyle = P.ink; ctx.beginPath(); ctx.ellipse(EYE[0], EYE[1] + 10, 18, 9, 0, 0, 2 * Math.PI); ctx.fill(); ctx.restore(); label(ctx, 'eye', EYE[0] + 26, EYE[1] + 10, { weight: 700, size: 12 });
+    if (ans) {
+      const [p1, p2] = [pts[pts.length - 2], EYE], dx = p1[0] - p2[0], dy = p1[1] - p2[1], s = (SY - p2[1]) / dy, ax = p2[0] + dx * s;
+      ray(ctx, [p1, [ax, SY + 12]], P.ke, { dash: [4, 4], heads: false, lw: 1, alpha: 0.6 });
+      const b = 0.55 + 0.45 * Math.sin(5.1 * t) * Math.sin(3.3 * t + 1);
+      label(ctx, '★', ax, SY, { align: 'center', size: 26, color: P.force, alpha: b }); label(ctx, 'apparent position', ax + 20, SY + 4, { size: 12, color: P.force });
+      partsPanel(ctx, 630, 34, 300, 'Answer', ['Changing atmospheric refraction of light from a point-like star: its apparent position and brightness flicker'], 0, false);
+    } else askedPanel(ctx, 630, 34, 300, ['Why stars twinkle.']);
+    note(ctx, 'bending greatly exaggerated');
+  }
+  return { qStages, stages, draw };
+})();
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

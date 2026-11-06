@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 10 Science · Exercise 10.9</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 10 Science</a> · <a href="index.html">Ch. 10 The Human Eye and the Colourful World</a></p>
+      <h1>Exercise 10.9 · Moving an object away from the eye</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q08.html">‹ 10.8</a><a href="index.html">All questions</a><a href="q10.html">10.10 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 10.9">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="An object moves away from the eye; the image stays on the retina while the eye lens becomes thinner, so the image distance never changes; only the focal length increases."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>10.9</b> What happens to the image distance in the eye when we increase the distance of an object from the eye?</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>An object moved away from the eye.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>What happens to the image distance.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Schematic; the lens thickness shows its changing focal length.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>Nothing: the image is always formed on the retina, so the image distance (lens to retina) stays the same.</li>
+          <li>Instead the ciliary muscles relax and the eye lens becomes thinner, increasing its focal length (accommodation).</li>
+        </ol>
+        <p class="final">It stays the same; the focal length of the eye lens increases.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Science (NCERT, Class 10), Chapter 10 (The Human Eye and the Colourful World), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const A = 270, EX = 470, ER = 70, RET = EX + 2 * ER - 20, D = 10;
+  const qStages = [
+    { title: 'An object moves away', dur: 5, text: 'An object is moved farther and farther from the eye.' },
+    { title: 'What is asked', dur: 4, text: 'What happens to the image distance in the eye?' },
+  ];
+  const stages = [
+    { title: 'Moving away', dur: D, text: 'The image must stay on the retina. The ciliary muscles relax and the lens gets thinner: its focal length increases.', ans: 'Image distance (lens to retina) stays the same.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1); hline(ctx, 20, 590, A, P.grid, 1);
+    const s = ans ? smooth(clamp(t / (D - 2))) : smooth(clamp(t / 4)), ox = 360 - 320 * s, oh = 40, thick = 16 - 9 * s;
+    ctx.save(); ctx.strokeStyle = P.ink; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(EX + ER - 10, A, ER, 0, 2 * Math.PI); ctx.stroke(); ctx.restore();
+    ctx.save(); ctx.fillStyle = P.water; ctx.strokeStyle = P.vel; ctx.beginPath(); ctx.ellipse(EX, A, thick, 34, 0, 0, 2 * Math.PI); ctx.globalAlpha = 0.7; ctx.fill(); ctx.globalAlpha = 1; ctx.stroke(); ctx.restore();
+    ctx.save(); ctx.strokeStyle = P.force; ctx.lineWidth = 4; ctx.beginPath(); ctx.arc(EX + ER - 10, A, ER, -0.5, 0.5); ctx.stroke(); ctx.restore();
+    objArrow(ctx, ox, A, oh, P.vel);
+    const ih = oh * (RET - EX) / (EX - ox);
+    ray(ctx, [[ox, A - oh], [EX, A], [RET, A + ih]], P.accent, { lw: 1.6 });
+    ray(ctx, [[ox, A - oh], [EX, A - oh * 0.6], [RET, A + ih]], P.leaf, { lw: 1.6 });
+    objArrow(ctx, RET - 3, A, -ih, P.force);
+    dim(ctx, EX, RET, A + 110, P.ink2); label(ctx, 'image distance: fixed', (EX + RET) / 2, A + 126, { align: 'center', weight: 800, size: 13, color: P.accent });
+    label(ctx, 'lens thickness: ' + (s < 0.5 ? 'thicker (near object)' : 'thinner (far object)'), EX - 10, A - 70, { align: 'center', weight: 700, size: 12 });
+    if (ans) partsPanel(ctx, 630, 34, 300, 'Answer', ['Image distance stays the same; the focal length of the eye lens increases'], 0, false);
+    else askedPanel(ctx, 630, 34, 300, ['What happens to the image distance in the eye as the object moves away.']);
+    note(ctx, 'schematic; lens thickness shows the change of focal length');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>
