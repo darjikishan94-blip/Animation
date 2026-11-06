@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 1.17</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 1 Units and Measurement</a></p>
+      <h1>Exercise 1.17 · How dense is the Sun?</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q16.html">‹ 1.16</a><a href="index.html">All questions</a><span>›</span></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 1.17">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="The Sun with its mass and radius, and a density scale from gases to solids; the solution places the Sun’s mean density, 1.4 × 10³ kg per cubic metre, among liquids and solids."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>1.17</b> The Sun is a hot plasma (ionized matter) with its inner core at a temperature exceeding 10<sup>7</sup> K, and its outer surface at a temperature of about 6000 K. At these high temperatures, no substance remains in a solid or liquid phase. In what range do you expect the mass density of the Sun to be, in the range of densities of solids and liquids or gases ? Check if your guess is correct from the following data : mass of the Sun = 2.0 ×10<sup>30</sup> kg, radius of the Sun = 7.0 × 10<sup>8</sup> m.</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Mass of the Sun = 2.0 × 10<sup>30</sup> kg; radius = 7.0 × 10<sup>8</sup> m.</li>
+          <li>Core above 10<sup>7</sup> K, surface about 6000 K.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>Whether the Sun’s density lies in the range of solids and liquids or of gases.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Density scale is logarithmic; air, water and lead are reference values, not part of the question.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>Volume = (4/3)π<i>R</i><sup>3</sup> = (4/3) × 3.14 × (7.0 × 10<sup>8</sup> m)<sup>3</sup> ≈ 1.44 × 10<sup>27</sup> m<sup>3</sup>.</li>
+          <li>Density = 2.0 × 10<sup>30</sup> / 1.44 × 10<sup>27</sup> ≈ 1.4 × 10<sup>3</sup> kg m<sup>−3</sup>.</li>
+          <li>This is in the range of liquids and solids, not gases: the huge gravitational pull of the outer layers compresses the gas inside.</li>
+        </ol>
+        <p class="final">About 1.4 × 10<sup>3</sup> kg m<sup>−3</sup>: like liquids and solids.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 1 (Units and Measurement), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const M = 2.0e30, R = 7.0e8, V = 4 / 3 * Math.PI * R ** 3, RHO = M / V;   // ≈ 1.39 × 10³ kg m⁻³
+  const LX = 60, LW = 500, LY = 400, L0 = -2, L1 = 5, X = r => LX + (Math.log10(r) - L0) / (L1 - L0) * LW;
+  const qStages = [
+    { title: 'A ball of hot plasma', dur: 5, text: 'The Sun’s core is above 10⁷ K and its surface about 6000 K: nothing there is solid or liquid. Mass 2.0 × 10³⁰ kg, radius 7.0 × 10⁸ m.' },
+    { title: 'What is asked', dur: 5, text: 'Is the Sun’s mass density in the range of solids and liquids, or of gases?' },
+  ];
+  const stages = [
+    { title: 'The Sun’s volume', dur: 4, text: 'Treat the Sun as a sphere.', ans: 'V = (4/3)πR³ = (4/3) × 3.14 × (7.0 × 10⁸)³ ≈ 1.44 × 10²⁷ m³.' },
+    { title: 'Its mean density', dur: 5, text: 'Density = mass / volume.', ans: 'ρ = 2.0 × 10³⁰ / 1.44 × 10²⁷ ≈ 1.4 × 10³ kg m⁻³.' },
+    { title: 'Where it falls', dur: 5, text: 'Compare with the densities of gases, liquids and solids.', ans: 'Like liquids and solids, not gases: gravity squeezes the hot gas to a high density.' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    const pulse = 1 + 0.02 * Math.sin(t * 3);
+    ctx.fillStyle = P.ke; ctx.beginPath(); ctx.arc(300, 170, 110 * pulse, 0, Math.PI * 2); ctx.fill();
+    label(ctx, 'mass 2.0 × 10³⁰ kg', 300, 160, { align: 'center', weight: 700, size: 15, color: P.ink, halo: true });
+    ctx.save(); ctx.strokeStyle = P.ink; ctx.lineWidth = 2; seg(ctx, 300, 185, 410, 185); ctx.restore(); label(ctx, 'R = 7.0 × 10⁸ m', 355, 200, { align: 'center', weight: 700, size: 13, halo: true });
+    // density scale
+    ctx.fillStyle = P.drag; ctx.globalAlpha = 0.18; ctx.fillRect(X(0.05), LY - 18, X(20) - X(0.05), 36); ctx.globalAlpha = 1;
+    ctx.fillStyle = P.vel; ctx.globalAlpha = 0.18; ctx.fillRect(X(500), LY - 18, X(25000) - X(500), 36); ctx.globalAlpha = 1;
+    label(ctx, 'gases', (X(0.05) + X(20)) / 2, LY - 32, { align: 'center', weight: 700, size: 14, color: P.drag });
+    label(ctx, 'liquids and solids', (X(500) + X(25000)) / 2, LY - 32, { align: 'center', weight: 700, size: 14, color: P.vel });
+    hline(ctx, LX, LX + LW, LY + 18, P.ink, 1.5);
+    for (let e = L0; e <= L1; e++) { vline(ctx, X(10 ** e), LY + 18, LY + 26, P.ink2, 1.2); label(ctx, `10${['⁻²', '⁻¹', '⁰', '¹', '²', '³', '⁴', '⁵'][e + 2]}`, X(10 ** e), LY + 40, { align: 'center', size: 13 }); }
+    label(ctx, 'density (kg m⁻³), logarithmic scale', LX + LW / 2, LY + 62, { align: 'center', size: 12, color: P.ink2 });
+    for (const [r, n] of [[1.2, 'air'], [1000, 'water'], [11300, 'lead']]) { vline(ctx, X(r), LY - 10, LY + 18, P.ink2, 1.5); label(ctx, n, X(r), LY + 2, { align: 'center', size: 12, color: P.ink2, halo: true }); }
+    if (ans && t >= stages[1].t0 + 2) {
+      const x = X(RHO);
+      arrow(ctx, x, LY - 90, x, LY - 22, P.accent, { lw: 3, head: 10 });
+      label(ctx, 'Sun: 1.4 × 10³ kg m⁻³', x, LY - 102, { align: 'center', weight: 800, size: 15, color: P.accent });
+    }
+    if (ans) partsPanel(ctx, 630, 34, 300, 'Working', ['V = (4/3)πR³ ≈ 1.44 × 10²⁷ m³', 'ρ = M/V ≈ 1.4 × 10³ kg m⁻³', 'In the range of liquids and solids'], stages.findIndex(s => t < s.t1) < 0 ? 2 : stages.findIndex(s => t < s.t1), false);
+    else askedPanel(ctx, 630, 34, 300, ['Whether the Sun’s mass density lies in the range of solids and liquids, or of gases. Check using its mass and radius.']);
+    note(ctx, 'air, water and lead are reference densities, not part of the question');
+  }
+  return { qStages, stages, draw };
+})();
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

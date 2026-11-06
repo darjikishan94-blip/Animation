@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 1.8</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 1 Units and Measurement</a></p>
+      <h1>Exercise 1.8 · Thread, screw gauge and repeated readings</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q07.html">‹ 1.7</a><a href="index.html">All questions</a><a href="q09.html">1.9 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 1.8">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="Three scenes: thread wound in close turns on a scale; a screw gauge’s circular scale with more and more divisions; and readings of a rod’s diameter whose running mean settles as their number grows."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>1.8</b> Answer the following : (a) You are given a thread and a metre scale. How will you estimate the diameter of the thread ? (b) A screw gauge has a pitch of 1.0 mm and 200 divisions on the circular scale. Do you think it is possible to increase the accuracy of the screw gauge arbitrarily by increasing the number of divisions on the circular scale ? (c) The mean diameter of a thin brass rod is to be measured by vernier callipers. Why is a set of 100 measurements of the diameter expected to yield a more reliable estimate than a set of 5 measurements only ?</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>(a) A thread and a metre scale. (b) Pitch 1.0 mm, 200 circular divisions. (c) 100 readings compared with 5.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>How to find the thread’s diameter; whether more divisions give arbitrary accuracy; why 100 readings beat 5.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>(a) The number of turns is illustrative. (c) The readings are illustrative random values, not data.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>(a) Wind the thread on the scale (or a pencil) in <i>n</i> close turns with no gaps, measure the length <i>L</i> they cover; diameter = <i>L</i>/<i>n</i>.</li>
+          <li>(b) The least count is pitch/divisions = 1.0/200 = 0.005 mm, and more divisions make it smaller in principle. But not arbitrarily: the divisions become too close to read, and backlash and an imperfect screw thread limit the accuracy.</li>
+          <li>(c) Each reading carries a random error. Over many readings the errors tend to cancel, so the mean of 100 is much closer to the true value than the mean of 5 (the random error of the mean falls roughly as 1/√<i>n</i>).</li>
+        </ol>
+        <p class="final">(a) d = L/n. (b) No, not arbitrarily. (c) Random errors average out over more readings.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 1 (Units and Measurement), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const D = 8;
+  const PARTS = ['(a) the diameter of a thread with a metre scale', '(b) more divisions on a screw gauge’s circular scale', '(c) 100 readings rather than 5'];
+  const ANS = ['Wind n close turns, measure the length L they cover: d = L/n.', 'Not arbitrarily: the divisions get too fine to read, and backlash and thread errors remain.', 'Random errors average out: the mean of many readings is more reliable.'];
+  const qStages = partStages(['(a) Thread and scale', '(b) Screw gauge', '(c) Repeated readings'], ['You are given a thread and a metre scale. How will you estimate the diameter of the thread?',
+    'A screw gauge has a pitch of 1.0 mm and 200 divisions on the circular scale. Can its accuracy be raised arbitrarily by adding divisions?', 'Why should 100 measurements of a rod’s diameter give a more reliable estimate than 5?'], D);
+  const stages = partStages(qStages.map(s => s.title), ['A thread is far too thin to measure directly with a millimetre scale. Many close turns side by side make a length large enough to measure.',
+    'Least count = pitch / number of divisions = 1.0 mm / 200 = 0.005 mm. More divisions give a smaller least count on paper, but the divisions soon crowd too closely to read.',
+    'Each reading has a random error, sometimes high, sometimes low. The mean of more readings wanders less and settles near the true value.'], D, ANS);
+  const rnd = i => { const s = Math.sin(i * 12.9898 + 78.233) * 43758.5453; return s - Math.floor(s); };
+  function thread(ctx, u, ans) {
+    const X0 = 60, X1 = 560, Y = 230, n = Math.min(20, Math.floor(u * 3.2)), d = 9, x0 = 200;
+    ctx.fillStyle = P.wood; ctx.fillRect(X0, Y - 20, X1 - X0, 40); ctx.strokeStyle = P.obj; ctx.lineWidth = 1.5; ctx.strokeRect(X0, Y - 20, X1 - X0, 40);
+    for (let x = X0 + 10, i = 0; x < X1; x += 10, i++) vline(ctx, x, Y - 20, Y - 20 + (i % 10 === 9 ? 14 : i % 5 === 4 ? 10 : 6), P.ink, 1);
+    label(ctx, 'metre scale', X0, Y - 34, { size: 13, color: P.ink2 });
+    ctx.save(); ctx.strokeStyle = P.force; ctx.lineWidth = d - 2;
+    for (let i = 0; i < n; i++) { const x = x0 + i * d + d / 2; seg(ctx, x - 2, Y - 24, x + 2, Y + 24); }
+    ctx.restore();
+    label(ctx, `${n} turns`, x0 + n * d / 2, Y + 44, { align: 'center', weight: 700, size: 14, color: P.force });
+    if (ans && n >= 20) { dim(ctx, x0, x0 + 20 * d, Y - 50, P.vel); label(ctx, 'L', x0 + 10 * d, Y - 66, { align: 'center', italic: true, weight: 700, size: 16, color: P.vel }); label(ctx, 'diameter d = L / n', 300, 380, { align: 'center', weight: 800, size: 18, color: P.accent }); }
+    note(ctx, 'number of turns illustrative');
+  }
+  function gauge(ctx, u, ans) {
+    const CX = 300, CY = 260, R = 150, Ns = [50, 100, 200, 400, 800], N = Ns[Math.min(4, Math.floor(u / 1.6))];
+    ctx.save(); ctx.fillStyle = P.objFill; ctx.beginPath(); ctx.arc(CX, CY, R, 0, Math.PI * 2); ctx.fill(); ctx.strokeStyle = P.obj; ctx.lineWidth = 2; ctx.stroke(); ctx.restore();
+    ctx.save(); ctx.strokeStyle = P.ink; ctx.lineWidth = 1;
+    for (let i = 0; i < N; i++) { const a = i / N * Math.PI * 2, L = i % 10 === 0 ? 18 : i % 5 === 0 ? 12 : 8; seg(ctx, CX + R * Math.cos(a), CY + R * Math.sin(a), CX + (R - L) * Math.cos(a), CY + (R - L) * Math.sin(a)); }
+    ctx.restore();
+    label(ctx, `${N} divisions`, CX, CY - 10, { align: 'center', weight: 700, size: 18 });
+    label(ctx, 'pitch 1.0 mm', CX, CY + 18, { align: 'center', size: 14, color: P.ink2 });
+    if (ans) { label(ctx, `least count = 1.0 / ${N} = ${(1 / N).toFixed(5).replace(/0+$/, '')} mm`, CX, 460, { align: 'center', weight: 700, size: 16, color: N >= 400 ? P.force : P.accent }); if (N >= 400) label(ctx, 'divisions too close to read', CX, 486, { align: 'center', weight: 700, size: 14, color: P.force }); }
+    note(ctx, 'the question’s gauge has 200 divisions; 50 to 800 are shown for comparison');
+  }
+  function readings(ctx, u, ans) {
+    const g = axes(ctx, { x: 70, y: 70, w: 480, h: 330, x0: 0, x1: 100, y0: 0, y1: 4, xt: [5, 25, 50, 100], xl: 'n', yl: 'reading' });
+    hline(ctx, g.X(0), g.X(100), g.Y(2), P.accent, 1.5, [6, 4]); label(ctx, 'true value', g.X(0) + 8, g.Y(2) + 16, { size: 12, color: P.accent });
+    const n = Math.min(100, Math.floor(u * 15) + 1); let sum = 0; const mean = [];
+    for (let i = 0; i < n; i++) { const r = 2 + (rnd(i) + rnd(i + 500) + rnd(i + 900) - 1.5) * 1.1; sum += r; mean.push(sum / (i + 1)); ctx.fillStyle = P.ink2; ctx.globalAlpha = 0.5; ctx.beginPath(); ctx.arc(g.X(i + 1), g.Y(r), 3, 0, Math.PI * 2); ctx.fill(); ctx.globalAlpha = 1; }
+    if (ans) { ctx.save(); ctx.strokeStyle = P.vel; ctx.lineWidth = 3; poly(ctx, mean.map((m, i) => [g.X(i + 1), g.Y(m)])); ctx.restore(); label(ctx, 'running mean', g.X(n) + (n > 60 ? -6 : 6), g.Y(mean[n - 1]) - 16, { size: 13, weight: 700, color: P.vel, align: n > 60 ? 'right' : 'left' }); }
+    label(ctx, `${n} readings`, 300, 470, { align: 'center', weight: 700, size: 15 });
+    note(ctx, 'illustrative random readings, not data');
+  }
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    const k = Math.min(2, Math.floor(t / D)), u = t - k * D;
+    [thread, gauge, readings][k](ctx, u, ans);
+    partsPanel(ctx, 630, 34, 300, ans ? 'Answers' : 'Answer the following', PARTS, k, ans, ANS);
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

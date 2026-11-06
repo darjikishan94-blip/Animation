@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 1.11</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 1 Units and Measurement</a></p>
+      <h1>Exercise 1.11 · Area and volume of a metal sheet</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q10.html">‹ 1.10</a><a href="index.html">All questions</a><a href="q12.html">1.12 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 1.11">
+    <p class="qline"><b>1.11</b> The length, breadth and thickness of a rectangular sheet of metal are 4.234 m, 1.005 m, and 2.01 cm respectively. Give the area and volume of the sheet to correct significant figures.</p>
+    <p><button type="button" class="btn reveal" id="show" aria-pressed="false" style="margin-left:0">Show answer</button></p>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Length 4.234 m, breadth 1.005 m, thickness 2.01 cm = 0.0201 m.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The (surface) area and the volume, to correct significant figures.</p>
+      </div>
+      <div>
+        <h3>Why there is no animation</h3>
+        <ul>
+          <li>This is a calculation (or an explanation) with no physical situation to animate; the page shows the question and a worked answer.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>Surface area = 2(<i>lb</i> + <i>bt</i> + <i>tl</i>) = 2(4.234 × 1.005 + 1.005 × 0.0201 + 0.0201 × 4.234) m<sup>2</sup> = 2 × 4.3604 m<sup>2</sup> = 8.7209 m<sup>2</sup>.</li>
+          <li>Volume = <i>lbt</i> = 4.234 × 1.005 × 0.0201 m<sup>3</sup> = 0.085529 m<sup>3</sup>.</li>
+          <li>The thickness has the fewest significant figures (3), so both results keep 3.</li>
+        </ol>
+        <p class="final">Area ≈ 8.72 m<sup>2</sup>; volume ≈ 0.0855 m<sup>3</sup>.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 1 (Units and Measurement), Exercises. </p>
+</div>
+<script>
+const b = document.getElementById('show'), a = document.querySelector('.answer');
+b.addEventListener('click', () => { a.hidden = !a.hidden; b.setAttribute('aria-pressed', String(!a.hidden)); b.textContent = a.hidden ? 'Show answer' : 'Hide answer'; });
+</script>
+</body>
+</html>

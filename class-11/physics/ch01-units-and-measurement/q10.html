@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 1.10</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 1 Units and Measurement</a></p>
+      <h1>Exercise 1.10 · Counting significant figures</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q09.html">‹ 1.9</a><a href="index.html">All questions</a><a href="q11.html">1.11 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 1.10">
+    <p class="qline"><b>1.10</b> State the number of significant figures in the following : (a) 0.007 m<sup>2</sup> (b) 2.64 × 10<sup>24</sup> kg (c) 0.2370 g cm<sup>–3</sup> (d) 6.320 J (e) 6.032 N m<sup>–2</sup> (f) 0.0006032 m<sup>2</sup></p>
+    <p><button type="button" class="btn reveal" id="show" aria-pressed="false" style="margin-left:0">Show answer</button></p>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Six measured values.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The number of significant figures in each.</p>
+      </div>
+      <div>
+        <h3>Why there is no animation</h3>
+        <ul>
+          <li>This is a calculation (or an explanation) with no physical situation to animate; the page shows the question and a worked answer.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>(a) 0.007: leading zeros do not count: 1.</li>
+          <li>(b) 2.64 × 10<sup>24</sup>: the power of ten does not count: 3.</li>
+          <li>(c) 0.2370: the trailing zero after the decimal point counts: 4.</li>
+          <li>(d) 6.320: 4.</li>
+          <li>(e) 6.032: zeros between digits count: 4.</li>
+          <li>(f) 0.0006032: 4.</li>
+        </ol>
+        <p class="final">(a) 1 (b) 3 (c) 4 (d) 4 (e) 4 (f) 4</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 1 (Units and Measurement), Exercises. </p>
+</div>
+<script>
+const b = document.getElementById('show'), a = document.querySelector('.answer');
+b.addEventListener('click', () => { a.hidden = !a.hidden; b.setAttribute('aria-pressed', String(!a.hidden)); b.textContent = a.hidden ? 'Show answer' : 'Hide answer'; });
+</script>
+</body>
+</html>

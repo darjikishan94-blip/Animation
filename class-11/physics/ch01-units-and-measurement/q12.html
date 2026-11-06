@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 1.12</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 1 Units and Measurement</a></p>
+      <h1>Exercise 1.12 · Gold pieces on a grocer’s balance</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q11.html">‹ 1.11</a><a href="index.html">All questions</a><a href="q13.html">1.13 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 1.12">
+    <p class="qline"><b>1.12</b> The mass of a box measured by a grocer’s balance is 2.30 kg. Two gold pieces of masses 20.15 g and 20.17 g are added to the box. What is (a) the total mass of the box, (b) the difference in the masses of the pieces to correct significant figures ?</p>
+    <p><button type="button" class="btn reveal" id="show" aria-pressed="false" style="margin-left:0">Show answer</button></p>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Box: 2.30 kg (grocer’s balance). Gold pieces: 20.15 g and 20.17 g.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>(a) The total mass; (b) the difference in the masses of the pieces.</p>
+      </div>
+      <div>
+        <h3>Why there is no animation</h3>
+        <ul>
+          <li>This is a calculation (or an explanation) with no physical situation to animate; the page shows the question and a worked answer.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>(a) Total = 2.30 kg + 0.02015 kg + 0.02017 kg = 2.34032 kg. A sum keeps the decimal places of the least precise term (2.30 kg: two places), giving 2.34 kg. (The NCERT answer key rounds further, to 2.3 kg, since the box was weighed only on a grocer’s balance.)</li>
+          <li>(b) Difference = 20.17 g − 20.15 g = 0.02 g (two decimal places, as in both masses).</li>
+        </ol>
+        <p class="final">(a) 2.34 kg (NCERT key: 2.3 kg) (b) 0.02 g</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 1 (Units and Measurement), Exercises. </p>
+</div>
+<script>
+const b = document.getElementById('show'), a = document.querySelector('.answer');
+b.addEventListener('click', () => { a.hidden = !a.hidden; b.setAttribute('aria-pressed', String(!a.hidden)); b.textContent = a.hidden ? 'Show answer' : 'Hide answer'; });
+</script>
+</body>
+</html>

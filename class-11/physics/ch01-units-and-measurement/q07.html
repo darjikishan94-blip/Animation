@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 1.7</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 1 Units and Measurement</a></p>
+      <h1>Exercise 1.7 · Thickness of a hair under a microscope</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q06.html">‹ 1.6</a><a href="index.html">All questions</a><a href="q08.html">1.8 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 1.7">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A hair is magnified 100 times; its image in the microscope’s field of view is 3.5 mm wide on average over 20 observations. The solution divides by 100."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>1.7</b> A student measures the thickness of a human hair by looking at it through a microscope of magnification 100. He makes 20 observations and finds that the average width of the hair in the field of view of the microscope is 3.5 mm. What is the estimate on the thickness of hair ?</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Magnification = 100.</li>
+          <li>20 observations; average width in the field of view = 3.5 mm.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The estimated thickness of the hair.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>The image width is drawn at 30 px per mm; the hair itself is then about one pixel wide.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>Magnification = width of the image / actual width.</li>
+          <li>Actual thickness = 3.5 mm / 100 = 0.035 mm.</li>
+        </ol>
+        <p class="final">About 0.035 mm (3.5 × 10<sup>−5</sup> m).</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 1 (Units and Measurement), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const MAG = 100, W = 3.5, K = 30, CX = 400, CY = 260, R = 150;        // image drawn at 30 px per mm
+  const qStages = [
+    { title: 'Under the microscope', dur: 6, text: 'A human hair is viewed through a microscope of magnification 100.' },
+    { title: '20 observations', dur: 5, text: 'Over 20 observations, the average width of the hair in the field of view is 3.5 mm.' },
+    { title: 'What is asked', dur: 4, text: 'Estimate the thickness of the hair.' },
+  ];
+  const stages = [
+    { title: 'Magnified 100 times', dur: 6, text: 'Every length in the field of view is 100 times the real length.', ans: 'Magnification = image width / real width = 100.' },
+    { title: 'The average image width', dur: 5, text: 'The average of 20 readings of the image width is 3.5 mm.', ans: 'Image width = 3.5 mm.' },
+    { title: 'Real thickness', dur: 5, text: 'Divide the image width by the magnification.', ans: 'Thickness = 3.5 mm / 100 = 0.035 mm.' },
+  ];
+  function hair(ctx, x, w, y1, y2) {
+    ctx.fillStyle = P.bark; ctx.beginPath();
+    for (let y = y1; y <= y2; y += 4) ctx.lineTo(x - w / 2 + 2 * Math.sin(y / 30), y);
+    for (let y = y2; y >= y1; y -= 4) ctx.lineTo(x + w / 2 + 2 * Math.sin(y / 30), y);
+    ctx.closePath(); ctx.fill();
+  }
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    // the real hair on a slide (left)
+    ctx.fillStyle = P.objFill; ctx.fillRect(40, 220, 130, 80); ctx.strokeStyle = P.obj; ctx.lineWidth = 1.5; ctx.strokeRect(40, 220, 130, 80);
+    hair(ctx, 105, Math.max(1, W / MAG * K), 225, 295);
+    label(ctx, 'the hair on a slide', 105, 320, { align: 'center', size: 13, color: P.ink2 });
+    label(ctx, ans && t >= stages[1].t1 ? 'real width: 0.035 mm' : 'real width: ?', 105, 200, { align: 'center', weight: 700, size: 14, color: ans && t >= stages[1].t1 ? P.accent : P.ink });
+    // zoom into the field of view
+    const z = smooth(clamp(t / 4));
+    arrow(ctx, 185, 260, 235, 260, P.ink2, { lw: 2, head: 10 }); label(ctx, '× 100', 210, 244, { align: 'center', weight: 700, size: 15 });
+    ctx.save(); ctx.beginPath(); ctx.arc(CX, CY, R, 0, Math.PI * 2); ctx.fillStyle = P.sheet; ctx.fill(); ctx.clip();
+    hair(ctx, CX, (W / MAG + (W - W / MAG) * z) * K, CY - R, CY + R); ctx.restore();
+    ctx.save(); ctx.strokeStyle = P.obj; ctx.lineWidth = 3; ctx.beginPath(); ctx.arc(CX, CY, R, 0, Math.PI * 2); ctx.stroke(); ctx.restore();
+    label(ctx, 'field of view', CX, CY - R - 14, { align: 'center', size: 13, color: P.ink2 });
+    if (t > 5) {
+      const y = CY + 40; dim(ctx, CX - W * K / 2, CX + W * K / 2, y, P.vel); label(ctx, '3.5 mm (average)', CX, y + 18, { align: 'center', weight: 700, size: 14, color: P.vel, halo: true });
+    }
+    const n = Math.min(20, Math.max(0, Math.floor((t - 6) * 4)));
+    if (t > 6) { for (let i = 0; i < 20; i++) { ctx.fillStyle = i < n ? P.vel : P.grid; ctx.fillRect(250 + i * 15, 470, 10, 10); } label(ctx, `observations: ${n} of 20`, 250, 498, { size: 13, color: P.ink2 }); }
+    if (ans) {
+      if (t >= stages[1].t1) label(ctx, '3.5 mm ÷ 100 = 0.035 mm', CX, 60, { align: 'center', weight: 800, size: 18, color: P.accent });
+      partsPanel(ctx, 630, 34, 300, 'Working', ['Magnification = image width / real width', 'Image width = 3.5 mm (average of 20)', 'Real thickness = 3.5 / 100 = 0.035 mm'], t < stages[0].t1 ? 0 : t < stages[1].t1 ? 1 : 2, false);
+    } else askedPanel(ctx, 630, 34, 300, ['The estimate of the thickness of the hair.']);
+    note(ctx, 'image drawn at 30 px per mm: the real hair is then about one pixel wide');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

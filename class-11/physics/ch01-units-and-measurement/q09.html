@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 1.9</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 1 Units and Measurement</a></p>
+      <h1>Exercise 1.9 · Magnification of a slide projector</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q08.html">‹ 1.8</a><a href="index.html">All questions</a><a href="q10.html">1.10 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 1.9">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="A projector throws the small picture of a house on a slide onto a screen, where it is far larger; the solution compares the areas and takes the square root."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>1.9</b> The photograph of a house occupies an area of 1.75 cm<sup>2</sup> on a 35 mm slide. The slide is projected on to a screen, and the area of the house on the screen is 1.55 m<sup>2</sup>. What is the linear magnification of the projector-screen arrangement.</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Area of the house on the slide = 1.75 cm<sup>2</sup>; area on the screen = 1.55 m<sup>2</sup>.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The linear magnification.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Not to scale: a linear magnification of about 94 cannot be drawn on one screen.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>Areal magnification = 1.55 m<sup>2</sup> / 1.75 cm<sup>2</sup> = 1.55 × 10<sup>4</sup> cm<sup>2</sup> / 1.75 cm<sup>2</sup> ≈ 8.86 × 10<sup>3</sup>.</li>
+          <li>Areas grow as the square of lengths, so linear magnification = √(8.86 × 10<sup>3</sup>) ≈ 94.1.</li>
+        </ol>
+        <p class="final">Linear magnification ≈ 94.1.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 1 (Units and Measurement), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const LX = 130, SX = 560, Y = 250;
+  const qStages = [
+    { title: 'The slide', dur: 4, text: 'The photograph of a house occupies 1.75 cm² on a 35 mm slide.' },
+    { title: 'Projected', dur: 5, text: 'The slide is projected onto a screen, where the house covers 1.55 m².' },
+    { title: 'What is asked', dur: 4, text: 'What is the linear magnification of the projector–screen arrangement?' },
+  ];
+  const stages = [
+    { title: 'Compare the areas', dur: 5, text: 'Put both areas in the same unit: 1.55 m² = 1.55 × 10⁴ cm².', ans: 'Areal magnification = 1.55 × 10⁴ / 1.75 ≈ 8.86 × 10³.' },
+    { title: 'Areas grow as length squared', dur: 5, text: 'If every length is multiplied by m, every area is multiplied by m².', ans: 'm² = 8.86 × 10³.' },
+    { title: 'Linear magnification', dur: 4, text: 'Take the square root.', ans: 'm = √(8.86 × 10³) ≈ 94.1.' },
+  ];
+  function house(ctx, x, y, s, col) {
+    ctx.save(); ctx.strokeStyle = col; ctx.lineWidth = Math.max(1, 2 * s); ctx.fillStyle = P.objFill;
+    ctx.beginPath(); ctx.rect(x - 20 * s, y - 20 * s, 40 * s, 30 * s); ctx.fill(); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(x - 26 * s, y - 20 * s); ctx.lineTo(x, y - 40 * s); ctx.lineTo(x + 26 * s, y - 20 * s); ctx.closePath(); ctx.fillStyle = P.force; ctx.fill(); ctx.stroke();
+    ctx.fillStyle = P.wood; ctx.fillRect(x - 5 * s, y - 2 * s, 10 * s, 12 * s); ctx.restore();
+  }
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    ctx.fillStyle = P.objFill2; ctx.strokeStyle = P.obj; ctx.lineWidth = 2; ctx.fillRect(40, Y - 30, 70, 60); ctx.strokeRect(40, Y - 30, 70, 60);
+    label(ctx, 'projector', 75, Y + 46, { align: 'center', size: 13, color: P.ink2 });
+    ctx.fillStyle = P.sheet; ctx.fillRect(LX, Y - 18, 6, 36); ctx.strokeRect(LX, Y - 18, 6, 36);
+    house(ctx, LX + 3, Y + 4, 0.35, P.obj); label(ctx, 'slide: 1.75 cm²', LX, Y - 34, { align: 'center', weight: 700, size: 13 });
+    const p = smooth(clamp((t - 2) / 3));
+    if (p > 0) {
+      ctx.save(); ctx.fillStyle = P.ke; ctx.globalAlpha = 0.15 * p; ctx.beginPath(); ctx.moveTo(LX + 6, Y - 18); ctx.lineTo(LX + 6 + (SX - LX - 6) * p, Y - 18 - 152 * p); ctx.lineTo(LX + 6 + (SX - LX - 6) * p, Y + 18 + 152 * p); ctx.lineTo(LX + 6, Y + 18); ctx.closePath(); ctx.fill(); ctx.restore();
+    }
+    ctx.fillStyle = P.sheet; ctx.fillRect(SX, Y - 175, 14, 350); ctx.strokeStyle = P.obj; ctx.strokeRect(SX, Y - 175, 14, 350);
+    label(ctx, 'screen', SX + 7, Y + 194, { align: 'center', size: 13, color: P.ink2 });
+    if (p >= 1) { house(ctx, SX - 70, Y + 40, 3.2, P.obj); label(ctx, 'on the screen: 1.55 m²', SX - 70, Y - 150, { align: 'center', weight: 700, size: 14 }); }
+    if (ans) {
+      const k = stages.findIndex(s => t < s.t1) < 0 ? 2 : stages.findIndex(s => t < s.t1);
+      label(ctx, ['area ratio = 1.55 × 10⁴ cm² / 1.75 cm² ≈ 8.86 × 10³', 'area ratio = (linear magnification)²', 'linear magnification = √(8.86 × 10³) ≈ 94.1'][k], 300, 470, { align: 'center', weight: 800, size: 16, color: P.accent });
+      partsPanel(ctx, 630, 34, 300, 'Working', ['Areal magnification = 1.55 × 10⁴ / 1.75 ≈ 8.86 × 10³', 'Areal = (linear)²', 'Linear magnification ≈ 94.1'], k, false);
+    } else askedPanel(ctx, 630, 34, 300, ['The linear magnification of the projector–screen arrangement.']);
+    note(ctx, 'not to scale: a magnification of about 94 cannot be drawn on one screen');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

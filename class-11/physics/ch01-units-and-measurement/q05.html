@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 1.5</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 1 Units and Measurement</a></p>
+      <h1>Exercise 1.5 · Light from the Sun in a new unit</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q04.html">‹ 1.4</a><a href="index.html">All questions</a><a href="q06.html">1.6 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 1.5">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="Light leaves the Sun and reaches the Earth while a clock runs to 8 minutes 20 seconds; in the solution run a ruler marked in the new unit counts 500 units."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>1.5</b> A new unit of length is chosen such that the speed of light in vacuum is unity. What is the distance between the Sun and the Earth in terms of the new unit if light takes 8 min and 20 s to cover this distance ?</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Speed of light in vacuum = 1 new unit of length per second.</li>
+          <li>Time for light from the Sun to the Earth = 8 min 20 s.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The Sun–Earth distance in the new unit.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Sun and Earth not to scale; 500 s of travel shown in 8 s.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>8 min 20 s = 8 × 60 + 20 = 500 s.</li>
+          <li>Distance = speed × time = 1 new unit s<sup>−1</sup> × 500 s = 500 new units.</li>
+          <li>(One new unit = 3 × 10<sup>8</sup> m, so this is 1.5 × 10<sup>11</sup> m.)</li>
+        </ol>
+        <p class="final">500 new units.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 1 (Units and Measurement), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const SX = 80, EX = 560, Y = 230, TT = 500, D = 8;                     // 500 s of light travel shown in 8 s
+  const qStages = [
+    { title: 'Light leaves the Sun', dur: D + 1, text: 'Light from the Sun takes 8 min 20 s to reach the Earth. A new unit of length is chosen so that the speed of light in vacuum is 1.' },
+    { title: 'What is asked', dur: 4, text: 'What is the Sun–Earth distance in the new unit?' },
+  ];
+  const stages = [
+    { title: 'The new unit', dur: 3, text: 'If light covers exactly 1 new unit of length every second, one new unit is the distance light travels in 1 s.', ans: '1 new unit = 3 × 10⁸ m (one light-second).' },
+    { title: 'Light crosses', dur: D + 1, text: 'Count the seconds: each second the light advances one new unit.', ans: '8 min 20 s = 8 × 60 + 20 = 500 s.' },
+    { title: 'The distance', dur: 4, text: 'Distance = speed × time = 1 unit per second × 500 s.', ans: 'Sun–Earth distance = 500 new units (= 1.5 × 10¹¹ m).' },
+  ];
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    const t0 = ans ? 3 : 0, sec = clamp((t - t0 - 0.5) / D, 0, 1) * TT, x = SX + 50 + (EX - 14 - SX - 50) * sec / TT;
+    ctx.fillStyle = P.ke; ctx.beginPath(); ctx.arc(SX, Y, 50, 0, Math.PI * 2); ctx.fill();
+    label(ctx, 'Sun', SX, Y + 72, { align: 'center', weight: 700, size: 15 });
+    ball(ctx, EX, Y, 14, P.water); label(ctx, 'Earth', EX, Y + 34, { align: 'center', weight: 700, size: 15 });
+    if (sec > 0) {
+      ctx.save(); ctx.strokeStyle = P.ke; ctx.lineWidth = 3; ctx.globalAlpha = 0.5; seg(ctx, SX + 50, Y, x, Y); ctx.restore();
+      if (sec < TT) { ctx.fillStyle = P.ke; ctx.beginPath(); ctx.arc(x, Y, 6, 0, Math.PI * 2); ctx.fill(); }
+    }
+    vec(ctx, SX + 60, Y - 60, 70, 0, ans ? 'c = 1 unit per second' : 'speed of light = 1 (new unit)', P.vel, { side: -1, at: 0, align: 'left', size: 13 });
+    const m = Math.floor(sec / 60), s = Math.floor(sec % 60);
+    clock(ctx, 60, 60, sec, `t = ${m} min ${String(s).padStart(2, '0')} s`);
+    if (ans) {
+      const RY = 330, X = u => SX + 50 + (EX - 14 - SX - 50) * u / TT;
+      hline(ctx, X(0), X(TT), RY, P.ink, 2);
+      for (let u = 0; u <= TT; u += 10) vline(ctx, X(u), RY, RY + (u % 100 ? (u % 50 ? 5 : 9) : 14), P.ink2, 1);
+      for (let u = 0; u <= TT; u += 100) label(ctx, String(u), X(u), RY + 28, { align: 'center', size: 13 });
+      label(ctx, 'new units of length', X(TT / 2), RY + 52, { align: 'center', size: 13, color: P.ink2 });
+      if (sec > 0) { ctx.fillStyle = P.accent; ctx.fillRect(X(0), RY - 8, X(sec) - X(0), 6); label(ctx, `${Math.round(sec)} units`, X(sec), RY - 20, { align: sec > 420 ? 'right' : 'center', weight: 700, size: 14, color: P.accent }); }
+      if (sec >= TT) label(ctx, 'distance = 1 × 500 = 500 new units', 320, 450, { align: 'center', weight: 800, size: 18, color: P.accent });
+      partsPanel(ctx, 630, 34, 300, 'Working', ['1 new unit = distance light travels in 1 s', '8 min 20 s = 500 s', 'distance = 1 × 500 = 500 new units'], stages.findIndex(s => t < s.t1) < 0 ? 2 : stages.findIndex(s => t < s.t1), false);
+    } else askedPanel(ctx, 630, 34, 300, ['The distance between the Sun and the Earth in the new unit of length.']);
+    note(ctx, 'Sun and Earth not to scale; 500 s of travel shown in 8 s');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

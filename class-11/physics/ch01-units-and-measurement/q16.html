@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 1.16</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 1 Units and Measurement</a></p>
+      <h1>Exercise 1.16 · Trees rush past, the Moon stays</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q15.html">‹ 1.15</a><a href="index.html">All questions</a><a href="q17.html">1.17 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 1.16">
+    <div class="bench">
+      <div class="view">
+        <div class="stage" tabindex="0" title="Click to play or pause"><canvas width="960" height="540" role="img" aria-label="Seen from above, a train moves past a nearby tree and a distant hill; lines of sight from the passenger to each show that the direction to the tree swings through a large angle while the direction to the hill hardly changes."></canvas></div>
+        <p class="narrow-hint">Scroll sideways inside the picture, or turn your phone sideways for a bigger view.</p>
+        <div class="ctl"></div>
+      </div>
+      <div class="side">
+        <p class="qline"><b>1.16</b> Explain this common observation clearly : If you look out of the window of a fast moving train, the nearby trees, houses etc. seem to move rapidly in a direction opposite to the train’s motion, but the distant objects (hill tops, the Moon, the stars etc.) seem to be stationary. (In fact, since you are aware that you are moving, these distant objects seem to move with you).</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>A fast-moving train; nearby objects (trees, houses) and distant ones (hill tops, the Moon, stars).</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>Why nearby objects seem to rush backwards while distant ones seem still.</p>
+      </div>
+      <div>
+        <h3>How the animation is drawn</h3>
+        <ul>
+          <li>Seen from above; distances and the train’s speed are illustrative.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>What we see as motion is the change in the direction of the line of sight to an object.</li>
+          <li>For a nearby tree the line of sight turns through a large angle as the train moves a short distance: the tree seems to rush backwards.</li>
+          <li>For a distant hill the same movement turns the line of sight through a tiny angle (angle ≈ distance moved / distance of the object), so it seems almost still; because we know we are moving, it then seems to move along with us.</li>
+        </ol>
+        <p class="final">The apparent angular speed of an object falls as its distance grows; distant objects barely change direction.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 1 (Units and Measurement), Exercises. The first run shows only what the question gives; Show answers replays it as the full worked solution. Click the picture or press Space to play or pause; the arrow keys move between steps.</p>
+</div>
+<script src="../../assets/engine.js"></script>
+<script>
+
+const SCENE = (() => {
+  const TY = 470, TX0 = 200, TX1 = 400, NT = [300, 408], FH = [300, 46], D = 10;   // seen from above: near tree, far hill
+  const qStages = [
+    { title: 'Looking out of a train', dur: D, text: 'You look out of the window of a fast-moving train. Nearby trees seem to rush backwards; a distant hill seems almost still.' },
+    { title: 'What is asked', dur: 4, text: 'Explain why nearby objects seem to move rapidly backwards while distant ones seem stationary.' },
+  ];
+  const stages = [
+    { title: 'Lines of sight', dur: D, text: 'We judge motion by how fast the direction to an object changes. Follow the line of sight from the passenger to the tree and to the hill as the train moves.', ans: 'The line of sight to the near tree swings through a large angle; the one to the hill hardly turns.' },
+    { title: 'Why', dur: 6, text: 'For the same distance travelled, the change of direction is about (distance moved) / (distance of the object). Far objects change direction very little.', ans: 'Nearby objects seem to rush back; distant ones seem fixed (or to move with us).' },
+  ];
+  const ang = (ox, oy, p) => Math.atan2(p[0] - ox, oy - p[1]) * 180 / Math.PI;
+  function draw(ctx, t, ans) {
+    bg(ctx); vline(ctx, 610, 16, 524, P.rule, 1);
+    label(ctx, 'seen from above', 24, 30, { size: 13, color: P.ink2 });
+    const u = clamp(t / D), ox = TX0 + (TX1 - TX0) * u, oy = TY - 18;
+    hline(ctx, 20, 600, TY + 8, P.ink2, 2); hline(ctx, 20, 600, TY + 16, P.ink2, 2);
+    ctx.fillStyle = P.objFill; ctx.strokeStyle = P.obj; ctx.lineWidth = 2; ctx.fillRect(ox - 60, TY - 22, 120, 26); ctx.strokeRect(ox - 60, TY - 22, 120, 26);
+    ball(ctx, ox, oy + 8, 5, P.force); vec(ctx, ox + 66, TY - 9, 40, 0, 'train', P.vel, { side: -1, at: 0.5, size: 12 });
+    // a near tree and a distant hill
+    ctx.fillStyle = P.leaf; ctx.beginPath(); ctx.arc(NT[0], NT[1], 16, 0, Math.PI * 2); ctx.fill(); label(ctx, 'nearby tree', NT[0] + 22, NT[1], { size: 13, weight: 700 });
+    ctx.fillStyle = P.bark; ctx.beginPath(); ctx.moveTo(FH[0] - 60, FH[1] + 20); ctx.lineTo(FH[0], FH[1] - 25); ctx.lineTo(FH[0] + 60, FH[1] + 20); ctx.closePath(); ctx.fill(); label(ctx, 'distant hill', FH[0] + 66, FH[1] + 2, { size: 13, weight: 700 });
+    ctx.save(); ctx.lineWidth = 1.5; ctx.setLineDash([6, 4]);
+    ctx.strokeStyle = P.leaf; seg(ctx, ox, oy, NT[0], NT[1]); ctx.strokeStyle = P.bark; seg(ctx, ox, oy, FH[0], FH[1]); ctx.restore();
+    if (ans) {
+      const a0n = ang(TX0, oy, NT), an = ang(ox, oy, NT), a0f = ang(TX0, oy, FH), af = ang(ox, oy, FH);
+      ctx.save(); ctx.globalAlpha = 0.35; ctx.lineWidth = 1; ctx.strokeStyle = P.leaf; seg(ctx, TX0, oy, NT[0], NT[1]); ctx.strokeStyle = P.bark; seg(ctx, TX0, oy, FH[0], FH[1]); ctx.restore();
+      label(ctx, `direction to the tree turned by ${Math.abs(an - a0n).toFixed(0)}°`, 24, 150, { weight: 700, size: 15, color: P.leaf });
+      label(ctx, `direction to the hill turned by ${Math.abs(af - a0f).toFixed(0)}°`, 24, 176, { weight: 700, size: 15, color: P.bark });
+      partsPanel(ctx, 630, 34, 300, 'Explanation', ['Motion is judged by how fast the line of sight turns', 'Near tree: large turn in a short time, so it seems to rush backwards', 'Distant hill: tiny turn, so it seems still (or to keep pace with us)'], t < D ? (t < D / 2 ? 0 : 1) : 2, false);
+    } else askedPanel(ctx, 630, 34, 300, ['Why nearby trees and houses seem to move rapidly opposite to the train, while hill tops, the Moon and the stars seem stationary.']);
+    note(ctx, 'distances and speed illustrative; the hill is really much farther than can be drawn');
+  }
+  return { qStages, stages, draw };
+})();
+
+
+Engine.mount(SCENE);
+</script>
+</body>
+</html>

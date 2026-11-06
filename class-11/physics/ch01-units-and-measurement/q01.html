@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 1.1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 1 Units and Measurement</a></p>
+      <h1>Exercise 1.1 · Fill in the blanks: unit conversions</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><span>‹</span><a href="index.html">All questions</a><a href="q02.html">1.2 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 1.1">
+    <p class="qline"><b>1.1</b> Fill in the blanks (a) The volume of a cube of side 1 cm is equal to .....m<sup>3</sup> (b) The surface area of a solid cylinder of radius 2.0 cm and height 10.0 cm is equal to ...(mm)<sup>2</sup> (c) A vehicle moving with a speed of 18 km h<sup>–1</sup> covers....m in 1 s (d) The relative density of lead is 11.3. Its density is ....g cm<sup>–3</sup> or ....kg m<sup>–3</sup>.</p>
+    <p><button type="button" class="btn reveal" id="show" aria-pressed="false" style="margin-left:0">Show answer</button></p>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Cube side 1 cm; cylinder radius 2.0 cm, height 10.0 cm; speed 18 km h<sup>−1</sup>; relative density of lead 11.3.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The four missing values.</p>
+      </div>
+      <div>
+        <h3>Why there is no animation</h3>
+        <ul>
+          <li>This is a calculation (or an explanation) with no physical situation to animate; the page shows the question and a worked answer.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>(a) 1 cm<sup>3</sup> = (10<sup>−2</sup> m)<sup>3</sup> = 10<sup>−6</sup> m<sup>3</sup>.</li>
+          <li>(b) Area = 2π<i>r</i>(<i>r</i> + <i>h</i>) = 2π × 20 mm × (20 + 100) mm ≈ 1.5 × 10<sup>4</sup> mm<sup>2</sup> (2 significant figures, as in 2.0 cm).</li>
+          <li>(c) 18 km h<sup>−1</sup> = 18 × 1000 m / 3600 s = 5 m s<sup>−1</sup>, so 5 m in 1 s.</li>
+          <li>(d) Density = 11.3 × density of water = 11.3 g cm<sup>−3</sup> = 1.13 × 10<sup>4</sup> kg m<sup>−3</sup>.</li>
+        </ol>
+        <p class="final">(a) 10<sup>−6</sup> (b) 1.5 × 10<sup>4</sup> (c) 5 (d) 11.3; 1.13 × 10<sup>4</sup></p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 1 (Units and Measurement), Exercises. </p>
+</div>
+<script>
+const b = document.getElementById('show'), a = document.querySelector('.answer');
+b.addEventListener('click', () => { a.hidden = !a.hidden; b.setAttribute('aria-pressed', String(!a.hidden)); b.textContent = a.hidden ? 'Show answer' : 'Hide answer'; });
+</script>
+</body>
+</html>

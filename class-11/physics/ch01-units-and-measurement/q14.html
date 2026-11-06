@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 1.14</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 1 Units and Measurement</a></p>
+      <h1>Exercise 1.14 · Volume of a mole of hydrogen atoms</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q13.html">‹ 1.13</a><a href="index.html">All questions</a><a href="q15.html">1.15 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 1.14">
+    <p class="qline"><b>1.14</b> The unit of length convenient on the atomic scale is known as an angstrom and is denoted by Å: 1 Å = 10<sup>–10</sup> m. The size of a hydrogen atom is about 0.5 Å. What is the total atomic volume in m<sup>3</sup> of a mole of hydrogen atoms ?</p>
+    <p><button type="button" class="btn reveal" id="show" aria-pressed="false" style="margin-left:0">Show answer</button></p>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>1 Å = 10<sup>−10</sup> m; size (radius) of a hydrogen atom ≈ 0.5 Å; one mole = 6.023 × 10<sup>23</sup> atoms.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The total atomic volume of a mole of hydrogen atoms.</p>
+      </div>
+      <div>
+        <h3>Why there is no animation</h3>
+        <ul>
+          <li>This is a calculation (or an explanation) with no physical situation to animate; the page shows the question and a worked answer.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>Volume of one atom = (4/3)π<i>r</i><sup>3</sup> = (4/3) × 3.14 × (0.5 × 10<sup>−10</sup> m)<sup>3</sup> ≈ 5.23 × 10<sup>−31</sup> m<sup>3</sup>.</li>
+          <li>For a mole: 6.023 × 10<sup>23</sup> × 5.23 × 10<sup>−31</sup> m<sup>3</sup> ≈ 3.15 × 10<sup>−7</sup> m<sup>3</sup>.</li>
+        </ol>
+        <p class="final">About 3 × 10<sup>−7</sup> m<sup>3</sup>.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 1 (Units and Measurement), Exercises. </p>
+</div>
+<script>
+const b = document.getElementById('show'), a = document.querySelector('.answer');
+b.addEventListener('click', () => { a.hidden = !a.hidden; b.setAttribute('aria-pressed', String(!a.hidden)); b.textContent = a.hidden ? 'Show answer' : 'Hide answer'; });
+</script>
+</body>
+</html>

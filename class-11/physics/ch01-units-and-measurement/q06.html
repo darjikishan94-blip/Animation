@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Class 11 Physics · Exercise 1.6</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/engine.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top solo">
+    <div class="titles">
+      <p class="eyebrow"><a href="../../index.html">Class 11 Physics</a> · <a href="index.html">Ch. 1 Units and Measurement</a></p>
+      <h1>Exercise 1.6 · The most precise length-measuring device</h1>
+    </div>
+    <nav class="qnav" aria-label="Questions"><a href="q05.html">‹ 1.5</a><a href="index.html">All questions</a><a href="q07.html">1.7 ›</a></nav>
+  </header>
+
+  <section class="panel solo" id="q" aria-label="Exercise 1.6">
+    <p class="qline"><b>1.6</b> Which of the following is the most precise device for measuring length : (a) a vernier callipers with 20 divisions on the sliding scale (b) a screw gauge of pitch 1 mm and 100 divisions on the circular scale (c) an optical instrument that can measure length to within a wavelength of light ?</p>
+    <p><button type="button" class="btn reveal" id="show" aria-pressed="false" style="margin-left:0">Show answer</button></p>
+    <div class="facts">
+      <div>
+        <h3>Given</h3>
+        <ul>
+          <li>Vernier: 20 divisions on the sliding scale; screw gauge: pitch 1 mm, 100 divisions; optical instrument: within one wavelength of light.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Asked</h3>
+        <p>The most precise of the three.</p>
+      </div>
+      <div>
+        <h3>Why there is no animation</h3>
+        <ul>
+          <li>This is a calculation (or an explanation) with no physical situation to animate; the page shows the question and a worked answer.</li>
+        </ul>
+      </div>
+      <div class="answer" hidden>
+        <h3>Answer</h3>
+        <ol>
+          <li>Vernier callipers (main scale in mm): least count = 1 mm / 20 = 0.05 mm.</li>
+          <li>Screw gauge: least count = 1 mm / 100 = 0.01 mm.</li>
+          <li>Optical instrument: about one wavelength of visible light ≈ 5 × 10<sup>−7</sup> m = 0.0005 mm.</li>
+        </ol>
+        <p class="final">(c) the optical instrument is the most precise.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Question from the NCERT Physics (NCERT, Class 11), Chapter 1 (Units and Measurement), Exercises. </p>
+</div>
+<script>
+const b = document.getElementById('show'), a = document.querySelector('.answer');
+b.addEventListener('click', () => { a.hidden = !a.hidden; b.setAttribute('aria-pressed', String(!a.hidden)); b.textContent = a.hidden ? 'Show answer' : 'Hide answer'; });
+</script>
+</body>
+</html>
